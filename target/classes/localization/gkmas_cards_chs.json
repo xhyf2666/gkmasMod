@@ -1,0 +1,57 @@
+{
+  "BaseAppeal": {
+    "NAME": "基础表演",
+    "DESCRIPTION": "失去 !M! 点生命。 NL 造成 !D! 点伤害。",
+    "UPGRADE_DESCRIPTION": "失去 !M! 点生命。 NL 造成 !D! 点伤害。"
+  },
+  "BasePose": {
+    "NAME": "基础姿势",
+    "DESCRIPTION": "失去3点生命。 NL 造成 !D! 点伤害。 NL 获得 !M! 点 元气 。",
+    "UPGRADE_DESCRIPTION": "失去3点生命。 NL 造成 !D! 点伤害。 NL 获得 !M! 点 元气 。"
+  },
+  "BasePerform": {
+    "NAME": "基础表现",
+    "DESCRIPTION": "获得 !M! 点 元气 。 NL 消耗 。",
+    "UPGRADE_DESCRIPTION": "获得 !M! 点 元气 。 NL 消耗 。"
+  },
+  "Challenge": {
+    "NAME": "挑战",
+    "DESCRIPTION": "拥有 好调 时才能使用。 NL 失去7点生命。 NL 造成 !D! 点伤害。 NL 消耗 。",
+    "UPGRADE_DESCRIPTION": "拥有 好调 时才能使用。 NL 失去7点生命。 NL 造成 !D! 点伤害。 NL 消耗 。"
+  },
+  "KawaiiGesture": {
+    "NAME": "可爱手势",
+    "DESCRIPTION": "失去5点生命。 NL 获得 !M! 点 好印象 ， NL 然后造成 好印象 层数100%的伤害。 NL 消耗 。",
+    "UPGRADE_DESCRIPTION": "失去5点生命。 NL 获得 !M! 点 好印象 ， NL 然后造成 好印象 层数120%的伤害。 NL 消耗 。"
+  },
+  "BaseAwareness": {
+    "NAME": "基础意识",
+    "DESCRIPTION": "失去2点生命。 NL 获得 !M! 点 元气 。 NL 获得 !M2! 点 干劲 。",
+    "UPGRADE_DESCRIPTION": "失去2点生命。 NL 获得 !M! 点 元气 。 NL 获得 !M2! 点 干劲 。"
+  },
+  "BaseVision": {
+    "NAME": "基础视线",
+    "DESCRIPTION": "失去2点生命。 NL 获得 !M! 点 元气 。 NL 获得 !M2! 点 好印象 。",
+    "UPGRADE_DESCRIPTION": "失去2点生命。 NL 获得 !M! 点 元气 。 NL 获得 !M2! 点 好印象 。"
+  },
+  "BaseExpression": {
+    "NAME": "基础表情",
+    "DESCRIPTION": "失去1点生命。 NL 获得 !M! 点 元气 。 NL 获得 !M2! 点 集中 。",
+    "UPGRADE_DESCRIPTION": "失去2点生命。 NL 获得 !M! 点 元气 。 NL 获得 !M2! 点 集中 。"
+  },
+  "BaseBehave": {
+    "NAME": "基础举止",
+    "DESCRIPTION": "失去1点生命。 NL 获得 !M! 点 元气 。 NL 获得 !M2! 点 好调 。",
+    "UPGRADE_DESCRIPTION": "失去2点生命。 NL 获得 !M! 点 元气 。 NL 获得 !M2! 点 好调 。"
+  },
+  "TryError": {
+    "NAME": "试行错误",
+    "DESCRIPTION": "失去 !M2! 点生命。 NL 造成 !D! 点伤害2次。 NL 消耗 。",
+    "UPGRADE_DESCRIPTION": "失去 !M2! 点生命。 NL 造成 !D! 点伤害2次。 NL 消耗 。"
+  },
+  "ChangeMood": {
+    "NAME": "转换心情",
+    "DESCRIPTION": "强制消耗 !M! 点生命。 NL 造成 元气 层数 !M2! %的伤害。 NL 消耗 。",
+    "UPGRADE_DESCRIPTION": "强制消耗 !M! 点生命。 NL 造成 元气 层数 !M2! %的伤害。 NL 消耗 。"
+  }
+}
