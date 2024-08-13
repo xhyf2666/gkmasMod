@@ -15,6 +15,7 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.localization.CharacterStrings;
 import com.megacrit.cardcrawl.localization.Keyword;
 import com.megacrit.cardcrawl.localization.PowerStrings;
+import gkmasmod.Listener.CardImgUpdateListener;
 import gkmasmod.cards.*;
 import gkmasmod.characters.IdolCharacter;
 import gkmasmod.variables.SecondMagicNumber;
@@ -29,6 +30,7 @@ import static gkmasmod.characters.PlayerColorEnum.gkmasMod_character;
 @SpireInitializer
 public class GkmasMod implements EditCardsSubscriber, EditStringsSubscriber, EditKeywordsSubscriber, EditCharactersSubscriber, AddAudioSubscriber {
 
+    public static List<CardImgUpdateListener> listeners = new ArrayList<>();
     //攻击、技能、能力牌的背景图片(512)
     private static final String ATTACK_CC = "img/pink/512/bg_attack.png";
     private static final String SKILL_CC = "img/pink/512/bg_skill.png";
@@ -42,7 +44,7 @@ public class GkmasMod implements EditCardsSubscriber, EditStringsSubscriber, Edi
     public static final String CARD_ENERGY_ORB = "img/UI/star_22.png";
     //选英雄界面的角色图标、选英雄时的背景图片
     private static final String MY_CHARACTER_BUTTON = "img/charSelect/SelesButtongita.png";
-    private static final String MARISA_PORTRAIT = "img/charSelect/background.png";
+    private static final String MARISA_PORTRAIT = "img/charSelect/background_init.png";
     public static final Color gkmasMod_color = CardHelper.getColor(100, 200, 200);
     public static boolean limitedSLOption;
     private ArrayList<AbstractCard> cardsToAdd = new ArrayList<>();
@@ -71,7 +73,8 @@ public class GkmasMod implements EditCardsSubscriber, EditStringsSubscriber, Edi
     }
 
     public void receiveAddAudio() {
-        BaseMod.addAudio("click", "audio/click.ogg");
+        BaseMod.addAudio("shro_click", "audio/shro_click.ogg");
+        BaseMod.addAudio("kllj_click", "audio/kllj_click.ogg");
     }
 
     @Override
@@ -120,6 +123,10 @@ public class GkmasMod implements EditCardsSubscriber, EditStringsSubscriber, Edi
         instances.add(new ChangeMood());
         instances.add(new TryError());
         instances.add(new BaseExpression());
+        StartDash o = new StartDash();
+        instances.add(o);
+        listeners.add(o);
+
         return instances;
     }
 

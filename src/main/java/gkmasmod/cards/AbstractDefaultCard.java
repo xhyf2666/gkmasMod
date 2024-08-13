@@ -2,6 +2,9 @@ package gkmasmod.cards;
 
 import basemod.AutoAdd;
 import basemod.abstracts.CustomCard;
+import gkmasmod.characters.IdolCharacter;
+import gkmasmod.ui.SkinSelectScreen;
+import gkmasmod.utils.IdolNameString;
 
 public abstract class AbstractDefaultCard extends CustomCard {
 
@@ -52,5 +55,11 @@ public abstract class AbstractDefaultCard extends CustomCard {
         baseSecondMagicNumber += amount; // Upgrade the number by the amount you provide in your card.
         secondMagicNumber = baseSecondMagicNumber; // Set the number to be equal to the base value.
         upgradedSecondMagicNumber = true; // Upgraded = true - which does what the above method does.
+    }
+
+    public void updateImg(String CLASSNAME){
+        imgMap.clear();
+        textureImg = String.format("img/idol/cards/%s/%s.png",IdolNameString.idolNames[SkinSelectScreen.Inst.idolIndex] , CLASSNAME);
+        loadCardImage(String.format("img/idol/cards/%s/%s.png",IdolNameString.idolNames[SkinSelectScreen.Inst.idolIndex] , CLASSNAME));
     }
 }

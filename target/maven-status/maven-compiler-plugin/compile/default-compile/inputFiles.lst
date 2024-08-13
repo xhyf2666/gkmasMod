@@ -2,8 +2,10 @@ D:\[File]\[Workspace]\java\gkmas_mod\src\main\java\gkmasmod\cards\BaseAppeal.jav
 D:\[File]\[Workspace]\java\gkmas_mod\src\main\java\gkmasmod\cards\ChangeMood.java
 D:\[File]\[Workspace]\java\gkmas_mod\src\main\java\gkmasmod\powers\Genki.java
 D:\[File]\[Workspace]\java\gkmas_mod\src\main\java\gkmasmod\cards\BaseAwareness.java
+D:\[File]\[Workspace]\java\gkmas_mod\src\main\java\gkmasmod\Listener\CardImgUpdateListener.java
 D:\[File]\[Workspace]\java\gkmas_mod\src\main\java\gkmasmod\cards\AbstractDefaultCard.java
 D:\[File]\[Workspace]\java\gkmas_mod\src\main\java\gkmasmod\utils\NameHelper.java
+D:\[File]\[Workspace]\java\gkmas_mod\src\main\java\gkmasmod\utils\IdolSkin.java
 D:\[File]\[Workspace]\java\gkmas_mod\src\main\java\gkmasmod\cards\BaseVision.java
 D:\[File]\[Workspace]\java\gkmas_mod\src\main\java\gkmasmod\actions\GoodImpressionDamageAction.java
 D:\[File]\[Workspace]\java\gkmas_mod\src\main\java\gkmasmod\characters\IdolCharacter.java
@@ -12,7 +14,9 @@ D:\[File]\[Workspace]\java\gkmas_mod\src\main\java\gkmasmod\powers\GoodImpressio
 D:\[File]\[Workspace]\java\gkmas_mod\src\main\java\gkmasmod\utils\SkinSelectPatch.java
 D:\[File]\[Workspace]\java\gkmas_mod\src\main\java\gkmasmod\cards\BasePose.java
 D:\[File]\[Workspace]\java\gkmas_mod\src\main\java\gkmasmod\modcore\GkmasMod.java
+D:\[File]\[Workspace]\java\gkmas_mod\src\main\java\gkmasmod\utils\IdolNameString.java
 D:\[File]\[Workspace]\java\gkmas_mod\src\main\java\gkmasmod\cards\BaseExpression.java
+D:\[File]\[Workspace]\java\gkmas_mod\src\main\java\gkmasmod\cards\StartDash.java
 D:\[File]\[Workspace]\java\gkmas_mod\src\main\java\gkmasmod\actions\GenkiChangeAction.java
 D:\[File]\[Workspace]\java\gkmas_mod\src\main\java\gkmasmod\powers\Motivation.java
 D:\[File]\[Workspace]\java\gkmas_mod\src\main\java\gkmasmod\cards\BasePerform.java

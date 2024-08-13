@@ -68,6 +68,7 @@ public class IdolNameString {
      */
     public static final String nasr = "nasr";
 
-    public static final String[] idolNames = {shro, kllj, kcna, hume, hski, hrnm, fktn, amao, ssmk, ttmr, hmsz, jsna, nasr};
+    //public static final String[] idolNames = {shro, kllj, kcna, hume, hski, hrnm, fktn, amao, ssmk, ttmr, hmsz, jsna, nasr};
+    public static final String[] idolNames = {shro, kllj, kcna,hume,hski,hrnm,fktn,amao,ssmk,ttmr};
 
 }

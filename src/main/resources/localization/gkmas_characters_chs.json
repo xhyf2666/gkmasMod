@@ -1,7 +1,7 @@
 {
   "selectIdol": {
     "NAMES": ["选择偶像的文本描述"],
-    "TEXT": ["选择你的偶像:"]
+    "TEXT": ["选择你的偶像"]
   },
   "IdolName:shro": {
     "NAMES": [""],

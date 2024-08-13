@@ -1,11 +1,11 @@
 package gkmasmod.characters;
 
+import basemod.BaseMod;
 import basemod.abstracts.CustomEnergyOrb;
 import basemod.abstracts.CustomPlayer;
 import basemod.animations.SpriterAnimation;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import com.evacipated.cardcrawl.modthespire.lib.SpireEnum;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -14,15 +14,17 @@ import com.megacrit.cardcrawl.core.EnergyManager;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.cutscenes.CutscenePanel;
 import com.megacrit.cardcrawl.events.city.Vampires;
-import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.ScreenShake;
-import com.megacrit.cardcrawl.localization.CharacterStrings;
 import com.megacrit.cardcrawl.relics.Vajra;
+import com.megacrit.cardcrawl.relics.ChemicalX;
 import com.megacrit.cardcrawl.screens.CharSelectInfo;
 import gkmasmod.cards.BaseAppeal;
 import gkmasmod.modcore.GkmasMod;
 import gkmasmod.ui.SkinSelectScreen;
+import gkmasmod.utils.IdolNameString;
+import gkmasmod.utils.IdolSkin;
+import gkmasmod.utils.NameHelper;
 
 import java.util.ArrayList;
 
@@ -54,9 +56,6 @@ public class IdolCharacter extends CustomPlayer {
     // 每个图层的旋转速度
     private static final float[] LAYER_SPEED = new float[]{-40.0F, -32.0F, 20.0F, -20.0F, 0.0F, -10.0F, -8.0F, 5.0F, -5.0F, 0.0F};
 
-    // TODO 修改为自己的人物本地化文本
-    //private static final CharacterStrings characterStrings = CardCrawlGame.languagePack.getCharacterString("ExampleMod:MyCharacter");
-
     //初始生命，最大生命，初始金币,初始的充能球栏位（机器人）,最后一个应该是进阶14时的最大生命值下降
     private static final int STARTING_HP = 80;
     private static final int MAX_HP = 80;
@@ -67,24 +66,7 @@ public class IdolCharacter extends CustomPlayer {
     public static String SELES_STAND = null;
     public static String filepath = "img/test/Anon.scml";
 
-    public static String[] skinAnimation = {"img/test/Anon.scml",
-            "img/test/Ash.scml",
-            "img/test/AnonWhite.scml",
-            "img/test/caicai.scml",
-            "img/test/AnonFes.scml",
-            "img/test/AnonGive.scml",
-            "img/test/AnonSIx.scml",
-            "img/test/shiro.scml",
-            "img/test/feimali.scml",
-            "img/test/PAREO.scml",
-            "img/test/yukina.scml",
-            "img/test/soyo.scml",
-            "img/test/smallworker.scml",
-            "img/test/tech.scml",
-            "img/test/leader.scml",
-            "img/test/KSM.scml",
-            "img/test/KSM.scml",
-            "img/test/soyo.scml"};
+    public static String idolName=IdolNameString.shro;
 
     public IdolCharacter(String name) {
         super(name, PlayerColorEnum.gkmasMod_character,new CustomEnergyOrb(ORB_TEXTURES, ORB_VFX, LAYER_SPEED), new SpriterAnimation(filepath));
@@ -107,18 +89,15 @@ public class IdolCharacter extends CustomPlayer {
         );
         refreshSkin();
 
-
-        // 如果你的人物没有动画，那么这些不需要写
-        // this.loadAnimation("ExampleModResources/img/char/character.atlas", "ExampleModResources/img/char/character.json", 1.8F);
-        // AnimationState.TrackEntry e = this.state.setAnimation(0, "Idle", true);
-        // e.setTime(e.getEndTime() * MathUtils.random());
-        // e.setTimeScale(1.2F);
-
-
     }
 
     public void refreshSkin() {
-        this.animation = new SpriterAnimation(skinAnimation[SkinSelectScreen.Inst.index]);
+        this.idolName = IdolNameString.idolNames[SkinSelectScreen.Inst.idolIndex];
+
+        String idolName_display = CardCrawlGame.languagePack.getCharacterString(NameHelper.addSplitWords("IdolName",this.idolName)).TEXT[0];
+        String skinName = IdolSkin.SKINS.get(this.idolName).get(SkinSelectScreen.Inst.skinIndex);
+        String path = String.format("img/idol/stand/%s_%s.scml",this.idolName,skinName);
+        this.animation = new SpriterAnimation(path);
 
     }
 
@@ -131,10 +110,15 @@ public class IdolCharacter extends CustomPlayer {
         return retVal;
     }
 
+    @Override
     // 初始遗物的ID，可以先写个原版遗物凑数
     public ArrayList<String> getStartingRelics() {
         ArrayList<String> retVal = new ArrayList<>();
-        retVal.add(Vajra.ID);
+        System.out.println(this.idolName);
+        if(SkinSelectScreen.Inst.idolIndex == 1)
+            retVal.add(ChemicalX.ID);
+        else
+            retVal.add(Vajra.ID);
         return retVal;
     }
 
@@ -148,8 +132,8 @@ public class IdolCharacter extends CustomPlayer {
                 99, // 初始携带金币
                 5, // 每回合抽牌数量
                 this, // 别动
-                this.getStartingRelics(), // 初始遗物
-                this.getStartingDeck(), // 初始卡组
+                getStartingRelics(), // 初始遗物
+                getStartingDeck(), // 初始卡组
                 false // 别动
         );
     }
@@ -192,7 +176,7 @@ public class IdolCharacter extends CustomPlayer {
 
     // 人物选择界面点击你的人物按钮时触发的方法，这里为屏幕轻微震动
     public void doCharSelectScreenSelectEffect() {
-        CardCrawlGame.sound.play("click");
+        CardCrawlGame.sound.play(String.format("%s_click", this.idolName));
         CardCrawlGame.screenShake.shake(ScreenShake.ShakeIntensity.MED, ScreenShake.ShakeDur.SHORT, true);
     }
 
@@ -210,7 +194,7 @@ public class IdolCharacter extends CustomPlayer {
     // 自定义模式选择你的人物时播放的音效
     @Override
     public String getCustomModeCharacterButtonSoundKey() {
-        return "click";
+        return String.format("%s_click", this.idolName);
     }
 
     // 游戏中左上角显示在你的名字之后的人物名称
