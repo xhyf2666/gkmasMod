@@ -1,0 +1,58 @@
+{
+  "selectIdol": {
+    "NAMES": ["选择偶像的文本描述"],
+    "TEXT": ["选择你的偶像"]
+  },
+  "IdolName:shro": {
+    "NAMES": [""],
+    "TEXT": ["篠泽广"]
+  },
+  "IdolName:kllj": {
+    "NAMES": [""],
+    "TEXT": ["葛城莉莉娅"]
+  },
+  "IdolName:kcna": {
+    "NAMES": [""],
+    "TEXT": ["仓本千奈"]
+  },
+  "IdolName:hume": {
+    "NAMES": [""],
+    "TEXT": ["花海佑芽"]
+  },
+  "IdolName:hski": {
+    "NAMES": [""],
+    "TEXT": ["花海咲季"]
+  },
+  "IdolName:hrnm": {
+    "NAMES": [""],
+    "TEXT": ["姬崎莉波"]
+  },
+  "IdolName:fktn": {
+    "NAMES": [""],
+    "TEXT": ["藤田琴音"]
+  },
+  "IdolName:amao": {
+    "NAMES": [""],
+    "TEXT": ["有村麻央"]
+  },
+  "IdolName:ssmk": {
+    "NAMES": [""],
+    "TEXT": ["紫云清夏"]
+  },
+  "IdolName:ttmr": {
+    "NAMES": [""],
+    "TEXT": ["月村手毬"]
+  },
+  "IdolName:hmsz": {
+    "NAMES": [""],
+    "TEXT": ["秦谷美玲"]
+  },
+  "IdolName:jsna": {
+    "NAMES": [""],
+    "TEXT": ["十王星南"]
+  },
+  "IdolName:nasr": {
+    "NAMES": [""],
+    "TEXT": ["根绪亚纱里"]
+  }
+}
