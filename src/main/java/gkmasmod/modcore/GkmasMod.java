@@ -11,12 +11,16 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.CardHelper;
-import com.megacrit.cardcrawl.localization.CardStrings;
-import com.megacrit.cardcrawl.localization.CharacterStrings;
-import com.megacrit.cardcrawl.localization.Keyword;
-import com.megacrit.cardcrawl.localization.PowerStrings;
+import com.megacrit.cardcrawl.localization.*;
 import gkmasmod.Listener.CardImgUpdateListener;
-import gkmasmod.cards.*;
+import gkmasmod.cards.free.BaseAppeal;
+import gkmasmod.cards.free.BasePerform;
+import gkmasmod.cards.free.BasePose;
+import gkmasmod.cards.logic.BaseAwareness;
+import gkmasmod.cards.logic.BaseVision;
+import gkmasmod.cards.logic.ChangeMood;
+import gkmasmod.cards.logic.KawaiiGesture;
+import gkmasmod.cards.sense.*;
 import gkmasmod.characters.IdolCharacter;
 import gkmasmod.variables.SecondMagicNumber;
 
@@ -24,28 +28,35 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
-import static gkmasmod.characters.PlayerColorEnum.gkmasModColor;
-import static gkmasmod.characters.PlayerColorEnum.gkmasMod_character;
+import static gkmasmod.characters.PlayerColorEnum.*;
 
 @SpireInitializer
 public class GkmasMod implements EditCardsSubscriber, EditStringsSubscriber, EditKeywordsSubscriber, EditCharactersSubscriber, AddAudioSubscriber {
 
     public static List<CardImgUpdateListener> listeners = new ArrayList<>();
     //攻击、技能、能力牌的背景图片(512)
-    private static final String ATTACK_CC = "img/pink/512/bg_attack.png";
-    private static final String SKILL_CC = "img/pink/512/bg_skill.png";
-    private static final String POWER_CC = "img/pink/512/bg_power.png";
+
+    static String idolName = "shro";
+
+    private static final String carduiImgFormat = "img/idol/%s/cardui/%s/%sbg_%s.png";
+    private static final String ATTACK_CC = String.format("img/idol/%s/cardui/512/bg_attack.png",idolName);
+    private static final String SKILL_CC = String.format("img/idol/%s/cardui/512/bg_skill.png",idolName);
+    private static final String POWER_CC = String.format("img/idol/%s/cardui/512/bg_power.png",idolName);
     private static final String ENERGY_ORB_CC = "img/UI/star.png";
     //攻击、技能、能力牌的背景图片(1024)
-    private static final String ATTACK_CC_PORTRAIT = "img/pink/1024/bg_attack.png";
-    private static final String SKILL_CC_PORTRAIT = "img/pink/1024/bg_skill.png";
-    private static final String POWER_CC_PORTRAIT = "img/pink/1024/bg_power.png";
+    private static final String ATTACK_CC_PORTRAIT = String.format("img/idol/%s/cardui/1024/bg_attack.png",idolName);
+    private static final String SKILL_CC_PORTRAIT = String.format("img/idol/%s/cardui/1024/bg_skill.png",idolName);
+    private static final String POWER_CC_PORTRAIT = String.format("img/idol/%s/cardui/1024/bg_power.png",idolName);
     private static final String ENERGY_ORB_CC_PORTRAIT = "img/UI/star_164.png";
     public static final String CARD_ENERGY_ORB = "img/UI/star_22.png";
     //选英雄界面的角色图标、选英雄时的背景图片
-    private static final String MY_CHARACTER_BUTTON = "img/charSelect/SelesButtongita.png";
+    private static final String MY_CHARACTER_BUTTON = "img/charSelect/selectButton.png";
     private static final String MARISA_PORTRAIT = "img/charSelect/background_init.png";
     public static final Color gkmasMod_color = CardHelper.getColor(100, 200, 200);
+
+    public static final Color gkmasMod_colorLogic = CardHelper.getColor(50, 70, 200);
+
+    public static final Color gkmasMod_colorSense = CardHelper.getColor(200, 150, 100);
     public static boolean limitedSLOption;
     private ArrayList<AbstractCard> cardsToAdd = new ArrayList<>();
     public static ArrayList<AbstractCard> recyclecards = new ArrayList<>();
@@ -55,8 +66,32 @@ public class GkmasMod implements EditCardsSubscriber, EditStringsSubscriber, Edi
 
     public GkmasMod(){
         BaseMod.subscribe(this);
-        BaseMod.addColor(gkmasModColor, gkmasMod_color, gkmasMod_color, gkmasMod_color, gkmasMod_color, gkmasMod_color, gkmasMod_color, gkmasMod_color, ATTACK_CC, SKILL_CC, POWER_CC, ENERGY_ORB_CC,
-                ATTACK_CC_PORTRAIT,SKILL_CC_PORTRAIT ,POWER_CC_PORTRAIT , ENERGY_ORB_CC_PORTRAIT,CARD_ENERGY_ORB );
+        String[] suffix = new String[]{"","logic_","sense_"};
+        addColor(gkmasModColor,gkmasMod_color,idolName,suffix[0]);
+        addColor(gkmasModColorLogic,gkmasMod_colorLogic,idolName,suffix[1]);
+        addColor(gkmasModColorSense,gkmasMod_colorSense,idolName,suffix[2]);
+//        BaseMod.addColor(gkmasModColor, gkmasMod_color, gkmasMod_color, gkmasMod_color, gkmasMod_color, gkmasMod_color, gkmasMod_color, gkmasMod_color, ATTACK_CC, SKILL_CC, POWER_CC, ENERGY_ORB_CC,
+//                ATTACK_CC_PORTRAIT,SKILL_CC_PORTRAIT ,POWER_CC_PORTRAIT , ENERGY_ORB_CC_PORTRAIT,CARD_ENERGY_ORB );
+//        BaseMod.addColor(gkmasModColorLogic, gkmasMod_colorLogic, gkmasMod_colorLogic, gkmasMod_colorLogic, gkmasMod_colorLogic, gkmasMod_colorLogic, gkmasMod_colorLogic, gkmasMod_colorLogic, ATTACK_CC, SKILL_CC, POWER_CC, ENERGY_ORB_CC,
+//                ATTACK_CC_PORTRAIT,SKILL_CC_PORTRAIT ,POWER_CC_PORTRAIT , ENERGY_ORB_CC_PORTRAIT,CARD_ENERGY_ORB );
+//        BaseMod.addColor(gkmasModColorSense, gkmasMod_colorSense, gkmasMod_colorSense, gkmasMod_colorSense, gkmasMod_colorSense, gkmasMod_colorSense, gkmasMod_colorSense, gkmasMod_colorSense, ATTACK_CC, SKILL_CC, POWER_CC, ENERGY_ORB_CC,
+//                ATTACK_CC_PORTRAIT,SKILL_CC_PORTRAIT ,POWER_CC_PORTRAIT , ENERGY_ORB_CC_PORTRAIT,CARD_ENERGY_ORB );
+    }
+
+    private void addColor(AbstractCard.CardColor cc,Color c,String idolName,String suffix){
+        String[] size = new String[]{"512","1024"};
+        String[] s= new String[]{"attack","skill","power"};
+
+        BaseMod.addColor(cc,c,c,c,c,c,c,c,
+                String.format(carduiImgFormat,idolName,size[0],suffix,s[0]),
+                String.format(carduiImgFormat,idolName,size[0],suffix,s[1]),
+                String.format(carduiImgFormat,idolName,size[0],suffix,s[2]),
+                ENERGY_ORB_CC,
+                String.format(carduiImgFormat,idolName,size[1],suffix,s[0]),
+                String.format(carduiImgFormat,idolName,size[1],suffix,s[1]),
+                String.format(carduiImgFormat,idolName,size[1],suffix,s[2]),
+                ENERGY_ORB_CC_PORTRAIT,CARD_ENERGY_ORB);
+
     }
 
     public static void initialize(){
@@ -88,6 +123,7 @@ public class GkmasMod implements EditCardsSubscriber, EditStringsSubscriber, Edi
         BaseMod.loadCustomStringsFile(CardStrings.class, "localization/gkmas_cards_"+lang+".json");
         BaseMod.loadCustomStringsFile(PowerStrings.class, "localization/gkmas_powers_" + lang + ".json");
         BaseMod.loadCustomStringsFile(CharacterStrings.class, "localization/gkmas_characters_" + lang + ".json");
+        BaseMod.loadCustomStringsFile(UIStrings.class, "localization/gkmas_ui_" + lang + ".json");
     }
 
     @Override
@@ -123,10 +159,12 @@ public class GkmasMod implements EditCardsSubscriber, EditStringsSubscriber, Edi
         instances.add(new ChangeMood());
         instances.add(new TryError());
         instances.add(new BaseExpression());
-        StartDash o = new StartDash();
-        instances.add(o);
-        listeners.add(o);
+        instances.add(new StartDash());
 
+        // 遍历instances的所有元素，将其添加到listener中
+        for (Object instance : instances) {
+            listeners.add((CardImgUpdateListener) instance);
+        }
         return instances;
     }
 

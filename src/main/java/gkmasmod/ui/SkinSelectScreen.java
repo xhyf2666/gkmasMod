@@ -4,7 +4,6 @@ package gkmasmod.ui;
 import basemod.BaseMod;
 import basemod.abstracts.CustomSavable;
 import basemod.interfaces.ISubscriber;
-import gkmasmod.cards.StartDash;
 import gkmasmod.characters.IdolCharacter;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
@@ -22,9 +21,6 @@ import gkmasmod.utils.IdolNameString;
 import gkmasmod.utils.IdolSkin;
 import gkmasmod.utils.NameHelper;
 
-
-import java.util.ArrayList;
-
 public class SkinSelectScreen implements ISubscriber, CustomSavable<Integer> {
     private static String[] TEXT;
 
@@ -40,11 +36,6 @@ public class SkinSelectScreen implements ISubscriber, CustomSavable<Integer> {
     public int idolIndex;
     public int skinIndex;
 
-//    public static Skin getSkin() {
-//
-//        return (Skin)SKINS.get(Inst.idolIndex);
-//
-//    }
 
     public SkinSelectScreen() {
         this.refresh();
@@ -54,6 +45,7 @@ public class SkinSelectScreen implements ISubscriber, CustomSavable<Integer> {
         BaseMod.addSaveField(NameHelper.makePath("skin"), this);
     }
     public Texture usedImg;
+    public Texture nameImg;
 
     public void refresh() {
         String name = IdolNameString.idolNames[this.idolIndex];
@@ -61,10 +53,11 @@ public class SkinSelectScreen implements ISubscriber, CustomSavable<Integer> {
         this.curName = CardCrawlGame.languagePack.getCharacterString(NameHelper.addSplitWords("IdolName",name)).TEXT[0];
 
         String skinName = IdolSkin.SKINS.get(name).get(this.skinIndex);
-        IdolCharacter.SELES_STAND = String.format("img/idol/stand/%s_%s.png", name, skinName);
+        //IdolCharacter.SELES_STAND = String.format("img/idol/stand/%s_%s.png", name, skinName);
+        IdolCharacter.SELES_STAND = String.format("img/idol/%s/stand/stand_%s.png", name, skinName);
         this.usedImg = ImageMaster.loadImage(IdolCharacter.SELES_STAND);
         this.SpecialName = "";
-        //this.nextName = ((Skin)SKINS.get(this.nextIndex())).name;
+        this.nameImg = ImageMaster.loadImage(String.format("img/idol/%s/stand/name.png", name));
 
 
         if (AbstractDungeon.player instanceof IdolCharacter) {
@@ -132,13 +125,16 @@ public class SkinSelectScreen implements ISubscriber, CustomSavable<Integer> {
         float usedx = (float) this.usedImg.getWidth() /2;
         float usedy = (float) this.usedImg.getWidth() /2;
         this.renderSkin(sb, centerX-usedx, centerY-usedy);
+        sb.draw(this.nameImg,centerX-250, centerY-420);
         String selectIdolHint = CardCrawlGame.languagePack.getCharacterString("selectIdol").TEXT[0];
         FontHelper.renderFontCentered(sb, FontHelper.cardTitleFont, selectIdolHint, centerX, centerY + 250.0F * Settings.scale, Color.WHITE, 1.25F);
         Color color = Settings.GOLD_COLOR.cpy();
         color.a /= 2.0F;
         float dist = 100.0F * Settings.scale;
-        FontHelper.renderFontCentered(sb, FontHelper.cardTitleFont, this.curName, centerX, centerY-200, RC);
-        FontHelper.renderFontCentered(sb, FontHelper.cardTitleFont, this.SpecialName, centerX, centerY-250, RC);
+
+
+        //FontHelper.renderFontCentered(sb, FontHelper.cardTitleFont, this.curName, centerX, centerY-200, RC);
+        //FontHelper.renderFontCentered(sb, FontHelper.cardTitleFont, this.SpecialName, centerX, centerY-250, RC);
         if (this.leftHb.hovered) {
             sb.setColor(Color.LIGHT_GRAY);
         } else {
@@ -174,90 +170,8 @@ public class SkinSelectScreen implements ISubscriber, CustomSavable<Integer> {
     }
 
     static {
-//        String[] special1;
-//            special1 = new String[]{"",
-//                    "","用“机械心”代替你的“基础音乐”","初始携带“吉他-浅草&微露”,更换专属初始卡组","","","","","","","",""};
-//
-//
-//        Special = special1;
-//        TEXT = IdolNameString.idolNames;
-//        SKINS.add(new Skin(0, "Anon"));
-//        SKINS.add(new Skin(1, "AshAnon"));
-//        SKINS.add(new Skin(2, "white"));
-//        SKINS.add(new Skin(3, "caicai"));
-//        SKINS.add(new Skin(4, "AnonFes"));
-//        SKINS.add(new Skin(5, "AnonGive"));
-//        SKINS.add(new Skin(6, "AnonSix"));
-//        SKINS.add(new Skin(7, "shiro"));
-//        SKINS.add(new Skin(8, "feimali"));
-//        SKINS.add(new Skin(9, "PAREO"));
-//        SKINS.add(new Skin(10, "yukina"));
-//        SKINS.add(new Skin(11, "soyo"));
-//        SKINS.add(new Skin(12, "smallworker"));
-//        SKINS.add(new Skin(13, "tech"));
-//        SKINS.add(new Skin(14, "leader"));
-//        SKINS.add(new Skin(15, "KSM"));
         Inst = new SkinSelectScreen();
     }
 
-
-//    public static class Skin {
-//        public String charPath;
-//        public String shoulder;
-//        public String name;
-//        public String special;
-//        public Skin(int index, String charPath) {
-//            if(charPath.equals("Anon")){
-//                this.charPath = "img/char/anon.png";
-//            }
-//            if(charPath.equals("AshAnon")){
-//                this.charPath = "img/huijinaiyin/huijinaiyin260_2.png";
-//            }
-//            if(charPath.equals("caicai")){
-//                this.charPath = "img/test/caicai.png";
-//            }
-//            if(charPath.equals("AnonFes")){
-//                this.charPath = "img/test/AnonFes.png";
-//            }
-//            if(charPath.equals("AnonGive")){
-//                this.charPath = "img/test/AnonGive.png";
-//            }
-//            if(charPath.equals("AnonSix")){
-//                this.charPath = "img/test/AnonSix.png";
-//            }
-//            if(charPath.equals("shiro")){
-//                this.charPath = "img/test/shiro.png";
-//            }
-//            if(charPath.equals("feimali")){
-//                this.charPath = "img/test/feimali.png";
-//            }
-//            if(charPath.equals("PAREO")){
-//                this.charPath = "img/test/PAREO.png";
-//            }
-//            if(charPath.equals("yukina")){
-//                this.charPath = "img/test/yukina.png";
-//            }
-//            if(charPath.equals("soyo")){
-//                this.charPath = "img/test/soyo.png";
-//            }
-//            if(charPath.equals("smallworker")){
-//                this.charPath = "img/test/smallworker.png";
-//            }
-//            if(charPath.equals("tech")){
-//                this.charPath = "img/test/tech.png";
-//            }
-//            if(charPath.equals("leader")){
-//                this.charPath = "img/test/leader.png";
-//            }
-//            if(charPath.equals("white")){
-//                this.charPath = "img/test/Anon white.png";
-//            }
-//            if(charPath.equals("KSM")){
-//                this.charPath = "img/test/KSM.png";
-//            }
-//            this.name = SkinSelectScreen.TEXT[index + 1];
-//            this.special = SkinSelectScreen.Special[index + 1];
-//        }
-//    }
 
 }

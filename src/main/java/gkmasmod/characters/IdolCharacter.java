@@ -1,6 +1,5 @@
 package gkmasmod.characters;
 
-import basemod.BaseMod;
 import basemod.abstracts.CustomEnergyOrb;
 import basemod.abstracts.CustomPlayer;
 import basemod.animations.SpriterAnimation;
@@ -19,7 +18,10 @@ import com.megacrit.cardcrawl.helpers.ScreenShake;
 import com.megacrit.cardcrawl.relics.Vajra;
 import com.megacrit.cardcrawl.relics.ChemicalX;
 import com.megacrit.cardcrawl.screens.CharSelectInfo;
-import gkmasmod.cards.BaseAppeal;
+import gkmasmod.cards.free.BaseAppeal;
+import gkmasmod.cards.sense.BaseBehave;
+import gkmasmod.cards.sense.Challenge;
+import gkmasmod.cards.sense.TryError;
 import gkmasmod.modcore.GkmasMod;
 import gkmasmod.ui.SkinSelectScreen;
 import gkmasmod.utils.IdolNameString;
@@ -64,7 +66,7 @@ public class IdolCharacter extends CustomPlayer {
     private static final int ASCENSION_MAX_HP_LOSS = 5;
 
     public static String SELES_STAND = null;
-    public static String filepath = "img/test/Anon.scml";
+    public static String filepath = "img/idol/shro/stand/stand_skin1.scml";
 
     public static String idolName=IdolNameString.shro;
 
@@ -92,11 +94,12 @@ public class IdolCharacter extends CustomPlayer {
     }
 
     public void refreshSkin() {
-        this.idolName = IdolNameString.idolNames[SkinSelectScreen.Inst.idolIndex];
+        this.idolName = getIdolName();
 
         String idolName_display = CardCrawlGame.languagePack.getCharacterString(NameHelper.addSplitWords("IdolName",this.idolName)).TEXT[0];
         String skinName = IdolSkin.SKINS.get(this.idolName).get(SkinSelectScreen.Inst.skinIndex);
-        String path = String.format("img/idol/stand/%s_%s.scml",this.idolName,skinName);
+        //String path = String.format("img/idol/stand/%s_%s.scml",this.idolName,skinName);
+        String path = String.format("img/idol/%s/stand/stand_%s.scml",this.idolName,skinName);
         this.animation = new SpriterAnimation(path);
 
     }
@@ -104,8 +107,17 @@ public class IdolCharacter extends CustomPlayer {
     // 初始卡组的ID，可直接写或引用变量
     public ArrayList<String> getStartingDeck() {
         ArrayList<String> retVal = new ArrayList<>();
-        for(int x = 0; x<5; x++) {
-            retVal.add(BaseAppeal.ID);
+        if (getIdolName()==IdolNameString.shro){
+            for(int x = 0; x<5; x++) {
+                retVal.add(BaseAppeal.ID);
+            }
+        }
+        else if(getIdolName()==IdolNameString.ttmr){
+            retVal.add(TryError.ID);
+            retVal.add(BaseBehave.ID);
+            retVal.add(Challenge.ID);
+            retVal.add(BaseBehave.ID);
+            retVal.add(BaseBehave.ID);
         }
         return retVal;
     }
@@ -114,7 +126,7 @@ public class IdolCharacter extends CustomPlayer {
     // 初始遗物的ID，可以先写个原版遗物凑数
     public ArrayList<String> getStartingRelics() {
         ArrayList<String> retVal = new ArrayList<>();
-        System.out.println(this.idolName);
+        System.out.println(getIdolName());
         if(SkinSelectScreen.Inst.idolIndex == 1)
             retVal.add(ChemicalX.ID);
         else
@@ -124,8 +136,8 @@ public class IdolCharacter extends CustomPlayer {
 
     public CharSelectInfo getLoadout() {
         return new CharSelectInfo(
-                "篠泽 广", // 人物名字
-                "测试人物", // 人物介绍
+                "学园偶像大师", // 人物名字
+                "来自初星学园的偶像团体。每位偶像有各自的初始卡组、专属遗物和成长倾向。", // 人物介绍
                 75, // 当前血量
                 75, // 最大血量
                 0, // 初始充能球栏位
@@ -141,7 +153,7 @@ public class IdolCharacter extends CustomPlayer {
     // 人物名字（出现在游戏左上角）
     @Override
     public String getTitle(PlayerClass playerClass) {
-        return "篠泽 广";
+        return "学园偶像大师";
     }
 
     // 你的卡牌颜色（这个枚举在最下方创建）
@@ -200,7 +212,7 @@ public class IdolCharacter extends CustomPlayer {
     // 游戏中左上角显示在你的名字之后的人物名称
     @Override
     public String getLocalizedCharacterName() {
-        return "篠泽 广";
+        return "学园偶像大师";
     }
 
     // 创建人物实例，照抄
@@ -239,7 +251,7 @@ public class IdolCharacter extends CustomPlayer {
         return new AbstractGameAction.AttackEffect[]{AbstractGameAction.AttackEffect.SLASH_HEAVY, AbstractGameAction.AttackEffect.FIRE, AbstractGameAction.AttackEffect.SLASH_DIAGONAL, AbstractGameAction.AttackEffect.SLASH_HEAVY, AbstractGameAction.AttackEffect.FIRE, AbstractGameAction.AttackEffect.SLASH_DIAGONAL};
     }
 
-
-
-
+    public static String getIdolName() {
+        return IdolNameString.idolNames[SkinSelectScreen.Inst.idolIndex];
+    }
 }

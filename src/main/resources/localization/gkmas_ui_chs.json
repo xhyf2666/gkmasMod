@@ -1,0 +1,11 @@
+{
+  "gkmasMod:free": {
+    "TEXT": ["IDOL:通用"]
+  },
+  "gkmasMod:logic": {
+    "TEXT": ["IDOL:理性"]
+  },
+  "gkmasMod:sense": {
+    "TEXT": ["IDOL:感性"]
+  }
+}

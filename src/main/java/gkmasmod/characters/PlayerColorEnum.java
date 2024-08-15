@@ -14,6 +14,12 @@ public class PlayerColorEnum {
 
     // ***将CardColor和LibraryType的变量名改为你的角色的颜色名称，确保不会与其他mod冲突***
     // ***并且名称需要一致！***
-    @SpireEnum
+    @SpireEnum(name = "gkmasMod:logic")
+    public static AbstractCard.CardColor gkmasModColorLogic;
+
+    @SpireEnum(name = "gkmasMod:free")
     public static AbstractCard.CardColor gkmasModColor;
+
+    @SpireEnum(name = "gkmasMod:sense")
+    public static AbstractCard.CardColor gkmasModColorSense;
 }

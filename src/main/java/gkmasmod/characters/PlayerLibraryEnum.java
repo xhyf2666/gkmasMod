@@ -1,6 +1,7 @@
 package gkmasmod.characters;
 
 import com.evacipated.cardcrawl.modthespire.lib.SpireEnum;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
 
 public class PlayerLibraryEnum {
@@ -8,6 +9,13 @@ public class PlayerLibraryEnum {
     // ***并且名称需要一致！***
 
     // 这个变量未被使用（呈现灰色）是正常的
-    @SpireEnum
+
+    @SpireEnum(name = "gkmasMod:logic")
+    public static CardLibrary.LibraryType gkmasModColorLogic;
+
+    @SpireEnum(name = "gkmasMod:free")
     public static CardLibrary.LibraryType gkmasModColor;
+
+    @SpireEnum(name = "gkmasMod:sense")
+    public static CardLibrary.LibraryType gkmasModColorSense;
 }
