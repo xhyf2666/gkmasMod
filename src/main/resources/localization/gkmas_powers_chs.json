@@ -14,25 +14,25 @@
   "GoodTune": {
     "NAME": "好调",
     "DESCRIPTIONS": [
-      "当前有 #b%d 层。 NL 造成的伤害增加50%。 NL 回合结束时层数减 #b1 。"
+      "当前有 #b%d 层。 NL 造成的伤害增加50%%。 NL 回合结束时层数减 #b1 。"
     ]
   },
-  "AshAnonSongs": {
-    "NAME": "InnerFavillae的曲目",
+  "RemainBuff": {
+    "NAME": "buff残留",
     "DESCRIPTIONS": [
-      "灰爱音准备演奏："
+      "是机制不是BUG！"
     ]
   },
-  "AstoundingWisdomPower": {
-    "NAME": "惊世智慧",
+  "NotGoodTune": {
+    "NAME": "不调",
     "DESCRIPTIONS": [
-      "你的新点子和春日影不再消耗。"
+      "当前有 #b%d 层。 NL 造成的伤害减少33%%。 NL 回合结束时层数减 #b1 。"
     ]
   },
-  "AveMujica": {
-    "NAME": "AveMujica",
+  "InnocencePower": {
+    "NAME": "天真烂漫",
     "DESCRIPTIONS": [
-      "你拥有其他AveMujica成员时，你不会收到伤害。"
+      "回合结束时，若力量大于2，则获得 #b2 点力量。 NL 当前可获得%d点力量。"
     ]
   },
   "AveMujicaBelief": {

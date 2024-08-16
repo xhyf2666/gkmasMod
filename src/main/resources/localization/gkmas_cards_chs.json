@@ -11,8 +11,8 @@
   },
   "BasePerform": {
     "NAME": "基础表现",
-    "DESCRIPTION": "获得 !M! 点 格挡 。 NL 消耗 。",
-    "UPGRADE_DESCRIPTION": "获得 !M! 点 格挡 。 NL 消耗 。"
+    "DESCRIPTION": "获得 !B! 点 格挡 。 NL 消耗 。",
+    "UPGRADE_DESCRIPTION": "获得 !B! 点 格挡 。 NL 消耗 。"
   },
   "Challenge": {
     "NAME": "挑战",
@@ -26,23 +26,23 @@
   },
   "BaseAwareness": {
     "NAME": "基础意识",
-    "DESCRIPTION": "失去2点体力。 NL 获得 !M! 点 格挡 。 NL 获得 !M2! 点 干劲 。",
-    "UPGRADE_DESCRIPTION": "失去2点体力。 NL 获得 !M! 点 格挡 。 NL 获得 !M2! 点 干劲 。"
+    "DESCRIPTION": "获得 !M2! 点 敏捷 。",
+    "UPGRADE_DESCRIPTION": "获得 !M2! 点 敏捷 。"
   },
   "BaseVision": {
     "NAME": "基础视线",
-    "DESCRIPTION": "失去2点体力。 NL 获得 !M! 点 格挡 。 NL 获得 !M2! 点 好印象 。",
-    "UPGRADE_DESCRIPTION": "失去2点体力。 NL 获得 !M! 点 格挡 。 NL 获得 !M2! 点 好印象 。"
+    "DESCRIPTION": "获得 !B! 点 格挡 。 NL 获得 !M! 点 好印象 。",
+    "UPGRADE_DESCRIPTION": "获得 !B! 点 格挡 。 NL 获得 !M! 点 好印象 。"
   },
   "BaseExpression": {
     "NAME": "基础表情",
-    "DESCRIPTION": "失去1点体力。 NL 获得 !M! 点 格挡 。 NL 获得 !M2! 点 集中 。",
-    "UPGRADE_DESCRIPTION": "失去2点体力。 NL 获得 !M! 点 格挡 。 NL 获得 !M2! 点 集中 。"
+    "DESCRIPTION": "获得 !M! 点 力量 。",
+    "UPGRADE_DESCRIPTION": "获得 !M! 点 力量 。"
   },
   "BaseBehave": {
     "NAME": "基础举止",
-    "DESCRIPTION": "获得 !D! 点 格挡 。 NL 获得 !M! 点 好调 。 消耗 。",
-    "UPGRADE_DESCRIPTION": "获得 !D! 点 格挡 。 NL 获得 !M! 点 好调 。 消耗 。"
+    "DESCRIPTION": "获得 !B! 点 格挡 。 NL 获得 !M! 点 好调 。 消耗 。",
+    "UPGRADE_DESCRIPTION": "获得 !B! 点 格挡 。 NL 获得 !M! 点 好调 。 消耗 。"
   },
   "TryError": {
     "NAME": "试行错误",
@@ -58,5 +58,45 @@
     "NAME": "疾跑",
     "DESCRIPTION": "失去5点体力。 NL 造成 !D! 点伤害，获得10点 格挡 。 NL 两回合内 体力消耗翻倍 。 NL 唯一 。",
     "UPGRADE_DESCRIPTION": "失去5点体力。 NL 造成 !D! 点伤害，获得10点 格挡 。 NL 两回合内 体力消耗翻倍 。 NL 唯一 。"
+  },
+  "LightGait": {
+    "NAME": "轻快舞步",
+    "DESCRIPTION": "造成 !D! 点 伤害 。 NL 获得 !M! 点 力量 。",
+    "UPGRADE_DESCRIPTION": "造成 !D! 点 伤害 。 NL 获得 !M! 点 力量 。"
+  },
+  "AiJiao": {
+    "NAME": "爱娇",
+    "DESCRIPTION": "造成 !D! 点伤害。",
+    "UPGRADE_DESCRIPTION": "造成 !D! 点伤害。"
+  },
+  "WarmUp": {
+    "NAME": "热身运动",
+    "DESCRIPTION": "造成 !D! 点伤害。 NL 获得 !M! 点 力量 。 NL 消耗 。",
+    "UPGRADE_DESCRIPTION": "造成 !D! 点伤害。 NL 获得 !M! 点 力量 。 NL 消耗 。"
+  },
+  "ServiceSpirit": {
+    "NAME": "服务精神",
+    "DESCRIPTION": "获得 !B! 点 格挡 。 NL 获得 !M! 点 力量 。",
+    "UPGRADE_DESCRIPTION": "获得 !B! 点 格挡 。 NL 获得 !M! 点 力量 。"
+  },
+  "GoWithTheFlow": {
+    "NAME": "顺势而为",
+    "DESCRIPTION": "造成 !D! 点伤害。 NL 拥有 好调 时，获得 !M! 点 力量 。",
+    "UPGRADE_DESCRIPTION": "造成 !D! 点伤害。 NL 拥有 好调 时，获得 !M! 点 力量 。"
+  },
+  "HighFive": {
+    "NAME": "击掌",
+    "DESCRIPTION": "造成 !D! 点伤害。 NL 力量发挥 !M! %的效果 。 NL 消耗",
+    "UPGRADE_DESCRIPTION": "造成 !D! 点伤害。 NL 力量发挥 !M! %的效果 。 NL 消耗"
+  },
+  "Gacha": {
+    "NAME": "钱包空空的",
+    "DESCRIPTION": "获得 !M! 张随机支援卡。 NL 消耗 。",
+    "UPGRADE_DESCRIPTION":  "获得 !M! 张升级的随机支援卡。 NL 消耗 。"
+  },
+  "JustOneMore": {
+    "NAME": "捶胸顿足",
+    "DESCRIPTION": "移除所有 好调 。 NL (无 好调 时使用获得1层 不调 ) NL 将你的 力量 翻倍。 NL 消耗 。",
+    "UPGRADE_DESCRIPTION": "移除所有 好调 。 NL (无 好调 时使用获得1层 不调 ) NL 将你的 力量 翻倍。"
   }
 }

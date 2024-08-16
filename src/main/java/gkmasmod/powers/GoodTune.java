@@ -5,8 +5,10 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.ReducePowerAction;
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
+import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
@@ -50,23 +52,32 @@ public class GoodTune extends AbstractPower {
         this.description = String.format(DESCRIPTIONS[0], this.amount);
     }
 
-    public void DuringTurn() {
+    public void atEndOfRound() {
         flash();
-        System.out.println("GoodTune.DuringTurn");
-        if (firstGet) {
-            addToBot((AbstractGameAction)new ApplyPowerAction(this.owner, this.owner, new DoubleDamagePower(this.owner, 1, false), 1 ));
+        System.out.println("firstGet:"+firstGet);
+        if (firstGet && this.amount > 0) {
             firstGet = false;
+        }
+        else{
+            if (this.amount == 0) {
+                addToBot((AbstractGameAction)new RemoveSpecificPowerAction(this.owner, this.owner, POWER_ID));
+            } else {
+                addToBot((AbstractGameAction)new ReducePowerAction(this.owner, this.owner, POWER_ID, 1));
+            }
         }
     }
 
-    public void atStartOfTurn() {
-        flash();
-        System.out.println("GoodTune.atStartOfTurn");
-        addToBot((AbstractGameAction)new ApplyPowerAction(this.owner, this.owner, new DoubleDamagePower(this.owner, 1, false), 1 ));
-        addToBot((AbstractGameAction)new ReducePowerAction(this.owner, this.owner, POWER_ID, 1));
+    public void onRemove() {
+        firstGet = true;
+    }
 
-        if (this.amount == 0) {
-            firstGet = true;
+
+
+    public float atDamageGive(float damage, DamageInfo.DamageType type) {
+        if (type == DamageInfo.DamageType.NORMAL) {
+            // TODO 支持绝好调
+            return damage * 1.5F;
         }
+        return damage;
     }
 }

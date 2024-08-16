@@ -2,6 +2,7 @@ package gkmasmod.cards.free;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
+import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
@@ -24,11 +25,8 @@ public class BasePerform extends AbstractDefaultCard {
     private static final String IMG_PATH = String.format("img/cards/common/%s.png", CLASSNAME);
 
     private static final int COST = 1;
-    private static final int BASE_MAGIC = 4;
-    private static final int UPGRADE_PLUS_MAGIC = 3;
-
-
-    private static final int HP_COST = 0;
+    private static final int BLOCK_AMT = 6;
+    private static final int UPGRADE_PLUS_BLOCK = 3;
 
     private static final CardType TYPE = CardType.SKILL;
     private static final CardColor COLOR = PlayerColorEnum.gkmasModColor;
@@ -37,16 +35,15 @@ public class BasePerform extends AbstractDefaultCard {
 
     public BasePerform() {
         super(ID, NAME, IMG_PATH, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseMagicNumber = BASE_MAGIC;
-        this.magicNumber = this.baseMagicNumber;
+        this.baseBlock = BLOCK_AMT;
         this.exhaust = true;
     }
 
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        addToBot((AbstractGameAction)new ApplyPowerAction((AbstractCreature)p, (AbstractCreature)p, (AbstractPower)new Genki((AbstractCreature)p, this.magicNumber), this.magicNumber));
-    }
+        addToBot(((AbstractGameAction)new GainBlockAction((AbstractCreature)p, (AbstractCreature)p, this.block)));
+     }
 
     @Override
     public AbstractCard makeCopy() {
@@ -58,7 +55,7 @@ public class BasePerform extends AbstractDefaultCard {
     public void upgrade() {
         if (!this.upgraded) {
             upgradeName();
-            upgradeMagicNumber(UPGRADE_PLUS_MAGIC);
+            upgradeBlock(UPGRADE_PLUS_BLOCK);
             this.rawDescription = CARD_STRINGS.UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

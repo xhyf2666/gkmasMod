@@ -49,7 +49,6 @@ public class BaseBehave extends AbstractDefaultCard {
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        //TODO 改成好调
         addToBot(((AbstractGameAction)new GainBlockAction((AbstractCreature)p, (AbstractCreature)p, this.block)));
         addToBot((AbstractGameAction)new ApplyPowerAction((AbstractCreature)p, (AbstractCreature)p, (AbstractPower)new GoodTune((AbstractCreature)p, this.magicNumber), this.magicNumber));
     }

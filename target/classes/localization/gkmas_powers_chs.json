@@ -14,19 +14,19 @@
   "GoodTune": {
     "NAME": "好调",
     "DESCRIPTIONS": [
-      "当前有 #b%d 层。 NL 造成的伤害增加50%。 NL 回合结束时层数减 #b1 。"
+      "当前有 #b%d 层。 NL 造成的伤害增加50%%。 NL 回合结束时层数减 #b1 。"
     ]
   },
-  "AshAnonSongs": {
-    "NAME": "InnerFavillae的曲目",
+  "RemainBuff": {
+    "NAME": "buff残留",
     "DESCRIPTIONS": [
-      "灰爱音准备演奏："
+      "是机制不是BUG！"
     ]
   },
-  "AstoundingWisdomPower": {
-    "NAME": "惊世智慧",
+  "NotGoodTune": {
+    "NAME": "不调",
     "DESCRIPTIONS": [
-      "你的新点子和春日影不再消耗。"
+      "当前有 #b%d 层。 NL 造成的伤害减少33%%。 NL 回合结束时层数减 #b1 。"
     ]
   },
   "AveMujica": {

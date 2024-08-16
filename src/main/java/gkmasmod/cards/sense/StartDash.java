@@ -23,7 +23,7 @@ public class StartDash extends AbstractDefaultCard {
 
     private static final String NAME = CARD_STRINGS.NAME;
     private static final String DESCRIPTION = CARD_STRINGS.DESCRIPTION;
-    private static String IMG_PATH = String.format("img/idol/cards/%s/%s.png", IdolCharacter.getIdolName(), CLASSNAME);
+    private static String IMG_PATH = String.format("img/idol/%s/cards/%s.png", IdolCharacter.getIdolName(), CLASSNAME);
 
     private static final int COST = 1;
     private static final int ATTACK_DMG = 30;
@@ -33,12 +33,12 @@ public class StartDash extends AbstractDefaultCard {
 
     private static final CardType TYPE = CardType.ATTACK;
     private static final CardColor COLOR = PlayerColorEnum.gkmasModColorSense;
-    private static final CardRarity RARITY = CardRarity.BASIC;
-    private static final CardTarget TARGET = CardTarget.SELF;
+    private static final CardRarity RARITY = CardRarity.UNCOMMON;
+    private static final CardTarget TARGET = CardTarget.ENEMY;
 
     public StartDash() {
-        super(ID, NAME, String.format("img/idol/cards/%s/%s.png", IdolCharacter.getIdolName(), CLASSNAME), COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        IMG_PATH = String.format("img/idol/cards/%s/%s.png", IdolCharacter.getIdolName(), CLASSNAME);
+        super(ID, NAME, String.format("img/idol/%s/cards/%s.png", IdolCharacter.getIdolName(), CLASSNAME), COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
+        IMG_PATH = String.format("img/idol/%s/cards/%s.png", IdolCharacter.getIdolName(), CLASSNAME);
         this.updateShowImg = true;
         this.baseDamage = ATTACK_DMG;
         //updateImg();

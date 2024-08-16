@@ -30,8 +30,6 @@ public class BasePose extends AbstractDefaultCard {
     private static final int BLOCK_AMT = 3;
     private static final int UPGRADE_PLUS_BLOCK = 2;
 
-    private static final int HP_COST = 3;
-
     private static final CardType TYPE = CardType.ATTACK;
     private static final CardColor COLOR = PlayerColorEnum.gkmasModColor;
     private static final CardRarity RARITY = CardRarity.BASIC;
@@ -41,7 +39,6 @@ public class BasePose extends AbstractDefaultCard {
         super(ID, NAME, IMG_PATH, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.baseDamage = ATTACK_DMG;
         this.baseBlock = BLOCK_AMT;
-        this.magicNumber = this.baseMagicNumber;
     }
 
 
@@ -62,7 +59,7 @@ public class BasePose extends AbstractDefaultCard {
         if (!this.upgraded) {
             upgradeName();
             upgradeDamage(UPGRADE_PLUS_DMG);
-            upgradeMagicNumber(UPGRADE_PLUS_BLOCK);
+            upgradeBlock(UPGRADE_PLUS_BLOCK);
             this.rawDescription = CARD_STRINGS.UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

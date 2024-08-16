@@ -16,6 +16,7 @@ import gkmasmod.Listener.CardImgUpdateListener;
 import gkmasmod.cards.free.BaseAppeal;
 import gkmasmod.cards.free.BasePerform;
 import gkmasmod.cards.free.BasePose;
+import gkmasmod.cards.free.Gacha;
 import gkmasmod.cards.logic.BaseAwareness;
 import gkmasmod.cards.logic.BaseVision;
 import gkmasmod.cards.logic.ChangeMood;
@@ -160,6 +161,8 @@ public class GkmasMod implements EditCardsSubscriber, EditStringsSubscriber, Edi
         instances.add(new TryError());
         instances.add(new BaseExpression());
         instances.add(new StartDash());
+        instances.add(new Gacha());
+        instances.add(new JustOneMore());
 
         // 遍历instances的所有元素，将其添加到listener中
         for (Object instance : instances) {

@@ -2,6 +2,7 @@ package gkmasmod.cards.logic;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
+import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.actions.common.LoseHPAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -25,11 +26,11 @@ public class BaseVision extends AbstractDefaultCard {
     private static final String IMG_PATH = String.format("img/cards/common/%s.png", CLASSNAME);
 
     private static final int COST = 1;
-    private static final int BASE_MAGIC = 1;
+    private static final int BASE_MAGIC = 2;
     private static final int UPGRADE_PLUS_MAGIC = 1;
 
-    private static final int BASE_MAGIC2 = 2;
-    private static final int UPGRADE_PLUS_MAGIC2 = 1;
+    private static final int BLOCK_AMT = 3;
+    private static final int UPGRADE_PLUS_BLOCK = 2;
 
     private static final int HP_COST = 2;
 
@@ -42,13 +43,13 @@ public class BaseVision extends AbstractDefaultCard {
         super(ID, NAME, IMG_PATH, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.baseMagicNumber = BASE_MAGIC;
         this.magicNumber = this.baseMagicNumber;
-        this.baseSecondMagicNumber = BASE_MAGIC2;
+        this.baseBlock = BLOCK_AMT;
     }
 
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        addToBot((AbstractGameAction)new LoseHPAction((AbstractCreature)p, (AbstractCreature)p, HP_COST));
+        addToBot(((AbstractGameAction)new GainBlockAction((AbstractCreature)p, (AbstractCreature)p, this.block)));
         addToBot((AbstractGameAction)new ApplyPowerAction((AbstractCreature)p, (AbstractCreature)p, (AbstractPower)new GoodImpression((AbstractCreature)p, this.magicNumber), this.magicNumber));
     }
 
@@ -63,7 +64,7 @@ public class BaseVision extends AbstractDefaultCard {
         if (!this.upgraded) {
             upgradeName();
             upgradeMagicNumber(UPGRADE_PLUS_MAGIC);
-            upgradeSecondMagicNumber(UPGRADE_PLUS_MAGIC2);
+            upgradeBlock(UPGRADE_PLUS_BLOCK);
             this.rawDescription = CARD_STRINGS.UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }
