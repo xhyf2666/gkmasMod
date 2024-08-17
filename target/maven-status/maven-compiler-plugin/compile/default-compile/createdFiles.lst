@@ -9,6 +9,7 @@ gkmasmod\cards\sense\BaseBehave.class
 gkmasmod\cards\logic\BaseAwareness.class
 gkmasmod\ui\SkinSelectScreen.class
 gkmasmod\utils\IdolNameString.class
+gkmasmod\relics\EssentialStainlessSteelBottle.class
 gkmasmod\characters\IdolCharacter.class
 gkmasmod\modcore\GkmasMod.class
 gkmasmod\cards\logic\ChangeMood.class
@@ -29,6 +30,8 @@ gkmasmod\cards\sense\WarmUp.class
 gkmasmod\cards\sense\LightGait.class
 gkmasmod\cards\free\BasePose.class
 gkmasmod\cards\sense\ServiceSpirit.class
+gkmasmod\cards\sense\Innocence.class
+gkmasmod\powers\InnocencePower.class
 gkmasmod\characters\PlayerLibraryEnum.class
 gkmasmod\characters\PlayerColorEnum.class
 gkmasmod\cards\logic\KawaiiGesture.class

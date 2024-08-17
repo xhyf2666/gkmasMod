@@ -19,8 +19,8 @@ public class Genki extends AbstractPower {
     // 能力的描述
     private static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
 
-    String path128 = "img/powers/Genki_84.png";
-    String path48 = "img/powers/Genki_32.png";
+    String path128 = String.format("img/powers/%s_84.png",CLASSNAME);;
+    String path48 = String.format("img/powers/%s_32.png",CLASSNAME);;
 
     public Genki(AbstractCreature owner, int Amount) {
         this.name = NAME;

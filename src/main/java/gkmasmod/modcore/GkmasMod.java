@@ -4,6 +4,7 @@ import basemod.BaseMod;
 import basemod.interfaces.*;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.utils.compression.lzma.Base;
 import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
 import com.evacipated.cardcrawl.modthespire.lib.SpireInitializer;
 import com.google.gson.Gson;
@@ -12,6 +13,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.CardHelper;
 import com.megacrit.cardcrawl.localization.*;
+import com.megacrit.cardcrawl.relics.AbstractRelic;
 import gkmasmod.Listener.CardImgUpdateListener;
 import gkmasmod.cards.free.BaseAppeal;
 import gkmasmod.cards.free.BasePerform;
@@ -23,6 +25,8 @@ import gkmasmod.cards.logic.ChangeMood;
 import gkmasmod.cards.logic.KawaiiGesture;
 import gkmasmod.cards.sense.*;
 import gkmasmod.characters.IdolCharacter;
+import gkmasmod.characters.PlayerColorEnum;
+import gkmasmod.relics.EssentialStainlessSteelBottle;
 import gkmasmod.variables.SecondMagicNumber;
 
 import java.nio.charset.StandardCharsets;
@@ -32,7 +36,7 @@ import java.util.List;
 import static gkmasmod.characters.PlayerColorEnum.*;
 
 @SpireInitializer
-public class GkmasMod implements EditCardsSubscriber, EditStringsSubscriber, EditKeywordsSubscriber, EditCharactersSubscriber, AddAudioSubscriber {
+public class GkmasMod implements EditCardsSubscriber, EditStringsSubscriber, EditKeywordsSubscriber, EditCharactersSubscriber, AddAudioSubscriber,EditRelicsSubscriber {
 
     public static List<CardImgUpdateListener> listeners = new ArrayList<>();
     //攻击、技能、能力牌的背景图片(512)
@@ -125,6 +129,7 @@ public class GkmasMod implements EditCardsSubscriber, EditStringsSubscriber, Edi
         BaseMod.loadCustomStringsFile(PowerStrings.class, "localization/gkmas_powers_" + lang + ".json");
         BaseMod.loadCustomStringsFile(CharacterStrings.class, "localization/gkmas_characters_" + lang + ".json");
         BaseMod.loadCustomStringsFile(UIStrings.class, "localization/gkmas_ui_" + lang + ".json");
+        BaseMod.loadCustomStringsFile(RelicStrings.class, "localization/gkmas_relics_" + lang + ".json");
     }
 
     @Override
@@ -174,5 +179,13 @@ public class GkmasMod implements EditCardsSubscriber, EditStringsSubscriber, Edi
     @Override
     public void receiveEditCharacters() {
         BaseMod.addCharacter(new IdolCharacter(CardCrawlGame.playerName), MY_CHARACTER_BUTTON, MARISA_PORTRAIT, gkmasMod_character);
+    }
+
+    @Override
+    public void receiveEditRelics() {
+        //List<Object> instances = new ArrayList<>();
+        BaseMod.addRelicToCustomPool((AbstractRelic)new EssentialStainlessSteelBottle(), gkmasModColor);
+
+
     }
 }

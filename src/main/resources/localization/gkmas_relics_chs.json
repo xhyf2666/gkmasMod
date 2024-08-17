@@ -1,0 +1,9 @@
+{
+  "EssentialStainlessSteelBottle": {
+    "NAME": "必备的不锈钢瓶",
+    "FLAVOR": "可以多喝热水。",
+    "DESCRIPTIONS": [
+      "回合开始时，如果力量大于2，则获得%d点力量。 NL (每场战斗可触发%d次)。"
+    ]
+  }
+}
