@@ -30,8 +30,8 @@ import gkmasmod.cards.sense.Challenge;
 import gkmasmod.cards.sense.TryError;
 import gkmasmod.modcore.GkmasMod;
 import gkmasmod.ui.SkinSelectScreen;
-import gkmasmod.utils.IdolNameString;
-import gkmasmod.utils.IdolSkin;
+import gkmasmod.utils.IdolData;
+import gkmasmod.utils.IdolStartingDeck;
 import gkmasmod.utils.NameHelper;
 
 import java.util.ArrayList;
@@ -63,6 +63,8 @@ public class IdolCharacter extends CustomPlayer {
 
     private static final String ORB_VFX = "img/UI/vfx.png";
 
+    private static boolean firstLoad = true;
+
     // 每个图层的旋转速度
     private static final float[] LAYER_SPEED = new float[]{-40.0F, -32.0F, 20.0F, -20.0F, 0.0F, -10.0F, -8.0F, 5.0F, -5.0F, 0.0F};
 
@@ -76,7 +78,7 @@ public class IdolCharacter extends CustomPlayer {
     public static String SELES_STAND = null;
     public static String filepath = "img/idol/shro/stand/stand_skin1.scml";
 
-    public static String idolName=IdolNameString.shro;
+    public static String idolName= IdolData.shro;
 
     public IdolCharacter(String name) {
         super(name, PlayerColorEnum.gkmasMod_character,new CustomEnergyOrb(ORB_TEXTURES, ORB_VFX, LAYER_SPEED), new SpriterAnimation(filepath));
@@ -105,9 +107,9 @@ public class IdolCharacter extends CustomPlayer {
         this.idolName = getIdolName();
 
         String idolName_display = CardCrawlGame.languagePack.getCharacterString(NameHelper.addSplitWords("IdolName",this.idolName)).TEXT[0];
-        String skinName = IdolSkin.SKINS.get(this.idolName).get(SkinSelectScreen.Inst.skinIndex);
-
+        String skinName = IdolData.getIdol(this.idolName).getSkin(SkinSelectScreen.Inst.skinIndex);
         //String path = String.format("img/idol/stand/%s_%s.scml",this.idolName,skinName);
+        skinName = "skin10";
         String path = String.format("img/idol/%s/stand/stand_%s.scml",this.idolName,skinName);
         this.animation = new SpriterAnimation(path);
 
@@ -136,52 +138,23 @@ public class IdolCharacter extends CustomPlayer {
 
     // 初始卡组的ID，可直接写或引用变量
     public ArrayList<String> getStartingDeck() {
-        ArrayList<String> retVal = new ArrayList<>();
-        if (getIdolName()==IdolNameString.shro){
-            for(int x = 0; x<5; x++) {
-                retVal.add(BaseAppeal.ID);
-            }
-        }
-        else if(getIdolName()==IdolNameString.ttmr){
-            retVal.add(TryError.ID);
-            retVal.add(BaseBehave.ID);
-            retVal.add(Challenge.ID);
-            retVal.add(BaseBehave.ID);
-            retVal.add(BaseBehave.ID);
-        }
-        else if(getIdolName()==IdolNameString.kllj){
-            retVal.add(BaseAwareness.ID);
-            retVal.add(BaseVision.ID);
-            retVal.add(ChangeMood.ID);
-            retVal.add(KawaiiGesture.ID);
-            retVal.add(KawaiiGesture.ID);
-        }
-        else{
-            retVal.add(BaseAwareness.ID);
-            retVal.add(BaseVision.ID);
-            retVal.add(ChangeMood.ID);
-            retVal.add(KawaiiGesture.ID);
-            retVal.add(KawaiiGesture.ID);
-        }
-        return retVal;
+
+        return IdolStartingDeck.getStartingDeck(SkinSelectScreen.Inst.idolIndex, SkinSelectScreen.Inst.skinIndex);
     }
 
     @Override
     // 初始遗物的ID，可以先写个原版遗物凑数
     public ArrayList<String> getStartingRelics() {
         ArrayList<String> retVal = new ArrayList<>();
-        System.out.println(getIdolName());
-        if(SkinSelectScreen.Inst.idolIndex == 1)
-            retVal.add(ChemicalX.ID);
-        else
-            retVal.add(Vajra.ID);
+        retVal.add(IdolStartingDeck.getSpecailRelic(SkinSelectScreen.Inst.idolIndex, SkinSelectScreen.Inst.skinIndex));
+        String s= "来自初星学园的偶像团体。每位偶像有各自的初始卡组、专属遗物和成长倾向。";
         return retVal;
     }
 
     public CharSelectInfo getLoadout() {
         return new CharSelectInfo(
-                "学园偶像大师", // 人物名字
-                "来自初星学园的偶像团体。每位偶像有各自的初始卡组、专属遗物和成长倾向。", // 人物介绍
+                "", // 人物名字
+                "", // 人物介绍
                 75, // 当前血量
                 75, // 最大血量
                 0, // 初始充能球栏位
@@ -296,6 +269,6 @@ public class IdolCharacter extends CustomPlayer {
     }
 
     public static String getIdolName() {
-        return IdolNameString.idolNames[SkinSelectScreen.Inst.idolIndex];
+        return IdolData.idolNames[SkinSelectScreen.Inst.idolIndex];
     }
 }

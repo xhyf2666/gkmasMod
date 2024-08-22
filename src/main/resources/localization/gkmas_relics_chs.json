@@ -5,5 +5,12 @@
     "DESCRIPTIONS": [
       "回合开始时，如果力量大于2，则获得%d点力量。 NL (每场战斗可触发%d次)。"
     ]
+  },
+  "Empty": {
+    "NAME": "",
+    "FLAVOR": "占位遗物。",
+    "DESCRIPTIONS": [
+      ""
+    ]
   }
 }

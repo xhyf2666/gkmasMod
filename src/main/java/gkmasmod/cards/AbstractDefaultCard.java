@@ -1,13 +1,10 @@
 package gkmasmod.cards;
 
-import basemod.AutoAdd;
 import basemod.abstracts.CustomCard;
 import gkmasmod.Listener.CardImgUpdateListener;
-import gkmasmod.characters.IdolCharacter;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.ui.SkinSelectScreen;
-import gkmasmod.utils.IdolNameString;
-import org.lwjgl.Sys;
+import gkmasmod.utils.IdolData;
 
 public abstract class AbstractDefaultCard extends CustomCard  implements CardImgUpdateListener {
 
@@ -62,9 +59,9 @@ public abstract class AbstractDefaultCard extends CustomCard  implements CardImg
         //imgMap.clear();
         String CLASSNAME = this.getClass().getSimpleName();
         if (updateShowImg){
-            this.textureImg = String.format("img/idol/%s/cards/%s.png",IdolNameString.idolNames[SkinSelectScreen.Inst.idolIndex] , CLASSNAME);
+            this.textureImg = String.format("img/idol/%s/cards/%s.png", IdolData.idolNames[SkinSelectScreen.Inst.idolIndex] , CLASSNAME);
             System.out.println("updateImg: "+this.textureImg);
-            loadCardImage(String.format("img/idol/%s/cards/%s.png",IdolNameString.idolNames[SkinSelectScreen.Inst.idolIndex] , CLASSNAME));
+            loadCardImage(String.format("img/idol/%s/cards/%s.png", IdolData.idolNames[SkinSelectScreen.Inst.idolIndex] , CLASSNAME));
         }
     }
 
@@ -89,8 +86,8 @@ public abstract class AbstractDefaultCard extends CustomCard  implements CardImg
         }
 
         setBackgroundTexture(
-                String.format(carduiImgFormat,IdolNameString.idolNames[SkinSelectScreen.Inst.idolIndex] ,512,colorTypeString, typeString),
-                String.format(carduiImgFormat,IdolNameString.idolNames[SkinSelectScreen.Inst.idolIndex] ,1024,colorTypeString, typeString)
+                String.format(carduiImgFormat, IdolData.idolNames[SkinSelectScreen.Inst.idolIndex] ,512,colorTypeString, typeString),
+                String.format(carduiImgFormat, IdolData.idolNames[SkinSelectScreen.Inst.idolIndex] ,1024,colorTypeString, typeString)
                 );
     }
 

@@ -17,8 +17,7 @@ import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.helpers.input.InputHelper;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.modcore.GkmasMod;
-import gkmasmod.utils.IdolNameString;
-import gkmasmod.utils.IdolSkin;
+import gkmasmod.utils.IdolData;
 import gkmasmod.utils.NameHelper;
 
 public class SkinSelectScreen implements ISubscriber, CustomSavable<Integer> {
@@ -28,6 +27,7 @@ public class SkinSelectScreen implements ISubscriber, CustomSavable<Integer> {
 //    private static final ArrayList<Skin> SKINS = new ArrayList();
     public static SkinSelectScreen Inst;
     public static boolean isClick = false;
+    public static boolean isClick2 = false;
     public Hitbox leftHb;
     public Hitbox rightHb;
     public Hitbox upHb;
@@ -35,6 +35,7 @@ public class SkinSelectScreen implements ISubscriber, CustomSavable<Integer> {
     public Hitbox updateHb;
     public String curName = "";
     public String nextName = "";
+    private String selectIdolHint = "";
 
     public String SpecialName = "";
     public int idolIndex;
@@ -49,6 +50,7 @@ public class SkinSelectScreen implements ISubscriber, CustomSavable<Integer> {
         this.upHb = new Hitbox(70.0F * Settings.scale, 70.0F * Settings.scale);
         this.downHb = new Hitbox(70.0F * Settings.scale, 70.0F * Settings.scale);
         this.updateHb = new Hitbox(70.0F * Settings.scale, 70.0F * Settings.scale);
+        selectIdolHint = CardCrawlGame.languagePack.getCharacterString("selectIdol").TEXT[0];
         BaseMod.subscribe(this);
         BaseMod.addSaveField(NameHelper.makePath("skin"), this);
     }
@@ -56,13 +58,12 @@ public class SkinSelectScreen implements ISubscriber, CustomSavable<Integer> {
     public Texture nameImg;
 
     public void refresh() {
-        String name = IdolNameString.idolNames[this.idolIndex];
+        String name = IdolData.idolNames[this.idolIndex];
 
         this.curName = CardCrawlGame.languagePack.getCharacterString(NameHelper.addSplitWords("IdolName",name)).TEXT[0];
 
-        String skinName = IdolSkin.SKINS.get(name).get(this.skinIndex);
-        //IdolCharacter.SELES_STAND = String.format("img/idol/stand/%s_%s.png", name, skinName);
-        skinName = "skin1";
+        String skinName = IdolData.getIdol(name).getSkin(this.skinIndex);
+        skinName = "skin10";
         // TODO 支持其他皮肤
         IdolCharacter.SELES_STAND = String.format("img/idol/%s/stand/stand_%s.png", name, skinName);
         this.usedImg = ImageMaster.loadImage(IdolCharacter.SELES_STAND);
@@ -77,23 +78,22 @@ public class SkinSelectScreen implements ISubscriber, CustomSavable<Integer> {
     }
 
     public int prevIndex() {
-        return this.idolIndex - 1 < 0 ? IdolNameString.idolNames.length - 1 : this.idolIndex - 1;
+        return this.idolIndex - 1 < 0 ? IdolData.idolNames.length - 1 : this.idolIndex - 1;
     }
 
     public int nextIndex() {
-        return this.idolIndex + 1 > IdolNameString.idolNames.length - 1 ? 0 : this.idolIndex + 1;
+        return this.idolIndex + 1 > IdolData.idolNames.length - 1 ? 0 : this.idolIndex + 1;
     }
 
     public int prevSkinIndex() {
-        return this.skinIndex - 1 < 0 ? IdolSkin.SKINS.get(IdolNameString.idolNames[this.idolIndex]).size() - 1 : this.skinIndex - 1;
+        return this.skinIndex - 1 < 0 ? IdolData.getIdol(this.idolIndex).getSkinNum() - 1 : this.skinIndex - 1;
     }
 
     public int nextSkinIndex() {
-        return this.skinIndex + 1 > IdolSkin.SKINS.get(IdolNameString.idolNames[this.idolIndex]).size() - 1 ? 0 : this.skinIndex + 1;
+        return this.skinIndex + 1 > IdolData.getIdol(this.idolIndex).getSkinNum() - 1 ? 0 : this.skinIndex + 1;
     }
 
     public void update() {
-
         float centerX = (float)Settings.WIDTH * 0.8F;
         float centerY = (float)Settings.HEIGHT * 0.5F;
         this.leftHb.move(centerX - 180.0F * Settings.scale, centerY + 50.0F * Settings.scale);
@@ -113,28 +113,33 @@ public class SkinSelectScreen implements ISubscriber, CustomSavable<Integer> {
             this.updateHb.update();
             if (this.leftHb.clicked) {
                 this.isClick = true;
+                this.isClick2 = true;
                 this.leftHb.clicked = false;
                 CardCrawlGame.sound.play("UI_CLICK_1");
                 this.idolIndex = this.prevIndex();
-                if (this.skinIndex >= IdolSkin.SKINS.get(IdolNameString.idolNames[this.idolIndex]).size())
-                    this.skinIndex = IdolSkin.SKINS.get(IdolNameString.idolNames[this.idolIndex]).size() - 1;
+                selectIdolHint = CardCrawlGame.languagePack.getCharacterString("selectIdol").TEXT[0];
+                if (this.skinIndex >= IdolData.getIdol(this.idolIndex).getSkinNum())
+                    this.skinIndex = IdolData.getIdol(this.idolIndex).getSkinNum() - 1;
                 this.refresh();
                 GkmasMod.listeners.forEach(listener -> listener.onCardImgUpdate());
             }
 
             if (this.rightHb.clicked) {
                 this.isClick = true;
+                this.isClick2 = true;
                 this.rightHb.clicked = false;
                 CardCrawlGame.sound.play("UI_CLICK_1");
                 this.idolIndex = this.nextIndex();
-                if (this.skinIndex >= IdolSkin.SKINS.get(IdolNameString.idolNames[this.idolIndex]).size())
-                    this.skinIndex = IdolSkin.SKINS.get(IdolNameString.idolNames[this.idolIndex]).size() - 1;
+                selectIdolHint = CardCrawlGame.languagePack.getCharacterString("selectIdol").TEXT[0];
+                if (this.skinIndex >= IdolData.getIdol(this.idolIndex).getSkinNum())
+                    this.skinIndex = IdolData.getIdol(this.idolIndex).getSkinNum() - 1;
                 this.refresh();
                 GkmasMod.listeners.forEach(listener -> listener.onCardImgUpdate());
             }
 
             if (this.upHb.clicked) {
                 this.isClick = true;
+                this.isClick2 = true;
                 this.upHb.clicked = false;
                 CardCrawlGame.sound.play("UI_CLICK_1");
                 this.skinIndex = this.prevSkinIndex();
@@ -143,6 +148,7 @@ public class SkinSelectScreen implements ISubscriber, CustomSavable<Integer> {
 
             if (this.downHb.clicked) {
                 this.isClick = true;
+                this.isClick2 = true;
                 this.downHb.clicked = false;
                 CardCrawlGame.sound.play("UI_CLICK_1");
                 this.skinIndex = this.nextSkinIndex();
@@ -151,6 +157,7 @@ public class SkinSelectScreen implements ISubscriber, CustomSavable<Integer> {
 
             if (this.updateHb.clicked) {
                 this.isClick = true;
+                this.isClick2 = true;
                 this.updateHb.clicked = false;
                 CardCrawlGame.sound.play("UI_CLICK_1");
                 this.updateIndex = (this.updateIndex + 1) % 2;
@@ -180,7 +187,6 @@ public class SkinSelectScreen implements ISubscriber, CustomSavable<Integer> {
     }
 
     public void render(SpriteBatch sb) {
-
         Color RC = new Color(0.0F, 204.0F, 255.0F, 1.0F);
         float centerX = (float) Settings.WIDTH * 0.8F;
         float centerY = (float)Settings.HEIGHT * 0.5F;
@@ -188,7 +194,6 @@ public class SkinSelectScreen implements ISubscriber, CustomSavable<Integer> {
         float skin_y = (float) this.usedImg.getWidth() /2;
         this.renderSkin(sb, centerX-skin_x, centerY-skin_y + 50.0F * Settings.scale);
         sb.draw(this.nameImg,centerX-250, centerY-420);
-        String selectIdolHint = CardCrawlGame.languagePack.getCharacterString("selectIdol").TEXT[0];
         FontHelper.renderFontCentered(sb, FontHelper.cardTitleFont, selectIdolHint, centerX, centerY + 300.0F * Settings.scale, Color.WHITE, 1.25F);
         Color color = Settings.GOLD_COLOR.cpy();
         color.a /= 2.0F;
