@@ -3,6 +3,7 @@ package gkmasmod.powers;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
+import com.megacrit.cardcrawl.actions.common.DamageRandomEnemyAction;
 import com.megacrit.cardcrawl.actions.common.ReducePowerAction;
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
@@ -52,25 +53,29 @@ public class GoodTune extends AbstractPower {
         this.description = String.format(DESCRIPTIONS[0], this.amount);
     }
 
-    public void atEndOfRound() {
-        flash();
-        System.out.println("firstGet:"+firstGet);
-        if (firstGet && this.amount > 0) {
-            firstGet = false;
+    public void stackPower(int stackAmount) {
+        if(this.amount == 0){
+            firstGet = true;
         }
         else{
-            if (this.amount == 0) {
-                addToBot((AbstractGameAction)new RemoveSpecificPowerAction(this.owner, this.owner, POWER_ID));
-            } else {
-                addToBot((AbstractGameAction)new ReducePowerAction(this.owner, this.owner, POWER_ID, 1));
-            }
+            firstGet = false;
         }
+        super.stackPower(stackAmount);
     }
 
-    public void onRemove() {
-        firstGet = true;
-    }
+    public void atEndOfRound() {
+        flash();
 
+        if(this.amount > 0){
+            if(firstGet)
+                firstGet = false;
+            else
+                addToBot((AbstractGameAction)new ReducePowerAction(this.owner, this.owner, POWER_ID, 1));
+            //
+            }
+        else
+            addToBot((AbstractGameAction)new RemoveSpecificPowerAction(this.owner, this.owner, POWER_ID));
+    }
 
 
     public float atDamageGive(float damage, DamageInfo.DamageType type) {

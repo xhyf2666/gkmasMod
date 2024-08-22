@@ -41,13 +41,17 @@ public class ChangeMood extends AbstractDefaultCard {
         this.baseMagicNumber = BASE_MAGIC;
         this.magicNumber = this.baseMagicNumber;
         this.baseSecondMagicNumber = BASE_MAGIC2;
+        this.secondMagicNumber = this.baseSecondMagicNumber;
         this.exhaust = true;
     }
 
 
     public void use(AbstractPlayer p, AbstractMonster m) {
+        System.out.println("ChangeMood.use");
+        System.out.println(this.secondMagicNumber);
         this.baseDamage = (int)(p.currentBlock * this.secondMagicNumber / 100.0D);
         calculateCardDamage(m);
+        addToBot((AbstractGameAction)new LoseHPAction((AbstractCreature)p, (AbstractCreature)p, this.magicNumber));
         addToBot((AbstractGameAction)new DamageAction((AbstractCreature)m, new DamageInfo((AbstractCreature)p, this.damage, DamageInfo.DamageType.NORMAL), AbstractGameAction.AttackEffect.BLUNT_HEAVY));
     }
 
@@ -59,7 +63,6 @@ public class ChangeMood extends AbstractDefaultCard {
 
     @Override
     public AbstractCard makeCopy() {
-        //复制卡牌时触发
         return (AbstractCard)new ChangeMood();
     }
 

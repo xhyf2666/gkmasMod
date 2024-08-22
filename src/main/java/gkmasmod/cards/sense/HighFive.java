@@ -43,6 +43,8 @@ public class HighFive extends AbstractDefaultCard {
     public HighFive() {
         super(ID, NAME, IMG_PATH, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.baseDamage = ATTACK_DMG;
+        this.baseMagicNumber = BASE_MAGIC;
+        this.magicNumber = this.baseMagicNumber;
     }
 
 
@@ -54,25 +56,38 @@ public class HighFive extends AbstractDefaultCard {
 
     public void applyPowers() {
         AbstractPower strength = AbstractDungeon.player.getPower("Strength");
-        if (strength != null)
-            strength.amount *= (this.magicNumber/100);
+        if (strength != null){
+            // 改成向上取整
+
+            strength.amount = (int) (strength.amount*(1.0*this.magicNumber/100)+0.5);
+            System.out.println("strength.amount: " + strength.amount);
+        }
+
         super.applyPowers();
-        if (strength != null)
-            strength.amount /= (this.magicNumber/100);
+        if (strength != null) {
+            strength.amount = (int) (strength.amount/(1.0*this.magicNumber/100)+0.5);
+            System.out.println("strength.amount2: " + strength.amount);
+        }
+
     }
 
     public void calculateCardDamage(AbstractMonster mo) {
         AbstractPower strength = AbstractDungeon.player.getPower("Strength");
-        if (strength != null)
-            strength.amount *= (this.magicNumber/100);
+        if (strength != null){
+            System.out.println("strength.amount3: " + strength.amount);
+            strength.amount = (int) (strength.amount*(1.0*this.magicNumber/100)+0.5);
+        }
+
         super.calculateCardDamage(mo);
-        if (strength != null)
-            strength.amount /= (this.magicNumber/100);
+        if (strength != null){
+            strength.amount = (int) (strength.amount/(1.0*this.magicNumber/100)+0.5);
+            System.out.println("strength.amount4: " + strength.amount);
+        }
+
     }
 
     @Override
     public AbstractCard makeCopy() {
-        //复制卡牌时触发
         return (AbstractCard)new HighFive();
     }
 

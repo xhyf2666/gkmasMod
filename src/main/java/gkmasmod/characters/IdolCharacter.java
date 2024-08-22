@@ -13,12 +13,18 @@ import com.megacrit.cardcrawl.core.EnergyManager;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.cutscenes.CutscenePanel;
 import com.megacrit.cardcrawl.events.city.Vampires;
+import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.ScreenShake;
 import com.megacrit.cardcrawl.relics.Vajra;
 import com.megacrit.cardcrawl.relics.ChemicalX;
 import com.megacrit.cardcrawl.screens.CharSelectInfo;
+import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import gkmasmod.cards.free.BaseAppeal;
+import gkmasmod.cards.logic.BaseAwareness;
+import gkmasmod.cards.logic.BaseVision;
+import gkmasmod.cards.logic.ChangeMood;
+import gkmasmod.cards.logic.KawaiiGesture;
 import gkmasmod.cards.sense.BaseBehave;
 import gkmasmod.cards.sense.Challenge;
 import gkmasmod.cards.sense.TryError;
@@ -29,6 +35,8 @@ import gkmasmod.utils.IdolSkin;
 import gkmasmod.utils.NameHelper;
 
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.Map;
 
 
 // 继承CustomPlayer类
@@ -98,10 +106,32 @@ public class IdolCharacter extends CustomPlayer {
 
         String idolName_display = CardCrawlGame.languagePack.getCharacterString(NameHelper.addSplitWords("IdolName",this.idolName)).TEXT[0];
         String skinName = IdolSkin.SKINS.get(this.idolName).get(SkinSelectScreen.Inst.skinIndex);
+
         //String path = String.format("img/idol/stand/%s_%s.scml",this.idolName,skinName);
         String path = String.format("img/idol/%s/stand/stand_%s.scml",this.idolName,skinName);
         this.animation = new SpriterAnimation(path);
 
+    }
+
+    public ArrayList<AbstractCard> addColorToCardPool(AbstractCard.CardColor color, ArrayList<AbstractCard> tmpPool) {
+        Iterator<Map.Entry<String, AbstractCard>> cardLib = CardLibrary.cards.entrySet().iterator();
+        while (true) {
+            if (!cardLib.hasNext())
+                return tmpPool;
+            Map.Entry c = cardLib.next();
+            AbstractCard card = (AbstractCard)c.getValue();
+            if (card.color.equals(color) &&
+                    card.rarity != AbstractCard.CardRarity.BASIC && (
+                    !UnlockTracker.isCardLocked((String)c.getKey()) || Settings.isDailyRun))
+                tmpPool.add(card);
+        }
+    }
+
+    public ArrayList<AbstractCard> getCardPool(ArrayList<AbstractCard> tmpPool) {
+        addColorToCardPool(PlayerColorEnum.gkmasModColor, tmpPool);
+        addColorToCardPool(PlayerColorEnum.gkmasModColorSense, tmpPool);
+        addColorToCardPool(PlayerColorEnum.gkmasModColorLogic, tmpPool);
+        return tmpPool;
     }
 
     // 初始卡组的ID，可直接写或引用变量
@@ -118,6 +148,20 @@ public class IdolCharacter extends CustomPlayer {
             retVal.add(Challenge.ID);
             retVal.add(BaseBehave.ID);
             retVal.add(BaseBehave.ID);
+        }
+        else if(getIdolName()==IdolNameString.kllj){
+            retVal.add(BaseAwareness.ID);
+            retVal.add(BaseVision.ID);
+            retVal.add(ChangeMood.ID);
+            retVal.add(KawaiiGesture.ID);
+            retVal.add(KawaiiGesture.ID);
+        }
+        else{
+            retVal.add(BaseAwareness.ID);
+            retVal.add(BaseVision.ID);
+            retVal.add(ChangeMood.ID);
+            retVal.add(KawaiiGesture.ID);
+            retVal.add(KawaiiGesture.ID);
         }
         return retVal;
     }

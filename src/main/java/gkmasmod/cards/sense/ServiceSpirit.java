@@ -2,6 +2,7 @@ package gkmasmod.cards.sense;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
+import com.megacrit.cardcrawl.actions.common.DrawCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -23,8 +24,11 @@ public class ServiceSpirit extends AbstractDefaultCard {
     private static final String IMG_PATH = String.format("img/cards/common/%s.png", CLASSNAME);
 
     private static final int COST = 1;
-    private static final int ATTACK_DMG = 3;
-    private static final int UPGRADE_PLUS_DMG = 1;
+    private static final int ATTACK_DMG = 4;
+    private static final int UPGRADE_PLUS_DMG = 2;
+
+    private static final int BASE_MAGIC = 1;
+    private static final int UPGRADE_PLUS_MAGIC = 1;
 
 
     private static final CardType TYPE = CardType.ATTACK;
@@ -35,19 +39,19 @@ public class ServiceSpirit extends AbstractDefaultCard {
     public ServiceSpirit() {
         super(ID, NAME, IMG_PATH, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.baseDamage = ATTACK_DMG;
+        this.baseMagicNumber = BASE_MAGIC;
+        this.magicNumber = this.baseMagicNumber;
     }
 
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        // TODO 确定效果
         addToBot((AbstractGameAction)new DamageAction((AbstractCreature)m, new DamageInfo((AbstractCreature)p, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
-        addToBot((AbstractGameAction)new DamageAction((AbstractCreature)m, new DamageInfo((AbstractCreature)p, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_VERTICAL));
+        addToBot((AbstractGameAction)new DrawCardAction((AbstractCreature)p, this.magicNumber));
     }
 
     @Override
     public AbstractCard makeCopy() {
-        //复制卡牌时触发
         return (AbstractCard)new ServiceSpirit();
     }
 
@@ -56,6 +60,7 @@ public class ServiceSpirit extends AbstractDefaultCard {
         if (!this.upgraded) {
             upgradeName();
             upgradeDamage(UPGRADE_PLUS_DMG);
+            upgradeMagicNumber(UPGRADE_PLUS_MAGIC);
             this.rawDescription = CARD_STRINGS.UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

@@ -1,12 +1,19 @@
 package gkmasmod.powers;
 
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.common.DamageAllEnemiesAction;
+import com.megacrit.cardcrawl.actions.common.DamageRandomEnemyAction;
+import com.megacrit.cardcrawl.actions.common.ReducePowerAction;
+import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
+import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import gkmasmod.utils.NameHelper;
+import org.lwjgl.Sys;
 
 public class GoodImpression extends AbstractPower {
     private static final String CLASSNAME = GoodImpression.class.getSimpleName();
@@ -19,6 +26,8 @@ public class GoodImpression extends AbstractPower {
     // 能力的描述
     private static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
 
+    private static boolean firstGet = true;
+
     String path128 = String.format("img/powers/%s_84.png",CLASSNAME);;
     String path48 = String.format("img/powers/%s_32.png",CLASSNAME);;
 
@@ -28,19 +37,40 @@ public class GoodImpression extends AbstractPower {
         this.owner = owner;
         this.type = PowerType.BUFF;
 
-        // 如果需要不能叠加的能力，只需将上面的Amount参数删掉，并把下面的Amount改成-1就行
         this.amount = Amount;
 
-        // 添加一大一小两张能力图
         this.region128 = new TextureAtlas.AtlasRegion(ImageMaster.loadImage(path128), 0, 0, 84, 84);
         this.region48 = new TextureAtlas.AtlasRegion(ImageMaster.loadImage(path48), 0, 0, 32, 32);
 
-        // 首次添加能力更新描述
         this.updateDescription();
     }
 
-    // 能力在更新时如何修改描述
+    public void stackPower(int stackAmount) {
+        if(this.amount == 0){
+            firstGet = true;
+        }
+        else{
+            firstGet = false;
+        }
+        super.stackPower(stackAmount);
+    }
+
     public void updateDescription() {
         this.description = String.format(DESCRIPTIONS[0], this.amount,this.amount);
     }
+
+    public void atEndOfTurnPreEndTurnCards(boolean isPlayer) {
+        flash();
+
+        if(this.amount > 0){
+            if(firstGet)
+                firstGet = false;
+            else
+                addToBot((AbstractGameAction)new ReducePowerAction(this.owner, this.owner, POWER_ID, 1));
+            addToBot((AbstractGameAction)new DamageRandomEnemyAction(new DamageInfo(null, this.amount, DamageInfo.DamageType.THORNS), AbstractGameAction.AttackEffect.POISON));
+        }
+        else
+            addToBot((AbstractGameAction)new RemoveSpecificPowerAction(this.owner, this.owner, POWER_ID));
+    }
+
 }

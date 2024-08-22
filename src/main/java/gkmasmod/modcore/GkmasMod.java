@@ -168,6 +168,13 @@ public class GkmasMod implements EditCardsSubscriber, EditStringsSubscriber, Edi
         instances.add(new StartDash());
         instances.add(new Gacha());
         instances.add(new JustOneMore());
+        instances.add(new LightGait());
+        instances.add(new AiJiao());
+        instances.add(new ServiceSpirit());
+        instances.add(new HighFive());
+        instances.add(new GoWithTheFlow());
+        instances.add(new WarmUp());
+
 
         // 遍历instances的所有元素，将其添加到listener中
         for (Object instance : instances) {

@@ -53,7 +53,6 @@ public class StartDash extends AbstractDefaultCard {
 
     @Override
     public AbstractCard makeCopy() {
-        //复制卡牌时触发
         return (AbstractCard)new StartDash();
 
     }

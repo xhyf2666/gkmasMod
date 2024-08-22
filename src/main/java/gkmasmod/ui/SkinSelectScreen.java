@@ -27,20 +27,28 @@ public class SkinSelectScreen implements ISubscriber, CustomSavable<Integer> {
     private static String[] Special;
 //    private static final ArrayList<Skin> SKINS = new ArrayList();
     public static SkinSelectScreen Inst;
+    public static boolean isClick = false;
     public Hitbox leftHb;
     public Hitbox rightHb;
+    public Hitbox upHb;
+    public Hitbox downHb;
+    public Hitbox updateHb;
     public String curName = "";
     public String nextName = "";
 
     public String SpecialName = "";
     public int idolIndex;
     public int skinIndex;
+    public int updateIndex;
 
 
     public SkinSelectScreen() {
         this.refresh();
         this.leftHb = new Hitbox(70.0F * Settings.scale, 70.0F * Settings.scale);
         this.rightHb = new Hitbox(70.0F * Settings.scale, 70.0F * Settings.scale);
+        this.upHb = new Hitbox(70.0F * Settings.scale, 70.0F * Settings.scale);
+        this.downHb = new Hitbox(70.0F * Settings.scale, 70.0F * Settings.scale);
+        this.updateHb = new Hitbox(70.0F * Settings.scale, 70.0F * Settings.scale);
         BaseMod.subscribe(this);
         BaseMod.addSaveField(NameHelper.makePath("skin"), this);
     }
@@ -54,6 +62,8 @@ public class SkinSelectScreen implements ISubscriber, CustomSavable<Integer> {
 
         String skinName = IdolSkin.SKINS.get(name).get(this.skinIndex);
         //IdolCharacter.SELES_STAND = String.format("img/idol/stand/%s_%s.png", name, skinName);
+        skinName = "skin1";
+        // TODO 支持其他皮肤
         IdolCharacter.SELES_STAND = String.format("img/idol/%s/stand/stand_%s.png", name, skinName);
         this.usedImg = ImageMaster.loadImage(IdolCharacter.SELES_STAND);
         this.SpecialName = "";
@@ -74,12 +84,23 @@ public class SkinSelectScreen implements ISubscriber, CustomSavable<Integer> {
         return this.idolIndex + 1 > IdolNameString.idolNames.length - 1 ? 0 : this.idolIndex + 1;
     }
 
+    public int prevSkinIndex() {
+        return this.skinIndex - 1 < 0 ? IdolSkin.SKINS.get(IdolNameString.idolNames[this.idolIndex]).size() - 1 : this.skinIndex - 1;
+    }
+
+    public int nextSkinIndex() {
+        return this.skinIndex + 1 > IdolSkin.SKINS.get(IdolNameString.idolNames[this.idolIndex]).size() - 1 ? 0 : this.skinIndex + 1;
+    }
+
     public void update() {
 
         float centerX = (float)Settings.WIDTH * 0.8F;
         float centerY = (float)Settings.HEIGHT * 0.5F;
-        this.leftHb.move(centerX - 200.0F * Settings.scale, centerY);
-        this.rightHb.move(centerX + 200.0F * Settings.scale, centerY);
+        this.leftHb.move(centerX - 180.0F * Settings.scale, centerY + 50.0F * Settings.scale);
+        this.rightHb.move(centerX + 180.0F * Settings.scale, centerY + 50.0F * Settings.scale);
+        this.upHb.move(centerX, centerY + 180.0F * Settings.scale + 50.0F * Settings.scale);
+        this.downHb.move(centerX, centerY - 180.0F * Settings.scale + 50.0F * Settings.scale);
+        this.updateHb.move(centerX - 120.0F *Settings.scale, centerY + 150.0F * Settings.scale + 50.0F * Settings.scale);
         this.updateInput();
     }
 
@@ -87,21 +108,53 @@ public class SkinSelectScreen implements ISubscriber, CustomSavable<Integer> {
         if (CardCrawlGame.chosenCharacter == PlayerColorEnum.gkmasMod_character) {
             this.leftHb.update();
             this.rightHb.update();
+            this.upHb.update();
+            this.downHb.update();
+            this.updateHb.update();
             if (this.leftHb.clicked) {
+                this.isClick = true;
                 this.leftHb.clicked = false;
                 CardCrawlGame.sound.play("UI_CLICK_1");
                 this.idolIndex = this.prevIndex();
+                if (this.skinIndex >= IdolSkin.SKINS.get(IdolNameString.idolNames[this.idolIndex]).size())
+                    this.skinIndex = IdolSkin.SKINS.get(IdolNameString.idolNames[this.idolIndex]).size() - 1;
                 this.refresh();
                 GkmasMod.listeners.forEach(listener -> listener.onCardImgUpdate());
             }
 
             if (this.rightHb.clicked) {
+                this.isClick = true;
                 this.rightHb.clicked = false;
                 CardCrawlGame.sound.play("UI_CLICK_1");
                 this.idolIndex = this.nextIndex();
+                if (this.skinIndex >= IdolSkin.SKINS.get(IdolNameString.idolNames[this.idolIndex]).size())
+                    this.skinIndex = IdolSkin.SKINS.get(IdolNameString.idolNames[this.idolIndex]).size() - 1;
                 this.refresh();
-
                 GkmasMod.listeners.forEach(listener -> listener.onCardImgUpdate());
+            }
+
+            if (this.upHb.clicked) {
+                this.isClick = true;
+                this.upHb.clicked = false;
+                CardCrawlGame.sound.play("UI_CLICK_1");
+                this.skinIndex = this.prevSkinIndex();
+                this.refresh();
+            }
+
+            if (this.downHb.clicked) {
+                this.isClick = true;
+                this.downHb.clicked = false;
+                CardCrawlGame.sound.play("UI_CLICK_1");
+                this.skinIndex = this.nextSkinIndex();
+                this.refresh();
+            }
+
+            if (this.updateHb.clicked) {
+                this.isClick = true;
+                this.updateHb.clicked = false;
+                CardCrawlGame.sound.play("UI_CLICK_1");
+                this.updateIndex = (this.updateIndex + 1) % 2;
+                this.refresh();
             }
 
             if (InputHelper.justClickedLeft) {
@@ -111,6 +164,15 @@ public class SkinSelectScreen implements ISubscriber, CustomSavable<Integer> {
 
                 if (this.rightHb.hovered) {
                     this.rightHb.clickStarted = true;
+                }
+                if (this.upHb.hovered) {
+                    this.upHb.clickStarted = true;
+                }
+                if (this.downHb.hovered) {
+                    this.downHb.clickStarted = true;
+                }
+                if (this.updateHb.hovered) {
+                    this.updateHb.clickStarted = true;
                 }
             }
         }
@@ -122,12 +184,12 @@ public class SkinSelectScreen implements ISubscriber, CustomSavable<Integer> {
         Color RC = new Color(0.0F, 204.0F, 255.0F, 1.0F);
         float centerX = (float) Settings.WIDTH * 0.8F;
         float centerY = (float)Settings.HEIGHT * 0.5F;
-        float usedx = (float) this.usedImg.getWidth() /2;
-        float usedy = (float) this.usedImg.getWidth() /2;
-        this.renderSkin(sb, centerX-usedx, centerY-usedy);
+        float skin_x = (float) this.usedImg.getWidth() /2;
+        float skin_y = (float) this.usedImg.getWidth() /2;
+        this.renderSkin(sb, centerX-skin_x, centerY-skin_y + 50.0F * Settings.scale);
         sb.draw(this.nameImg,centerX-250, centerY-420);
         String selectIdolHint = CardCrawlGame.languagePack.getCharacterString("selectIdol").TEXT[0];
-        FontHelper.renderFontCentered(sb, FontHelper.cardTitleFont, selectIdolHint, centerX, centerY + 250.0F * Settings.scale, Color.WHITE, 1.25F);
+        FontHelper.renderFontCentered(sb, FontHelper.cardTitleFont, selectIdolHint, centerX, centerY + 300.0F * Settings.scale, Color.WHITE, 1.25F);
         Color color = Settings.GOLD_COLOR.cpy();
         color.a /= 2.0F;
         float dist = 100.0F * Settings.scale;
@@ -149,8 +211,39 @@ public class SkinSelectScreen implements ISubscriber, CustomSavable<Integer> {
         }
 
         sb.draw(ImageMaster.CF_RIGHT_ARROW, this.rightHb.cX - 24.0F, this.rightHb.cY - 24.0F, 24.0F, 24.0F, 48.0F, 48.0F, Settings.scale, Settings.scale, 0.0F, 0, 0, 48, 48, false, false);
+
+        if (this.upHb.hovered) {
+            sb.setColor(Color.LIGHT_GRAY);
+        } else {
+            sb.setColor(Color.WHITE);
+        }
+
+        sb.draw(ImageMaster.CF_RIGHT_ARROW, this.upHb.cX - 24.0F, this.upHb.cY - 24.0F, 24.0F, 24.0F, 48.0F, 48.0F, Settings.scale, Settings.scale, 90.0F, 0, 0, 48, 48, false, false);
+
+        if (this.downHb.hovered) {
+            sb.setColor(Color.LIGHT_GRAY);
+        } else {
+            sb.setColor(Color.WHITE);
+        }
+
+        sb.draw(ImageMaster.CF_LEFT_ARROW, this.downHb.cX - 24.0F, this.downHb.cY - 24.0F, 24.0F, 24.0F, 48.0F, 48.0F, Settings.scale, Settings.scale, 90.0F, 0, 0, 48, 48, false, false);
+
+        if (this.updateHb.hovered) {
+            sb.setColor(Color.LIGHT_GRAY);
+        } else {
+            sb.setColor(Color.WHITE);
+        }
+
+        if (this.updateIndex == 1)
+            sb.draw(ImageMaster.OPTION_TOGGLE_ON,this.updateHb.cX - 24.0F, this.updateHb.cY - 24.0F, 24.0F, 24.0F, 48.0F, 48.0F, Settings.scale, Settings.scale, 0.0F, 0, 0, 48, 48, false, false);
+        else
+            sb.draw(ImageMaster.OPTION_TOGGLE,this.updateHb.cX - 24.0F, this.updateHb.cY - 24.0F, 24.0F, 24.0F, 48.0F, 48.0F, Settings.scale, Settings.scale, 0.0F, 0, 0, 48, 48, false, false);
+
         this.rightHb.render(sb);
         this.leftHb.render(sb);
+        this.upHb.render(sb);
+        this.downHb.render(sb);
+        this.updateHb.render(sb);
     }
 
     public void renderSkin(SpriteBatch sb, float x, float y) {

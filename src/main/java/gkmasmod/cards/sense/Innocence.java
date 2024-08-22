@@ -51,12 +51,10 @@ public class Innocence extends AbstractDefaultCard {
     public void use(AbstractPlayer p, AbstractMonster m) {
         addToBot((AbstractGameAction)new ApplyPowerAction((AbstractCreature)p, (AbstractCreature)p, (AbstractPower)new StrengthPower((AbstractCreature)p, this.magicNumber), this.magicNumber));
         addToBot((AbstractGameAction)new ApplyPowerAction((AbstractCreature)p, (AbstractCreature)p, (AbstractPower)new InnocencePower((AbstractCreature)p, 1), 1));
-
     }
 
     @Override
     public AbstractCard makeCopy() {
-        //复制卡牌时触发
         return (AbstractCard)new Innocence();
     }
 

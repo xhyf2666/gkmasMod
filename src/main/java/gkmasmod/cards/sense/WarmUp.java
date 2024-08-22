@@ -13,6 +13,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import gkmasmod.cards.AbstractDefaultCard;
+import gkmasmod.characters.IdolCharacter;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.powers.GoodTune;
 import gkmasmod.utils.NameHelper;
@@ -24,7 +25,7 @@ public class WarmUp extends AbstractDefaultCard {
 
     private static final String NAME = CARD_STRINGS.NAME;
     private static final String DESCRIPTION = CARD_STRINGS.DESCRIPTION;
-    private static final String IMG_PATH = String.format("img/cards/common/%s.png", CLASSNAME);
+    private static String IMG_PATH = String.format("img/idol/%s/cards/%s.png", IdolCharacter.getIdolName(), CLASSNAME);
 
     private static final int COST = 2;
     private static final int ATTACK_DMG = 8;
@@ -40,7 +41,9 @@ public class WarmUp extends AbstractDefaultCard {
     private static final CardTarget TARGET = CardTarget.ENEMY;
 
     public WarmUp() {
-        super(ID, NAME, IMG_PATH, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
+        super(ID, NAME, String.format("img/idol/%s/cards/%s.png", IdolCharacter.getIdolName(), CLASSNAME), COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
+        IMG_PATH = String.format("img/idol/%s/cards/%s.png", IdolCharacter.getIdolName(), CLASSNAME);
+        this.updateShowImg = true;
         this.baseDamage = ATTACK_DMG;
         this.baseMagicNumber = BASE_MAGIC;
         this.magicNumber = this.baseMagicNumber;
@@ -56,7 +59,6 @@ public class WarmUp extends AbstractDefaultCard {
 
     @Override
     public AbstractCard makeCopy() {
-        //复制卡牌时触发
         return (AbstractCard)new WarmUp();
     }
 

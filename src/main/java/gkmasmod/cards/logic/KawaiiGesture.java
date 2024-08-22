@@ -64,29 +64,8 @@ public class KawaiiGesture extends AbstractDefaultCard {
 
     }
 
-//    public void applyPowers() {
-//
-//        if (goodImpression != null){
-//            System.out.println("goodImpression.amount: "+goodImpression.amount);
-//        }
-//        else {
-//            System.out.println("goodImpression is null");
-//        }
-//        if (goodImpression != null){
-//            System.out.println("goodImpression.amount: "+goodImpression.amount);
-//            if (this.upgraded)
-//                this.baseDamage = (int)((ATTACK_DMG + goodImpression.amount)*MAGIC3);
-//            else
-//                this.baseDamage = (int)((ATTACK_DMG + goodImpression.amount)*MAGIC2);
-//            System.out.println("baseDamage: "+this.baseDamage);
-//        }
-//
-//    }
-
-
     @Override
     public AbstractCard makeCopy() {
-        //复制卡牌时触发
         return (AbstractCard)new KawaiiGesture();
     }
 
