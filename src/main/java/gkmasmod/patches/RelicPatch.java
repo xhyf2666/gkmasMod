@@ -1,0 +1,78 @@
+package gkmasmod.patches;
+
+import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
+import com.evacipated.cardcrawl.modthespire.lib.SpirePostfixPatch;
+import com.evacipated.cardcrawl.modthespire.lib.SpirePrefixPatch;
+import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
+import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.AbstractCreature;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.powers.DexterityPower;
+import com.megacrit.cardcrawl.powers.StrengthPower;
+import com.megacrit.cardcrawl.screens.charSelect.CharacterSelectScreen;
+import gkmasmod.powers.GoodImpression;
+import gkmasmod.powers.GoodTune;
+import gkmasmod.relics.GreenUniformBracelet;
+import gkmasmod.relics.SecretTrainingCardigan;
+import gkmasmod.relics.WishFulfillmentAmulet;
+import gkmasmod.ui.SkinSelectScreen;
+import org.lwjgl.Sys;
+
+public class RelicPatch {
+
+//    @SpirePatch(clz = AbstractCreature.class, method = "addPower")
+//    public static class PowerIncreasePatch {
+//        @SpirePrefixPatch
+//        public static void Prefix(AbstractCreature __instance, AbstractPower powerToApply) {
+//            System.out.println(powerToApply.ID);
+//            if(powerToApply instanceof GoodImpression && powerToApply.amount > 0){
+//                if (AbstractDungeon.player.hasRelic(GreenUniformBracelet.ID)){
+//                    System.out.println("GoodImpression powerToApply");
+//                    ((GreenUniformBracelet) AbstractDungeon.player.getRelic(GreenUniformBracelet.ID)).onGoodImpressionIncrease();
+//                }
+//            }
+//            else if(powerToApply instanceof StrengthPower && powerToApply.amount > 0){
+//                System.out.println("StrengthPower powerToApply");
+//                if (AbstractDungeon.player.hasRelic(GreenUniformBracelet.ID)){
+//
+//
+//                }
+//            }
+//            else if(powerToApply instanceof DexterityPower && powerToApply.amount > 0){
+//                System.out.println("DexterityPower powerToApply");
+//                if (AbstractDungeon.player.hasRelic(GreenUniformBracelet.ID)){
+//                }
+//            }
+//        }
+//    }
+
+    @SpirePatch(clz = ApplyPowerAction.class, method = "update")
+    public static class PowerIncreasePatch {
+        @SpirePostfixPatch
+        public static void Postfix(ApplyPowerAction __instance, AbstractPower ___powerToApply) {
+            System.out.println(___powerToApply.ID);
+
+            if (___powerToApply.amount>0){
+                if(___powerToApply instanceof GoodImpression){
+                    if (AbstractDungeon.player.hasRelic(GreenUniformBracelet.ID)){
+                        ((GreenUniformBracelet) AbstractDungeon.player.getRelic(GreenUniformBracelet.ID)).onGoodImpressionIncrease();
+                    }
+                }
+                else if(___powerToApply instanceof StrengthPower){
+                    if (AbstractDungeon.player.hasRelic(GreenUniformBracelet.ID)){
+
+                    }
+                }
+                else if(___powerToApply instanceof DexterityPower){
+                    if (AbstractDungeon.player.hasRelic(WishFulfillmentAmulet.ID)){
+                        ((WishFulfillmentAmulet) AbstractDungeon.player.getRelic(WishFulfillmentAmulet.ID)).onDexterityPowerIncrease();
+                    }
+                    if(AbstractDungeon.player.hasRelic(SecretTrainingCardigan.ID)){
+                        ((SecretTrainingCardigan) AbstractDungeon.player.getRelic(SecretTrainingCardigan.ID)).onDexterityPowerIncrease();
+                    }
+                }
+            }
+        }
+    }
+}

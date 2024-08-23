@@ -3,14 +3,112 @@
     "NAME": "必备的不锈钢瓶",
     "FLAVOR": "可以多喝热水。",
     "DESCRIPTIONS": [
-      "回合开始时，如果力量大于2，则获得%d点力量。 NL (每场战斗可触发%d次)。"
+      "回合开始时，如果力量大于 #b%d ，则获得 #b%d 点力量。 NL (每场战斗可触发 #b%d 次)。"
     ]
   },
-  "Empty": {
-    "NAME": "",
-    "FLAVOR": "占位遗物。",
+  "UltimateSleepMask": {
+    "NAME": "超绝安眠眼罩",
+    "FLAVOR": "睡得更香。",
     "DESCRIPTIONS": [
-      ""
+      "在第 #b%d 回合结束时，消耗 #b%d 点体力，对所有敌人造成自身格挡 #b%d %%的伤害。"
+    ]
+  },
+  "SidewalkResearchNotes": {
+    "NAME": "路边野草研究笔记",
+    "FLAVOR": "这些笔记记录了一些有趣研究结果。",
+    "DESCRIPTIONS": [
+      "在第 #b%d 、 #b%d 回合结束时，消耗 #b%d 点体力，对所有敌人造成自身格挡 #b%d %%的伤害。"
+    ]
+  },
+  "BeginnerGuideForEveryone": {
+    "NAME": "谁都能看懂的入门书",
+    "FLAVOR": "这本书的内容很简单。",
+    "DESCRIPTIONS": [
+      "回合结束时，如果格挡大于 #b%d ，则获得 #b%d 点敏捷。 NL (每场战斗可触发 #b%d 次)。"
+    ]
+  },
+  "TowardsAnUnseenWorld": {
+    "NAME": "前往未知的世界",
+    "FLAVOR": "唔姆。",
+    "DESCRIPTIONS": [
+      "回合开始时，如果体力小于 #b%d %%，则获得 #b%d 点力量，受伤减少 #b%d ，同时强化所有手牌。 NL (每场战斗可触发 #b%d 次)。"
+    ]
+  },
+  "GreenUniformBracelet": {
+    "NAME": "统一的绿色手镯",
+    "FLAVOR": "这个手镯是绿色的。",
+    "DESCRIPTIONS": [
+      "获得好印象时，额外获得 #b%d 点好印象。 NL (每场战斗可触发 #b%d 次)。"
+    ]
+  },
+  "MemoryBot": {
+    "NAME": "记忆中的高达",
+    "FLAVOR": "为什么高达会出现在这里？",
+    "DESCRIPTIONS": [
+      "回合结束时，如果体力大于 #b%d %%，则获得 #b%d 点好印象。"
+    ]
+  },
+  "DreamLifeLog": {
+    "NAME": "通往梦想的日志",
+    "FLAVOR": "记录着某人为了实现梦想而不断努力的生活和经历。",
+    "DESCRIPTIONS": [
+      "回合结束时，如果格挡大于 #b%d ，对随机敌人造成好印象层数 #b%d %%的伤害，获得当前好印象层数 #b%d %%的好印象。 NL (每场战斗可触发 #b%d 次)。"
+    ]
+  },
+  "SparklingInTheBottle": {
+    "NAME": "瓶中星光",
+    "FLAVOR": "这个瓶子里装着星光。",
+    "DESCRIPTIONS": [
+      "回合结束时，如果好调大于 #b%d ，则获得 #b%d 点好调。 NL (每场战斗可触发 #b%d 次)。"
+    ]
+  },
+  "WishFulfillmentAmulet": {
+    "NAME": "愿望实现护身符",
+    "FLAVOR": "这个护身符可以实现愿望。",
+    "DESCRIPTIONS": [
+      "获得敏捷时，额外获得 #b%d 点敏捷。 NL (每场战斗可触发 #b%d 次)。"
+    ]
+  },
+  "CheerfulHandkerchief": {
+    "NAME": "永不沮丧的手帕",
+    "FLAVOR": "这块手帕会让人开心。",
+    "DESCRIPTIONS": [
+      "使用攻击卡时，消耗 #b%d 点体力，对目标造成自身格挡 #b%d %%的伤害。 NL (每场战斗可触发 #b%d 次)。"
+    ]
+  },
+  "SecretTrainingCardigan": {
+    "NAME": "秘密特训开襟衫",
+    "FLAVOR": "这件开襟衫是用来训练的。",
+    "DESCRIPTIONS": [
+      "获得敏捷时，额外获得 #b%d 点敏捷。 NL (每场战斗可触发 #b%d 次)。"
+    ]
+  },
+  "HeartFlutteringCup": {
+    "NAME": "满满一杯的心动",
+    "FLAVOR": "要来咯。",
+    "DESCRIPTIONS": [
+      "在第 #b%d 回合结束时，消耗 #b%d 点体力，对随机敌人造成 #b%d 点伤害。 NL 每打出一张牌伤害增加 #b%d。"
+    ]
+  },
+  "TechnoDog": {
+    "NAME": "科技犬挂坠",
+    "FLAVOR": "这个挂坠是科技犬。",
+    "DESCRIPTIONS": [
+      "出牌后，如果敏捷大于 #b%d ，则获得 #b%d 点敏捷。 NL (每场战斗可触发 #b%d 次)。"
+    ]
+  },
+  "ShibaInuPochette": {
+    "NAME": "柴犬挎包",
+    "FLAVOR": "这个挎包是柴犬。",
+    "DESCRIPTIONS": [
+      "每 #b%d 个回合，获得 #b%d 点格挡。"
+    ]
+  },
+  "RollingSourceOfEnergy": {
+    "NAME": "源源不断的活力之源",
+    "FLAVOR": "是佑芽最喜欢的东西。",
+    "DESCRIPTIONS": [
+      "使用 #y技能卡 时，如果敏捷大于 #b%d ，则获得 #b%d 点敏捷和 #b%d 点能量。 NL (每场战斗可触发 #b%d 次)。"
     ]
   }
 }

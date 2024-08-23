@@ -5,6 +5,8 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.core.Settings;
+import com.megacrit.cardcrawl.helpers.MathHelper;
 import com.megacrit.cardcrawl.screens.CharSelectInfo;
 import com.megacrit.cardcrawl.screens.charSelect.CharacterOption;
 import com.megacrit.cardcrawl.screens.charSelect.CharacterSelectScreen;
@@ -14,6 +16,8 @@ import gkmasmod.ui.SkinSelectScreen;
 import gkmasmod.utils.IdolData;
 import gkmasmod.utils.IdolStartingDeck;
 import gkmasmod.utils.NameHelper;
+
+import java.util.ArrayList;
 
 public class SkinSelectPatch {
     public static boolean isGkmasSelected() {
@@ -46,31 +50,27 @@ public class SkinSelectPatch {
     public static class CharacterOptionPatch_update
     {
         @SpirePostfixPatch
-        public static void Postfix(CharacterOption __instance,@ByRef String[] ___hp,@ByRef int[] ___gold,@ByRef CharSelectInfo[] ___charInfo)
+        public static void Postfix(CharacterOption __instance,@ByRef String[] ___hp,@ByRef int[] ___gold,@ByRef CharSelectInfo[] ___charInfo,@ByRef float[] ___infoX, float ___DEST_INFO_X)
         {
-
-            if (SkinSelectPatch.isGkmasSelected() && SkinSelectScreen.isClick2)
-            {
-                SkinSelectScreen.isClick2 = false;
-                __instance.name = CardCrawlGame.languagePack.getCharacterString(NameHelper.addSplitWords("IdolName",IdolData.idolNames[SkinSelectScreen.Inst.idolIndex])).TEXT[0];
-                if(SkinSelectScreen.Inst.idolIndex == 0) {
-                    ___hp[0] = "114";
-                    ___gold[0] = 32;
-                }
-                else{
-                    ___hp[0] = "725";
-                    ___gold[0] = 929;
-                }
+            if(__instance.c instanceof IdolCharacter){
                 ___charInfo[0] = __instance.c.getLoadout();
+                __instance.name = SkinSelectScreen.Inst.curName;
             }
         }
     }
 
-//    @SpirePatch(clz = CharacterOption.class, method = "render")
-//    public static class RenderCharacterOptionPatch {
-//        public static void Postfix(CharacterOption _inst, SpriteBatch sb) {
-//            if (SkinSelectPatch.isGkmasSelected())
-//                _inst.render(sb);
+//    @SpirePatch(clz = CharacterSelectScreen.class, method = "render")
+//    public static class RenderCharacterSelectScreenPatch {
+//        @SpirePostfixPatch
+//        public static void Postfix(CharacterSelectScreen _inst, SpriteBatch sb) {
+//            if (SkinSelectPatch.isGkmasSelected() && SkinSelectScreen.isClick3)
+//                SkinSelectScreen.isClick3 = false;
+//                _inst.options.get(0).render(sb);
+//            for (CharacterOption o : _inst.options) {
+//                if (o.c instanceof IdolCharacter) {
+//                    o.render(sb);
+//                }
+//            }
 //        }
 //    }
 

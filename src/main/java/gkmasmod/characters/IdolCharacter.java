@@ -76,7 +76,7 @@ public class IdolCharacter extends CustomPlayer {
     private static final int ASCENSION_MAX_HP_LOSS = 5;
 
     public static String SELES_STAND = null;
-    public static String filepath = "img/idol/shro/stand/stand_skin1.scml";
+    public static String filepath = "img/idol/shro/stand/stand_skin10.scml";
 
     public static String idolName= IdolData.shro;
 
@@ -147,14 +147,13 @@ public class IdolCharacter extends CustomPlayer {
     public ArrayList<String> getStartingRelics() {
         ArrayList<String> retVal = new ArrayList<>();
         retVal.add(IdolStartingDeck.getSpecailRelic(SkinSelectScreen.Inst.idolIndex, SkinSelectScreen.Inst.skinIndex));
-        String s= "来自初星学园的偶像团体。每位偶像有各自的初始卡组、专属遗物和成长倾向。";
         return retVal;
     }
 
     public CharSelectInfo getLoadout() {
         return new CharSelectInfo(
-                "", // 人物名字
-                "", // 人物介绍
+                "学园偶像大师", // 人物名字
+                "来自初星学园的偶像团体。每位偶像有各自的初始卡组、专属遗物和成长倾向。", // 人物介绍
                 75, // 当前血量
                 75, // 最大血量
                 0, // 初始充能球栏位

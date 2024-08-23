@@ -14,6 +14,7 @@ import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.DoubleDamagePower;
+import gkmasmod.relics.GreenUniformBracelet;
 import gkmasmod.utils.NameHelper;
 import org.lwjgl.Sys;
 
@@ -84,5 +85,19 @@ public class GoodTune extends AbstractPower {
             return damage * 1.5F;
         }
         return damage;
+    }
+
+    public void onVictory() {
+        firstGet = true;
+    }
+
+    public void atStartOfTurn() {
+        if (this.amount == 0) {
+            firstGet = true;
+        }
+    }
+
+    public void onInitialApplication() {
+        firstGet = true;
     }
 }

@@ -26,7 +26,7 @@ import gkmasmod.cards.logic.KawaiiGesture;
 import gkmasmod.cards.sense.*;
 import gkmasmod.characters.IdolCharacter;
 import gkmasmod.characters.PlayerColorEnum;
-import gkmasmod.relics.EssentialStainlessSteelBottle;
+import gkmasmod.relics.*;
 import gkmasmod.variables.SecondMagicNumber;
 
 import java.nio.charset.StandardCharsets;
@@ -192,7 +192,21 @@ public class GkmasMod implements EditCardsSubscriber, EditStringsSubscriber, Edi
     public void receiveEditRelics() {
         //List<Object> instances = new ArrayList<>();
         BaseMod.addRelicToCustomPool((AbstractRelic)new EssentialStainlessSteelBottle(), gkmasModColor);
-
+        BaseMod.addRelicToCustomPool((AbstractRelic)new BeginnerGuideForEveryone(), gkmasModColor);
+        BaseMod.addRelicToCustomPool((AbstractRelic)new SidewalkResearchNotes(), gkmasModColor);
+        BaseMod.addRelicToCustomPool((AbstractRelic)new TowardsAnUnseenWorld(), gkmasModColor);
+        BaseMod.addRelicToCustomPool((AbstractRelic)new UltimateSleepMask(), gkmasModColor);
+        BaseMod.addRelicToCustomPool((AbstractRelic)new GreenUniformBracelet(), gkmasModColor);
+        BaseMod.addRelicToCustomPool((AbstractRelic)new MemoryBot(), gkmasModColor);
+        BaseMod.addRelicToCustomPool((AbstractRelic)new DreamLifeLog(), gkmasModColor);
+        BaseMod.addRelicToCustomPool((AbstractRelic)new SparklingInTheBottle(), gkmasModColor);
+        BaseMod.addRelicToCustomPool((AbstractRelic)new WishFulfillmentAmulet(), gkmasModColor);
+        BaseMod.addRelicToCustomPool((AbstractRelic)new CheerfulHandkerchief(), gkmasModColor);
+        BaseMod.addRelicToCustomPool((AbstractRelic)new SecretTrainingCardigan(), gkmasModColor);
+        BaseMod.addRelicToCustomPool((AbstractRelic)new HeartFlutteringCup(), gkmasModColor);
+        BaseMod.addRelicToCustomPool((AbstractRelic)new TechnoDog(), gkmasModColor);
+        BaseMod.addRelicToCustomPool((AbstractRelic)new ShibaInuPochette(), gkmasModColor);
+        BaseMod.addRelicToCustomPool((AbstractRelic)new RollingSourceOfEnergy(), gkmasModColor);
 
     }
 }

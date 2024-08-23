@@ -4,8 +4,7 @@ package gkmasmod.utils;
 import com.megacrit.cardcrawl.relics.ChemicalX;
 import com.megacrit.cardcrawl.relics.Vajra;
 import gkmasmod.cards.free.Gacha;
-import gkmasmod.relics.Empty;
-import gkmasmod.relics.EssentialStainlessSteelBottle;
+import gkmasmod.relics.*;
 import gkmasmod.utils.CommonEnum.IdolStyle;
 import gkmasmod.utils.CommonEnum.IdolType;
 
@@ -102,19 +101,40 @@ public class IdolData {
     // 34 浴衣换皮
 
     static {
-        idols.put(amao, new Idol(amao,
+        idols.put(shro, new Idol(shro,
+                new String[]{"skin10","skin20","skin30","skin31","skin33","skin34"},
+                new String[]{Gacha.ID, Gacha.ID, Gacha.ID, Gacha.ID, Gacha.ID, Gacha.ID},
+                new String[]{UltimateSleepMask.ID, BeginnerGuideForEveryone.ID, SidewalkResearchNotes.ID, TowardsAnUnseenWorld.ID,SidewalkResearchNotes.ID,SidewalkResearchNotes.ID},
+                new IdolType[]{IdolType.LOGIC,IdolType.LOGIC,IdolType.LOGIC,IdolType.SENSE,IdolType.LOGIC,IdolType.LOGIC},
+                new IdolStyle[]{IdolStyle.YARUKI,IdolStyle.YARUKI,IdolStyle.YARUKI,IdolStyle.FOCUS,IdolStyle.YARUKI,IdolStyle.YARUKI}
+        ));
+        idols.put(kllj, new Idol(kllj,
                 new String[]{"skin10","skin20","skin30","skin33","skin34"},
                 new String[]{Gacha.ID, Gacha.ID, Gacha.ID, Gacha.ID, Gacha.ID},
-                new String[]{EssentialStainlessSteelBottle.ID, EssentialStainlessSteelBottle.ID, EssentialStainlessSteelBottle.ID, EssentialStainlessSteelBottle.ID, EssentialStainlessSteelBottle.ID},
-                new IdolType[]{IdolType.SENSE,IdolType.SENSE,IdolType.SENSE,IdolType.SENSE,IdolType.SENSE},
-                new IdolStyle[]{IdolStyle.GOOD_TUNE,IdolStyle.GOOD_TUNE,IdolStyle.GOOD_TUNE,IdolStyle.FOCUS,IdolStyle.GOOD_TUNE}
+                new String[]{GreenUniformBracelet.ID, MemoryBot.ID, DreamLifeLog.ID, DreamLifeLog.ID, SparklingInTheBottle.ID},
+                new IdolType[]{IdolType.LOGIC,IdolType.LOGIC,IdolType.LOGIC,IdolType.LOGIC,IdolType.SENSE},
+                new IdolStyle[]{IdolStyle.GOOD_IMPRESSION,IdolStyle.GOOD_IMPRESSION,IdolStyle.GOOD_IMPRESSION,IdolStyle.GOOD_IMPRESSION,IdolStyle.GOOD_TUNE}
         ));
-        idols.put(fktn, new Idol(fktn,
+        idols.put(kcna, new Idol(kcna,
+                new String[]{"skin10","skin20","skin30","skin31","skin33","skin34"},
+                new String[]{Gacha.ID, Gacha.ID, Gacha.ID, Gacha.ID, Gacha.ID, Gacha.ID},
+                new String[]{WishFulfillmentAmulet.ID,CheerfulHandkerchief.ID,SecretTrainingCardigan.ID,HeartFlutteringCup.ID,SecretTrainingCardigan.ID,SecretTrainingCardigan.ID},
+                new IdolType[]{IdolType.LOGIC,IdolType.LOGIC,IdolType.LOGIC,IdolType.SENSE,IdolType.LOGIC,IdolType.LOGIC},
+                new IdolStyle[]{IdolStyle.YARUKI,IdolStyle.YARUKI,IdolStyle.YARUKI,IdolStyle.GOOD_TUNE,IdolStyle.YARUKI,IdolStyle.YARUKI}
+        ));
+        idols.put(hume, new Idol(hume,
+                new String[]{"skin10","skin20","skin30","skin33","skin34"},
+                new String[]{Gacha.ID, Gacha.ID, Gacha.ID, Gacha.ID, Gacha.ID},
+                new String[]{TechnoDog.ID, ShibaInuPochette.ID, RollingSourceOfEnergy.ID, RollingSourceOfEnergy.ID, RollingSourceOfEnergy.ID},
+                new IdolType[]{IdolType.LOGIC,IdolType.LOGIC,IdolType.LOGIC,IdolType.LOGIC,IdolType.LOGIC},
+                new IdolStyle[]{IdolStyle.YARUKI,IdolStyle.YARUKI,IdolStyle.YARUKI,IdolStyle.YARUKI,IdolStyle.YARUKI}
+        ));
+        idols.put(hski, new Idol(hski,
                 new String[]{"skin10","skin11","skin20","skin30","skin31","skin33","skin34"},
                 new String[]{Gacha.ID, Gacha.ID, Gacha.ID, Gacha.ID, Gacha.ID, Gacha.ID, Gacha.ID},
-                new String[]{EssentialStainlessSteelBottle.ID,EssentialStainlessSteelBottle.ID,EssentialStainlessSteelBottle.ID,EssentialStainlessSteelBottle.ID,EssentialStainlessSteelBottle.ID},
-                new IdolType[]{IdolType.LOGIC,IdolType.SENSE,IdolType.LOGIC,IdolType.LOGIC,IdolType.SENSE,IdolType.SENSE,IdolType.LOGIC},
-                new IdolStyle[]{IdolStyle.GOOD_IMPRESSION,IdolStyle.GOOD_TUNE,IdolStyle.GOOD_IMPRESSION,IdolStyle.GOOD_IMPRESSION,IdolStyle.GOOD_TUNE,IdolStyle.GOOD_IMPRESSION,IdolStyle.YARUKI}
+                new String[]{EssentialStainlessSteelBottle.ID,EssentialStainlessSteelBottle.ID,EssentialStainlessSteelBottle.ID,EssentialStainlessSteelBottle.ID,EssentialStainlessSteelBottle.ID,EssentialStainlessSteelBottle.ID,EssentialStainlessSteelBottle.ID},
+                new IdolType[]{IdolType.SENSE,IdolType.LOGIC,IdolType.SENSE,IdolType.SENSE,IdolType.LOGIC,IdolType.SENSE,IdolType.LOGIC},
+                new IdolStyle[]{IdolStyle.GOOD_TUNE,IdolStyle.GOOD_IMPRESSION,IdolStyle.GOOD_TUNE,IdolStyle.GOOD_TUNE,IdolStyle.GOOD_IMPRESSION,IdolStyle.GOOD_TUNE,IdolStyle.GOOD_IMPRESSION}
         ));
         idols.put(hrnm, new Idol(hrnm,
                 new String[]{"skin10","skin20","skin30","skin33","skin34"},
@@ -123,40 +143,19 @@ public class IdolData {
                 new IdolType[]{IdolType.SENSE,IdolType.SENSE,IdolType.SENSE,IdolType.SENSE,IdolType.SENSE},
                 new IdolStyle[]{IdolStyle.FOCUS,IdolStyle.FOCUS,IdolStyle.FOCUS,IdolStyle.GOOD_TUNE,IdolStyle.FOCUS}
         ));
-        idols.put(hski, new Idol(hski,
+        idols.put(fktn, new Idol(fktn,
                 new String[]{"skin10","skin11","skin20","skin30","skin31","skin33","skin34"},
                 new String[]{Gacha.ID, Gacha.ID, Gacha.ID, Gacha.ID, Gacha.ID, Gacha.ID, Gacha.ID},
-                new String[]{EssentialStainlessSteelBottle.ID,EssentialStainlessSteelBottle.ID,EssentialStainlessSteelBottle.ID,EssentialStainlessSteelBottle.ID,EssentialStainlessSteelBottle.ID},
-                new IdolType[]{IdolType.SENSE,IdolType.LOGIC,IdolType.SENSE,IdolType.SENSE,IdolType.LOGIC,IdolType.SENSE,IdolType.LOGIC},
-                new IdolStyle[]{IdolStyle.GOOD_TUNE,IdolStyle.GOOD_IMPRESSION,IdolStyle.GOOD_TUNE,IdolStyle.GOOD_TUNE,IdolStyle.GOOD_IMPRESSION,IdolStyle.GOOD_TUNE,IdolStyle.GOOD_IMPRESSION}
+                new String[]{EssentialStainlessSteelBottle.ID,EssentialStainlessSteelBottle.ID,EssentialStainlessSteelBottle.ID,EssentialStainlessSteelBottle.ID,EssentialStainlessSteelBottle.ID,EssentialStainlessSteelBottle.ID,EssentialStainlessSteelBottle.ID},
+                new IdolType[]{IdolType.LOGIC,IdolType.SENSE,IdolType.LOGIC,IdolType.LOGIC,IdolType.SENSE,IdolType.SENSE,IdolType.LOGIC},
+                new IdolStyle[]{IdolStyle.GOOD_IMPRESSION,IdolStyle.GOOD_TUNE,IdolStyle.GOOD_IMPRESSION,IdolStyle.GOOD_IMPRESSION,IdolStyle.GOOD_TUNE,IdolStyle.GOOD_IMPRESSION,IdolStyle.YARUKI}
         ));
-        idols.put(hume, new Idol(hume,
+        idols.put(amao, new Idol(amao,
                 new String[]{"skin10","skin20","skin30","skin33","skin34"},
                 new String[]{Gacha.ID, Gacha.ID, Gacha.ID, Gacha.ID, Gacha.ID},
                 new String[]{EssentialStainlessSteelBottle.ID, EssentialStainlessSteelBottle.ID, EssentialStainlessSteelBottle.ID, EssentialStainlessSteelBottle.ID, EssentialStainlessSteelBottle.ID},
-                new IdolType[]{IdolType.LOGIC,IdolType.LOGIC,IdolType.LOGIC,IdolType.LOGIC,IdolType.LOGIC},
-                new IdolStyle[]{IdolStyle.YARUKI,IdolStyle.YARUKI,IdolStyle.YARUKI,IdolStyle.YARUKI,IdolStyle.YARUKI}
-        ));
-        idols.put(kcna, new Idol(kcna,
-                new String[]{"skin10","skin20","skin30","skin31","skin33","skin34"},
-                new String[]{Gacha.ID, Gacha.ID, Gacha.ID, Gacha.ID, Gacha.ID, Gacha.ID},
-                new String[]{EssentialStainlessSteelBottle.ID,EssentialStainlessSteelBottle.ID,EssentialStainlessSteelBottle.ID,EssentialStainlessSteelBottle.ID,EssentialStainlessSteelBottle.ID},
-                new IdolType[]{IdolType.LOGIC,IdolType.LOGIC,IdolType.LOGIC,IdolType.SENSE,IdolType.LOGIC,IdolType.LOGIC},
-                new IdolStyle[]{IdolStyle.YARUKI,IdolStyle.YARUKI,IdolStyle.YARUKI,IdolStyle.GOOD_TUNE,IdolStyle.YARUKI,IdolStyle.YARUKI}
-                ));
-        idols.put(kllj, new Idol(kllj,
-                new String[]{"skin10","skin20","skin30","skin33","skin34"},
-                new String[]{Gacha.ID, Gacha.ID, Gacha.ID, Gacha.ID, Gacha.ID},
-                new String[]{ChemicalX.ID, EssentialStainlessSteelBottle.ID, EssentialStainlessSteelBottle.ID, EssentialStainlessSteelBottle.ID, EssentialStainlessSteelBottle.ID},
-                new IdolType[]{IdolType.LOGIC,IdolType.LOGIC,IdolType.LOGIC,IdolType.LOGIC,IdolType.SENSE},
-                new IdolStyle[]{IdolStyle.GOOD_IMPRESSION,IdolStyle.GOOD_IMPRESSION,IdolStyle.GOOD_IMPRESSION,IdolStyle.GOOD_IMPRESSION,IdolStyle.GOOD_TUNE}
-        ));
-        idols.put(shro, new Idol(shro,
-                new String[]{"skin10","skin20","skin30","skin31","skin33","skin34"},
-                new String[]{Gacha.ID, Gacha.ID, Gacha.ID, Gacha.ID, Gacha.ID, Gacha.ID},
-                new String[]{Empty.ID,EssentialStainlessSteelBottle.ID,EssentialStainlessSteelBottle.ID,EssentialStainlessSteelBottle.ID,EssentialStainlessSteelBottle.ID},
-                new IdolType[]{IdolType.LOGIC,IdolType.LOGIC,IdolType.LOGIC,IdolType.SENSE,IdolType.LOGIC,IdolType.LOGIC},
-                new IdolStyle[]{IdolStyle.YARUKI,IdolStyle.YARUKI,IdolStyle.YARUKI,IdolStyle.FOCUS,IdolStyle.YARUKI,IdolStyle.YARUKI}
+                new IdolType[]{IdolType.SENSE,IdolType.SENSE,IdolType.SENSE,IdolType.SENSE,IdolType.SENSE},
+                new IdolStyle[]{IdolStyle.GOOD_TUNE,IdolStyle.GOOD_TUNE,IdolStyle.GOOD_TUNE,IdolStyle.FOCUS,IdolStyle.GOOD_TUNE}
         ));
         idols.put(ssmk, new Idol(ssmk,
                 new String[]{"skin10","skin20","skin30","skin33","skin34"},
@@ -168,7 +167,7 @@ public class IdolData {
         idols.put(ttmr, new Idol(ttmr,
                 new String[]{"skin10","skin11","skin20","skin30","skin31","skin33","skin34"},
                 new String[]{Gacha.ID, Gacha.ID, Gacha.ID, Gacha.ID, Gacha.ID, Gacha.ID, Gacha.ID},
-                new String[]{EssentialStainlessSteelBottle.ID,EssentialStainlessSteelBottle.ID,EssentialStainlessSteelBottle.ID,EssentialStainlessSteelBottle.ID,EssentialStainlessSteelBottle.ID},
+                new String[]{EssentialStainlessSteelBottle.ID,EssentialStainlessSteelBottle.ID,EssentialStainlessSteelBottle.ID,EssentialStainlessSteelBottle.ID,EssentialStainlessSteelBottle.ID,EssentialStainlessSteelBottle.ID,EssentialStainlessSteelBottle.ID},
                 new IdolType[]{IdolType.SENSE,IdolType.LOGIC,IdolType.SENSE,IdolType.SENSE,IdolType.LOGIC,IdolType.SENSE,IdolType.SENSE},
                 new IdolStyle[]{IdolStyle.FOCUS,IdolStyle.GOOD_IMPRESSION,IdolStyle.FOCUS,IdolStyle.FOCUS,IdolStyle.GOOD_IMPRESSION,IdolStyle.FOCUS,IdolStyle.FOCUS}
         ));

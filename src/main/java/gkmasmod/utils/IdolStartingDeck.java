@@ -48,8 +48,6 @@ public class IdolStartingDeck {
             BasePose.ID,
             BasePerform.ID,
             BasePerform.ID,
-            BaseBehave.ID,
-            BaseBehave.ID,
             BaseVision.ID,
             BaseVision.ID,
             KawaiiGesture.ID
@@ -61,8 +59,6 @@ public class IdolStartingDeck {
             BasePose.ID,
             BasePerform.ID,
             BasePerform.ID,
-            BaseBehave.ID,
-            BaseBehave.ID,
             BaseAwareness.ID,
             BaseAwareness.ID,
             ChangeMood.ID
