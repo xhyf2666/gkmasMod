@@ -14,6 +14,7 @@ import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.DoubleDamagePower;
+import com.megacrit.cardcrawl.powers.StrengthPower;
 import gkmasmod.relics.GreenUniformBracelet;
 import gkmasmod.utils.NameHelper;
 import org.lwjgl.Sys;
@@ -30,6 +31,8 @@ public class GoodTune extends AbstractPower {
     private static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
 
     private static boolean firstGet = true;
+
+    private static float BASR_RATE = 1.5f;
 
     String path128 = String.format("img/powers/%s_84.png",CLASSNAME);;
     String path48 = String.format("img/powers/%s_32.png",CLASSNAME);;
@@ -81,8 +84,11 @@ public class GoodTune extends AbstractPower {
 
     public float atDamageGive(float damage, DamageInfo.DamageType type) {
         if (type == DamageInfo.DamageType.NORMAL) {
-            // TODO 支持绝好调
-            return damage * 1.5F;
+            int count = AbstractDungeon.player.getPower(GreatGoodTune.POWER_ID)==null?0:AbstractDungeon.player.getPower(GreatGoodTune.POWER_ID).amount;
+            if(count > 0)
+                return damage * (1.5F+amount*0.1F);
+            else
+                return damage * 1.5F;
         }
         return damage;
     }

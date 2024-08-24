@@ -29,6 +29,8 @@ public class GreenUniformBracelet extends CustomRelic {
 
     private static final  int playTimes = 2;
 
+    private static boolean isRefresh = true;
+
     public GreenUniformBracelet() {
         super(ID, ImageMaster.loadImage(IMG), ImageMaster.loadImage(IMG_OTL), RARITY, LandingSound.CLINK);
     }
@@ -56,20 +58,25 @@ public class GreenUniformBracelet extends CustomRelic {
     }
 
     public void onGoodImpressionIncrease(){
-        if (this.counter > 0) {
+        if (this.counter > 0 && isRefresh) {
             addToBot(new RelicAboveCreatureAction(AbstractDungeon.player, this));
             addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new GoodImpression(AbstractDungeon.player, magicNumber), magicNumber));
             this.counter--;
-            this.grayscale = true;
-
+            // 防止自己触发自己
+            isRefresh = false;
+            if (this.counter == 0) {
+                this.grayscale = true;
+            }
         }
     }
 
     public void onPlayCard(AbstractCard c, AbstractMonster m) {
+        isRefresh = true;
     }
 
     public void atBattleStart() {
         this.counter = playTimes;
+        this.isRefresh = true;
     }
 
     public  void  onPlayerEndTurn(){
@@ -78,4 +85,5 @@ public class GreenUniformBracelet extends CustomRelic {
     public void justEnteredRoom(AbstractRoom room) {
         this.grayscale = false;
     }
+
 }

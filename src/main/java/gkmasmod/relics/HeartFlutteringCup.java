@@ -28,7 +28,7 @@ public class HeartFlutteringCup extends CustomRelic {
 
     private static final RelicTier RARITY = RelicTier.STARTER;
 
-    private static final int TURNS = 7;
+    private static final int TURNS = 5;
 
     private static int magicNumber = 3;
     private static int magicNumber2 = 3;
@@ -80,7 +80,7 @@ public class HeartFlutteringCup extends CustomRelic {
         if (this.counter == TURNS) {
             addToBot(new RelicAboveCreatureAction(AbstractDungeon.player, this));
             addToBot(new LoseHPAction(AbstractDungeon.player, AbstractDungeon.player, HP_LOST));
-            addToBot(new DamageRandomEnemyAction(new DamageInfo(null, damage, DamageInfo.DamageType.THORNS), AbstractGameAction.AttackEffect.BLUNT_HEAVY));
+            addToBot(new DamageRandomEnemyAction(new DamageInfo(AbstractDungeon.player, damage, DamageInfo.DamageType.THORNS), AbstractGameAction.AttackEffect.BLUNT_HEAVY));
             //addToBot((AbstractGameAction)new DamageAllEnemiesAction(null, DamageInfo.createDamageMatrix(damage, true), DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.BLUNT_HEAVY));
             stopPulse();
             this.grayscale = true;

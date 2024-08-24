@@ -13,6 +13,7 @@ import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import gkmasmod.actions.UpgradeAllHandCardAction;
+import gkmasmod.powers.ReduceDamageReceive;
 
 public class TowardsAnUnseenWorld extends CustomRelic {
 
@@ -59,9 +60,11 @@ public class TowardsAnUnseenWorld extends CustomRelic {
                 addToBot(new RelicAboveCreatureAction(AbstractDungeon.player, this));
                 addToBot(new UpgradeAllHandCardAction());
                 addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new StrengthPower(AbstractDungeon.player, magicNumber), magicNumber));
-                // TODO 损失体力-2
+                addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new ReduceDamageReceive(AbstractDungeon.player, magicNumber2), magicNumber2));
                 this.counter--;
-                this.grayscale = true;
+                if (this.counter == 0) {
+                    this.grayscale = true;
+                }
             }
         }
 

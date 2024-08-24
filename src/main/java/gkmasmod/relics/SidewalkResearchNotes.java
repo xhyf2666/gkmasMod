@@ -27,8 +27,6 @@ public class SidewalkResearchNotes extends CustomRelic {
 
     private static final int BASE_MAGIC = 50;
 
-    private static final int UPGRADE_MAGIC = 15;
-
     private float magicNumber;
 
     private static final int HP_LOST = 1;
@@ -75,7 +73,7 @@ public class SidewalkResearchNotes extends CustomRelic {
         if (this.counter == TURNS1 || this.counter == TURNS2) {
             addToBot(new RelicAboveCreatureAction(AbstractDungeon.player, this));
             addToBot(new LoseHPAction(AbstractDungeon.player, AbstractDungeon.player, HP_LOST));
-            addToBot(new DamageAllEnemiesAction(null, DamageInfo.createDamageMatrix(damage, true), DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.BLUNT_HEAVY));
+            addToBot(new DamageAllEnemiesAction(AbstractDungeon.player, DamageInfo.createDamageMatrix(damage, true), DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.BLUNT_HEAVY));
             stopPulse();
             if (this.counter == TURNS2)
                 this.grayscale = true;

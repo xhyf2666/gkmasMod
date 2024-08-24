@@ -79,8 +79,6 @@ public class GoodImpression extends AbstractPower {
     }
 
     public void atStartOfTurn() {
-        System.out.println("GoodImpression atStartOfTurn");
-        System.out.println("GoodImpression amount:"+this.amount);
         if (this.amount == 0) {
             firstGet = true;
         }

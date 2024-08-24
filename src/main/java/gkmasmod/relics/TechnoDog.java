@@ -61,7 +61,9 @@ public class TechnoDog extends CustomRelic {
                 addToBot(new RelicAboveCreatureAction(AbstractDungeon.player, this));
                 addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new DexterityPower(AbstractDungeon.player, magicNumber), magicNumber));
                 this.counter--;
-                this.grayscale = true;
+                if (this.counter == 0) {
+                    this.grayscale = true;
+                }
             }
         }
 

@@ -35,28 +35,28 @@
       "回合结束时，若力量大于2，则获得 #b2 点力量。 NL 当前可获得%d点力量。"
     ]
   },
-  "AveMujicaBelief": {
-    "NAME": "AveMujica的信念",
+  "AddDamageReceive": {
+    "NAME": "受伤增加",
     "DESCRIPTIONS": [
-      "退场时，给予所有剩余的AveMujica队员5层属于AveMujica的闪耀。"
+      "受到的伤害增加 #b%d 。"
     ]
   },
-  "AveMujicaShining": {
-    "NAME": "属于AveMujica的闪耀",
+  "ReduceDamageReceive": {
+    "NAME": "受伤减少",
     "DESCRIPTIONS": [
-      "属于AveMujica的","层闪耀，每层增加5%伤害"
+      "受到的伤害减少 #b%d 。"
     ]
   },
-  "beat": {
-    "NAME": "节奏",
+  "DoubleDamageReceive": {
+    "NAME": "受伤翻倍",
     "DESCRIPTIONS": [
-      "Anon现在处于","拥有"," 层节奏。"
+      "当前有 #b%d 层。 NL 受到的伤害增加 #b100 %%。 NL 回合结束时层数减 #b1 。"
     ]
   },
-  "CarryOffShining": {
-    "NAME": "不属于你的 ",
+  "HalfDamageReceive": {
+    "NAME": "受伤减半 ",
     "DESCRIPTIONS": [
-      "不属于你的"," 层闪耀，每层增加5%伤害"
+      "当前有 #b%d 层。 NL 受到的伤害减少 #b50 %%。 NL 回合结束时层数减 #b1 。"
     ]
   },
   "CrychicDream": {

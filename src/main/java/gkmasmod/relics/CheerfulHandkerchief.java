@@ -60,9 +60,11 @@ public class CheerfulHandkerchief extends CustomRelic {
                 this.flash();
                 addToBot(new RelicAboveCreatureAction(AbstractDungeon.player, this));
                 addToBot(new LoseHPAction(AbstractDungeon.player, AbstractDungeon.player, HP_COST));
-                addToBot(new DamageAction(useCardAction.target, new DamageInfo(null, damage, useCardAction.damageType), AbstractGameAction.AttackEffect.SLASH_VERTICAL));
+                addToBot(new DamageAction(useCardAction.target, new DamageInfo(AbstractDungeon.player, damage, useCardAction.damageType), AbstractGameAction.AttackEffect.SLASH_VERTICAL));
                 this.counter--;
-                this.grayscale = true;
+                if (this.counter == 0) {
+                    this.grayscale = true;
+                }
             }
         }
 

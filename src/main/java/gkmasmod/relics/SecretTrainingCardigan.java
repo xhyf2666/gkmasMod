@@ -27,6 +27,8 @@ public class SecretTrainingCardigan extends CustomRelic {
 
     private static final  int playTimes = 2;
 
+    private static boolean isRefresh = true;
+
     public SecretTrainingCardigan() {
         super(ID, ImageMaster.loadImage(IMG), ImageMaster.loadImage(IMG_OTL), RARITY, LandingSound.CLINK);
     }
@@ -54,19 +56,24 @@ public class SecretTrainingCardigan extends CustomRelic {
     }
 
     public void onDexterityPowerIncrease(){
-        if (this.counter > 0) {
+        if (this.counter > 0 && isRefresh) {
             addToBot(new RelicAboveCreatureAction(AbstractDungeon.player, this));
             addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new DexterityPower(AbstractDungeon.player, magicNumber), magicNumber));
             this.counter--;
-            this.grayscale = true;
+            isRefresh = false;
+            if (this.counter == 0) {
+                this.grayscale = true;
+            }
         }
     }
 
     public void onPlayCard(AbstractCard c, AbstractMonster m) {
+        isRefresh = true;
     }
 
     public void atBattleStart() {
         this.counter = playTimes;
+        isRefresh = true;
     }
 
     public  void  onPlayerEndTurn(){

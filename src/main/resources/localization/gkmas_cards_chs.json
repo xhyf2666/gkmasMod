@@ -51,8 +51,8 @@
   },
   "ChangeMood": {
     "NAME": "转换心情",
-    "DESCRIPTION": "失去 !M! 点生命。 NL 造成 格挡 层数 !M2! %的伤害。 NL 消耗 。",
-    "UPGRADE_DESCRIPTION": "失去 !M! 点生命。 NL 造成 格挡 层数 !M2! %的伤害。 NL 消耗 。"
+    "DESCRIPTION": "失去 !M! 点体力。 NL 造成 格挡 层数 !M2! %的伤害。 NL 消耗 。",
+    "UPGRADE_DESCRIPTION": "失去 !M! 点体力。 NL 造成 格挡 层数 !M2! %的伤害。 NL 消耗 。"
   },
   "StartDash": {
     "NAME": "疾跑",
@@ -98,5 +98,121 @@
     "NAME": "捶胸顿足",
     "DESCRIPTION": "移除所有 好调 。 NL (无 好调 时使用获得1层 不调 ) NL 将你的 力量 翻倍。 NL 消耗 。",
     "UPGRADE_DESCRIPTION": "移除所有 好调 。 NL (无 好调 时使用获得1层 不调 ) NL 将你的 力量 翻倍。"
-  }
+  },
+  "Arbeiter": {
+    "NAME": "打工人",
+    "DESCRIPTION": "造成 !D! 点伤害。 NL 获得 !M! 点 好印象 。 NL 消耗 。",
+    "UPGRADE_DESCRIPTION": "造成 !D! 点伤害。 NL 获得 !M! 点 好印象 。 NL 消耗 。"
+  },
+  "Friendly": {
+    "NAME": "友好",
+    "DESCRIPTION": "造成 !D! 点伤害。 NL  力量 大于 !M! 时，额外造成 !D! 点伤害。 NL 消耗 。",
+    "UPGRADE_DESCRIPTION": "造成 !D! 点伤害 2次。 NL 消耗 。"
+  },
+  "LittlePrince": {
+    "NAME": "小王子",
+    "DESCRIPTION": "造成 !D! 点伤害。 NL 拥有 好调 时，额外造成 !M! 点伤害。 NL 消耗 。",
+    "UPGRADE_DESCRIPTION": "造成 !D! 点伤害。 NL 拥有 好调 时，额外造成 !M! 点伤害。 NL 消耗 。"
+  },
+  "FullOfEnergy": {
+    "NAME": "充满活力",
+    "DESCRIPTION": "失去4点体力。获得 !B! 点 格挡 和 !M! 点 敏捷 ， NL 造成 格挡 层数 !M2! %的伤害。 NL 消耗 。",
+    "UPGRADE_DESCRIPTION": "失去4点体力。获得 !B! 点 格挡 和 !M! 点 敏捷 ， NL 造成 格挡 层数 !M2! %的伤害。 NL 消耗 。"
+  },
+  "ReservedGirl": {
+    "NAME": "内向型少女",
+    "DESCRIPTION": "获得 !M! 点 好印象 。 NL 每回合结束时获得 !M2! 点 好印象 。",
+    "UPGRADE_DESCRIPTION": "获得 !M! 点 好印象 。 NL 每回合结束时获得 !M2! 点 好印象 。"
+  },
+  "Accommodating": {
+    "NAME": "包容力",
+    "DESCRIPTION": "造成 !D! 点伤害。 NL 获得 !B! 点 格挡 ，回复 !M! 点体力。 NL 消耗 。",
+    "UPGRADE_DESCRIPTION": "造成 !D! 点伤害。 NL 获得 !B! 点 格挡 ，回复 !M! 点体力。 NL 消耗 。"
+  },
+  "Stubborn": {
+    "NAME": "固执",
+    "DESCRIPTION": "造成 !D! 点伤害。 NL 获得 !M! 点 力量 。 NL 消耗 。",
+    "UPGRADE_DESCRIPTION": "造成 !D! 点伤害。 NL 获得 !M! 点 力量 。 NL 消耗 。"
+  },
+  "RisingStar": {
+    "NAME": "新星",
+    "DESCRIPTION": "造成 !D! 点伤害。 NL 消耗 。",
+    "UPGRADE_DESCRIPTION": "造成 !D! 点伤害。 NL 消耗 。"
+  },
+  "UntappedPotential": {
+    "NAME": "未完的大器",
+    "DESCRIPTION": "失去3点体力。 NL 获得 !B! 点 格挡 。本场战斗每打出一张牌额外获得 !M2! 点。 NL 消耗 。",
+    "UPGRADE_DESCRIPTION": "失去3点体力。 NL 获得 !B! 点 格挡 。本场战斗每打出一张牌额外获得 !M2! 点。 NL 消耗 。",
+    "EXTENDED_DESCRIPTION": "NL (当前可获得%d点)"
+  },
+  "HighlyEducatedIdol": {
+    "NAME": "超高学历的偶像",
+    "DESCRIPTION": "获得 !B! 点 格挡 。 NL 如果 敏捷 大于5，则额外获得 !M! 点 格挡 。 NL 消耗 。",
+    "UPGRADE_DESCRIPTION": "获得 !B! 点 格挡 。 NL 如果 敏捷 大于5，则额外获得 !M! 点 格挡 。 NL 消耗 。"
+  },
+  "FirstReward": {
+    "NAME": "初次奖励",
+    "DESCRIPTION": "获得 !M! 点 好调 和 !M2! 点 绝好调 。 NL 消耗 。",
+    "UPGRADE_DESCRIPTION": "获得 !M! 点 好调 和 !M2! 点 绝好调 。 NL 消耗 。"
+  },
+  "FirstFuture": {
+    "NAME": "初次未来",
+    "DESCRIPTION": "失去 !M! 点 体力， NL 造成 好印象 层数 !M2! %的伤害。 NL 消耗 。",
+    "UPGRADE_DESCRIPTION": "失去 !M! 点 体力， NL 造成 好印象 层数 !M2! %的伤害。 NL 消耗 。"
+  },
+  "FirstPlace": {
+    "NAME": "初次场所",
+    "DESCRIPTION": "获得 !M! 点 好印象 。 NL 消耗 。",
+    "UPGRADE_DESCRIPTION": "获得 !M! 点 好印象 。 NL 消耗 。"
+  },
+  "NeverYieldFirst": {
+    "NAME": "不会让出首席",
+    "DESCRIPTION": "造成 !D! 点 伤害 。 NL 获得 !M! 点 好调 。 NL 消耗 。",
+    "UPGRADE_DESCRIPTION": "造成 !D! 点 伤害 。 NL 获得 !M! 点 好调 。 NL 消耗 。"
+  },
+  "LoneWolf": {
+    "NAME": "孤狼",
+    "DESCRIPTION": "造成 !D! 点伤害。 NL 如果 力量 大于3，则额外造成 !D! 点 伤害 。 NL 消耗 。",
+    "UPGRADE_DESCRIPTION": "造成 !D! 点伤害。 NL 如果 力量 大于3，则额外造成 !D! 点 伤害 。 NL 消耗 。"
+  },
+  "Authenticity": {
+    "NAME": "本色",
+    "DESCRIPTION": "造成 !D! 点伤害。 NL 拥有 好调 时，获得 !M! 点 力量 。 NL 消耗 。",
+    "UPGRADE_DESCRIPTION": "造成 !D! 点伤害。 NL 拥有 好调 时，获得 !M! 点 力量 。 NL 消耗 。"
+  },
+  "SupportiveFeelings": {
+    "NAME": "贴近的心情",
+    "DESCRIPTION": "获得 !B! 点 格挡 和 !M! 点 力量。 NL 消耗 。",
+    "UPGRADE_DESCRIPTION": "获得 !B! 点 格挡 和 !M! 点 力量。 NL 消耗 。"
+  },
+  "BraveStep": {
+    "NAME": "勇敢的一步",
+    "DESCRIPTION": "造成 !D! 点伤害。力量 发挥 !M! %的效果。 NL 消耗 。",
+    "UPGRADE_DESCRIPTION": "造成 !D! 点伤害。力量 发挥 !M! %的效果。 NL 消耗 。"
+  },
+  "ColorfulCute": {
+    "NAME": "Colorful Cute!",
+    "DESCRIPTION": "获得 !M! 点 好印象 。 NL 消耗 。",
+    "UPGRADE_DESCRIPTION": "获得 !M! 点 好印象 。 NL 消耗 。"
+  },
+  "LovesTheStruggle": {
+    "NAME": "喜欢痛苦",
+    "DESCRIPTION": "获得 !B! 点 格挡。 NL 造成 敏捷 层数 !M! %的伤害。 NL 消耗 。",
+    "UPGRADE_DESCRIPTION": "获得 !B! 点 格挡。 NL 造成 敏捷 层数 !M! %的伤害。 NL 消耗 。"
+  },
+  "PureWhiteFairy": {
+    "NAME": "纯白的妖精",
+    "DESCRIPTION": "获得 !M! 点 好印象。 NL 造成 好印象 层数 !M! %的伤害。 NL 消耗 。",
+    "UPGRADE_DESCRIPTION": "获得 !M! 点 好印象。 NL 造成 好印象 层数 !M! %的伤害 。 NL 消耗 。"
+  },
+  "Wholeheartedly": {
+    "NAME": "全力以赴",
+    "DESCRIPTION": "获得 !B! 点 格挡 和 !M! 点 敏捷 。 NL 消耗 。",
+    "UPGRADE_DESCRIPTION": "获得 !B! 点 格挡 和 !M! 点 敏捷 。 NL 消耗 。"
+  },
+  "DefeatBigSister": {
+    "NAME": "打倒姐姐",
+    "DESCRIPTION": "失去 !M! 点体力。 NL 获得 !B! 点 格挡 ，造成 格挡 层数 !M2! %的伤害。 NL 消耗 。",
+    "UPGRADE_DESCRIPTION": "失去 !M! 点体力。 NL 获得 !B! 点 格挡 ，造成 格挡 层数 !M2! %的伤害。 NL 消耗 。"
+  },
 }

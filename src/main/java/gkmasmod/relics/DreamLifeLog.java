@@ -75,9 +75,11 @@ public class DreamLifeLog extends CustomRelic {
                 flash();
                 addToBot(new RelicAboveCreatureAction(AbstractDungeon.player, this));
                 addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new GoodImpression(AbstractDungeon.player, goodImpressionIncrease), goodImpressionIncrease));
-                addToBot(new DamageRandomEnemyAction(new DamageInfo(null, damage, DamageInfo.DamageType.THORNS), AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
+                addToBot(new DamageRandomEnemyAction(new DamageInfo(AbstractDungeon.player, damage, DamageInfo.DamageType.THORNS), AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
                 this.counter--;
-                this.grayscale = true;
+                if (this.counter == 0) {
+                    this.grayscale = true;
+                }
             }
         }
     }

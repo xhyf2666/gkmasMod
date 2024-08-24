@@ -13,39 +13,11 @@ import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.screens.charSelect.CharacterSelectScreen;
 import gkmasmod.powers.GoodImpression;
 import gkmasmod.powers.GoodTune;
-import gkmasmod.relics.GreenUniformBracelet;
-import gkmasmod.relics.SecretTrainingCardigan;
-import gkmasmod.relics.WishFulfillmentAmulet;
+import gkmasmod.relics.*;
 import gkmasmod.ui.SkinSelectScreen;
 import org.lwjgl.Sys;
 
 public class RelicPatch {
-
-//    @SpirePatch(clz = AbstractCreature.class, method = "addPower")
-//    public static class PowerIncreasePatch {
-//        @SpirePrefixPatch
-//        public static void Prefix(AbstractCreature __instance, AbstractPower powerToApply) {
-//            System.out.println(powerToApply.ID);
-//            if(powerToApply instanceof GoodImpression && powerToApply.amount > 0){
-//                if (AbstractDungeon.player.hasRelic(GreenUniformBracelet.ID)){
-//                    System.out.println("GoodImpression powerToApply");
-//                    ((GreenUniformBracelet) AbstractDungeon.player.getRelic(GreenUniformBracelet.ID)).onGoodImpressionIncrease();
-//                }
-//            }
-//            else if(powerToApply instanceof StrengthPower && powerToApply.amount > 0){
-//                System.out.println("StrengthPower powerToApply");
-//                if (AbstractDungeon.player.hasRelic(GreenUniformBracelet.ID)){
-//
-//
-//                }
-//            }
-//            else if(powerToApply instanceof DexterityPower && powerToApply.amount > 0){
-//                System.out.println("DexterityPower powerToApply");
-//                if (AbstractDungeon.player.hasRelic(GreenUniformBracelet.ID)){
-//                }
-//            }
-//        }
-//    }
 
     @SpirePatch(clz = ApplyPowerAction.class, method = "update")
     public static class PowerIncreasePatch {
@@ -60,8 +32,8 @@ public class RelicPatch {
                     }
                 }
                 else if(___powerToApply instanceof StrengthPower){
-                    if (AbstractDungeon.player.hasRelic(GreenUniformBracelet.ID)){
-
+                    if (AbstractDungeon.player.hasRelic(AfterSchoolDoodles.ID)){
+                        ((AfterSchoolDoodles) AbstractDungeon.player.getRelic(AfterSchoolDoodles.ID)).onStrengthPowerIncrease();
                     }
                 }
                 else if(___powerToApply instanceof DexterityPower){
@@ -70,6 +42,11 @@ public class RelicPatch {
                     }
                     if(AbstractDungeon.player.hasRelic(SecretTrainingCardigan.ID)){
                         ((SecretTrainingCardigan) AbstractDungeon.player.getRelic(SecretTrainingCardigan.ID)).onDexterityPowerIncrease();
+                    }
+                }
+                else if(___powerToApply instanceof GoodTune){
+                    if (AbstractDungeon.player.hasRelic(DearLittlePrince.ID)){
+                        ((DearLittlePrince) AbstractDungeon.player.getRelic(DearLittlePrince.ID)).onGoodTuneIncrease();
                     }
                 }
             }

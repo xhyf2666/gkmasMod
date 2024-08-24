@@ -191,22 +191,60 @@ public class GkmasMod implements EditCardsSubscriber, EditStringsSubscriber, Edi
     @Override
     public void receiveEditRelics() {
         //List<Object> instances = new ArrayList<>();
-        BaseMod.addRelicToCustomPool((AbstractRelic)new EssentialStainlessSteelBottle(), gkmasModColor);
+
+        // 广
+        BaseMod.addRelicToCustomPool((AbstractRelic)new UltimateSleepMask(), gkmasModColor);
         BaseMod.addRelicToCustomPool((AbstractRelic)new BeginnerGuideForEveryone(), gkmasModColor);
         BaseMod.addRelicToCustomPool((AbstractRelic)new SidewalkResearchNotes(), gkmasModColor);
         BaseMod.addRelicToCustomPool((AbstractRelic)new TowardsAnUnseenWorld(), gkmasModColor);
-        BaseMod.addRelicToCustomPool((AbstractRelic)new UltimateSleepMask(), gkmasModColor);
+        // 莉莉娅
         BaseMod.addRelicToCustomPool((AbstractRelic)new GreenUniformBracelet(), gkmasModColor);
         BaseMod.addRelicToCustomPool((AbstractRelic)new MemoryBot(), gkmasModColor);
         BaseMod.addRelicToCustomPool((AbstractRelic)new DreamLifeLog(), gkmasModColor);
         BaseMod.addRelicToCustomPool((AbstractRelic)new SparklingInTheBottle(), gkmasModColor);
+        // 千奈
         BaseMod.addRelicToCustomPool((AbstractRelic)new WishFulfillmentAmulet(), gkmasModColor);
         BaseMod.addRelicToCustomPool((AbstractRelic)new CheerfulHandkerchief(), gkmasModColor);
         BaseMod.addRelicToCustomPool((AbstractRelic)new SecretTrainingCardigan(), gkmasModColor);
         BaseMod.addRelicToCustomPool((AbstractRelic)new HeartFlutteringCup(), gkmasModColor);
+        // 佑芽
         BaseMod.addRelicToCustomPool((AbstractRelic)new TechnoDog(), gkmasModColor);
         BaseMod.addRelicToCustomPool((AbstractRelic)new ShibaInuPochette(), gkmasModColor);
         BaseMod.addRelicToCustomPool((AbstractRelic)new RollingSourceOfEnergy(), gkmasModColor);
-
+        // 咲季
+        BaseMod.addRelicToCustomPool((AbstractRelic)new RoaringLion(), gkmasModColor);
+        BaseMod.addRelicToCustomPool((AbstractRelic)new FirstVoiceProofSaki(), gkmasModColor);
+        BaseMod.addRelicToCustomPool((AbstractRelic)new SakiCompleteMealRecipe(), gkmasModColor);
+        BaseMod.addRelicToCustomPool((AbstractRelic)new TogetherInBattleTowel(), gkmasModColor);
+        BaseMod.addRelicToCustomPool((AbstractRelic)new WinningDetermination(), gkmasModColor);
+        BaseMod.addRelicToCustomPool((AbstractRelic)new UndefeatedPoi(), gkmasModColor);
+        // 莉波
+        BaseMod.addRelicToCustomPool((AbstractRelic)new RegularMakeupPouch(), gkmasModColor);
+        BaseMod.addRelicToCustomPool((AbstractRelic)new TreatForYou(), gkmasModColor);
+        BaseMod.addRelicToCustomPool((AbstractRelic)new LifeSizeLadyLip(), gkmasModColor);
+        BaseMod.addRelicToCustomPool((AbstractRelic)new SummerToShareWithYou(), gkmasModColor);
+        // 琴音
+        BaseMod.addRelicToCustomPool((AbstractRelic)new HandmadeMedal(), gkmasModColor);
+        BaseMod.addRelicToCustomPool((AbstractRelic)new FirstVoiceProofKotone(), gkmasModColor);
+        BaseMod.addRelicToCustomPool((AbstractRelic)new FavoriteSneakers(), gkmasModColor);
+        BaseMod.addRelicToCustomPool((AbstractRelic)new PigDreamPiggyBank(), gkmasModColor);
+        BaseMod.addRelicToCustomPool((AbstractRelic)new UltimateSourceOfHappiness(), gkmasModColor);
+        BaseMod.addRelicToCustomPool((AbstractRelic)new CracklingSparkler(), gkmasModColor);
+        // 麻央
+        BaseMod.addRelicToCustomPool((AbstractRelic)new GentlemanHandkerchief(), gkmasModColor);
+        BaseMod.addRelicToCustomPool((AbstractRelic)new DearLittlePrince(), gkmasModColor);
+        BaseMod.addRelicToCustomPool((AbstractRelic)new InnerLightEarrings(), gkmasModColor);
+        BaseMod.addRelicToCustomPool((AbstractRelic)new LastSummerMemory(), gkmasModColor);
+        // 清夏
+        BaseMod.addRelicToCustomPool((AbstractRelic)new PinkUniformBracelet(), gkmasModColor);
+        BaseMod.addRelicToCustomPool((AbstractRelic)new AfterSchoolDoodles(), gkmasModColor);
+        BaseMod.addRelicToCustomPool((AbstractRelic)new ArcadeLoot(), gkmasModColor);
+        BaseMod.addRelicToCustomPool((AbstractRelic)new FrogFan(), gkmasModColor);
+        // 手毬
+        BaseMod.addRelicToCustomPool((AbstractRelic)new EssentialStainlessSteelBottle(), gkmasModColor);
+        BaseMod.addRelicToCustomPool((AbstractRelic)new FirstVoiceProofTemari(), gkmasModColor);
+        BaseMod.addRelicToCustomPool((AbstractRelic)new MyFirstSheetMusic(), gkmasModColor);
+        BaseMod.addRelicToCustomPool((AbstractRelic)new ProtectiveEarphones(), gkmasModColor);
+        BaseMod.addRelicToCustomPool((AbstractRelic)new ThisIsMe(), gkmasModColor);
     }
 }
