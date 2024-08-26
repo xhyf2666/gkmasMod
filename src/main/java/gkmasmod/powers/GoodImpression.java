@@ -63,6 +63,7 @@ public class GoodImpression extends AbstractPower {
     public void atEndOfTurnPreEndTurnCards(boolean isPlayer) {
         flash();
 
+        // TODO 先结算回合结束的好印象加成效果
         if(this.amount > 0){
             if(firstGet)
                 firstGet = false;

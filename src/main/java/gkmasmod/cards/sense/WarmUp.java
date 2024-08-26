@@ -21,7 +21,7 @@ import gkmasmod.utils.NameHelper;
 public class WarmUp extends AbstractDefaultCard {
     private static final String CLASSNAME = WarmUp.class.getSimpleName();
     public static final String ID = NameHelper.makePath(CLASSNAME);
-    private static final CardStrings CARD_STRINGS = CardCrawlGame.languagePack.getCardStrings(CLASSNAME);
+    private static final CardStrings CARD_STRINGS = CardCrawlGame.languagePack.getCardStrings(ID);
 
     private static final String NAME = CARD_STRINGS.NAME;
     private static final String DESCRIPTION = CARD_STRINGS.DESCRIPTION;

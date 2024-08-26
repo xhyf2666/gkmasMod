@@ -44,7 +44,7 @@ public class PigDreamPiggyBank extends CustomRelic {
 
     @Override
     public String getUpdatedDescription() {
-        return String.format(this.DESCRIPTIONS[0],GOOD_IMPRESSION,magicNumber,magicNumber2,playTimes);
+        return String.format(this.DESCRIPTIONS[0],GOOD_IMPRESSION,magicNumber,playTimes);
     }
 
     @Override

@@ -19,7 +19,7 @@ import gkmasmod.utils.NameHelper;
 public class BaseVision extends AbstractDefaultCard {
     private static final String CLASSNAME = BaseVision.class.getSimpleName();
     public static final String ID = NameHelper.makePath(CLASSNAME);
-    private static final CardStrings CARD_STRINGS = CardCrawlGame.languagePack.getCardStrings(CLASSNAME);
+    private static final CardStrings CARD_STRINGS = CardCrawlGame.languagePack.getCardStrings(ID);
 
     private static final String NAME = CARD_STRINGS.NAME;
     private static final String DESCRIPTION = CARD_STRINGS.DESCRIPTION;
@@ -31,8 +31,6 @@ public class BaseVision extends AbstractDefaultCard {
 
     private static final int BLOCK_AMT = 3;
     private static final int UPGRADE_PLUS_BLOCK = 2;
-
-    private static final int HP_COST = 2;
 
     private static final CardType TYPE = CardType.SKILL;
     private static final CardColor COLOR = PlayerColorEnum.gkmasModColorLogic;
@@ -49,13 +47,13 @@ public class BaseVision extends AbstractDefaultCard {
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        addToBot(((AbstractGameAction)new GainBlockAction((AbstractCreature)p, (AbstractCreature)p, this.block)));
-        addToBot((AbstractGameAction)new ApplyPowerAction((AbstractCreature)p, (AbstractCreature)p, (AbstractPower)new GoodImpression((AbstractCreature)p, this.magicNumber), this.magicNumber));
+        addToBot((new GainBlockAction(p, p, this.block)));
+        addToBot(new ApplyPowerAction(p, p, new GoodImpression(p, this.magicNumber), this.magicNumber));
     }
 
     @Override
     public AbstractCard makeCopy() {
-        return (AbstractCard)new BaseVision();
+        return new BaseVision();
     }
 
     @Override

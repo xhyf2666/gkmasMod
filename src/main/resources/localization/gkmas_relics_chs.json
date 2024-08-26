@@ -31,14 +31,14 @@
     "NAME": "统一的绿色手环",
     "FLAVOR": "这个手环是绿色的。",
     "DESCRIPTIONS": [
-      "获得好印象时，额外获得 #b%d 点好印象。 NL (每场战斗可触发 #b%d 次)。"
+      "获得好印象时，额外获得 #b%d 层好印象。 NL (每场战斗可触发 #b%d 次)。"
     ]
   },
   "MemoryBot": {
     "NAME": "记忆中的高达",
     "FLAVOR": "为什么高达会出现在这里？",
     "DESCRIPTIONS": [
-      "回合结束时，如果体力大于 #b%d %%，则获得 #b%d 点好印象。"
+      "回合结束时，如果体力大于 #b%d %%，则获得 #b%d 层好印象。"
     ]
   },
   "DreamLifeLog": {
@@ -52,7 +52,7 @@
     "NAME": "瓶中星光",
     "FLAVOR": "这个瓶子里装着星光。",
     "DESCRIPTIONS": [
-      "回合结束时，如果好调大于 #b%d ，则获得 #b%d 点好调。 NL (每场战斗可触发 #b%d 次)。"
+      "回合结束时，如果好调大于 #b%d ，则获得 #b%d 层好调。 NL (每场战斗可触发 #b%d 次)。"
     ]
   },
   "WishFulfillmentAmulet": {
@@ -101,7 +101,7 @@
     "NAME": "源源不断的活力之源",
     "FLAVOR": "是佑芽最喜欢的东西。",
     "DESCRIPTIONS": [
-      "使用 #y技能卡 时，如果敏捷大于 #b%d ，则获得 #b%d 点敏捷和 #b%d 点能量。 NL (每场战斗可触发 #b%d 次)。"
+      "使用 #y技能卡 时，如果敏捷大于 #b%d ，则获得 #b%d 点敏捷和 [E] 。 NL (每场战斗可触发 #b%d 次)。"
     ]
   },
   "RoaringLion": {
@@ -115,7 +115,7 @@
     "NAME": "初声之证·咲季",
     "FLAVOR": "咲季的初声之证。",
     "DESCRIPTIONS": [
-      "体力下降时，获得 #b%d 点好印象。 NL (每场战斗可触发 #b%d 次)。"
+      "体力下降时，获得 #b%d 层好印象。 NL (每场战斗可触发 #b%d 次)。"
     ]
   },
   "SakiCompleteMealRecipe": {
@@ -129,14 +129,14 @@
     "NAME": "并肩作战的毛巾",
     "FLAVOR": "这块毛巾是用来战斗的。",
     "DESCRIPTIONS": [
-      "使用 #y攻击卡 时，获得 #b%d 点好调和 #b%d 点能量。 NL (每场战斗可触发 #b%d 次)。"
+      "使用 #y攻击卡 时，获得 #b%d 层好调和 [E] 。 NL (每场战斗可触发 #b%d 次)。"
     ]
   },
   "WinningDetermination": {
     "NAME": "胜利的决心",
     "FLAVOR": "会赢的。",
     "DESCRIPTIONS": [
-      "体力下降时，获得 #b%d 点好印象。"
+      "体力下降时，获得 #b%d 层好印象。"
     ]
   },
   "UndefeatedPoi": {
@@ -171,42 +171,42 @@
     "NAME": "与你分享的夏天",
     "FLAVOR": "这是与你分享的夏天。",
     "DESCRIPTIONS": [
-      "回合开始时，如果拥有 #y受伤减半 状态，则获得 #b%d 点绝好调。 NL (每场战斗可触发 #b%d 次)。"
+      "回合开始时，如果拥有 #y受伤减半 状态，则获得 #b%d 层绝好调。 NL (每场战斗可触发 #b%d 次)。"
     ]
   },
   "HandmadeMedal": {
     "NAME": "手工勋章",
     "FLAVOR": "这是手工勋章。",
     "DESCRIPTIONS": [
-      "回合结束时，如果好印象大于 #b%d ，则获得 #b%d 点好印象。 NL (每场战斗可触发 #b%d 次)。"
+      "回合结束时，如果好印象大于 #b%d ，则获得 #b%d 层好印象。 NL (每场战斗可触发 #b%d 次)。"
     ]
   },
   "FirstVoiceProofKotone": {
     "NAME": "初声之证·琴音",
     "FLAVOR": "琴音的初声之证。",
     "DESCRIPTIONS": [
-      "使用专属卡后，获得 #b%d 点好调。"
+      "使用专属卡后，获得 #b%d 层好调。"
     ]
   },
   "FavoriteSneakers": {
     "NAME": "最喜欢的运动鞋",
     "FLAVOR": "这是最喜欢的运动鞋。",
     "DESCRIPTIONS": [
-      "回合结束时，如果格挡大于 #b%d ，则获得 #b%d 点好印象。 NL (每场战斗可触发 #b%d 次)。"
+      "回合结束时，如果格挡大于 #b%d ，则获得 #b%d 层好印象。 NL (每场战斗可触发 #b%d 次)。"
     ]
   },
   "PigDreamPiggyBank": {
     "NAME": "猪梦存钱罐",
     "FLAVOR": "这是猪梦存钱罐。",
     "DESCRIPTIONS": [
-      "出牌后，如果好印象大于 #b%d ，则获得 #b%d 点好印象和 #b%d 点能量。 NL (每场战斗可触发 #b%d 次)。"
+      "出牌后，如果好印象大于 #b%d ，则获得 #b%d 层好印象和 [E] 。 NL (每场战斗可触发 #b%d 次)。"
     ]
   },
   "UltimateSourceOfHappiness": {
     "NAME": "终极幸福源泉",
     "FLAVOR": "这是终极幸福源泉。",
     "DESCRIPTIONS": [
-      "使用专属卡后，获得 #b%d 点好调和 #b%d 点格挡。"
+      "使用专属卡后，获得 #b%d 层好调和 #b%d 点格挡。"
     ]
   },
   "CracklingSparkler": {
@@ -227,7 +227,7 @@
     "NAME": "亲爱的小王子",
     "FLAVOR": "这是亲爱的小王子。",
     "DESCRIPTIONS": [
-      "获得好调时，额外获得 #y%d 点好调。 NL (每场战斗可触发 #b%d 次)。"
+      "获得好调时，额外获得 #y%d 层好调。 NL (每场战斗可触发 #b%d 次)。"
     ]
   },
   "InnerLightEarrings": {
@@ -297,7 +297,7 @@
     "NAME": "防护耳机",
     "FLAVOR": "这是防护耳机。",
     "DESCRIPTIONS": [
-      "出牌后，如果力量大于 #b%d ，则获得 #b%d 点力量和 #b%d 点能量。 NL (每场战斗可触发 #b%d 次)。"
+      "出牌后，如果力量大于 #b%d ，则获得 #b%d 点力量和 [E] 。 NL (每场战斗可触发 #b%d 次)。"
     ]
   },
   "ThisIsMe": {

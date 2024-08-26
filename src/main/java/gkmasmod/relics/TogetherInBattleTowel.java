@@ -42,7 +42,7 @@ public class TogetherInBattleTowel extends CustomRelic {
 
     @Override
     public String getUpdatedDescription() {
-        return String.format(this.DESCRIPTIONS[0],magicNumber,magicNumber2,playTimes);
+        return String.format(this.DESCRIPTIONS[0],magicNumber,playTimes);
     }
 
     @Override

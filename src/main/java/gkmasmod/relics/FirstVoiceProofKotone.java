@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
+import gkmasmod.cards.sense.FirstReward;
 import gkmasmod.powers.GoodTune;
 
 public class FirstVoiceProofKotone extends CustomRelic {
@@ -46,8 +47,7 @@ public class FirstVoiceProofKotone extends CustomRelic {
     public void onEquip() {}
 
     public void onUseCard(AbstractCard card, UseCardAction useCardAction){
-        // TODO 换成专属卡
-        if (card.cardID.equals("gkmasmod:KotoneVoice")) {
+        if (card.cardID.equals(FirstReward.ID)) {
                 addToBot(new RelicAboveCreatureAction(AbstractDungeon.player, this));
                 addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new GoodTune(AbstractDungeon.player, magicNumber), magicNumber));
         }

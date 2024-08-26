@@ -17,31 +17,24 @@ public class GoodImpressionDamageAction extends AbstractGameAction {
 
     private AbstractPlayer p;
 
-    private DamageInfo info;
 
-    private int magicAdd;
+    private int goodImpressionAdd;
 
-    private int magicNumber;
+    private int currentGoodImpression;
 
     private float rate;
 
-    public GoodImpressionDamageAction(float rate,int magicAdd,int magicnumber,AbstractPlayer p, AbstractMonster m, DamageInfo info) {
+    public GoodImpressionDamageAction(float rate,int goodImpressionAdd,int currentGoodImpression,AbstractPlayer p, AbstractMonster m) {
         this.m = m;
         this.p = p;
-        this.info = info;
-        this.magicNumber = magicnumber;
-        this.magicAdd = magicAdd;
+        this.currentGoodImpression = currentGoodImpression;
+        this.goodImpressionAdd = goodImpressionAdd;
         this.rate = rate;
     }
 
     public void update() {
-        System.out.println("this.magicNumber "+this.magicNumber);
-        System.out.println("this.magicAdd "+this.magicAdd);
-        System.out.println("this.rate "+this.rate);
-
-
-        addToBot((AbstractGameAction)new ApplyPowerAction(p, p, (AbstractPower)new GoodImpression(p,this.magicAdd), this.magicAdd));
-        AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new DamageAction((AbstractCreature)m, new DamageInfo((AbstractCreature)p, (int)(this.rate*this.magicNumber) , DamageInfo.DamageType.NORMAL), AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
+        addToBot(new ApplyPowerAction(p, p, new GoodImpression(p,this.goodImpressionAdd), this.goodImpressionAdd));
+        AbstractDungeon.actionManager.addToBottom(new DamageAction(m, new DamageInfo(p, (int)(this.rate*(this.currentGoodImpression+goodImpressionAdd)) , DamageInfo.DamageType.NORMAL), AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
 
         this.isDone = true;
     }

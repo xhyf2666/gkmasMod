@@ -80,6 +80,7 @@ public class GreenUniformBracelet extends CustomRelic {
     }
 
     public  void  onPlayerEndTurn(){
+        this.isRefresh = true;
     }
 
     public void justEnteredRoom(AbstractRoom room) {

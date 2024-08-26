@@ -35,10 +35,16 @@
       "回合结束时，若力量大于2，则获得 #b2 点力量。 NL 当前可获得%d点力量。"
     ]
   },
-  "AddDamageReceive": {
-    "NAME": "受伤增加",
+  "ReservedGirlPower": {
+    "NAME": "内向型少女",
     "DESCRIPTIONS": [
-      "受到的伤害增加 #b%d 。"
+      "回合结束时，获得 #b%d 层 #y好印象 。"
+    ]
+  },
+  "NotAfraidAnymorePower": {
+    "NAME": "不再害怕",
+    "DESCRIPTIONS": [
+      "回合结束时，获得 #b%d 层 #y好印象 。"
     ]
   },
   "ReduceDamageReceive": {
@@ -59,16 +65,16 @@
       "当前有 #b%d 层。 NL 受到的伤害减少 #b50 %%。 NL 回合结束时层数减 #b1 。"
     ]
   },
-  "CrychicDream": {
-    "NAME": "名为Crychic的梦",
+  "BurstAttackPower": {
+    "NAME": "爆发·攻击",
     "DESCRIPTIONS": [
-      "还剩","个回合退出乐队：按照丰川祥子剩余生命值的数值移除你的生命值及上限，然后死亡。（至少保留1点）"
+      "在这个回合，你的下%d张攻击牌会打出两次。"
     ]
   },
-  "DeterminationPower": {
-    "NAME": "“决心”",
+  "SummerEveningSparklersPower": {
+    "NAME": "“夏夜的线香花火”",
     "DESCRIPTIONS": [
-      "回合开始时，获得","点 [E] 。"
+      "每次出牌获得 #y格挡 时，获得 #b%d 层 #y好印象 。"
     ]
   },
   "muiscStart": {

@@ -19,15 +19,12 @@ import gkmasmod.cards.free.BaseAppeal;
 import gkmasmod.cards.free.BasePerform;
 import gkmasmod.cards.free.BasePose;
 import gkmasmod.cards.free.Gacha;
-import gkmasmod.cards.logic.BaseAwareness;
-import gkmasmod.cards.logic.BaseVision;
-import gkmasmod.cards.logic.ChangeMood;
-import gkmasmod.cards.logic.KawaiiGesture;
+import gkmasmod.cards.logic.*;
 import gkmasmod.cards.sense.*;
 import gkmasmod.characters.IdolCharacter;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.relics.*;
-import gkmasmod.variables.SecondMagicNumber;
+import gkmasmod.variables.*;
 
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
@@ -106,6 +103,10 @@ public class GkmasMod implements EditCardsSubscriber, EditStringsSubscriber, Edi
     @Override
     public void receiveEditCards(){
         BaseMod.addDynamicVariable(new SecondMagicNumber());
+        BaseMod.addDynamicVariable(new ThirdMagicNumber());
+        BaseMod.addDynamicVariable(new HPMagicNumber());
+        BaseMod.addDynamicVariable(new SecondDamage());
+        BaseMod.addDynamicVariable(new SecondBlock());
         List<Object> instances = getCardsToAdd();
         for (Object instance : instances) {
             BaseMod.addCard((AbstractCard) instance);
@@ -174,7 +175,60 @@ public class GkmasMod implements EditCardsSubscriber, EditStringsSubscriber, Edi
         instances.add(new HighFive());
         instances.add(new GoWithTheFlow());
         instances.add(new WarmUp());
-
+        // 广
+        instances.add(new HighlyEducatedIdol());
+        instances.add(new LovesTheStruggle());
+        instances.add(new SeriousHobby());
+        instances.add(new SwayingOnTheBus());
+        // 莉莉娅
+        instances.add(new ReservedGirl());
+        instances.add(new PureWhiteFairy());
+        instances.add(new NotAfraidAnymore());
+        instances.add(new FirstRamune());
+        // 千奈
+        instances.add(new FullOfEnergy());
+        instances.add(new Wholeheartedly());
+        instances.add(new DebutStageForTheLady());
+        instances.add(new WelcomeToTeaParty());
+        // 佑芽
+        instances.add(new UntappedPotential());
+        instances.add(new DefeatBigSister());
+        instances.add(new BigOnigiri());
+        // 咲季
+        instances.add(new RisingStar());
+        instances.add(new FirstFuture());
+        instances.add(new NeverYieldFirst());
+        instances.add(new NeverLose());
+        instances.add(new Pow());
+        instances.add(new GoldfishScoopingChallenge());
+        // 莉波
+        instances.add(new Accommodating());
+        instances.add(new SupportiveFeelings());
+        instances.add(new SenseOfDistance());
+        instances.add(new CumulusCloudsAndYou());
+        // 琴音
+        instances.add(new Arbeiter());
+        instances.add(new FirstReward());
+        instances.add(new ColorfulCute());
+        instances.add(new NoDistractions());
+        instances.add(new FullAdrenaline());
+        instances.add(new SummerEveningSparklers());
+        // 麻央
+        instances.add(new LittlePrince());
+        instances.add(new Authenticity());
+        instances.add(new DressedUpInStyle());
+        instances.add(new ChillyBreak());
+        // 清夏
+        instances.add(new Friendly());
+        instances.add(new BraveStep());
+        instances.add(new OneMoreStep());
+        instances.add(new AfternoonBreeze());
+        // 手毬
+        instances.add(new Stubborn());
+        instances.add(new FirstPlace());
+        instances.add(new LoneWolf());
+        instances.add(new EachPath());
+        instances.add(new TangledFeelings());
 
         // 遍历instances的所有元素，将其添加到listener中
         for (Object instance : instances) {

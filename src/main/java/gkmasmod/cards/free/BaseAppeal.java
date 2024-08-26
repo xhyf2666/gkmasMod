@@ -18,7 +18,7 @@ import gkmasmod.utils.NameHelper;
 public class BaseAppeal extends AbstractDefaultCard {
     private static final String CLASSNAME = BaseAppeal.class.getSimpleName();
     public static final String ID = NameHelper.makePath(CLASSNAME);
-    private static final CardStrings CARD_STRINGS = CardCrawlGame.languagePack.getCardStrings(CLASSNAME);
+    private static final CardStrings CARD_STRINGS = CardCrawlGame.languagePack.getCardStrings(ID);
 
     private static final String NAME = CARD_STRINGS.NAME;
     private static final String DESCRIPTION = CARD_STRINGS.DESCRIPTION;
@@ -49,12 +49,12 @@ public class BaseAppeal extends AbstractDefaultCard {
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new DamageAction((AbstractCreature)m, new DamageInfo((AbstractCreature)p, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
+        AbstractDungeon.actionManager.addToBottom(new DamageAction(m, new DamageInfo(p, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
     }
 
     @Override
     public AbstractCard makeCopy() {
-        return (AbstractCard)new BaseAppeal();
+        return new BaseAppeal();
     }
 
     @Override

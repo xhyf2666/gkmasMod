@@ -21,7 +21,7 @@ import gkmasmod.utils.NameHelper;
 public class HighFive extends AbstractDefaultCard {
     private static final String CLASSNAME = HighFive.class.getSimpleName();
     public static final String ID = NameHelper.makePath(CLASSNAME);
-    private static final CardStrings CARD_STRINGS = CardCrawlGame.languagePack.getCardStrings(CLASSNAME);
+    private static final CardStrings CARD_STRINGS = CardCrawlGame.languagePack.getCardStrings(ID);
 
     private static final String NAME = CARD_STRINGS.NAME;
     private static final String DESCRIPTION = CARD_STRINGS.DESCRIPTION;
@@ -50,22 +50,20 @@ public class HighFive extends AbstractDefaultCard {
 
     public void use(AbstractPlayer p, AbstractMonster m) {
         if (m != null)
-            addToBot((AbstractGameAction)new VFXAction((AbstractGameEffect)new VerticalImpactEffect(m.hb.cX + m.hb.width / 4.0F, m.hb.cY - m.hb.height / 4.0F)));
-        addToBot((AbstractGameAction)new DamageAction((AbstractCreature)m, new DamageInfo((AbstractCreature)p, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.BLUNT_HEAVY));
+            addToBot(new VFXAction(new VerticalImpactEffect(m.hb.cX + m.hb.width / 4.0F, m.hb.cY - m.hb.height / 4.0F)));
+        addToBot(new DamageAction(m, new DamageInfo(p, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.BLUNT_HEAVY));
     }
 
     public void applyPowers() {
         AbstractPower strength = AbstractDungeon.player.getPower("Strength");
         if (strength != null){
-            // 改成向上取整
-
-            strength.amount = (int) (strength.amount*(1.0*this.magicNumber/100)+0.5);
+            strength.amount = (int) (strength.amount*(1.0*this.magicNumber/100));
             System.out.println("strength.amount: " + strength.amount);
         }
 
         super.applyPowers();
         if (strength != null) {
-            strength.amount = (int) (strength.amount/(1.0*this.magicNumber/100)+0.5);
+            strength.amount = (int) (strength.amount/(1.0*this.magicNumber/100));
             System.out.println("strength.amount2: " + strength.amount);
         }
 
@@ -75,12 +73,12 @@ public class HighFive extends AbstractDefaultCard {
         AbstractPower strength = AbstractDungeon.player.getPower("Strength");
         if (strength != null){
             System.out.println("strength.amount3: " + strength.amount);
-            strength.amount = (int) (strength.amount*(1.0*this.magicNumber/100)+0.5);
+            strength.amount = (int) (strength.amount*(1.0*this.magicNumber/100));
         }
 
         super.calculateCardDamage(mo);
         if (strength != null){
-            strength.amount = (int) (strength.amount/(1.0*this.magicNumber/100)+0.5);
+            strength.amount = (int) (strength.amount/(1.0*this.magicNumber/100));
             System.out.println("strength.amount4: " + strength.amount);
         }
 
@@ -88,7 +86,7 @@ public class HighFive extends AbstractDefaultCard {
 
     @Override
     public AbstractCard makeCopy() {
-        return (AbstractCard)new HighFive();
+        return new HighFive();
     }
 
     @Override

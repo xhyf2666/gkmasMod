@@ -16,7 +16,7 @@ import gkmasmod.utils.NameHelper;
 public class TryError extends AbstractDefaultCard {
     private static final String CLASSNAME = TryError.class.getSimpleName();
     public static final String ID = NameHelper.makePath(CLASSNAME);
-    private static final CardStrings CARD_STRINGS = CardCrawlGame.languagePack.getCardStrings(CLASSNAME);
+    private static final CardStrings CARD_STRINGS = CardCrawlGame.languagePack.getCardStrings(ID);
 
     private static final String NAME = CARD_STRINGS.NAME;
     private static final String DESCRIPTION = CARD_STRINGS.DESCRIPTION;
@@ -25,6 +25,8 @@ public class TryError extends AbstractDefaultCard {
     private static final int COST = 2;
     private static final int ATTACK_DMG = 7;
     private static final int UPGRADE_PLUS_DMG = 3;
+
+    private static final int BASE_MAGIC = 2;
 
 
     private static final CardType TYPE = CardType.ATTACK;
@@ -35,6 +37,8 @@ public class TryError extends AbstractDefaultCard {
     public TryError() {
         super(ID, NAME, IMG_PATH, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.baseDamage = ATTACK_DMG;
+        this.baseMagicNumber = BASE_MAGIC;
+        this.magicNumber = this.baseMagicNumber;
         this.exhaust = true;
     }
 

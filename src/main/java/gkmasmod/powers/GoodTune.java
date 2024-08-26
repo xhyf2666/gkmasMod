@@ -82,7 +82,7 @@ public class GoodTune extends AbstractPower {
     }
 
 
-    public float atDamageGive(float damage, DamageInfo.DamageType type) {
+    public float atDamageFinalGive(float damage, DamageInfo.DamageType type) {
         if (type == DamageInfo.DamageType.NORMAL) {
             int count = AbstractDungeon.player.getPower(GreatGoodTune.POWER_ID)==null?0:AbstractDungeon.player.getPower(GreatGoodTune.POWER_ID).amount;
             if(count > 0)
