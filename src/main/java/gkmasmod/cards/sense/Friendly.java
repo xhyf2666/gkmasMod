@@ -39,7 +39,7 @@ public class Friendly extends AbstractDefaultCard {
     private static final CardTarget TARGET = CardTarget.ENEMY;
 
     public Friendly() {
-        super(ID, NAME, IMG_PATH, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET,"blue");
+        super(ID, NAME, IMG_PATH, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET, "blue");
         this.baseDamage = ATTACK_DMG;
         this.baseMagicNumber = BASE_MAGIC;
         this.magicNumber = this.baseMagicNumber;
@@ -53,10 +53,9 @@ public class Friendly extends AbstractDefaultCard {
     public void use(AbstractPlayer p, AbstractMonster m) {
         addToBot(new DamageAction(m, new DamageInfo(p, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
         int amount = PlayerHelper.getPowerAmount(p, StrengthPower.POWER_ID);
-        if(this.upgraded){
+        if (this.upgraded) {
             addToBot(new DamageAction(m, new DamageInfo(p, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_VERTICAL));
-        }
-        else if(amount > magicNumber){
+        } else if (amount > magicNumber) {
             addToBot(new DamageAction(m, new DamageInfo(p, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_VERTICAL));
         }
 
@@ -64,7 +63,7 @@ public class Friendly extends AbstractDefaultCard {
 
     @Override
     public AbstractCard makeCopy() {
-        return (AbstractCard)new Friendly();
+        return (AbstractCard) new Friendly();
     }
 
     @Override
@@ -74,11 +73,11 @@ public class Friendly extends AbstractDefaultCard {
             upgradeDamage(UPGRADE_PLUS_DMG);
             upgradeMagicNumber(UPGRADE_PLUS_MAGIC);
             upgradeSecondMagicNumber(UPGRADE_PLUS_MAGIC2);
-            this.rawDescription = CARD_STRINGS.UPGRADE_DESCRIPTION;
+            if (CARD_STRINGS.UPGRADE_DESCRIPTION != null)
+                this.rawDescription = CARD_STRINGS.UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }
     }
-
 
 
 }

@@ -230,6 +230,55 @@ public abstract class AbstractDefaultCard extends CustomCard  implements CardImg
 
     }
 
+    public int calculateDamage(int damage){
+        AbstractPlayer player = AbstractDungeon.player;
+        float tmp = (float)damage;
+        Iterator var9 = player.relics.iterator();
+        while(var9.hasNext()) {
+            AbstractRelic r = (AbstractRelic)var9.next();
+            tmp = r.atDamageModify(tmp, this);
+        }
+        AbstractPower p;
+        for(var9 = player.powers.iterator(); var9.hasNext(); tmp = p.atDamageGive(tmp, this.damageTypeForTurn, this)) {
+            p = (AbstractPower)var9.next();
+        }
+
+        tmp = player.stance.atDamageGive(tmp, this.damageTypeForTurn, this);
+        if (this.baseSecondDamage != (int)tmp) {
+            this.isSecondDamageModified = true;
+        }
+
+        for(var9 = player.powers.iterator(); var9.hasNext(); tmp = p.atDamageFinalGive(tmp, this.damageTypeForTurn, this)) {
+            p = (AbstractPower)var9.next();
+        }
+
+
+        if (tmp < 0.0F) {
+            tmp = 0.0F;
+        }
+        return MathUtils.floor(tmp);
+    }
+
+    public int calculateBlock(int block) {
+        float tmp = (float)block;
+
+        Iterator var2;
+        AbstractPower p;
+        for(var2 = AbstractDungeon.player.powers.iterator(); var2.hasNext(); tmp = p.modifyBlock(tmp, this)) {
+            p = (AbstractPower)var2.next();
+        }
+
+        for(var2 = AbstractDungeon.player.powers.iterator(); var2.hasNext(); tmp = p.modifyBlockLast(tmp)) {
+            p = (AbstractPower)var2.next();
+        }
+
+        if (tmp < 0.0F) {
+            tmp = 0.0F;
+        }
+
+        return MathUtils.floor(tmp);
+    }
+
 
     public void calculateCardDamage(AbstractMonster mo) {
         super.calculateCardDamage(mo);
@@ -288,9 +337,9 @@ public abstract class AbstractDefaultCard extends CustomCard  implements CardImg
         //imgMap.clear();
         String CLASSNAME = this.getClass().getSimpleName();
         if (updateShowImg){
-            this.textureImg = String.format("img/idol/%s/cards/%s.png", IdolData.idolNames[SkinSelectScreen.Inst.idolIndex] , CLASSNAME);
+            this.textureImg = String.format("img/idol/%s/cards/%s.png", SkinSelectScreen.Inst.idolName , CLASSNAME);
             System.out.println("updateImg: "+this.textureImg);
-            loadCardImage(String.format("img/idol/%s/cards/%s.png", IdolData.idolNames[SkinSelectScreen.Inst.idolIndex] , CLASSNAME));
+            loadCardImage(String.format("img/idol/%s/cards/%s.png", SkinSelectScreen.Inst.idolName , CLASSNAME));
         }
     }
 
@@ -315,8 +364,8 @@ public abstract class AbstractDefaultCard extends CustomCard  implements CardImg
         }
 
         setBackgroundTexture(
-                String.format(carduiImgFormat, IdolData.idolNames[SkinSelectScreen.Inst.idolIndex] ,512,colorTypeString, typeString),
-                String.format(carduiImgFormat, IdolData.idolNames[SkinSelectScreen.Inst.idolIndex] ,1024,colorTypeString, typeString)
+                String.format(carduiImgFormat, SkinSelectScreen.Inst.idolName ,512,colorTypeString, typeString),
+                String.format(carduiImgFormat, SkinSelectScreen.Inst.idolName ,1024,colorTypeString, typeString)
                 );
     }
 

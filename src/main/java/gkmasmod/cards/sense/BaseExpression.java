@@ -46,12 +46,12 @@ public class BaseExpression extends AbstractDefaultCard {
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        addToBot((AbstractGameAction)new ApplyPowerAction((AbstractCreature)p, (AbstractCreature)p, (AbstractPower)new StrengthPower((AbstractCreature)p, this.magicNumber), this.magicNumber));
+        addToBot(new ApplyPowerAction(p, p, new StrengthPower(p, this.magicNumber), this.magicNumber));
     }
 
     @Override
     public AbstractCard makeCopy() {
-        return (AbstractCard)new BaseExpression();
+        return new BaseExpression();
     }
 
     @Override
@@ -59,7 +59,8 @@ public class BaseExpression extends AbstractDefaultCard {
         if (!this.upgraded) {
             upgradeName();
             upgradeMagicNumber(UPGRADE_PLUS_MAGIC);
-            this.rawDescription = CARD_STRINGS.UPGRADE_DESCRIPTION;
+            if (CARD_STRINGS.UPGRADE_DESCRIPTION != null)
+                this.rawDescription = CARD_STRINGS.UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }
     }

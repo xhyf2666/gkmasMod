@@ -29,7 +29,7 @@ public class BaseBehave extends AbstractDefaultCard {
     private static final int UPGRADE_PLUS_MAGIC = 1;
 
 
-    private static final int BLOCK_AMT = 1;
+    private static final int BLOCK_AMT = 3;
     private static final int UPGRADE_PLUS_BLOCK = 2;
 
 
@@ -43,19 +43,18 @@ public class BaseBehave extends AbstractDefaultCard {
         this.baseMagicNumber = BASE_MAGIC;
         this.magicNumber = this.baseMagicNumber;
         this.baseBlock = BLOCK_AMT;
-        this.exhaust = true;
     }
 
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        addToBot(((AbstractGameAction)new GainBlockAction((AbstractCreature)p, (AbstractCreature)p, this.block)));
-        addToBot((AbstractGameAction)new ApplyPowerAction((AbstractCreature)p, (AbstractCreature)p, (AbstractPower)new GoodTune((AbstractCreature)p, this.magicNumber), this.magicNumber));
+        addToBot(((AbstractGameAction) new GainBlockAction((AbstractCreature) p, (AbstractCreature) p, this.block)));
+        addToBot((AbstractGameAction) new ApplyPowerAction((AbstractCreature) p, (AbstractCreature) p, (AbstractPower) new GoodTune((AbstractCreature) p, this.magicNumber), this.magicNumber));
     }
 
     @Override
     public AbstractCard makeCopy() {
-        return (AbstractCard)new BaseBehave();
+        return (AbstractCard) new BaseBehave();
     }
 
     @Override
@@ -64,7 +63,8 @@ public class BaseBehave extends AbstractDefaultCard {
             upgradeName();
             upgradeMagicNumber(UPGRADE_PLUS_MAGIC);
             upgradeBlock(UPGRADE_PLUS_BLOCK);
-            this.rawDescription = CARD_STRINGS.UPGRADE_DESCRIPTION;
+            if (CARD_STRINGS.UPGRADE_DESCRIPTION != null)
+                this.rawDescription = CARD_STRINGS.UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }
     }

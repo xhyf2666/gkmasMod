@@ -1,7 +1,9 @@
 package gkmasmod.cards.sense;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
+import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.actions.common.LoseHPAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
@@ -14,6 +16,8 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import gkmasmod.cards.AbstractDefaultCard;
 import gkmasmod.characters.IdolCharacter;
 import gkmasmod.characters.PlayerColorEnum;
+import gkmasmod.powers.DoubleDamageReceive;
+import gkmasmod.ui.SkinSelectScreen;
 import gkmasmod.utils.NameHelper;
 
 public class StartDash extends AbstractDefaultCard {
@@ -23,13 +27,14 @@ public class StartDash extends AbstractDefaultCard {
 
     private static final String NAME = CARD_STRINGS.NAME;
     private static final String DESCRIPTION = CARD_STRINGS.DESCRIPTION;
-    private static String IMG_PATH = String.format("img/idol/%s/cards/%s.png", IdolCharacter.getIdolName(), CLASSNAME);
+    private static String IMG_PATH = String.format("img/idol/%s/cards/%s.png", SkinSelectScreen.Inst.idolName, CLASSNAME);
 
-    private static final int COST = 1;
-    private static final int ATTACK_DMG = 30;
-    private static final int UPGRADE_PLUS_DMG = 10;
-
-    private static int HP_COST = 5;
+    private static final int COST = 2;
+    private static final int ATTACK_DMG = 15;
+    private static final int UPGRADE_PLUS_DMG = 5;
+    private static final int BLOCK_AMT = 7;
+    private static final int UPGRADE_PLUS_BLOCK = 3;
+    private static final int BASE_MAGIC = 2;
 
     private static final CardType TYPE = CardType.ATTACK;
     private static final CardColor COLOR = PlayerColorEnum.gkmasModColorSense;
@@ -37,23 +42,26 @@ public class StartDash extends AbstractDefaultCard {
     private static final CardTarget TARGET = CardTarget.ENEMY;
 
     public StartDash() {
-        super(ID, NAME, String.format("img/idol/%s/cards/%s.png", IdolCharacter.getIdolName(), CLASSNAME), COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        IMG_PATH = String.format("img/idol/%s/cards/%s.png", IdolCharacter.getIdolName(), CLASSNAME);
+        super(ID, NAME, String.format("img/idol/%s/cards/%s.png", SkinSelectScreen.Inst.idolName, CLASSNAME), COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
+        IMG_PATH = String.format("img/idol/%s/cards/%s.png", SkinSelectScreen.Inst.idolName, CLASSNAME);
         this.updateShowImg = true;
         this.baseDamage = ATTACK_DMG;
-        //updateImg();
+        this.baseBlock = BLOCK_AMT;
+        this.baseMagicNumber = BASE_MAGIC;
+        this.magicNumber = this.baseMagicNumber;
     }
 
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        addToBot((AbstractGameAction)new LoseHPAction((AbstractCreature)p, (AbstractCreature)p, HP_COST));
-        AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new DamageAction((AbstractCreature)m, new DamageInfo((AbstractCreature)p, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
+        AbstractDungeon.actionManager.addToBottom( new DamageAction( m, new DamageInfo( p, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
+        addToBot(new GainBlockAction(p, p, this.block));
+        addToBot(new ApplyPowerAction(p, p, new DoubleDamageReceive(p, this.magicNumber), this.magicNumber));
     }
 
     @Override
     public AbstractCard makeCopy() {
-        return (AbstractCard)new StartDash();
+        return  new StartDash();
 
     }
 
@@ -62,7 +70,9 @@ public class StartDash extends AbstractDefaultCard {
         if (!this.upgraded) {
             upgradeName();
             upgradeDamage(UPGRADE_PLUS_DMG);
-            this.rawDescription = CARD_STRINGS.UPGRADE_DESCRIPTION;
+            upgradeBlock(UPGRADE_PLUS_BLOCK);
+            if (CARD_STRINGS.UPGRADE_DESCRIPTION != null)
+                this.rawDescription = CARD_STRINGS.UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }
     }

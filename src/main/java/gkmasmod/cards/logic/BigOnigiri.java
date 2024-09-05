@@ -40,7 +40,7 @@ public class BigOnigiri extends AbstractDefaultCard {
     private String flavor = "";
 
     public BigOnigiri() {
-        super(ID, NAME, IMG_PATH, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET,"color");
+        super(ID, NAME, IMG_PATH, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET, "color");
         this.baseMagicNumber = BASE_MAGIC;
         this.magicNumber = this.baseMagicNumber;
         this.baseHPMagicNumber = BASE_HP;
@@ -55,13 +55,23 @@ public class BigOnigiri extends AbstractDefaultCard {
 
     public void use(AbstractPlayer p, AbstractMonster m) {
         addToBot(new LoseHPAction(p, p, this.HPMagicNumber));
-        int count = AbstractDungeon.actionManager.cardsPlayedThisCombat.size();
+        //TODO 要不要计算自己
+        int count = AbstractDungeon.actionManager.cardsPlayedThisCombat.size() - 1;
+        // TODO 分两次获得格挡还是一次获得
         addToBot(new GainBlockAction(p, p, this.block + this.magicNumber * count));
     }
 
-    public void triggerOnCardPlayed(AbstractCard cardPlayed){
+    public void applyPowers() {
+        super.applyPowers();
         int count = AbstractDungeon.actionManager.cardsPlayedThisCombat.size();
-        FlavorText.AbstractCardFlavorFields.flavor.set(this,String.format(flavor,count*this.magicNumber));
+        int block_ = count * this.magicNumber;
+        FlavorText.AbstractCardFlavorFields.flavor.set(this, String.format(flavor, block_));
+    }
+
+    public void triggerOnCardPlayed(AbstractCard cardPlayed) {
+        int count = AbstractDungeon.actionManager.cardsPlayedThisCombat.size();
+        int block_ = calculateBlock(count * this.magicNumber);
+        FlavorText.AbstractCardFlavorFields.flavor.set(this, String.format(flavor, block_));
     }
 
     @Override
@@ -74,7 +84,8 @@ public class BigOnigiri extends AbstractDefaultCard {
         if (!this.upgraded) {
             upgradeName();
             upgradeMagicNumber(UPGRADE_PLUS_MAGIC);
-            this.rawDescription = CARD_STRINGS.UPGRADE_DESCRIPTION;
+            if (CARD_STRINGS.UPGRADE_DESCRIPTION != null)
+                this.rawDescription = CARD_STRINGS.UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }
     }

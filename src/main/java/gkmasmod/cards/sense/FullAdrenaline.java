@@ -34,7 +34,7 @@ public class FullAdrenaline extends AbstractDefaultCard {
     private static final CardTarget TARGET = CardTarget.SELF;
 
     public FullAdrenaline() {
-        super(ID, NAME, IMG_PATH, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET,"color");
+        super(ID, NAME, IMG_PATH, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET, "color");
         this.baseMagicNumber = BASE_MAGIC;
         this.magicNumber = this.baseMagicNumber;
         this.baseSecondMagicNumber = BASE_MAGIC2;
@@ -59,7 +59,8 @@ public class FullAdrenaline extends AbstractDefaultCard {
             upgradeName();
             upgradeMagicNumber(UPGRADE_PLUS_MAGIC);
             upgradeSecondMagicNumber(UPGRADE_PLUS_MAGIC2);
-            this.rawDescription = CARD_STRINGS.UPGRADE_DESCRIPTION;
+            if (CARD_STRINGS.UPGRADE_DESCRIPTION != null)
+                this.rawDescription = CARD_STRINGS.UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }
     }

@@ -1,5 +1,6 @@
 package gkmasmod.relics;
 import basemod.abstracts.CustomRelic;
+import com.badlogic.gdx.Gdx;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.HealAction;
 import com.megacrit.cardcrawl.actions.common.RelicAboveCreatureAction;
@@ -18,6 +19,7 @@ public class UndefeatedPoi extends CustomRelic {
 
     private static final String IMG = String.format("img/relics/%s.png",CLASSNAME);
     private static final String IMG_OTL = String.format("img/relics/%s.png",CLASSNAME);
+    private static final String IMG_LARGE = String.format("img/relics/large/%s.png",CLASSNAME);
 
     private static final RelicTier RARITY = RelicTier.STARTER;
 
@@ -74,5 +76,14 @@ public class UndefeatedPoi extends CustomRelic {
 
     public void justEnteredRoom(AbstractRoom room) {
         this.grayscale = false;
+    }
+
+    public void loadLargeImg() {
+        if (this.largeImg == null) {
+            if (Gdx.files.internal(IMG_LARGE).exists()) {
+                this.largeImg = ImageMaster.loadImage(IMG_LARGE);
+            }
+        }
+
     }
 }

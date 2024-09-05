@@ -29,7 +29,9 @@ import gkmasmod.cards.sense.BaseBehave;
 import gkmasmod.cards.sense.Challenge;
 import gkmasmod.cards.sense.TryError;
 import gkmasmod.modcore.GkmasMod;
+import gkmasmod.relics.PocketBook;
 import gkmasmod.ui.SkinSelectScreen;
+import gkmasmod.utils.CommonEnum;
 import gkmasmod.utils.IdolData;
 import gkmasmod.utils.IdolStartingDeck;
 import gkmasmod.utils.NameHelper;
@@ -104,13 +106,11 @@ public class IdolCharacter extends CustomPlayer {
     }
 
     public void refreshSkin() {
-        this.idolName = getIdolName();
-
         String idolName_display = CardCrawlGame.languagePack.getCharacterString(NameHelper.addSplitWords("IdolName",this.idolName)).TEXT[0];
         String skinName = IdolData.getIdol(this.idolName).getSkin(SkinSelectScreen.Inst.skinIndex);
         //String path = String.format("img/idol/stand/%s_%s.scml",this.idolName,skinName);
         skinName = "skin10";
-        String path = String.format("img/idol/%s/stand/stand_%s.scml",this.idolName,skinName);
+        String path = String.format("img/idol/%s/stand/stand_%s.scml",SkinSelectScreen.Inst.idolName,skinName);
         this.animation = new SpriterAnimation(path);
 
     }
@@ -131,8 +131,16 @@ public class IdolCharacter extends CustomPlayer {
 
     public ArrayList<AbstractCard> getCardPool(ArrayList<AbstractCard> tmpPool) {
         addColorToCardPool(PlayerColorEnum.gkmasModColor, tmpPool);
-        addColorToCardPool(PlayerColorEnum.gkmasModColorSense, tmpPool);
-        addColorToCardPool(PlayerColorEnum.gkmasModColorLogic, tmpPool);
+        CommonEnum.IdolType type = IdolData.getIdol(SkinSelectScreen.Inst.idolIndex).getType(SkinSelectScreen.Inst.skinIndex);
+        if (type == CommonEnum.IdolType.LOGIC) {
+            addColorToCardPool(PlayerColorEnum.gkmasModColorLogic, tmpPool);
+        } else if (type == CommonEnum.IdolType.SENSE) {
+            addColorToCardPool(PlayerColorEnum.gkmasModColorSense, tmpPool);
+        } else{
+            addColorToCardPool(PlayerColorEnum.gkmasModColorSense, tmpPool);
+            addColorToCardPool(PlayerColorEnum.gkmasModColorLogic, tmpPool);
+        }
+
         return tmpPool;
     }
 
@@ -147,6 +155,7 @@ public class IdolCharacter extends CustomPlayer {
     public ArrayList<String> getStartingRelics() {
         ArrayList<String> retVal = new ArrayList<>();
         retVal.add(IdolStartingDeck.getSpecailRelic(SkinSelectScreen.Inst.idolIndex, SkinSelectScreen.Inst.skinIndex));
+        retVal.add(PocketBook.ID);
         return retVal;
     }
 
@@ -265,9 +274,5 @@ public class IdolCharacter extends CustomPlayer {
     @Override
     public AbstractGameAction.AttackEffect[] getSpireHeartSlashEffect() {
         return new AbstractGameAction.AttackEffect[]{AbstractGameAction.AttackEffect.SLASH_HEAVY, AbstractGameAction.AttackEffect.FIRE, AbstractGameAction.AttackEffect.SLASH_DIAGONAL, AbstractGameAction.AttackEffect.SLASH_HEAVY, AbstractGameAction.AttackEffect.FIRE, AbstractGameAction.AttackEffect.SLASH_DIAGONAL};
-    }
-
-    public static String getIdolName() {
-        return IdolData.idolNames[SkinSelectScreen.Inst.idolIndex];
     }
 }

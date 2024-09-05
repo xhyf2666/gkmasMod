@@ -49,7 +49,7 @@ public class Gacha extends AbstractDefaultCard {
 
     @Override
     public AbstractCard makeCopy() {
-        return (AbstractCard)new Gacha();
+        return new Gacha();
     }
 
     @Override
@@ -57,7 +57,8 @@ public class Gacha extends AbstractDefaultCard {
         if (!this.upgraded) {
             upgradeName();
             this.cost = this.cost + UPGRADE_PLUS_COST;
-            this.rawDescription = CARD_STRINGS.UPGRADE_DESCRIPTION;
+            if (CARD_STRINGS.UPGRADE_DESCRIPTION != null)
+                this.rawDescription = CARD_STRINGS.UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }
     }

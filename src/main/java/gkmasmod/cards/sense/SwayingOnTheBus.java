@@ -45,7 +45,7 @@ public class SwayingOnTheBus extends AbstractDefaultCard {
     private static final CardTarget TARGET = CardTarget.ENEMY;
 
     public SwayingOnTheBus() {
-        super(ID, NAME, IMG_PATH, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET,"color");
+        super(ID, NAME, IMG_PATH, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET, "color");
         this.baseDamage = ATTACK_DMG;
         this.baseMagicNumber = BASE_MAGIC;
         this.magicNumber = this.baseMagicNumber;
@@ -56,38 +56,42 @@ public class SwayingOnTheBus extends AbstractDefaultCard {
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        float amount = 1.0F*AbstractDungeon.player.currentHealth / AbstractDungeon.player.maxHealth;
-        float HP_ = 50*1.0F/100;
-        if (amount < HP_){
+        float amount = 1.0F * AbstractDungeon.player.currentHealth / AbstractDungeon.player.maxHealth;
+        float HP_ = 50 * 1.0F / 100;
+        if (amount < HP_) {
             addToBot(new GainBlockAction(p, p, this.block));
         }
         if (m != null)
             addToBot(new VFXAction(new VerticalImpactEffect(m.hb.cX + m.hb.width / 4.0F, m.hb.cY - m.hb.height / 4.0F)));
-        addToBot(new DamageAction(m, new DamageInfo(p, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.BLUNT_HEAVY));
+        addToBot(new DamageAction(m, new DamageInfo(p, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_VERTICAL));
     }
 
     public void applyPowers() {
         AbstractPower strength = AbstractDungeon.player.getPower("Strength");
-        if (strength != null){
-            strength.amount = (int) (strength.amount*(1.0*this.magicNumber/100));
+        int amount = 0;
+        if (strength != null) {
+            amount = strength.amount;
+            strength.amount = (int) (strength.amount * (1.0 * this.magicNumber / 100));
         }
 
         super.applyPowers();
         if (strength != null) {
-            strength.amount = (int) (strength.amount/(1.0*this.magicNumber/100));
+            strength.amount = amount;
         }
 
     }
 
     public void calculateCardDamage(AbstractMonster mo) {
         AbstractPower strength = AbstractDungeon.player.getPower("Strength");
-        if (strength != null){
-            strength.amount = (int) (strength.amount*(1.0*this.magicNumber/100));
+        int amount = 0;
+        if (strength != null) {
+            amount = strength.amount;
+            strength.amount = (int) (strength.amount * (1.0 * this.magicNumber / 100));
         }
 
         super.calculateCardDamage(mo);
-        if (strength != null){
-            strength.amount = (int) (strength.amount/(1.0*this.magicNumber/100));
+        if (strength != null) {
+            strength.amount = amount;
         }
 
     }
@@ -104,7 +108,8 @@ public class SwayingOnTheBus extends AbstractDefaultCard {
             upgradeDamage(UPGRADE_PLUS_DMG);
             upgradeMagicNumber(UPGRADE_PLUS_MAGIC);
             upgradeBlock(UPGRADE_PLUS_BLOCK);
-            this.rawDescription = CARD_STRINGS.UPGRADE_DESCRIPTION;
+            if (CARD_STRINGS.UPGRADE_DESCRIPTION != null)
+                this.rawDescription = CARD_STRINGS.UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }
     }

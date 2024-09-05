@@ -38,7 +38,7 @@ public class SupportiveFeelings extends AbstractDefaultCard {
     private static final CardTarget TARGET = CardTarget.SELF;
 
     public SupportiveFeelings() {
-        super(ID, NAME, IMG_PATH, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET,"yellow");
+        super(ID, NAME, IMG_PATH, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET, "yellow");
         this.baseBlock = BLOCK_AMT;
         this.baseMagicNumber = BASE_MAGIC;
         this.magicNumber = this.baseMagicNumber;
@@ -63,7 +63,8 @@ public class SupportiveFeelings extends AbstractDefaultCard {
             upgradeName();
             upgradeBlock(UPGRADE_PLUS_BLOCK);
             upgradeMagicNumber(UPGRADE_PLUS_MAGIC);
-            this.rawDescription = CARD_STRINGS.UPGRADE_DESCRIPTION;
+            if (CARD_STRINGS.UPGRADE_DESCRIPTION != null)
+                this.rawDescription = CARD_STRINGS.UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }
     }

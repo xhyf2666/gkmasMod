@@ -25,8 +25,8 @@ public class BasePerform extends AbstractDefaultCard {
     private static final String IMG_PATH = String.format("img/cards/common/%s.png", CLASSNAME);
 
     private static final int COST = 1;
-    private static final int BLOCK_AMT = 6;
-    private static final int UPGRADE_PLUS_BLOCK = 3;
+    private static final int BLOCK_AMT = 5;
+    private static final int UPGRADE_PLUS_BLOCK = 2;
 
     private static final CardType TYPE = CardType.SKILL;
     private static final CardColor COLOR = PlayerColorEnum.gkmasModColor;
@@ -36,18 +36,18 @@ public class BasePerform extends AbstractDefaultCard {
     public BasePerform() {
         super(ID, NAME, IMG_PATH, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.baseBlock = BLOCK_AMT;
-        this.exhaust = true;
+        this.tags.add(CardTags.STARTER_DEFEND);
     }
 
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        addToBot(((AbstractGameAction)new GainBlockAction((AbstractCreature)p, (AbstractCreature)p, this.block)));
+        addToBot((new GainBlockAction(p, p, this.block)));
      }
 
     @Override
     public AbstractCard makeCopy() {
-        return (AbstractCard)new BasePerform();
+        return new BasePerform();
     }
 
     @Override
@@ -55,7 +55,8 @@ public class BasePerform extends AbstractDefaultCard {
         if (!this.upgraded) {
             upgradeName();
             upgradeBlock(UPGRADE_PLUS_BLOCK);
-            this.rawDescription = CARD_STRINGS.UPGRADE_DESCRIPTION;
+            if (CARD_STRINGS.UPGRADE_DESCRIPTION != null)
+                this.rawDescription = CARD_STRINGS.UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }
     }

@@ -37,7 +37,7 @@ public class LittlePrince extends AbstractDefaultCard {
     private static final CardTarget TARGET = CardTarget.ENEMY;
 
     public LittlePrince() {
-        super(ID, NAME, IMG_PATH, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET,"blue");
+        super(ID, NAME, IMG_PATH, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET, "blue");
         this.baseDamage = ATTACK_DMG;
         this.baseSecondDamage = SECOND_ATTACK_DMG;
         this.exhaust = true;
@@ -48,14 +48,14 @@ public class LittlePrince extends AbstractDefaultCard {
     public void use(AbstractPlayer p, AbstractMonster m) {
         addToBot(new DamageAction(m, new DamageInfo(p, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
         int amount = PlayerHelper.getPowerAmount(p, GoodTune.POWER_ID);
-        if(amount > 0) {
+        if (amount > 0) {
             addToBot(new DamageAction(m, new DamageInfo(p, this.secondDamage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
         }
     }
 
     @Override
     public AbstractCard makeCopy() {
-        return (AbstractCard)new LittlePrince();
+        return (AbstractCard) new LittlePrince();
     }
 
     @Override
@@ -64,11 +64,11 @@ public class LittlePrince extends AbstractDefaultCard {
             upgradeName();
             upgradeDamage(UPGRADE_PLUS_DMG);
             upgradeSecondDamage(UPGRADE_SECOND_ATTACK_DMG);
-            this.rawDescription = CARD_STRINGS.UPGRADE_DESCRIPTION;
+            if (CARD_STRINGS.UPGRADE_DESCRIPTION != null)
+                this.rawDescription = CARD_STRINGS.UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }
     }
-
 
 
 }

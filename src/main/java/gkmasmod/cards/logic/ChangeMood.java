@@ -50,19 +50,12 @@ public class ChangeMood extends AbstractDefaultCard {
 
     public void use(AbstractPlayer p, AbstractMonster m) {
         addToBot(new LoseHPAction(p, p, this.HPMagicNumber));
-        addToBot(new BlockDamageAction(1.0F*magicNumber/100, 0, p, m));
-        //addToBot(new DamageAction(m, new DamageInfo(p, this.damage, DamageInfo.DamageType.NORMAL), AbstractGameAction.AttackEffect.BLUNT_HEAVY));
-    }
+        addToBot(new BlockDamageAction(1.0F * magicNumber / 100, 0, p, m));}
 
-//    public void applyPowers() {
-//        this.baseDamage = AbstractDungeon.player.currentBlock;
-//        super.applyPowers();
-//        initializeDescription();
-//    }
 
     @Override
     public AbstractCard makeCopy() {
-        return (AbstractCard)new ChangeMood();
+        return new ChangeMood();
     }
 
     @Override
@@ -71,7 +64,8 @@ public class ChangeMood extends AbstractDefaultCard {
             upgradeName();
             upgradeMagicNumber(UPGRADE_PLUS_MAGIC);
             upgradeHPMagicNumber(UPGRADE_PLUS_HP);
-            this.rawDescription = CARD_STRINGS.UPGRADE_DESCRIPTION;
+            if (CARD_STRINGS.UPGRADE_DESCRIPTION != null)
+                this.rawDescription = CARD_STRINGS.UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }
     }

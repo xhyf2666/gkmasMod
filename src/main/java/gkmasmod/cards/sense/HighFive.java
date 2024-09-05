@@ -56,30 +56,30 @@ public class HighFive extends AbstractDefaultCard {
 
     public void applyPowers() {
         AbstractPower strength = AbstractDungeon.player.getPower("Strength");
-        if (strength != null){
-            strength.amount = (int) (strength.amount*(1.0*this.magicNumber/100));
-            System.out.println("strength.amount: " + strength.amount);
+        int amount = 0;
+        if (strength != null) {
+            amount = strength.amount;
+            strength.amount = (int) (strength.amount * (1.0 * this.magicNumber / 100));
         }
 
         super.applyPowers();
         if (strength != null) {
-            strength.amount = (int) (strength.amount/(1.0*this.magicNumber/100));
-            System.out.println("strength.amount2: " + strength.amount);
+            strength.amount = amount;
         }
 
     }
 
     public void calculateCardDamage(AbstractMonster mo) {
         AbstractPower strength = AbstractDungeon.player.getPower("Strength");
-        if (strength != null){
-            System.out.println("strength.amount3: " + strength.amount);
-            strength.amount = (int) (strength.amount*(1.0*this.magicNumber/100));
+        int amount = 0;
+        if (strength != null) {
+            amount = strength.amount;
+            strength.amount = (int) (strength.amount * (1.0 * this.magicNumber / 100));
         }
 
         super.calculateCardDamage(mo);
-        if (strength != null){
-            strength.amount = (int) (strength.amount/(1.0*this.magicNumber/100));
-            System.out.println("strength.amount4: " + strength.amount);
+        if (strength != null) {
+            strength.amount = amount;
         }
 
     }
@@ -95,11 +95,11 @@ public class HighFive extends AbstractDefaultCard {
             upgradeName();
             upgradeDamage(UPGRADE_PLUS_DMG);
             upgradeMagicNumber(UPGRADE_PLUS_MAGIC);
-            this.rawDescription = CARD_STRINGS.UPGRADE_DESCRIPTION;
+            if (CARD_STRINGS.UPGRADE_DESCRIPTION != null)
+                this.rawDescription = CARD_STRINGS.UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }
     }
-
 
 
 }

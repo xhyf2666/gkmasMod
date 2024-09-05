@@ -1,5 +1,7 @@
 package gkmasmod.utils;
 
+import java.util.Locale;
+
 public class NameHelper {
     public static String makePath(String id) {
         return "gkmasMod:" + id;
@@ -14,6 +16,13 @@ public class NameHelper {
         }
         sb.deleteCharAt(sb.length() - 1);
         return sb.toString();
+    }
+
+    public static String rankNormalize(String rank){
+        if (rank.indexOf("+") != -1) {
+            return rank.replace("+","plus").toLowerCase();
+        }
+        return rank.toLowerCase();
     }
 
 }

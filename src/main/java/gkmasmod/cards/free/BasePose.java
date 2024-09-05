@@ -25,8 +25,8 @@ public class BasePose extends AbstractDefaultCard {
     private static final String IMG_PATH = String.format("img/cards/common/%s.png", CLASSNAME);
 
     private static final int COST = 1;
-    private static final int ATTACK_DMG = 2;
-    private static final int UPGRADE_PLUS_DMG = 1;
+    private static final int ATTACK_DMG = 3;
+    private static final int UPGRADE_PLUS_DMG = 2;
     private static final int BLOCK_AMT = 3;
     private static final int UPGRADE_PLUS_BLOCK = 2;
 
@@ -39,18 +39,20 @@ public class BasePose extends AbstractDefaultCard {
         super(ID, NAME, IMG_PATH, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.baseDamage = ATTACK_DMG;
         this.baseBlock = BLOCK_AMT;
+        this.tags.add(AbstractCard.CardTags.STRIKE);
+        this.tags.add(CardTags.STARTER_STRIKE);
     }
 
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        addToBot(((AbstractGameAction)new GainBlockAction((AbstractCreature)p, (AbstractCreature)p, this.block)));
-        AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new DamageAction((AbstractCreature)m, new DamageInfo((AbstractCreature)p, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
+        addToBot((new GainBlockAction(p, p, this.block)));
+        AbstractDungeon.actionManager.addToBottom(new DamageAction(m, new DamageInfo(p, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
     }
 
     @Override
     public AbstractCard makeCopy() {
-        return (AbstractCard)new BasePose();
+        return new BasePose();
     }
 
     @Override
@@ -59,7 +61,8 @@ public class BasePose extends AbstractDefaultCard {
             upgradeName();
             upgradeDamage(UPGRADE_PLUS_DMG);
             upgradeBlock(UPGRADE_PLUS_BLOCK);
-            this.rawDescription = CARD_STRINGS.UPGRADE_DESCRIPTION;
+            if (CARD_STRINGS.UPGRADE_DESCRIPTION != null)
+                this.rawDescription = CARD_STRINGS.UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }
     }

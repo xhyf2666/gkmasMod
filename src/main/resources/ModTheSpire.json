@@ -2,8 +2,8 @@
   "modid": "gkmas_mod",
   "name": "学马仕MOD",
   "author_list": ["虚怀盈风"],
-  "description": "学园偶像大师MOD。添加了基础表演",
-  "version": "0.0.2",
+  "description": "学园偶像大师MOD。正在测试三维机制",
+  "version": "0.0.3",
   "sts_version": "12-22-2020",
   "mts_version": "3.23.2",
   "dependencies": ["basemod"]

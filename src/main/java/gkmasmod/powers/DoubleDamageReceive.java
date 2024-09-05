@@ -32,7 +32,7 @@ public class DoubleDamageReceive extends AbstractPower {
         this.name = NAME;
         this.ID = POWER_ID;
         this.owner = owner;
-        this.type = PowerType.BUFF;
+        this.type = PowerType.DEBUFF;
 
         this.amount = Amount;
 

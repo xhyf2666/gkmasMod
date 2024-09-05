@@ -25,8 +25,9 @@ public class EachPath extends AbstractDefaultCard {
     private static final String IMG_PATH = String.format("img/cards/common/%s.png", CLASSNAME);
 
     private static final int COST = 2;
+    private static final int UPGRADE_COST = 1;
     private static final int ATTACK_DMG = 14;
-    private static final int BASE_MAGIC = 5;
+    private static final int BASE_MAGIC = 2;
     private static final int UPGRADE_PLUS_MAGIC = 1;
 
     private static final CardType TYPE = CardType.ATTACK;
@@ -35,7 +36,7 @@ public class EachPath extends AbstractDefaultCard {
     private static final CardTarget TARGET = CardTarget.ENEMY;
 
     public EachPath() {
-        super(ID, NAME, IMG_PATH, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET,"color");
+        super(ID, NAME, IMG_PATH, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET, "color");
         this.baseDamage = ATTACK_DMG;
         this.baseMagicNumber = BASE_MAGIC;
         this.magicNumber = this.baseMagicNumber;
@@ -59,7 +60,9 @@ public class EachPath extends AbstractDefaultCard {
         if (!this.upgraded) {
             upgradeName();
             upgradeMagicNumber(UPGRADE_PLUS_MAGIC);
-            this.rawDescription = CARD_STRINGS.UPGRADE_DESCRIPTION;
+            upgradeBaseCost(UPGRADE_COST);
+            if (CARD_STRINGS.UPGRADE_DESCRIPTION != null)
+                this.rawDescription = CARD_STRINGS.UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }
     }

@@ -18,6 +18,7 @@ import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.powers.GoodTune;
 import gkmasmod.powers.InnocencePower;
 import gkmasmod.powers.NotGoodTune;
+import gkmasmod.ui.SkinSelectScreen;
 import gkmasmod.utils.NameHelper;
 
 public class Innocence extends AbstractDefaultCard {
@@ -27,12 +28,14 @@ public class Innocence extends AbstractDefaultCard {
 
     private static final String NAME = CARD_STRINGS.NAME;
     private static final String DESCRIPTION = CARD_STRINGS.DESCRIPTION;
-    private static final String IMG_PATH = String.format("img/cards/common/%s.png", CLASSNAME);
+    private static String IMG_PATH = String.format("img/idol/%s/cards/%s.png", SkinSelectScreen.Inst.idolName, CLASSNAME);
 
     private static final int COST = 3;
-    private static final int UPGRADE_PLUS_COST = -1;
+    private static final int UPGRADE_COST = 2;
 
     private static final int BASE_MAGIC = 1;
+    private static final int BASE_MAGIC2 = 2;
+    private static final int BASE_MAGIC3 = 2;
 
 
     private static final CardType TYPE = CardType.POWER;
@@ -41,33 +44,39 @@ public class Innocence extends AbstractDefaultCard {
     private static final CardTarget TARGET = CardTarget.SELF;
 
     public Innocence() {
-        super(ID, NAME, IMG_PATH, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
+        super(ID, NAME, String.format("img/idol/%s/cards/%s.png", SkinSelectScreen.Inst.idolName, CLASSNAME), COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
+        IMG_PATH = String.format("img/idol/%s/cards/%s.png", SkinSelectScreen.Inst.idolName, CLASSNAME);
+        this.updateShowImg = true;
         this.baseMagicNumber = BASE_MAGIC;
         this.magicNumber = this.baseMagicNumber;
+        this.baseSecondMagicNumber = BASE_MAGIC2;
+        this.secondMagicNumber = this.baseSecondMagicNumber;
+        this.baseThirdMagicNumber = BASE_MAGIC3;
+        this.thirdMagicNumber = this.baseThirdMagicNumber;
     }
 
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        addToBot((AbstractGameAction)new ApplyPowerAction((AbstractCreature)p, (AbstractCreature)p, (AbstractPower)new StrengthPower((AbstractCreature)p, this.magicNumber), this.magicNumber));
-        addToBot((AbstractGameAction)new ApplyPowerAction((AbstractCreature)p, (AbstractCreature)p, (AbstractPower)new InnocencePower((AbstractCreature)p, 1), 1));
+        addToBot( new ApplyPowerAction( p,  p,  new StrengthPower( p, this.magicNumber), this.magicNumber));
+        addToBot( new ApplyPowerAction( p,  p,  new InnocencePower( p, 1), 1));
     }
 
     @Override
     public AbstractCard makeCopy() {
-        return (AbstractCard)new Innocence();
+        return  new Innocence();
     }
 
     @Override
     public void upgrade() {
         if (!this.upgraded) {
             upgradeName();
-            this.cost = this.cost + UPGRADE_PLUS_COST;
-            this.rawDescription = CARD_STRINGS.UPGRADE_DESCRIPTION;
+            upgradeBaseCost(UPGRADE_COST);
+            if (CARD_STRINGS.UPGRADE_DESCRIPTION != null)
+                this.rawDescription = CARD_STRINGS.UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }
     }
-
 
 
 }

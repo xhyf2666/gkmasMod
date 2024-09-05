@@ -3,6 +3,7 @@ package gkmasmod.cards.sense;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
+import com.megacrit.cardcrawl.actions.common.DrawCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -15,6 +16,7 @@ import gkmasmod.cards.AbstractDefaultCard;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.powers.GoodTune;
 import gkmasmod.utils.NameHelper;
+import gkmasmod.utils.PlayerHelper;
 
 public class LightGait extends AbstractDefaultCard {
     private static final String CLASSNAME = LightGait.class.getSimpleName();
@@ -25,12 +27,11 @@ public class LightGait extends AbstractDefaultCard {
     private static final String DESCRIPTION = CARD_STRINGS.DESCRIPTION;
     private static final String IMG_PATH = String.format("img/cards/common/%s.png", CLASSNAME);
 
-    private static final int COST = 2;
-    private static final int ATTACK_DMG = 8;
+    private static final int COST = 1;
+    private static final int ATTACK_DMG = 5;
     private static final int UPGRADE_PLUS_DMG = 2;
 
-    private static final int BASE_MAGIC = 2;
-    private static final int UPGRADE_PLUS_MAGIC = 1;
+    private static final int BASE_MAGIC = 1;
 
 
     private static final CardType TYPE = CardType.ATTACK;
@@ -48,13 +49,15 @@ public class LightGait extends AbstractDefaultCard {
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        addToBot((AbstractGameAction)new DamageAction((AbstractCreature)m, new DamageInfo((AbstractCreature)p, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
-        addToBot((AbstractGameAction)new ApplyPowerAction((AbstractCreature)p, (AbstractCreature)p, (AbstractPower)new GoodTune((AbstractCreature)p, this.magicNumber), this.magicNumber));
+        addToBot(new DamageAction( m, new DamageInfo( p, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
+        int count = PlayerHelper.getPowerAmount(p, GoodTune.POWER_ID);
+        if (count > 0)
+            addToBot(new DrawCardAction(this.magicNumber));
     }
 
     @Override
     public AbstractCard makeCopy() {
-        return (AbstractCard)new LightGait();
+        return  new LightGait();
     }
 
     @Override
@@ -62,12 +65,11 @@ public class LightGait extends AbstractDefaultCard {
         if (!this.upgraded) {
             upgradeName();
             upgradeDamage(UPGRADE_PLUS_DMG);
-            upgradeMagicNumber(UPGRADE_PLUS_MAGIC);
-            this.rawDescription = CARD_STRINGS.UPGRADE_DESCRIPTION;
+            if (CARD_STRINGS.UPGRADE_DESCRIPTION != null)
+                this.rawDescription = CARD_STRINGS.UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }
     }
-
 
 
 }

@@ -14,7 +14,13 @@
   "GoodTune": {
     "NAME": "好调",
     "DESCRIPTIONS": [
-      "当前有 #b%d 层。 NL 造成的伤害增加50%%。 NL 回合结束时层数减 #b1 。"
+      "当前有 #b%d 层。 NL 造成的伤害增加 #b50 %%。 NL 回合结束时层数减 #b1 。"
+    ]
+  },
+  "GreatGoodTune": {
+    "NAME": "绝好调",
+    "DESCRIPTIONS": [
+      "当前有 #b%d 层。 NL 每层 #y好调 额外增伤 #b10 %%。 NL 回合结束时层数减 #b1 。"
     ]
   },
   "RemainBuff": {
@@ -77,76 +83,82 @@
       "每次出牌获得 #y格挡 时，获得 #b%d 层 #y好印象 。"
     ]
   },
-  "muiscStart": {
-    "NAME": "渐进高潮！",
+  "EyePowerPower": {
+    "NAME": "眼力",
     "DESCRIPTIONS": [
-      "渐进高潮！当前拥有额外演奏回合。"
+      "回合结束时，获得 #y力量 层数 #b%d %%的格挡。"
     ]
   },
-  "EnemyHeavy": {
-    "NAME": "重力",
+  "PerformancePlanPower": {
+    "NAME": "演出计划",
     "DESCRIPTIONS": [
-      "当前收到的重力",",每层重力都会使收到的伤害增加5%"
+      "每次使用攻击牌时，获得 #b%d 点 #y固定格挡 。"
     ]
   },
-  "FutureVisionPower": {
-    "NAME": "未来视",
+  "FantasyCharmPower": {
+    "NAME": "幻想魅力",
     "DESCRIPTIONS": [
-      "在每回合开始时，如果是演出状态，预见"
+      "每次使用技能牌时，获得 #b%d 层 #y好印象 。"
     ]
   },
-  "heavy": {
-    "NAME": "重力",
+  "WakuWakuPower": {
+    "NAME": "WakuWaku",
     "DESCRIPTIONS": [
-      "当前收到的重力",",每层重力都会使收到的伤害增加5%"
+      "每次使用技能牌时，获得 #b%d 点 #y敏捷 。"
     ]
   },
-  "ImAnon": {
-    "NAME": "我是，爱音？",
+  "AchievementPower": {
+    "NAME": "成就",
     "DESCRIPTIONS": [
-      "演出阶段以外，每使用一张牌失去","点生命。 NL 生命小于75%，50%，25%时，结束你的回合。"
+      "下回合开始时，造成 #b%d 点伤害。"
     ]
   },
-  "InnerFavillaeShining": {
-    "NAME": "灰烬般的闪耀",
+  "CharmPerformancePower": {
+    "NAME": "魅惑表演",
     "DESCRIPTIONS": [
-      "属于灰爱音的"," 层闪耀，每层增加10%伤害"
+      "下回合开始时，造成 #b%d 点伤害。"
     ]
   },
-  "inspiration": {
-    "NAME": "点子",
+  "TopEntertainmentPower": {
+    "NAME": "至高娱乐",
     "DESCRIPTIONS": [
-      "Anon受到的某人影响，现在有 "," 个好点子"
+      "每次使用攻击牌时，对目标额外造成 #b%d 点伤害 #b%d 次。"
     ]
   },
-  "LoveMe'IF'YouCan": {
-    "NAME": "LoveMe'IF'YouCan",
+  "TopEntertainmentPlusPower": {
+    "NAME": "至高娱乐+",
     "DESCRIPTIONS": [
-      "接下来","次演奏无法生效。。"
+      "每次使用攻击牌时，对目标额外造成 #b%d 点伤害 #b%d 次。"
     ]
   },
-  "musicStart": {
-    "NAME": "渐进高潮！",
+  "RainbowDreamerPower": {
+    "NAME": "虹色梦想家",
     "DESCRIPTIONS": [
-      "渐进高潮！当前有额外追加回合"
+      "回合结束时，若好印象大于 #b2 ，则获得 #b3 点好印象。 NL 当前可获得 #b%d 点 好印象。"
     ]
   },
-  "notLive": {
-    "NAME": "整备中！",
+  "ForShiningYouPower": {
+    "NAME": "致闪耀的你",
     "DESCRIPTIONS": [
-      "整备中！接下来","个回合无法进入live。"
+      "每次出牌时，对随机敌人造成好印象层数 #b30 %%的伤害 #b%d 次。"
     ]
   },
-  "PrePreparation": {
-    "NAME": "事前准备",
+  "ForShiningYouPlusPower": {
+    "NAME": "致闪耀的你+",
     "DESCRIPTIONS": [
-      "在每回合开始时额外抽","张牌。 NL 如果是演出状态，额外获得","点 [E]"
+      "每次出牌时，对随机敌人造成好印象层数 #b50 %%的伤害 #b%d 次。"
     ]
   },
-  "SakikoBeat": {
-    "NAME": "丰川祥子的节奏",
+  "TrainRoundLogicPower": {
+    "NAME": "训练回合·理性",
     "DESCRIPTIONS": [
-      "丰川祥子拥有远超千早爱音的音乐天赋，在使用","张牌后结束你的Live,你的回合。"
+      "当前有 #b%d 层。 NL 格挡在回合结束时不会消失。 NL 每次出牌或结束回合时减少 #b1 层。 NL 战斗胜利或该Buff被移除时，基于敌人的损失HP百分比获得 #y三维加成 。"
+    ]
+  },
+  "TrainRoundSensePower": {
+    "NAME": "训练回合·感性",
+    "DESCRIPTIONS": [
+      "当前有 #b%d 层。 NL 对敌方造成伤害时，获得造成伤害 #b%d %%的格挡。 NL 每次出牌或结束回合时减少 #b1 层。 NL 战斗胜利或该Buff被移除时，基于敌人的损失HP百分比获得 #y三维加成 。"
     ]
   },
   "SakikoConsciousness": {

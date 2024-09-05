@@ -49,7 +49,7 @@ public class BraveStep extends AbstractDefaultCard {
     private static final CardTarget TARGET = CardTarget.ENEMY;
 
     public BraveStep() {
-        super(ID, NAME, IMG_PATH, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET,"yellow");
+        super(ID, NAME, IMG_PATH, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET, "yellow");
         this.baseDamage = ATTACK_DMG;
         this.baseMagicNumber = BASE_MAGIC;
         this.magicNumber = this.baseMagicNumber;
@@ -65,24 +65,30 @@ public class BraveStep extends AbstractDefaultCard {
 
     public void applyPowers() {
         AbstractPower strength = AbstractDungeon.player.getPower("Strength");
-        if (strength != null){
-            strength.amount = (int) (strength.amount*(1.0*this.magicNumber/100));
+        int amount = 0;
+        if (strength != null) {
+            amount = strength.amount;
+            strength.amount = (int) (strength.amount * (1.0 * this.magicNumber / 100));
         }
+
         super.applyPowers();
         if (strength != null) {
-            strength.amount = (int) (strength.amount/(1.0*this.magicNumber/100));
+            strength.amount = amount;
         }
 
     }
 
     public void calculateCardDamage(AbstractMonster mo) {
         AbstractPower strength = AbstractDungeon.player.getPower("Strength");
-        if (strength != null){
-            strength.amount = (int) (strength.amount*(1.0*this.magicNumber/100));
+        int amount = 0;
+        if (strength != null) {
+            amount = strength.amount;
+            strength.amount = (int) (strength.amount * (1.0 * this.magicNumber / 100));
         }
+
         super.calculateCardDamage(mo);
-        if (strength != null){
-            strength.amount = (int) (strength.amount/(1.0*this.magicNumber/100));
+        if (strength != null) {
+            strength.amount = amount;
         }
 
     }
@@ -98,7 +104,8 @@ public class BraveStep extends AbstractDefaultCard {
             upgradeName();
             upgradeDamage(UPGRADE_PLUS_DMG);
             upgradeMagicNumber(UPGRADE_PLUS_MAGIC);
-            this.rawDescription = CARD_STRINGS.UPGRADE_DESCRIPTION;
+            if (CARD_STRINGS.UPGRADE_DESCRIPTION != null)
+                this.rawDescription = CARD_STRINGS.UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }
     }

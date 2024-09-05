@@ -54,5 +54,329 @@
   "IdolName:nasr": {
     "NAMES": [""],
     "TEXT": ["根绪亚纱里"]
-  }
+  },
+  "IdolClass:shro": {
+    "NAMES": [""],
+    "TEXT": ["1年2班"]
+  },
+  "IdolClass:kllj": {
+    "NAMES": [""],
+    "TEXT": ["1年1班"]
+  },
+  "IdolClass:kcna": {
+    "NAMES": [""],
+    "TEXT": ["1年2班"]
+  },
+  "IdolClass:hume": {
+    "NAMES": [""],
+    "TEXT": ["1年2班"]
+  },
+  "IdolClass:hski": {
+    "NAMES": [""],
+    "TEXT": ["1年1班"]
+  },
+  "IdolClass:hrnm": {
+    "NAMES": [""],
+    "TEXT": ["3年1班"]
+  },
+  "IdolClass:fktn": {
+    "NAMES": [""],
+    "TEXT": ["1年1班"]
+  },
+  "IdolClass:amao": {
+    "NAMES": [""],
+    "TEXT": ["3年1班"]
+  },
+  "IdolClass:ssmk": {
+    "NAMES": [""],
+    "TEXT": ["1年1班"]
+  },
+  "IdolClass:ttmr": {
+    "NAMES": [""],
+    "TEXT": ["1年1班"]
+  },
+  "IdolClass:hmsz": {
+    "NAMES": [""],
+    "TEXT": ["1年2班"]
+  },
+  "IdolBirthday:shro": {
+    "NAMES": [""],
+    "TEXT": ["12月21日"]
+  },
+  "IdolBirthday:kllj": {
+    "NAMES": [""],
+    "TEXT": ["7月24日"]
+  },
+  "IdolBirthday:kcna": {
+    "NAMES": [""],
+    "TEXT": ["8月1日"]
+  },
+  "IdolBirthday:hume": {
+    "NAMES": [""],
+    "TEXT": ["4月1日"]
+  },
+  "IdolBirthday:hski": {
+    "NAMES": [""],
+    "TEXT": ["4月2日"]
+  },
+  "IdolBirthday:hrnm": {
+    "NAMES": [""],
+    "TEXT": ["3月5日"]
+  },
+  "IdolBirthday:fktn": {
+    "NAMES": [""],
+    "TEXT": ["4月29日"]
+  },
+  "IdolBirthday:amao": {
+    "NAMES": [""],
+    "TEXT": ["1月18日"]
+  },
+  "IdolBirthday:ssmk": {
+    "NAMES": [""],
+    "TEXT": ["11月11日"]
+  },
+  "IdolBirthday:ttmr": {
+    "NAMES": [""],
+    "TEXT": ["6月3日"]
+  },
+  "IdolAge:shro": {
+    "NAMES": [""],
+    "TEXT": ["15岁"]
+  },
+  "IdolAge:kllj": {
+    "NAMES": [""],
+    "TEXT": ["15岁"]
+  },
+  "IdolAge:kcna": {
+    "NAMES": [""],
+    "TEXT": ["15岁"]
+  },
+  "IdolAge:hume": {
+    "NAMES": [""],
+    "TEXT": ["15岁"]
+  },
+  "IdolAge:hski": {
+    "NAMES": [""],
+    "TEXT": ["16岁"]
+  },
+  "IdolAge:hrnm": {
+    "NAMES": [""],
+    "TEXT": ["17岁"]
+  },
+  "IdolAge:fktn": {
+    "NAMES": [""],
+    "TEXT": ["15岁"]
+  },
+  "IdolAge:amao": {
+    "NAMES": [""],
+    "TEXT": ["17岁"]
+  },
+  "IdolAge:ssmk": {
+    "NAMES": [""],
+    "TEXT": ["15岁"]
+  },
+  "IdolAge:ttmr": {
+    "NAMES": [""],
+    "TEXT": ["15岁"]
+  },
+  "IdolHeight:shro":{
+    "NAMES": [""],
+    "TEXT": ["159cm"]
+  },
+  "IdolHeight:kllj":{
+    "NAMES": [""],
+    "TEXT": ["161cm"]
+  },
+  "IdolHeight:kcna":{
+    "NAMES": [""],
+    "TEXT": ["148cm"]
+  },
+  "IdolHeight:hume":{
+    "NAMES": [""],
+    "TEXT": ["158cm"]
+  },
+  "IdolHeight:hski":{
+    "NAMES": [""],
+    "TEXT": ["152cm"]
+  },
+  "IdolHeight:hrnm":{
+    "NAMES": [""],
+    "TEXT": ["166cm"]
+  },
+  "IdolHeight:fktn":{
+    "NAMES": [""],
+    "TEXT": ["156cm"]
+  },
+  "IdolHeight:amao":{
+    "NAMES": [""],
+    "TEXT": ["157cm"]
+  },
+  "IdolHeight:ssmk":{
+    "NAMES": [""],
+    "TEXT": ["168cm"]
+  },
+  "IdolHeight:ttmr":{
+    "NAMES": [""],
+    "TEXT": ["162cm"]
+  },
+  "IdolWeight:shro":{
+    "NAMES": [""],
+    "TEXT": ["41kg"]
+  },
+  "IdolWeight:kllj":{
+    "NAMES": [""],
+    "TEXT": ["43kg"]
+  },
+  "IdolWeight:kcna":{
+    "NAMES": [""],
+    "TEXT": ["43kg"]
+  },
+  "IdolWeight:hume":{
+    "NAMES": [""],
+    "TEXT": ["50kg"]
+  },
+  "IdolWeight:hski":{
+    "NAMES": [""],
+    "TEXT": ["45kg"]
+  },
+  "IdolWeight:hrnm":{
+    "NAMES": [""],
+    "TEXT": ["56kg"]
+  },
+  "IdolWeight:fktn":{
+    "NAMES": [""],
+    "TEXT": ["40kg"]
+  },
+  "IdolWeight:amao":{
+    "NAMES": [""],
+    "TEXT": ["46kg"]
+  },
+  "IdolWeight:ssmk":{
+    "NAMES": [""],
+    "TEXT": ["54kg"]
+  },
+  "IdolWeight:ttmr":{
+    "NAMES": [""],
+    "TEXT": ["51kg"]
+  },
+  "IdolThreeSize:shro":{
+    "NAMES": [""],
+    "TEXT": ["B72/W54/H76"]
+  },
+  "IdolThreeSize:kllj":{
+    "NAMES": [""],
+    "TEXT": ["B82/W53/H80"]
+  },
+  "IdolThreeSize:kcna":{
+    "NAMES": [""],
+    "TEXT": ["B73/W56/H73"]
+  },
+  "IdolThreeSize:hume":{
+    "NAMES": [""],
+    "TEXT": ["B82/W58/H80"]
+  },
+  "IdolThreeSize:hski":{
+    "NAMES": [""],
+    "TEXT": ["B84/W55/H80"]
+  },
+  "IdolThreeSize:hrnm":{
+    "NAMES": [""],
+    "TEXT": ["B90/W59/H93"]
+  },
+  "IdolThreeSize:fktn":{
+    "NAMES": [""],
+    "TEXT": ["B75/W55/H75"]
+  },
+  "IdolThreeSize:amao":{
+    "NAMES": [""],
+    "TEXT": ["B85/W53/H85"]
+  },
+  "IdolThreeSize:ssmk":{
+    "NAMES": [""],
+    "TEXT": ["B80/W58/H85"]
+  },
+  "IdolThreeSize:ttmr":{
+    "NAMES": [""],
+    "TEXT": ["B82/W58/H86"]
+  },
+  "IdolInterest:shro":{
+    "NAMES": [""],
+    "TEXT": ["挑战不擅长的事物 NL 养育观叶植物"]
+  },
+    "IdolInterest:kllj":{
+        "NAMES": [""],
+        "TEXT": ["制作甜点，日本动画"]
+    },
+    "IdolInterest:kcna":{
+        "NAMES": [""],
+        "TEXT": ["绘画"]
+    },
+    "IdolInterest:hume":{
+        "NAMES": [""],
+        "TEXT": ["与姐姐一决胜负"]
+    },
+    "IdolInterest:hski":{
+        "NAMES": [""],
+        "TEXT": ["与别人一决胜负"]
+    },
+    "IdolInterest:hrnm":{
+        "NAMES": [""],
+        "TEXT": ["料理，裁缝，手艺"]
+    },
+    "IdolInterest:fktn":{
+        "NAMES": [""],
+        "TEXT": ["赚钱"]
+    },
+    "IdolInterest:amao":{
+        "NAMES": [""],
+        "TEXT": ["照顾他人，观剧"]
+    },
+    "IdolInterest:ssmk":{
+        "NAMES": [""],
+        "TEXT": ["卡拉OK，SNS"]
+    },
+    "IdolInterest:ttmr":{
+        "NAMES": [""],
+        "TEXT": ["品尝美味的食物（封印中）"]
+    },
+  "IdolSkill:shro":{
+    "NAMES": [""],
+    "TEXT": ["所有学业，物理 NL 数学，解谜"]
+  },
+    "IdolSkill:kllj":{
+        "NAMES": [""],
+        "TEXT": ["制作甜点，游戏"]
+    },
+    "IdolSkill:kcna":{
+        "NAMES": [""],
+        "TEXT": ["充满元气地问好 NL 被动物所喜爱"]
+    },
+    "IdolSkill:hume":{
+        "NAMES": [""],
+        "TEXT": ["所有运动，按摩"]
+    },
+    "IdolSkill:hski":{
+        "NAMES": [""],
+        "TEXT": ["所有运动，所有家务，按摩"]
+    },
+    "IdolSkill:hrnm":{
+        "NAMES": [""],
+        "TEXT": ["逛咖啡店，收集化妆品"]
+    },
+    "IdolSkill:fktn":{
+        "NAMES": [""],
+        "TEXT": ["舞蹈，记住人的样貌和姓名"]
+    },
+    "IdolSkill:amao":{
+        "NAMES": [""],
+        "TEXT": ["格斗技，手巧"]
+    },
+    "IdolSkill:ssmk":{
+        "NAMES": [""],
+        "TEXT": ["身体很柔软"]
+    },
+    "IdolSkill:ttmr":{
+        "NAMES": [""],
+        "TEXT": ["唱歌"]
+    }
 }

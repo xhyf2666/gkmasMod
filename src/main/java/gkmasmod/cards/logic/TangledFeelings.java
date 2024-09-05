@@ -31,7 +31,7 @@ public class TangledFeelings extends AbstractDefaultCard {
     private static final CardTarget TARGET = CardTarget.SELF;
 
     public TangledFeelings() {
-        super(ID, NAME, IMG_PATH, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET,"color");
+        super(ID, NAME, IMG_PATH, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET, "color");
         this.baseMagicNumber = BASE_MAGIC;
         this.magicNumber = this.baseMagicNumber;
         this.exhaust = true;
@@ -54,7 +54,8 @@ public class TangledFeelings extends AbstractDefaultCard {
         if (!this.upgraded) {
             upgradeName();
             upgradeMagicNumber(UPGRADE_PLUS_MAGIC);
-            this.rawDescription = CARD_STRINGS.UPGRADE_DESCRIPTION;
+            if (CARD_STRINGS.UPGRADE_DESCRIPTION != null)
+                this.rawDescription = CARD_STRINGS.UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }
     }

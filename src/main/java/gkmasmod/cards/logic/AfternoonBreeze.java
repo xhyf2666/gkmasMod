@@ -41,7 +41,7 @@ public class AfternoonBreeze extends AbstractDefaultCard {
     private static final CardTarget TARGET = CardTarget.SELF;
 
     public AfternoonBreeze() {
-        super(ID, NAME, IMG_PATH, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET,"color");
+        super(ID, NAME, IMG_PATH, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET, "color");
         this.baseHPMagicNumber = BASE_HP;
         this.HPMagicNumber = this.baseHPMagicNumber;
         this.baseMagicNumber = BASE_MAGIC;
@@ -58,10 +58,10 @@ public class AfternoonBreeze extends AbstractDefaultCard {
     public void use(AbstractPlayer p, AbstractMonster m) {
         addToBot(new LoseHPAction(p, p, this.HPMagicNumber));
         int count = PlayerHelper.getPowerAmount(p, DexterityPower.POWER_ID);
-        if(count > secondMagicNumber){
-            addToBot(new ApplyPowerAction(p, p, new DexterityPower(p, this.thirdMagicNumber),this.thirdMagicNumber));
+        if (count > secondMagicNumber) {
+            addToBot(new ApplyPowerAction(p, p, new DexterityPower(p, this.thirdMagicNumber), this.thirdMagicNumber));
         }
-        addToBot(new ApplyPowerAction(p, p, new DexterityPower(p, this.magicNumber),this.magicNumber));
+        addToBot(new ApplyPowerAction(p, p, new DexterityPower(p, this.magicNumber), this.magicNumber));
     }
 
     @Override
@@ -76,7 +76,8 @@ public class AfternoonBreeze extends AbstractDefaultCard {
             upgradeMagicNumber(UPGRADE_PLUS_MAGIC);
             upgradeSecondMagicNumber(UPGRADE_PLUS_MAGIC2);
             upgradeThirdMagicNumber(UPGRADE_PLUS_MAGIC3);
-            this.rawDescription = CARD_STRINGS.UPGRADE_DESCRIPTION;
+            if (CARD_STRINGS.UPGRADE_DESCRIPTION != null)
+                this.rawDescription = CARD_STRINGS.UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }
     }

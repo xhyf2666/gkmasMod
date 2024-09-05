@@ -23,10 +23,11 @@ public class IdolStartingDeck {
     public static final String[] senseGoodTuneStartingDeck = {
             BaseAppeal.ID,
             BaseAppeal.ID,
+            BaseAppeal.ID,
+            BasePerform.ID,
+            BasePerform.ID,
+            BasePerform.ID,
             BasePose.ID,
-            BasePerform.ID,
-            BasePerform.ID,
-            BaseBehave.ID,
             BaseBehave.ID,
             Challenge.ID
     };
@@ -34,10 +35,11 @@ public class IdolStartingDeck {
     public static final String[] senseFocusStartingDeck = {
             BaseAppeal.ID,
             BaseAppeal.ID,
+            BaseAppeal.ID,
+            BasePerform.ID,
+            BasePerform.ID,
+            BasePerform.ID,
             BasePose.ID,
-            BasePerform.ID,
-            BasePerform.ID,
-            BaseExpression.ID,
             BaseExpression.ID,
             TryError.ID
     };
@@ -45,10 +47,11 @@ public class IdolStartingDeck {
     public static final String[] logicGoodImpressionStartingDeck = {
             BaseAppeal.ID,
             BaseAppeal.ID,
+            BaseAppeal.ID,
+            BasePerform.ID,
+            BasePerform.ID,
+            BasePerform.ID,
             BasePose.ID,
-            BasePerform.ID,
-            BasePerform.ID,
-            BaseVision.ID,
             BaseVision.ID,
             KawaiiGesture.ID
     };
@@ -56,10 +59,11 @@ public class IdolStartingDeck {
     public static final String[] logicYarukiStartingDeck = {
             BaseAppeal.ID,
             BaseAppeal.ID,
+            BaseAppeal.ID,
+            BasePerform.ID,
+            BasePerform.ID,
+            BasePerform.ID,
             BasePose.ID,
-            BasePerform.ID,
-            BasePerform.ID,
-            BaseAwareness.ID,
             BaseAwareness.ID,
             ChangeMood.ID
     };

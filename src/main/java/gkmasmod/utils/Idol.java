@@ -1,5 +1,7 @@
 package gkmasmod.utils;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import gkmasmod.utils.CommonEnum.IdolType;
 import gkmasmod.utils.CommonEnum.IdolStyle;
@@ -12,6 +14,8 @@ public class Idol {
     public String[] relics;
     public IdolType[] types;
     public IdolStyle[] styles;
+    public ArrayList<String[]> comments;
+    public String[] texts;
 
     public Idol(String idolName,String[] skins) {
         this.idolName = idolName;
@@ -21,7 +25,7 @@ public class Idol {
         }
     }
 
-    public Idol(String idolName,String[] skins,String[] cards,String[] relics,IdolType[] types,IdolStyle[] styles) {
+    public Idol(String idolName,String[] skins,String[] cards,String[] relics,IdolType[] types,IdolStyle[] styles,ArrayList<String[]> comments,String[] texts) {
         this.idolName = idolName;
         this.skins = skins.clone();
         for (int i = 0; i < skins.length; i++) {
@@ -31,6 +35,8 @@ public class Idol {
         this.relics = relics.clone();
         this.types = types.clone();
         this.styles = styles.clone();
+        this.comments = (ArrayList<String[]>) comments.clone();
+        this.texts = texts.clone();
 
         assert cards.length == skins.length && relics.length == skins.length && types.length == skins.length && styles.length == skins.length;
     }
@@ -81,5 +87,17 @@ public class Idol {
 
     public IdolStyle getStyle(int num){
         return styles[num];
+    }
+
+    public void setComments(ArrayList<String > a){
+        this.comments = (ArrayList<String[]>) a.clone();
+    }
+
+    public String[] getComments(int step){
+        return comments.get(step-1);
+    }
+
+    public String getText(int step){
+        return texts[step-1];
     }
 }

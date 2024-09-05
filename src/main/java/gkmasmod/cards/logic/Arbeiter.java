@@ -38,7 +38,7 @@ public class Arbeiter extends AbstractDefaultCard {
     private static final CardTarget TARGET = CardTarget.ENEMY;
 
     public Arbeiter() {
-        super(ID, NAME, IMG_PATH, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET,"blue");
+        super(ID, NAME, IMG_PATH, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET, "blue");
         this.baseDamage = ATTACK_DMG;
         this.damage = this.baseDamage;
         this.baseMagicNumber = BASE_MAGIC;
@@ -54,7 +54,7 @@ public class Arbeiter extends AbstractDefaultCard {
 
     @Override
     public AbstractCard makeCopy() {
-        return (AbstractCard)new Arbeiter();
+        return new Arbeiter();
     }
 
     @Override
@@ -63,7 +63,8 @@ public class Arbeiter extends AbstractDefaultCard {
             upgradeName();
             upgradeDamage(UPGRADE_PLUS_DMG);
             upgradeMagicNumber(UPGRADE_PLUS_MAGIC);
-            this.rawDescription = CARD_STRINGS.UPGRADE_DESCRIPTION;
+            if (CARD_STRINGS.UPGRADE_DESCRIPTION != null)
+                this.rawDescription = CARD_STRINGS.UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }
     }

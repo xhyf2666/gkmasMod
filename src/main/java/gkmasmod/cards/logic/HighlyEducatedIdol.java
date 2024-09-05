@@ -41,7 +41,7 @@ public class HighlyEducatedIdol extends AbstractDefaultCard {
     private static final CardTarget TARGET = CardTarget.SELF;
 
     public HighlyEducatedIdol() {
-        super(ID, NAME, IMG_PATH, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET,"blue");
+        super(ID, NAME, IMG_PATH, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET, "blue");
         this.baseMagicNumber = BASE_MAGIC;
         this.magicNumber = this.baseMagicNumber;
         this.baseBlock = BLOCK_AMT;
@@ -54,7 +54,7 @@ public class HighlyEducatedIdol extends AbstractDefaultCard {
     public void use(AbstractPlayer p, AbstractMonster m) {
         addToBot(new GainBlockAction(p, p, this.block));
         int count = PlayerHelper.getPowerAmount(p, DexterityPower.POWER_ID);
-        if(count > magicNumber){
+        if (count > magicNumber) {
             addToBot(new GainBlockAction(p, p, this.secondBlock));
         }
     }
@@ -70,7 +70,8 @@ public class HighlyEducatedIdol extends AbstractDefaultCard {
             upgradeName();
             upgradeBlock(UPGRADE_PLUS_BLOCK);
             upgradeSecondBlock(UPGRADE_PLUS_BLOCK2);
-            this.rawDescription = CARD_STRINGS.UPGRADE_DESCRIPTION;
+            if (CARD_STRINGS.UPGRADE_DESCRIPTION != null)
+                this.rawDescription = CARD_STRINGS.UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }
     }

@@ -16,6 +16,7 @@ import gkmasmod.cards.AbstractDefaultCard;
 import gkmasmod.characters.IdolCharacter;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.powers.GoodTune;
+import gkmasmod.ui.SkinSelectScreen;
 import gkmasmod.utils.NameHelper;
 
 public class WarmUp extends AbstractDefaultCard {
@@ -25,7 +26,7 @@ public class WarmUp extends AbstractDefaultCard {
 
     private static final String NAME = CARD_STRINGS.NAME;
     private static final String DESCRIPTION = CARD_STRINGS.DESCRIPTION;
-    private static String IMG_PATH = String.format("img/idol/%s/cards/%s.png", IdolCharacter.getIdolName(), CLASSNAME);
+    private static String IMG_PATH = String.format("img/idol/%s/cards/%s.png", SkinSelectScreen.Inst.idolName, CLASSNAME);
 
     private static final int COST = 2;
     private static final int ATTACK_DMG = 8;
@@ -41,8 +42,8 @@ public class WarmUp extends AbstractDefaultCard {
     private static final CardTarget TARGET = CardTarget.ENEMY;
 
     public WarmUp() {
-        super(ID, NAME, String.format("img/idol/%s/cards/%s.png", IdolCharacter.getIdolName(), CLASSNAME), COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        IMG_PATH = String.format("img/idol/%s/cards/%s.png", IdolCharacter.getIdolName(), CLASSNAME);
+        super(ID, NAME, String.format("img/idol/%s/cards/%s.png", SkinSelectScreen.Inst.idolName, CLASSNAME), COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
+        IMG_PATH = String.format("img/idol/%s/cards/%s.png", SkinSelectScreen.Inst.idolName, CLASSNAME);
         this.updateShowImg = true;
         this.baseDamage = ATTACK_DMG;
         this.baseMagicNumber = BASE_MAGIC;
@@ -53,13 +54,13 @@ public class WarmUp extends AbstractDefaultCard {
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        addToBot((AbstractGameAction)new DamageAction((AbstractCreature)m, new DamageInfo((AbstractCreature)p, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
-        addToBot((AbstractGameAction)new ApplyPowerAction((AbstractCreature)p, (AbstractCreature)p, (AbstractPower)new StrengthPower((AbstractCreature)p, this.magicNumber), this.magicNumber));
+        addToBot( new DamageAction( m, new DamageInfo( p, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
+        addToBot( new ApplyPowerAction( p,  p,  new StrengthPower( p, this.magicNumber), this.magicNumber));
     }
 
     @Override
     public AbstractCard makeCopy() {
-        return (AbstractCard)new WarmUp();
+        return  new WarmUp();
     }
 
     @Override
@@ -68,11 +69,11 @@ public class WarmUp extends AbstractDefaultCard {
             upgradeName();
             upgradeDamage(UPGRADE_PLUS_DMG);
             upgradeMagicNumber(UPGRADE_PLUS_MAGIC);
-            this.rawDescription = CARD_STRINGS.UPGRADE_DESCRIPTION;
+            if (CARD_STRINGS.UPGRADE_DESCRIPTION != null)
+                this.rawDescription = CARD_STRINGS.UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }
     }
-
 
 
 }

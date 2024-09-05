@@ -14,16 +14,16 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.CardHelper;
 import com.megacrit.cardcrawl.localization.*;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
+import com.megacrit.cardcrawl.saveAndContinue.SaveAndContinue;
 import gkmasmod.Listener.CardImgUpdateListener;
-import gkmasmod.cards.free.BaseAppeal;
-import gkmasmod.cards.free.BasePerform;
-import gkmasmod.cards.free.BasePose;
-import gkmasmod.cards.free.Gacha;
+import gkmasmod.cards.free.*;
 import gkmasmod.cards.logic.*;
 import gkmasmod.cards.sense.*;
 import gkmasmod.characters.IdolCharacter;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.relics.*;
+import gkmasmod.ui.PocketBookViewScreen;
+import gkmasmod.ui.SkinSelectScreen;
 import gkmasmod.variables.*;
 
 import java.nio.charset.StandardCharsets;
@@ -33,7 +33,7 @@ import java.util.List;
 import static gkmasmod.characters.PlayerColorEnum.*;
 
 @SpireInitializer
-public class GkmasMod implements EditCardsSubscriber, EditStringsSubscriber, EditKeywordsSubscriber, EditCharactersSubscriber, AddAudioSubscriber,EditRelicsSubscriber {
+public class GkmasMod implements EditCardsSubscriber, EditStringsSubscriber, EditKeywordsSubscriber, EditCharactersSubscriber, AddAudioSubscriber,EditRelicsSubscriber,PostInitializeSubscriber  {
 
     public static List<CardImgUpdateListener> listeners = new ArrayList<>();
     //攻击、技能、能力牌的背景图片(512)
@@ -44,13 +44,13 @@ public class GkmasMod implements EditCardsSubscriber, EditStringsSubscriber, Edi
     private static final String ATTACK_CC = String.format("img/idol/%s/cardui/512/bg_attack.png",idolName);
     private static final String SKILL_CC = String.format("img/idol/%s/cardui/512/bg_skill.png",idolName);
     private static final String POWER_CC = String.format("img/idol/%s/cardui/512/bg_power.png",idolName);
-    private static final String ENERGY_ORB_CC = "img/UI/star.png";
+    private static final String ENERGY_ORB_CC = "img/UI/energy.png";
     //攻击、技能、能力牌的背景图片(1024)
     private static final String ATTACK_CC_PORTRAIT = String.format("img/idol/%s/cardui/1024/bg_attack.png",idolName);
     private static final String SKILL_CC_PORTRAIT = String.format("img/idol/%s/cardui/1024/bg_skill.png",idolName);
     private static final String POWER_CC_PORTRAIT = String.format("img/idol/%s/cardui/1024/bg_power.png",idolName);
-    private static final String ENERGY_ORB_CC_PORTRAIT = "img/UI/star_164.png";
-    public static final String CARD_ENERGY_ORB = "img/UI/star_22.png";
+    private static final String ENERGY_ORB_CC_PORTRAIT = "img/UI/energy_164.png";
+    public static final String CARD_ENERGY_ORB = "img/UI/energy_22.png";
     //选英雄界面的角色图标、选英雄时的背景图片
     private static final String MY_CHARACTER_BUTTON = "img/charSelect/selectButton.png";
     private static final String MARISA_PORTRAIT = "img/charSelect/background_init.png";
@@ -72,12 +72,6 @@ public class GkmasMod implements EditCardsSubscriber, EditStringsSubscriber, Edi
         addColor(gkmasModColor,gkmasMod_color,idolName,suffix[0]);
         addColor(gkmasModColorLogic,gkmasMod_colorLogic,idolName,suffix[1]);
         addColor(gkmasModColorSense,gkmasMod_colorSense,idolName,suffix[2]);
-//        BaseMod.addColor(gkmasModColor, gkmasMod_color, gkmasMod_color, gkmasMod_color, gkmasMod_color, gkmasMod_color, gkmasMod_color, gkmasMod_color, ATTACK_CC, SKILL_CC, POWER_CC, ENERGY_ORB_CC,
-//                ATTACK_CC_PORTRAIT,SKILL_CC_PORTRAIT ,POWER_CC_PORTRAIT , ENERGY_ORB_CC_PORTRAIT,CARD_ENERGY_ORB );
-//        BaseMod.addColor(gkmasModColorLogic, gkmasMod_colorLogic, gkmasMod_colorLogic, gkmasMod_colorLogic, gkmasMod_colorLogic, gkmasMod_colorLogic, gkmasMod_colorLogic, gkmasMod_colorLogic, ATTACK_CC, SKILL_CC, POWER_CC, ENERGY_ORB_CC,
-//                ATTACK_CC_PORTRAIT,SKILL_CC_PORTRAIT ,POWER_CC_PORTRAIT , ENERGY_ORB_CC_PORTRAIT,CARD_ENERGY_ORB );
-//        BaseMod.addColor(gkmasModColorSense, gkmasMod_colorSense, gkmasMod_colorSense, gkmasMod_colorSense, gkmasMod_colorSense, gkmasMod_colorSense, gkmasMod_colorSense, gkmasMod_colorSense, ATTACK_CC, SKILL_CC, POWER_CC, ENERGY_ORB_CC,
-//                ATTACK_CC_PORTRAIT,SKILL_CC_PORTRAIT ,POWER_CC_PORTRAIT , ENERGY_ORB_CC_PORTRAIT,CARD_ENERGY_ORB );
     }
 
     private void addColor(AbstractCard.CardColor cc,Color c,String idolName,String suffix){
@@ -146,7 +140,6 @@ public class GkmasMod implements EditCardsSubscriber, EditStringsSubscriber, Edi
         Keyword[] keywords = gson.fromJson(json, Keyword[].class);
         if (keywords != null) {
             for (Keyword keyword : keywords) {
-                // 这个id要全小写
                 BaseMod.addKeyword(keyword.NAMES[0], keyword.NAMES, keyword.DESCRIPTION);
             }
         }
@@ -155,6 +148,7 @@ public class GkmasMod implements EditCardsSubscriber, EditStringsSubscriber, Edi
 
     public static List<Object> getCardsToAdd(){
         List<Object> instances = new ArrayList<>();
+        // 初始
         instances.add(new BaseAppeal());
         instances.add(new BasePose());
         instances.add(new Challenge());
@@ -166,15 +160,10 @@ public class GkmasMod implements EditCardsSubscriber, EditStringsSubscriber, Edi
         instances.add(new ChangeMood());
         instances.add(new TryError());
         instances.add(new BaseExpression());
-        instances.add(new StartDash());
+
         instances.add(new Gacha());
         instances.add(new JustOneMore());
-        instances.add(new LightGait());
-        instances.add(new AiJiao());
-        instances.add(new ServiceSpirit());
-        instances.add(new HighFive());
-        instances.add(new GoWithTheFlow());
-        instances.add(new WarmUp());
+
         // 广
         instances.add(new HighlyEducatedIdol());
         instances.add(new LovesTheStruggle());
@@ -230,6 +219,101 @@ public class GkmasMod implements EditCardsSubscriber, EditStringsSubscriber, Edi
         instances.add(new EachPath());
         instances.add(new TangledFeelings());
 
+        // 普通
+        instances.add(new LightGait());
+        instances.add(new AiJiao());
+        instances.add(new ServiceSpirit());
+        instances.add(new HighFive());
+        instances.add(new GoWithTheFlow());
+        instances.add(new WarmUp());
+        instances.add(new TalkTime());
+        instances.add(new GoodMorning());
+        instances.add(new TeaChat());
+        instances.add(new WaitALittleLonger());
+        instances.add(new Clap());
+        instances.add(new CheerfulGreeting());
+        instances.add(new FullOfPower());
+        instances.add(new LightStep());
+        instances.add(new Balance());
+        instances.add(new Optimistic());
+        instances.add(new DeepBreath());
+        instances.add(new Restart());
+        instances.add(new Yeah());
+        instances.add(new Rhythm());
+        instances.add(new Smile());
+        instances.add(new LightColorMood());
+        instances.add(new Inspire());
+        instances.add(new HappyCurse());
+        instances.add(new TrueDeepBreath());
+
+        // 罕见
+        instances.add(new BrightFuture());
+        instances.add(new ClassicPose());
+        instances.add(new Improvise());
+        instances.add(new PassionateReturn());
+        instances.add(new Leap());
+        instances.add(new Bless());
+        instances.add(new StartDash());
+        instances.add(new WonderfulPerformance());
+        instances.add(new EncoreCall());
+        instances.add(new SweetWink());
+        instances.add(new ThankYou());
+        instances.add(new FingerHeart());
+        instances.add(new Shiny());
+        instances.add(new LikeEveryone());
+        instances.add(new IdolDeclaration());
+        instances.add(new HighSpirits());
+        instances.add(new EyePower());
+        instances.add(new GreatCheer());
+        instances.add(new PerformancePlan());
+        instances.add(new WishPower());
+        instances.add(new SteadyWill());
+        instances.add(new StartSignal());
+        instances.add(new Disposition());
+        instances.add(new Existence());
+        instances.add(new RoadToSuccess());
+        instances.add(new OverflowMemory());
+        instances.add(new Contact());
+        instances.add(new HappyTime());
+        instances.add(new FantasyCharm());
+        instances.add(new WakuWaku());
+        instances.add(new BeforeThePerformance());
+        instances.add(new Sunbathing());
+        instances.add(new ImaginaryTraining());
+        instances.add(new EnergyIsFull());
+        instances.add(new FlowerBouquet());
+        instances.add(new UnstoppableThoughts());
+        instances.add(new CheckPosition());
+        instances.add(new Spotlight());
+        instances.add(new GirlHeart());
+
+        // 稀有
+        instances.add(new CallResponse());
+        instances.add(new PopPhrase());
+        instances.add(new TopEntertainment());
+        instances.add(new Awakening());
+        instances.add(new NationalIdol());
+        instances.add(new CharmGaze());
+        instances.add(new Achievement());
+        instances.add(new CharmPerformance());
+        instances.add(new EndlessApplause());
+        instances.add(new Innocence());
+        instances.add(new Smile200());
+        instances.add(new Flowering());
+        instances.add(new Todoku());
+        instances.add(new OnTV());
+        instances.add(new DreamToAchieve());
+        instances.add(new IdolSoul());
+        instances.add(new Repartitioning());
+        instances.add(new IamBigStar());
+        instances.add(new StarDust());
+        instances.add(new NotebookDetermination());
+        instances.add(new HandwrittenLetter());
+        instances.add(new Heartbeat());
+        instances.add(new RainbowDreamer());
+        instances.add(new PromiseThatTime());
+        instances.add(new ForShiningYou());
+
         // 遍历instances的所有元素，将其添加到listener中
         for (Object instance : instances) {
             listeners.add((CardImgUpdateListener) instance);
@@ -246,59 +330,66 @@ public class GkmasMod implements EditCardsSubscriber, EditStringsSubscriber, Edi
     public void receiveEditRelics() {
         //List<Object> instances = new ArrayList<>();
 
+        BaseMod.addRelicToCustomPool(new PocketBook(), gkmasModColor);
+
         // 广
-        BaseMod.addRelicToCustomPool((AbstractRelic)new UltimateSleepMask(), gkmasModColor);
-        BaseMod.addRelicToCustomPool((AbstractRelic)new BeginnerGuideForEveryone(), gkmasModColor);
-        BaseMod.addRelicToCustomPool((AbstractRelic)new SidewalkResearchNotes(), gkmasModColor);
-        BaseMod.addRelicToCustomPool((AbstractRelic)new TowardsAnUnseenWorld(), gkmasModColor);
+        BaseMod.addRelicToCustomPool(new UltimateSleepMask(), gkmasModColor);
+        BaseMod.addRelicToCustomPool(new BeginnerGuideForEveryone(), gkmasModColor);
+        BaseMod.addRelicToCustomPool(new SidewalkResearchNotes(), gkmasModColor);
+        BaseMod.addRelicToCustomPool(new TowardsAnUnseenWorld(), gkmasModColor);
         // 莉莉娅
-        BaseMod.addRelicToCustomPool((AbstractRelic)new GreenUniformBracelet(), gkmasModColor);
-        BaseMod.addRelicToCustomPool((AbstractRelic)new MemoryBot(), gkmasModColor);
-        BaseMod.addRelicToCustomPool((AbstractRelic)new DreamLifeLog(), gkmasModColor);
-        BaseMod.addRelicToCustomPool((AbstractRelic)new SparklingInTheBottle(), gkmasModColor);
+        BaseMod.addRelicToCustomPool(new GreenUniformBracelet(), gkmasModColor);
+        BaseMod.addRelicToCustomPool(new MemoryBot(), gkmasModColor);
+        BaseMod.addRelicToCustomPool(new DreamLifeLog(), gkmasModColor);
+        BaseMod.addRelicToCustomPool(new SparklingInTheBottle(), gkmasModColor);
         // 千奈
-        BaseMod.addRelicToCustomPool((AbstractRelic)new WishFulfillmentAmulet(), gkmasModColor);
-        BaseMod.addRelicToCustomPool((AbstractRelic)new CheerfulHandkerchief(), gkmasModColor);
-        BaseMod.addRelicToCustomPool((AbstractRelic)new SecretTrainingCardigan(), gkmasModColor);
-        BaseMod.addRelicToCustomPool((AbstractRelic)new HeartFlutteringCup(), gkmasModColor);
+        BaseMod.addRelicToCustomPool(new WishFulfillmentAmulet(), gkmasModColor);
+        BaseMod.addRelicToCustomPool(new CheerfulHandkerchief(), gkmasModColor);
+        BaseMod.addRelicToCustomPool(new SecretTrainingCardigan(), gkmasModColor);
+        BaseMod.addRelicToCustomPool(new HeartFlutteringCup(), gkmasModColor);
         // 佑芽
-        BaseMod.addRelicToCustomPool((AbstractRelic)new TechnoDog(), gkmasModColor);
-        BaseMod.addRelicToCustomPool((AbstractRelic)new ShibaInuPochette(), gkmasModColor);
-        BaseMod.addRelicToCustomPool((AbstractRelic)new RollingSourceOfEnergy(), gkmasModColor);
+        BaseMod.addRelicToCustomPool(new TechnoDog(), gkmasModColor);
+        BaseMod.addRelicToCustomPool(new ShibaInuPochette(), gkmasModColor);
+        BaseMod.addRelicToCustomPool(new RollingSourceOfEnergy(), gkmasModColor);
         // 咲季
-        BaseMod.addRelicToCustomPool((AbstractRelic)new RoaringLion(), gkmasModColor);
-        BaseMod.addRelicToCustomPool((AbstractRelic)new FirstVoiceProofSaki(), gkmasModColor);
-        BaseMod.addRelicToCustomPool((AbstractRelic)new SakiCompleteMealRecipe(), gkmasModColor);
-        BaseMod.addRelicToCustomPool((AbstractRelic)new TogetherInBattleTowel(), gkmasModColor);
-        BaseMod.addRelicToCustomPool((AbstractRelic)new WinningDetermination(), gkmasModColor);
-        BaseMod.addRelicToCustomPool((AbstractRelic)new UndefeatedPoi(), gkmasModColor);
+        BaseMod.addRelicToCustomPool(new RoaringLion(), gkmasModColor);
+        BaseMod.addRelicToCustomPool(new FirstVoiceProofSaki(), gkmasModColor);
+        BaseMod.addRelicToCustomPool(new SakiCompleteMealRecipe(), gkmasModColor);
+        BaseMod.addRelicToCustomPool(new TogetherInBattleTowel(), gkmasModColor);
+        BaseMod.addRelicToCustomPool(new WinningDetermination(), gkmasModColor);
+        BaseMod.addRelicToCustomPool(new UndefeatedPoi(), gkmasModColor);
         // 莉波
-        BaseMod.addRelicToCustomPool((AbstractRelic)new RegularMakeupPouch(), gkmasModColor);
-        BaseMod.addRelicToCustomPool((AbstractRelic)new TreatForYou(), gkmasModColor);
-        BaseMod.addRelicToCustomPool((AbstractRelic)new LifeSizeLadyLip(), gkmasModColor);
-        BaseMod.addRelicToCustomPool((AbstractRelic)new SummerToShareWithYou(), gkmasModColor);
+        BaseMod.addRelicToCustomPool(new RegularMakeupPouch(), gkmasModColor);
+        BaseMod.addRelicToCustomPool(new TreatForYou(), gkmasModColor);
+        BaseMod.addRelicToCustomPool(new LifeSizeLadyLip(), gkmasModColor);
+        BaseMod.addRelicToCustomPool(new SummerToShareWithYou(), gkmasModColor);
         // 琴音
-        BaseMod.addRelicToCustomPool((AbstractRelic)new HandmadeMedal(), gkmasModColor);
-        BaseMod.addRelicToCustomPool((AbstractRelic)new FirstVoiceProofKotone(), gkmasModColor);
-        BaseMod.addRelicToCustomPool((AbstractRelic)new FavoriteSneakers(), gkmasModColor);
-        BaseMod.addRelicToCustomPool((AbstractRelic)new PigDreamPiggyBank(), gkmasModColor);
-        BaseMod.addRelicToCustomPool((AbstractRelic)new UltimateSourceOfHappiness(), gkmasModColor);
-        BaseMod.addRelicToCustomPool((AbstractRelic)new CracklingSparkler(), gkmasModColor);
+        BaseMod.addRelicToCustomPool(new HandmadeMedal(), gkmasModColor);
+        BaseMod.addRelicToCustomPool(new FirstVoiceProofKotone(), gkmasModColor);
+        BaseMod.addRelicToCustomPool(new FavoriteSneakers(), gkmasModColor);
+        BaseMod.addRelicToCustomPool(new PigDreamPiggyBank(), gkmasModColor);
+        BaseMod.addRelicToCustomPool(new UltimateSourceOfHappiness(), gkmasModColor);
+        BaseMod.addRelicToCustomPool(new CracklingSparkler(), gkmasModColor);
         // 麻央
-        BaseMod.addRelicToCustomPool((AbstractRelic)new GentlemanHandkerchief(), gkmasModColor);
-        BaseMod.addRelicToCustomPool((AbstractRelic)new DearLittlePrince(), gkmasModColor);
-        BaseMod.addRelicToCustomPool((AbstractRelic)new InnerLightEarrings(), gkmasModColor);
-        BaseMod.addRelicToCustomPool((AbstractRelic)new LastSummerMemory(), gkmasModColor);
+        BaseMod.addRelicToCustomPool(new GentlemanHandkerchief(), gkmasModColor);
+        BaseMod.addRelicToCustomPool(new DearLittlePrince(), gkmasModColor);
+        BaseMod.addRelicToCustomPool(new InnerLightEarrings(), gkmasModColor);
+        BaseMod.addRelicToCustomPool(new LastSummerMemory(), gkmasModColor);
         // 清夏
-        BaseMod.addRelicToCustomPool((AbstractRelic)new PinkUniformBracelet(), gkmasModColor);
-        BaseMod.addRelicToCustomPool((AbstractRelic)new AfterSchoolDoodles(), gkmasModColor);
-        BaseMod.addRelicToCustomPool((AbstractRelic)new ArcadeLoot(), gkmasModColor);
-        BaseMod.addRelicToCustomPool((AbstractRelic)new FrogFan(), gkmasModColor);
+        BaseMod.addRelicToCustomPool(new PinkUniformBracelet(), gkmasModColor);
+        BaseMod.addRelicToCustomPool(new AfterSchoolDoodles(), gkmasModColor);
+        BaseMod.addRelicToCustomPool(new ArcadeLoot(), gkmasModColor);
+        BaseMod.addRelicToCustomPool(new FrogFan(), gkmasModColor);
         // 手毬
-        BaseMod.addRelicToCustomPool((AbstractRelic)new EssentialStainlessSteelBottle(), gkmasModColor);
-        BaseMod.addRelicToCustomPool((AbstractRelic)new FirstVoiceProofTemari(), gkmasModColor);
-        BaseMod.addRelicToCustomPool((AbstractRelic)new MyFirstSheetMusic(), gkmasModColor);
-        BaseMod.addRelicToCustomPool((AbstractRelic)new ProtectiveEarphones(), gkmasModColor);
-        BaseMod.addRelicToCustomPool((AbstractRelic)new ThisIsMe(), gkmasModColor);
+        BaseMod.addRelicToCustomPool(new EssentialStainlessSteelBottle(), gkmasModColor);
+        BaseMod.addRelicToCustomPool(new FirstVoiceProofTemari(), gkmasModColor);
+        BaseMod.addRelicToCustomPool(new MyFirstSheetMusic(), gkmasModColor);
+        BaseMod.addRelicToCustomPool(new ProtectiveEarphones(), gkmasModColor);
+        BaseMod.addRelicToCustomPool(new ThisIsMe(), gkmasModColor);
+    }
+
+    @Override
+    public void receivePostInitialize() {
+        BaseMod.addCustomScreen(new PocketBookViewScreen());
     }
 }

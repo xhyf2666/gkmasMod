@@ -26,10 +26,11 @@ public class Stubborn extends AbstractDefaultCard {
     private static final String DESCRIPTION = CARD_STRINGS.DESCRIPTION;
     private static final String IMG_PATH = String.format("img/cards/common/%s.png", CLASSNAME);
 
-    private static final int COST = 2;
+    private static final int COST = 1;
     private static final int ATTACK_DMG = 7;
-    private static final int BASE_MAGIC = 3;
-    private static final int UPGRADE_PLUS_MAGIC = 2;
+    private static final int UPGRADE_PLUS_DMG = 3;
+    private static final int BASE_MAGIC = 1;
+    private static final int UPGRADE_PLUS_MAGIC = 1;
 
     private static final CardType TYPE = CardType.ATTACK;
     private static final CardColor COLOR = PlayerColorEnum.gkmasModColorSense;
@@ -37,7 +38,7 @@ public class Stubborn extends AbstractDefaultCard {
     private static final CardTarget TARGET = CardTarget.ENEMY;
 
     public Stubborn() {
-        super(ID, NAME, IMG_PATH, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET,"blue");
+        super(ID, NAME, IMG_PATH, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET, "blue");
         this.baseDamage = ATTACK_DMG;
         this.baseMagicNumber = BASE_MAGIC;
         this.magicNumber = this.baseMagicNumber;
@@ -60,8 +61,10 @@ public class Stubborn extends AbstractDefaultCard {
     public void upgrade() {
         if (!this.upgraded) {
             upgradeName();
+            upgradeDamage(UPGRADE_PLUS_DMG);
             upgradeMagicNumber(UPGRADE_PLUS_MAGIC);
-            this.rawDescription = CARD_STRINGS.UPGRADE_DESCRIPTION;
+            if (CARD_STRINGS.UPGRADE_DESCRIPTION != null)
+                this.rawDescription = CARD_STRINGS.UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }
     }

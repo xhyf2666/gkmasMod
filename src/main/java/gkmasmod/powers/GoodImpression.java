@@ -54,6 +54,8 @@ public class GoodImpression extends AbstractPower {
             firstGet = false;
         }
         super.stackPower(stackAmount);
+        if (this.amount == 0)
+            addToTop(new RemoveSpecificPowerAction(this.owner, this.owner, this.ID));
     }
 
     public void updateDescription() {
@@ -68,11 +70,11 @@ public class GoodImpression extends AbstractPower {
             if(firstGet)
                 firstGet = false;
             else
-                addToBot((AbstractGameAction)new ReducePowerAction(this.owner, this.owner, POWER_ID, 1));
-            addToBot((AbstractGameAction)new DamageRandomEnemyAction(new DamageInfo(null, this.amount, DamageInfo.DamageType.THORNS), AbstractGameAction.AttackEffect.POISON));
+                addToBot(new ReducePowerAction(this.owner, this.owner, POWER_ID, 1));
+            addToBot(new DamageRandomEnemyAction(new DamageInfo(null, this.amount, DamageInfo.DamageType.THORNS), AbstractGameAction.AttackEffect.POISON));
         }
         else
-            addToBot((AbstractGameAction)new RemoveSpecificPowerAction(this.owner, this.owner, POWER_ID));
+            addToBot(new RemoveSpecificPowerAction(this.owner, this.owner, POWER_ID));
     }
 
     public void onVictory() {

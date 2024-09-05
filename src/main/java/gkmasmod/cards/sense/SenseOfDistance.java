@@ -36,10 +36,10 @@ public class SenseOfDistance extends AbstractDefaultCard {
     private static final CardType TYPE = CardType.SKILL;
     private static final CardColor COLOR = PlayerColorEnum.gkmasModColorSense;
     private static final CardRarity RARITY = CardRarity.BASIC;
-    private static final CardTarget TARGET = CardTarget.ENEMY;
+    private static final CardTarget TARGET = CardTarget.SELF;
 
     public SenseOfDistance() {
-        super(ID, NAME, IMG_PATH, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET,"color");
+        super(ID, NAME, IMG_PATH, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET, "color");
         this.baseMagicNumber = BASE_MAGIC;
         this.magicNumber = this.baseMagicNumber;
         this.baseSecondMagicNumber = BASE_MAGIC2;
@@ -67,7 +67,8 @@ public class SenseOfDistance extends AbstractDefaultCard {
             upgradeMagicNumber(UPGRADE_PLUS_MAGIC);
             upgradeSecondMagicNumber(UPGRADE_PLUS_MAGIC2);
             upgradeBaseCost(UPGRADED_COST);
-            this.rawDescription = CARD_STRINGS.UPGRADE_DESCRIPTION;
+            if (CARD_STRINGS.UPGRADE_DESCRIPTION != null)
+                this.rawDescription = CARD_STRINGS.UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }
     }

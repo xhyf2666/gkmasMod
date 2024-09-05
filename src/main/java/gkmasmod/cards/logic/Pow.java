@@ -1,8 +1,11 @@
 package gkmasmod.cards.logic;
 
+import com.evacipated.cardcrawl.mod.stslib.patches.FlavorText;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.helpers.CardHelper;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import gkmasmod.actions.GoodImpressionDamageAction;
@@ -33,21 +36,36 @@ public class Pow extends AbstractDefaultCard {
     private static final CardColor COLOR = PlayerColorEnum.gkmasModColorLogic;
     private static final CardRarity RARITY = CardRarity.BASIC;
     private static final CardTarget TARGET = CardTarget.ENEMY;
+    private String flavor = "";
 
     public Pow() {
-        super(ID, NAME, IMG_PATH, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET,"color");
+        super(ID, NAME, IMG_PATH, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET, "color");
         this.baseHPMagicNumber = BASE_HP;
         this.HPMagicNumber = this.baseHPMagicNumber;
         this.baseMagicNumber = BASE_MAGIC;
         this.magicNumber = this.baseMagicNumber;
         this.exhaust = true;
+        FlavorText.AbstractCardFlavorFields.boxColor.set(this, CardHelper.getColor(73, 224, 254));
+        flavor = FlavorText.CardStringsFlavorField.flavor.get(CARD_STRINGS);
     }
 
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        int count = PlayerHelper.getPowerAmount(p, GoodImpression.POWER_ID);
-        addToBot(new GoodImpressionDamageAction(1.0F*magicNumber/100,0,count,p,m));
+        addToBot(new GoodImpressionDamageAction(1.0F * magicNumber / 100, 0, p, m));
+    }
+
+    public void applyPowers() {
+        super.applyPowers();
+        int count = PlayerHelper.getPowerAmount(AbstractDungeon.player, GoodImpression.POWER_ID);
+        int damage_ = (int) (1.0F * count * this.magicNumber / 100);
+        FlavorText.AbstractCardFlavorFields.flavor.set(this, String.format(flavor, damage_));
+    }
+
+    public void atTurnStart() {
+        int count = PlayerHelper.getPowerAmount(AbstractDungeon.player, GoodImpression.POWER_ID);
+        int damage_ = (int) (1.0F * count * this.magicNumber / 100);
+        FlavorText.AbstractCardFlavorFields.flavor.set(this, String.format(flavor, damage_));
     }
 
     @Override
@@ -61,7 +79,8 @@ public class Pow extends AbstractDefaultCard {
             upgradeName();
             upgradeMagicNumber(UPGRADE_PLUS_MAGIC);
             upgradeHPMagicNumber(UPGRADE_PLUS_HP);
-            this.rawDescription = CARD_STRINGS.UPGRADE_DESCRIPTION;
+            if (CARD_STRINGS.UPGRADE_DESCRIPTION != null)
+                this.rawDescription = CARD_STRINGS.UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }
     }

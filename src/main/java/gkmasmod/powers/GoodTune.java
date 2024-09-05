@@ -65,6 +65,8 @@ public class GoodTune extends AbstractPower {
             firstGet = false;
         }
         super.stackPower(stackAmount);
+        if (this.amount == 0)
+            addToTop(new RemoveSpecificPowerAction(this.owner, this.owner, this.ID));
     }
 
     public void atEndOfRound() {
@@ -75,7 +77,6 @@ public class GoodTune extends AbstractPower {
                 firstGet = false;
             else
                 addToBot((AbstractGameAction)new ReducePowerAction(this.owner, this.owner, POWER_ID, 1));
-            //
             }
         else
             addToBot((AbstractGameAction)new RemoveSpecificPowerAction(this.owner, this.owner, POWER_ID));

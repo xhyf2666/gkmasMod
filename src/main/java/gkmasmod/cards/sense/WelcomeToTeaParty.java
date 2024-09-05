@@ -39,7 +39,7 @@ public class WelcomeToTeaParty extends AbstractDefaultCard {
     private static final CardTarget TARGET = CardTarget.SELF;
 
     public WelcomeToTeaParty() {
-        super(ID, NAME, IMG_PATH, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET,"color");
+        super(ID, NAME, IMG_PATH, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET, "color");
         this.baseBlock = BLOCK_AMT;
         this.baseMagicNumber = BASE_MAGIC;
         this.magicNumber = this.baseMagicNumber;
@@ -67,7 +67,8 @@ public class WelcomeToTeaParty extends AbstractDefaultCard {
             upgradeBaseCost(UPGRADE_COST);
             upgradeMagicNumber(UPGRADE_PLUS_MAGIC);
             upgradeBlock(UPGRADE_PLUS_BLOCK);
-            this.rawDescription = CARD_STRINGS.UPGRADE_DESCRIPTION;
+            if (CARD_STRINGS.UPGRADE_DESCRIPTION != null)
+                this.rawDescription = CARD_STRINGS.UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }
     }

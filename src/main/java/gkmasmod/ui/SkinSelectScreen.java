@@ -22,7 +22,7 @@ import gkmasmod.utils.CommonEnum;
 import gkmasmod.utils.IdolData;
 import gkmasmod.utils.NameHelper;
 
-public class SkinSelectScreen implements ISubscriber, CustomSavable<Integer> {
+public class SkinSelectScreen implements ISubscriber, CustomSavable<int[]> {
     public static SkinSelectScreen Inst;
     public static boolean isClick = false;
     public static boolean isClick2 = false;
@@ -41,6 +41,7 @@ public class SkinSelectScreen implements ISubscriber, CustomSavable<Integer> {
     private String styleHintName = "";
     private String typeHint = "";
     private String styleHint = "";
+    public String idolName = "shro";
 
     public String SpecialName = "";
     public int idolIndex;
@@ -69,19 +70,19 @@ public class SkinSelectScreen implements ISubscriber, CustomSavable<Integer> {
     public Texture styleImg;
 
     public void refresh() {
-        String name = IdolData.idolNames[this.idolIndex];
+        idolName = IdolData.idolNames[this.idolIndex];
 
-        this.curName = CardCrawlGame.languagePack.getCharacterString(NameHelper.addSplitWords("IdolName",name)).TEXT[0];
+        this.curName = CardCrawlGame.languagePack.getCharacterString(NameHelper.addSplitWords("IdolName",idolName)).TEXT[0];
 
-        String skinName = IdolData.getIdol(name).getSkin(this.skinIndex);
+        String skinName = IdolData.getIdol(idolName).getSkin(this.skinIndex);
         skinName = "skin10";
         // TODO 支持其他皮肤
-        IdolCharacter.SELES_STAND = String.format("img/idol/%s/stand/stand_%s.png", name, skinName);
+        IdolCharacter.SELES_STAND = String.format("img/idol/%s/stand/stand_%s.png", idolName, skinName);
         this.usedImg = ImageMaster.loadImage(IdolCharacter.SELES_STAND);
         this.SpecialName = "";
-        this.nameImg = ImageMaster.loadImage(String.format("img/idol/%s/stand/name.png", name));
-        this.idolType = IdolData.getIdol(name).getType(this.skinIndex);
-        this.idolStyle = IdolData.getIdol(name).getStyle(this.skinIndex);
+        this.nameImg = ImageMaster.loadImage(String.format("img/idol/%s/stand/name.png", idolName));
+        this.idolType = IdolData.getIdol(idolName).getType(this.skinIndex);
+        this.idolStyle = IdolData.getIdol(idolName).getStyle(this.skinIndex);
         switch (this.idolType){
             case SENSE:
                 this.typeImg = ImageMaster.loadImage("img/UI/sense.png");
@@ -120,6 +121,7 @@ public class SkinSelectScreen implements ISubscriber, CustomSavable<Integer> {
 
         if (AbstractDungeon.player instanceof IdolCharacter) {
             IdolCharacter k = (IdolCharacter)AbstractDungeon.player;
+            k.idolName = idolName;
             k.refreshSkin();
     }
     }
@@ -340,12 +342,19 @@ public class SkinSelectScreen implements ISubscriber, CustomSavable<Integer> {
 
 
 
-    public void onLoad(Integer arg0) {
-     this.idolIndex = arg0.intValue();
-     refresh();
+    public void onLoad(int[] args) {
+        if(args != null && args.length == 3){
+            this.idolIndex = args[0];
+            this.skinIndex = args[1];
+            this.updateIndex = args[2];
+            refresh();
+            System.out.println("load skin select screen");
+            GkmasMod.listeners.forEach(listener -> listener.onCardImgUpdate());
+        }
+
    }
-    public Integer onSave() {
-        return this.idolIndex;
+    public int[] onSave() {
+        return new int[]{this.idolIndex,this.skinIndex,this.updateIndex};
     }
 
     static {

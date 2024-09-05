@@ -1,5 +1,6 @@
 package gkmasmod.cards.logic;
 
+import com.evacipated.cardcrawl.mod.stslib.patches.FlavorText;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
@@ -7,6 +8,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.helpers.CardHelper;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
@@ -37,6 +39,7 @@ public class KawaiiGesture extends AbstractDefaultCard {
     private static final CardColor COLOR = PlayerColorEnum.gkmasModColorLogic;
     private static final CardRarity RARITY = CardRarity.BASIC;
     private static final CardTarget TARGET = CardTarget.ENEMY;
+    private String flavor = "";
 
     public KawaiiGesture() {
         super(ID, NAME, IMG_PATH, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
@@ -45,18 +48,26 @@ public class KawaiiGesture extends AbstractDefaultCard {
         this.baseSecondMagicNumber = BASE_MAGIC2;
         this.secondMagicNumber = this.baseSecondMagicNumber;
         this.exhaust = true;
+        FlavorText.AbstractCardFlavorFields.boxColor.set(this, CardHelper.getColor(73, 224, 254));
+        flavor = FlavorText.CardStringsFlavorField.flavor.get(CARD_STRINGS);
     }
 
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        int count = PlayerHelper.getPowerAmount(p, GoodImpression.POWER_ID);
-        addToBot(new GoodImpressionDamageAction(1.0F*secondMagicNumber/100,this.magicNumber,count,p,m));
+        addToBot(new GoodImpressionDamageAction(1.0F * secondMagicNumber / 100, this.magicNumber, p, m));
+    }
+
+    public void applyPowers() {
+        super.applyPowers();
+        int count = PlayerHelper.getPowerAmount(AbstractDungeon.player, GoodImpression.POWER_ID);
+        int damage_ = (int) (1.0F * this.secondMagicNumber * (count + this.magicNumber) / 100);
+        FlavorText.AbstractCardFlavorFields.flavor.set(this, String.format(flavor, calculateDamage(damage_)));
     }
 
     @Override
     public AbstractCard makeCopy() {
-        return (AbstractCard)new KawaiiGesture();
+        return  new KawaiiGesture();
     }
 
     @Override
@@ -65,7 +76,8 @@ public class KawaiiGesture extends AbstractDefaultCard {
             upgradeName();
             upgradeMagicNumber(UPGRADE_PLUS_MAGIC);
             upgradeSecondMagicNumber(UPGRADE_PLUS_MAGIC2);
-            this.rawDescription = CARD_STRINGS.UPGRADE_DESCRIPTION;
+            if (CARD_STRINGS.UPGRADE_DESCRIPTION != null)
+                this.rawDescription = CARD_STRINGS.UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }
     }

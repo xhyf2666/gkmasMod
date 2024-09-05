@@ -40,8 +40,8 @@ public class GenkiChangeAction extends AbstractGameAction {
         System.out.println("this.rate "+this.rate);
 
 
-        addToBot((AbstractGameAction)new ApplyPowerAction(p, p, (AbstractPower)new GoodImpression(p,this.magicAdd), this.magicAdd));
-        AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new DamageAction((AbstractCreature)m, new DamageInfo((AbstractCreature)p, (int)(this.rate*this.magicNumber) , DamageInfo.DamageType.NORMAL), AttackEffect.SLASH_HORIZONTAL));
+        addToBot(new ApplyPowerAction(p, p, new GoodImpression(p,this.magicAdd), this.magicAdd));
+        AbstractDungeon.actionManager.addToBottom(new DamageAction(m, new DamageInfo(p, (int)(this.rate*this.magicNumber) , DamageInfo.DamageType.NORMAL), AttackEffect.SLASH_HORIZONTAL));
 
         this.isDone = true;
     }

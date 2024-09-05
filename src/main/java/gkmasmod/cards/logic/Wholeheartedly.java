@@ -37,13 +37,14 @@ public class Wholeheartedly extends AbstractDefaultCard {
     private static final CardType TYPE = CardType.SKILL;
     private static final CardColor COLOR = PlayerColorEnum.gkmasModColorLogic;
     private static final CardRarity RARITY = CardRarity.BASIC;
-    private static final CardTarget TARGET = CardTarget.ENEMY;
+    private static final CardTarget TARGET = CardTarget.SELF;
 
     public Wholeheartedly() {
-        super(ID, NAME, IMG_PATH, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET,"yellow");
+        super(ID, NAME, IMG_PATH, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET, "yellow");
         this.baseMagicNumber = BASE_MAGIC;
         this.magicNumber = this.baseMagicNumber;
         this.baseBlock = BASE_BLOCK;
+        this.block = this.baseBlock;
         this.exhaust = true;
     }
 
@@ -56,7 +57,7 @@ public class Wholeheartedly extends AbstractDefaultCard {
 
     @Override
     public AbstractCard makeCopy() {
-        return (AbstractCard)new Wholeheartedly();
+        return  new Wholeheartedly();
     }
 
     @Override
@@ -65,7 +66,8 @@ public class Wholeheartedly extends AbstractDefaultCard {
             upgradeName();
             upgradeMagicNumber(UPGRADE_PLUS_MAGIC);
             upgradeBlock(UPGRADE_PLUS_BLOCK);
-            this.rawDescription = CARD_STRINGS.UPGRADE_DESCRIPTION;
+            if (CARD_STRINGS.UPGRADE_DESCRIPTION != null)
+                this.rawDescription = CARD_STRINGS.UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }
     }

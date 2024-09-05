@@ -1,5 +1,6 @@
 package gkmasmod.cards.sense;
 
+import com.evacipated.cardcrawl.mod.stslib.patches.FlavorText;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
@@ -9,12 +10,14 @@ import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.helpers.CardHelper;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.vfx.combat.VerticalImpactEffect;
 import gkmasmod.cards.AbstractDefaultCard;
 import gkmasmod.characters.PlayerColorEnum;
+import gkmasmod.powers.GoodImpression;
 import gkmasmod.powers.GoodTune;
 import gkmasmod.utils.NameHelper;
 import gkmasmod.utils.PlayerHelper;
@@ -37,13 +40,16 @@ public class FirstRamune extends AbstractDefaultCard {
     private static final CardColor COLOR = PlayerColorEnum.gkmasModColorSense;
     private static final CardRarity RARITY = CardRarity.BASIC;
     private static final CardTarget TARGET = CardTarget.ENEMY;
+    private String flavor = "";
 
     public FirstRamune() {
-        super(ID, NAME, IMG_PATH, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET,"color");
+        super(ID, NAME, IMG_PATH, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET, "color");
         this.baseDamage = ATTACK_DMG;
         this.baseMagicNumber = BASE_MAGIC;
         this.magicNumber = this.baseMagicNumber;
         this.exhaust = true;
+        FlavorText.AbstractCardFlavorFields.boxColor.set(this, CardHelper.getColor(73, 224, 254));
+        flavor = FlavorText.CardStringsFlavorField.flavor.get(CARD_STRINGS);
     }
 
 
@@ -57,9 +63,21 @@ public class FirstRamune extends AbstractDefaultCard {
         addToBot(new DamageAction(m, new DamageInfo(p, damage_, this.damageTypeForTurn), AbstractGameAction.AttackEffect.BLUNT_LIGHT));
     }
 
+    public void applyPowers() {
+        super.applyPowers();
+        int count = PlayerHelper.getPowerAmount(AbstractDungeon.player, GoodTune.POWER_ID);
+        if (count == 0) {
+            // TODO 本地化
+            FlavorText.AbstractCardFlavorFields.flavor.set(this, "当前无法使用");
+            return;
+        }
+        int damage_ = (int) (1.0F * count * this.magicNumber / 100);
+        FlavorText.AbstractCardFlavorFields.flavor.set(this, String.format(flavor, calculateDamage(damage_)));
+    }
+
     @Override
     public boolean canUse(AbstractPlayer p, AbstractMonster m) {
-        if (AbstractDungeon.player.hasPower(GoodTune.POWER_ID)){
+        if (AbstractDungeon.player.hasPower(GoodTune.POWER_ID)) {
             return true;
         }
         // TODO 本地化
@@ -79,7 +97,8 @@ public class FirstRamune extends AbstractDefaultCard {
             upgradeName();
             upgradeDamage(UPGRADE_PLUS_DMG);
             upgradeMagicNumber(UPGRADE_PLUS_MAGIC);
-            this.rawDescription = CARD_STRINGS.UPGRADE_DESCRIPTION;
+            if (CARD_STRINGS.UPGRADE_DESCRIPTION != null)
+                this.rawDescription = CARD_STRINGS.UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }
     }

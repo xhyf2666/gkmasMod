@@ -42,17 +42,17 @@ public class Challenge extends AbstractDefaultCard {
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new DamageAction((AbstractCreature)m, new DamageInfo((AbstractCreature)p, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
+        AbstractDungeon.actionManager.addToBottom((AbstractGameAction) new DamageAction((AbstractCreature) m, new DamageInfo((AbstractCreature) p, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
     }
 
     @Override
     public AbstractCard makeCopy() {
-        return (AbstractCard)new Challenge();
+        return (AbstractCard) new Challenge();
     }
 
     @Override
     public boolean canUse(AbstractPlayer p, AbstractMonster m) {
-        if (AbstractDungeon.player.hasPower(GoodTune.POWER_ID)){
+        if (AbstractDungeon.player.hasPower(GoodTune.POWER_ID)) {
             return true;
         }
         // TODO 本地化
@@ -65,7 +65,8 @@ public class Challenge extends AbstractDefaultCard {
         if (!this.upgraded) {
             upgradeName();
             upgradeDamage(UPGRADE_PLUS_DMG);
-            this.rawDescription = CARD_STRINGS.UPGRADE_DESCRIPTION;
+            if (CARD_STRINGS.UPGRADE_DESCRIPTION != null)
+                this.rawDescription = CARD_STRINGS.UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }
     }

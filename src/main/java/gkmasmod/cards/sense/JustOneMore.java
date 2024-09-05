@@ -47,20 +47,19 @@ public class JustOneMore extends AbstractDefaultCard {
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        int count = AbstractDungeon.player.getPower(GoodTune.POWER_ID)==null?0:AbstractDungeon.player.getPower(GoodTune.POWER_ID).amount;
-        if (count>0){
-            addToBot((AbstractGameAction)new RemoveSpecificPowerAction(p, p, GoodTune.POWER_ID));
-        }
-        else{
-            addToBot((AbstractGameAction)new ApplyPowerAction((AbstractCreature)p, (AbstractCreature)p, (AbstractPower)new NotGoodTune((AbstractCreature)p, 1), 1));
+        int count = AbstractDungeon.player.getPower(GoodTune.POWER_ID) == null ? 0 : AbstractDungeon.player.getPower(GoodTune.POWER_ID).amount;
+        if (count > 0) {
+            addToBot((AbstractGameAction) new RemoveSpecificPowerAction(p, p, GoodTune.POWER_ID));
+        } else {
+            addToBot((AbstractGameAction) new ApplyPowerAction((AbstractCreature) p, (AbstractCreature) p, (AbstractPower) new NotGoodTune((AbstractCreature) p, 1), 1));
 
         }
-        addToBot((AbstractGameAction)new LimitBreakAction());
+        addToBot((AbstractGameAction) new LimitBreakAction());
     }
 
     @Override
     public AbstractCard makeCopy() {
-        return (AbstractCard)new JustOneMore();
+        return (AbstractCard) new JustOneMore();
     }
 
     @Override
@@ -68,11 +67,11 @@ public class JustOneMore extends AbstractDefaultCard {
         if (!this.upgraded) {
             upgradeName();
             this.exhaust = false;
-            this.rawDescription = CARD_STRINGS.UPGRADE_DESCRIPTION;
+            if (CARD_STRINGS.UPGRADE_DESCRIPTION != null)
+                this.rawDescription = CARD_STRINGS.UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }
     }
-
 
 
 }

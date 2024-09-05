@@ -1,5 +1,6 @@
 package gkmasmod.relics;
 import basemod.abstracts.CustomRelic;
+import com.badlogic.gdx.Gdx;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.actions.common.RelicAboveCreatureAction;
@@ -19,6 +20,7 @@ public class UltimateSourceOfHappiness extends CustomRelic {
 
     private static final String IMG = String.format("img/relics/%s.png",CLASSNAME);
     private static final String IMG_OTL = String.format("img/relics/%s.png",CLASSNAME);
+    private static final String IMG_LARGE = String.format("img/relics/large/%s.png",CLASSNAME);
 
     private static final RelicTier RARITY = RelicTier.STARTER;
 
@@ -63,4 +65,12 @@ public class UltimateSourceOfHappiness extends CustomRelic {
     public  void  onPlayerEndTurn(){
     }
 
+    public void loadLargeImg() {
+        if (this.largeImg == null) {
+            if (Gdx.files.internal(IMG_LARGE).exists()) {
+                this.largeImg = ImageMaster.loadImage(IMG_LARGE);
+            }
+        }
+
+    }
 }

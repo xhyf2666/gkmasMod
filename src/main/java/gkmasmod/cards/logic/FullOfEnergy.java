@@ -1,5 +1,6 @@
 package gkmasmod.cards.logic;
 
+import com.evacipated.cardcrawl.mod.stslib.patches.FlavorText;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
@@ -10,6 +11,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.helpers.CardHelper;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.DexterityPower;
@@ -27,7 +29,7 @@ public class FullOfEnergy extends AbstractDefaultCard {
     private static final String DESCRIPTION = CARD_STRINGS.DESCRIPTION;
     private static final String IMG_PATH = String.format("img/cards/common/%s.png", CLASSNAME);
 
-    private static final int COST = 1;
+    private static final int COST = 0;
 
     private static final int BASE_MAGIC = 2;
     private static final int UPGRADE_PLUS_MAGIC = 1;
@@ -42,9 +44,10 @@ public class FullOfEnergy extends AbstractDefaultCard {
     private static final CardColor COLOR = PlayerColorEnum.gkmasModColorLogic;
     private static final CardRarity RARITY = CardRarity.BASIC;
     private static final CardTarget TARGET = CardTarget.ENEMY;
+    private String flavor = "";
 
     public FullOfEnergy() {
-        super(ID, NAME, IMG_PATH, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET,"blue");
+        super(ID, NAME, IMG_PATH, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET, "blue");
         this.baseMagicNumber = BASE_MAGIC;
         this.magicNumber = this.baseMagicNumber;
         this.baseHPMagicNumber = BASE_HP;
@@ -54,18 +57,27 @@ public class FullOfEnergy extends AbstractDefaultCard {
         this.baseSecondMagicNumber = BASE_MAGIC2;
         this.secondMagicNumber = this.baseSecondMagicNumber;
         this.exhaust = true;
+        FlavorText.AbstractCardFlavorFields.boxColor.set(this, CardHelper.getColor(73, 224, 254));
+        flavor = FlavorText.CardStringsFlavorField.flavor.get(CARD_STRINGS);
     }
 
 
     public void use(AbstractPlayer p, AbstractMonster m) {
         addToBot(new LoseHPAction(p, p, this.HPMagicNumber));
-        addToBot(new BlockDamageAction(1.0F*this.secondMagicNumber / 100, this.block, p, m));
+        addToBot(new BlockDamageAction(1.0F * this.secondMagicNumber / 100, this.block, p, m));
         addToBot(new ApplyPowerAction(p, p, new DexterityPower(p, this.magicNumber), this.magicNumber));
+    }
+
+    public void applyPowersToBlock() {
+        super.applyPowersToBlock();
+        int count = AbstractDungeon.player.currentBlock + block;
+        int damage_ = (int) (1.0F * count * this.secondMagicNumber / 100);
+        FlavorText.AbstractCardFlavorFields.flavor.set(this, String.format(flavor, calculateDamage(damage_)));
     }
 
     @Override
     public AbstractCard makeCopy() {
-        return (AbstractCard)new FullOfEnergy();
+        return new FullOfEnergy();
     }
 
     @Override
@@ -74,7 +86,8 @@ public class FullOfEnergy extends AbstractDefaultCard {
             upgradeName();
             upgradeMagicNumber(UPGRADE_PLUS_MAGIC);
             upgradeSecondMagicNumber(UPGRADE_PLUS_MAGIC2);
-            this.rawDescription = CARD_STRINGS.UPGRADE_DESCRIPTION;
+            if (CARD_STRINGS.UPGRADE_DESCRIPTION != null)
+                this.rawDescription = CARD_STRINGS.UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }
     }

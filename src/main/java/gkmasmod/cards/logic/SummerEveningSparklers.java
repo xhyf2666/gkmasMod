@@ -40,7 +40,7 @@ public class SummerEveningSparklers extends AbstractDefaultCard {
     private static final CardTarget TARGET = CardTarget.SELF;
 
     public SummerEveningSparklers() {
-        super(ID, NAME, IMG_PATH, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET,"color");
+        super(ID, NAME, IMG_PATH, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET, "color");
         this.baseHPMagicNumber = BASE_HP;
         this.HPMagicNumber = this.baseHPMagicNumber;
         this.baseMagicNumber = BASE_MAGIC;
@@ -56,9 +56,9 @@ public class SummerEveningSparklers extends AbstractDefaultCard {
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
         addToBot(new LoseHPAction(p, p, this.HPMagicNumber));
-        addToBot(new ApplyPowerAction(p, p, new GoodImpression(p, this.magicNumber),this.magicNumber));
-        addToBot(new ApplyPowerAction(p, p, new DexterityPower(p, this.secondMagicNumber),this.secondMagicNumber));
-        addToBot(new ApplyPowerAction(p, p, new SummerEveningSparklersPower(p, this.thirdMagicNumber),this.thirdMagicNumber));
+        addToBot(new ApplyPowerAction(p, p, new GoodImpression(p, this.magicNumber), this.magicNumber));
+        addToBot(new ApplyPowerAction(p, p, new DexterityPower(p, this.secondMagicNumber), this.secondMagicNumber));
+        addToBot(new ApplyPowerAction(p, p, new SummerEveningSparklersPower(p, this.thirdMagicNumber), this.thirdMagicNumber));
     }
 
     @Override
@@ -72,7 +72,8 @@ public class SummerEveningSparklers extends AbstractDefaultCard {
             upgradeName();
             upgradeMagicNumber(UPGRADE_PLUS_MAGIC);
             upgradeSecondMagicNumber(UPGRADE_PLUS_MAGIC2);
-            this.rawDescription = CARD_STRINGS.UPGRADE_DESCRIPTION;
+            if (CARD_STRINGS.UPGRADE_DESCRIPTION != null)
+                this.rawDescription = CARD_STRINGS.UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }
     }

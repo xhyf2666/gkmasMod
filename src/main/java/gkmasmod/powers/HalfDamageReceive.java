@@ -24,7 +24,6 @@ public class HalfDamageReceive extends AbstractPower {
     // 能力的描述
     private static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
 
-    private static boolean firstGet = true;
 
     String path128 = String.format("img/powers/%s_84.png",CLASSNAME);;
     String path48 = String.format("img/powers/%s_32.png",CLASSNAME);;
@@ -43,12 +42,6 @@ public class HalfDamageReceive extends AbstractPower {
     }
 
     public void stackPower(int stackAmount) {
-        if(this.amount == 0){
-            firstGet = true;
-        }
-        else{
-            firstGet = false;
-        }
         super.stackPower(stackAmount);
     }
 
@@ -65,28 +58,11 @@ public class HalfDamageReceive extends AbstractPower {
         flash();
 
         if(this.amount > 0){
-            if(firstGet)
-                firstGet = false;
-            else
                 addToBot((AbstractGameAction)new ReducePowerAction(this.owner, this.owner, POWER_ID, 1));
         }
         else
             addToBot((AbstractGameAction)new RemoveSpecificPowerAction(this.owner, this.owner, POWER_ID));
     }
 
-    public void onVictory() {
-        firstGet = true;
-    }
-
-    public void atStartOfTurn() {
-        if (this.amount == 0) {
-            firstGet = true;
-        }
-    }
-
-
-    public void onInitialApplication() {
-        firstGet = true;
-    }
 
 }

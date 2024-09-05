@@ -37,7 +37,7 @@ public class GoldfishScoopingChallenge extends AbstractDefaultCard {
     private static final CardTarget TARGET = CardTarget.SELF;
 
     public GoldfishScoopingChallenge() {
-        super(ID, NAME, IMG_PATH, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET,"color");
+        super(ID, NAME, IMG_PATH, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET, "color");
         this.baseHPMagicNumber = BASE_HP;
         this.HPMagicNumber = this.baseHPMagicNumber;
         this.baseMagicNumber = BASE_MAGIC;
@@ -49,7 +49,7 @@ public class GoldfishScoopingChallenge extends AbstractDefaultCard {
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
         addToBot(new LoseHPAction(p, p, this.HPMagicNumber));
-        addToBot(new ApplyPowerAction(p, p, new GoodImpression(p, this.magicNumber),this.magicNumber));
+        addToBot(new ApplyPowerAction(p, p, new GoodImpression(p, this.magicNumber), this.magicNumber));
         addToBot(new GainEnergyAction(1));
         addToBot(new DrawCardAction(1));
 
@@ -65,7 +65,8 @@ public class GoldfishScoopingChallenge extends AbstractDefaultCard {
         if (!this.upgraded) {
             upgradeName();
             upgradeMagicNumber(UPGRADE_PLUS_MAGIC);
-            this.rawDescription = CARD_STRINGS.UPGRADE_DESCRIPTION;
+            if (CARD_STRINGS.UPGRADE_DESCRIPTION != null)
+                this.rawDescription = CARD_STRINGS.UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }
     }
