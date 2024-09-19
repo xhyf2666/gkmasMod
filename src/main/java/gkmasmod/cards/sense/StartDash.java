@@ -4,35 +4,32 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.actions.common.GainBlockAction;
-import com.megacrit.cardcrawl.actions.common.LoseHPAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import gkmasmod.cards.AbstractDefaultCard;
-import gkmasmod.characters.IdolCharacter;
+import gkmasmod.cards.GkmasCard;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.powers.DoubleDamageReceive;
-import gkmasmod.ui.SkinSelectScreen;
+import gkmasmod.screen.SkinSelectScreen;
 import gkmasmod.utils.NameHelper;
 
-public class StartDash extends AbstractDefaultCard {
+public class StartDash extends GkmasCard {
     private static final String CLASSNAME = StartDash.class.getSimpleName();
     public static final String ID = NameHelper.makePath(CLASSNAME);
     private static final CardStrings CARD_STRINGS = CardCrawlGame.languagePack.getCardStrings(ID);
 
     private static final String NAME = CARD_STRINGS.NAME;
     private static final String DESCRIPTION = CARD_STRINGS.DESCRIPTION;
-    private static String IMG_PATH = String.format("img/idol/%s/cards/%s.png", SkinSelectScreen.Inst.idolName, CLASSNAME);
+    private static String IMG_PATH = String.format("gkmasModResource/img/idol/%s/cards/%s.png", SkinSelectScreen.Inst.idolName, CLASSNAME);
 
     private static final int COST = 2;
-    private static final int ATTACK_DMG = 15;
-    private static final int UPGRADE_PLUS_DMG = 5;
-    private static final int BLOCK_AMT = 7;
+    private static final int ATTACK_DMG = 20;
+    private static final int UPGRADE_PLUS_DMG = 7;
+    private static final int BLOCK_AMT = 12;
     private static final int UPGRADE_PLUS_BLOCK = 3;
     private static final int BASE_MAGIC = 2;
 
@@ -42,8 +39,8 @@ public class StartDash extends AbstractDefaultCard {
     private static final CardTarget TARGET = CardTarget.ENEMY;
 
     public StartDash() {
-        super(ID, NAME, String.format("img/idol/%s/cards/%s.png", SkinSelectScreen.Inst.idolName, CLASSNAME), COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        IMG_PATH = String.format("img/idol/%s/cards/%s.png", SkinSelectScreen.Inst.idolName, CLASSNAME);
+        super(ID, NAME, String.format("gkmasModResource/img/idol/%s/cards/%s.png", SkinSelectScreen.Inst.idolName, CLASSNAME), COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
+        IMG_PATH = String.format("gkmasModResource/img/idol/%s/cards/%s.png", SkinSelectScreen.Inst.idolName, CLASSNAME);
         this.updateShowImg = true;
         this.baseDamage = ATTACK_DMG;
         this.baseBlock = BLOCK_AMT;

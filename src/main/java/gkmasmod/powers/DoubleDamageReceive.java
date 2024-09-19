@@ -23,10 +23,8 @@ public class DoubleDamageReceive extends AbstractPower {
     // 能力的描述
     private static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
 
-    private static boolean firstGet = true;
-
-    String path128 = String.format("img/powers/%s_84.png",CLASSNAME);;
-    String path48 = String.format("img/powers/%s_32.png",CLASSNAME);;
+    String path128 = String.format("gkmasModResource/img/powers/%s_84.png",CLASSNAME);;
+    String path48 = String.format("gkmasModResource/img/powers/%s_32.png",CLASSNAME);;
 
     public DoubleDamageReceive(AbstractCreature owner, int Amount) {
         this.name = NAME;
@@ -41,15 +39,6 @@ public class DoubleDamageReceive extends AbstractPower {
         this.updateDescription();
     }
 
-    public void stackPower(int stackAmount) {
-        if(this.amount == 0){
-            firstGet = true;
-        }
-        else{
-            firstGet = false;
-        }
-        super.stackPower(stackAmount);
-    }
 
     public void updateDescription() {
         this.description = String.format(DESCRIPTIONS[0], this.amount);
@@ -60,32 +49,21 @@ public class DoubleDamageReceive extends AbstractPower {
         return damage * 2.0F;
     }
 
+    public int onAttacked(DamageInfo info, int damageAmount) {
+        if(info.type == DamageInfo.DamageType.HP_LOSS){
+            return (int) (damageAmount*2.0F);
+        }
+        return damageAmount;
+    }
+
     public void atEndOfRound() {
         flash();
-
         if(this.amount > 0){
-            if(firstGet)
-                firstGet = false;
-            else
-                addToBot((AbstractGameAction)new ReducePowerAction(this.owner, this.owner, POWER_ID, 1));
+            addToBot(new ReducePowerAction(this.owner, this.owner, POWER_ID, 1));
         }
         else
-            addToBot((AbstractGameAction)new RemoveSpecificPowerAction(this.owner, this.owner, POWER_ID));
+            addToBot(new RemoveSpecificPowerAction(this.owner, this.owner, POWER_ID));
     }
 
-    public void onVictory() {
-        firstGet = true;
-    }
-
-    public void atStartOfTurn() {
-        if (this.amount == 0) {
-            firstGet = true;
-        }
-    }
-
-
-    public void onInitialApplication() {
-        firstGet = true;
-    }
 
 }

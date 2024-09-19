@@ -24,8 +24,8 @@ public class NotGoodTune extends AbstractPower {
     private static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
 
 
-    String path128 = String.format("img/powers/%s_84.png",CLASSNAME);;
-    String path48 = String.format("img/powers/%s_32.png",CLASSNAME);;
+    String path128 = String.format("gkmasModResource/img/powers/%s_84.png",CLASSNAME);;
+    String path48 = String.format("gkmasModResource/img/powers/%s_32.png",CLASSNAME);;
 
     public NotGoodTune(AbstractCreature owner, int Amount) {
         this.name = NAME;
@@ -47,12 +47,12 @@ public class NotGoodTune extends AbstractPower {
         this.description = String.format(DESCRIPTIONS[0], this.amount);
     }
 
-    public void atEndOfRound() {
+    public void atEndOfTurnPreEndTurnCards(boolean isPlayer){
         flash();
         if (this.amount == 0) {
-            addToBot((AbstractGameAction)new RemoveSpecificPowerAction(this.owner, this.owner, POWER_ID));
+            addToBot(new RemoveSpecificPowerAction(this.owner, this.owner, POWER_ID));
         } else {
-            addToBot((AbstractGameAction)new ReducePowerAction(this.owner, this.owner, POWER_ID, 1));
+            addToBot(new ReducePowerAction(this.owner, this.owner, POWER_ID, 1));
         }
 
     }
@@ -60,7 +60,6 @@ public class NotGoodTune extends AbstractPower {
 
     public float atDamageGive(float damage, DamageInfo.DamageType type) {
         if (type == DamageInfo.DamageType.NORMAL) {
-            // TODO 支持绝好调
             return damage * 2F/3F;
         }
         return damage;

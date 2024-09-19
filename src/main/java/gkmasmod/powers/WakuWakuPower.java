@@ -23,8 +23,8 @@ public class WakuWakuPower extends AbstractPower {
 
     private static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
 
-    String path128 = String.format("img/powers/%s_84.png",CLASSNAME);;
-    String path48 = String.format("img/powers/%s_32.png",CLASSNAME);;
+    String path128 = String.format("gkmasModResource/img/powers/%s_84.png",CLASSNAME);;
+    String path48 = String.format("gkmasModResource/img/powers/%s_32.png",CLASSNAME);;
 
     public WakuWakuPower(AbstractCreature owner, int Amount) {
         this.name = NAME;
@@ -44,7 +44,7 @@ public class WakuWakuPower extends AbstractPower {
     }
 
     public void onUseCard(AbstractCard card, UseCardAction action) {
-        if(card.type == AbstractCard.CardType.SKILL) {
+        if(card.type == AbstractCard.CardType.SKILL||card.type == AbstractCard.CardType.POWER) {
             addToTop(new ApplyPowerAction(this.owner, this.owner, new DexterityPower(this.owner, amount), amount));
         }
     }

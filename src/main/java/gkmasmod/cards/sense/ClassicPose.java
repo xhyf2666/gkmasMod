@@ -9,19 +9,19 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import gkmasmod.cards.AbstractDefaultCard;
+import gkmasmod.cards.GkmasCard;
 import gkmasmod.characters.PlayerColorEnum;
-import gkmasmod.ui.SkinSelectScreen;
+import gkmasmod.screen.SkinSelectScreen;
 import gkmasmod.utils.NameHelper;
 
-public class ClassicPose extends AbstractDefaultCard {
+public class ClassicPose extends GkmasCard {
     private static final String CLASSNAME = ClassicPose.class.getSimpleName();
     public static final String ID = NameHelper.makePath(CLASSNAME);
     private static final CardStrings CARD_STRINGS = CardCrawlGame.languagePack.getCardStrings(ID);
 
     private static final String NAME = CARD_STRINGS.NAME;
     private static final String DESCRIPTION = CARD_STRINGS.DESCRIPTION;
-    private static String IMG_PATH = String.format("img/idol/%s/cards/%s.png", SkinSelectScreen.Inst.idolName, CLASSNAME);
+    private static String IMG_PATH = String.format("gkmasModResource/img/idol/%s/cards/%s.png", SkinSelectScreen.Inst.idolName, CLASSNAME);
 
     private static final int COST = 1;
     private static final int ATTACK_DMG = 11;
@@ -33,8 +33,8 @@ public class ClassicPose extends AbstractDefaultCard {
     private static final CardTarget TARGET = CardTarget.ENEMY;
 
     public ClassicPose() {
-        super(ID, NAME, String.format("img/idol/%s/cards/%s.png", SkinSelectScreen.Inst.idolName, CLASSNAME), COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        IMG_PATH = String.format("img/idol/%s/cards/%s.png", SkinSelectScreen.Inst.idolName, CLASSNAME);
+        super(ID, NAME, String.format("gkmasModResource/img/idol/%s/cards/%s.png", SkinSelectScreen.Inst.idolName, CLASSNAME), COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
+        IMG_PATH = String.format("gkmasModResource/img/idol/%s/cards/%s.png", SkinSelectScreen.Inst.idolName, CLASSNAME);
         this.updateShowImg = true;
         this.baseDamage = ATTACK_DMG;
         this.isEthereal = true;

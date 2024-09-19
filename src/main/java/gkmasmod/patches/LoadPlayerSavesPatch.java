@@ -3,21 +3,11 @@ package gkmasmod.patches;
 import basemod.patches.com.megacrit.cardcrawl.saveAndContinue.SaveFile.ModSaves;
 import com.evacipated.cardcrawl.modthespire.lib.SpireInsertPatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
-import com.evacipated.cardcrawl.modthespire.lib.SpirePostfixPatch;
 import com.google.gson.Gson;
-import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.powers.AbstractPower;
-import com.megacrit.cardcrawl.powers.DexterityPower;
-import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.saveAndContinue.SaveAndContinue;
 import com.megacrit.cardcrawl.saveAndContinue.SaveFile;
 import gkmasmod.modcore.GkmasMod;
-import gkmasmod.powers.GoodImpression;
-import gkmasmod.powers.GoodTune;
-import gkmasmod.relics.*;
-import gkmasmod.ui.SkinSelectScreen;
+import gkmasmod.screen.SkinSelectScreen;
 
 public class LoadPlayerSavesPatch {
 

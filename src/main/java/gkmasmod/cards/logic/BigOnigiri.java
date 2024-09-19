@@ -10,18 +10,19 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.CardHelper;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import gkmasmod.cards.AbstractDefaultCard;
+import gkmasmod.cards.GkmasCard;
+import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.utils.NameHelper;
 
-public class BigOnigiri extends AbstractDefaultCard {
+public class BigOnigiri extends GkmasCard {
     private static final String CLASSNAME = BigOnigiri.class.getSimpleName();
     public static final String ID = NameHelper.makePath(CLASSNAME);
     private static final CardStrings CARD_STRINGS = CardCrawlGame.languagePack.getCardStrings(ID);
 
     private static final String NAME = CARD_STRINGS.NAME;
     private static final String DESCRIPTION = CARD_STRINGS.DESCRIPTION;
-    private static final String IMG_PATH = String.format("img/cards/common/%s.png", CLASSNAME);
+    private static final String IMG_PATH = String.format("gkmasModResource/img/cards/common/%s.png", CLASSNAME);
 
     private static final int COST = 0;
 
@@ -50,6 +51,7 @@ public class BigOnigiri extends AbstractDefaultCard {
         this.exhaust = true;
         FlavorText.AbstractCardFlavorFields.boxColor.set(this, CardHelper.getColor(73, 224, 254));
         flavor = FlavorText.CardStringsFlavorField.flavor.get(CARD_STRINGS);
+        this.tags.add(GkmasCardTag.IDOL_CARD_TAG);
     }
 
 

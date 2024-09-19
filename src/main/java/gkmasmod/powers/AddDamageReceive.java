@@ -20,10 +20,8 @@ public class AddDamageReceive extends AbstractPower {
     // 能力的描述
     private static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
 
-    private static boolean firstGet = true;
-
-    String path128 = String.format("img/powers/%s_84.png",CLASSNAME);;
-    String path48 = String.format("img/powers/%s_32.png",CLASSNAME);;
+    String path128 = String.format("gkmasModResource/img/powers/%s_84.png",CLASSNAME);;
+    String path48 = String.format("gkmasModResource/img/powers/%s_32.png",CLASSNAME);;
 
     public AddDamageReceive(AbstractCreature owner, int Amount) {
         this.name = NAME;
@@ -45,6 +43,13 @@ public class AddDamageReceive extends AbstractPower {
 
     public float atDamageReceive(float damage, DamageInfo.DamageType type) {
         return damage + this.amount;
+    }
+
+    public int onAttacked(DamageInfo info, int damageAmount) {
+        if(info.type == DamageInfo.DamageType.HP_LOSS){
+            return damageAmount+ this.amount;
+        }
+        return damageAmount;
     }
 
 }

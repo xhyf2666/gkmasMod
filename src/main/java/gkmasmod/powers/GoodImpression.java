@@ -13,6 +13,8 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
+import gkmasmod.actions.GoodImpressionAutoDamageAction;
+import gkmasmod.characters.IdolCharacter;
 import gkmasmod.relics.GreenUniformBracelet;
 import gkmasmod.utils.NameHelper;
 import org.lwjgl.Sys;
@@ -28,10 +30,8 @@ public class GoodImpression extends AbstractPower {
     // 能力的描述
     private static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
 
-    private static boolean firstGet = true;
-
-    String path128 = String.format("img/powers/%s_84.png",CLASSNAME);;
-    String path48 = String.format("img/powers/%s_32.png",CLASSNAME);;
+    String path128 = String.format("gkmasModResource/img/powers/%s_84.png",CLASSNAME);;
+    String path48 = String.format("gkmasModResource/img/powers/%s_32.png",CLASSNAME);;
 
     public GoodImpression(AbstractCreature owner, int Amount) {
         this.name = NAME;
@@ -47,12 +47,6 @@ public class GoodImpression extends AbstractPower {
     }
 
     public void stackPower(int stackAmount) {
-        if(this.amount == 0){
-            firstGet = true;
-        }
-        else{
-            firstGet = false;
-        }
         super.stackPower(stackAmount);
         if (this.amount == 0)
             addToTop(new RemoveSpecificPowerAction(this.owner, this.owner, this.ID));
@@ -64,36 +58,8 @@ public class GoodImpression extends AbstractPower {
 
     public void atEndOfTurnPreEndTurnCards(boolean isPlayer) {
         flash();
-
-        // TODO 先结算回合结束的好印象加成效果
-        if(this.amount > 0){
-            if(firstGet)
-                firstGet = false;
-            else
-                addToBot(new ReducePowerAction(this.owner, this.owner, POWER_ID, 1));
-            addToBot(new DamageRandomEnemyAction(new DamageInfo(null, this.amount, DamageInfo.DamageType.THORNS), AbstractGameAction.AttackEffect.POISON));
-        }
-        else
-            addToBot(new RemoveSpecificPowerAction(this.owner, this.owner, POWER_ID));
+        addToBot(new GoodImpressionAutoDamageAction(this.owner));
     }
 
-    public void onVictory() {
-        firstGet = true;
-    }
-
-    public void atStartOfTurn() {
-        if (this.amount == 0) {
-            firstGet = true;
-        }
-    }
-
-
-    public void onInitialApplication() {
-        firstGet = true;
-//        if (AbstractDungeon.player.hasRelic(GreenUniformBracelet.ID)){
-//            System.out.println("GoodImpression stackPower");
-//            ((GreenUniformBracelet) AbstractDungeon.player.getRelic(GreenUniformBracelet.ID)).onGoodImpressionIncrease();
-//        }
-    }
 
 }

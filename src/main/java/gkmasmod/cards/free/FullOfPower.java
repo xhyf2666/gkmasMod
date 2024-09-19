@@ -7,29 +7,27 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import gkmasmod.cards.AbstractDefaultCard;
-import gkmasmod.characters.IdolCharacter;
+import gkmasmod.cards.GkmasCard;
 import gkmasmod.characters.PlayerColorEnum;
-import gkmasmod.powers.GoodImpression;
 import gkmasmod.powers.HalfDamageReceive;
-import gkmasmod.ui.SkinSelectScreen;
+import gkmasmod.screen.SkinSelectScreen;
 import gkmasmod.utils.NameHelper;
 
-public class FullOfPower extends AbstractDefaultCard {
+public class FullOfPower extends GkmasCard {
     private static final String CLASSNAME = FullOfPower.class.getSimpleName();
     public static final String ID = NameHelper.makePath(CLASSNAME);
     private static final CardStrings CARD_STRINGS = CardCrawlGame.languagePack.getCardStrings(ID);
 
     private static final String NAME = CARD_STRINGS.NAME;
     private static final String DESCRIPTION = CARD_STRINGS.DESCRIPTION;
-    private static String IMG_PATH = String.format("img/idol/%s/cards/%s.png", SkinSelectScreen.Inst.idolName, CLASSNAME);
+    private static String IMG_PATH = String.format("gkmasModResource/img/idol/%s/cards/%s.png", SkinSelectScreen.Inst.idolName, CLASSNAME);
 
     private static final int COST = 0;
     private static final int BASE_MAGIC = 1;
     private static final int UPGRADE_PLUS_MAGIC = 1;
 
-    private static final int BLOCK_AMT = 2;
-    private static final int UPGRADE_PLUS_BLOCK = 1;
+    private static final int BLOCK_AMT = 3;
+    private static final int UPGRADE_PLUS_BLOCK = 2;
 
     private static final CardType TYPE = CardType.SKILL;
     private static final CardColor COLOR = PlayerColorEnum.gkmasModColor;
@@ -37,8 +35,8 @@ public class FullOfPower extends AbstractDefaultCard {
     private static final CardTarget TARGET = CardTarget.SELF;
 
     public FullOfPower() {
-        super(ID, NAME, String.format("img/idol/%s/cards/%s.png", SkinSelectScreen.Inst.idolName, CLASSNAME), COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        IMG_PATH = String.format("img/idol/%s/cards/%s.png", SkinSelectScreen.Inst.idolName, CLASSNAME);
+        super(ID, NAME, String.format("gkmasModResource/img/idol/%s/cards/%s.png", SkinSelectScreen.Inst.idolName, CLASSNAME), COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
+        IMG_PATH = String.format("gkmasModResource/img/idol/%s/cards/%s.png", SkinSelectScreen.Inst.idolName, CLASSNAME);
         this.updateShowImg = true;
         this.baseMagicNumber = BASE_MAGIC;
         this.magicNumber = this.baseMagicNumber;

@@ -1,39 +1,30 @@
 package gkmasmod.cards.sense;
 
-import com.badlogic.gdx.graphics.Pixmap;
-import com.badlogic.gdx.graphics.Texture;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
-import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
-import com.megacrit.cardcrawl.vfx.TextAboveCreatureEffect;
 import com.megacrit.cardcrawl.vfx.combat.VerticalImpactEffect;
-import gkmasmod.cards.AbstractDefaultCard;
+import gkmasmod.cards.GkmasCard;
+import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.utils.NameHelper;
 
-import javax.imageio.ImageIO;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-
-public class BraveStep extends AbstractDefaultCard {
+public class BraveStep extends GkmasCard {
     private static final String CLASSNAME = BraveStep.class.getSimpleName();
     public static final String ID = NameHelper.makePath(CLASSNAME);
     private static final CardStrings CARD_STRINGS = CardCrawlGame.languagePack.getCardStrings(ID);
 
     private static final String NAME = CARD_STRINGS.NAME;
     private static final String DESCRIPTION = CARD_STRINGS.DESCRIPTION;
-    private static final String IMG_PATH = String.format("img/cards/common/%s.png", CLASSNAME);
+    private static final String IMG_PATH = String.format("gkmasModResource/img/cards/common/%s.png", CLASSNAME);
 
     private static final int COST = 1;
     private static final int ATTACK_DMG = 17;
@@ -54,6 +45,8 @@ public class BraveStep extends AbstractDefaultCard {
         this.baseMagicNumber = BASE_MAGIC;
         this.magicNumber = this.baseMagicNumber;
         this.exhaust = true;
+        this.tags.add(GkmasCardTag.FOCUS_TAG);
+        this.tags.add(GkmasCardTag.IDOL_CARD_TAG);
     }
 
 

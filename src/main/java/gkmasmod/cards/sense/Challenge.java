@@ -10,22 +10,23 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import gkmasmod.cards.AbstractDefaultCard;
+import gkmasmod.cards.GkmasCard;
+import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.powers.GoodTune;
 import gkmasmod.utils.NameHelper;
 
-public class Challenge extends AbstractDefaultCard {
+public class Challenge extends GkmasCard {
     private static final String CLASSNAME = Challenge.class.getSimpleName();
     public static final String ID = NameHelper.makePath(CLASSNAME);
     private static final CardStrings CARD_STRINGS = CardCrawlGame.languagePack.getCardStrings(ID);
 
     private static final String NAME = CARD_STRINGS.NAME;
     private static final String DESCRIPTION = CARD_STRINGS.DESCRIPTION;
-    private static final String IMG_PATH = String.format("img/cards/common/%s.png", CLASSNAME);
+    private static final String IMG_PATH = String.format("gkmasModResource/img/cards/common/%s.png", CLASSNAME);
 
     private static final int COST = 2;
-    private static final int ATTACK_DMG = 12;
+    private static final int ATTACK_DMG = 16;
     private static final int UPGRADE_PLUS_DMG = 6;
 
     private static final CardType TYPE = CardType.ATTACK;
@@ -37,17 +38,18 @@ public class Challenge extends AbstractDefaultCard {
         super(ID, NAME, IMG_PATH, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.baseDamage = ATTACK_DMG;
         this.exhaust = true;
+        this.tags.add(GkmasCardTag.GOOD_TUNE_TAG);
     }
 
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        AbstractDungeon.actionManager.addToBottom((AbstractGameAction) new DamageAction((AbstractCreature) m, new DamageInfo((AbstractCreature) p, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
+        AbstractDungeon.actionManager.addToBottom( new DamageAction( m, new DamageInfo( p, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
     }
 
     @Override
     public AbstractCard makeCopy() {
-        return (AbstractCard) new Challenge();
+        return  new Challenge();
     }
 
     @Override
@@ -55,8 +57,7 @@ public class Challenge extends AbstractDefaultCard {
         if (AbstractDungeon.player.hasPower(GoodTune.POWER_ID)) {
             return true;
         }
-        // TODO 本地化
-        this.cantUseMessage = "好调还不够";
+        this.cantUseMessage = CardCrawlGame.languagePack.getUIString("gkmasMod:NotEnoughGoodTune").TEXT[0];
         return false;
     }
 

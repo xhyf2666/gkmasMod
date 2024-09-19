@@ -2,8 +2,7 @@ package gkmasmod.variables;
 
 import basemod.abstracts.DynamicVariable;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import gkmasmod.cards.AbstractDefaultCard;
-import gkmasmod.utils.NameHelper;
+import gkmasmod.cards.GkmasCard;
 
 
 public class SecondMagicNumber extends DynamicVariable {
@@ -20,22 +19,22 @@ public class SecondMagicNumber extends DynamicVariable {
 
     @Override
     public boolean isModified(AbstractCard card) {
-        return ((AbstractDefaultCard) card).isSecondMagicNumberModified;
+        return ((GkmasCard) card).isSecondMagicNumberModified;
 
     }
 
     @Override
     public int value(AbstractCard card) {
-        return ((AbstractDefaultCard) card).secondMagicNumber;
+        return ((GkmasCard) card).secondMagicNumber;
     }
 
     @Override
     public int baseValue(AbstractCard card) {
-        return ((AbstractDefaultCard) card).baseSecondMagicNumber;
+        return ((GkmasCard) card).baseSecondMagicNumber;
     }
 
     @Override
     public boolean upgraded(AbstractCard card) {
-        return ((AbstractDefaultCard) card).upgradedSecondMagicNumber;
+        return ((GkmasCard) card).upgradedSecondMagicNumber;
     }
 }

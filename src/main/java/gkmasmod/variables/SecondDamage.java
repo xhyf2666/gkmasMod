@@ -2,7 +2,7 @@ package gkmasmod.variables;
 
 import basemod.abstracts.DynamicVariable;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import gkmasmod.cards.AbstractDefaultCard;
+import gkmasmod.cards.GkmasCard;
 
 
 public class SecondDamage extends DynamicVariable {
@@ -19,22 +19,22 @@ public class SecondDamage extends DynamicVariable {
 
     @Override
     public boolean isModified(AbstractCard card) {
-        return ((AbstractDefaultCard) card).isSecondDamageModified;
+        return ((GkmasCard) card).isSecondDamageModified;
 
     }
 
     @Override
     public int value(AbstractCard card) {
-        return ((AbstractDefaultCard) card).secondDamage;
+        return ((GkmasCard) card).secondDamage;
     }
 
     @Override
     public int baseValue(AbstractCard card) {
-        return ((AbstractDefaultCard) card).baseSecondDamage;
+        return ((GkmasCard) card).baseSecondDamage;
     }
 
     @Override
     public boolean upgraded(AbstractCard card) {
-        return ((AbstractDefaultCard) card).upgradedSecondDamage;
+        return ((GkmasCard) card).upgradedSecondDamage;
     }
 }

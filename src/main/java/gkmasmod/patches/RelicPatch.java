@@ -2,20 +2,14 @@ package gkmasmod.patches;
 
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePostfixPatch;
-import com.evacipated.cardcrawl.modthespire.lib.SpirePrefixPatch;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
-import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.DexterityPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
-import com.megacrit.cardcrawl.screens.charSelect.CharacterSelectScreen;
 import gkmasmod.powers.GoodImpression;
 import gkmasmod.powers.GoodTune;
 import gkmasmod.relics.*;
-import gkmasmod.ui.SkinSelectScreen;
-import org.lwjgl.Sys;
 
 public class RelicPatch {
 

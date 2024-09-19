@@ -19,9 +19,9 @@ public class MemoryBot extends CustomRelic {
 
     public static final String ID = CLASSNAME;
 
-    private static final String IMG = String.format("img/relics/%s.png",CLASSNAME);
-    private static final String IMG_OTL = String.format("img/relics/%s.png",CLASSNAME);
-    private static final String IMG_LARGE = String.format("img/relics/large/%s.png",CLASSNAME);
+    private static final String IMG = String.format("gkmasModResource/img/relics/%s.png",CLASSNAME);
+    private static final String IMG_OTL = String.format("gkmasModResource/img/relics/%s.png",CLASSNAME);
+    private static final String IMG_LARGE = String.format("gkmasModResource/img/relics/large/%s.png",CLASSNAME);
 
     private static final RelicTier RARITY = RelicTier.STARTER;
 
@@ -52,7 +52,7 @@ public class MemoryBot extends CustomRelic {
     public void onPlayerEndTurn() {
         float amount = 1.0F*AbstractDungeon.player.currentHealth / AbstractDungeon.player.maxHealth;
         float HP_ = HP*1.0F/100;
-        if(amount>HP_){
+        if(amount>=HP_){
             flash();
             addToBot(new RelicAboveCreatureAction(AbstractDungeon.player, this));
             addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new GoodImpression(AbstractDungeon.player, magicNumber), magicNumber));

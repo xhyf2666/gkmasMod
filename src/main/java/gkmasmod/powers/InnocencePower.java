@@ -14,6 +14,7 @@ import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import gkmasmod.utils.NameHelper;
+import gkmasmod.utils.PlayerHelper;
 
 public class InnocencePower extends AbstractPower {
     private static final String CLASSNAME = InnocencePower.class.getSimpleName();
@@ -26,8 +27,8 @@ public class InnocencePower extends AbstractPower {
     // 能力的描述
     private static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
 
-    String path128 = String.format("img/powers/%s_84.png",CLASSNAME);;
-    String path48 = String.format("img/powers/%s_32.png",CLASSNAME);;
+    String path128 = String.format("gkmasModResource/img/powers/%s_84.png",CLASSNAME);;
+    String path48 = String.format("gkmasModResource/img/powers/%s_32.png",CLASSNAME);;
 
     public InnocencePower(AbstractCreature owner, int Amount) {
         this.name = NAME;
@@ -46,21 +47,15 @@ public class InnocencePower extends AbstractPower {
 
     // 能力在更新时如何修改描述
     public void updateDescription() {
-        int count = AbstractDungeon.player.getPower(StrengthPower.POWER_ID)==null?0:AbstractDungeon.player.getPower(StrengthPower.POWER_ID).amount;
-        if(count>2){
-            this.description = String.format(DESCRIPTIONS[0], this.amount*2);
-            }
-        else{
-            this.description = String.format(DESCRIPTIONS[0], 0);
-        }
+        this.description = String.format(DESCRIPTIONS[0], this.amount*2);
 
     }
 
-    public void atEndOfRound() {
+    public void atEndOfTurnPreEndTurnCards(boolean isPlayer) {
         flash();
         int count = AbstractDungeon.player.getPower(StrengthPower.POWER_ID)==null?0:AbstractDungeon.player.getPower(StrengthPower.POWER_ID).amount;
         if(count>2){
-            addToBot((AbstractGameAction)new ApplyPowerAction(this.owner, this.owner, new StrengthPower(this.owner, this.amount*2), this.amount*2));
+            addToBot(new ApplyPowerAction(this.owner, this.owner, new StrengthPower(this.owner, this.amount*2), this.amount*2));
         }
     }
 

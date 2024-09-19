@@ -12,6 +12,7 @@ import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
+import gkmasmod.actions.GainBlockWithPowerAction;
 import gkmasmod.powers.GoodTune;
 
 public class SakiCompleteMealRecipe extends CustomRelic {
@@ -20,9 +21,9 @@ public class SakiCompleteMealRecipe extends CustomRelic {
 
     public static final String ID = CLASSNAME;
 
-    private static final String IMG = String.format("img/relics/%s.png",CLASSNAME);
-    private static final String IMG_OTL = String.format("img/relics/%s.png",CLASSNAME);
-    private static final String IMG_LARGE = String.format("img/relics/large/%s.png",CLASSNAME);
+    private static final String IMG = String.format("gkmasModResource/img/relics/%s.png",CLASSNAME);
+    private static final String IMG_OTL = String.format("gkmasModResource/img/relics/%s.png",CLASSNAME);
+    private static final String IMG_LARGE = String.format("gkmasModResource/img/relics/large/%s.png",CLASSNAME);
 
     private static final RelicTier RARITY = RelicTier.STARTER;
 
@@ -60,7 +61,7 @@ public class SakiCompleteMealRecipe extends CustomRelic {
             int count = AbstractDungeon.player.getPower(GoodTune.POWER_ID)==null?0:AbstractDungeon.player.getPower(GoodTune.POWER_ID).amount;
             if(count>GOOD_TUNE){
                 addToBot(new RelicAboveCreatureAction(AbstractDungeon.player, this));
-                addToBot(new GainBlockAction(AbstractDungeon.player, AbstractDungeon.player, magicNumber));
+                addToBot(new GainBlockWithPowerAction(AbstractDungeon.player, AbstractDungeon.player, magicNumber));
                 this.counter--;
                 if (this.counter == 0) {
                     this.grayscale = true;

@@ -24,8 +24,8 @@ public class RainbowDreamerPower extends AbstractPower {
     // 能力的描述
     private static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
 
-    String path128 = String.format("img/powers/%s_84.png",CLASSNAME);;
-    String path48 = String.format("img/powers/%s_32.png",CLASSNAME);;
+    String path128 = String.format("gkmasModResource/img/powers/%s_84.png",CLASSNAME);;
+    String path48 = String.format("gkmasModResource/img/powers/%s_32.png",CLASSNAME);;
 
     public RainbowDreamerPower(AbstractCreature owner, int Amount) {
         this.name = NAME;
@@ -44,21 +44,14 @@ public class RainbowDreamerPower extends AbstractPower {
 
     // 能力在更新时如何修改描述
     public void updateDescription() {
-        int count = PlayerHelper.getPowerAmount(AbstractDungeon.player,GoodImpression.POWER_ID);
-        if(count>2){
-            this.description = String.format(DESCRIPTIONS[0], this.amount*3);
-            }
-        else{
-            this.description = String.format(DESCRIPTIONS[0], 0);
-        }
-
+        this.description = String.format(DESCRIPTIONS[0], this.amount*3);
     }
 
-    public void atEndOfRound() {
+    public void atEndOfTurnPreEndTurnCards(boolean isPlayer) {
         flash();
         int count = PlayerHelper.getPowerAmount(AbstractDungeon.player,GoodImpression.POWER_ID);
         if(count>2){
-            addToBot(new ApplyPowerAction(this.owner, this.owner, new GoodImpression(this.owner, this.amount*3), this.amount*3));
+            addToTop(new ApplyPowerAction(this.owner, this.owner, new GoodImpression(this.owner, this.amount*3), this.amount*3));
         }
     }
 

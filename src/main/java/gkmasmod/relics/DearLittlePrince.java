@@ -18,9 +18,9 @@ public class DearLittlePrince extends CustomRelic {
 
     public static final String ID = CLASSNAME;
 
-    private static final String IMG = String.format("img/relics/%s.png",CLASSNAME);
-    private static final String IMG_OTL = String.format("img/relics/%s.png",CLASSNAME);
-    private static final String IMG_LARGE = String.format("img/relics/large/%s.png",CLASSNAME);
+    private static final String IMG = String.format("gkmasModResource/img/relics/%s.png",CLASSNAME);
+    private static final String IMG_OTL = String.format("gkmasModResource/img/relics/%s.png",CLASSNAME);
+    private static final String IMG_LARGE = String.format("gkmasModResource/img/relics/large/%s.png",CLASSNAME);
 
     private static final RelicTier RARITY = RelicTier.STARTER;
 

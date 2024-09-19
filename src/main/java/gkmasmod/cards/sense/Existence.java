@@ -8,21 +8,23 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.StrengthPower;
-import gkmasmod.cards.AbstractDefaultCard;
+import gkmasmod.actions.GainTrainRoundPowerAction;
+import gkmasmod.cards.GkmasCard;
+import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.powers.GoodTune;
-import gkmasmod.ui.SkinSelectScreen;
+import gkmasmod.screen.SkinSelectScreen;
 import gkmasmod.utils.NameHelper;
 import gkmasmod.utils.PlayerHelper;
 
-public class Existence extends AbstractDefaultCard {
+public class Existence extends GkmasCard {
     private static final String CLASSNAME = Existence.class.getSimpleName();
     public static final String ID = NameHelper.makePath(CLASSNAME);
     private static final CardStrings CARD_STRINGS = CardCrawlGame.languagePack.getCardStrings(ID);
 
     private static final String NAME = CARD_STRINGS.NAME;
     private static final String DESCRIPTION = CARD_STRINGS.DESCRIPTION;
-    private static String IMG_PATH = String.format("img/idol/%s/cards/%s.png", SkinSelectScreen.Inst.idolName, CLASSNAME);
+    private static String IMG_PATH = String.format("gkmasModResource/img/idol/%s/cards/%s.png", SkinSelectScreen.Inst.idolName, CLASSNAME);
 
     private static final int COST = 1;
     private static final int BASE_MAGIC = 2;
@@ -37,13 +39,15 @@ public class Existence extends AbstractDefaultCard {
     private static final CardTarget TARGET = CardTarget.SELF;
 
     public Existence() {
-        super(ID, NAME, String.format("img/idol/%s/cards/%s.png", SkinSelectScreen.Inst.idolName, CLASSNAME), COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        IMG_PATH = String.format("img/idol/%s/cards/%s.png", SkinSelectScreen.Inst.idolName, CLASSNAME);
+        super(ID, NAME, String.format("gkmasModResource/img/idol/%s/cards/%s.png", SkinSelectScreen.Inst.idolName, CLASSNAME), COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
+        IMG_PATH = String.format("gkmasModResource/img/idol/%s/cards/%s.png", SkinSelectScreen.Inst.idolName, CLASSNAME);
         this.updateShowImg = true;
         this.baseMagicNumber = BASE_MAGIC;
         this.magicNumber = this.baseMagicNumber;
         this.baseSecondMagicNumber = BASE_MAGIC2;
         this.secondMagicNumber = this.baseSecondMagicNumber;
+        this.tags.add(GkmasCardTag.GOOD_TUNE_TAG);
+        this.tags.add(GkmasCardTag.FOCUS_TAG);
     }
 
 
@@ -51,7 +55,7 @@ public class Existence extends AbstractDefaultCard {
     public void use(AbstractPlayer p, AbstractMonster m) {
         addToBot(new ApplyPowerAction(p, p, new GoodTune(p, -this.magicNumber), -this.magicNumber));
         addToBot(new ApplyPowerAction(p, p, new StrengthPower(p, this.secondMagicNumber), this.secondMagicNumber));
-        addToBot(new GainEnergyAction(1));
+        addToBot(new GainTrainRoundPowerAction(p,1));
     }
 
     @Override
@@ -59,8 +63,7 @@ public class Existence extends AbstractDefaultCard {
         int count = PlayerHelper.getPowerAmount(p,GoodTune.POWER_ID);
         if (count >= this.magicNumber)
             return true;
-        // TODO 本地化
-        this.cantUseMessage = "好调还不够";
+        this.cantUseMessage = CardCrawlGame.languagePack.getUIString("gkmasMod:NotEnoughGoodTune").TEXT[0];
         return false;
     }
 

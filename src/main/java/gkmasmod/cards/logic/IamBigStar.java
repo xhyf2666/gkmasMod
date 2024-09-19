@@ -1,29 +1,34 @@
 package gkmasmod.cards.logic;
 
+import com.badlogic.gdx.graphics.Color;
+import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.DrawCardAction;
 import com.megacrit.cardcrawl.actions.common.GainEnergyAction;
+import com.megacrit.cardcrawl.actions.watcher.SkipEnemiesTurnAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.DexterityPower;
-import gkmasmod.cards.AbstractDefaultCard;
+import com.megacrit.cardcrawl.vfx.combat.WhirlwindEffect;
+import gkmasmod.actions.GainTrainRoundPowerAction;
+import gkmasmod.cards.GkmasCard;
+import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.powers.GoodImpression;
-import gkmasmod.ui.SkinSelectScreen;
+import gkmasmod.screen.SkinSelectScreen;
 import gkmasmod.utils.NameHelper;
 import gkmasmod.utils.PlayerHelper;
 
-public class IamBigStar extends AbstractDefaultCard {
+public class IamBigStar extends GkmasCard {
     private static final String CLASSNAME = IamBigStar.class.getSimpleName();
     public static final String ID = NameHelper.makePath(CLASSNAME);
     private static final CardStrings CARD_STRINGS = CardCrawlGame.languagePack.getCardStrings(ID);
 
     private static final String NAME = CARD_STRINGS.NAME;
     private static final String DESCRIPTION = CARD_STRINGS.DESCRIPTION;
-    private static String IMG_PATH = String.format("img/idol/%s/cards/%s.png", SkinSelectScreen.Inst.idolName, CLASSNAME);
+    private static String IMG_PATH = String.format("gkmasModResource/img/idol/%s/cards/%s.png", SkinSelectScreen.Inst.idolName, CLASSNAME);
 
     private static final int COST = 1;
     private static final int BASE_MAGIC = 2;
@@ -38,8 +43,8 @@ public class IamBigStar extends AbstractDefaultCard {
     private static final CardTarget TARGET = CardTarget.SELF;
 
     public IamBigStar() {
-        super(ID, NAME, String.format("img/idol/%s/cards/%s.png", SkinSelectScreen.Inst.idolName, CLASSNAME), COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        IMG_PATH = String.format("img/idol/%s/cards/%s.png", SkinSelectScreen.Inst.idolName, CLASSNAME);
+        super(ID, NAME, String.format("gkmasModResource/img/idol/%s/cards/%s.png", SkinSelectScreen.Inst.idolName, CLASSNAME), COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
+        IMG_PATH = String.format("gkmasModResource/img/idol/%s/cards/%s.png", SkinSelectScreen.Inst.idolName, CLASSNAME);
         this.updateShowImg = true;
         this.baseMagicNumber = BASE_MAGIC;
         this.magicNumber = this.baseMagicNumber;
@@ -48,15 +53,17 @@ public class IamBigStar extends AbstractDefaultCard {
         this.baseThirdMagicNumber = BASE_MAGIC3;
         this.thirdMagicNumber = this.baseThirdMagicNumber;
         this.exhaust = true;
+        this.tags.add(GkmasCardTag.GOOD_IMPRESSION_TAG);
+        this.tags.add(GkmasCardTag.OUTSIDE_TAG);
     }
 
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
         addToBot(new ApplyPowerAction(p, p, new GoodImpression(p, -this.magicNumber), -this.magicNumber));
-        //TODO 获得一个额外回合
-        addToBot(new GainEnergyAction(1));
-
+        addToBot(new VFXAction(new WhirlwindEffect(new Color(1.0F, 0.9F, 0.4F, 1.0F), true)));
+        addToBot(new SkipEnemiesTurnAction());
+        addToBot(new GainTrainRoundPowerAction(p,1));
         if(this.upgraded)
             addToBot(new DrawCardAction(1));
     }
@@ -66,8 +73,7 @@ public class IamBigStar extends AbstractDefaultCard {
         int count = PlayerHelper.getPowerAmount(p, GoodImpression.POWER_ID);
         if (count >= this.magicNumber)
             return true;
-        // TODO 本地化
-        this.cantUseMessage = "好印象还不够";
+        this.cantUseMessage = CardCrawlGame.languagePack.getUIString("gkmasMod:NotEnoughGoodImpression").TEXT[0];
         return false;
     }
 

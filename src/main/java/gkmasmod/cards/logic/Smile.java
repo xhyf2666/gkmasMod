@@ -7,22 +7,21 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.DexterityPower;
-import com.megacrit.cardcrawl.powers.StrengthPower;
-import gkmasmod.cards.AbstractDefaultCard;
+import gkmasmod.cards.GkmasCard;
+import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.powers.GoodImpression;
-import gkmasmod.powers.GoodTune;
 import gkmasmod.utils.NameHelper;
 import gkmasmod.utils.PlayerHelper;
 
-public class Smile extends AbstractDefaultCard {
+public class Smile extends GkmasCard {
     private static final String CLASSNAME = Smile.class.getSimpleName();
     public static final String ID = NameHelper.makePath(CLASSNAME);
     private static final CardStrings CARD_STRINGS = CardCrawlGame.languagePack.getCardStrings(ID);
 
     private static final String NAME = CARD_STRINGS.NAME;
     private static final String DESCRIPTION = CARD_STRINGS.DESCRIPTION;
-    private static final String IMG_PATH = String.format("img/cards/common/%s.png", CLASSNAME);
+    private static final String IMG_PATH = String.format("gkmasModResource/img/cards/common/%s.png", CLASSNAME);
 
     private static final int COST = 1;
     private static final int BASE_MAGIC = 3;
@@ -44,6 +43,8 @@ public class Smile extends AbstractDefaultCard {
         this.secondMagicNumber = this.baseSecondMagicNumber;
         this.baseThirdMagicNumber = BASE_MAGIC3;
         this.thirdMagicNumber = this.baseThirdMagicNumber;
+        this.tags.add(GkmasCardTag.YARUKI_TAG);
+        this.tags.add(GkmasCardTag.GOOD_IMPRESSION_TAG);
     }
 
 

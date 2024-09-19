@@ -1,28 +1,26 @@
 package gkmasmod.cards.sense;
 
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
-import com.megacrit.cardcrawl.actions.common.LoseHPAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.DexterityPower;
-import gkmasmod.actions.BlockDamageAction;
-import gkmasmod.cards.AbstractDefaultCard;
+import gkmasmod.cards.GkmasCard;
+import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.powers.GoodTune;
 import gkmasmod.powers.GreatGoodTune;
 import gkmasmod.utils.NameHelper;
 
-public class FirstReward extends AbstractDefaultCard {
+public class FirstReward extends GkmasCard {
     private static final String CLASSNAME = FirstReward.class.getSimpleName();
     public static final String ID = NameHelper.makePath(CLASSNAME);
     private static final CardStrings CARD_STRINGS = CardCrawlGame.languagePack.getCardStrings(ID);
 
     private static final String NAME = CARD_STRINGS.NAME;
     private static final String DESCRIPTION = CARD_STRINGS.DESCRIPTION;
-    private static final String IMG_PATH = String.format("img/cards/common/%s.png", CLASSNAME);
+    private static final String IMG_PATH = String.format("gkmasModResource/img/cards/common/%s.png", CLASSNAME);
 
     private static final int COST = 2;
 
@@ -43,6 +41,8 @@ public class FirstReward extends AbstractDefaultCard {
         this.baseSecondMagicNumber = BASE_MAGIC2;
         this.secondMagicNumber = this.baseSecondMagicNumber;
         this.exhaust = true;
+        this.tags.add(GkmasCardTag.GOOD_TUNE_TAG);
+        this.tags.add(GkmasCardTag.IDOL_CARD_TAG);
     }
 
 

@@ -2,7 +2,7 @@ package gkmasmod.cards.logic;
 
 import com.evacipated.cardcrawl.mod.stslib.patches.FlavorText;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
-import com.megacrit.cardcrawl.actions.common.GainBlockAction;
+import com.megacrit.cardcrawl.actions.common.GainEnergyAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -11,24 +11,24 @@ import com.megacrit.cardcrawl.helpers.CardHelper;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.DexterityPower;
-import com.megacrit.cardcrawl.powers.StrengthPower;
+import gkmasmod.actions.GainTrainRoundPowerAction;
 import gkmasmod.actions.GoodImpressionDamageAction;
-import gkmasmod.cards.AbstractDefaultCard;
+import gkmasmod.cards.GkmasCard;
+import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.powers.GoodImpression;
-import gkmasmod.powers.GoodTune;
-import gkmasmod.ui.SkinSelectScreen;
+import gkmasmod.screen.SkinSelectScreen;
 import gkmasmod.utils.NameHelper;
 import gkmasmod.utils.PlayerHelper;
 
-public class LikeEveryone extends AbstractDefaultCard {
+public class LikeEveryone extends GkmasCard {
     private static final String CLASSNAME = LikeEveryone.class.getSimpleName();
     public static final String ID = NameHelper.makePath(CLASSNAME);
     private static final CardStrings CARD_STRINGS = CardCrawlGame.languagePack.getCardStrings(ID);
 
     private static final String NAME = CARD_STRINGS.NAME;
     private static final String DESCRIPTION = CARD_STRINGS.DESCRIPTION;
-    private static String IMG_PATH = String.format("img/idol/%s/cards/%s.png", SkinSelectScreen.Inst.idolName, CLASSNAME);
+    private static String IMG_PATH = String.format("gkmasModResource/img/idol/%s/cards/%s.png", SkinSelectScreen.Inst.idolName, CLASSNAME);
 
     private static final int COST = 1;
 
@@ -47,8 +47,8 @@ public class LikeEveryone extends AbstractDefaultCard {
     private String flavor = "";
 
     public LikeEveryone() {
-        super(ID, NAME, String.format("img/idol/%s/cards/%s.png", SkinSelectScreen.Inst.idolName, CLASSNAME), COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        IMG_PATH = String.format("img/idol/%s/cards/%s.png", SkinSelectScreen.Inst.idolName, CLASSNAME);
+        super(ID, NAME, String.format("gkmasModResource/img/idol/%s/cards/%s.png", SkinSelectScreen.Inst.idolName, CLASSNAME), COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
+        IMG_PATH = String.format("gkmasModResource/img/idol/%s/cards/%s.png", SkinSelectScreen.Inst.idolName, CLASSNAME);
         this.updateShowImg = true;
         this.baseMagicNumber = BASE_MAGIC;
         this.magicNumber = this.baseMagicNumber;
@@ -56,11 +56,14 @@ public class LikeEveryone extends AbstractDefaultCard {
         this.secondMagicNumber = this.baseSecondMagicNumber;
         FlavorText.AbstractCardFlavorFields.boxColor.set(this, CardHelper.getColor(73, 224, 254));
         flavor = FlavorText.CardStringsFlavorField.flavor.get(CARD_STRINGS);
+        this.tags.add(GkmasCardTag.YARUKI_TAG);
+        this.tags.add(GkmasCardTag.GOOD_IMPRESSION_TAG);
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
         addToBot(new ApplyPowerAction(p, p, new DexterityPower(p, -this.magicNumber), -this.magicNumber));
-        addToBot(new GoodImpressionDamageAction(1.0F * secondMagicNumber / 100, 0, p, m));
+        addToBot(new GoodImpressionDamageAction(1.0F * secondMagicNumber / 100, 0, p, m,this));
+        addToBot(new GainTrainRoundPowerAction(p,1));
     }
 
     public void applyPowers() {
@@ -75,8 +78,7 @@ public class LikeEveryone extends AbstractDefaultCard {
         int count = PlayerHelper.getPowerAmount(p, DexterityPower.POWER_ID);
         if (count >= this.magicNumber)
             return true;
-        // TODO 本地化
-        this.cantUseMessage = "力量还不够";
+        this.cantUseMessage = CardCrawlGame.languagePack.getUIString("gkmasMod:NotEnoughDexterityPower").TEXT[0];
         return false;
     }
 

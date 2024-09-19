@@ -2,6 +2,7 @@ package gkmasmod.cards.logic;
 
 import com.evacipated.cardcrawl.mod.stslib.patches.FlavorText;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -13,28 +14,30 @@ import com.megacrit.cardcrawl.helpers.CardHelper;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.DexterityPower;
-import gkmasmod.cards.AbstractDefaultCard;
+import gkmasmod.actions.DexterityPowerDamageAction;
+import gkmasmod.cards.GkmasCard;
+import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
-import gkmasmod.ui.SkinSelectScreen;
+import gkmasmod.screen.SkinSelectScreen;
 import gkmasmod.utils.NameHelper;
 import gkmasmod.utils.PlayerHelper;
 
-public class Flowering extends AbstractDefaultCard {
+public class Flowering extends GkmasCard {
     private static final String CLASSNAME = Flowering.class.getSimpleName();
     public static final String ID = NameHelper.makePath(CLASSNAME);
     private static final CardStrings CARD_STRINGS = CardCrawlGame.languagePack.getCardStrings(ID);
 
     private static final String NAME = CARD_STRINGS.NAME;
     private static final String DESCRIPTION = CARD_STRINGS.DESCRIPTION;
-    private static String IMG_PATH = String.format("img/idol/%s/cards/%s.png", SkinSelectScreen.Inst.idolName, CLASSNAME);
+    private static String IMG_PATH = String.format("gkmasModResource/img/idol/%s/cards/%s.png", SkinSelectScreen.Inst.idolName, CLASSNAME);
 
     private static final int COST = 2;
 
-    private static final int BASE_MAGIC = 6;
+    private static final int BASE_MAGIC = 3;
     private static final int UPGRADE_PLUS_MAGIC = 2;
 
     private static final int BASE_MAGIC2 = 200;
-    private static final int UPGRADE_PLUS_MAGIC2 = 300;
+    private static final int UPGRADE_PLUS_MAGIC2 = 100;
 
 
     private static final CardType TYPE = CardType.ATTACK;
@@ -45,8 +48,8 @@ public class Flowering extends AbstractDefaultCard {
     private String flavor = "";
 
     public Flowering() {
-        super(ID, NAME, String.format("img/idol/%s/cards/%s.png", SkinSelectScreen.Inst.idolName, CLASSNAME), COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        IMG_PATH = String.format("img/idol/%s/cards/%s.png", SkinSelectScreen.Inst.idolName, CLASSNAME);
+        super(ID, NAME, String.format("gkmasModResource/img/idol/%s/cards/%s.png", SkinSelectScreen.Inst.idolName, CLASSNAME), COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
+        IMG_PATH = String.format("gkmasModResource/img/idol/%s/cards/%s.png", SkinSelectScreen.Inst.idolName, CLASSNAME);
         this.updateShowImg = true;
         this.baseMagicNumber = BASE_MAGIC;
         this.magicNumber = this.baseMagicNumber;
@@ -55,20 +58,18 @@ public class Flowering extends AbstractDefaultCard {
         this.exhaust = true;
         FlavorText.AbstractCardFlavorFields.boxColor.set(this, CardHelper.getColor(73, 224, 254));
         flavor = FlavorText.CardStringsFlavorField.flavor.get(CARD_STRINGS);
+        this.tags.add(GkmasCardTag.YARUKI_TAG);
     }
 
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        addToBot(new GainBlockAction(p, p, this.block));
-        int count = PlayerHelper.getPowerAmount(p, DexterityPower.POWER_ID);
-        int damage_ = (int) (1.0F * this.secondMagicNumber * count / 100);
-        AbstractDungeon.actionManager.addToBottom(new DamageAction(m, new DamageInfo(p, damage_, this.damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
+        addToBot(new DexterityPowerDamageAction(this.secondMagicNumber*1.0F/100, this.magicNumber,p, m, this));
     }
 
     public void applyPowers() {
         super.applyPowers();
         int count = PlayerHelper.getPowerAmount(AbstractDungeon.player, DexterityPower.POWER_ID);
-        int damage_ = (int) (1.0F * this.secondMagicNumber * count / 100);
+        int damage_ = (int) (1.0F * this.secondMagicNumber * (count+this.magicNumber) / 100);
         FlavorText.AbstractCardFlavorFields.flavor.set(this, String.format(flavor, calculateDamage(damage_)));
     }
 

@@ -4,7 +4,9 @@ import basemod.abstracts.CustomEnergyOrb;
 import basemod.abstracts.CustomPlayer;
 import basemod.animations.SpriterAnimation;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -12,29 +14,19 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.EnergyManager;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.cutscenes.CutscenePanel;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.events.city.Vampires;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.ScreenShake;
-import com.megacrit.cardcrawl.relics.Vajra;
-import com.megacrit.cardcrawl.relics.ChemicalX;
+import com.megacrit.cardcrawl.random.Random;
 import com.megacrit.cardcrawl.screens.CharSelectInfo;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import gkmasmod.cards.free.BaseAppeal;
-import gkmasmod.cards.logic.BaseAwareness;
-import gkmasmod.cards.logic.BaseVision;
-import gkmasmod.cards.logic.ChangeMood;
-import gkmasmod.cards.logic.KawaiiGesture;
-import gkmasmod.cards.sense.BaseBehave;
-import gkmasmod.cards.sense.Challenge;
-import gkmasmod.cards.sense.TryError;
 import gkmasmod.modcore.GkmasMod;
 import gkmasmod.relics.PocketBook;
-import gkmasmod.ui.SkinSelectScreen;
-import gkmasmod.utils.CommonEnum;
-import gkmasmod.utils.IdolData;
-import gkmasmod.utils.IdolStartingDeck;
-import gkmasmod.utils.NameHelper;
+import gkmasmod.screen.SkinSelectScreen;
+import gkmasmod.utils.*;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -43,34 +35,23 @@ import java.util.Map;
 
 // 继承CustomPlayer类
 public class IdolCharacter extends CustomPlayer {
-    // 火堆的人物立绘（行动前）
-    private static final String MY_CHARACTER_SHOULDER_1 = "img/char/anon_1700.png";
-    // 火堆的人物立绘（行动后）
-    private static final String MY_CHARACTER_SHOULDER_2 = "img/char/anon_1700.png";
     // 人物死亡图像
-    private static final String CORPSE_IMAGE = "img/char/anon_fall.png";
+    private static final String CORPSE_IMAGE = "gkmasModResource/img/idol/shro/sleep_skin10.png";
     // 战斗界面左下角能量图标的每个图层
     private static final String[] ORB_TEXTURES = new String[] {
-            "img/UI/urgreen_129.png",
-            "img/UI/layer_5_127.png",
-            "img/UI/layer_3.png",
-            "img/UI/layer2.png",
-            "img/UI/threeButterfly_127.png",
-            "img/UI/fivestar_129.png",
-            "img/UI/urgreen_129.png",
-            "img/UI/layer_5_d.png",
-            "img/UI/layer_3_d.png",
-            "img/UI/layer2d.png",
-            "img/UI/threeButterfly_127.png" };
+            "gkmasModResource/img/UI/energy_bg.png",
+            "gkmasModResource/img/UI/layer.png",
+            "gkmasModResource/img/UI/star.png",
+            "gkmasModResource/img/UI/energy_bg.png",
+            "gkmasModResource/img/UI/energy_bg.png",
+            "gkmasModResource/img/UI/layer_d.png",
+            "gkmasModResource/img/UI/star_d.png" };
 
-    private static final String ORB_VFX = "img/UI/vfx.png";
-
-    private static boolean firstLoad = true;
+    private static final String ORB_VFX = "gkmasModResource/img/UI/vfx.png";
 
     // 每个图层的旋转速度
     private static final float[] LAYER_SPEED = new float[]{-40.0F, -32.0F, 20.0F, -20.0F, 0.0F, -10.0F, -8.0F, 5.0F, -5.0F, 0.0F};
 
-    //初始生命，最大生命，初始金币,初始的充能球栏位（机器人）,最后一个应该是进阶14时的最大生命值下降
     private static final int STARTING_HP = 80;
     private static final int MAX_HP = 80;
     private static final int STARTING_GOLD = 99;
@@ -78,9 +59,26 @@ public class IdolCharacter extends CustomPlayer {
     private static final int ASCENSION_MAX_HP_LOSS = 5;
 
     public static String SELES_STAND = null;
-    public static String filepath = "img/idol/shro/stand/stand_skin10.scml";
+    public static String filepath = "gkmasModResource/img/idol/shro/stand/stand_skin10.scml";
 
     public static String idolName= IdolData.shro;
+
+    public int[] threeSize = new int[]{0,0,0};
+    public int[] preThreeSize = new int[]{0,0,0};
+    public float[] threeSizeRate = new float[]{0.0f,0.0f,0.0f};
+
+    private Texture finalCircleBg;
+    private Texture[] arcs= new Texture[3];
+
+    public Idol idolData;
+
+    public int skinIndex = 0;
+
+    public ArrayList<Integer> finalCircleRound = new ArrayList<>();
+
+    public boolean IsRenderFinalCircle = false;
+
+    public double finalDamageRate=1.0F;
 
     public IdolCharacter(String name) {
         super(name, PlayerColorEnum.gkmasMod_character,new CustomEnergyOrb(ORB_TEXTURES, ORB_VFX, LAYER_SPEED), new SpriterAnimation(filepath));
@@ -89,28 +87,103 @@ public class IdolCharacter extends CustomPlayer {
         // 人物对话气泡的大小，如果游戏中尺寸不对在这里修改（libgdx的坐标轴左下为原点）
         this.dialogX = (this.drawX + 0.0F * Settings.scale);
         this.dialogY = (this.drawY + 150.0F * Settings.scale);
+        initializeData();
 
+        this.finalCircleBg = new Texture("gkmasModResource/img/UI/ThreeSize/finalCircle/bg.png");
+        arcs[0] = new Texture("gkmasModResource/img/UI/ThreeSize/finalCircle/arc_vo.png");
+        arcs[1] = new Texture("gkmasModResource/img/UI/ThreeSize/finalCircle/arc_da.png");
+        arcs[2] = new Texture("gkmasModResource/img/UI/ThreeSize/finalCircle/arc_vi.png");
+        refreshSkin();
 
+    }
+
+    public void initializeData(){
         // 初始化你的人物，如果你的人物只有一张图，那么第一个参数填写你人物图片的路径。
         this.initializeClass(
                 null,
-                MY_CHARACTER_SHOULDER_2, MY_CHARACTER_SHOULDER_1,
-                CORPSE_IMAGE, // 人物死亡图像
+                String.format("gkmasModResource/img/idol/%s/stand/fire.png",this.idolName),
+                String.format("gkmasModResource/img/idol/%s/stand/fire.png",this.idolName),
+                String.format("gkmasModResource/img/idol/%s/stand/sleep_skin10.png",this.idolName),
                 this.getLoadout(),
                 0.0F, 0.0F,
                 200.0F, 220.0F, // 人物碰撞箱大小，越大的人物模型这个越大
                 new EnergyManager(3) // 初始每回合的能量
         );
-        refreshSkin();
+    }
+
+    public void renderHealth(SpriteBatch sb) {
+        super.renderHealth(sb);
+        if (this.IsRenderFinalCircle) {
+            renderFinalCircle(sb);
+        }
+    }
+
+    public void generateCircle(int roundNum){
+        if(roundNum < 1)
+            return;
+        this.finalCircleRound = new ArrayList<>();
+        if(roundNum > 0)
+            this.finalCircleRound.add(this.idolData.getFirstThreeType());
+        if(roundNum > 1)
+            this.finalCircleRound.add(this.idolData.getSecondThreeType());
+        Random spRng = new Random(Settings.seed, AbstractDungeon.floorNum*20);
+        for(int i = 0; i < roundNum - 2; i++){
+            this.finalCircleRound.add(spRng.random(0,2));
+        }
+        this.IsRenderFinalCircle = true;
+        int currentThreeType = this.finalCircleRound.get(this.finalCircleRound.size()-1);
+        int baseDamageRate = this.idolData.getBaseDamageRate(currentThreeType);
+
+        this.finalDamageRate = calculateDamageRate(baseDamageRate, this.threeSize[currentThreeType],this.idolData.getThreeSizeRequire(currentThreeType));
+
+        System.out.println(this.finalCircleRound);
+    }
+
+    public void generateHajimeCircle(int roundNum){
+        if(roundNum < 1)
+            return;
+        this.finalCircleRound = new ArrayList<>();
+        if(roundNum > 0)
+            this.finalCircleRound.add(this.idolData.getFirstThreeType());
+        Random spRng = new Random(Settings.seed, AbstractDungeon.floorNum*20);
+        for(int i = 0; i < roundNum - 2; i++){
+            this.finalCircleRound.add(spRng.random(0,2));
+        }
+        this.IsRenderFinalCircle = true;
+        int currentThreeType = this.finalCircleRound.get(this.finalCircleRound.size()-1);
+        int baseDamageRate = this.idolData.getBaseDamageRate(currentThreeType);
+
+        this.finalDamageRate = calculateDamageRate(baseDamageRate, this.threeSize[currentThreeType],this.idolData.getThreeSizeRequire(currentThreeType));
+
+        System.out.println(this.finalCircleRound);
+    }
+
+    public void renderFinalCircle(SpriteBatch sb) {
+        sb.setColor(Color.WHITE);
+        sb.draw(this.finalCircleBg, Settings.WIDTH / 2.0F - 500.0F*Settings.xScale, Settings.HEIGHT / 2.0F + 000.0F*Settings.scale, 256.0F, 256.0F, 512, 512, Settings.scale*0.5F, Settings.scale*0.5F, 0.0F, 0, 0, 512, 512, false, false);
+        for(int i = 0; i<this.finalCircleRound.size();i++){
+            sb.draw(arcs[this.finalCircleRound.get(i)], Settings.WIDTH / 2.0F - 500.0F*Settings.xScale, Settings.HEIGHT / 2.0F + 000.0F*Settings.scale, 256.0F, 256.0F, 512, 512, Settings.scale*0.5F, Settings.scale*0.5F, 330.0F-30.F*i, 0, 0, 512, 512, false, false);
+        }
+        FontHelper.renderSmartText(sb, FontHelper.bannerNameFont, String.valueOf(this.finalCircleRound.size()), Settings.WIDTH / 2.0F - 275.0F*Settings.xScale, Settings.HEIGHT / 2.0F + 290.0F*Settings.scale, 10000.0F, 30.0F * Settings.scale, Settings.CREAM_COLOR,1.5f);
+        FontHelper.renderSmartText(sb, FontHelper.tipHeaderFont, String.format("%.0f%%",this.finalDamageRate*100), Settings.WIDTH / 2.0F - 300.0F*Settings.xScale, Settings.HEIGHT / 2.0F + 325.0F*Settings.scale, 10000.0F, 30.0F * Settings.scale, Settings.CREAM_COLOR);
 
     }
 
+    private double calculateDamageRate(int baseRate, int v,int t){
+        double rate = 1.0f*v/t;
+        if(rate > 1.0f)
+            return 1.0f*baseRate*(1+Math.log(rate))+1;
+        return (Math.pow(rate,2)+Math.exp(rate-1)+(rate-1)/Math.E)/2*baseRate+1;
+    }
+
+
     public void refreshSkin() {
+        this.idolName = SkinSelectScreen.Inst.idolName;
         String idolName_display = CardCrawlGame.languagePack.getCharacterString(NameHelper.addSplitWords("IdolName",this.idolName)).TEXT[0];
         String skinName = IdolData.getIdol(this.idolName).getSkin(SkinSelectScreen.Inst.skinIndex);
-        //String path = String.format("img/idol/stand/%s_%s.scml",this.idolName,skinName);
+        //String path = String.format("gkmasModResource/img/idol/stand/%s_%s.scml",this.idolName,skinName);
         skinName = "skin10";
-        String path = String.format("img/idol/%s/stand/stand_%s.scml",SkinSelectScreen.Inst.idolName,skinName);
+        String path = String.format("gkmasModResource/img/idol/%s/stand/stand_%s.scml",SkinSelectScreen.Inst.idolName,skinName);
         this.animation = new SpriterAnimation(path);
 
     }
@@ -159,14 +232,22 @@ public class IdolCharacter extends CustomPlayer {
         return retVal;
     }
 
+    public int getHP(){
+        return IdolData.getIdol(SkinSelectScreen.Inst.idolIndex).getHp();
+    }
+
+    public int getGold(){
+        return IdolData.getIdol(SkinSelectScreen.Inst.idolIndex).getGold();
+    }
+
     public CharSelectInfo getLoadout() {
         return new CharSelectInfo(
-                "学园偶像大师", // 人物名字
+                SkinSelectScreen.Inst.curName, // 人物名字
                 "来自初星学园的偶像团体。每位偶像有各自的初始卡组、专属遗物和成长倾向。", // 人物介绍
-                75, // 当前血量
-                75, // 最大血量
+                getHP(), // 当前血量
+                getHP(), // 最大血量
                 0, // 初始充能球栏位
-                99, // 初始携带金币
+                getGold(), // 初始携带金币
                 5, // 每回合抽牌数量
                 this, // 别动
                 getStartingRelics(), // 初始遗物
@@ -190,7 +271,7 @@ public class IdolCharacter extends CustomPlayer {
     // 翻牌事件出现的你的职业牌（一般设为打击）
     @Override
     public AbstractCard getStartCardForEvent() {
-        return new BaseAppeal();
+        return CardLibrary.getCard(this.chosenClass, this.idolData.getCard(this.skinIndex)).makeCopy();
     }
 
     // 卡牌轨迹颜色
@@ -213,7 +294,7 @@ public class IdolCharacter extends CustomPlayer {
 
     // 人物选择界面点击你的人物按钮时触发的方法，这里为屏幕轻微震动
     public void doCharSelectScreenSelectEffect() {
-        CardCrawlGame.sound.play(String.format("%s_click", this.idolName));
+        SoundHelper.playSound("gkmasModResource/audio/voice/shro_click.ogg");
         CardCrawlGame.screenShake.shake(ScreenShake.ShakeIntensity.MED, ScreenShake.ShakeDur.SHORT, true);
     }
 
@@ -222,9 +303,10 @@ public class IdolCharacter extends CustomPlayer {
     public ArrayList<CutscenePanel> getCutscenePanels() {
         ArrayList<CutscenePanel> panels = new ArrayList<>();
         // 有两个参数的，第二个参数表示出现图片时播放的音效
-        panels.add(new CutscenePanel("ExampleModResources/img/char/Victory1.png", "ATTACK_MAGIC_FAST_1"));
-        panels.add(new CutscenePanel("ExampleModResources/img/char/Victory2.png"));
-        panels.add(new CutscenePanel("ExampleModResources/img/char/Victory3.png"));
+        panels.add(new CutscenePanel("gkmasModResource/img/UI/end/end1.png"));
+        panels.add(new CutscenePanel(String.format("gkmasModResource/img/UI/end/end_%s_001_00.png", this.idolName)));
+        panels.add(new CutscenePanel(String.format("gkmasModResource/img/UI/end/end_%s_001_01.png", this.idolName)));
+        panels.add(new CutscenePanel("gkmasModResource/img/UI/end/end4.png"));
         return panels;
     }
 
@@ -249,7 +331,7 @@ public class IdolCharacter extends CustomPlayer {
     // 第三章面对心脏说的话（例如战士是“你握紧了你的长刀……”之类的）
     @Override
     public String getSpireHeartText() {
-        return"篠泽 广";
+        return"诶，这个大家伙是什么东西";
     }
 
     // 打心脏的颜色，不是很明显
@@ -261,7 +343,7 @@ public class IdolCharacter extends CustomPlayer {
     // 吸血鬼事件文本，主要是他（索引为0）和她（索引为1）的区别（机器人另外）
     @Override
     public String getVampireText() {
-        return Vampires.DESCRIPTIONS[0];
+        return Vampires.DESCRIPTIONS[1];
     }
 
     // 卡牌选择界面选择该牌的颜色
@@ -274,5 +356,123 @@ public class IdolCharacter extends CustomPlayer {
     @Override
     public AbstractGameAction.AttackEffect[] getSpireHeartSlashEffect() {
         return new AbstractGameAction.AttackEffect[]{AbstractGameAction.AttackEffect.SLASH_HEAVY, AbstractGameAction.AttackEffect.FIRE, AbstractGameAction.AttackEffect.SLASH_DIAGONAL, AbstractGameAction.AttackEffect.SLASH_HEAVY, AbstractGameAction.AttackEffect.FIRE, AbstractGameAction.AttackEffect.SLASH_DIAGONAL};
+    }
+
+    public String getIdolName() {
+        return this.idolName;
+    }
+
+    public void setThreeSize(int[] threeSize){
+        this.threeSize = threeSize.clone();
+        this.preThreeSize = threeSize.clone();
+    }
+
+    public void setThreeSizeRate(float[] threeSizeRate){
+        this.threeSizeRate = threeSizeRate.clone();
+    }
+
+    public void setThreeSizeAndRate(float[] data){
+        this.threeSize = new int[]{(int)data[0], (int)data[1], (int)data[2]};
+        this.threeSizeRate = new float[]{data[3], data[4], data[5]};
+    }
+
+    public int getVo(){
+        return this.threeSize[0];
+    }
+
+    public int getDa(){
+        return this.threeSize[1];
+    }
+
+    public int getVi(){
+        return this.threeSize[2];
+    }
+
+    public int[] getThreeSize(){
+        return this.threeSize.clone();
+    }
+
+    public int[] getPreThreeSize(){
+        return this.preThreeSize.clone();
+    }
+
+    public float getVoRate(){
+        return this.threeSizeRate[0];
+    }
+
+    public float getDaRate(){
+        return this.threeSizeRate[1];
+    }
+
+    public float getViRate(){
+        return this.threeSizeRate[2];
+    }
+
+    public void changeVo(int vo){
+        this.preThreeSize[0] = this.threeSize[0];
+        this.threeSize[0] += vo+(int)((this.threeSizeRate[0]*vo)+0.5F);
+    }
+
+    public void changeDa(int da){
+        this.preThreeSize[1] = this.threeSize[1];
+        this.threeSize[1] += da+(int)((this.threeSizeRate[1]*da)+0.5F);
+    }
+
+    public void changeVi(int vi){
+        this.preThreeSize[2] = this.threeSize[2];
+        this.threeSize[2] += vi+(int)((this.threeSizeRate[2]*vi)+0.5F);
+    }
+
+    public void changeVoRate(float voRate){
+        this.threeSizeRate[0] += voRate;
+    }
+
+    public void changeDaRate(float daRate){
+        this.threeSizeRate[1] += daRate;
+    }
+
+    public void changeViRate(float viRate){
+        this.threeSizeRate[2] += viRate;
+    }
+
+    public float[]getThreeSizeAndRate(){
+        return new float[]{this.threeSize[0]*1.0f,this.threeSize[1]*1.0f,this.threeSize[2]*1.0f,this.threeSizeRate[0],this.threeSizeRate[1],this.threeSizeRate[2]};
+    }
+
+    @Override
+    public void initializeStarterDeck() {
+        super.initializeStarterDeck();
+        int num = 0;
+        if(GkmasMod.cardRate>0.3f)
+            num = 1;
+        if(GkmasMod.cardRate>0.5f)
+            num = 2;
+        if(GkmasMod.cardRate>0.8f)
+            num = 3;
+
+        ArrayList<AbstractCard> cards = new ArrayList<>();
+        AbstractCard specailCard = null;
+        this.idolData = IdolData.getIdol(SkinSelectScreen.Inst.idolIndex);
+        for (AbstractCard c : this.masterDeck.group){
+            if(!c.cardID.equals(this.idolData.getCard(SkinSelectScreen.Inst.skinIndex))&&c.canUpgrade()){
+                cards.add(c);
+            }
+            else{
+                specailCard = c;
+            }
+        }
+        //从cards中选num张强化
+        for(int i = 0; i < num; i++){
+            if(cards.size() == 0)
+                break;
+            AbstractCard c = cards.get(new Random(Settings.seed).random(cards.size()-1));
+            c.upgrade();
+            cards.remove(c);
+        }
+        if(GkmasMod.beat_hmsz >0){
+            specailCard.upgrade();
+        }
+
+
     }
 }

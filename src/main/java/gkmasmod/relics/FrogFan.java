@@ -14,6 +14,8 @@ import com.megacrit.cardcrawl.powers.DexterityPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
+import gkmasmod.actions.ModfifyDamageAction;
+import gkmasmod.cards.free.BaseAppeal;
 
 public class FrogFan extends CustomRelic {
 
@@ -21,9 +23,9 @@ public class FrogFan extends CustomRelic {
 
     public static final String ID = CLASSNAME;
 
-    private static final String IMG = String.format("img/relics/%s.png",CLASSNAME);
-    private static final String IMG_OTL = String.format("img/relics/%s.png",CLASSNAME);
-    private static final String IMG_LARGE = String.format("img/relics/large/%s.png",CLASSNAME);
+    private static final String IMG = String.format("gkmasModResource/img/relics/%s.png",CLASSNAME);
+    private static final String IMG_OTL = String.format("gkmasModResource/img/relics/%s.png",CLASSNAME);
+    private static final String IMG_LARGE = String.format("gkmasModResource/img/relics/large/%s.png",CLASSNAME);
 
     private static final RelicTier RARITY = RelicTier.STARTER;
 
@@ -64,7 +66,7 @@ public class FrogFan extends CustomRelic {
                 this.flash();
                 addToBot(new RelicAboveCreatureAction(AbstractDungeon.player, this));
                 addToBot(new LoseHPAction(AbstractDungeon.player, AbstractDungeon.player, HP_COST));
-                addToBot(new DamageAction(useCardAction.target, new DamageInfo(AbstractDungeon.player, damage, useCardAction.damageType), AbstractGameAction.AttackEffect.SLASH_VERTICAL));
+                addToBot(new ModfifyDamageAction(useCardAction.target, new DamageInfo(AbstractDungeon.player, damage, useCardAction.damageType), AbstractGameAction.AttackEffect.SLASH_VERTICAL,new BaseAppeal()));
                 this.counter--;
                 if (this.counter == 0) {
                     this.grayscale = true;

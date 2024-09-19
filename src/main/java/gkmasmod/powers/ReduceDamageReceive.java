@@ -25,8 +25,8 @@ public class ReduceDamageReceive extends AbstractPower {
 
     private static boolean firstGet = true;
 
-    String path128 = String.format("img/powers/%s_84.png",CLASSNAME);;
-    String path48 = String.format("img/powers/%s_32.png",CLASSNAME);;
+    String path128 = String.format("gkmasModResource/img/powers/%s_84.png",CLASSNAME);;
+    String path48 = String.format("gkmasModResource/img/powers/%s_32.png",CLASSNAME);;
 
     public ReduceDamageReceive(AbstractCreature owner, int Amount) {
         this.name = NAME;
@@ -48,6 +48,13 @@ public class ReduceDamageReceive extends AbstractPower {
 
     public float atDamageReceive(float damage, DamageInfo.DamageType type) {
         return damage - this.amount < 0.0F ? 0.0F : damage - this.amount;
+    }
+
+    public int onAttacked(DamageInfo info, int damageAmount) {
+        if(info.type == DamageInfo.DamageType.HP_LOSS){
+            return damageAmount- this.amount <0 ? 0 : damageAmount - this.amount;
+        }
+        return damageAmount;
     }
 
 }

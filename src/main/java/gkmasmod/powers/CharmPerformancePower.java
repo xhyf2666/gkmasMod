@@ -7,9 +7,14 @@ import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
+import gkmasmod.actions.ModfifyDamageAction;
+import gkmasmod.actions.ModfifyDamageRandomEnemyAction;
+import gkmasmod.cards.sense.Achievement;
+import gkmasmod.cards.sense.CharmPerformance;
 import gkmasmod.utils.NameHelper;
 
 public class CharmPerformancePower extends AbstractPower {
@@ -25,12 +30,14 @@ public class CharmPerformancePower extends AbstractPower {
 
     private static int CharmPerformanceIDOffset;
 
+    AbstractCreature target;
+
     private int damage = 0;
 
-    String path128 = String.format("img/powers/%s_84.png",CLASSNAME);;
-    String path48 = String.format("img/powers/%s_32.png",CLASSNAME);;
+    String path128 = String.format("gkmasModResource/img/powers/%s_84.png",CLASSNAME);;
+    String path48 = String.format("gkmasModResource/img/powers/%s_32.png",CLASSNAME);;
 
-    public CharmPerformancePower(AbstractCreature owner, int Damage) {
+    public CharmPerformancePower(AbstractCreature owner, int Damage,AbstractCreature target) {
         this.name = NAME;
         this.ID = POWER_ID + CharmPerformanceIDOffset;
         CharmPerformanceIDOffset++;
@@ -38,6 +45,7 @@ public class CharmPerformancePower extends AbstractPower {
         this.type = PowerType.BUFF;
         this.amount = 1;
         this.damage = Damage;
+        this.target = target;
 
         this.region128 = new TextureAtlas.AtlasRegion(ImageMaster.loadImage(path128), 0, 0, 84, 84);
         this.region48 = new TextureAtlas.AtlasRegion(ImageMaster.loadImage(path48), 0, 0, 32, 32);
@@ -50,7 +58,12 @@ public class CharmPerformancePower extends AbstractPower {
     }
 
     public void atStartOfTurn() {
-        addToBot(new DamageRandomEnemyAction(new DamageInfo(null, this.damage, DamageInfo.DamageType.NORMAL), AbstractGameAction.AttackEffect.SLASH_VERTICAL));
+        if(!target.halfDead && !target.isDying && !target.isEscaping){
+            addToBot(new ModfifyDamageAction(target, new DamageInfo(AbstractDungeon.player, this.damage, DamageInfo.DamageType.NORMAL), AbstractGameAction.AttackEffect.SLASH_VERTICAL,new CharmPerformance()));
+        }
+        else{
+            addToBot(new ModfifyDamageRandomEnemyAction(new DamageInfo(AbstractDungeon.player, this.damage, DamageInfo.DamageType.NORMAL), AbstractGameAction.AttackEffect.SLASH_VERTICAL,new CharmPerformance()));
+        }
         addToBot(new RemoveSpecificPowerAction(this.owner, this.owner, this.ID));
     }
 

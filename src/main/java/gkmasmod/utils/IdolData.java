@@ -1,9 +1,6 @@
 package gkmasmod.utils;
 
 
-import com.megacrit.cardcrawl.relics.ChemicalX;
-import com.megacrit.cardcrawl.relics.Vajra;
-import gkmasmod.cards.free.*;
 import gkmasmod.cards.logic.*;
 import gkmasmod.cards.sense.*;
 import gkmasmod.relics.*;
@@ -110,25 +107,38 @@ public class IdolData {
                 new IdolType[]{IdolType.LOGIC,IdolType.LOGIC,IdolType.LOGIC,IdolType.SENSE,IdolType.LOGIC,IdolType.LOGIC},
                 new IdolStyle[]{IdolStyle.YARUKI,IdolStyle.YARUKI,IdolStyle.YARUKI,IdolStyle.FOCUS,IdolStyle.YARUKI,IdolStyle.YARUKI},
                 new ArrayList<>(Arrays.asList(new String[]{},new String[]{"1"},new String[]{"1","2"}, new String[]{"1","2","3"}, new String[]{"4"}, new String[]{"4"}, new String[]{"4","5"}, new String[]{}, new String[]{"6"})),
-                new String[]{"1","1","1","1","2","2","2","3","3"}
+                new String[]{"1","1","1","1","2","2","2","3","3"},
+                new String[]{"1","1","2","3","4","5"},
+                new String[]{"all_001","all_001","shro_001","shro_002","all_003","all_004"},
+                66,99,new int[]{115,115,80},new float[]{0.27f,0.23f,0.10f},
+                new int[]{1200,1000,800}
         ));
         idols.put(kllj, new Idol(kllj,
-                new String[]{"skin10","skin20","skin30","skin33","skin34"},
-                new String[]{ReservedGirl.ID, PureWhiteFairy.ID, NotAfraidAnymore.ID, NotAfraidAnymore.ID, FirstRamune.ID},
-                new String[]{GreenUniformBracelet.ID, MemoryBot.ID, DreamLifeLog.ID, DreamLifeLog.ID, SparklingInTheBottle.ID},
-                new IdolType[]{IdolType.LOGIC,IdolType.LOGIC,IdolType.LOGIC,IdolType.LOGIC,IdolType.SENSE},
-                new IdolStyle[]{IdolStyle.GOOD_IMPRESSION,IdolStyle.GOOD_IMPRESSION,IdolStyle.GOOD_IMPRESSION,IdolStyle.GOOD_IMPRESSION,IdolStyle.GOOD_TUNE},
+                new String[]{"skin10","skin11","skin20","skin30","skin33","skin34"},
+                new String[]{ReservedGirl.ID, FirstGround.ID,PureWhiteFairy.ID, NotAfraidAnymore.ID, NotAfraidAnymore.ID, FirstRamune.ID},
+                new String[]{GreenUniformBracelet.ID, FirstHeartProofLilja.ID,MemoryBot.ID, DreamLifeLog.ID, DreamLifeLog.ID, SparklingInTheBottle.ID},
+                new IdolType[]{IdolType.LOGIC,IdolType.SENSE,IdolType.LOGIC,IdolType.LOGIC,IdolType.LOGIC,IdolType.SENSE},
+                new IdolStyle[]{IdolStyle.GOOD_IMPRESSION,IdolStyle.GOOD_TUNE,IdolStyle.GOOD_IMPRESSION,IdolStyle.GOOD_IMPRESSION,IdolStyle.GOOD_IMPRESSION,IdolStyle.GOOD_TUNE},
                 new ArrayList<>(Arrays.asList(new String[]{},new String[]{"1"},new String[]{"1","2"}, new String[]{}, new String[]{"3"}, new String[]{"3","4"}, new String[]{"3","4","5"}, new String[]{}, new String[]{"6"})),
-                new String[]{"2","2","2","3","3","3","3","4","4"}
+                new String[]{"2","2","2","3","3","3","3","4","4"},
+                new String[]{"1","1","1","2","4","5"},
+                new String[]{"all_001","all_001","all_001","kllj_001","all_003","all_004"},
+                74,99,new int[]{75,75,105},new float[]{0.18f,0.25f,0.21f},
+                new int[]{800,1000,1200}
         ));
         idols.put(kcna, new Idol(kcna,
-                new String[]{"skin10","skin20","skin30","skin31","skin33","skin34"},
-                new String[]{FullOfEnergy.ID, Wholeheartedly.ID, DebutStageForTheLady.ID, WelcomeToTeaParty.ID, DebutStageForTheLady.ID, DebutStageForTheLady.ID},
-                new String[]{WishFulfillmentAmulet.ID,CheerfulHandkerchief.ID,SecretTrainingCardigan.ID,HeartFlutteringCup.ID,SecretTrainingCardigan.ID,SecretTrainingCardigan.ID},
-                new IdolType[]{IdolType.LOGIC,IdolType.LOGIC,IdolType.LOGIC,IdolType.SENSE,IdolType.LOGIC,IdolType.LOGIC},
-                new IdolStyle[]{IdolStyle.YARUKI,IdolStyle.YARUKI,IdolStyle.YARUKI,IdolStyle.GOOD_TUNE,IdolStyle.YARUKI,IdolStyle.YARUKI},
+                new String[]{"skin10","skin11","skin20","skin30","skin31","skin33","skin34","skin35"},
+                new String[]{FullOfEnergy.ID,FirstColor.ID, Wholeheartedly.ID, DebutStageForTheLady.ID, WelcomeToTeaParty.ID, DebutStageForTheLady.ID, DebutStageForTheLady.ID,AQuickSip.ID},
+                new String[]{WishFulfillmentAmulet.ID, FirstHeartProofChina.ID,CheerfulHandkerchief.ID,SecretTrainingCardigan.ID,HeartFlutteringCup.ID,SecretTrainingCardigan.ID,SecretTrainingCardigan.ID,EnjoyAfterHotSpring.ID},
+                new IdolType[]{IdolType.LOGIC,IdolType.SENSE,IdolType.LOGIC,IdolType.LOGIC,IdolType.SENSE,IdolType.LOGIC,IdolType.LOGIC,IdolType.SENSE},
+                new IdolStyle[]{IdolStyle.YARUKI,IdolStyle.GOOD_TUNE,IdolStyle.YARUKI,IdolStyle.YARUKI,IdolStyle.GOOD_TUNE,IdolStyle.YARUKI,IdolStyle.YARUKI,IdolStyle.FOCUS},
                 new ArrayList<>(Arrays.asList(new String[]{},new String[]{"1"},new String[]{"1","2"}, new String[]{"1","2"}, new String[]{"1","2","3"}, new String[]{}, new String[]{"4"}, new String[]{"4","5"}, new String[]{})),
-                new String[]{"2","2","2","2","2","3","3","3","4"}
+                new String[]{"2","2","2","2","2","3","3","3","4"},
+                new String[]{"1","1","1","2","3","4","5","1"},
+                new String[]{"all_001","all_001","all_001","kcna_001","kcna_002","all_003","all_004","all_001"},
+                68,200,new int[]{75,110,115},new float[]{0.10f,0.28f,0.22f},
+                new int[]{700,1350,950}
+
         ));
         idols.put(hume, new Idol(hume,
                 new String[]{"skin10","skin20","skin30","skin33","skin34"},
@@ -137,7 +147,11 @@ public class IdolData {
                 new IdolType[]{IdolType.LOGIC,IdolType.LOGIC,IdolType.LOGIC,IdolType.LOGIC,IdolType.LOGIC},
                 new IdolStyle[]{IdolStyle.YARUKI,IdolStyle.YARUKI,IdolStyle.YARUKI,IdolStyle.YARUKI,IdolStyle.YARUKI},
                 new ArrayList<>(Arrays.asList(new String[]{},new String[]{"1"},new String[]{"1","2"}, new String[]{"1","2","3"}, new String[]{"1","2","3"}, new String[]{"1","2","3","4"}, new String[]{}, new String[]{"5"}, new String[]{"5","6"})),
-                new String[]{"2","2","2","2","2","2","3","3","3"}
+                new String[]{"2","2","2","2","2","2","3","3","3"},
+                new String[]{"1","1","2","4","5"},
+                new String[]{"all_001","all_001","hume_001","all_003","all_004"},
+                72,99,new int[]{75,85,85},new float[]{0.23f,0.28f,0.15f},
+                new int[]{1000,1200,800}
         ));
         idols.put(hski, new Idol(hski,
                 new String[]{"skin10","skin11","skin20","skin30","skin31","skin33","skin34"},
@@ -146,16 +160,25 @@ public class IdolData {
                 new IdolType[]{IdolType.SENSE,IdolType.LOGIC,IdolType.SENSE,IdolType.SENSE,IdolType.LOGIC,IdolType.SENSE,IdolType.LOGIC},
                 new IdolStyle[]{IdolStyle.GOOD_TUNE,IdolStyle.GOOD_IMPRESSION,IdolStyle.GOOD_TUNE,IdolStyle.GOOD_TUNE,IdolStyle.GOOD_IMPRESSION,IdolStyle.GOOD_TUNE,IdolStyle.GOOD_IMPRESSION},
                 new ArrayList<>(Arrays.asList(new String[]{},new String[]{"1"},new String[]{"1","2"}, new String[]{"1","2","3"}, new String[]{"1","2","3"}, new String[]{}, new String[]{"4"}, new String[]{}, new String[]{"5"})),
-                new String[]{"1","1","1","1","1","2","2","3","3"}
+                new String[]{"1","1","1","1","1","2","2","3","3"},
+                new String[]{"1","1","1","2","3","4","5"},
+                new String[]{"all_001","all_001","all_001","hski_001","hski_002","all_003","all_004"},
+                76,99,new int[]{100,100,105},new float[]{0.18f,0.18f,0.20f},
+                new int[]{800,1000,1200}
         ));
         idols.put(hrnm, new Idol(hrnm,
-                new String[]{"skin10","skin20","skin30","skin33","skin34"},
-                new String[]{Accommodating.ID, SupportiveFeelings.ID, SenseOfDistance.ID, CumulusCloudsAndYou.ID, SenseOfDistance.ID},
-                new String[]{RegularMakeupPouch.ID, TreatForYou.ID, LifeSizeLadyLip.ID, SummerToShareWithYou.ID, LifeSizeLadyLip.ID},
-                new IdolType[]{IdolType.SENSE,IdolType.SENSE,IdolType.SENSE,IdolType.SENSE,IdolType.SENSE},
-                new IdolStyle[]{IdolStyle.FOCUS,IdolStyle.FOCUS,IdolStyle.FOCUS,IdolStyle.GOOD_TUNE,IdolStyle.FOCUS},
+                new String[]{"skin10","skin11","skin20","skin30","skin33","skin34","skin35"},
+                new String[]{Accommodating.ID,FirstFriend.ID,SupportiveFeelings.ID, SenseOfDistance.ID, CumulusCloudsAndYou.ID, SenseOfDistance.ID,RefreshingBreak.ID},
+                new String[]{RegularMakeupPouch.ID,FirstHeartProofRinami.ID,TreatForYou.ID, LifeSizeLadyLip.ID, SummerToShareWithYou.ID, LifeSizeLadyLip.ID,ClapClapFan.ID},
+                new IdolType[]{IdolType.SENSE,IdolType.LOGIC,IdolType.SENSE,IdolType.SENSE,IdolType.SENSE,IdolType.SENSE,IdolType.LOGIC},
+                new IdolStyle[]{IdolStyle.FOCUS,IdolStyle.YARUKI,IdolStyle.FOCUS,IdolStyle.FOCUS,IdolStyle.GOOD_TUNE,IdolStyle.FOCUS,IdolStyle.YARUKI},
                 new ArrayList<>(Arrays.asList(new String[]{},new String[]{"1"},new String[]{"1","2"}, new String[]{"1","2"}, new String[]{"1","2","3"}, new String[]{}, new String[]{"4"}, new String[]{"4","5"}, new String[]{"4","5","6"})),
-                new String[]{"1","1","1","1","1","2","2","2","2"}
+                new String[]{"1","1","1","1","1","2","2","2","2"},
+                new String[]{"1","1","1","2","4","5","1"},
+                new String[]{"all_001","all_001","all_001","hrnm_001","all_003","all_004","all_001"},
+                72,99,new int[]{85,95,85},new float[]{0.11f,0.245f,0.285f},
+                new int[]{800,1000,1200}
+
         ));
         idols.put(fktn, new Idol(fktn,
                 new String[]{"skin10","skin11","skin20","skin30","skin31","skin33","skin34"},
@@ -164,7 +187,11 @@ public class IdolData {
                 new IdolType[]{IdolType.LOGIC,IdolType.SENSE,IdolType.LOGIC,IdolType.LOGIC,IdolType.SENSE,IdolType.SENSE,IdolType.LOGIC},
                 new IdolStyle[]{IdolStyle.GOOD_IMPRESSION,IdolStyle.GOOD_TUNE,IdolStyle.GOOD_IMPRESSION,IdolStyle.GOOD_IMPRESSION,IdolStyle.GOOD_TUNE,IdolStyle.GOOD_IMPRESSION,IdolStyle.YARUKI},
                 new ArrayList<>(Arrays.asList(new String[]{},new String[]{"1"},new String[]{"1","2"}, new String[]{"1","2","3"}, new String[]{}, new String[]{"4"}, new String[]{"4","5"}, new String[]{"4","5","6"}, new String[]{})),
-                new String[]{"1","1","1","1","2","2","2","2","3"}
+                new String[]{"1","1","1","1","2","2","2","2","3"},
+                new String[]{"1","1","1","2","3","4","5"},
+                new String[]{"all_001","all_001","all_001","fktn_001","fktn_002","all_003","all_004"},
+                74,50,new int[]{90,80,110},new float[]{0.11f,0.27f,0.22f},
+                new int[]{500,1300,1200}
         ));
         idols.put(amao, new Idol(amao,
                 new String[]{"skin10","skin20","skin30","skin33","skin34"},
@@ -173,8 +200,25 @@ public class IdolData {
                 new IdolType[]{IdolType.SENSE,IdolType.SENSE,IdolType.SENSE,IdolType.SENSE,IdolType.SENSE},
                 new IdolStyle[]{IdolStyle.GOOD_TUNE,IdolStyle.GOOD_TUNE,IdolStyle.GOOD_TUNE,IdolStyle.FOCUS,IdolStyle.GOOD_TUNE},
                 new ArrayList<>(Arrays.asList(new String[]{},new String[]{"1"},new String[]{"1","2"}, new String[]{"1","2","3"}, new String[]{}, new String[]{"4"}, new String[]{"4","5"}, new String[]{"4","5","6"}, new String[]{})),
-                new String[]{"1","1","1","1","2","2","2","2","3"}
+                new String[]{"1","1","1","1","2","2","2","2","3"},
+                new String[]{"1","1","2","4","5"},
+                new String[]{"all_001","all_001","amao_001","all_003","all_004"},
+                74,99,new int[]{115,90,90},new float[]{0.25f,0.06f,0.28f},
+                new int[]{1300,500,1200}
         ));
+//        idols.put(amao, new Idol(amao,
+//                new String[]{"skin10","skin20","skin30","skin31","skin33","skin34"},
+//                new String[]{LittlePrince.ID, Authenticity.ID, DressedUpInStyle.ID,MoonlitRunway.ID, ChillyBreak.ID, DressedUpInStyle.ID},
+//                new String[]{GentlemanHandkerchief.ID, DearLittlePrince.ID, InnerLightEarrings.ID,FashionMode.ID, LastSummerMemory.ID, InnerLightEarrings.ID},
+//                new IdolType[]{IdolType.SENSE,IdolType.SENSE,IdolType.SENSE,IdolType.LOGIC,IdolType.SENSE,IdolType.SENSE},
+//                new IdolStyle[]{IdolStyle.GOOD_TUNE,IdolStyle.GOOD_TUNE,IdolStyle.GOOD_TUNE,IdolStyle.GOOD_IMPRESSION,IdolStyle.FOCUS,IdolStyle.GOOD_TUNE},
+//                new ArrayList<>(Arrays.asList(new String[]{},new String[]{"1"},new String[]{"1","2"}, new String[]{"1","2","3"}, new String[]{}, new String[]{"4"}, new String[]{"4","5"}, new String[]{"4","5","6"}, new String[]{})),
+//                new String[]{"1","1","1","1","2","2","2","2","3"},
+//                new String[]{"1","1","2","3","4","5"},
+//                new String[]{"all_001","all_001","amao_001","amao_002","all_003","all_004"},
+//                74,99,new int[]{115,90,90},new float[]{0.25f,0.06f,0.28f},
+//                new int[]{1300,500,1200}
+//        ));
         idols.put(ssmk, new Idol(ssmk,
                 new String[]{"skin10","skin20","skin30","skin33","skin34"},
                 new String[]{Friendly.ID, BraveStep.ID, OneMoreStep.ID, AfternoonBreeze.ID, OneMoreStep.ID},
@@ -182,7 +226,11 @@ public class IdolData {
                 new IdolType[]{IdolType.SENSE,IdolType.SENSE,IdolType.SENSE,IdolType.LOGIC,IdolType.SENSE},
                 new IdolStyle[]{IdolStyle.FOCUS,IdolStyle.FOCUS,IdolStyle.FOCUS,IdolStyle.YARUKI,IdolStyle.FOCUS},
                 new ArrayList<>(Arrays.asList(new String[]{},new String[]{"1"},new String[]{"1","2"}, new String[]{"1","2","3"}, new String[]{}, new String[]{"4"}, new String[]{"4","5"}, new String[]{}, new String[]{"6"})),
-                new String[]{"1","1","1","1","2","2","2","3","3"}
+                new String[]{"1","1","1","1","2","2","2","3","3"},
+                new String[]{"1","1","2","4","5"},
+                new String[]{"all_001","all_001","ssmk_001","all_003","all_004"},
+                72,99,new int[]{90,85,90},new float[]{0.09f,0.28f,0.26f},
+                new int[]{600,1500,800}
         ));
         idols.put(ttmr, new Idol(ttmr,
                 new String[]{"skin10","skin11","skin20","skin30","skin31","skin33","skin34"},
@@ -191,7 +239,11 @@ public class IdolData {
                 new IdolType[]{IdolType.SENSE,IdolType.LOGIC,IdolType.SENSE,IdolType.SENSE,IdolType.LOGIC,IdolType.SENSE,IdolType.SENSE},
                 new IdolStyle[]{IdolStyle.FOCUS,IdolStyle.GOOD_IMPRESSION,IdolStyle.FOCUS,IdolStyle.FOCUS,IdolStyle.GOOD_IMPRESSION,IdolStyle.FOCUS,IdolStyle.FOCUS},
                 new ArrayList<>(Arrays.asList(new String[]{},new String[]{"1"},new String[]{"1","2"}, new String[]{}, new String[]{"3"}, new String[]{"3","4"}, new String[]{"3","4","5"}, new String[]{}, new String[]{"6"})),
-                new String[]{"1","1","1","2","2","2","2","3","3"}
+                new String[]{"1","1","1","2","2","2","2","3","3"},
+                new String[]{"1","1","1","2","3","4","5"},
+                new String[]{"all_001","all_001","all_001","ttmr_001","ttmr_002","all_003","all_004"},
+                76,99,new int[]{110,90,80},new float[]{0.27f,0.26f,0.06f},
+                new int[]{1350,950,700}
         ));
 
 

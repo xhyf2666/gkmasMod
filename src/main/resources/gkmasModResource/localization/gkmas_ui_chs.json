@@ -1,0 +1,74 @@
+{
+  "gkmasMod:free": {
+    "TEXT": ["IDOL:通用"]
+  },
+  "gkmasMod:logic": {
+    "TEXT": ["IDOL:理性"]
+  },
+  "gkmasMod:sense": {
+    "TEXT": ["IDOL:感性"]
+  },
+  "typeHintName:logic": {
+    "TEXT": ["理性"]
+  },
+  "typeHintName:sense": {
+    "TEXT": ["感性"]
+  },
+  "typeHint:sense": {
+    "TEXT": ["卡池为感性卡和通用卡，偏向 #y攻杀 。"]
+  },
+  "typeHint:logic": {
+    "TEXT": ["卡池为理性卡和通用卡，偏向 #y防杀 。"]
+  },
+  "styleHintName:goodTune": {
+    "TEXT": ["好调"]
+  },
+  "styleHintName:focus": {
+    "TEXT": ["集中"]
+  },
+  "styleHintName:goodImpression": {
+    "TEXT": ["好印象"]
+  },
+  "styleHintName:yaruki": {
+    "TEXT": ["干劲"]
+  },
+  "styleHint:goodTune": {
+    "TEXT": ["叠加 #y好调 和 #y绝好调 ，获得高额增伤。"]
+  },
+  "styleHint:focus": {
+    "TEXT": ["叠加 #y力量 ，提高基础伤害。"]
+  },
+  "styleHint:goodImpression": {
+    "TEXT": ["叠加 #y好印象 ，回合结束时自动出伤。"]
+  },
+  "styleHint:yaruki": {
+    "TEXT": ["叠加 #y敏捷 ，基于 #y格挡 造成伤害。"]
+  },
+  "gkmasMod:PocketBookUI": {
+    "TEXT": ["姓名","班级","生日","年龄","身高","体重","三维","兴趣","朋友","特长"]
+  },
+  "gkmasMod:NotEnoughGoodImpression": {
+    "TEXT": ["好印象还不够"]
+  },
+  "gkmasMod:NotEnoughDexterityPower": {
+    "TEXT": ["敏捷还不够"]
+  },
+  "gkmasMod:NotEnoughStrengthPower": {
+    "TEXT": ["力量还不够"]
+  },
+  "gkmasMod:NotEnoughGoodTune": {
+    "TEXT": ["好调还不够"]
+  },
+  "gkmasMod:ProudStudentAction": {
+    "TEXT": ["选择一张卡保留"]
+  },
+  "gkmasMod:TurnBackAction": {
+    "TEXT": ["选择一张手牌","选择一张消耗卡"]
+  },
+  "gkmasMod:Retain": {
+    "TEXT": ["保留 。"]
+  },
+  "gkmasMod:WakeUpHeader": {
+    "TEXT": ["并非"]
+  }
+}

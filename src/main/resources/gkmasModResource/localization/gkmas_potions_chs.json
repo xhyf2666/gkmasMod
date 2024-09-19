@@ -1,0 +1,78 @@
+{
+  "gkmasMod:FirstStarWater": {
+    "NAME": "初星水",
+    "DESCRIPTIONS": ["造成 #b%d 点伤害。"]
+  },
+  "gkmasMod:OolongTea": {
+    "NAME": "乌龙茶",
+    "DESCRIPTIONS": ["获得 #b%d 点 #y格挡 。"]
+  },
+  "gkmasMod:VitaminDrink": {
+    "NAME": "维生素饮料",
+    "DESCRIPTIONS": ["获得 #b%d 层 #y好调 。"]
+  },
+  "gkmasMod:IcedCoffee": {
+    "NAME": "冰咖啡",
+    "DESCRIPTIONS": ["获得 #b%d 点 #y力量 。"]
+  },
+  "gkmasMod:RooibosTea": {
+    "NAME": "红茶",
+    "DESCRIPTIONS": ["获得 #b%d 层 #y好印象 。"]
+  },
+  "gkmasMod:HotCoffee": {
+    "NAME": "热咖啡",
+    "DESCRIPTIONS": ["获得 #b%d 点 #y敏捷 。"]
+  },
+  "gkmasMod:MixedSmoothie": {
+    "NAME": "混合果汁",
+    "DESCRIPTIONS": ["回复 #b%d 点 #y体力 。 NL 丢弃所有手牌然后抽等量牌。"]
+  },
+  "gkmasMod:RecoveryDrink": {
+    "NAME": "恢复饮料",
+    "DESCRIPTIONS": ["回复 #b%d 点 #y体力 。"]
+  },
+  "gkmasMod:FreshVinegar": {
+    "NAME": "新鲜醋汁",
+    "DESCRIPTIONS": ["回复 #b%d 点 #y体力 。 NL 强化所有手牌 。"]
+  },
+  "gkmasMod:BoostExtract": {
+    "NAME": "Boost精华",
+    "DESCRIPTIONS": ["失去 #b%d 点 #y体力 ，获得 #b%d 层 受伤减半。 NL 接下来的 #b%d 次伤害增加 #b%d %%。"]
+  },
+  "gkmasMod:StaminaExplosionDrink": {
+    "NAME": "耐力爆发",
+    "DESCRIPTIONS": ["获得 #b%d 层 #y绝好调 。 NL 获得 #b%d 点 #y格挡 。"]
+  },
+  "gkmasMod:StylishHerbalTea": {
+    "NAME": "时尚香草茶",
+    "DESCRIPTIONS": ["获得 #b%d 点 #y格挡 。 NL 造成 #y好印象 层数 #b%d %%的伤害。"]
+  },
+  "gkmasMod:FirstStarWheyProtein": {
+    "NAME": "初星乳清蛋白",
+    "DESCRIPTIONS": [" #y再动 。"]
+  },
+  "gkmasMod:FirstStarSpecialAojiru": {
+    "NAME": "初星特制青汁",
+    "DESCRIPTIONS": ["获得一张强化的彩色牌。"]
+  },
+  "gkmasMod:SelectFirstStarMacchiato": {
+    "NAME": "初星严选·玛奇朵",
+    "DESCRIPTIONS": ["回合结束时，获得 #b%d 点 #y力量 。"]
+  },
+  "gkmasMod:SelectFirstStarTea": {
+    "NAME": "初星严选·茶",
+    "DESCRIPTIONS": ["回合结束时，获得 #b%d 层 #y好印象 。"]
+  },
+  "gkmasMod:SelectFirstStarBlend": {
+    "NAME": "初星严选·混合咖啡",
+    "DESCRIPTIONS": ["回合结束时，获得 #b%d 点 #y敏捷 。"]
+  },
+  "gkmasMod:FirstStarBoostEnergy": {
+    "NAME": "初星Boost能量",
+    "DESCRIPTIONS": ["获得 #b%d 层 #y绝好调 。 NL 强化所有手牌。"]
+  },
+  "gkmasMod:SpecialFirstStarExtract": {
+    "NAME": "特制初星精华",
+    "DESCRIPTIONS": ["失去 #b%d 点 #y体力 。 NL 获得 #b%d 层 受伤翻倍。 NL 本回合使用的下一张攻击牌额外触发一次。"]
+  }
+}

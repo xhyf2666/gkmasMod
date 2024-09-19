@@ -20,17 +20,17 @@ public class UltimateSleepMask extends CustomRelic {
 
     public static final String ID = CLASSNAME;
 
-    private static final String IMG = String.format("img/relics/%s.png",CLASSNAME);
-    private static final String IMG_OTL = String.format("img/relics/%s.png",CLASSNAME);
-    private static final String IMG_LARGE = String.format("img/relics/large/%s.png",CLASSNAME);
+    private static final String IMG = String.format("gkmasModResource/img/relics/%s.png",CLASSNAME);
+    private static final String IMG_OTL = String.format("gkmasModResource/img/relics/%s.png",CLASSNAME);
+    private static final String IMG_LARGE = String.format("gkmasModResource/img/relics/large/%s.png",CLASSNAME);
 
     private static final RelicTier RARITY = RelicTier.STARTER;
-
-    private static final int TURNS = 4;
 
     private static final int BASE_MAGIC = 50;
 
     private float magicNumber;
+
+    private int playTimes = 2;
 
     private static final int HP_LOST = 1;
 
@@ -43,7 +43,7 @@ public class UltimateSleepMask extends CustomRelic {
 
     @Override
     public String getUpdatedDescription() {
-        return String.format(this.DESCRIPTIONS[0],TURNS,HP_LOST,BASE_MAGIC);
+        return String.format(this.DESCRIPTIONS[0],HP_LOST,BASE_MAGIC);
     }
 
     @Override
@@ -54,29 +54,21 @@ public class UltimateSleepMask extends CustomRelic {
 
     public void onEquip() {}
 
+    @Override
     public void atBattleStart() {
         this.counter = 0;
     }
 
-    public void atTurnStart() {
-        this.counter++;
-        if (this.counter == TURNS){
-            flash();
-            beginLongPulse();
-        }
-
-    }
-
-    public void onPlayerEndTurn() {
+    public void onTrainRoundRemove() {
 
         int amount = AbstractDungeon.player.currentBlock;
         int damage = (int) (1.0F*amount*magicNumber);
 
-        if (this.counter == TURNS) {
+        if (this.counter < playTimes) {
             addToBot(new RelicAboveCreatureAction(AbstractDungeon.player, this));
             addToBot(new LoseHPAction(AbstractDungeon.player, AbstractDungeon.player, HP_LOST));
-            addToBot(new DamageAllEnemiesAction(AbstractDungeon.player, DamageInfo.createDamageMatrix(damage, true), DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.BLUNT_HEAVY));
-            stopPulse();
+            addToTop(new DamageAllEnemiesAction(AbstractDungeon.player, damage, DamageInfo.DamageType.NORMAL, AbstractGameAction.AttackEffect.BLUNT_HEAVY));
+            this.counter++;
             this.grayscale = true;
         }
     }
@@ -85,10 +77,6 @@ public class UltimateSleepMask extends CustomRelic {
         this.grayscale = false;
     }
 
-    public void onVictory() {
-        this.counter = -1;
-        stopPulse();
-    }
 
     public void loadLargeImg() {
         if (this.largeImg == null) {

@@ -25,8 +25,8 @@ public class HalfDamageReceive extends AbstractPower {
     private static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
 
 
-    String path128 = String.format("img/powers/%s_84.png",CLASSNAME);;
-    String path48 = String.format("img/powers/%s_32.png",CLASSNAME);;
+    String path128 = String.format("gkmasModResource/img/powers/%s_84.png",CLASSNAME);;
+    String path48 = String.format("gkmasModResource/img/powers/%s_32.png",CLASSNAME);;
 
     public HalfDamageReceive(AbstractCreature owner, int Amount) {
         this.name = NAME;
@@ -54,15 +54,23 @@ public class HalfDamageReceive extends AbstractPower {
         return damage * 0.5F;
     }
 
-    public void atEndOfRound() {
+    public void atEndOfRound(){
         flash();
 
         if(this.amount > 0){
-                addToBot((AbstractGameAction)new ReducePowerAction(this.owner, this.owner, POWER_ID, 1));
+                addToBot(new ReducePowerAction(this.owner, this.owner, POWER_ID, 1));
         }
         else
-            addToBot((AbstractGameAction)new RemoveSpecificPowerAction(this.owner, this.owner, POWER_ID));
+            addToBot(new RemoveSpecificPowerAction(this.owner, this.owner, POWER_ID));
     }
+
+    public int onAttacked(DamageInfo info, int damageAmount) {
+        if(info.type == DamageInfo.DamageType.HP_LOSS){
+            return (int) (damageAmount*0.5F);
+        }
+        return damageAmount;
+    }
+
 
 
 }

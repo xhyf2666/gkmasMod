@@ -12,6 +12,7 @@ import com.megacrit.cardcrawl.helpers.PowerTip;
 import com.megacrit.cardcrawl.powers.DexterityPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
+import gkmasmod.actions.GainTrainRoundPowerAction;
 import gkmasmod.powers.GoodImpression;
 
 public class PigDreamPiggyBank extends CustomRelic {
@@ -20,9 +21,9 @@ public class PigDreamPiggyBank extends CustomRelic {
 
     public static final String ID = CLASSNAME;
 
-    private static final String IMG = String.format("img/relics/%s.png",CLASSNAME);
-    private static final String IMG_OTL = String.format("img/relics/%s.png",CLASSNAME);
-    private static final String IMG_LARGE = String.format("img/relics/large/%s.png",CLASSNAME);
+    private static final String IMG = String.format("gkmasModResource/img/relics/%s.png",CLASSNAME);
+    private static final String IMG_OTL = String.format("gkmasModResource/img/relics/%s.png",CLASSNAME);
+    private static final String IMG_LARGE = String.format("gkmasModResource/img/relics/large/%s.png",CLASSNAME);
 
     private static final RelicTier RARITY = RelicTier.STARTER;
 
@@ -63,7 +64,7 @@ public class PigDreamPiggyBank extends CustomRelic {
             if(count>GOOD_IMPRESSION){
                 addToBot(new RelicAboveCreatureAction(AbstractDungeon.player, this));
                 addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new GoodImpression(AbstractDungeon.player, magicNumber), magicNumber));
-                addToBot(new GainEnergyAction(magicNumber2));
+                addToBot(new GainTrainRoundPowerAction(AbstractDungeon.player,1));
                 this.counter--;
                 if (this.counter == 0) {
                     this.grayscale = true;

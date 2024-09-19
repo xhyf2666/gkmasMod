@@ -14,6 +14,8 @@ import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
+import gkmasmod.actions.ModfifyDamageAction;
+import gkmasmod.cards.sense.TopEntertainment;
 import gkmasmod.utils.NameHelper;
 
 public class TopEntertainmentPower extends AbstractPower {
@@ -27,8 +29,8 @@ public class TopEntertainmentPower extends AbstractPower {
 
     private static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
 
-    String path128 = String.format("img/powers/%s_84.png",CLASSNAME);;
-    String path48 = String.format("img/powers/%s_32.png",CLASSNAME);;
+    String path128 = String.format("gkmasModResource/img/powers/%s_84.png",CLASSNAME);;
+    String path48 = String.format("gkmasModResource/img/powers/%s_32.png",CLASSNAME);;
 
     public TopEntertainmentPower(AbstractCreature owner, int Amount) {
         this.name = NAME;
@@ -50,7 +52,7 @@ public class TopEntertainmentPower extends AbstractPower {
     public void onUseCard(AbstractCard card, UseCardAction action) {
         if(card.type == AbstractCard.CardType.ATTACK) {
             for(int i = 0; i < this.amount; i++) {
-                addToBot(new DamageAction(action.target, new DamageInfo(AbstractDungeon.player, 4, action.damageType), AbstractGameAction.AttackEffect.SLASH_VERTICAL));
+                addToBot(new ModfifyDamageAction(action.target, new DamageInfo(AbstractDungeon.player, 4, action.damageType), AbstractGameAction.AttackEffect.SLASH_VERTICAL,new TopEntertainment()));
             }
         }
     }

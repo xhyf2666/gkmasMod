@@ -10,6 +10,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
+import gkmasmod.cards.free.BasePerform;
 
 public class LifeSizeLadyLip extends CustomRelic {
 
@@ -17,14 +18,13 @@ public class LifeSizeLadyLip extends CustomRelic {
 
     public static final String ID = CLASSNAME;
 
-    private static final String IMG = String.format("img/relics/%s.png",CLASSNAME);
-    private static final String IMG_OTL = String.format("img/relics/%s.png",CLASSNAME);
-    private static final String IMG_LARGE = String.format("img/relics/large/%s.png",CLASSNAME);
+    private static final String IMG = String.format("gkmasModResource/img/relics/%s.png",CLASSNAME);
+    private static final String IMG_OTL = String.format("gkmasModResource/img/relics/%s.png",CLASSNAME);
+    private static final String IMG_LARGE = String.format("gkmasModResource/img/relics/large/%s.png",CLASSNAME);
 
     private static final RelicTier RARITY = RelicTier.STARTER;
 
-    private static final int TURNS1 = 4;
-    private static final int TURNS2 = 5;
+    private int playTimes = 3;
 
     private static final int magicNumber = 5;
 
@@ -36,7 +36,7 @@ public class LifeSizeLadyLip extends CustomRelic {
 
     @Override
     public String getUpdatedDescription() {
-        return String.format(this.DESCRIPTIONS[0],TURNS1,TURNS2,magicNumber);
+        return String.format(this.DESCRIPTIONS[0],magicNumber);
     }
 
     @Override
@@ -51,26 +51,16 @@ public class LifeSizeLadyLip extends CustomRelic {
         this.counter = 0;
     }
 
-    public void atTurnStart() {
-        this.counter++;
-        if (this.counter == TURNS1 || this.counter == TURNS2){
-            flash();
-            beginLongPulse();
-        }
 
-    }
+    public void onTrainRoundRemove() {
 
-    public void onPlayerEndTurn() {
-
-        int amount = AbstractDungeon.player.currentBlock;
-        System.out.println("Amount: " + amount);
         int damage = magicNumber;
 
-        if (this.counter == TURNS1 || this.counter == TURNS2) {
+        if (this.counter < playTimes) {
             addToBot(new RelicAboveCreatureAction(AbstractDungeon.player, this));
-            addToBot(new DamageAllEnemiesAction(AbstractDungeon.player, DamageInfo.createDamageMatrix(damage, true), DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.BLUNT_HEAVY));
-            stopPulse();
-            if (this.counter == TURNS2)
+            addToTop(new DamageAllEnemiesAction(AbstractDungeon.player, damage, DamageInfo.DamageType.NORMAL, AbstractGameAction.AttackEffect.BLUNT_HEAVY));
+            this.counter++;
+            if (this.counter == playTimes-1)
                 this.grayscale = true;
         }
     }

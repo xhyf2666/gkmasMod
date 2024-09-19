@@ -30,12 +30,10 @@ public class GoodTune extends AbstractPower {
     // 能力的描述
     private static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
 
-    private static boolean firstGet = true;
-
     private static float BASR_RATE = 1.5f;
 
-    String path128 = String.format("img/powers/%s_84.png",CLASSNAME);;
-    String path48 = String.format("img/powers/%s_32.png",CLASSNAME);;
+    String path128 = String.format("gkmasModResource/img/powers/%s_84.png",CLASSNAME);;
+    String path48 = String.format("gkmasModResource/img/powers/%s_32.png",CLASSNAME);;
 
     public GoodTune(AbstractCreature owner, int Amount) {
         this.name = NAME;
@@ -58,28 +56,18 @@ public class GoodTune extends AbstractPower {
     }
 
     public void stackPower(int stackAmount) {
-        if(this.amount == 0){
-            firstGet = true;
-        }
-        else{
-            firstGet = false;
-        }
         super.stackPower(stackAmount);
         if (this.amount == 0)
             addToTop(new RemoveSpecificPowerAction(this.owner, this.owner, this.ID));
     }
 
-    public void atEndOfRound() {
+    public void atEndOfTurnPreEndTurnCards(boolean isPlayer){
         flash();
-
         if(this.amount > 0){
-            if(firstGet)
-                firstGet = false;
-            else
-                addToBot((AbstractGameAction)new ReducePowerAction(this.owner, this.owner, POWER_ID, 1));
+                addToBot(new ReducePowerAction(this.owner, this.owner, POWER_ID, 1));
             }
         else
-            addToBot((AbstractGameAction)new RemoveSpecificPowerAction(this.owner, this.owner, POWER_ID));
+            addToBot(new RemoveSpecificPowerAction(this.owner, this.owner, POWER_ID));
     }
 
 
@@ -92,19 +80,5 @@ public class GoodTune extends AbstractPower {
                 return damage * 1.5F;
         }
         return damage;
-    }
-
-    public void onVictory() {
-        firstGet = true;
-    }
-
-    public void atStartOfTurn() {
-        if (this.amount == 0) {
-            firstGet = true;
-        }
-    }
-
-    public void onInitialApplication() {
-        firstGet = true;
     }
 }

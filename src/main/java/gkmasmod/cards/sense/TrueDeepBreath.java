@@ -7,22 +7,23 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.StrengthPower;
-import gkmasmod.cards.AbstractDefaultCard;
+import gkmasmod.cards.GkmasCard;
+import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.powers.GoodTune;
 import gkmasmod.utils.NameHelper;
-import gkmasmod.utils.PlayerHelper;
 
-public class TrueDeepBreath extends AbstractDefaultCard {
+public class TrueDeepBreath extends GkmasCard {
     private static final String CLASSNAME = TrueDeepBreath.class.getSimpleName();
     public static final String ID = NameHelper.makePath(CLASSNAME);
     private static final CardStrings CARD_STRINGS = CardCrawlGame.languagePack.getCardStrings(ID);
 
     private static final String NAME = CARD_STRINGS.NAME;
     private static final String DESCRIPTION = CARD_STRINGS.DESCRIPTION;
-    private static final String IMG_PATH = String.format("img/cards/common/%s.png", CLASSNAME);
+    private static final String IMG_PATH = String.format("gkmasModResource/img/cards/common/%s.png", CLASSNAME);
 
     private static final int COST = 2;
+    private static final int UPGRADE_PLUS_COST = 1;
     private static final int BASE_MAGIC = 3;
     private static final int UPGRADE_PLUS_MAGIC = 1;
     private static final int BASE_MAGIC2 = 2;
@@ -40,6 +41,8 @@ public class TrueDeepBreath extends AbstractDefaultCard {
         this.baseSecondMagicNumber = BASE_MAGIC2;
         this.secondMagicNumber = this.baseSecondMagicNumber;
         this.exhaust = true;
+        this.tags.add(GkmasCardTag.GOOD_TUNE_TAG);
+        this.tags.add(GkmasCardTag.FOCUS_TAG);
     }
 
 
@@ -59,6 +62,7 @@ public class TrueDeepBreath extends AbstractDefaultCard {
     public void upgrade() {
         if (!this.upgraded) {
             upgradeName();
+            upgradeBaseCost(UPGRADE_PLUS_COST);
             upgradeMagicNumber(UPGRADE_PLUS_MAGIC);
             upgradeSecondMagicNumber(UPGRADE_PLUS_MAGIC2);
             if (CARD_STRINGS.UPGRADE_DESCRIPTION != null)

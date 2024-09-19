@@ -7,19 +7,20 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.DexterityPower;
-import gkmasmod.cards.AbstractDefaultCard;
+import gkmasmod.cards.GkmasCard;
+import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.utils.NameHelper;
 import gkmasmod.utils.PlayerHelper;
 
-public class SeriousHobby extends AbstractDefaultCard {
+public class SeriousHobby extends GkmasCard {
     private static final String CLASSNAME = SeriousHobby.class.getSimpleName();
     public static final String ID = NameHelper.makePath(CLASSNAME);
     private static final CardStrings CARD_STRINGS = CardCrawlGame.languagePack.getCardStrings(ID);
 
     private static final String NAME = CARD_STRINGS.NAME;
     private static final String DESCRIPTION = CARD_STRINGS.DESCRIPTION;
-    private static final String IMG_PATH = String.format("img/cards/common/%s.png", CLASSNAME);
+    private static final String IMG_PATH = String.format("gkmasModResource/img/cards/common/%s.png", CLASSNAME);
 
     private static final int COST = 0;
     private static final int BASE_MAGIC = 2;
@@ -42,6 +43,8 @@ public class SeriousHobby extends AbstractDefaultCard {
         this.baseBlock = BLOCK_AMT;
         this.baseSecondBlock = BLOCK_AMT2;
         this.exhaust = true;
+        this.tags.add(GkmasCardTag.YARUKI_TAG);
+        this.tags.add(GkmasCardTag.IDOL_CARD_TAG);
     }
 
 

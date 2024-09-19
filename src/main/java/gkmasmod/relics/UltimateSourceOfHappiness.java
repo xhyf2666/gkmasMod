@@ -10,6 +10,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import gkmasmod.actions.GainBlockWithPowerAction;
+import gkmasmod.cards.sense.FullAdrenaline;
 import gkmasmod.powers.GoodTune;
 
 public class UltimateSourceOfHappiness extends CustomRelic {
@@ -18,9 +19,9 @@ public class UltimateSourceOfHappiness extends CustomRelic {
 
     public static final String ID = CLASSNAME;
 
-    private static final String IMG = String.format("img/relics/%s.png",CLASSNAME);
-    private static final String IMG_OTL = String.format("img/relics/%s.png",CLASSNAME);
-    private static final String IMG_LARGE = String.format("img/relics/large/%s.png",CLASSNAME);
+    private static final String IMG = String.format("gkmasModResource/img/relics/%s.png",CLASSNAME);
+    private static final String IMG_OTL = String.format("gkmasModResource/img/relics/%s.png",CLASSNAME);
+    private static final String IMG_LARGE = String.format("gkmasModResource/img/relics/large/%s.png",CLASSNAME);
 
     private static final RelicTier RARITY = RelicTier.STARTER;
 
@@ -49,11 +50,10 @@ public class UltimateSourceOfHappiness extends CustomRelic {
     public void onEquip() {}
 
     public void onUseCard(AbstractCard card, UseCardAction useCardAction){
-        // TODO 换成专属卡
-        if (card.cardID.equals("gkmasmod:KotoneVoice")) {
+        if (card.cardID.equals(FullAdrenaline.ID)) {
                 addToBot(new RelicAboveCreatureAction(AbstractDungeon.player, this));
                 addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new GoodTune(AbstractDungeon.player, magicNumber), magicNumber));
-                addToBot(new GainBlockAction(AbstractDungeon.player,AbstractDungeon.player,magicNumber2));
+                addToBot(new GainBlockWithPowerAction(AbstractDungeon.player,AbstractDungeon.player,magicNumber2));
         }
 
     }

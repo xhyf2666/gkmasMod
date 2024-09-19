@@ -9,21 +9,24 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import gkmasmod.cards.AbstractDefaultCard;
+import gkmasmod.actions.GainTrainRoundPowerAction;
+import gkmasmod.cards.GkmasCard;
+import gkmasmod.cards.GkmasCardTag;
+import gkmasmod.characters.IdolCharacter;
 import gkmasmod.characters.PlayerColorEnum;
-import gkmasmod.powers.BurstAttackPower;
 import gkmasmod.powers.GoodTune;
-import gkmasmod.powers.HalfDamageReceive;
+import gkmasmod.powers.GreatGoodTune;
+import gkmasmod.utils.CommonEnum;
 import gkmasmod.utils.NameHelper;
 
-public class WelcomeToTeaParty extends AbstractDefaultCard {
+public class WelcomeToTeaParty extends GkmasCard {
     private static final String CLASSNAME = WelcomeToTeaParty.class.getSimpleName();
     public static final String ID = NameHelper.makePath(CLASSNAME);
     private static final CardStrings CARD_STRINGS = CardCrawlGame.languagePack.getCardStrings(ID);
 
     private static final String NAME = CARD_STRINGS.NAME;
     private static final String DESCRIPTION = CARD_STRINGS.DESCRIPTION;
-    private static final String IMG_PATH = String.format("img/cards/common/%s.png", CLASSNAME);
+    private static final String IMG_PATH = String.format("gkmasModResource/img/cards/common/%s.png", CLASSNAME);
 
     private static final int COST = 2;
     private static final int UPGRADE_COST = 1;
@@ -44,15 +47,17 @@ public class WelcomeToTeaParty extends AbstractDefaultCard {
         this.baseMagicNumber = BASE_MAGIC;
         this.magicNumber = this.baseMagicNumber;
         this.exhaust = true;
+        this.tags.add(GkmasCardTag.GOOD_TUNE_TAG);
+        this.tags.add(GkmasCardTag.IDOL_CARD_TAG);
     }
 
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
         addToBot(new GainBlockAction(p, p, this.block));
-        addToBot(new ApplyPowerAction(p, p, new GoodTune(p, this.magicNumber), this.magicNumber));
-        addToBot(new GainEnergyAction(1));
+        addToBot(new ApplyPowerAction(p, p, new GreatGoodTune(p, this.magicNumber), this.magicNumber));
         addToBot(new DrawCardAction(1));
+        addToBot(new GainTrainRoundPowerAction(p,1));
     }
 
     @Override

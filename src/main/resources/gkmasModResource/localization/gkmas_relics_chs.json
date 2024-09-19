@@ -1,0 +1,373 @@
+{
+  "UltimateSleepMask": {
+    "NAME": "超绝安眠眼罩",
+    "FLAVOR": "睡得更香。",
+    "DESCRIPTIONS": [
+      "训练时间结束时，消耗 #b%d 点体力，对所有敌人造成自身格挡 #b%d %%的伤害。"
+    ]
+  },
+  "BeginnerGuideForEveryone": {
+    "NAME": "谁都能看懂的入门书",
+    "FLAVOR": "这本书的内容很简单。",
+    "DESCRIPTIONS": [
+      "回合结束时，如果格挡大于 #b%d ，则获得 #b%d 点敏捷。 NL (每场战斗可触发 #b%d 次)。"
+    ]
+  },
+  "SidewalkResearchNotes": {
+    "NAME": "路边野草研究笔记",
+    "FLAVOR": "这些笔记记录了一些有趣研究结果。",
+    "DESCRIPTIONS": [
+      "训练时间剩余 #b1 层时和结束时，消耗 #b%d 点体力，对所有敌人造成自身格挡 #b%d %%的伤害。"
+    ]
+  },
+  "TowardsAnUnseenWorld": {
+    "NAME": "前往未知的世界",
+    "FLAVOR": "唔姆。",
+    "DESCRIPTIONS": [
+      "回合开始时，如果体力小于 #b%d %%，则获得 #b%d 点力量，受伤减少 #b%d ，同时强化所有手牌。 NL (每场战斗可触发 #b%d 次)。"
+    ]
+  },
+  "GreenUniformBracelet": {
+    "NAME": "统一的绿色手环",
+    "FLAVOR": "这个手环是绿色的。",
+    "DESCRIPTIONS": [
+      "获得好印象时，额外获得 #b%d 层好印象。 NL (每场战斗可触发 #b%d 次)。"
+    ]
+  },
+  "MemoryBot": {
+    "NAME": "记忆中的高达",
+    "FLAVOR": "为什么高达会出现在这里？",
+    "DESCRIPTIONS": [
+      "回合结束时，如果体力大于 #b%d %%，则获得 #b%d 层好印象。"
+    ]
+  },
+  "DreamLifeLog": {
+    "NAME": "通往梦想的日志",
+    "FLAVOR": "记录着某人为了实现梦想而不断努力的生活和经历。",
+    "DESCRIPTIONS": [
+      "回合结束时，如果格挡大于 #b%d ，对随机敌人造成好印象层数 #b%d %%的伤害，获得当前好印象层数 #b%d %%的好印象。 NL (每场战斗可触发 #b%d 次)。"
+    ]
+  },
+  "SparklingInTheBottle": {
+    "NAME": "瓶中星光",
+    "FLAVOR": "这个瓶子里装着星光。",
+    "DESCRIPTIONS": [
+      "回合结束时，如果好调大于 #b%d ，则获得 #b%d 层好调。 NL (每场战斗可触发 #b%d 次)。"
+    ]
+  },
+  "WishFulfillmentAmulet": {
+    "NAME": "愿望实现护身符",
+    "FLAVOR": "这个护身符可以实现愿望。",
+    "DESCRIPTIONS": [
+      "获得敏捷时，额外获得 #b%d 点敏捷。 NL (每场战斗可触发 #b%d 次)。"
+    ]
+  },
+  "CheerfulHandkerchief": {
+    "NAME": "永不沮丧的手帕",
+    "FLAVOR": "这块手帕会让人开心。",
+    "DESCRIPTIONS": [
+      "使用 #y攻击卡 时，消耗 #b%d 点体力，对目标造成自身格挡 #b%d %%的伤害。 NL (每场战斗可触发 #b%d 次)。"
+    ]
+  },
+  "SecretTrainingCardigan": {
+    "NAME": "秘密特训开襟衫",
+    "FLAVOR": "这件开襟衫是用来训练的。",
+    "DESCRIPTIONS": [
+      "获得敏捷时，额外获得 #b%d 点敏捷。 NL (每场战斗可触发 #b%d 次)。"
+    ]
+  },
+  "HeartFlutteringCup": {
+    "NAME": "满满一杯的心动",
+    "FLAVOR": "要来咯。",
+    "DESCRIPTIONS": [
+      "训练时间结束时，消耗 #b%d 点体力，对随机敌人造成 #b%d 点伤害。 NL 每打出一张牌伤害增加 #b%d。"
+    ]
+  },
+  "TechnoDog": {
+    "NAME": "科技犬挂坠",
+    "FLAVOR": "这个挂坠是科技犬。",
+    "DESCRIPTIONS": [
+      "出牌后，如果敏捷大于 #b%d ，则获得 #b%d 点敏捷。 NL (每场战斗可触发 #b%d 次)。"
+    ]
+  },
+  "ShibaInuPochette": {
+    "NAME": "柴犬挎包",
+    "FLAVOR": "这个挎包是柴犬。",
+    "DESCRIPTIONS": [
+      "每 #b%d 个回合，获得 #b%d 点格挡。"
+    ]
+  },
+  "RollingSourceOfEnergy": {
+    "NAME": "源源不断的活力之源",
+    "FLAVOR": "是佑芽最喜欢的东西。",
+    "DESCRIPTIONS": [
+      "使用 #y技能卡 时，如果敏捷大于 #b%d ，则获得 #b%d 点敏捷， 再动 。 NL (每场战斗可触发 #b%d 次)。"
+    ]
+  },
+  "RoaringLion": {
+    "NAME": "狮子挂坠",
+    "FLAVOR": "这只狮子在咆哮。",
+    "DESCRIPTIONS": [
+      "回合开始时，如果拥有 #y好调 ，则对随机敌人造成 #b%d 点伤害。 NL (每场战斗可触发 #b%d 次)。"
+    ]
+  },
+  "FirstVoiceProofSaki": {
+    "NAME": "初声之证·咲季",
+    "FLAVOR": "咲季的初声之证。",
+    "DESCRIPTIONS": [
+      "体力下降时，获得 #b%d 层好印象。 NL (每场战斗可触发 #b%d 次)。"
+    ]
+  },
+  "SakiCompleteMealRecipe": {
+    "NAME": "咲季的完整食谱",
+    "FLAVOR": "记录着咲季研究的美味料理。",
+    "DESCRIPTIONS": [
+      "回合开始时，如果拥有 #y好调 ，则获得 #b%d 点格挡。 NL (每场战斗可触发 #b%d 次)。"
+    ]
+  },
+  "TogetherInBattleTowel": {
+    "NAME": "并肩作战的毛巾",
+    "FLAVOR": "这块毛巾是用来战斗的。",
+    "DESCRIPTIONS": [
+      "使用 #y攻击卡 时，获得 #b%d 层好调， 再动 。 NL (每场战斗可触发 #b%d 次)。"
+    ]
+  },
+  "WinningDetermination": {
+    "NAME": "胜利的决心",
+    "FLAVOR": "会赢的。",
+    "DESCRIPTIONS": [
+      "体力下降时，获得 #b%d 层好印象。"
+    ]
+  },
+  "UndefeatedPoi": {
+    "NAME": "不曾失败的鱼网",
+    "FLAVOR": "Poi。",
+    "DESCRIPTIONS": [
+      "回合开始时，如果好印象大于 #b%d ，则回复 #b%d 点体力。 NL (每场战斗可触发 #b%d 次)。"
+    ]
+  },
+  "RegularMakeupPouch": {
+    "NAME": "日常化妆包",
+    "FLAVOR": "这个化妆包是日常的。",
+    "DESCRIPTIONS": [
+      "使用 #y攻击卡 时，如果体力大于 #b%d %%，则获得 #b%d 点力量。 NL (每场战斗可触发 #b%d 次)。"
+    ]
+  },
+  "TreatForYou": {
+    "NAME": "给你的礼物",
+    "FLAVOR": "这是给你的礼物。",
+    "DESCRIPTIONS": [
+      "回合开始时，如果力量大于 #b%d ，则回复 #b%d 点体力。 NL (每场战斗可触发 #b%d 次)。"
+    ]
+  },
+  "LifeSizeLadyLip": {
+    "NAME": "等身的女士口红",
+    "FLAVOR": "这是等身的女士口红。",
+    "DESCRIPTIONS": [
+      "训练时间剩余 #b1 层时和结束时，对所有敌人造成 #b%d 点伤害。"
+    ]
+  },
+  "SummerToShareWithYou": {
+    "NAME": "与你分享的夏天",
+    "FLAVOR": "这是与你分享的夏天。",
+    "DESCRIPTIONS": [
+      "回合开始时，如果拥有 #y受伤减半 状态，则获得 #b%d 层绝好调。 NL (每场战斗可触发 #b%d 次)。"
+    ]
+  },
+  "HandmadeMedal": {
+    "NAME": "手工勋章",
+    "FLAVOR": "这是手工勋章。",
+    "DESCRIPTIONS": [
+      "回合结束时，如果好印象大于 #b%d ，则获得 #b%d 层好印象。 NL (每场战斗可触发 #b%d 次)。"
+    ]
+  },
+  "FirstVoiceProofKotone": {
+    "NAME": "初声之证·琴音",
+    "FLAVOR": "琴音的初声之证。",
+    "DESCRIPTIONS": [
+      "使用 #y初次奖励 后，获得 #b%d 层好调。"
+    ]
+  },
+  "FavoriteSneakers": {
+    "NAME": "最喜欢的运动鞋",
+    "FLAVOR": "这是最喜欢的运动鞋。",
+    "DESCRIPTIONS": [
+      "回合结束时，如果格挡大于 #b%d ，则获得 #b%d 层好印象。 NL (每场战斗可触发 #b%d 次)。"
+    ]
+  },
+  "PigDreamPiggyBank": {
+    "NAME": "猪梦存钱罐",
+    "FLAVOR": "这是猪梦存钱罐。",
+    "DESCRIPTIONS": [
+      "出牌后，如果好印象大于 #b%d ，则获得 #b%d 层好印象， 再动 。 NL (每场战斗可触发 #b%d 次)。"
+    ]
+  },
+  "UltimateSourceOfHappiness": {
+    "NAME": "终极幸福源泉",
+    "FLAVOR": "这是终极幸福源泉。",
+    "DESCRIPTIONS": [
+      "使用 #y肾上腺素全开 后，获得 #b%d 层好调和 #b%d 点格挡。"
+    ]
+  },
+  "CracklingSparkler": {
+    "NAME": "噼啪作响的烟火",
+    "FLAVOR": "这是噼啪作响的烟火。",
+    "DESCRIPTIONS": [
+      "每 #b%d 回合，如果好印象大于 #b%d ，则消耗 #y%d 点体力，获得等于好印象层数的格挡以及 #b%d 点敏捷。"
+    ]
+  },
+  "GentlemanHandkerchief": {
+    "NAME": "绅士手帕",
+    "FLAVOR": "这是绅士手帕。",
+    "DESCRIPTIONS": [
+      "回合开始时，如果拥有好调，则获得 #b%d 点力量。 NL (每场战斗可触发 #b%d 次)。"
+    ]
+  },
+  "DearLittlePrince": {
+    "NAME": "亲爱的小王子",
+    "FLAVOR": "这是亲爱的小王子。",
+    "DESCRIPTIONS": [
+      "获得好调时，额外获得 #y%d 层好调。 NL (每场战斗可触发 #b%d 次)。"
+    ]
+  },
+  "InnerLightEarrings": {
+    "NAME": "内光耳环",
+    "FLAVOR": "这是内光耳环。",
+    "DESCRIPTIONS": [
+      "回合结束时，如果拥有好调，则获得 #b%d 点力量和 #b%d 点格挡。 NL (每场战斗可触发 #b%d 次)。"
+    ]
+  },
+  "LastSummerMemory": {
+    "NAME": "最后的夏日回忆",
+    "FLAVOR": "这是最后的夏日回忆。",
+    "DESCRIPTIONS": [
+      "回合开始时，如果力量大于 #b%d ，则获得 #b%d 点格挡。 NL (每场战斗可触发 #b%d 次)。"
+    ]
+  },
+  "PinkUniformBracelet": {
+    "NAME": "统一的粉色手环",
+    "FLAVOR": "这是统一的粉色手环。",
+    "DESCRIPTIONS": [
+      "回合开始时，获得 #b%d 点力量。 NL (每场战斗可触发 #b%d 次)。"
+    ]
+  },
+  "AfterSchoolDoodles": {
+    "NAME": "放学后的涂鸦",
+    "FLAVOR": "这是放学后的涂鸦。",
+    "DESCRIPTIONS": [
+      "力量增加时，如果体力大于 #b%d %%，则获得 #b%d 点力量。 NL (每场战斗可触发 #b%d 次)。"
+    ]
+  },
+  "ArcadeLoot": {
+    "NAME": "游戏厅战利品",
+    "FLAVOR": "这是游戏厅战利品。",
+    "DESCRIPTIONS": [
+      "回合开始时，获得 #b%d 点力量。 NL (每场战斗可触发 #b%d 次)。"
+    ]
+  },
+  "FrogFan": {
+    "NAME": "青蛙风扇",
+    "FLAVOR": "这是青蛙风扇。",
+    "DESCRIPTIONS": [
+      "使用 #y攻击卡 时，如果敏捷大于 #b%d ，则消耗 #b%d 点体力，对目标造成敏捷层数 #b%d %%的伤害。 NL (每场战斗可触发 #b%d 次)。"
+    ]
+  },
+  "EssentialStainlessSteelBottle": {
+    "NAME": "必备的不锈钢瓶",
+    "FLAVOR": "可以多喝热水。",
+    "DESCRIPTIONS": [
+      "回合开始时，如果力量大于 #b%d ，则获得 #b%d 点力量。 NL (每场战斗可触发 #b%d 次)。"
+    ]
+  },
+  "FirstVoiceProofTemari": {
+    "NAME": "初声之证·手毬",
+    "FLAVOR": "手毬的初声之证。",
+    "DESCRIPTIONS": [
+      "回合结束时，如果好印象大于 #b%d ，则对随机敌人造成等于好印象层数的伤害。 NL (每场战斗可触发 #b%d 次)。"
+    ]
+  },
+  "MyFirstSheetMusic": {
+    "NAME": "我「最初」的乐谱",
+    "FLAVOR": "这是我的第一份乐谱。",
+    "DESCRIPTIONS": [
+      "回合结束时，如果没有格挡，则消耗 #b%d 点体力，获得 #b%d 点力量。 NL (每场战斗可触发 #b%d 次)。"
+    ]
+  },
+  "ProtectiveEarphones": {
+    "NAME": "防护耳机",
+    "FLAVOR": "这是防护耳机。",
+    "DESCRIPTIONS": [
+      "出牌后，如果力量大于 #b%d ，则获得 #b%d 点力量， 再动 。 NL (每场战斗可触发 #b%d 次)。"
+    ]
+  },
+  "ThisIsMe": {
+    "NAME": "这就是我",
+    "FLAVOR": "这就是我。",
+    "DESCRIPTIONS": [
+      "回合结束时，如果好印象大于 #b%d ，则对随机敌人造成等于好印象层数的伤害，获得 #b%d 点格挡。 NL (每场战斗可触发 #b%d 次)。"
+    ]
+  },
+  "PocketBook": {
+    "NAME": "制作人的手账",
+    "FLAVOR": "饱含制作人心意的训练计划。",
+    "DESCRIPTIONS": [
+      "右键查看训练计划和面板。"
+    ]
+  },
+  "MorningHelp": {
+    "NAME": "早晨的帮助",
+    "FLAVOR": "这是早晨的帮助。",
+    "DESCRIPTIONS": [
+      "卡牌升级时，如果vo大于 #b%d ，则获得 #b%d 点金币。"
+    ]
+  },
+  "ClapClapFan": {
+    "NAME": "啪啪啪啪的团扇",
+    "FLAVOR": "这是啪啪啪啪的团扇。",
+    "DESCRIPTIONS": [
+      "每打出 #b%d 张牌，获得 #b%d 点格挡和 #b%d 点敏捷。 NL (每场战斗可触发 #b%d 次)。"
+    ]
+  },
+  "EnjoyAfterHotSpring": {
+    "NAME": "温泉后的享受",
+    "FLAVOR": "这是温泉后的享受。",
+    "DESCRIPTIONS": [
+      "每打出 #b%d 张牌，力量增加 #b%d %%，获得 #b%d 点固定格挡。 NL (每场战斗可触发 #b%d 次)。"
+    ]
+  },
+  "FirstHeartProofRinami": {
+    "NAME": "初心之证·莉波",
+    "FLAVOR": "莉波的初心之证。",
+    "DESCRIPTIONS": [
+      "每打出 #b%d 张牌，获得 #b%d 点敏捷 。 NL (每场战斗可触发 #b%d 次)。"
+    ]
+  },
+  "FirstHeartProofChina": {
+    "NAME": "初心之证·千奈",
+    "FLAVOR": "千奈的初心之证。",
+    "DESCRIPTIONS": [
+      "训练时间结束时，消耗 #b%d 点体力，对随机敌人造成 #b%d 点伤害。 NL 每打出一张牌伤害增加 #b%d。"
+    ]
+  },
+  "FirstHeartProofLilja": {
+    "NAME": "初心之证·莉莉娅",
+    "FLAVOR": "莉莉娅的初心之证。",
+    "DESCRIPTIONS": [
+      "回合结束时，如果好调大于 #b%d ，则失去 #b%d 点体力，获得 #b%d 层好调。 NL (每场战斗可触发 #b%d 次)。"
+    ]
+  },
+  "BalanceLogicAndSense": {
+    "NAME": "感理之衡",
+    "FLAVOR": "感性与理性的完美平衡。",
+    "DESCRIPTIONS": [
+      "战斗奖励掉落的卡牌现在会同时出现感性卡和理性卡。"
+    ]
+  },
+  "FashionMode": {
+    "NAME": "时尚模式",
+    "FLAVOR": "时尚的穿搭。",
+    "DESCRIPTIONS": [
+      "回合开始时，如果敏捷大于 #b%d ，则失去 #b%d 点敏捷，获得 #b%d 层好印象。 NL (每场战斗可触发 #b%d 次)。"
+    ]
+  }
+}

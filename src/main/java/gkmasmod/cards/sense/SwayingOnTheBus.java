@@ -2,7 +2,6 @@ package gkmasmod.cards.sense;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
-import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -14,21 +13,19 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.vfx.combat.VerticalImpactEffect;
-import gkmasmod.cards.AbstractDefaultCard;
+import gkmasmod.cards.GkmasCard;
+import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
-import gkmasmod.powers.BurstAttackPower;
-import gkmasmod.powers.GoodTune;
-import gkmasmod.powers.HalfDamageReceive;
 import gkmasmod.utils.NameHelper;
 
-public class SwayingOnTheBus extends AbstractDefaultCard {
+public class SwayingOnTheBus extends GkmasCard {
     private static final String CLASSNAME = SwayingOnTheBus.class.getSimpleName();
     public static final String ID = NameHelper.makePath(CLASSNAME);
     private static final CardStrings CARD_STRINGS = CardCrawlGame.languagePack.getCardStrings(ID);
 
     private static final String NAME = CARD_STRINGS.NAME;
     private static final String DESCRIPTION = CARD_STRINGS.DESCRIPTION;
-    private static final String IMG_PATH = String.format("img/cards/common/%s.png", CLASSNAME);
+    private static final String IMG_PATH = String.format("gkmasModResource/img/cards/common/%s.png", CLASSNAME);
 
     private static final int COST = 1;
 
@@ -51,6 +48,8 @@ public class SwayingOnTheBus extends AbstractDefaultCard {
         this.magicNumber = this.baseMagicNumber;
         this.baseBlock = BLOCK_AMT;
         this.exhaust = true;
+        this.tags.add(GkmasCardTag.FOCUS_TAG);
+        this.tags.add(GkmasCardTag.IDOL_CARD_TAG);
     }
 
 
@@ -58,7 +57,7 @@ public class SwayingOnTheBus extends AbstractDefaultCard {
     public void use(AbstractPlayer p, AbstractMonster m) {
         float amount = 1.0F * AbstractDungeon.player.currentHealth / AbstractDungeon.player.maxHealth;
         float HP_ = 50 * 1.0F / 100;
-        if (amount < HP_) {
+        if (amount <= HP_) {
             addToBot(new GainBlockAction(p, p, this.block));
         }
         if (m != null)

@@ -10,6 +10,9 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
+import gkmasmod.actions.GainBlockWithPowerAction;
+import gkmasmod.actions.ModfifyDamageRandomEnemyAction;
+import gkmasmod.cards.free.BaseAppeal;
 import gkmasmod.powers.GoodImpression;
 
 public class ThisIsMe extends CustomRelic {
@@ -18,9 +21,9 @@ public class ThisIsMe extends CustomRelic {
 
     public static final String ID = CLASSNAME;
 
-    private static final String IMG = String.format("img/relics/%s.png",CLASSNAME);
-    private static final String IMG_OTL = String.format("img/relics/%s.png",CLASSNAME);
-    private static final String IMG_LARGE = String.format("img/relics/large/%s.png",CLASSNAME);
+    private static final String IMG = String.format("gkmasModResource/img/relics/%s.png",CLASSNAME);
+    private static final String IMG_OTL = String.format("gkmasModResource/img/relics/%s.png",CLASSNAME);
+    private static final String IMG_LARGE = String.format("gkmasModResource/img/relics/large/%s.png",CLASSNAME);
 
     private static final RelicTier RARITY = RelicTier.STARTER;
 
@@ -59,8 +62,8 @@ public class ThisIsMe extends CustomRelic {
             if(count>GOOD_IMPRESSION){
                 int damage = count;
                 addToBot(new RelicAboveCreatureAction(AbstractDungeon.player, this));
-                addToBot(new DamageRandomEnemyAction(new DamageInfo(AbstractDungeon.player, damage, DamageInfo.DamageType.THORNS), AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
-                addToBot(new GainBlockAction(AbstractDungeon.player, magicNumber));
+                addToBot(new ModfifyDamageRandomEnemyAction(new DamageInfo(AbstractDungeon.player, damage, DamageInfo.DamageType.THORNS), AbstractGameAction.AttackEffect.SLASH_HORIZONTAL,new BaseAppeal()));
+                addToBot(new GainBlockWithPowerAction(AbstractDungeon.player, magicNumber));
                 this.counter--;
                 if (this.counter == 0) {
                     this.grayscale = true;

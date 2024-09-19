@@ -7,31 +7,31 @@ import com.megacrit.cardcrawl.actions.common.DrawCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.AbstractPower;
-import gkmasmod.cards.AbstractDefaultCard;
+import gkmasmod.cards.GkmasCard;
+import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.powers.GoodTune;
 import gkmasmod.utils.NameHelper;
 import gkmasmod.utils.PlayerHelper;
 
-public class LightGait extends AbstractDefaultCard {
+public class LightGait extends GkmasCard {
     private static final String CLASSNAME = LightGait.class.getSimpleName();
     public static final String ID = NameHelper.makePath(CLASSNAME);
     private static final CardStrings CARD_STRINGS = CardCrawlGame.languagePack.getCardStrings(ID);
 
     private static final String NAME = CARD_STRINGS.NAME;
     private static final String DESCRIPTION = CARD_STRINGS.DESCRIPTION;
-    private static final String IMG_PATH = String.format("img/cards/common/%s.png", CLASSNAME);
+    private static final String IMG_PATH = String.format("gkmasModResource/img/cards/common/%s.png", CLASSNAME);
 
     private static final int COST = 1;
-    private static final int ATTACK_DMG = 5;
+    private static final int ATTACK_DMG = 4;
     private static final int UPGRADE_PLUS_DMG = 2;
 
-    private static final int BASE_MAGIC = 1;
+    private static final int BASE_MAGIC = 2;
+    private static final int BASE_MAGIC2 = 1;
 
 
     private static final CardType TYPE = CardType.ATTACK;
@@ -44,6 +44,9 @@ public class LightGait extends AbstractDefaultCard {
         this.baseDamage = ATTACK_DMG;
         this.baseMagicNumber = BASE_MAGIC;
         this.magicNumber = this.baseMagicNumber;
+        this.baseSecondMagicNumber = BASE_MAGIC2;
+        this.secondMagicNumber = this.baseSecondMagicNumber;
+        this.tags.add(GkmasCardTag.GOOD_TUNE_TAG);
     }
 
 
@@ -52,7 +55,8 @@ public class LightGait extends AbstractDefaultCard {
         addToBot(new DamageAction( m, new DamageInfo( p, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
         int count = PlayerHelper.getPowerAmount(p, GoodTune.POWER_ID);
         if (count > 0)
-            addToBot(new DrawCardAction(this.magicNumber));
+            addToBot(new DrawCardAction(this.secondMagicNumber));
+        addToBot(new ApplyPowerAction(p, p, new GoodTune(p, this.magicNumber), this.magicNumber));
     }
 
     @Override

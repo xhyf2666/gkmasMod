@@ -5,19 +5,13 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.core.Settings;
-import com.megacrit.cardcrawl.helpers.MathHelper;
 import com.megacrit.cardcrawl.screens.CharSelectInfo;
 import com.megacrit.cardcrawl.screens.charSelect.CharacterOption;
 import com.megacrit.cardcrawl.screens.charSelect.CharacterSelectScreen;
 import gkmasmod.characters.IdolCharacter;
 import gkmasmod.characters.PlayerColorEnum;
-import gkmasmod.ui.SkinSelectScreen;
+import gkmasmod.screen.SkinSelectScreen;
 import gkmasmod.utils.IdolData;
-import gkmasmod.utils.IdolStartingDeck;
-import gkmasmod.utils.NameHelper;
-
-import java.util.ArrayList;
 
 public class SkinSelectPatch {
     public static boolean isGkmasSelected() {
@@ -59,21 +53,6 @@ public class SkinSelectPatch {
         }
     }
 
-//    @SpirePatch(clz = CharacterSelectScreen.class, method = "render")
-//    public static class RenderCharacterSelectScreenPatch {
-//        @SpirePostfixPatch
-//        public static void Postfix(CharacterSelectScreen _inst, SpriteBatch sb) {
-//            if (SkinSelectPatch.isGkmasSelected() && SkinSelectScreen.isClick3)
-//                SkinSelectScreen.isClick3 = false;
-//                _inst.options.get(0).render(sb);
-//            for (CharacterOption o : _inst.options) {
-//                if (o.c instanceof IdolCharacter) {
-//                    o.render(sb);
-//                }
-//            }
-//        }
-//    }
-
     @SpirePatch(clz = CharacterSelectScreen.class, method = "update")
     public static class CharacterSelectScreenPatch_Update
     {
@@ -93,7 +72,7 @@ public class SkinSelectPatch {
         String skinName = IdolData.getIdol(name).getSkin(SkinSelectScreen.Inst.skinIndex);
         int updateIndex = SkinSelectScreen.Inst.updateIndex;
         System.out.println(skinName);
-        String IMG_PATH = String.format("img/charSelect/%s_%s_%d.jpg", name, skinName,updateIndex);
+        String IMG_PATH = String.format("gkmasModResource/img/charSelect/%s_%s_%d.jpg", name, skinName,updateIndex);
         // TODO 检查文件是否存在
         return new Texture(IMG_PATH);
     }
