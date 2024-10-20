@@ -12,6 +12,7 @@ import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.powers.GoodTune;
 import gkmasmod.powers.GreatGoodTune;
 import gkmasmod.utils.NameHelper;
+import gkmasmod.utils.SoundHelper;
 
 public class FullAdrenaline extends GkmasCard {
     private static final String CLASSNAME = FullAdrenaline.class.getSimpleName();
@@ -49,6 +50,8 @@ public class FullAdrenaline extends GkmasCard {
     public void use(AbstractPlayer p, AbstractMonster m) {
         addToBot(new ApplyPowerAction(p, p, new GoodTune(p, this.magicNumber), this.magicNumber));
         addToBot(new ApplyPowerAction(p, p, new GreatGoodTune(p, this.secondMagicNumber), this.secondMagicNumber));
+        SoundHelper.playSound("gkmasModResource/audio/voice/skillcard/cidol_fktn_3_001_produce_skillcard_01.ogg");
+
     }
 
     @Override

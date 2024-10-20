@@ -47,7 +47,6 @@ public class HandwrittenLetter extends GkmasCard {
         this.secondMagicNumber = this.baseSecondMagicNumber;
         this.baseBlock = BLOCK_AMT;
         this.block = this.baseBlock;
-        this.exhaust = true;
         this.tags.add(GkmasCardTag.GOOD_IMPRESSION_TAG);
     }
 

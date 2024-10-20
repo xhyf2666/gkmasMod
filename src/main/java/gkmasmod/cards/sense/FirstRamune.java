@@ -13,12 +13,14 @@ import com.megacrit.cardcrawl.helpers.CardHelper;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.combat.VerticalImpactEffect;
+import gkmasmod.actions.GoodTuneDamageAction;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.powers.GoodTune;
 import gkmasmod.utils.NameHelper;
 import gkmasmod.utils.PlayerHelper;
+import gkmasmod.utils.SoundHelper;
 
 public class FirstRamune extends GkmasCard {
     private static final String CLASSNAME = FirstRamune.class.getSimpleName();
@@ -58,9 +60,9 @@ public class FirstRamune extends GkmasCard {
         if (m != null)
             addToBot(new VFXAction(new VerticalImpactEffect(m.hb.cX + m.hb.width / 4.0F, m.hb.cY - m.hb.height / 4.0F)));
         addToBot(new DamageAction(m, new DamageInfo(p, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.BLUNT_HEAVY));
-        int count = PlayerHelper.getPowerAmount(p, GoodTune.POWER_ID);
-        int damage_ = (int) (1.0F * count * this.magicNumber / 100);
-        addToBot(new DamageAction(m, new DamageInfo(p, damage_, this.damageTypeForTurn), AbstractGameAction.AttackEffect.BLUNT_LIGHT));
+        addToBot(new GoodTuneDamageAction(1.0F*this.magicNumber/100,0,p,m,this));
+        SoundHelper.playSound("gkmasModResource/audio/voice/skillcard/cidol_kllj_3_001_produce_skillcard_01.ogg");
+
     }
 
     public void applyPowers() {

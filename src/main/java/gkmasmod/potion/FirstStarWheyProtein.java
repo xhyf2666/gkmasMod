@@ -20,6 +20,7 @@ import com.megacrit.cardcrawl.helpers.input.InputHelper;
 import com.megacrit.cardcrawl.localization.PotionStrings;
 import com.megacrit.cardcrawl.potions.AbstractPotion;
 import com.megacrit.cardcrawl.powers.AbstractPower;
+import gkmasmod.actions.AojiruAction;
 import gkmasmod.actions.GainBlockWithPowerAction;
 import gkmasmod.actions.GainTrainRoundPowerAction;
 import gkmasmod.cards.logic.GoodMorning;
@@ -60,6 +61,9 @@ public class FirstStarWheyProtein extends CustomPotion {
     public void use(AbstractCreature target) {
         int amount = getPotency();
         addToBot(new GainTrainRoundPowerAction(AbstractDungeon.player,amount));
+        if (AbstractDungeon.player != null && AbstractDungeon.player.hasRelic("SacredBark")) {
+            addToBot(new GainTrainRoundPowerAction(AbstractDungeon.player,amount));
+        }
     }
 
     public void initializeData() {

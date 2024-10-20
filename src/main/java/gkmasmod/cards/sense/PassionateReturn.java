@@ -26,8 +26,8 @@ public class PassionateReturn extends GkmasCard {
     private static String IMG_PATH = String.format("gkmasModResource/img/idol/%s/cards/%s.png", SkinSelectScreen.Inst.idolName, CLASSNAME);
 
     private static final int COST = 2;
-    private static final int ATTACK_DMG = 8;
-    private static final int UPGRADE_PLUS_DMG = 3;
+    private static final int ATTACK_DMG = 7;
+    private static final int UPGRADE_PLUS_DMG = 2;
 
     private static final int BASE_MAGIC = 3;
     private static final int UPGRADE_PLUS_MAGIC = 1;

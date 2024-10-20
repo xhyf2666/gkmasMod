@@ -27,7 +27,7 @@ public class FingerHeart extends GkmasCard {
     private static final int COST = 1;
 
     private static final int BASE_MAGIC = 50;
-    private static final int BASE_MAGIC2 = 130;
+    private static final int BASE_MAGIC2 = 170;
     private static final int UPGRADE_PLUS_MAGIC2 = 50;
 
     private static final float BLOCK_REDUCE_RATE = 0.5F;

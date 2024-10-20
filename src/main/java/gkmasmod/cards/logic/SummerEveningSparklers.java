@@ -14,6 +14,7 @@ import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.powers.GoodImpression;
 import gkmasmod.powers.SummerEveningSparklersPower;
 import gkmasmod.utils.NameHelper;
+import gkmasmod.utils.SoundHelper;
 
 public class SummerEveningSparklers extends GkmasCard {
     private static final String CLASSNAME = SummerEveningSparklers.class.getSimpleName();
@@ -32,7 +33,7 @@ public class SummerEveningSparklers extends GkmasCard {
     private static final int UPGRADE_PLUS_MAGIC2 = 1;
     private static final int BASE_MAGIC3 = 1;
 
-    private static final int BASE_HP = 4;
+    private static final int BASE_HP = 5;
 
     private static final CardType TYPE = CardType.POWER;
     private static final CardColor COLOR = PlayerColorEnum.gkmasModColorLogic;
@@ -62,6 +63,8 @@ public class SummerEveningSparklers extends GkmasCard {
         addToBot(new ApplyPowerAction(p, p, new GoodImpression(p, this.magicNumber), this.magicNumber));
         addToBot(new ApplyPowerAction(p, p, new DexterityPower(p, this.secondMagicNumber), this.secondMagicNumber));
         addToBot(new ApplyPowerAction(p, p, new SummerEveningSparklersPower(p, this.thirdMagicNumber), this.thirdMagicNumber));
+        SoundHelper.playSound("gkmasModResource/audio/voice/skillcard/cidol_fktn_3_002_produce_skillcard_01.ogg");
+
     }
 
     @Override

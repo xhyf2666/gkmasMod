@@ -28,7 +28,7 @@ public class TeaChat extends GkmasCard {
 
     private static final int COST = 0;
 
-    private static final int BASE_MAGIC = 3;
+    private static final int BASE_MAGIC = 1;
     private static final int UPGRADE_PLUS_MAGIC = 1;
     private static final int BASE_MAGIC2 = 60;
     private static final int UPGRADE_PLUS_MAGIC2 = 20;

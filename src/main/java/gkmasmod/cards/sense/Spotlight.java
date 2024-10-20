@@ -26,9 +26,9 @@ public class Spotlight extends GkmasCard {
 
     private static final int COST = 1;
 
-    private static final int BASE_MAGIC = 4;
+    private static final int BASE_MAGIC = 2;
     private static final int UPGRADE_PLUS_MAGIC = 1;
-    private static final int BLOCK_AMT = 13;
+    private static final int BLOCK_AMT = 8;
     private static final int UPGRADE_PLUS_BLOCK = 2;
 
     private static final int BASE_HP = 3;
@@ -49,7 +49,6 @@ public class Spotlight extends GkmasCard {
         this.HPMagicNumber = this.baseHPMagicNumber;
         this.baseBlock = BLOCK_AMT;
         this.block = this.baseBlock;
-        this.exhaust = true;
         this.tags.add(GkmasCardTag.GOOD_TUNE_TAG);
     }
 

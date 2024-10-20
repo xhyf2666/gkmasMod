@@ -25,10 +25,10 @@ public class Achievement extends GkmasCard {
 
     private static final int COST = 2;
 
-    private static final int ATTACK_DMG = 32;
-    private static final int UPGRADE_PLUS_DMG = 8;
-    private static final int BASE_MAGIC = 4;
-    private static final int UPGRADE_PLUS_MAGIC = 3;
+    private static final int ATTACK_DMG = 14;
+    private static final int UPGRADE_PLUS_DMG = 6;
+    private static final int BASE_MAGIC = 3;
+    private static final int UPGRADE_PLUS_MAGIC = 2;
 
 
     private static final CardType TYPE = CardType.ATTACK;
@@ -43,7 +43,6 @@ public class Achievement extends GkmasCard {
         this.baseDamage = ATTACK_DMG;
         this.baseMagicNumber = BASE_MAGIC;
         this.magicNumber = this.baseMagicNumber;
-        this.exhaust = true;
         this.tags.add(GkmasCardTag.GOOD_TUNE_TAG);
     }
 

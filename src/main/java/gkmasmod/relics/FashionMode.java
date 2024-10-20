@@ -45,7 +45,7 @@ public class FashionMode extends CustomRelic {
 
     @Override
     public String getUpdatedDescription() {
-        return String.format(this.DESCRIPTIONS[0],YARUKI,magicNumber,magicNumber2,playTimes);
+        return String.format(this.DESCRIPTIONS[0],YARUKI,magicNumber2,magicNumber,playTimes);
     }
 
     @Override

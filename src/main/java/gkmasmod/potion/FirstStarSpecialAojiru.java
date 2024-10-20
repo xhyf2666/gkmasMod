@@ -57,12 +57,20 @@ public class FirstStarSpecialAojiru extends CustomPotion {
     @Override
     public void use(AbstractCreature target) {
         int amount = getPotency();
+        if (AbstractDungeon.player != null && AbstractDungeon.player.hasRelic("SacredBark")) {
+            addToBot(new AojiruAction(AbstractDungeon.player,true));
+        }
         addToBot(new AojiruAction(AbstractDungeon.player,true));
     }
 
     public void initializeData() {
         this.potency = getPotency();
-        this.description = String.format(potionStrings.DESCRIPTIONS[0]);
+        if (AbstractDungeon.player != null && AbstractDungeon.player.hasRelic("SacredBark")) {
+            this.description = String.format(potionStrings.DESCRIPTIONS[0],2);
+        }
+        else{
+            this.description = String.format(potionStrings.DESCRIPTIONS[0],1);
+        }
         this.tips.clear();
         this.tips.add(new PowerTip(this.name, this.description));
     }
@@ -76,7 +84,7 @@ public class FirstStarSpecialAojiru extends CustomPotion {
 
     @Override
     public int getPotency(int i) {
-        return 3;
+        return 1;
     }
 
     @Override

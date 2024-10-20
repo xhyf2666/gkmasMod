@@ -2,8 +2,6 @@ package gkmasmod.relics;
 import basemod.abstracts.CustomRelic;
 import com.badlogic.gdx.Gdx;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.common.DamageRandomEnemyAction;
-import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.actions.common.RelicAboveCreatureAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -11,7 +9,7 @@ import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import gkmasmod.actions.GainBlockWithPowerAction;
-import gkmasmod.actions.ModfifyDamageRandomEnemyAction;
+import gkmasmod.actions.ModifyDamageRandomEnemyAction;
 import gkmasmod.cards.free.BaseAppeal;
 import gkmasmod.powers.GoodImpression;
 
@@ -62,7 +60,7 @@ public class ThisIsMe extends CustomRelic {
             if(count>GOOD_IMPRESSION){
                 int damage = count;
                 addToBot(new RelicAboveCreatureAction(AbstractDungeon.player, this));
-                addToBot(new ModfifyDamageRandomEnemyAction(new DamageInfo(AbstractDungeon.player, damage, DamageInfo.DamageType.THORNS), AbstractGameAction.AttackEffect.SLASH_HORIZONTAL,new BaseAppeal()));
+                addToBot(new ModifyDamageRandomEnemyAction(new DamageInfo(AbstractDungeon.player, damage, DamageInfo.DamageType.THORNS), AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
                 addToBot(new GainBlockWithPowerAction(AbstractDungeon.player, magicNumber));
                 this.counter--;
                 if (this.counter == 0) {

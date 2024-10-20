@@ -10,9 +10,11 @@ import gkmasmod.cards.GkmasCard;
 import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.powers.BurstAttackPower;
+import gkmasmod.powers.BurstAttackTwoRoundPower;
 import gkmasmod.powers.GoodTune;
 import gkmasmod.powers.HalfDamageReceive;
 import gkmasmod.utils.NameHelper;
+import gkmasmod.utils.SoundHelper;
 
 public class CumulusCloudsAndYou extends GkmasCard {
     private static final String CLASSNAME = CumulusCloudsAndYou.class.getSimpleName();
@@ -50,7 +52,9 @@ public class CumulusCloudsAndYou extends GkmasCard {
     public void use(AbstractPlayer p, AbstractMonster m) {
         addToBot(new ApplyPowerAction(p, p, new GoodTune(p, this.magicNumber), this.magicNumber));
         addToBot(new ApplyPowerAction(p, p, new HalfDamageReceive(p, this.secondMagicNumber), this.secondMagicNumber));
-        addToBot(new ApplyPowerAction(p, p, new BurstAttackPower(p, 1), 1));
+        addToBot(new ApplyPowerAction(p, p, new BurstAttackTwoRoundPower(p, 1), 1));
+        SoundHelper.playSound("gkmasModResource/audio/voice/skillcard/cidol_hrnm_3_001_produce_skillcard_01.ogg");
+
     }
 
     @Override

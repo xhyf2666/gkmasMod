@@ -12,6 +12,7 @@ import gkmasmod.cards.GkmasCard;
 import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.utils.NameHelper;
+import gkmasmod.utils.SoundHelper;
 
 public class SenseOfDistance extends GkmasCard {
     private static final String CLASSNAME = SenseOfDistance.class.getSimpleName();
@@ -24,7 +25,7 @@ public class SenseOfDistance extends GkmasCard {
 
     private static final int COST = 2;
     private static final int UPGRADED_COST = 1;
-    private static final int BASE_MAGIC = 5;
+    private static final int BASE_MAGIC = 3;
     private static final int UPGRADE_PLUS_MAGIC = 1;
     private static final int BASE_MAGIC2 = 4;
     private static final int UPGRADE_PLUS_MAGIC2 = 1;
@@ -43,6 +44,7 @@ public class SenseOfDistance extends GkmasCard {
         this.exhaust = true;
         this.tags.add(GkmasCardTag.FOCUS_TAG);
         this.tags.add(GkmasCardTag.IDOL_CARD_TAG);
+        this.tags.add(CardTags.HEALING);
     }
 
 
@@ -50,6 +52,7 @@ public class SenseOfDistance extends GkmasCard {
     public void use(AbstractPlayer p, AbstractMonster m) {
         addToBot(new ApplyPowerAction(p, p, new StrengthPower(p, this.magicNumber), this.magicNumber));
         addToBot(new HealAction(p, p, this.secondMagicNumber));
+        SoundHelper.playSound("gkmasModResource/audio/voice/skillcard/cidol_hrnm_3_000_produce_skillcard_01.ogg");
 
     }
 

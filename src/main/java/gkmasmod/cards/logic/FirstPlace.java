@@ -11,6 +11,7 @@ import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.powers.GoodImpression;
 import gkmasmod.utils.NameHelper;
+import gkmasmod.utils.SoundHelper;
 
 public class FirstPlace extends GkmasCard {
     private static final String CLASSNAME = FirstPlace.class.getSimpleName();
@@ -44,6 +45,8 @@ public class FirstPlace extends GkmasCard {
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
         addToBot(new ApplyPowerAction(p, p, new GoodImpression(p, this.magicNumber), this.magicNumber));
+        SoundHelper.playSound("gkmasModResource/audio/voice/skillcard/cidol_ttmr_1_001_produce_skillcard_01.ogg");
+
     }
 
     @Override

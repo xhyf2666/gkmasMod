@@ -27,8 +27,8 @@ public class Leap extends GkmasCard {
 
     private static final int COST = 2;
     private static final int UPGRADED_COST = 1;
-    private static final int ATTACK_DMG = 13;
-    private static final int ATTACK_DMG2 = 15;
+    private static final int ATTACK_DMG = 9;
+    private static final int ATTACK_DMG2 = 6;
 
     private static final int BASE_MAGIC = 5;
 
@@ -46,7 +46,6 @@ public class Leap extends GkmasCard {
         this.baseSecondDamage = ATTACK_DMG2;
         this.baseMagicNumber = BASE_MAGIC;
         this.magicNumber = this.baseMagicNumber;
-        this.exhaust = true;
         this.tags.add(GkmasCardTag.FOCUS_TAG);
     }
 

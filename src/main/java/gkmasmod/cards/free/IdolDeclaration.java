@@ -26,7 +26,7 @@ public class IdolDeclaration extends GkmasCard {
     private static final int BASE_MAGIC = 2;
     private static final int BASE_MAGIC2 = 1;
 
-    private static final int BASE_HP = 1;
+    private static final int BASE_HP = 3;
 
     private static final CardType TYPE = CardType.SKILL;
     private static final CardColor COLOR = PlayerColorEnum.gkmasModColor;

@@ -18,6 +18,7 @@ import gkmasmod.powers.MoonlitRunwayPower;
 import gkmasmod.screen.SkinSelectScreen;
 import gkmasmod.utils.NameHelper;
 import gkmasmod.utils.PlayerHelper;
+import gkmasmod.utils.SoundHelper;
 
 public class MoonlitRunway extends GkmasCard {
     private static final String CLASSNAME = MoonlitRunway.class.getSimpleName();
@@ -59,6 +60,8 @@ public class MoonlitRunway extends GkmasCard {
         else{
             addToBot(new ApplyPowerAction(p, p, new MoonlitRunwayPower(p, 1), 1));
         }
+        SoundHelper.playSound("gkmasModResource/audio/voice/skillcard/cidol_amao_3_002_produce_skillcard_01.ogg");
+
     }
 
     @Override

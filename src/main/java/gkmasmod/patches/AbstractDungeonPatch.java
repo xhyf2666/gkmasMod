@@ -1,7 +1,9 @@
 package gkmasmod.patches;
 
+import basemod.BaseMod;
 import basemod.ReflectionHacks;
 import com.evacipated.cardcrawl.modthespire.lib.*;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
@@ -21,6 +23,7 @@ import gkmasmod.characters.IdolCharacter;
 import gkmasmod.modcore.GkmasMod;
 import gkmasmod.monster.MonsterRoomCustomBoss;
 import gkmasmod.monster.ending.MisuzuBoss;
+import gkmasmod.room.shop.AnotherShopScreen;
 import gkmasmod.screen.SkinSelectScreen;
 import gkmasmod.utils.IdolData;
 import gkmasmod.utils.PlayerHelper;
@@ -33,13 +36,17 @@ public class AbstractDungeonPatch {
         @SpirePostfixPatch
         public static void Postfix(AbstractDungeon __instance, String name, String levelId, AbstractPlayer p, ArrayList<String> newSpecialOneTimeEventList) {
             if(p instanceof IdolCharacter){
-                //((IdolCharacter) p).initializeData();
                 IdolCharacter idol = (IdolCharacter) p;
                 idol.idolData = IdolData.getIdol(SkinSelectScreen.Inst.idolIndex);
+
                 idol.skinIndex = SkinSelectScreen.Inst.skinIndex;
                 idol.shoulderImg = ImageMaster.loadImage(String.format("gkmasModResource/img/idol/%s/stand/fire.png",idol.idolName));
                 idol.shoulder2Img = ImageMaster.loadImage(String.format("gkmasModResource/img/idol/%s/stand/fire.png",idol.idolName));
                 idol.corpseImg = ImageMaster.loadImage(String.format("gkmasModResource/img/idol/%s/stand/sleep_skin10.png",idol.idolName));
+                if (SkinSelectScreen.Inst.videoPlayer != null) {
+                    SkinSelectScreen.Inst.videoPlayer.dispose();
+                    SkinSelectScreen.Inst.videoPlayer = null;
+                }
             }
         }
     }
@@ -49,7 +56,6 @@ public class AbstractDungeonPatch {
         @SpirePostfixPatch
         public static void Postfix(AbstractDungeon __instance, String name, AbstractPlayer p, SaveFile saveFile) {
             if(p instanceof IdolCharacter){
-                //((IdolCharacter) p).initializeData();
                 IdolCharacter idol = (IdolCharacter) p;
                 idol.idolData = IdolData.getIdol(SkinSelectScreen.Inst.idolIndex);
                 idol.skinIndex = SkinSelectScreen.Inst.skinIndex;
@@ -128,6 +134,16 @@ public class AbstractDungeonPatch {
         }
     }
 
+    @SpirePatch(clz = AbstractDungeon.class,method = "generateSeeds")
+    public static class PostPatchAbstractDungeon_generateSeeds {
+        @SpirePostfixPatch
+        public static void Postfix() {
+            if(AbstractDungeon.player instanceof IdolCharacter){
+                GkmasMod.threeSizeTagRng = new Random(Settings.seed);
+            }
+        }
+    }
+
     @SpirePatch(clz = MonsterHelper.class,method = "getEncounter")
     public static class PatchGetEncounter {
         @SpirePrefixPatch
@@ -138,6 +154,29 @@ public class AbstractDungeonPatch {
                 return SpireReturn.Return(customGroup);
             }
             return SpireReturn.Continue();
+        }
+    }
+
+    @SpirePatch(clz = AbstractDungeon.class,method = "closeCurrentScreen")
+    public static class AbstractDungeonPrePatchGetEncounter {
+        @SpirePrefixPatch
+        public static SpireReturn<Void> Prefix() {
+            System.out.println(AbstractDungeon.screen);
+            return SpireReturn.Continue();
+        }
+    }
+
+    @SpirePatch(clz = AbstractDungeon.class,method = "getRewardCards")
+    public static class PostPatchAbstractDungeon_getRewardCards {
+        @SpireInsertPatch(rloc = 1866-1792,localvars = {"retVal2"})
+        public static void Insert(ArrayList<AbstractCard> retVal2) {
+            if(AbstractDungeon.player instanceof IdolCharacter){
+                if(retVal2.size()>2){
+                    AbstractCardPatch.ThreeSizeTagField.threeSizeTag.set(retVal2.get(0),0);
+                    AbstractCardPatch.ThreeSizeTagField.threeSizeTag.set(retVal2.get(1),1);
+                    AbstractCardPatch.ThreeSizeTagField.threeSizeTag.set(retVal2.get(2),2);
+                }
+            }
         }
     }
 

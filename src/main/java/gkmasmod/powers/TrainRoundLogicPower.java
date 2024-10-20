@@ -102,15 +102,17 @@ public class TrainRoundLogicPower extends AbstractPower {
     public void atEndOfTurnPreEndTurnCards(boolean isPlayer) {
         flash();
         if(EnergyPanel.totalCount > 0){
-            addToTop(new HealAction(this.owner, this.owner, 2));
+            addToTop(new HealAction(this.owner, this.owner, 1));
         }
     }
 
     public void atEndOfTurn(boolean isPlayer) {
         flash();
+        if(this.isDone)
+            return;
         if(this.amount > 0){
             addToBot(new ReducePowerAction(this.owner, this.owner, POWER_ID, 1));
-            System.out.println(AbstractDungeon.player.energy.energy);
+            addToTop(new ApplyPowerAction(this.owner, this.owner, new BlurPower(this.owner, 1)));
         }
         else
             addToBot(new RemoveSpecificPowerAction(this.owner, this.owner, POWER_ID));
@@ -119,29 +121,12 @@ public class TrainRoundLogicPower extends AbstractPower {
     public void onAfterUseCard(AbstractCard card, UseCardAction action) {
         flash();
         if(this.amount == 1){
-            if(AbstractDungeon.player.hasRelic(SidewalkResearchNotes.ID)){
-                ((SidewalkResearchNotes)AbstractDungeon.player.getRelic(SidewalkResearchNotes.ID)).onTrainRoundRemove();
-            }
-            if(AbstractDungeon.player.hasRelic(LifeSizeLadyLip.ID)){
-                ((LifeSizeLadyLip)AbstractDungeon.player.getRelic(LifeSizeLadyLip.ID)).onTrainRoundRemove();
-            }
-            if(AbstractDungeon.player.hasRelic(UltimateSleepMask.ID)){
-                ((UltimateSleepMask)AbstractDungeon.player.getRelic(UltimateSleepMask.ID)).onTrainRoundRemove();
-            }
-            if(AbstractDungeon.player.hasRelic(HeartFlutteringCup.ID)){
-                ((HeartFlutteringCup)AbstractDungeon.player.getRelic(HeartFlutteringCup.ID)).onTrainRoundRemove();
-            }
-            if(AbstractDungeon.player.hasRelic(FirstHeartProofChina.ID)){
-                ((FirstHeartProofChina)AbstractDungeon.player.getRelic(FirstHeartProofChina.ID)).onTrainRoundRemove();
-            }
         }
         addToBot(new ReducePowerAction(this.owner, this.owner, POWER_ID, 1));
     }
 
     public void onVictory() {
-        for (int i = 0; i < this.amount; i++) {
-            AbstractDungeon.player.heal(2);
-        }
+        AbstractDungeon.player.heal((int) (1.0f*this.amount*2/3));
         if(!this.isDone){
             ThreeSizeHelper.addThreeSize(false);
             this.isDone = true;
@@ -149,6 +134,21 @@ public class TrainRoundLogicPower extends AbstractPower {
     }
 
     public void onRemove() {
+        if(AbstractDungeon.player.hasRelic(SidewalkResearchNotes.ID)){
+            ((SidewalkResearchNotes)AbstractDungeon.player.getRelic(SidewalkResearchNotes.ID)).onTrainRoundRemove();
+        }
+        if(AbstractDungeon.player.hasRelic(LifeSizeLadyLip.ID)){
+            ((LifeSizeLadyLip)AbstractDungeon.player.getRelic(LifeSizeLadyLip.ID)).onTrainRoundRemove();
+        }
+        if(AbstractDungeon.player.hasRelic(UltimateSleepMask.ID)){
+            ((UltimateSleepMask)AbstractDungeon.player.getRelic(UltimateSleepMask.ID)).onTrainRoundRemove();
+        }
+        if(AbstractDungeon.player.hasRelic(HeartFlutteringCup.ID)){
+            ((HeartFlutteringCup)AbstractDungeon.player.getRelic(HeartFlutteringCup.ID)).onTrainRoundRemove();
+        }
+        if(AbstractDungeon.player.hasRelic(FirstHeartProofChina.ID)){
+            ((FirstHeartProofChina)AbstractDungeon.player.getRelic(FirstHeartProofChina.ID)).onTrainRoundRemove();
+        }
         if(!this.isDone){
             ThreeSizeHelper.addThreeSize(true);
             this.isDone = true;

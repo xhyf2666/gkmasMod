@@ -16,6 +16,7 @@ import gkmasmod.cards.GkmasCard;
 import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.utils.NameHelper;
+import gkmasmod.utils.SoundHelper;
 
 public class BraveStep extends GkmasCard {
     private static final String CLASSNAME = BraveStep.class.getSimpleName();
@@ -27,8 +28,8 @@ public class BraveStep extends GkmasCard {
     private static final String IMG_PATH = String.format("gkmasModResource/img/cards/common/%s.png", CLASSNAME);
 
     private static final int COST = 1;
-    private static final int ATTACK_DMG = 17;
-    private static final int UPGRADE_PLUS_DMG = 7;
+    private static final int ATTACK_DMG = 4;
+    private static final int UPGRADE_PLUS_DMG = 3;
 
     private static final int BASE_MAGIC = 200;
     private static final int UPGRADE_PLUS_MAGIC = 50;
@@ -54,6 +55,8 @@ public class BraveStep extends GkmasCard {
         if (m != null)
             addToBot(new VFXAction(new VerticalImpactEffect(m.hb.cX + m.hb.width / 4.0F, m.hb.cY - m.hb.height / 4.0F)));
         addToBot(new DamageAction(m, new DamageInfo(p, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.BLUNT_HEAVY));
+        SoundHelper.playSound("gkmasModResource/audio/voice/skillcard/cidol_ssmk_2_000_produce_skillcard_01.ogg");
+
     }
 
     public void applyPowers() {

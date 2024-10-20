@@ -23,12 +23,12 @@ public class CheerfulGreeting extends GkmasCard {
     private static final String DESCRIPTION = CARD_STRINGS.DESCRIPTION;
     private static final String IMG_PATH = String.format("gkmasModResource/img/cards/common/%s.png", CLASSNAME);
 
-    private static final int COST = 0;
+    private static final int COST = 1;
 
-    private static final int BASE_MAGIC = 80;
-    private static final int UPGRADE_PLUS_MAGIC = 20;
+    private static final int BASE_MAGIC = 110;
+    private static final int UPGRADE_PLUS_MAGIC = 10;
 
-    private static final int BASE_HP = 3;
+    private static final int BASE_HP = 4;
     private static final int UPGRADE_PLUS_HP = -1;
 
     private static final CardType TYPE = CardType.ATTACK;

@@ -28,7 +28,7 @@ public class MyFirstSheetMusic extends CustomRelic {
 
     private static final int HP_LOST = 1;
 
-    private static final int BLOCK = 0;
+    private static final int BLOCK = 8;
 
     public MyFirstSheetMusic() {
         super(ID, ImageMaster.loadImage(IMG), ImageMaster.loadImage(IMG_OTL), RARITY, LandingSound.CLINK);
@@ -42,7 +42,7 @@ public class MyFirstSheetMusic extends CustomRelic {
 
     @Override
     public String getUpdatedDescription() {
-        return String.format(this.DESCRIPTIONS[0],HP_LOST,magicNumber,playTimes);
+        return String.format(this.DESCRIPTIONS[0],BLOCK,HP_LOST,magicNumber,playTimes);
     }
 
     @Override
@@ -56,7 +56,7 @@ public class MyFirstSheetMusic extends CustomRelic {
     public void onPlayerEndTurn() {
         if (this.counter > 0) {
             int amount = AbstractDungeon.player.currentBlock;
-            if(amount == BLOCK){
+            if(amount < BLOCK){
                 addToBot(new RelicAboveCreatureAction(AbstractDungeon.player, this));
                 addToBot(new LoseHPAction(AbstractDungeon.player, AbstractDungeon.player, HP_LOST));
                 addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new StrengthPower(AbstractDungeon.player, magicNumber), magicNumber));

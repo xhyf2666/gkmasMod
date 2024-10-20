@@ -45,7 +45,19 @@
     "TEXT": ["叠加 #y敏捷 ，基于 #y格挡 造成伤害。"]
   },
   "gkmasMod:PocketBookUI": {
-    "TEXT": ["姓名","班级","生日","年龄","身高","体重","三维","兴趣","朋友","特长"]
+    "TEXT": ["姓名","班级","生日","年龄","身高","体重","三维","兴趣","朋友","特长","关闭","下一页","考核标准","满足考核标准可以使担当偶像更容易通过最终考核。","育成课题","完成育成课题后，可以获得对应奖励。 NL 育成课题需要按顺序完成。"]
+  },
+  "gkmasMod:PlanReward1": {
+    "TEXT": ["获得 #b50 金币。 选择特殊遗物。"]
+  },
+  "gkmasMod:PlanReward2": {
+    "TEXT": ["选择特定饮料。 获得特殊遗物。"]
+  },
+  "gkmasMod:PlanReward3": {
+    "TEXT": ["升级/删牌。"]
+  },
+  "gkmasMod:PlanRequire": {
+    "TEXT": [" #y%s 达到 #b%d "]
   },
   "gkmasMod:NotEnoughGoodImpression": {
     "TEXT": ["好印象还不够"]
@@ -70,5 +82,39 @@
   },
   "gkmasMod:WakeUpHeader": {
     "TEXT": ["并非"]
+  },
+  "gkmasMod:AnotherShopOption": {
+    "TEXT": [
+      "相谈(自由行动)",
+      "进入特殊商店。",
+      "已经进入过了。"
+    ]
+  },
+  "gkmasMod:WhatDoesSheDoAction": {
+    "TEXT": ["选择%s张卡，下回合获得。"]
+  },
+  "gkmasMod:FirstHeartProofChinaTip": {
+    "TEXT": ["当前可造成%d伤害"]
+  },
+  "gkmasMod:NaughtyPuppetTip": {
+    "TEXT": ["本场战斗累积损失%d点体力"]
+  },
+  "gkmasMod:HintName:achievement1_1": {
+    "TEXT": ["卡牌掌控"]
+  },
+  "gkmasMod:HintName:achievement1_2": {
+    "TEXT": ["卡牌掌控"]
+  },
+  "gkmasMod:HintName:achievement2": {
+    "TEXT": ["直面自我"]
+  },
+  "gkmasMod:Hint:achievement1_1": {
+    "TEXT": ["卡牌解锁率超过 #b40 %。 NL 随机 #b1 张 初始卡牌升级。"]
+  },
+  "gkmasMod:Hint:achievement1_2": {
+    "TEXT": ["卡牌解锁率超过 #b70 %。 NL 随机 #b2 张 初始卡牌升级。"]
+  },
+  "gkmasMod:Hint:achievement2": {
+    "TEXT": ["战胜过美玲。 NL #y专属卡 升级。"]
   }
 }

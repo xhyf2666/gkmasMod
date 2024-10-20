@@ -27,7 +27,7 @@ public class HighFive extends GkmasCard {
     private static final String IMG_PATH = String.format("gkmasModResource/img/cards/common/%s.png", CLASSNAME);
 
     private static final int COST = 2;
-    private static final int ATTACK_DMG = 17;
+    private static final int ATTACK_DMG = 10;
     private static final int UPGRADE_PLUS_DMG = 6;
 
     private static final int BASE_MAGIC = 150;

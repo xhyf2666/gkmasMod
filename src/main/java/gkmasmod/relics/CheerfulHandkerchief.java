@@ -62,9 +62,13 @@ public class CheerfulHandkerchief extends CustomRelic {
                 int amount = AbstractDungeon.player.currentBlock;
                 int damage = (int)(1.0F*amount*magicNumber);
                 this.flash();
+                AbstractCreature target = useCardAction.target;
+                if(target==null) {
+                    target = AbstractDungeon.getMonsters().getRandomMonster(null, true, AbstractDungeon.cardRandomRng);
+                }
                 addToBot(new RelicAboveCreatureAction(AbstractDungeon.player, this));
                 addToBot(new LoseHPAction(AbstractDungeon.player, AbstractDungeon.player, HP_COST));
-                addToBot(new ModfifyDamageAction(useCardAction.target, new DamageInfo(AbstractDungeon.player, damage, useCardAction.damageType), AbstractGameAction.AttackEffect.SLASH_VERTICAL,new BaseAppeal()));
+                addToBot(new ModfifyDamageAction(target, new DamageInfo(AbstractDungeon.player, damage, useCardAction.damageType), AbstractGameAction.AttackEffect.SLASH_VERTICAL));
                 this.counter--;
                 if (this.counter == 0) {
                     this.grayscale = true;

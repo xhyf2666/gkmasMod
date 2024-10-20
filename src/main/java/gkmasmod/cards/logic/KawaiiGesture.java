@@ -32,6 +32,10 @@ public class KawaiiGesture extends GkmasCard {
     private static final int BASE_MAGIC2 = 100;
     private static final int UPGRADE_PLUS_MAGIC2 = 20;
 
+    private static final int BASE_MAGIC3 = 2;
+
+
+
     private static final CardType TYPE = CardType.ATTACK;
     private static final CardColor COLOR = PlayerColorEnum.gkmasModColorLogic;
     private static final CardRarity RARITY = CardRarity.BASIC;
@@ -44,7 +48,8 @@ public class KawaiiGesture extends GkmasCard {
         this.magicNumber = this.baseMagicNumber;
         this.baseSecondMagicNumber = BASE_MAGIC2;
         this.secondMagicNumber = this.baseSecondMagicNumber;
-        this.exhaust = true;
+        this.baseThirdMagicNumber = BASE_MAGIC3;
+        this.thirdMagicNumber = this.baseThirdMagicNumber;
         FlavorText.AbstractCardFlavorFields.boxColor.set(this, CardHelper.getColor(73, 224, 254));
         flavor = FlavorText.CardStringsFlavorField.flavor.get(CARD_STRINGS);
         this.tags.add(GkmasCardTag.GOOD_IMPRESSION_TAG);
@@ -54,6 +59,13 @@ public class KawaiiGesture extends GkmasCard {
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
         addToBot(new GoodImpressionDamageAction(1.0F * secondMagicNumber / 100, this.magicNumber, p, m,this));
+        if(this.thirdMagicNumber > 1){
+            upgradeThirdMagicNumber(-1);
+            this.initializeDescription();
+        }
+        else{
+            this.exhaust = true;
+        }
     }
 
     public void applyPowers() {

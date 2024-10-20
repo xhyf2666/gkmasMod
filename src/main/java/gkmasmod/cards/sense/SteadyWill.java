@@ -26,9 +26,7 @@ public class SteadyWill extends GkmasCard {
     private static final int COST = 2;
     private static final int UPGRADED_COST = 1;
     private static final int BASE_MAGIC = 2;
-    private static final int UPGRADED_PLUS_MAGIC = 1;
     private static final int BASE_MAGIC2 = 3;
-    private static final int UPGRADED_PLUS_MAGIC2 = 1;
 
 
     private static final CardType TYPE = CardType.SKILL;
@@ -67,8 +65,6 @@ public class SteadyWill extends GkmasCard {
         if (!this.upgraded) {
             upgradeName();
             upgradeBaseCost(UPGRADED_COST);
-            upgradeMagicNumber(UPGRADED_PLUS_MAGIC);
-            upgradeSecondMagicNumber(UPGRADED_PLUS_MAGIC2);
             if (CARD_STRINGS.UPGRADE_DESCRIPTION != null)
                 this.rawDescription = CARD_STRINGS.UPGRADE_DESCRIPTION;
             this.initializeDescription();

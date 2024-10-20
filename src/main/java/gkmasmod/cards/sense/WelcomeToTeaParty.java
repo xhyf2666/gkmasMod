@@ -18,6 +18,7 @@ import gkmasmod.powers.GoodTune;
 import gkmasmod.powers.GreatGoodTune;
 import gkmasmod.utils.CommonEnum;
 import gkmasmod.utils.NameHelper;
+import gkmasmod.utils.SoundHelper;
 
 public class WelcomeToTeaParty extends GkmasCard {
     private static final String CLASSNAME = WelcomeToTeaParty.class.getSimpleName();
@@ -58,6 +59,8 @@ public class WelcomeToTeaParty extends GkmasCard {
         addToBot(new ApplyPowerAction(p, p, new GreatGoodTune(p, this.magicNumber), this.magicNumber));
         addToBot(new DrawCardAction(1));
         addToBot(new GainTrainRoundPowerAction(p,1));
+        SoundHelper.playSound("gkmasModResource/audio/voice/skillcard/cidol_kcna_3_001_produce_skillcard_01.ogg");
+
     }
 
     @Override

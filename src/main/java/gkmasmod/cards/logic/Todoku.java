@@ -26,7 +26,7 @@ public class Todoku extends GkmasCard {
 
     private static final int COST = 1;
 
-    private static final int BASE_MAGIC = 160;
+    private static final int BASE_MAGIC = 200;
     private static final int UPGRADE_PLUS_MAGIC = 60;
 
     private static final float BLOCK_REDUCE_RATE = 1.0F;
@@ -48,6 +48,7 @@ public class Todoku extends GkmasCard {
         this.magicNumber = this.baseMagicNumber;
         this.baseHPMagicNumber = BASE_HP;
         this.HPMagicNumber = this.baseHPMagicNumber;
+        this.exhaust = true;
         FlavorText.AbstractCardFlavorFields.boxColor.set(this, CardHelper.getColor(73, 224, 254));
         flavor = FlavorText.CardStringsFlavorField.flavor.get(CARD_STRINGS);
         //TODO 届卡名的动态显示

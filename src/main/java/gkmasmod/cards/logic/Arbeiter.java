@@ -13,6 +13,7 @@ import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.powers.GoodImpression;
 import gkmasmod.utils.NameHelper;
+import gkmasmod.utils.SoundHelper;
 
 public class Arbeiter extends GkmasCard {
     private static final String CLASSNAME = Arbeiter.class.getSimpleName();
@@ -50,6 +51,8 @@ public class Arbeiter extends GkmasCard {
     public void use(AbstractPlayer p, AbstractMonster m) {
         addToBot(new DamageAction(m, new com.megacrit.cardcrawl.cards.DamageInfo(p, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
         addToBot(new ApplyPowerAction(p, p, new GoodImpression(p, this.magicNumber), this.magicNumber));
+        SoundHelper.playSound("gkmasModResource/audio/voice/skillcard/cidol_fktn_1_000_produce_skillcard_01.ogg");
+
     }
 
     @Override

@@ -22,6 +22,7 @@ import com.megacrit.cardcrawl.helpers.input.InputHelper;
 import com.megacrit.cardcrawl.localization.PotionStrings;
 import com.megacrit.cardcrawl.potions.AbstractPotion;
 import com.megacrit.cardcrawl.powers.AbstractPower;
+import gkmasmod.actions.AojiruAction;
 import gkmasmod.actions.GainBlockWithPowerAction;
 import gkmasmod.cards.logic.GoodMorning;
 import gkmasmod.powers.GreatGoodTune;
@@ -61,11 +62,19 @@ public class StaminaExplosionDrink extends CustomPotion {
         int amount = getPotency();
         addToBot(new GainBlockWithPowerAction(AbstractDungeon.player,AbstractDungeon.player,amount));
         addToBot(new ApplyPowerAction(AbstractDungeon.player,AbstractDungeon.player, new GreatGoodTune(AbstractDungeon.player,1),1));
+        if (AbstractDungeon.player != null && AbstractDungeon.player.hasRelic("SacredBark")) {
+            addToBot(new ApplyPowerAction(AbstractDungeon.player,AbstractDungeon.player, new GreatGoodTune(AbstractDungeon.player,1),1));
+        }
     }
 
     public void initializeData() {
         this.potency = getPotency();
-        this.description = String.format(potionStrings.DESCRIPTIONS[0], 1,potency);
+        if (AbstractDungeon.player != null && AbstractDungeon.player.hasRelic("SacredBark")) {
+            this.description = String.format(potionStrings.DESCRIPTIONS[0], 2,potency);
+        }
+        else{
+            this.description = String.format(potionStrings.DESCRIPTIONS[0], 1,potency);
+        }
         this.tips.clear();
         this.tips.add(new PowerTip(this.name, this.description));
     }

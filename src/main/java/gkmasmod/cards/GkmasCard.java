@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.evacipated.cardcrawl.mod.stslib.cards.interfaces.SpawnModificationCard;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -18,7 +19,9 @@ import com.megacrit.cardcrawl.screens.SingleCardViewPopup;
 import gkmasmod.Listener.CardImgUpdateListener;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.screen.SkinSelectScreen;
+import gkmasmod.utils.IdolData;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 
 public abstract class GkmasCard extends CustomCard  implements CardImgUpdateListener, SpawnModificationCard {
@@ -53,6 +56,12 @@ public abstract class GkmasCard extends CustomCard  implements CardImgUpdateList
     public String bannerColor="";
 
     public String cardHeader="";
+
+    public ArrayList<AbstractCard> cardPreviewList = null;
+
+    public int cardPreviewCount = 0;
+
+    public int cardPreviewIndex = 0;
 
     public boolean updateShowImg=false;
     public GkmasCard(final String id,
@@ -375,6 +384,12 @@ public abstract class GkmasCard extends CustomCard  implements CardImgUpdateList
     }
 
     public void updateBackgroundImg(){
+        Color color = Settings.RED_TEXT_COLOR.cpy();
+        if(SkinSelectScreen.Inst.idolName.equals(IdolData.fktn)){
+            basemod.ReflectionHacks.setPrivate(this, AbstractCard.class, "goldColor", color);
+            this.initializeDescription();
+        }
+
         String typeString = "";
         if (this.type == CardType.ATTACK) {
             typeString = "attack";
@@ -454,6 +469,19 @@ public abstract class GkmasCard extends CustomCard  implements CardImgUpdateList
         }
     }
 
+    public void update(){
+        super.update();
+
+        if(this.cardPreviewList!=null){
+            this.cardPreviewCount++;
+            if (this.cardPreviewCount == 50) {
+                this.cardPreviewCount = 0;
+                this.cardPreviewIndex= (this.cardPreviewIndex + 1) % this.cardPreviewList.size();
+                this.cardsToPreview = this.cardPreviewList.get(this.cardPreviewIndex);
+            }
+        }
+    }
+
     public void render(SpriteBatch sb) {
         super.render(sb);
         renderCardHeader(sb);
@@ -485,5 +513,7 @@ public abstract class GkmasCard extends CustomCard  implements CardImgUpdateList
 
     public void renderCardHeader(SpriteBatch sb) {
         renderCardHeader(sb, this.current_x, this.current_y, 400.0F, this.drawScale); }
+
+
 
 }

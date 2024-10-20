@@ -51,7 +51,7 @@ public class HalfDamageReceive extends AbstractPower {
 
 
     public float atDamageFinalReceive(float damage, DamageInfo.DamageType type) {
-        return damage * 0.5F;
+        return damage * 0.667F;
     }
 
     public void atEndOfRound(){

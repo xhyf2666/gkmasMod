@@ -30,6 +30,14 @@ public class GoodImpressionDamageAction extends AbstractGameAction {
 
     private AbstractCard card;
 
+    public GoodImpressionDamageAction(float rate,int goodImpressionAdd,AbstractPlayer p, AbstractMonster m) {
+        this.m = m;
+        this.p = p;
+        this.goodImpressionAdd = goodImpressionAdd;
+        this.rate = rate;
+        this.card = null;
+    }
+
     public GoodImpressionDamageAction(float rate,int goodImpressionAdd,AbstractPlayer p, AbstractMonster m, AbstractCard card) {
         this.m = m;
         this.p = p;
@@ -38,43 +46,47 @@ public class GoodImpressionDamageAction extends AbstractGameAction {
         this.card = card;
     }
 
+
+
     public void update() {
         int count = PlayerHelper.getPowerAmount(p, GoodImpression.POWER_ID);
         int damage = (int)(this.rate*(count+goodImpressionAdd));
-        damage = calculateDamage(damage);
+        damage = calculateDamage(damage,m);
         addToBot(new ApplyPowerAction(p, p, new GoodImpression(p,this.goodImpressionAdd), this.goodImpressionAdd));
         AbstractDungeon.actionManager.addToBottom(new DamageAction(m, new DamageInfo(p,damage , DamageInfo.DamageType.NORMAL), AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
 
         this.isDone = true;
     }
 
-    public int calculateDamage(int baseDamage){
+    public int calculateDamage(int baseDamage, AbstractMonster m){
         AbstractPlayer player = AbstractDungeon.player;
         if (m != null) {
             float tmp = (float)baseDamage;
             Iterator var9 = player.relics.iterator();
 
-            while(var9.hasNext()) {
-                AbstractRelic r = (AbstractRelic)var9.next();
-                tmp = r.atDamageModify(tmp, this.card);
+            if(this.card!=null){
+                while(var9.hasNext()) {
+                    AbstractRelic r = (AbstractRelic)var9.next();
+                    tmp = r.atDamageModify(tmp, this.card);
+                }
             }
 
             AbstractPower p;
-            for(var9 = player.powers.iterator(); var9.hasNext(); tmp = p.atDamageGive(tmp, DamageInfo.DamageType.NORMAL, this.card)) {
+            for(var9 = player.powers.iterator(); var9.hasNext(); tmp = p.atDamageGive(tmp, DamageInfo.DamageType.NORMAL)) {
                 p = (AbstractPower)var9.next();
             }
 
-            tmp = player.stance.atDamageGive(tmp, DamageInfo.DamageType.NORMAL, this.card);
+            tmp = player.stance.atDamageGive(tmp, DamageInfo.DamageType.NORMAL);
 
-            for(var9 = m.powers.iterator(); var9.hasNext(); tmp = p.atDamageReceive(tmp, DamageInfo.DamageType.NORMAL, this.card)) {
+            for(var9 = m.powers.iterator(); var9.hasNext(); tmp = p.atDamageReceive(tmp, DamageInfo.DamageType.NORMAL)) {
                 p = (AbstractPower)var9.next();
             }
 
-            for(var9 = player.powers.iterator(); var9.hasNext(); tmp = p.atDamageFinalGive(tmp, DamageInfo.DamageType.NORMAL, this.card)) {
+            for(var9 = player.powers.iterator(); var9.hasNext(); tmp = p.atDamageFinalGive(tmp, DamageInfo.DamageType.NORMAL)) {
                 p = (AbstractPower)var9.next();
             }
 
-            for(var9 = m.powers.iterator(); var9.hasNext(); tmp = p.atDamageFinalReceive(tmp, DamageInfo.DamageType.NORMAL, this.card)) {
+            for(var9 = m.powers.iterator(); var9.hasNext(); tmp = p.atDamageFinalReceive(tmp, DamageInfo.DamageType.NORMAL)) {
                 p = (AbstractPower)var9.next();
             }
 

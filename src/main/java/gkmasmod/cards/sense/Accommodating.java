@@ -15,6 +15,7 @@ import gkmasmod.cards.GkmasCard;
 import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.utils.NameHelper;
+import gkmasmod.utils.SoundHelper;
 
 public class Accommodating extends GkmasCard {
     private static final String CLASSNAME = Accommodating.class.getSimpleName();
@@ -45,6 +46,8 @@ public class Accommodating extends GkmasCard {
         this.magicNumber = this.baseMagicNumber;
         this.exhaust = true;
         this.tags.add(GkmasCardTag.IDOL_CARD_TAG);
+        this.tags.add(CardTags.HEALING);
+
     }
 
 
@@ -53,6 +56,8 @@ public class Accommodating extends GkmasCard {
         addToBot(new GainBlockAction(p, p, this.block));
         addToBot(new HealAction(p, p, this.magicNumber));
         AbstractDungeon.actionManager.addToBottom(new DamageAction(m, new DamageInfo(p, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
+        SoundHelper.playSound("gkmasModResource/audio/voice/skillcard/cidol_hrnm_1_000_produce_skillcard_01.ogg");
+
     }
 
     @Override

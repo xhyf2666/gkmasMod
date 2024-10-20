@@ -17,6 +17,7 @@ import gkmasmod.cards.GkmasCard;
 import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.utils.NameHelper;
+import gkmasmod.utils.SoundHelper;
 
 public class SwayingOnTheBus extends GkmasCard {
     private static final String CLASSNAME = SwayingOnTheBus.class.getSimpleName();
@@ -33,8 +34,8 @@ public class SwayingOnTheBus extends GkmasCard {
     private static final int UPGRADE_PLUS_DMG = 3;
     private static final int BASE_MAGIC = 230;
     private static final int UPGRADE_PLUS_MAGIC = 30;
-    private static final int BLOCK_AMT = 6;
-    private static final int UPGRADE_PLUS_BLOCK = 6;
+    private static final int BLOCK_AMT = 4;
+    private static final int UPGRADE_PLUS_BLOCK = 4;
 
     private static final CardType TYPE = CardType.ATTACK;
     private static final CardColor COLOR = PlayerColorEnum.gkmasModColorSense;
@@ -63,6 +64,8 @@ public class SwayingOnTheBus extends GkmasCard {
         if (m != null)
             addToBot(new VFXAction(new VerticalImpactEffect(m.hb.cX + m.hb.width / 4.0F, m.hb.cY - m.hb.height / 4.0F)));
         addToBot(new DamageAction(m, new DamageInfo(p, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_VERTICAL));
+        SoundHelper.playSound("gkmasModResource/audio/voice/skillcard/cidol_shro_3_001_produce_skillcard_01.ogg");
+
     }
 
     public void applyPowers() {

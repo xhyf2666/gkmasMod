@@ -27,6 +27,8 @@ public class TryError extends GkmasCard {
 
     private static final int BASE_MAGIC = 2;
 
+    private static final int BASE_MAGIC2 = 2;
+
 
     private static final CardType TYPE = CardType.ATTACK;
     private static final CardColor COLOR = PlayerColorEnum.gkmasModColorSense;
@@ -38,7 +40,8 @@ public class TryError extends GkmasCard {
         this.baseDamage = ATTACK_DMG;
         this.baseMagicNumber = BASE_MAGIC;
         this.magicNumber = this.baseMagicNumber;
-        this.exhaust = true;
+        this.baseSecondMagicNumber = BASE_MAGIC2;
+        this.secondMagicNumber = this.baseSecondMagicNumber;
     }
 
 
@@ -46,6 +49,13 @@ public class TryError extends GkmasCard {
     public void use(AbstractPlayer p, AbstractMonster m) {
         addToBot( new DamageAction( m, new DamageInfo( p, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
         addToBot( new DamageAction( m, new DamageInfo( p, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_VERTICAL));
+        if(this.secondMagicNumber > 1){
+            upgradeSecondMagicNumber(-1);
+            this.initializeDescription();
+        }
+        else{
+            this.exhaust = true;
+        }
     }
 
     @Override

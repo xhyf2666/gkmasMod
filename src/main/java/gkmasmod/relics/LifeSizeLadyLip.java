@@ -24,7 +24,7 @@ public class LifeSizeLadyLip extends CustomRelic {
 
     private static final RelicTier RARITY = RelicTier.STARTER;
 
-    private int playTimes = 3;
+    private static int playTimes = 3;
 
     private static final int magicNumber = 5;
 
@@ -36,7 +36,7 @@ public class LifeSizeLadyLip extends CustomRelic {
 
     @Override
     public String getUpdatedDescription() {
-        return String.format(this.DESCRIPTIONS[0],magicNumber);
+        return String.format(this.DESCRIPTIONS[0],magicNumber,playTimes);
     }
 
     @Override
@@ -60,7 +60,7 @@ public class LifeSizeLadyLip extends CustomRelic {
             addToBot(new RelicAboveCreatureAction(AbstractDungeon.player, this));
             addToTop(new DamageAllEnemiesAction(AbstractDungeon.player, damage, DamageInfo.DamageType.NORMAL, AbstractGameAction.AttackEffect.BLUNT_HEAVY));
             this.counter++;
-            if (this.counter == playTimes-1)
+            if (this.counter == playTimes)
                 this.grayscale = true;
         }
     }

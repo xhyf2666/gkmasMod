@@ -23,7 +23,8 @@ public class StartSignal extends GkmasCard {
     private static String IMG_PATH = String.format("gkmasModResource/img/idol/%s/cards/%s.png", SkinSelectScreen.Inst.idolName, CLASSNAME);
 
     private static final int COST = 1;
-    private static final int BASE_MAGIC = 5;
+    private static final int BASE_MAGIC = 3;
+    private static final int BASE_MAGIC2 = 2;
     private static final int UPGRADE_PLUS_MAGIC = 2;
 
 
@@ -38,7 +39,8 @@ public class StartSignal extends GkmasCard {
         this.updateShowImg = true;
         this.baseMagicNumber = BASE_MAGIC;
         this.magicNumber = this.baseMagicNumber;
-        this.exhaust = true;
+        this.baseSecondMagicNumber = BASE_MAGIC2;
+        this.secondMagicNumber = this.baseSecondMagicNumber;
         this.tags.add(GkmasCardTag.GOOD_TUNE_TAG);
     }
 
@@ -46,6 +48,13 @@ public class StartSignal extends GkmasCard {
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
         addToBot(new ApplyPowerAction(p, p, new GoodTune(p, this.magicNumber), this.magicNumber));
+        if(this.secondMagicNumber > 1){
+            upgradeSecondMagicNumber(-1);
+            this.initializeDescription();
+        }
+        else{
+            this.exhaust = true;
+        }
     }
 
     @Override

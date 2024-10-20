@@ -24,6 +24,7 @@ import com.megacrit.cardcrawl.potions.AbstractPotion;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.DexterityPower;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
+import gkmasmod.actions.AojiruAction;
 import gkmasmod.cards.logic.GoodMorning;
 import gkmasmod.utils.NameHelper;
 
@@ -59,9 +60,17 @@ public class MixedSmoothie extends CustomPotion {
     @Override
     public void use(AbstractCreature target) {
         int amount = getPotency();
-        addToBot(new HealAction(AbstractDungeon.player, AbstractDungeon.player, amount));
-        if((AbstractDungeon.getCurrRoom()).phase == AbstractRoom.RoomPhase.COMBAT)
+        if((AbstractDungeon.getCurrRoom()).phase == AbstractRoom.RoomPhase.COMBAT){
+            addToBot(new HealAction(AbstractDungeon.player, AbstractDungeon.player, amount));
             addToBot(new CalculatedGambleAction(false));
+        }
+        else{
+            AbstractDungeon.player.heal(amount);
+        }
+        if (AbstractDungeon.player != null && AbstractDungeon.player.hasRelic("SacredBark")) {
+            addToBot(new CalculatedGambleAction(false));
+        }
+
     }
 
     public void initializeData() {

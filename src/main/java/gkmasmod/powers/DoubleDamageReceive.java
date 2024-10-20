@@ -46,7 +46,7 @@ public class DoubleDamageReceive extends AbstractPower {
 
 
     public float atDamageFinalReceive(float damage, DamageInfo.DamageType type) {
-        return damage * 2.0F;
+        return damage * 1.5F;
     }
 
     public int onAttacked(DamageInfo info, int damageAmount) {

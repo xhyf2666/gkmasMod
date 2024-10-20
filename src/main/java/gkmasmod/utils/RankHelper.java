@@ -7,7 +7,7 @@ public class RankHelper {
     public static String getRank(int value) {
         if(value>=2500)
             return "SS+";
-        else if(value>=2000)
+        else if(value>=2200)
             return "SS";
         else if(value>=1800)
             return "S+";
@@ -34,12 +34,14 @@ public class RankHelper {
     }
 
     public static int[] getRankBoundary(int value){
+        if(value>=4000)
+            return new int[]{4000, Integer.MAX_VALUE};
         if (value >= 2500)
             return new int[]{2500, 4000};
-        else if (value >= 2000)
-            return new int[]{2000, 2500};
+        else if (value >= 2200)
+            return new int[]{2200, 2500};
         else if (value >= 1800)
-            return new int[]{1800, 2000};
+            return new int[]{1800, 2200};
         else if (value >= 1500)
             return new int[]{1500, 1800};
         else if (value >= 1200)
@@ -65,7 +67,7 @@ public class RankHelper {
     public static String getFinalRank(int value) {
         if(value>=20000)
             return "SS+";
-        else if(value>=17000)
+        else if(value>=16000)
             return "SS";
         else if(value>=14500)
             return "S+";

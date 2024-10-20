@@ -12,6 +12,7 @@ import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.powers.GoodImpression;
 import gkmasmod.utils.NameHelper;
+import gkmasmod.utils.SoundHelper;
 
 public class NoDistractions extends GkmasCard {
     private static final String CLASSNAME = NoDistractions.class.getSimpleName();
@@ -49,6 +50,8 @@ public class NoDistractions extends GkmasCard {
     public void use(AbstractPlayer p, AbstractMonster m) {
         addToBot(new GainBlockAction(p, p, this.block));
         addToBot(new ApplyPowerAction(p, p, new GoodImpression(p, this.magicNumber), this.magicNumber));
+        SoundHelper.playSound("gkmasModResource/audio/voice/skillcard/cidol_fktn_3_000_produce_skillcard_01.ogg");
+
     }
 
     @Override

@@ -26,6 +26,8 @@ public class ConditionHelper {
 
     public static Condition Condition_ttmr;
 
+    public static Condition Condition_never;
+
     public ConditionHelper() {
     }
 
@@ -104,6 +106,12 @@ public class ConditionHelper {
             public boolean test() {
                 return AbstractDungeon.player instanceof IdolCharacter
                         && ((IdolCharacter)AbstractDungeon.player).getIdolName().equals(IdolData.ttmr);
+            }
+        };
+
+        Condition_never = new Condition() {
+            public boolean test() {
+                return false;
             }
         };
     }

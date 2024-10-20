@@ -61,11 +61,19 @@ public class FirstStarBoostEnergy extends CustomPotion {
         int amount = MAGIC;
         addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new GreatGoodTune(AbstractDungeon.player, amount), amount));
         addToBot(new UpgradeAllHandCardAction());
+        if (AbstractDungeon.player != null && AbstractDungeon.player.hasRelic("SacredBark")) {
+            addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new GreatGoodTune(AbstractDungeon.player, amount), amount));
+            addToBot(new UpgradeAllHandCardAction());
+        }
     }
 
     public void initializeData() {
-        this.potency = getPotency();
-        this.description = String.format(potionStrings.DESCRIPTIONS[0],MAGIC);
+        if (AbstractDungeon.player != null && AbstractDungeon.player.hasRelic("SacredBark")) {
+            this.description = String.format(potionStrings.DESCRIPTIONS[0],MAGIC*2);
+        }
+        else{
+            this.description = String.format(potionStrings.DESCRIPTIONS[0],MAGIC);
+        }
         this.tips.clear();
         this.tips.add(new PowerTip(this.name, this.description));
     }

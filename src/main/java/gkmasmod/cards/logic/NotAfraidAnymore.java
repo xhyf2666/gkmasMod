@@ -12,6 +12,7 @@ import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.powers.GoodImpression;
 import gkmasmod.powers.NotAfraidAnymorePower;
 import gkmasmod.utils.NameHelper;
+import gkmasmod.utils.SoundHelper;
 
 public class NotAfraidAnymore extends GkmasCard {
     private static final String CLASSNAME = NotAfraidAnymore.class.getSimpleName();
@@ -47,6 +48,8 @@ public class NotAfraidAnymore extends GkmasCard {
     public void use(AbstractPlayer p, AbstractMonster m) {
         addToBot(new ApplyPowerAction(p, p, new GoodImpression(p, this.magicNumber), this.magicNumber));
         addToBot(new ApplyPowerAction(p, p, new NotAfraidAnymorePower(p, this.secondMagicNumber), this.secondMagicNumber));
+        SoundHelper.playSound("gkmasModResource/audio/voice/skillcard/cidol_kllj_3_000_produce_skillcard_01.ogg");
+
     }
 
     @Override

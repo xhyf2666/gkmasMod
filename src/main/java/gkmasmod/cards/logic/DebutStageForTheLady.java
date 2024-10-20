@@ -16,6 +16,7 @@ import gkmasmod.cards.GkmasCard;
 import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.utils.NameHelper;
+import gkmasmod.utils.SoundHelper;
 
 public class DebutStageForTheLady extends GkmasCard {
     private static final String CLASSNAME = DebutStageForTheLady.class.getSimpleName();
@@ -36,7 +37,7 @@ public class DebutStageForTheLady extends GkmasCard {
     private static final int BASE_BLOCK = 2;
     private static final int UPGRADE_PLUS_BLOCK = 3;
 
-    private static final int BASE_HP = 4;
+    private static final int BASE_HP = 5;
 
     private static final CardType TYPE = CardType.ATTACK;
     private static final CardColor COLOR = PlayerColorEnum.gkmasModColorLogic;
@@ -66,6 +67,8 @@ public class DebutStageForTheLady extends GkmasCard {
         addToBot(new LoseHPAction(p, p, this.HPMagicNumber));
         addToBot(new BlockDamageAction(1.0F * this.secondMagicNumber / 100, this.block, p, m,this));
         addToBot(new ApplyPowerAction(p, p, new DexterityPower(p, this.magicNumber), this.magicNumber));
+        SoundHelper.playSound("gkmasModResource/audio/voice/skillcard/cidol_kcna_3_000_produce_skillcard_01.ogg");
+
     }
 
     public void applyPowersToBlock() {

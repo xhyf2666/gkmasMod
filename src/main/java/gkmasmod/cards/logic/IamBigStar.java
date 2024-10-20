@@ -30,7 +30,7 @@ public class IamBigStar extends GkmasCard {
     private static final String DESCRIPTION = CARD_STRINGS.DESCRIPTION;
     private static String IMG_PATH = String.format("gkmasModResource/img/idol/%s/cards/%s.png", SkinSelectScreen.Inst.idolName, CLASSNAME);
 
-    private static final int COST = 1;
+    private static final int COST = 2;
     private static final int BASE_MAGIC = 2;
     private static final int UPGRADE_PLUS_MAGIC = -1;
     private static final int BASE_MAGIC2 = 1;

@@ -25,10 +25,10 @@ public class Sunbathing extends GkmasCard {
     private static String IMG_PATH = String.format("gkmasModResource/img/idol/%s/cards/%s.png", SkinSelectScreen.Inst.idolName, CLASSNAME);
 
     private static final int COST = 0;
-    private static final int BASE_MAGIC = 5;
+    private static final int BASE_MAGIC = 3;
     private static final int UPGRADE_PLUS_MAGIC = 2;
     private static final int BASE_MAGIC2 = 2;
-    private static final int BLOCK_AMT = 11;
+    private static final int BLOCK_AMT = 7;
 
 
     private static final CardType TYPE = CardType.SKILL;

@@ -25,8 +25,7 @@ public class PerformancePlan extends GkmasCard {
 
     private static final int COST = 2;
     private static final int UPGRADE_COST = 1;
-    private static final int BASE_MAGIC = 3;
-    private static final int UPGRADE_PLUS_MAGIC = 1;
+    private static final int BASE_MAGIC = 2;
     private static final int BASE_MAGIC2 = 2;
 
 
@@ -62,7 +61,6 @@ public class PerformancePlan extends GkmasCard {
     public void upgrade() {
         if (!this.upgraded) {
             upgradeName();
-            upgradeMagicNumber(UPGRADE_PLUS_MAGIC);
             upgradeBaseCost(UPGRADE_COST);
             if (CARD_STRINGS.UPGRADE_DESCRIPTION != null)
                 this.rawDescription = CARD_STRINGS.UPGRADE_DESCRIPTION;

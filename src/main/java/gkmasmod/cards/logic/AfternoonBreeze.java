@@ -13,6 +13,7 @@ import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.utils.NameHelper;
 import gkmasmod.utils.PlayerHelper;
+import gkmasmod.utils.SoundHelper;
 
 public class AfternoonBreeze extends GkmasCard {
     private static final String CLASSNAME = AfternoonBreeze.class.getSimpleName();
@@ -32,7 +33,7 @@ public class AfternoonBreeze extends GkmasCard {
     private static final int BASE_MAGIC3 = 3;
     private static final int UPGRADE_PLUS_MAGIC3 = 2;
 
-    private static final int BASE_HP = 3;
+    private static final int BASE_HP = 4;
 
     private static final CardType TYPE = CardType.SKILL;
     private static final CardColor COLOR = PlayerColorEnum.gkmasModColorLogic;
@@ -63,6 +64,8 @@ public class AfternoonBreeze extends GkmasCard {
             addToBot(new ApplyPowerAction(p, p, new DexterityPower(p, this.thirdMagicNumber), this.thirdMagicNumber));
         }
         addToBot(new ApplyPowerAction(p, p, new DexterityPower(p, this.magicNumber), this.magicNumber));
+        SoundHelper.playSound("gkmasModResource/audio/voice/skillcard/cidol_ssmk_3_001_produce_skillcard_01.ogg");
+
     }
 
     @Override

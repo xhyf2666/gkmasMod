@@ -16,6 +16,7 @@ import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.powers.BurstPower;
 import gkmasmod.utils.NameHelper;
 import gkmasmod.utils.PlayerHelper;
 
@@ -68,7 +69,7 @@ public class NationalIdolPower extends AbstractPower {
             AbstractDungeon.actionManager.addCardQueueItem(new CardQueueItem(tmp, m, card.energyOnUse, true, true), true);
             this.amount--;
             if (this.amount == 0)
-                addToBot(new RemoveSpecificPowerAction(this.owner, this.owner, this.ID));
+                addToTop(new RemoveSpecificPowerAction(this.owner, this.owner, this.ID));
         }
     }
 }

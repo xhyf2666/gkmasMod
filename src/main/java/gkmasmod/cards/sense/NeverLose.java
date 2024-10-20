@@ -13,6 +13,7 @@ import gkmasmod.cards.GkmasCard;
 import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.utils.NameHelper;
+import gkmasmod.utils.SoundHelper;
 
 public class NeverLose extends GkmasCard {
     private static final String CLASSNAME = NeverLose.class.getSimpleName();
@@ -24,8 +25,8 @@ public class NeverLose extends GkmasCard {
     private static final String IMG_PATH = String.format("gkmasModResource/img/cards/common/%s.png", CLASSNAME);
 
     private static final int COST = 2;
-    private static final int ATTACK_DMG = 34;
-    private static final int UPGRADE_PLUS_DMG = 14;
+    private static final int ATTACK_DMG = 20;
+    private static final int UPGRADE_PLUS_DMG = 10;
 
     private static final CardType TYPE = CardType.ATTACK;
     private static final CardColor COLOR = PlayerColorEnum.gkmasModColorSense;
@@ -36,6 +37,7 @@ public class NeverLose extends GkmasCard {
         super(ID, NAME, IMG_PATH, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET, "color");
         this.baseDamage = ATTACK_DMG;
         this.exhaust = true;
+        this.isEthereal = true;
         this.tags.add(GkmasCardTag.IDOL_CARD_TAG);
     }
 
@@ -43,6 +45,8 @@ public class NeverLose extends GkmasCard {
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
         AbstractDungeon.actionManager.addToBottom(new DamageAction(m, new DamageInfo(p, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
+        SoundHelper.playSound("gkmasModResource/audio/voice/skillcard/cidol_hski_3_000_produce_skillcard_01.ogg");
+
     }
 
     @Override

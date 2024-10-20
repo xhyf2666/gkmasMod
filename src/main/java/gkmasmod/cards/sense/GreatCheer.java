@@ -24,7 +24,7 @@ public class GreatCheer extends GkmasCard {
     private static String IMG_PATH = String.format("gkmasModResource/img/idol/%s/cards/%s.png", SkinSelectScreen.Inst.idolName, CLASSNAME);
 
     private static final int COST = 1;
-    private static final int BASE_MAGIC = 3;
+    private static final int BASE_MAGIC = 2;
     private static final int UPGRADE_PLUS_MAGIC = 1;
     private static final int BLOCK_AMT = 6;
     private static final int UPGRADE_PLUS_BLOCK = 2;
@@ -43,7 +43,6 @@ public class GreatCheer extends GkmasCard {
         this.magicNumber = this.baseMagicNumber;
         this.baseBlock = BLOCK_AMT;
         this.block = this.baseBlock;
-        this.exhaust = true;
         this.tags.add(GkmasCardTag.GOOD_TUNE_TAG);
     }
 

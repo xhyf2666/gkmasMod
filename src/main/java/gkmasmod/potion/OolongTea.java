@@ -58,7 +58,7 @@ public class OolongTea extends CustomPotion {
     @Override
     public void use(AbstractCreature target) {
         int amount = getPotency();
-        addToBot(new GainBlockWithPowerAction(target, amount));
+        addToBot(new GainBlockWithPowerAction(AbstractDungeon.player, amount));
     }
 
     public void initializeData() {

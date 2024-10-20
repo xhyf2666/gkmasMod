@@ -15,6 +15,7 @@ import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.powers.GoodImpression;
 import gkmasmod.utils.NameHelper;
+import gkmasmod.utils.SoundHelper;
 
 public class GoldfishScoopingChallenge extends GkmasCard {
     private static final String CLASSNAME = GoldfishScoopingChallenge.class.getSimpleName();
@@ -29,7 +30,7 @@ public class GoldfishScoopingChallenge extends GkmasCard {
 
     private static final int BASE_MAGIC = 3;
     private static final int UPGRADE_PLUS_MAGIC = 2;
-    private static final int BASE_HP = 2;
+    private static final int BASE_HP = 4;
 
     private static final CardType TYPE = CardType.SKILL;
     private static final CardColor COLOR = PlayerColorEnum.gkmasModColorLogic;
@@ -54,6 +55,7 @@ public class GoldfishScoopingChallenge extends GkmasCard {
         addToBot(new ApplyPowerAction(p, p, new GoodImpression(p, this.magicNumber), this.magicNumber));
         addToBot(new DrawCardAction(1));
         addToBot(new GainTrainRoundPowerAction(p,1));
+        SoundHelper.playSound("gkmasModResource/audio/voice/skillcard/cidol_hski_3_002_produce_skillcard_01.ogg");
 
     }
 

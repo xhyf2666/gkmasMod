@@ -15,6 +15,7 @@ import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.powers.GoodTune;
 import gkmasmod.utils.NameHelper;
+import gkmasmod.utils.SoundHelper;
 
 public class NeverYieldFirst extends GkmasCard {
     private static final String CLASSNAME = NeverYieldFirst.class.getSimpleName();
@@ -26,8 +27,8 @@ public class NeverYieldFirst extends GkmasCard {
     private static final String IMG_PATH = String.format("gkmasModResource/img/cards/common/%s.png", CLASSNAME);
 
     private static final int COST = 2;
-    private static final int ATTACK_DMG = 18;
-    private static final int UPGRADE_PLUS_DMG = 8;
+    private static final int ATTACK_DMG = 10;
+    private static final int UPGRADE_PLUS_DMG = 6;
     private static final int BASE_MAGIC = 3;
     private static final int UPgrade_PLUS_MAGIC = 1;
 
@@ -51,6 +52,8 @@ public class NeverYieldFirst extends GkmasCard {
     public void use(AbstractPlayer p, AbstractMonster m) {
         AbstractDungeon.actionManager.addToBottom(new DamageAction(m, new DamageInfo(p, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
         addToBot(new ApplyPowerAction(p, p, new GoodTune(p, this.magicNumber), this.magicNumber));
+        SoundHelper.playSound("gkmasModResource/audio/voice/skillcard/cidol_hski_2_000_produce_skillcard_01.ogg");
+
     }
 
     @Override

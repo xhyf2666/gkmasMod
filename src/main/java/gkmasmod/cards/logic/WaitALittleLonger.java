@@ -26,7 +26,7 @@ public class WaitALittleLonger extends GkmasCard {
     private static final String IMG_PATH = String.format("gkmasModResource/img/cards/common/%s.png", CLASSNAME);
 
     private static final int COST = 1;
-    private static final int BASE_MAGIC = 2;
+    private static final int BASE_MAGIC = 1;
     private static final int UPGRADE_PLUS_MAGIC = 1;
     private static final int ATTACK_DMG = 3;
     private static final int UPGRADE_PLUS_DMG = 2;

@@ -23,7 +23,6 @@ public class TrueDeepBreath extends GkmasCard {
     private static final String IMG_PATH = String.format("gkmasModResource/img/cards/common/%s.png", CLASSNAME);
 
     private static final int COST = 2;
-    private static final int UPGRADE_PLUS_COST = 1;
     private static final int BASE_MAGIC = 3;
     private static final int UPGRADE_PLUS_MAGIC = 1;
     private static final int BASE_MAGIC2 = 2;
@@ -62,7 +61,6 @@ public class TrueDeepBreath extends GkmasCard {
     public void upgrade() {
         if (!this.upgraded) {
             upgradeName();
-            upgradeBaseCost(UPGRADE_PLUS_COST);
             upgradeMagicNumber(UPGRADE_PLUS_MAGIC);
             upgradeSecondMagicNumber(UPGRADE_PLUS_MAGIC2);
             if (CARD_STRINGS.UPGRADE_DESCRIPTION != null)

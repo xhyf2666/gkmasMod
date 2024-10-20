@@ -26,7 +26,7 @@ public class BaseVision extends GkmasCard {
     private static final int BASE_MAGIC = 3;
     private static final int UPGRADE_PLUS_MAGIC = 1;
 
-    private static final int BLOCK_AMT = 5;
+    private static final int BLOCK_AMT = 4;
     private static final int UPGRADE_PLUS_BLOCK = 2;
 
     private static final CardType TYPE = CardType.SKILL;

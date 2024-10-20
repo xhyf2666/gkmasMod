@@ -25,7 +25,7 @@ public class BasePose extends GkmasCard {
 
     private static final int COST = 1;
     private static final int ATTACK_DMG = 4;
-    private static final int UPGRADE_PLUS_DMG = 3;
+    private static final int UPGRADE_PLUS_DMG = 1;
     private static final int BLOCK_AMT = 2;
     private static final int UPGRADE_PLUS_BLOCK = 2;
 

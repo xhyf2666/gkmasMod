@@ -23,11 +23,11 @@ public class GradualDisappearance extends GkmasCard {
     private static final String DESCRIPTION = CARD_STRINGS.DESCRIPTION;
     private static final String IMG_PATH = String.format("gkmasModResource/img/cards/common/%s.png", CLASSNAME);
 
-    private static final int COST = 2;
-    private static final int UPGRADE_COST = 1;
+    private static final int COST = 1;
     private static final int BASE_MAGIC = 2;
 
     private static final int BLOCK_AMT = 6;
+    private static final int BLOCK_PLUS = 3;
 
 
     private static final CardType TYPE = CardType.SKILL;
@@ -59,7 +59,7 @@ public class GradualDisappearance extends GkmasCard {
     public void upgrade() {
         if (!this.upgraded) {
             upgradeName();
-            upgradeBaseCost(UPGRADE_COST);
+            upgradeBlock(BLOCK_PLUS);
             if (CARD_STRINGS.UPGRADE_DESCRIPTION != null)
                 this.rawDescription = CARD_STRINGS.UPGRADE_DESCRIPTION;
             this.initializeDescription();

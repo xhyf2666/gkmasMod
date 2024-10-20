@@ -22,6 +22,7 @@ import com.megacrit.cardcrawl.localization.PotionStrings;
 import com.megacrit.cardcrawl.potions.AbstractPotion;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.AttackBurnPower;
+import gkmasmod.actions.AojiruAction;
 import gkmasmod.cards.logic.GoodMorning;
 import gkmasmod.powers.BoostExtractPower;
 import gkmasmod.powers.BurstAttackPower;
@@ -68,11 +69,21 @@ public class SpecialFirstStarExtract extends CustomPotion {
         addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new DoubleDamageReceive(AbstractDungeon.player, MAGIC), MAGIC));
         addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new BurstAttackPower(AbstractDungeon.player, MAGIC2), MAGIC2));
 
+        if (AbstractDungeon.player != null && AbstractDungeon.player.hasRelic("SacredBark")) {
+            addToBot(new LoseHPAction(AbstractDungeon.player, AbstractDungeon.player, HP_LOST));
+            addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new DoubleDamageReceive(AbstractDungeon.player, MAGIC), MAGIC));
+            addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new BurstAttackPower(AbstractDungeon.player, MAGIC2), MAGIC2));
+        }
     }
 
     public void initializeData() {
         this.potency = getPotency();
-        this.description = String.format(potionStrings.DESCRIPTIONS[0], HP_LOST, MAGIC, MAGIC2,30);
+        if (AbstractDungeon.player != null && AbstractDungeon.player.hasRelic("SacredBark")) {
+            this.description = String.format(potionStrings.DESCRIPTIONS[0], HP_LOST*2, MAGIC*2, MAGIC2*2,2,30);
+        }
+        else{
+            this.description = String.format(potionStrings.DESCRIPTIONS[0], HP_LOST, MAGIC, MAGIC2,1,30);
+        }
         this.tips.clear();
         this.tips.add(new PowerTip(this.name, this.description));
     }

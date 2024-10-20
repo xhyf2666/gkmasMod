@@ -27,7 +27,7 @@ public class LastSummerMemory extends CustomRelic {
 
     private static final int STRENGTH = 2;
 
-    private static final  int playTimes = 1;
+    private static final  int playTimes = 2;
 
     public LastSummerMemory() {
         super(ID, ImageMaster.loadImage(IMG), ImageMaster.loadImage(IMG_OTL), RARITY, LandingSound.CLINK);

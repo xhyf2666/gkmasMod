@@ -12,6 +12,7 @@ import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.utils.NameHelper;
 import gkmasmod.utils.PlayerHelper;
+import gkmasmod.utils.SoundHelper;
 
 public class HighlyEducatedIdol extends GkmasCard {
     private static final String CLASSNAME = HighlyEducatedIdol.class.getSimpleName();
@@ -55,6 +56,8 @@ public class HighlyEducatedIdol extends GkmasCard {
         if (count > magicNumber) {
             addToBot(new GainBlockAction(p, p, this.secondBlock));
         }
+        SoundHelper.playSound("gkmasModResource/audio/voice/skillcard/cidol_shro_1_000_produce_skillcard_01.ogg");
+
     }
 
     @Override

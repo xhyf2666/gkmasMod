@@ -64,15 +64,21 @@ public class BoostExtract extends CustomPotion {
 
     @Override
     public void use(AbstractCreature target) {
+        if (AbstractDungeon.player != null && AbstractDungeon.player.hasRelic("SacredBark")) {
+            addToBot(new LoseHPAction(AbstractDungeon.player, AbstractDungeon.player, HP_LOST));
+            addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new HalfDamageReceive(AbstractDungeon.player, MAGIC), MAGIC));
+            addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new BoostExtractPower(AbstractDungeon.player, MAGIC2), MAGIC2));
+        }
         addToBot(new LoseHPAction(AbstractDungeon.player, AbstractDungeon.player, HP_LOST));
         addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new HalfDamageReceive(AbstractDungeon.player, MAGIC), MAGIC));
         addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new BoostExtractPower(AbstractDungeon.player, MAGIC2), MAGIC2));
-
     }
 
     public void initializeData() {
-        this.potency = getPotency();
-        this.description = String.format(potionStrings.DESCRIPTIONS[0], HP_LOST, MAGIC, MAGIC2,30);
+        if (AbstractDungeon.player != null && AbstractDungeon.player.hasRelic("SacredBark")) {
+            this.description = String.format(potionStrings.DESCRIPTIONS[0], HP_LOST*2, MAGIC*2, MAGIC2,30*2,2);
+        }
+        this.description = String.format(potionStrings.DESCRIPTIONS[0], HP_LOST, MAGIC, MAGIC2,30,1);
         this.tips.clear();
         this.tips.add(new PowerTip(this.name, this.description));
     }
@@ -86,7 +92,7 @@ public class BoostExtract extends CustomPotion {
 
     @Override
     public int getPotency(int i) {
-        return 4;
+        return 0;
     }
 
     @Override

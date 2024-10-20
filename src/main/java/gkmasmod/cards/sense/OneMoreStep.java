@@ -14,6 +14,7 @@ import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.utils.NameHelper;
 import gkmasmod.utils.PlayerHelper;
+import gkmasmod.utils.SoundHelper;
 
 public class OneMoreStep extends GkmasCard {
     private static final String CLASSNAME = OneMoreStep.class.getSimpleName();
@@ -25,9 +26,10 @@ public class OneMoreStep extends GkmasCard {
     private static final String IMG_PATH = String.format("gkmasModResource/img/cards/common/%s.png", CLASSNAME);
 
     private static final int COST = 1;
-    private static final int ATTACK_DMG = 7;
+    private static final int ATTACK_DMG = 3;
     private static final int UPGRADE_PLUS_DMG = 2;
-    private static final int BASE_MAGIC = 5;
+    private static final int ATTACK_DMG2 = 3;
+    private static final int BASE_MAGIC = 6;
 
 
     private static final CardType TYPE = CardType.ATTACK;
@@ -38,6 +40,7 @@ public class OneMoreStep extends GkmasCard {
     public OneMoreStep() {
         super(ID, NAME, IMG_PATH, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET, "color");
         this.baseDamage = ATTACK_DMG;
+        this.baseSecondDamage = ATTACK_DMG2;
         this.baseMagicNumber = BASE_MAGIC;
         this.magicNumber = this.baseMagicNumber;
         this.exhaust = true;
@@ -52,8 +55,9 @@ public class OneMoreStep extends GkmasCard {
         addToBot(new DamageAction(m, new DamageInfo(p, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_VERTICAL));
         int amount = PlayerHelper.getPowerAmount(p, StrengthPower.POWER_ID);
         if (amount > magicNumber) {
-            addToBot(new DamageAction(m, new DamageInfo(p, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
+            addToBot(new DamageAction(m, new DamageInfo(p, this.secondDamage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
         }
+        SoundHelper.playSound("gkmasModResource/audio/voice/skillcard/cidol_ssmk_3_000_produce_skillcard_01.ogg");
 
     }
 

@@ -12,6 +12,7 @@ import gkmasmod.cards.GkmasCard;
 import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.utils.NameHelper;
+import gkmasmod.utils.SoundHelper;
 
 public class Wholeheartedly extends GkmasCard {
     private static final String CLASSNAME = Wholeheartedly.class.getSimpleName();
@@ -50,6 +51,8 @@ public class Wholeheartedly extends GkmasCard {
     public void use(AbstractPlayer p, AbstractMonster m) {
         addToBot(new GainBlockAction(p, p, this.block));
         addToBot(new ApplyPowerAction(p, p, new DexterityPower(p, this.magicNumber), this.magicNumber));
+        SoundHelper.playSound("gkmasModResource/audio/voice/skillcard/cidol_kcna_2_000_produce_skillcard_01.ogg");
+
     }
 
 

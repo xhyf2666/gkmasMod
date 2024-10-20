@@ -14,6 +14,7 @@ import gkmasmod.cards.GkmasCard;
 import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.utils.NameHelper;
+import gkmasmod.utils.SoundHelper;
 
 public class DefeatBigSister extends GkmasCard {
     private static final String CLASSNAME = DefeatBigSister.class.getSimpleName();
@@ -58,6 +59,8 @@ public class DefeatBigSister extends GkmasCard {
     public void use(AbstractPlayer p, AbstractMonster m) {
         addToBot(new LoseHPAction(p, p, this.HPMagicNumber));
         addToBot(new BlockDamageAction(1.0F * this.magicNumber / 100, this.block, p, m,this));
+        SoundHelper.playSound("gkmasModResource/audio/voice/skillcard/cidol_hume_2_000_produce_skillcard_01.ogg");
+
     }
 
     public void applyPowersToBlock() {

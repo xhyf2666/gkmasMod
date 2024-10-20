@@ -33,11 +33,11 @@
   },
   "gkmasMod:FreshVinegar": {
     "NAME": "新鲜醋汁",
-    "DESCRIPTIONS": ["回复 #b%d 点 #y体力 。 NL 强化所有手牌 。"]
+    "DESCRIPTIONS": ["回复 #b%d 点 #y体力 。 NL 升级所有手牌 。"]
   },
   "gkmasMod:BoostExtract": {
     "NAME": "Boost精华",
-    "DESCRIPTIONS": ["失去 #b%d 点 #y体力 ，获得 #b%d 层 受伤减半。 NL 接下来的 #b%d 次伤害增加 #b%d %%。"]
+    "DESCRIPTIONS": ["失去 #b%d 点 #y体力 ，获得 #b%d 层 受伤锐减 。 NL #b%d 回合内伤害增加 #b%d %%，可叠加。"]
   },
   "gkmasMod:StaminaExplosionDrink": {
     "NAME": "耐力爆发",
@@ -49,11 +49,11 @@
   },
   "gkmasMod:FirstStarWheyProtein": {
     "NAME": "初星乳清蛋白",
-    "DESCRIPTIONS": [" #y再动 。"]
+    "DESCRIPTIONS": [" #y再动 #b%d。"]
   },
   "gkmasMod:FirstStarSpecialAojiru": {
     "NAME": "初星特制青汁",
-    "DESCRIPTIONS": ["获得一张强化的彩色牌。"]
+    "DESCRIPTIONS": ["在本场战斗中，获得 #b%d 张强化的彩色牌。"]
   },
   "gkmasMod:SelectFirstStarMacchiato": {
     "NAME": "初星严选·玛奇朵",
@@ -73,6 +73,6 @@
   },
   "gkmasMod:SpecialFirstStarExtract": {
     "NAME": "特制初星精华",
-    "DESCRIPTIONS": ["失去 #b%d 点 #y体力 。 NL 获得 #b%d 层 受伤翻倍。 NL 本回合使用的下一张攻击牌额外触发一次。"]
+    "DESCRIPTIONS": ["失去 #b%d 点 #y体力 。 NL 获得 #b%d 层 受伤剧增 。 NL 本回合使用的下 #b%d 张攻击牌额外触发一次。"]
   }
 }

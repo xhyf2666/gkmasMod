@@ -54,9 +54,5 @@ public class SummerEveningSparklersPower extends AbstractPower {
         this.description = String.format(DESCRIPTIONS[0], this.amount);
     }
 
-    public void atEndOfTurn(boolean isPlayer) {
-        if (isPlayer)
-            addToBot(new RemoveSpecificPowerAction(this.owner, this.owner, POWER_ID));
-    }
 
 }

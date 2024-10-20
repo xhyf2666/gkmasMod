@@ -55,14 +55,23 @@ public class FirstStarWater extends CustomPotion {
 
     @Override
     public void use(AbstractCreature target) {
-        int damage = getPotency();
+        int damage = 10;
+        if (AbstractDungeon.player != null && AbstractDungeon.player.hasRelic("SacredBark")) {
+            damage *= 2;
+        }
         damage = calculateDamage(damage,target);
         addToBot(new DamageAction(target, new DamageInfo(AbstractDungeon.player, damage, DamageInfo.DamageType.NORMAL)));
+
     }
 
     public void initializeData() {
-        this.potency = getPotency();
-        this.description = String.format(potionStrings.DESCRIPTIONS[0], potency);
+        if (AbstractDungeon.player != null && AbstractDungeon.player.hasRelic("SacredBark")) {
+            this.description = String.format(potionStrings.DESCRIPTIONS[0], 10*2);
+        }
+        else{
+            this.description = String.format(potionStrings.DESCRIPTIONS[0], 10);
+        }
+
         this.tips.clear();
         this.tips.add(new PowerTip(this.name, this.description));
     }
@@ -76,7 +85,7 @@ public class FirstStarWater extends CustomPotion {
 
     @Override
     public int getPotency(int i) {
-        return 10;
+        return 0;
     }
 
     @Override

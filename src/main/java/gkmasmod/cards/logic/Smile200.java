@@ -47,7 +47,6 @@ public class Smile200 extends GkmasCard {
         this.magicNumber = this.baseMagicNumber;
         this.baseSecondMagicNumber = BASE_MAGIC2;
         this.secondMagicNumber = this.baseSecondMagicNumber;
-        this.exhaust = true;
         FlavorText.AbstractCardFlavorFields.boxColor.set(this, CardHelper.getColor(73, 224, 254));
         flavor = FlavorText.CardStringsFlavorField.flavor.get(CARD_STRINGS);
         this.tags.add(GkmasCardTag.GOOD_IMPRESSION_TAG);

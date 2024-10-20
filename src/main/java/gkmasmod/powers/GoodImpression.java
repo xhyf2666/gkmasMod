@@ -50,6 +50,8 @@ public class GoodImpression extends AbstractPower {
         super.stackPower(stackAmount);
         if (this.amount == 0)
             addToTop(new RemoveSpecificPowerAction(this.owner, this.owner, this.ID));
+        if(this.amount>9999)
+            this.amount = 9999;
     }
 
     public void updateDescription() {

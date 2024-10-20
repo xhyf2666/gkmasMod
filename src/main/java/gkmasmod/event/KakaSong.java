@@ -14,13 +14,13 @@ public class KakaSong extends AbstractImageEvent {
     private static final EventStrings eventStrings = CardCrawlGame.languagePack.getEventString(ID);
     private static final String[] DESCRIPTIONS = eventStrings.DESCRIPTIONS;
     private static final String[] OPTIONS = eventStrings.OPTIONS;
-    private static final String title = eventStrings.NAME;
+    private static final String NAME = eventStrings.NAME;
     private static final int[] vo_require = {100, 200, 400};
     private int screenNum = 0;
     private int vo=0;
 
     public KakaSong() {
-        super(title, DESCRIPTIONS[0], String.format("gkmasModResource/img/event/%s.png",ID));
+        super(NAME, DESCRIPTIONS[0], String.format("gkmasModResource/img/event/%s.png",ID));
         this.imageEventText.setDialogOption(OPTIONS[0]);
         vo = ((IdolCharacter)AbstractDungeon.player).getVo();
     }
@@ -98,7 +98,7 @@ public class KakaSong extends AbstractImageEvent {
                         return;
                 }
             case 4:
-                AbstractRelic r = AbstractDungeon.returnRandomScreenlessRelic(AbstractRelic.RelicTier.COMMON);
+                AbstractRelic r = AbstractDungeon.returnRandomScreenlessRelic(AbstractRelic.RelicTier.UNCOMMON);
                 AbstractDungeon.getCurrRoom().spawnRelicAndObtain((Settings.WIDTH / 2), (Settings.HEIGHT / 2), r);
                 screenNum=9;
                 openMap();

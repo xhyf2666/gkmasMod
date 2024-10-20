@@ -1,6 +1,7 @@
 package gkmasmod.cards.logic;
 
 import com.evacipated.cardcrawl.mod.stslib.patches.FlavorText;
+import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -13,6 +14,7 @@ import gkmasmod.actions.GoodImpressionDamageAction;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
+import gkmasmod.powers.DoubleDamageReceive;
 import gkmasmod.powers.GoodImpression;
 import gkmasmod.screen.SkinSelectScreen;
 import gkmasmod.utils.NameHelper;
@@ -52,7 +54,6 @@ public class Shiny extends GkmasCard {
         this.secondMagicNumber = this.baseSecondMagicNumber;
         this.baseBlock = BASE_BLOCK;
         this.block = this.baseBlock;
-        this.exhaust = true;
         FlavorText.AbstractCardFlavorFields.boxColor.set(this, CardHelper.getColor(73, 224, 254));
         flavor = FlavorText.CardStringsFlavorField.flavor.get(CARD_STRINGS);
         this.tags.add(GkmasCardTag.GOOD_IMPRESSION_TAG);
@@ -61,6 +62,7 @@ public class Shiny extends GkmasCard {
     public void use(AbstractPlayer p, AbstractMonster m) {
         addToBot(new GainBlockAction(p, p, this.block));
         addToBot(new GoodImpressionDamageAction(1.0F * magicNumber / 100, 0, p, m,this));
+        addToBot(new ApplyPowerAction(p, p, new DoubleDamageReceive(p, this.secondMagicNumber), this.secondMagicNumber));
     }
 
     public void applyPowers() {

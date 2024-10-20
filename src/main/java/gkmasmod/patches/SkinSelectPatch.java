@@ -24,6 +24,12 @@ public class SkinSelectPatch {
         public static void Prefix(CharacterSelectScreen _inst) {
             if (SkinSelectPatch.isGkmasSelected())
                 SkinSelectScreen.Inst.update();
+            else{
+                if (SkinSelectScreen.Inst.videoPlayer != null) {
+                    SkinSelectScreen.Inst.videoPlayer.dispose();
+                    SkinSelectScreen.Inst.videoPlayer = null;
+                }
+            }
         }
     }
 

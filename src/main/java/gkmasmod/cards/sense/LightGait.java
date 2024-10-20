@@ -31,7 +31,6 @@ public class LightGait extends GkmasCard {
     private static final int UPGRADE_PLUS_DMG = 2;
 
     private static final int BASE_MAGIC = 2;
-    private static final int BASE_MAGIC2 = 1;
 
 
     private static final CardType TYPE = CardType.ATTACK;
@@ -44,8 +43,6 @@ public class LightGait extends GkmasCard {
         this.baseDamage = ATTACK_DMG;
         this.baseMagicNumber = BASE_MAGIC;
         this.magicNumber = this.baseMagicNumber;
-        this.baseSecondMagicNumber = BASE_MAGIC2;
-        this.secondMagicNumber = this.baseSecondMagicNumber;
         this.tags.add(GkmasCardTag.GOOD_TUNE_TAG);
     }
 
@@ -54,8 +51,6 @@ public class LightGait extends GkmasCard {
     public void use(AbstractPlayer p, AbstractMonster m) {
         addToBot(new DamageAction( m, new DamageInfo( p, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
         int count = PlayerHelper.getPowerAmount(p, GoodTune.POWER_ID);
-        if (count > 0)
-            addToBot(new DrawCardAction(this.secondMagicNumber));
         addToBot(new ApplyPowerAction(p, p, new GoodTune(p, this.magicNumber), this.magicNumber));
     }
 

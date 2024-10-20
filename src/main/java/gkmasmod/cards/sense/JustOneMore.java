@@ -30,6 +30,8 @@ public class JustOneMore extends GkmasCard {
 
     private static final int COST = 1;
 
+    private static int BASE_MAGIC = 2;
+
 
     private static final CardType TYPE = CardType.SKILL;
     private static final CardColor COLOR = PlayerColorEnum.gkmasModColorSense;
@@ -39,6 +41,8 @@ public class JustOneMore extends GkmasCard {
     public JustOneMore() {
         super(ID, NAME, IMG_PATH, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.exhaust = true;
+        this.baseMagicNumber = BASE_MAGIC;
+        this.magicNumber = this.baseMagicNumber;
         this.tags.add(GkmasCardTag.GOOD_TUNE_TAG);
         this.tags.add(GkmasCardTag.FOCUS_TAG);
     }
@@ -50,7 +54,7 @@ public class JustOneMore extends GkmasCard {
         if (count > 0) {
             addToBot(new RemoveSpecificPowerAction(p, p, GoodTune.POWER_ID));
         } else {
-            addToBot(new ApplyPowerAction(p,  p,  new NotGoodTune( p, 1), 1));
+            addToBot(new ApplyPowerAction(p,  p,  new NotGoodTune( p, this.magicNumber), this.magicNumber));
 
         }
         addToBot( new LimitBreakAction());

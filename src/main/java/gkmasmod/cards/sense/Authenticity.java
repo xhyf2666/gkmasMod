@@ -17,6 +17,7 @@ import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.powers.GoodTune;
 import gkmasmod.utils.NameHelper;
 import gkmasmod.utils.PlayerHelper;
+import gkmasmod.utils.SoundHelper;
 
 public class Authenticity extends GkmasCard {
     private static final String CLASSNAME = Authenticity.class.getSimpleName();
@@ -30,7 +31,7 @@ public class Authenticity extends GkmasCard {
     private static final int COST = 0;
     private static final int ATTACK_DMG = 4;
     private static final int UPGRADE_PLUS_DMG = 2;
-    private static final int BASE_MAGIC = 3;
+    private static final int BASE_MAGIC = 1;
     private static final int UPGRADE_PLUS_MAGIC = 1;
 
     private static final CardType TYPE = CardType.ATTACK;
@@ -57,6 +58,8 @@ public class Authenticity extends GkmasCard {
         if (count > 0) {
             addToBot(new ApplyPowerAction(p, p, new StrengthPower(p, this.magicNumber), this.magicNumber));
         }
+        SoundHelper.playSound("gkmasModResource/audio/voice/skillcard/cidol_amao_2_000_produce_skillcard_01.ogg");
+
     }
 
     @Override

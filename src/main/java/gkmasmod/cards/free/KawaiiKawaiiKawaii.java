@@ -37,7 +37,6 @@ public class KawaiiKawaiiKawaii extends GkmasCard {
 
     public KawaiiKawaiiKawaii() {
         super(ID, NAME, IMG_PATH, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.exhaust = true;
     }
 
 

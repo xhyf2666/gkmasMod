@@ -29,6 +29,8 @@ public class Challenge extends GkmasCard {
     private static final int ATTACK_DMG = 16;
     private static final int UPGRADE_PLUS_DMG = 6;
 
+    private static final int BASE_MAGIC = 2;
+
     private static final CardType TYPE = CardType.ATTACK;
     private static final CardColor COLOR = PlayerColorEnum.gkmasModColorSense;
     private static final CardRarity RARITY = CardRarity.BASIC;
@@ -37,7 +39,8 @@ public class Challenge extends GkmasCard {
     public Challenge() {
         super(ID, NAME, IMG_PATH, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.baseDamage = ATTACK_DMG;
-        this.exhaust = true;
+        this.baseMagicNumber = BASE_MAGIC;
+        this.magicNumber = this.baseMagicNumber;
         this.tags.add(GkmasCardTag.GOOD_TUNE_TAG);
     }
 
@@ -45,6 +48,13 @@ public class Challenge extends GkmasCard {
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
         AbstractDungeon.actionManager.addToBottom( new DamageAction( m, new DamageInfo( p, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
+        if(this.magicNumber > 1){
+            upgradeMagicNumber(-1);
+            this.initializeDescription();
+        }
+        else{
+            this.exhaust = true;
+        }
     }
 
     @Override

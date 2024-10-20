@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import gkmasmod.actions.PushingTooHardAgainAction;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.utils.NameHelper;
@@ -29,7 +30,7 @@ public class PushingTooHardAgain extends GkmasCard {
 
     private static final CardType TYPE = CardType.ATTACK;
     private static final CardColor COLOR = PlayerColorEnum.gkmasModColorSense;
-    private static final CardRarity RARITY = CardRarity.COMMON;
+    private static final CardRarity RARITY = CardRarity.RARE;
     private static final CardTarget TARGET = CardTarget.ENEMY;
 
     public PushingTooHardAgain() {
@@ -40,7 +41,7 @@ public class PushingTooHardAgain extends GkmasCard {
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        addToBot(new WallopAction(m, new DamageInfo(p, this.damage, this.damageTypeForTurn)));
+        addToBot(new PushingTooHardAgainAction(m, new DamageInfo(p, this.damage, this.damageTypeForTurn)));
     }
 
     @Override

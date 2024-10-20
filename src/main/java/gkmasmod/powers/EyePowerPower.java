@@ -45,13 +45,13 @@ public class EyePowerPower extends AbstractPower {
 
     // 能力在更新时如何修改描述
     public void updateDescription() {
-        this.description = String.format(DESCRIPTIONS[0], this.amount*100);
+        this.description = String.format(DESCRIPTIONS[0], this.amount*50);
     }
 
     public void atEndOfTurnPreEndTurnCards(boolean isPlayer) {
         flash();
         int count = PlayerHelper.getPowerAmount(AbstractDungeon.player,StrengthPower.POWER_ID);
-        count = (int) (amount*1.0F*count);
+        count = (int) (amount*0.5F*count);
         if(count>0){
             addToBot(new GainBlockAction(owner,owner,count));
         }

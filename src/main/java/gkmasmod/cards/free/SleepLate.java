@@ -34,6 +34,7 @@ public class SleepLate extends GkmasCard {
         this.baseMagicNumber = BASE_MAGIC;
         this.magicNumber = this.baseMagicNumber;
         this.cardsToPreview = new Sleepy();
+        this.selfRetain = true;
     }
 
 

@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.ArtifactPower;
+import gkmasmod.actions.GainTrainRoundPowerAction;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.powers.AutoUpgrade;
@@ -54,6 +55,7 @@ public class IdolSoul extends GkmasCard {
         if(this.upgraded){
             addToBot(new ApplyPowerAction(p, p, new AutoUpgrade(p, this.magicNumber), this.magicNumber));
         }
+        addToBot(new GainTrainRoundPowerAction(p,1));
     }
 
     @Override

@@ -39,6 +39,7 @@ public class WakeUp extends GkmasCard {
         this.exhaust = true;
         this.cardHeader = CardCrawlGame.languagePack.getUIString("gkmasMod:WakeUpHeader").TEXT[0];
         this.tags.add(GkmasCardTag.GOOD_IMPRESSION_TAG);
+        this.tags.add(GkmasCardTag.OUTSIDE_TAG);
     }
 
 

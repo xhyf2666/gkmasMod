@@ -15,6 +15,7 @@ import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.powers.GoodImpression;
 import gkmasmod.utils.NameHelper;
 import gkmasmod.utils.PlayerHelper;
+import gkmasmod.utils.SoundHelper;
 
 public class PureWhiteFairy extends GkmasCard {
     private static final String CLASSNAME = PureWhiteFairy.class.getSimpleName();
@@ -55,6 +56,8 @@ public class PureWhiteFairy extends GkmasCard {
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
         addToBot(new GoodImpressionDamageAction(1.0F * secondMagicNumber / 100, this.magicNumber, p, m,this));
+        SoundHelper.playSound("gkmasModResource/audio/voice/skillcard/cidol_kllj_2_000_produce_skillcard_01.ogg");
+
     }
 
     public void applyPowers() {

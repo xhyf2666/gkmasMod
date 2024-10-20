@@ -25,12 +25,15 @@ public class BoostExtractPower extends AbstractPower {
 
     private static int magic = 30;
 
+    private static int BoostExtractIDOffset;
+
     String path128 = String.format("gkmasModResource/img/powers/%s_84.png",CLASSNAME);;
     String path48 = String.format("gkmasModResource/img/powers/%s_32.png",CLASSNAME);;
 
     public BoostExtractPower(AbstractCreature owner, int Amount) {
         this.name = NAME;
-        this.ID = POWER_ID;
+        this.ID = POWER_ID + BoostExtractIDOffset;
+        BoostExtractIDOffset++;
         this.owner = owner;
         this.type = PowerType.BUFF;
         this.amount = Amount;
@@ -57,9 +60,25 @@ public class BoostExtractPower extends AbstractPower {
 
     public float atDamageFinalGive(float damage, DamageInfo.DamageType type) {
         if (type == DamageInfo.DamageType.NORMAL) {
-            damage += damage * (1.0F*magic/100);
-            addToBot(new ReducePowerAction(this.owner, this.owner, this.ID, 1));
+            int count =0;
+            for (AbstractPower p : AbstractDungeon.player.powers) {
+                if (p instanceof BoostExtractPower) {
+                    count++;
+                }
+                if(count==1&&!p.ID.equals(this.ID))
+                    return damage;
+            }
+            damage += damage * (count*magic)/100;
         }
         return damage;
+    }
+
+    public void atEndOfTurnPreEndTurnCards(boolean isPlayer){
+        flash();
+        if(this.amount > 0){
+            addToBot(new ReducePowerAction(this.owner, this.owner, ID, 1));
+        }
+        else
+            addToBot(new RemoveSpecificPowerAction(this.owner, this.owner, ID));
     }
 }

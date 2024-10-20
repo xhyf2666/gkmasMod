@@ -27,8 +27,8 @@ public class Bless extends GkmasCard {
     private static String IMG_PATH = String.format("gkmasModResource/img/idol/%s/cards/%s.png", SkinSelectScreen.Inst.idolName, CLASSNAME);
 
     private static final int COST = 1;
-    private static final int ATTACK_DMG = 19;
-    private static final int UPGRADED_PLUS_DMG = 6;
+    private static final int ATTACK_DMG = 10;
+    private static final int UPGRADED_PLUS_DMG = 5;
 
     private static final int BASE_MAGIC = 1;
 
@@ -49,7 +49,6 @@ public class Bless extends GkmasCard {
         this.magicNumber = this.baseMagicNumber;
         this.baseHPMagicNumber = BASE_HP;
         this.HPMagicNumber = this.baseHPMagicNumber;
-        this.exhaust = true;
         this.tags.add(GkmasCardTag.GOOD_TUNE_TAG);
     }
 

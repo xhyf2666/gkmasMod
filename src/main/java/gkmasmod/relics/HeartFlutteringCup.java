@@ -4,7 +4,6 @@ import basemod.abstracts.CustomRelic;
 import com.badlogic.gdx.Gdx;
 import com.evacipated.cardcrawl.mod.stslib.patches.FlavorText;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.common.DamageRandomEnemyAction;
 import com.megacrit.cardcrawl.actions.common.LoseHPAction;
 import com.megacrit.cardcrawl.actions.common.RelicAboveCreatureAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
@@ -16,9 +15,8 @@ import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.helpers.PowerTip;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
-import gkmasmod.actions.ModfifyDamageRandomEnemyAction;
+import gkmasmod.actions.ModifyDamageRandomEnemyAction;
 import gkmasmod.cards.free.BaseAppeal;
-import gkmasmod.cards.free.BasePerform;
 
 public class HeartFlutteringCup extends CustomRelic {
 
@@ -35,7 +33,7 @@ public class HeartFlutteringCup extends CustomRelic {
     private static int magicNumber = 3;
     private static int magicNumber2 = 3;
 
-    private int playTimes = 2;
+    private static int playTimes = 2;
 
     private int playCounter = 0;
 
@@ -52,7 +50,7 @@ public class HeartFlutteringCup extends CustomRelic {
 
     @Override
     public String getUpdatedDescription() {
-        return String.format(this.DESCRIPTIONS[0],HP_LOST,magicNumber,magicNumber2);
+        return String.format(this.DESCRIPTIONS[0],HP_LOST,magicNumber,magicNumber2,playTimes);
     }
 
     @Override
@@ -75,8 +73,10 @@ public class HeartFlutteringCup extends CustomRelic {
         if(this.playCounter < playTimes){
             addToBot(new RelicAboveCreatureAction(AbstractDungeon.player, this));
             addToBot(new LoseHPAction(AbstractDungeon.player, AbstractDungeon.player, HP_LOST));
-            addToTop(new ModfifyDamageRandomEnemyAction(new DamageInfo(AbstractDungeon.player, damage, DamageInfo.DamageType.NORMAL), AbstractGameAction.AttackEffect.SLASH_VERTICAL,new BaseAppeal()));
-            this.grayscale = true;
+            addToTop(new ModifyDamageRandomEnemyAction(new DamageInfo(AbstractDungeon.player, damage, DamageInfo.DamageType.NORMAL), AbstractGameAction.AttackEffect.SLASH_VERTICAL));
+            if(this.playCounter==playTimes){
+                this.grayscale = true;
+            }
             this.playCounter++;
         }
     }

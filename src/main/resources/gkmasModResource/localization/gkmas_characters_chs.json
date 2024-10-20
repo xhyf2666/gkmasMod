@@ -303,80 +303,383 @@
     "NAMES": [""],
     "TEXT": ["挑战不擅长的事物 NL 养育观叶植物"]
   },
-    "IdolInterest:kllj":{
-        "NAMES": [""],
-        "TEXT": ["制作甜点，日本动画"]
-    },
-    "IdolInterest:kcna":{
-        "NAMES": [""],
-        "TEXT": ["绘画"]
-    },
-    "IdolInterest:hume":{
-        "NAMES": [""],
-        "TEXT": ["与姐姐一决胜负"]
-    },
-    "IdolInterest:hski":{
-        "NAMES": [""],
-        "TEXT": ["与别人一决胜负"]
-    },
-    "IdolInterest:hrnm":{
-        "NAMES": [""],
-        "TEXT": ["料理，裁缝，手艺"]
-    },
-    "IdolInterest:fktn":{
-        "NAMES": [""],
-        "TEXT": ["赚钱"]
-    },
-    "IdolInterest:amao":{
-        "NAMES": [""],
-        "TEXT": ["照顾他人，观剧"]
-    },
-    "IdolInterest:ssmk":{
-        "NAMES": [""],
-        "TEXT": ["卡拉OK，SNS"]
-    },
-    "IdolInterest:ttmr":{
-        "NAMES": [""],
-        "TEXT": ["品尝美味的食物（封印中）"]
-    },
+  "IdolInterest:kllj":{
+    "NAMES": [""],
+    "TEXT": ["制作甜点，日本动画"]
+  },
+  "IdolInterest:kcna":{
+    "NAMES": [""],
+    "TEXT": ["绘画"]
+  },
+  "IdolInterest:hume":{
+    "NAMES": [""],
+    "TEXT": ["与姐姐一决胜负"]
+  },
+  "IdolInterest:hski":{
+    "NAMES": [""],
+    "TEXT": ["与别人一决胜负"]
+  },
+  "IdolInterest:hrnm":{
+    "NAMES": [""],
+    "TEXT": ["料理，裁缝，手艺"]
+  },
+  "IdolInterest:fktn":{
+    "NAMES": [""],
+    "TEXT": ["赚钱"]
+  },
+  "IdolInterest:amao":{
+    "NAMES": [""],
+    "TEXT": ["照顾他人，观剧"]
+  },
+  "IdolInterest:ssmk":{
+    "NAMES": [""],
+    "TEXT": ["卡拉OK，SNS"]
+  },
+  "IdolInterest:ttmr":{
+    "NAMES": [""],
+    "TEXT": ["品尝美味的食物（封印中）"]
+  },
   "IdolSkill:shro":{
     "NAMES": [""],
     "TEXT": ["所有学业，物理 NL 数学，解谜"]
   },
-    "IdolSkill:kllj":{
-        "NAMES": [""],
-        "TEXT": ["制作甜点，游戏"]
-    },
-    "IdolSkill:kcna":{
-        "NAMES": [""],
-        "TEXT": ["充满元气地问好 NL 被动物所喜爱"]
-    },
-    "IdolSkill:hume":{
-        "NAMES": [""],
-        "TEXT": ["所有运动，按摩"]
-    },
-    "IdolSkill:hski":{
-        "NAMES": [""],
-        "TEXT": ["所有运动，所有家务，按摩"]
-    },
-    "IdolSkill:hrnm":{
-        "NAMES": [""],
-        "TEXT": ["逛咖啡店，收集化妆品"]
-    },
-    "IdolSkill:fktn":{
-        "NAMES": [""],
-        "TEXT": ["舞蹈，记住人的样貌和姓名"]
-    },
-    "IdolSkill:amao":{
-        "NAMES": [""],
-        "TEXT": ["格斗技，手巧"]
-    },
-    "IdolSkill:ssmk":{
-        "NAMES": [""],
-        "TEXT": ["身体很柔软"]
-    },
-    "IdolSkill:ttmr":{
-        "NAMES": [""],
-        "TEXT": ["唱歌"]
-    }
+  "IdolSkill:kllj":{
+    "NAMES": [""],
+    "TEXT": ["制作甜点，游戏"]
+  },
+  "IdolSkill:kcna":{
+    "NAMES": [""],
+    "TEXT": ["充满元气地问好 NL 被动物所喜爱"]
+  },
+  "IdolSkill:hume":{
+    "NAMES": [""],
+    "TEXT": ["所有运动，按摩"]
+  },
+  "IdolSkill:hski":{
+    "NAMES": [""],
+    "TEXT": ["所有运动，所有家务，按摩"]
+  },
+  "IdolSkill:hrnm":{
+    "NAMES": [""],
+    "TEXT": ["逛咖啡店，收集化妆品"]
+  },
+  "IdolSkill:fktn":{
+    "NAMES": [""],
+    "TEXT": ["舞蹈，记住人的样貌和姓名"]
+  },
+  "IdolSkill:amao":{
+    "NAMES": [""],
+    "TEXT": ["格斗技，手巧"]
+  },
+  "IdolSkill:ssmk":{
+    "NAMES": [""],
+    "TEXT": ["身体很柔软"]
+  },
+  "IdolSkill:ttmr":{
+    "NAMES": [""],
+    "TEXT": ["唱歌"]
+  },
+  "IdolPlan1:shro": {
+    "NAMES": [""],
+    "TEXT": ["必要的基础"]
+  },
+  "IdolPlan2:shro": {
+    "NAMES": [""],
+    "TEXT": ["坚持跳舞的体力"]
+  },
+  "IdolPlan3:shro": {
+    "NAMES": [""],
+    "TEXT": ["持续歌唱的力量"]
+  },
+  "IdolPlan1:kllj": {
+    "NAMES": [""],
+    "TEXT": ["一步一步地"]
+  },
+  "IdolPlan2:kllj": {
+    "NAMES": [""],
+    "TEXT": ["为了传达的力量"]
+  },
+  "IdolPlan3:kllj": {
+    "NAMES": [""],
+    "TEXT": ["理想的样子"]
+  },
+  "IdolPlan1:kcna": {
+    "NAMES": [""],
+    "TEXT": ["最初的一步"]
+  },
+  "IdolPlan2:kcna": {
+    "NAMES": [""],
+    "TEXT": ["活泼可爱的力量"]
+  },
+  "IdolPlan3:kcna": {
+    "NAMES": [""],
+    "TEXT": ["迈向憧憬的一步"]
+  },
+  "IdolPlan1:hume": {
+    "NAMES": [""],
+    "TEXT": ["从负开始的起点"]
+  },
+  "IdolPlan2:hume": {
+    "NAMES": [""],
+    "TEXT": ["深不可测的才能"]
+  },
+  "IdolPlan3:hume": {
+    "NAMES": [""],
+    "TEXT": ["爆发诞生"]
+  },
+  "IdolPlan1:hski": {
+    "NAMES": [""],
+    "TEXT": ["踏实的一步"]
+  },
+  "IdolPlan2:hski": {
+    "NAMES": [""],
+    "TEXT": ["全力前进"]
+  },
+  "IdolPlan3:hski": {
+    "NAMES": [""],
+    "TEXT": ["绝不会输的力量"]
+  },
+  "IdolPlan1:hrnm": {
+    "NAMES": [""],
+    "TEXT": ["3年级的实力"]
+  },
+  "IdolPlan2:hrnm": {
+    "NAMES": [""],
+    "TEXT": ["为了再次抓住梦想"]
+  },
+  "IdolPlan3:hrnm": {
+    "NAMES": [""],
+    "TEXT": ["大家的姐姐"]
+  },
+  "IdolPlan1:fktn": {
+    "NAMES": [""],
+    "TEXT": ["生活改善"]
+  },
+  "IdolPlan2:fktn": {
+    "NAMES": [""],
+    "TEXT": ["才气焕发"]
+  },
+  "IdolPlan3:fktn": {
+    "NAMES": [""],
+    "TEXT": ["相信的力量"]
+  },
+  "IdolPlan1:amao": {
+    "NAMES": [""],
+    "TEXT": ["全新的自己"]
+  },
+  "IdolPlan2:amao": {
+    "NAMES": [""],
+    "TEXT": ["成长的证明"]
+  },
+  "IdolPlan3:amao": {
+    "NAMES": [""],
+    "TEXT": ["接近的憧憬"]
+  },
+  "IdolPlan1:ssmk": {
+    "NAMES": [""],
+    "TEXT": ["前进的一步"]
+  },
+  "IdolPlan2:ssmk": {
+    "NAMES": [""],
+    "TEXT": ["打磨过的笑容"]
+  },
+  "IdolPlan3:ssmk": {
+    "NAMES": [""],
+    "TEXT": ["再一次，开始跳舞"]
+  },
+  "IdolPlan1:ttmr": {
+    "NAMES": [""],
+    "TEXT": ["实力发挥"]
+  },
+  "IdolPlan2:ttmr": {
+    "NAMES": [""],
+    "TEXT": ["弱点克服"]
+  },
+  "IdolPlan3:ttmr": {
+    "NAMES": [""],
+    "TEXT": ["界限突破"]
+  },
+  "IdolReward1:shro": {
+    "NAMES": [""],
+    "TEXT": ["最初的障碍"]
+  },
+  "IdolReward2:shro": {
+    "NAMES": [""],
+    "TEXT": ["前路漫漫"]
+  },
+  "IdolReward3:shro": {
+    "NAMES": [""],
+    "TEXT": ["课题完成"]
+  },
+  "IdolReward1:kllj": {
+    "NAMES": [""],
+    "TEXT": ["破壳"]
+  },
+  "IdolReward2:kllj": {
+    "NAMES": [""],
+    "TEXT": ["承载着思念"]
+  },
+  "IdolReward3:kllj": {
+    "NAMES": [""],
+    "TEXT": ["隐藏的坚强"]
+  },
+  "IdolReward1:kcna": {
+    "NAMES": [""],
+    "TEXT": ["活力合格"]
+  },
+  "IdolReward2:kcna": {
+    "NAMES": [""],
+    "TEXT": ["朝气蓬勃"]
+  },
+  "IdolReward3:kcna": {
+    "NAMES": [""],
+    "TEXT": ["觉醒？"]
+  },
+  "IdolReward1:hume": {
+    "NAMES": [""],
+    "TEXT": ["从零开始"]
+  },
+  "IdolReward2:hume": {
+    "NAMES": [""],
+    "TEXT": ["迅速成长"]
+  },
+  "IdolReward3:hume": {
+    "NAMES": [""],
+    "TEXT": ["横空出世"]
+  },
+  "IdolReward1:hski": {
+    "NAMES": [""],
+    "TEXT": ["首先轻松获胜"]
+  },
+  "IdolReward2:hski": {
+    "NAMES": [""],
+    "TEXT": ["为了不被超越"]
+  },
+  "IdolReward3:hski": {
+    "NAMES": [""],
+    "TEXT": ["Star诞生"]
+  },
+  "IdolReward1:hrnm": {
+    "NAMES": [""],
+    "TEXT": ["声音的深度"]
+  },
+  "IdolReward2:hrnm": {
+    "NAMES": [""],
+    "TEXT": ["摆脱固有印象"]
+  },
+  "IdolReward3:hrnm": {
+    "NAMES": [""],
+    "TEXT": ["莉波=可爱"]
+  },
+  "IdolReward1:fktn": {
+    "NAMES": [""],
+    "TEXT": ["克服短处"]
+  },
+  "IdolReward2:fktn": {
+    "NAMES": [""],
+    "TEXT": ["有实力的孩子"]
+  },
+  "IdolReward3:fktn": {
+    "NAMES": [""],
+    "TEXT": ["超级琴音"]
+  },
+  "IdolReward1:amao": {
+    "NAMES": [""],
+    "TEXT": ["虽然很不安"]
+  },
+  "IdolReward2:amao": {
+    "NAMES": [""],
+    "TEXT": ["引出"]
+  },
+  "IdolReward3:amao": {
+    "NAMES": [""],
+    "TEXT": ["可爱的王子"]
+  },
+  "IdolReward1:ssmk": {
+    "NAMES": [""],
+    "TEXT": ["战战兢兢的一步"]
+  },
+  "IdolReward2:ssmk": {
+    "NAMES": [""],
+    "TEXT": ["外观十分出色"]
+  },
+  "IdolReward3:ssmk": {
+    "NAMES": [""],
+    "TEXT": ["战胜自己"]
+  },
+  "IdolReward1:ttmr": {
+    "NAMES": [""],
+    "TEXT": ["基础力"]
+  },
+  "IdolReward2:ttmr": {
+    "NAMES": [""],
+    "TEXT": ["改善耐力"]
+  },
+  "IdolReward3:ttmr": {
+    "NAMES": [""],
+    "TEXT": ["超越极限"]
+  },
+  "Sensei:Merchant": {
+    "NAMES": [
+      "离开",
+      "~欢迎啊！~"
+    ],
+    "TEXT": [
+      "你好啊！ NL 买点什么吧！ NL 买买买！",
+      "你的发型很不错哦",
+      "看起来你还挺闲？",
+      "你是狗党还是猫党？",
+      "你看起来很~危险~啊， NL 嘿嘿……",
+      "慢慢看…… NL …… NL ……不慢也行",
+      "你喜欢这张地毯吗？ NL 可惜这个不卖",
+      "要支持我这样的小店啊！",
+      "面具就是酷，我也是同党啊！",
+      "哼嗯…… NL …唔… NL 啊！",
+      "多留会儿，听听音乐啊！",
+      "一个人前进太危险了！把你的钱都给我吧！",
+      "买点儿啥吧",
+      "~哈~  ~欠~",
+      "我喜欢金币。",
+      "我最喜欢的颜色是蓝色。 NL 你呢？"
+    ],
+    "OPTIONS": [
+      "你问我怎么会出现在这里？ NL 哎呀我也不知道。",
+      "这可是最后一次买东西的机会咯！ NL ~*挤眼*~ ~*挤眼*~",
+      "…… NL …… NL ………",
+      "其实呢，我是个猫党。",
+      "不用着急， NL 不用着急。",
+      "哇，是不是觉得 @特别激动啊！？@",
+      "曾经我也和你一样。",
+      "唷，还往上爬呢？"
+    ]
+  },
+  "Sensei:Shop Screen": {
+    "NAMES": [
+      "~欢迎~ NL ~欢迎！~",
+      "啊，那个",
+      "啊啦，你没 #r钱 啊！",
+      "诶，诶多",
+      "只允许这一次哦",
+      "这个你买不起。",
+      "我这儿不是做慈善的。",
+      "~谢~  ~啦~",
+      "不用客气",
+      "可以再多依赖老师一点哦",
+      "从前辈那里继承来的经验",
+      "祝你顺利啊。",
+      "离开",
+      "从你的牌组中选择一张牌移除。"
+    ],
+    "TEXT": [
+      "训练，要加油哦",
+      "你问原来的商人？他有事去了",
+      "在学校的生活怎么样？",
+      "嗯，怎么了吗？",
+      "老师我是知道的",
+      "这点忙就让我帮你吧",
+      "你可是我的学生啊",
+      "老师我一直都相信着你啊",
+      "Fight On!"
+    ]
+  }
 }

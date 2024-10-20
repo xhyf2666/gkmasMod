@@ -32,7 +32,7 @@ public class ThankYou extends GkmasCard {
     private static final int BASE_BLOCK = 9;
     private static final int UPGRADE_PLUS_BLOCK = 2;
 
-    private static final int BASE_HP = 2;
+    private static final int BASE_HP = 4;
 
     private static final CardType TYPE = CardType.ATTACK;
     private static final CardColor COLOR = PlayerColorEnum.gkmasModColorLogic;
@@ -51,7 +51,6 @@ public class ThankYou extends GkmasCard {
         this.HPMagicNumber = this.baseHPMagicNumber;
         this.baseBlock = BASE_BLOCK;
         this.block = this.baseBlock;
-        this.exhaust = true;
         FlavorText.AbstractCardFlavorFields.boxColor.set(this, CardHelper.getColor(73, 224, 254));
         flavor = FlavorText.CardStringsFlavorField.flavor.get(CARD_STRINGS);
     }

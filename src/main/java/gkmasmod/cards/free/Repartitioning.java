@@ -1,6 +1,7 @@
 package gkmasmod.cards.free;
 
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
+import com.megacrit.cardcrawl.actions.common.DrawCardAction;
 import com.megacrit.cardcrawl.actions.common.GainEnergyAction;
 import com.megacrit.cardcrawl.actions.unique.CalculatedGambleAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -24,9 +25,10 @@ public class Repartitioning extends GkmasCard {
     private static final String DESCRIPTION = CARD_STRINGS.DESCRIPTION;
     private static String IMG_PATH = String.format("gkmasModResource/img/idol/%s/cards/%s.png", SkinSelectScreen.Inst.idolName, CLASSNAME);
 
-    private static final int COST = 1;
-    private static final int UPGRADE_COST = 0;
+    private static final int COST = 2;
+    private static final int UPGRADE_COST = 1;
     private static final int BASE_MAGIC = 2;
+    private static final int BASE_MAGIC2 = 2;
 
     private static final CardType TYPE = CardType.SKILL;
     private static final CardColor COLOR = PlayerColorEnum.gkmasModColor;
@@ -39,6 +41,8 @@ public class Repartitioning extends GkmasCard {
         this.updateShowImg = true;
         this.baseMagicNumber = BASE_MAGIC;
         this.magicNumber = this.baseMagicNumber;
+        this.baseSecondMagicNumber = BASE_MAGIC2;
+        this.secondMagicNumber = this.baseSecondMagicNumber;
         this.exhaust = true;
     }
 
@@ -47,6 +51,7 @@ public class Repartitioning extends GkmasCard {
     public void use(AbstractPlayer p, AbstractMonster m) {
         addToBot(new ApplyPowerAction(p, p, new HalfDamageReceive(p, this.magicNumber), this.magicNumber));
         addToBot(new CalculatedGambleAction(false));
+        addToBot(new DrawCardAction(this.secondMagicNumber));
         addToBot(new GainTrainRoundPowerAction(p,1));
     }
 

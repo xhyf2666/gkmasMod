@@ -2,18 +2,14 @@ package gkmasmod.relics;
 import basemod.abstracts.CustomRelic;
 import com.badlogic.gdx.Gdx;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
-import com.megacrit.cardcrawl.actions.common.DamageRandomEnemyAction;
 import com.megacrit.cardcrawl.actions.common.RelicAboveCreatureAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
-import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
-import gkmasmod.actions.ModfifyDamageRandomEnemyAction;
+import gkmasmod.actions.ModifyDamageRandomEnemyAction;
 import gkmasmod.cards.free.BaseAppeal;
-import gkmasmod.cards.free.BasePerform;
 import gkmasmod.powers.GoodTune;
 
 public class RoaringLion extends CustomRelic {
@@ -64,7 +60,7 @@ public class RoaringLion extends CustomRelic {
             int count = AbstractDungeon.player.getPower(GoodTune.POWER_ID)==null?0:AbstractDungeon.player.getPower(GoodTune.POWER_ID).amount;
             if(count>GOOD_TUNE){
                 addToBot(new RelicAboveCreatureAction(AbstractDungeon.player, this));
-                addToBot(new ModfifyDamageRandomEnemyAction(new DamageInfo(AbstractDungeon.player, damage, DamageInfo.DamageType.NORMAL), AbstractGameAction.AttackEffect.SLASH_VERTICAL,new BaseAppeal()));
+                addToBot(new ModifyDamageRandomEnemyAction(new DamageInfo(AbstractDungeon.player, damage, DamageInfo.DamageType.NORMAL), AbstractGameAction.AttackEffect.SLASH_VERTICAL));
                 this.counter--;
                 if (this.counter == 0) {
                     this.grayscale = true;

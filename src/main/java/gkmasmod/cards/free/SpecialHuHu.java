@@ -59,6 +59,7 @@ public class SpecialHuHu extends GkmasCard {
         this.initializeDescription();
         this.misc = this.magicNumber;
         this.exhaust = true;
+        this.tags.add(CardTags.HEALING);
     }
 
 

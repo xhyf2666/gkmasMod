@@ -12,6 +12,7 @@ import gkmasmod.cards.GkmasCard;
 import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.utils.NameHelper;
+import gkmasmod.utils.SoundHelper;
 
 public class ChillyBreak extends GkmasCard {
     private static final String CLASSNAME = ChillyBreak.class.getSimpleName();
@@ -22,9 +23,9 @@ public class ChillyBreak extends GkmasCard {
     private static final String DESCRIPTION = CARD_STRINGS.DESCRIPTION;
     private static final String IMG_PATH = String.format("gkmasModResource/img/cards/common/%s.png", CLASSNAME);
 
-    private static final int COST = 3;
-    private static final int ATTACK_DMG = 9;
-    private static final int UPGRADE_PLUS_DMG = 5;
+    private static final int COST = 2;
+    private static final int ATTACK_DMG = 5;
+    private static final int UPGRADE_PLUS_DMG = 4;
 
 
     private static final CardType TYPE = CardType.ATTACK;
@@ -45,6 +46,8 @@ public class ChillyBreak extends GkmasCard {
         addToBot(new DamageAction(m, new DamageInfo(p, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
         addToBot(new DamageAction(m, new DamageInfo(p, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_VERTICAL));
         addToBot(new DamageAction(m, new DamageInfo(p, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
+        SoundHelper.playSound("gkmasModResource/audio/voice/skillcard/cidol_amao_3_001_produce_skillcard_01.ogg");
+
     }
 
     @Override

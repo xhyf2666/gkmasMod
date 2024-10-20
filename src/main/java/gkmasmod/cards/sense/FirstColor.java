@@ -13,6 +13,7 @@ import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.powers.GreatGoodTune;
 import gkmasmod.powers.HalfDamageReceive;
 import gkmasmod.utils.NameHelper;
+import gkmasmod.utils.SoundHelper;
 
 public class FirstColor extends GkmasCard {
     private static final String CLASSNAME = FirstColor.class.getSimpleName();
@@ -48,6 +49,8 @@ public class FirstColor extends GkmasCard {
     public void use(AbstractPlayer p, AbstractMonster m) {
         addToBot(new ApplyPowerAction(p, p, new GreatGoodTune(p, this.magicNumber), this.magicNumber));
         addToBot(new GainBlockAction(p, p, this.block));
+        SoundHelper.playSound("gkmasModResource/audio/voice/skillcard/cidol_kcna_1_001_produce_skillcard_01.ogg");
+
     }
 
     @Override

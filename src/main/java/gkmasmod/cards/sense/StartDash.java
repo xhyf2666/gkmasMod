@@ -27,9 +27,9 @@ public class StartDash extends GkmasCard {
     private static String IMG_PATH = String.format("gkmasModResource/img/idol/%s/cards/%s.png", SkinSelectScreen.Inst.idolName, CLASSNAME);
 
     private static final int COST = 2;
-    private static final int ATTACK_DMG = 20;
-    private static final int UPGRADE_PLUS_DMG = 7;
-    private static final int BLOCK_AMT = 12;
+    private static final int ATTACK_DMG = 10;
+    private static final int UPGRADE_PLUS_DMG = 5;
+    private static final int BLOCK_AMT = 7;
     private static final int UPGRADE_PLUS_BLOCK = 3;
     private static final int BASE_MAGIC = 2;
 

@@ -18,18 +18,21 @@ import com.megacrit.cardcrawl.dungeons.TheCity;
 import com.megacrit.cardcrawl.helpers.CardHelper;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.localization.*;
+import com.megacrit.cardcrawl.map.MapRoomNode;
+import com.megacrit.cardcrawl.random.Random;
+import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import gkmasmod.Listener.CardImgUpdateListener;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.cards.free.*;
 import gkmasmod.cards.logic.*;
 import gkmasmod.cards.sense.*;
 import gkmasmod.characters.IdolCharacter;
-import gkmasmod.event.KakaSong;
-import gkmasmod.event.TogetherTrain;
+import gkmasmod.event.*;
 import gkmasmod.monster.ending.MisuzuBoss;
 import gkmasmod.monster.exordium.HajimeBoss;
 import gkmasmod.potion.*;
 import gkmasmod.relics.*;
+import gkmasmod.room.shop.AnotherShopScreen;
 import gkmasmod.screen.PocketBookViewScreen;
 import gkmasmod.screen.SkinSelectScreen;
 import gkmasmod.utils.ConditionHelper;
@@ -46,7 +49,7 @@ import java.util.Properties;
 import static gkmasmod.characters.PlayerColorEnum.*;
 
 @SpireInitializer
-public class GkmasMod implements EditCardsSubscriber, EditStringsSubscriber, EditKeywordsSubscriber, EditCharactersSubscriber, AddAudioSubscriber,EditRelicsSubscriber,PostInitializeSubscriber  {
+public class GkmasMod implements EditCardsSubscriber, EditStringsSubscriber, EditKeywordsSubscriber, EditCharactersSubscriber, AddAudioSubscriber,EditRelicsSubscriber,PostInitializeSubscriber ,PostBattleSubscriber {
 
     public static List<CardImgUpdateListener> listeners = new ArrayList<>();
     //攻击、技能、能力牌的背景图片(512)
@@ -64,10 +67,10 @@ public class GkmasMod implements EditCardsSubscriber, EditStringsSubscriber, Edi
     private static final String POWER_CC_PORTRAIT = String.format("gkmasModResource/img/idol/%s/cardui/1024/bg_power.png",idolName);
     private static final String ENERGY_ORB_CC_PORTRAIT = "gkmasModResource/img/UI/energy_164.png";
     public static final String CARD_ENERGY_ORB = "gkmasModResource/img/UI/energy_22.png";
-    //选英雄界面的角色图标、选英雄时的背景图片
+
     private static final String MY_CHARACTER_BUTTON = "gkmasModResource/img/charSelect/selectButton.png";
     private static final String MARISA_PORTRAIT = "gkmasModResource/img/charSelect/background_init.png";
-    public static final Color gkmasMod_color = CardHelper.getColor(100, 200, 200);
+    public static final Color gkmasMod_color = CardHelper.getColor(80, 80, 50);
 
     public static final Color gkmasMod_colorLogic = CardHelper.getColor(50, 70, 200);
 
@@ -79,6 +82,12 @@ public class GkmasMod implements EditCardsSubscriber, EditStringsSubscriber, Edi
     public static final String MOD_NAME = "gkmasMod";
     public static int beat_hmsz = 0;
     public static float cardRate = 0.0F;
+    public static AnotherShopScreen shopScreen;
+    public static MapRoomNode node=null;
+
+    public static boolean AnotherShopUp = false;
+
+    public static Random threeSizeTagRng = new Random(0L);
 
 
     public GkmasMod(){
@@ -182,9 +191,11 @@ public class GkmasMod implements EditCardsSubscriber, EditStringsSubscriber, Edi
 
         // 广
         instances.add(new HighlyEducatedIdol());
+        instances.add(new FirstFun());
         instances.add(new LovesTheStruggle());
         instances.add(new SeriousHobby());
         instances.add(new SwayingOnTheBus());
+        instances.add(new MakeExactSignboard());
         // 莉莉娅
         instances.add(new ReservedGirl());
         instances.add(new FirstGround());
@@ -198,6 +209,7 @@ public class GkmasMod implements EditCardsSubscriber, EditStringsSubscriber, Edi
         instances.add(new DebutStageForTheLady());
         instances.add(new WelcomeToTeaParty());
         instances.add(new AQuickSip());
+        instances.add(new GonnaTrickYou());
 
         // 佑芽
         instances.add(new UntappedPotential());
@@ -215,6 +227,7 @@ public class GkmasMod implements EditCardsSubscriber, EditStringsSubscriber, Edi
         instances.add(new FirstFriend());
         instances.add(new SupportiveFeelings());
         instances.add(new SenseOfDistance());
+        instances.add(new SeeYouTomorrow());
         instances.add(new CumulusCloudsAndYou());
         instances.add(new RefreshingBreak());
         // 琴音
@@ -226,11 +239,14 @@ public class GkmasMod implements EditCardsSubscriber, EditStringsSubscriber, Edi
         instances.add(new SummerEveningSparklers());
         // 麻央
         instances.add(new LittlePrince());
+        instances.add(new FirstCrystal());
         instances.add(new Authenticity());
         instances.add(new DressedUpInStyle());
         instances.add(new ChillyBreak());
+        instances.add(new MoonlitRunway());
         // 清夏
         instances.add(new Friendly());
+        instances.add(new FirstMiss());
         instances.add(new BraveStep());
         instances.add(new OneMoreStep());
         instances.add(new AfternoonBreeze());
@@ -240,6 +256,7 @@ public class GkmasMod implements EditCardsSubscriber, EditStringsSubscriber, Edi
         instances.add(new LoneWolf());
         instances.add(new EachPath());
         instances.add(new TangledFeelings());
+        instances.add(new StruggleHandmade());
 
         // 普通
         instances.add(new LightGait());
@@ -353,6 +370,23 @@ public class GkmasMod implements EditCardsSubscriber, EditStringsSubscriber, Edi
         instances.add(new SkipWater());
         instances.add(new GradualDisappearance());
         instances.add(new NewStudentCouncil());
+        //instances.add(new StrikePose());
+        instances.add(new WhatDoesSheDo());
+        instances.add(new MyJudgeNotWrong());
+        instances.add(new Grip());
+        instances.add(new WarmCare());
+        instances.add(new HardStretching());
+        instances.add(new MadeOneForYou());
+        instances.add(new AngelAndDemon());
+        instances.add(new JustAngel());
+        instances.add(new JustDemon());
+        instances.add(new TopWisdom());
+        instances.add(new ClearUp());
+        instances.add(new EnjoySummer());
+        instances.add(new NotLeftAnyone());
+        instances.add(new TemporaryTruce());
+        instances.add(new WantToGoThere());
+        instances.add(new EatEmptyYourRefrigerator());
 
         // 遍历instances的所有元素，将其添加到listener中
         for (Object instance : instances) {
@@ -374,9 +408,11 @@ public class GkmasMod implements EditCardsSubscriber, EditStringsSubscriber, Edi
 
         // 广
         BaseMod.addRelicToCustomPool(new UltimateSleepMask(), gkmasModColor);
+        BaseMod.addRelicToCustomPool(new FirstLoveProofHiro(), gkmasModColor);
         BaseMod.addRelicToCustomPool(new BeginnerGuideForEveryone(), gkmasModColor);
         BaseMod.addRelicToCustomPool(new SidewalkResearchNotes(), gkmasModColor);
         BaseMod.addRelicToCustomPool(new TowardsAnUnseenWorld(), gkmasModColor);
+        BaseMod.addRelicToCustomPool(new NaughtyPuppet(), gkmasModColor);
         // 莉莉娅
         BaseMod.addRelicToCustomPool(new GreenUniformBracelet(), gkmasModColor);
         BaseMod.addRelicToCustomPool(new FirstHeartProofLilja(), gkmasModColor);
@@ -390,6 +426,7 @@ public class GkmasMod implements EditCardsSubscriber, EditStringsSubscriber, Edi
         BaseMod.addRelicToCustomPool(new SecretTrainingCardigan(), gkmasModColor);
         BaseMod.addRelicToCustomPool(new HeartFlutteringCup(), gkmasModColor);
         BaseMod.addRelicToCustomPool(new EnjoyAfterHotSpring(), gkmasModColor);
+        BaseMod.addRelicToCustomPool(new CursedSpirit(), gkmasModColor);
         // 佑芽
         BaseMod.addRelicToCustomPool(new TechnoDog(), gkmasModColor);
         BaseMod.addRelicToCustomPool(new ShibaInuPochette(), gkmasModColor);
@@ -406,6 +443,7 @@ public class GkmasMod implements EditCardsSubscriber, EditStringsSubscriber, Edi
         BaseMod.addRelicToCustomPool(new FirstHeartProofRinami(), gkmasModColor);
         BaseMod.addRelicToCustomPool(new TreatForYou(), gkmasModColor);
         BaseMod.addRelicToCustomPool(new LifeSizeLadyLip(), gkmasModColor);
+        BaseMod.addRelicToCustomPool(new ItsPerfect(), gkmasModColor);
         BaseMod.addRelicToCustomPool(new SummerToShareWithYou(), gkmasModColor);
         BaseMod.addRelicToCustomPool(new ClapClapFan(), gkmasModColor);
         // 琴音
@@ -417,11 +455,14 @@ public class GkmasMod implements EditCardsSubscriber, EditStringsSubscriber, Edi
         BaseMod.addRelicToCustomPool(new CracklingSparkler(), gkmasModColor);
         // 麻央
         BaseMod.addRelicToCustomPool(new GentlemanHandkerchief(), gkmasModColor);
+        BaseMod.addRelicToCustomPool(new FirstLoveProofMao(), gkmasModColor);
         BaseMod.addRelicToCustomPool(new DearLittlePrince(), gkmasModColor);
         BaseMod.addRelicToCustomPool(new InnerLightEarrings(), gkmasModColor);
         BaseMod.addRelicToCustomPool(new LastSummerMemory(), gkmasModColor);
+        BaseMod.addRelicToCustomPool(new FashionMode(), gkmasModColor);
         // 清夏
         BaseMod.addRelicToCustomPool(new PinkUniformBracelet(), gkmasModColor);
+        BaseMod.addRelicToCustomPool(new FirstLoveProofSumika(), gkmasModColor);
         BaseMod.addRelicToCustomPool(new AfterSchoolDoodles(), gkmasModColor);
         BaseMod.addRelicToCustomPool(new ArcadeLoot(), gkmasModColor);
         BaseMod.addRelicToCustomPool(new FrogFan(), gkmasModColor);
@@ -431,9 +472,22 @@ public class GkmasMod implements EditCardsSubscriber, EditStringsSubscriber, Edi
         BaseMod.addRelicToCustomPool(new MyFirstSheetMusic(), gkmasModColor);
         BaseMod.addRelicToCustomPool(new ProtectiveEarphones(), gkmasModColor);
         BaseMod.addRelicToCustomPool(new ThisIsMe(), gkmasModColor);
+        BaseMod.addRelicToCustomPool(new ClumsyBat(), gkmasModColor);
 
 
         BaseMod.addRelic(new BalanceLogicAndSense(), RelicType.SHARED);
+        BaseMod.addRelicToCustomPool(new FirstStarBracelet(), gkmasModColor);
+        BaseMod.addRelicToCustomPool(new MysteriousObject(), gkmasModColor);
+        BaseMod.addRelicToCustomPool(new OverpoweredBall(), gkmasModColor);
+        BaseMod.addRelicToCustomPool(new PledgePetal(), gkmasModColor);
+        BaseMod.addRelicToCustomPool(new AmakawaRamenTour(), gkmasModColor);
+        BaseMod.addRelicToCustomPool(new UnofficialMascot(), gkmasModColor);
+        BaseMod.addRelicToCustomPool(new FirstStarNotebook(), gkmasModColor);
+        BaseMod.addRelicToCustomPool(new FirstStarTshirt(), gkmasModColor);
+        BaseMod.addRelicToCustomPool(new FirstStarKeychain(), gkmasModColor);
+        BaseMod.addRelicToCustomPool(new CrackedCoreNew(), gkmasModColor);
+        BaseMod.addRelicToCustomPool(new ProducerGlass(), gkmasModColor);
+        BaseMod.addRelicToCustomPool(new ProducerPhone(), gkmasModColor);
     }
 
     private void addPotions(){
@@ -442,20 +496,20 @@ public class GkmasMod implements EditCardsSubscriber, EditStringsSubscriber, Edi
         BaseMod.addPotion(FirstStarWater.class,FirstStarWater.liquidColor,FirstStarWater.hybridColor,FirstStarWater.spotsColor,FirstStarWater.ID);
         BaseMod.addPotion(FirstStarWheyProtein.class,FirstStarWheyProtein.liquidColor,FirstStarWheyProtein.hybridColor,FirstStarWheyProtein.spotsColor,FirstStarWheyProtein.ID);
         BaseMod.addPotion(FreshVinegar.class,FreshVinegar.liquidColor,FreshVinegar.hybridColor,FreshVinegar.spotsColor,FreshVinegar.ID);
-        BaseMod.addPotion(HotCoffee.class,HotCoffee.liquidColor,HotCoffee.hybridColor,HotCoffee.spotsColor,HotCoffee.ID);
-        BaseMod.addPotion(IcedCoffee.class,IcedCoffee.liquidColor,IcedCoffee.hybridColor,IcedCoffee.spotsColor,IcedCoffee.ID);
+        //BaseMod.addPotion(HotCoffee.class,HotCoffee.liquidColor,HotCoffee.hybridColor,HotCoffee.spotsColor,HotCoffee.ID);
+        //BaseMod.addPotion(IcedCoffee.class,IcedCoffee.liquidColor,IcedCoffee.hybridColor,IcedCoffee.spotsColor,IcedCoffee.ID);
         BaseMod.addPotion(MixedSmoothie.class,MixedSmoothie.liquidColor,MixedSmoothie.hybridColor,MixedSmoothie.spotsColor,MixedSmoothie.ID);
         BaseMod.addPotion(OolongTea.class,OolongTea.liquidColor,OolongTea.hybridColor,OolongTea.spotsColor,OolongTea.ID);
         BaseMod.addPotion(RecoveryDrink.class,RecoveryDrink.liquidColor,RecoveryDrink.hybridColor,RecoveryDrink.spotsColor,RecoveryDrink.ID);
-        BaseMod.addPotion(RooibosTea.class,RooibosTea.liquidColor,RooibosTea.hybridColor,RooibosTea.spotsColor,RooibosTea.ID);
-        BaseMod.addPotion(SelectFirstStarBlend.class,SelectFirstStarBlend.liquidColor,SelectFirstStarBlend.hybridColor,SelectFirstStarBlend.spotsColor,SelectFirstStarBlend.ID);
-        BaseMod.addPotion(SelectFirstStarMacchiato.class,SelectFirstStarMacchiato.liquidColor,SelectFirstStarMacchiato.hybridColor,SelectFirstStarMacchiato.spotsColor,SelectFirstStarMacchiato.ID);
-        BaseMod.addPotion(SelectFirstStarTea.class,SelectFirstStarTea.liquidColor,SelectFirstStarTea.hybridColor,SelectFirstStarTea.spotsColor,SelectFirstStarTea.ID);
-        BaseMod.addPotion(SpecialFirstStarExtract.class,SpecialFirstStarExtract.liquidColor,SpecialFirstStarExtract.hybridColor,SpecialFirstStarExtract.spotsColor,SpecialFirstStarExtract.ID);
-        BaseMod.addPotion(StaminaExplosionDrink.class,StaminaExplosionDrink.liquidColor,StaminaExplosionDrink.hybridColor,StaminaExplosionDrink.spotsColor,StaminaExplosionDrink.ID);
-        BaseMod.addPotion(StylishHerbalTea.class,StylishHerbalTea.liquidColor,StylishHerbalTea.hybridColor,StylishHerbalTea.spotsColor,StylishHerbalTea.ID);
-        BaseMod.addPotion(VitaminDrink.class,VitaminDrink.liquidColor,VitaminDrink.hybridColor,VitaminDrink.spotsColor,VitaminDrink.ID);
-        BaseMod.addPotion(FirstStarBoostEnergy.class,FirstStarBoostEnergy.liquidColor, FirstStarBoostEnergy.hybridColor,FirstStarBoostEnergy.spotsColor,FirstStarBoostEnergy.ID);
+        //BaseMod.addPotion(RooibosTea.class,RooibosTea.liquidColor,RooibosTea.hybridColor,RooibosTea.spotsColor,RooibosTea.ID);
+        //BaseMod.addPotion(SelectFirstStarBlend.class,SelectFirstStarBlend.liquidColor,SelectFirstStarBlend.hybridColor,SelectFirstStarBlend.spotsColor,SelectFirstStarBlend.ID);
+        //BaseMod.addPotion(SelectFirstStarMacchiato.class,SelectFirstStarMacchiato.liquidColor,SelectFirstStarMacchiato.hybridColor,SelectFirstStarMacchiato.spotsColor,SelectFirstStarMacchiato.ID);
+        //BaseMod.addPotion(SelectFirstStarTea.class,SelectFirstStarTea.liquidColor,SelectFirstStarTea.hybridColor,SelectFirstStarTea.spotsColor,SelectFirstStarTea.ID);
+        //BaseMod.addPotion(SpecialFirstStarExtract.class,SpecialFirstStarExtract.liquidColor,SpecialFirstStarExtract.hybridColor,SpecialFirstStarExtract.spotsColor,SpecialFirstStarExtract.ID);
+        //BaseMod.addPotion(StaminaExplosionDrink.class,StaminaExplosionDrink.liquidColor,StaminaExplosionDrink.hybridColor,StaminaExplosionDrink.spotsColor,StaminaExplosionDrink.ID);
+        //BaseMod.addPotion(StylishHerbalTea.class,StylishHerbalTea.liquidColor,StylishHerbalTea.hybridColor,StylishHerbalTea.spotsColor,StylishHerbalTea.ID);
+        //BaseMod.addPotion(VitaminDrink.class,VitaminDrink.liquidColor,VitaminDrink.hybridColor,VitaminDrink.spotsColor,VitaminDrink.ID);
+        //BaseMod.addPotion(FirstStarBoostEnergy.class,FirstStarBoostEnergy.liquidColor, FirstStarBoostEnergy.hybridColor,FirstStarBoostEnergy.spotsColor,FirstStarBoostEnergy.ID);
     }
 
     @Override
@@ -464,12 +518,46 @@ public class GkmasMod implements EditCardsSubscriber, EditStringsSubscriber, Edi
         SkinSelectScreen.Inst.specialCard = CardLibrary.getCard(gkmasMod_character, IdolData.getIdol(SkinSelectScreen.Inst.idolName).getCard(SkinSelectScreen.Inst.skinIndex)).makeCopy();
         ((GkmasCard)SkinSelectScreen.Inst.specialCard).setIdolBackgroundTexture(idolName);
         BaseMod.addCustomScreen(new PocketBookViewScreen());
+        BaseMod.addCustomScreen(new AnotherShopScreen());
 
         BaseMod.addEvent(new AddEventParams.Builder(TogetherTrain.ID,TogetherTrain.class).spawnCondition(ConditionHelper.Condition_ttmr).dungeonID(Exordium.ID).create());
         BaseMod.addEvent(new AddEventParams.Builder(KakaSong.ID,KakaSong.class).playerClass(gkmasMod_character).dungeonID(TheCity.ID).dungeonID(TheBeyond.ID).create());
+        BaseMod.addEvent(new AddEventParams.Builder(HajimeReward.ID,HajimeReward.class).spawnCondition(ConditionHelper.Condition_never).create());
+
+        BaseMod.addEvent(new AddEventParams.Builder(Plan_shro1.ID,Plan_shro1.class).spawnCondition(ConditionHelper.Condition_never).create());
+        BaseMod.addEvent(new AddEventParams.Builder(Plan_shro2.ID,Plan_shro2.class).spawnCondition(ConditionHelper.Condition_never).create());
+        BaseMod.addEvent(new AddEventParams.Builder(Plan_shro3.ID,Plan_shro3.class).spawnCondition(ConditionHelper.Condition_never).create());
+        BaseMod.addEvent(new AddEventParams.Builder(Plan_kllj1.ID,Plan_kllj1.class).spawnCondition(ConditionHelper.Condition_never).create());
+        BaseMod.addEvent(new AddEventParams.Builder(Plan_kllj2.ID,Plan_kllj2.class).spawnCondition(ConditionHelper.Condition_never).create());
+        BaseMod.addEvent(new AddEventParams.Builder(Plan_kllj3.ID,Plan_kllj3.class).spawnCondition(ConditionHelper.Condition_never).create());
+        BaseMod.addEvent(new AddEventParams.Builder(Plan_kcna1.ID,Plan_kcna1.class).spawnCondition(ConditionHelper.Condition_never).create());
+        BaseMod.addEvent(new AddEventParams.Builder(Plan_kcna2.ID,Plan_kcna2.class).spawnCondition(ConditionHelper.Condition_never).create());
+        BaseMod.addEvent(new AddEventParams.Builder(Plan_kcna3.ID,Plan_kcna3.class).spawnCondition(ConditionHelper.Condition_never).create());
+        BaseMod.addEvent(new AddEventParams.Builder(Plan_hume1.ID,Plan_hume1.class).spawnCondition(ConditionHelper.Condition_never).create());
+        BaseMod.addEvent(new AddEventParams.Builder(Plan_hume2.ID,Plan_hume2.class).spawnCondition(ConditionHelper.Condition_never).create());
+        BaseMod.addEvent(new AddEventParams.Builder(Plan_hume3.ID,Plan_hume3.class).spawnCondition(ConditionHelper.Condition_never).create());
+        BaseMod.addEvent(new AddEventParams.Builder(Plan_hski1.ID,Plan_hski1.class).spawnCondition(ConditionHelper.Condition_never).create());
+        BaseMod.addEvent(new AddEventParams.Builder(Plan_hski2.ID,Plan_hski2.class).spawnCondition(ConditionHelper.Condition_never).create());
+        BaseMod.addEvent(new AddEventParams.Builder(Plan_hski3.ID,Plan_hski3.class).spawnCondition(ConditionHelper.Condition_never).create());
+        BaseMod.addEvent(new AddEventParams.Builder(Plan_hrnm1.ID,Plan_hrnm1.class).spawnCondition(ConditionHelper.Condition_never).create());
+        BaseMod.addEvent(new AddEventParams.Builder(Plan_hrnm2.ID,Plan_hrnm2.class).spawnCondition(ConditionHelper.Condition_never).create());
+        BaseMod.addEvent(new AddEventParams.Builder(Plan_hrnm3.ID,Plan_hrnm3.class).spawnCondition(ConditionHelper.Condition_never).create());
+        BaseMod.addEvent(new AddEventParams.Builder(Plan_fktn1.ID,Plan_fktn1.class).spawnCondition(ConditionHelper.Condition_never).create());
+        BaseMod.addEvent(new AddEventParams.Builder(Plan_fktn2.ID,Plan_fktn2.class).spawnCondition(ConditionHelper.Condition_never).create());
+        BaseMod.addEvent(new AddEventParams.Builder(Plan_fktn3.ID,Plan_fktn3.class).spawnCondition(ConditionHelper.Condition_never).create());
+        BaseMod.addEvent(new AddEventParams.Builder(Plan_amao1.ID,Plan_amao1.class).spawnCondition(ConditionHelper.Condition_never).create());
+        BaseMod.addEvent(new AddEventParams.Builder(Plan_amao2.ID,Plan_amao2.class).spawnCondition(ConditionHelper.Condition_never).create());
+        BaseMod.addEvent(new AddEventParams.Builder(Plan_amao3.ID,Plan_amao3.class).spawnCondition(ConditionHelper.Condition_never).create());
+        BaseMod.addEvent(new AddEventParams.Builder(Plan_ssmk1.ID,Plan_ssmk1.class).spawnCondition(ConditionHelper.Condition_never).create());
+        BaseMod.addEvent(new AddEventParams.Builder(Plan_ssmk2.ID,Plan_ssmk2.class).spawnCondition(ConditionHelper.Condition_never).create());
+        BaseMod.addEvent(new AddEventParams.Builder(Plan_ssmk3.ID,Plan_ssmk3.class).spawnCondition(ConditionHelper.Condition_never).create());
+        BaseMod.addEvent(new AddEventParams.Builder(Plan_ttmr1.ID,Plan_ttmr1.class).spawnCondition(ConditionHelper.Condition_never).create());
+        BaseMod.addEvent(new AddEventParams.Builder(Plan_ttmr2.ID,Plan_ttmr2.class).spawnCondition(ConditionHelper.Condition_never).create());
+        BaseMod.addEvent(new AddEventParams.Builder(Plan_ttmr3.ID,Plan_ttmr3.class).spawnCondition(ConditionHelper.Condition_never).create());
 
         BaseMod.addMonster(MisuzuBoss.ID, () -> new MisuzuBoss());
         BaseMod.addMonster(HajimeBoss.ID, () -> new HajimeBoss());
+        shopScreen = new AnotherShopScreen();
         //BaseMod.addBoss(Exordium.ID, HajimeBoss.ID, "gkmasModResource/img/monsters/Hajime/icon.png", "gkmasModResource/img/monsters/Hajime/icon.png");
 
 //        BaseMod.addBoss(TheEnding.ID, MisuzuBoss.ID, "gkmasModResource/img/monster/Misuzu/icon.png", "gkmasModResource/img/monster/Misuzu/icon.png");
@@ -491,4 +579,12 @@ public class GkmasMod implements EditCardsSubscriber, EditStringsSubscriber, Edi
         }
         addPotions();
     }
+
+    @Override
+    public void receivePostBattle(AbstractRoom abstractRoom) {
+//        if(AbstractDungeon.player.hasRelic(FirstStarBracelet.ID)){
+//            ((FirstStarBracelet)AbstractDungeon.player.getRelic(FirstStarBracelet.ID)).afterVictory();
+//        }
+
+        }
 }

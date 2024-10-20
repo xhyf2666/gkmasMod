@@ -19,6 +19,7 @@ import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.powers.GoodTune;
 import gkmasmod.utils.NameHelper;
 import gkmasmod.utils.PlayerHelper;
+import gkmasmod.utils.SoundHelper;
 
 public class FirstGround extends GkmasCard {
     private static final String CLASSNAME = FirstGround.class.getSimpleName();
@@ -54,6 +55,8 @@ public class FirstGround extends GkmasCard {
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
         addToBot(new GoodTuneDamageAction(1.0F*this.magicNumber/100,0,p,m,this));
+        SoundHelper.playSound("gkmasModResource/audio/voice/skillcard/cidol_kllj_1_001_produce_skillcard_01.ogg");
+
     }
 
     @Override

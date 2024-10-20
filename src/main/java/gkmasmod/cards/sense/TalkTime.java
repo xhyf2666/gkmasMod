@@ -25,7 +25,7 @@ public class TalkTime extends GkmasCard {
     private static final String IMG_PATH = String.format("gkmasModResource/img/cards/common/%s.png", CLASSNAME);
 
     private static final int COST = 1;
-    private static final int ATTACK_DMG = 9;
+    private static final int ATTACK_DMG = 8;
     private static final int UPGRADE_PLUS_DMG = 3;
 
     private static final CardType TYPE = CardType.ATTACK;
@@ -36,7 +36,6 @@ public class TalkTime extends GkmasCard {
     public TalkTime() {
         super(ID, NAME, IMG_PATH, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.baseDamage = ATTACK_DMG;
-        this.exhaust = true;
     }
 
 

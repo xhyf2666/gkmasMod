@@ -26,12 +26,11 @@ public class BaseBehave extends GkmasCard {
     private static final String IMG_PATH = String.format("gkmasModResource/img/cards/common/%s.png", CLASSNAME);
 
     private static final int COST = 1;
-    private static final int BASE_MAGIC = 3;
-    private static final int UPGRADE_PLUS_MAGIC = 1;
+    private static final int BASE_MAGIC = 2;
 
 
-    private static final int BLOCK_AMT = 5;
-    private static final int UPGRADE_PLUS_BLOCK = 2;
+    private static final int BLOCK_AMT = 4;
+    private static final int UPGRADE_PLUS_BLOCK = 3;
 
 
     private static final CardType TYPE = CardType.SKILL;
@@ -63,7 +62,6 @@ public class BaseBehave extends GkmasCard {
     public void upgrade() {
         if (!this.upgraded) {
             upgradeName();
-            upgradeMagicNumber(UPGRADE_PLUS_MAGIC);
             upgradeBlock(UPGRADE_PLUS_BLOCK);
             if (CARD_STRINGS.UPGRADE_DESCRIPTION != null)
                 this.rawDescription = CARD_STRINGS.UPGRADE_DESCRIPTION;

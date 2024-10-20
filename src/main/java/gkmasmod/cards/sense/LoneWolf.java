@@ -15,6 +15,7 @@ import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.utils.NameHelper;
 import gkmasmod.utils.PlayerHelper;
+import gkmasmod.utils.SoundHelper;
 
 public class LoneWolf extends GkmasCard {
     private static final String CLASSNAME = LoneWolf.class.getSimpleName();
@@ -27,7 +28,7 @@ public class LoneWolf extends GkmasCard {
 
     private static final int COST = 2;
     private static final int UPGRADE_PLUS_COST = -1;
-    private static final int ATTACK_DMG = 12;
+    private static final int ATTACK_DMG = 8;
     private static final int BASE_MAGIC = 2;
 
     private static final CardType TYPE = CardType.ATTACK;
@@ -53,6 +54,8 @@ public class LoneWolf extends GkmasCard {
         if (count > this.magicNumber) {
             AbstractDungeon.actionManager.addToBottom(new DamageAction(m, new DamageInfo(p, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_VERTICAL));
         }
+        SoundHelper.playSound("gkmasModResource/audio/voice/skillcard/cidol_ttmr_2_000_produce_skillcard_01.ogg");
+
     }
 
     @Override

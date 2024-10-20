@@ -16,6 +16,7 @@ import gkmasmod.cards.GkmasCard;
 import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.utils.NameHelper;
+import gkmasmod.utils.SoundHelper;
 
 public class FullOfEnergy extends GkmasCard {
     private static final String CLASSNAME = FullOfEnergy.class.getSimpleName();
@@ -65,6 +66,8 @@ public class FullOfEnergy extends GkmasCard {
         addToBot(new LoseHPAction(p, p, this.HPMagicNumber));
         addToBot(new BlockDamageAction(1.0F * this.secondMagicNumber / 100, this.block, p, m,this));
         addToBot(new ApplyPowerAction(p, p, new DexterityPower(p, this.magicNumber), this.magicNumber));
+        SoundHelper.playSound("gkmasModResource/audio/voice/skillcard/cidol_kcna_1_000_produce_skillcard_01.ogg");
+
     }
 
     public void applyPowersToBlock() {

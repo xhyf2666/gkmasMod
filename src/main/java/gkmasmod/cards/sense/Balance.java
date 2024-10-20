@@ -24,7 +24,6 @@ public class Balance extends GkmasCard {
     private static final String IMG_PATH = String.format("gkmasModResource/img/cards/common/%s.png", CLASSNAME);
 
     private static final int COST = 1;
-    private static final int UPGRADE_PLUS_COST = 0;
 
 
     private static final CardType TYPE = CardType.POWER;
@@ -36,6 +35,7 @@ public class Balance extends GkmasCard {
         super(ID, NAME, IMG_PATH, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tags.add(GkmasCardTag.GOOD_TUNE_TAG);
         this.tags.add(GkmasCardTag.FOCUS_TAG);
+        this.isEthereal = true;
     }
 
 
@@ -43,11 +43,18 @@ public class Balance extends GkmasCard {
     public void use(AbstractPlayer p, AbstractMonster m) {
         int count_goodTune = PlayerHelper.getPowerAmount(p, GoodTune.POWER_ID);
         int count_strength = PlayerHelper.getPowerAmount(p, StrengthPower.POWER_ID);
-        if(count_goodTune > count_strength){
-            addToBot(new ApplyPowerAction(p, p, new StrengthPower(p, count_goodTune - count_strength), count_goodTune - count_strength));
+        int count = (count_goodTune + count_strength+1)/2;
+        if(count<=0)
+            return;
+        if(p.hasPower(GoodTune.POWER_ID))
+            addToBot(new ApplyPowerAction(p, p, new GoodTune(p, count-count_goodTune), count-count_goodTune));
+        else{
+            addToBot(new ApplyPowerAction(p, p, new GoodTune(p, count), count));
         }
-        else if(count_goodTune < count_strength){
-            addToBot(new ApplyPowerAction(p, p, new GoodTune(p, count_strength - count_goodTune), count_strength - count_goodTune));
+        if(p.hasPower(StrengthPower.POWER_ID))
+            addToBot(new ApplyPowerAction(p, p, new StrengthPower(p, count-count_strength), count-count_strength));
+        else{
+            addToBot(new ApplyPowerAction(p, p, new StrengthPower(p, count), count));
         }
     }
 
@@ -60,7 +67,7 @@ public class Balance extends GkmasCard {
     public void upgrade() {
         if (!this.upgraded) {
             upgradeName();
-            upgradeBaseCost(UPGRADE_PLUS_COST);
+            this.isEthereal = false;
             if (CARD_STRINGS.UPGRADE_DESCRIPTION != null)
                 this.rawDescription = CARD_STRINGS.UPGRADE_DESCRIPTION;
             this.initializeDescription();

@@ -12,6 +12,7 @@ import gkmasmod.cards.GkmasCard;
 import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.utils.NameHelper;
+import gkmasmod.utils.SoundHelper;
 
 public class RisingStar extends GkmasCard {
     private static final String CLASSNAME = RisingStar.class.getSimpleName();
@@ -23,7 +24,7 @@ public class RisingStar extends GkmasCard {
     private static final String IMG_PATH = String.format("gkmasModResource/img/cards/common/%s.png", CLASSNAME);
 
     private static final int COST = 2;
-    private static final int ATTACK_DMG = 17;
+    private static final int ATTACK_DMG = 12;
     private static final int UPGRADE_PLUS_DMG = 8;
 
 
@@ -43,6 +44,8 @@ public class RisingStar extends GkmasCard {
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
         addToBot(new DamageAction(m, new DamageInfo(p, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
+        SoundHelper.playSound("gkmasModResource/audio/voice/skillcard/cidol_hski_1_000_produce_skillcard_01.ogg");
+
     }
 
     @Override

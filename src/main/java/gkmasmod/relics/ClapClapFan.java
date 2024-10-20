@@ -70,7 +70,7 @@ public class ClapClapFan extends CustomRelic {
     }
 
     public void atBattleStart() {
-
+        this.counter = 0;
     }
 
     public  void  onPlayerEndTurn(){

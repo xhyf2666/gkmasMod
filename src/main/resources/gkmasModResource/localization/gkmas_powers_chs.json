@@ -66,15 +66,15 @@
     ]
   },
   "DoubleDamageReceive": {
-    "NAME": "受伤翻倍",
+    "NAME": "受伤剧增",
     "DESCRIPTIONS": [
-      "当前有 #b%d 层。 NL 受到的伤害和体力下降效果增加 #b100 %%。 NL 敌人回合结束时层数减 #b1 。"
+      "当前有 #b%d 层。 NL 受到的伤害和体力下降效果增加 #b50 %%。 NL 敌人回合结束时层数减 #b1 。"
     ]
   },
   "HalfDamageReceive": {
-    "NAME": "受伤减半 ",
+    "NAME": "受伤锐减 ",
     "DESCRIPTIONS": [
-      "当前有 #b%d 层。 NL 受到的伤害和体力下降效果减少 #b50 %%。 NL 敌人回合结束时层数减 #b1 。"
+      "当前有 #b%d 层。 NL 受到的伤害和体力下降效果减少 #b33 %%。 NL 敌人回合结束时层数减 #b1 。"
     ]
   },
   "BurstAttackPower": {
@@ -182,13 +182,13 @@
   "TrainRoundLogicPower": {
     "NAME": "训练时间·理性",
     "DESCRIPTIONS": [
-      "当前有 #b%d 层。 NL 格挡在回合结束时不会消失。 NL 每次出牌或结束回合时减少 #b1 层。 NL 战斗胜利或该Buff首次移除时，基于敌人的损失HP百分比获得 #y三维加成 。 NL 回合结束时若能量大于0，则回复 #b2 点体力。 NL 战斗胜利时，每剩余1层回复 #b2 点体力。"
+      "当前有 #b%d 层。 NL 进入战斗时，给随机敌人施加 #y溢出伤害传递 。 NL 格挡在回合结束时不会消失。 NL 每次出牌或结束回合时减少 #b1 层。 NL 战斗胜利或该Buff首次移除时，基于敌人的损失HP百分比获得 #y三维 。 NL 三维分配比例由卡组中卡牌的TAG数决定。 NL 回合结束时若能量大于 #b0 ，则回复 #b1 点体力。 NL 战斗胜利时，每剩余 #b3 层回复 #b2 点体力。"
     ]
   },
   "TrainRoundSensePower": {
     "NAME": "训练时间·感性",
     "DESCRIPTIONS": [
-      "当前有 #b%d 层。 NL 对敌方造成伤害时，获得造成伤害 #b%d %%的格挡。 NL 每次出牌或结束回合时减少 #b1 层。 NL 战斗胜利或该Buff首次移除时，基于敌人的损失HP百分比获得 #y三维加成 。 NL 回合结束时若能量大于0，则回复 #b2 点体力。 NL 战斗胜利时，每剩余1层回复 #b2 点体力。"
+      "当前有 #b%d 层。 NL 对敌方造成伤害时，获得造成伤害 #b%d %%的格挡。 NL 回合结束时，吸甲倍率减少 #b%d %%，直到等于 #b%d %%。 NL 每次出牌或结束回合时减少 #b1 层。 NL 战斗胜利或该Buff首次移除时，基于敌人的损失HP百分比获得 #y三维 。 NL 三维分配比例由卡组中卡牌的TAG数决定。 NL 回合结束时若能量大于 #b0 ，则回复 #b1 点体力。 NL 战斗胜利时，每剩余 #b3 层回复 #b2 点体力。"
     ]
   },
   "OccupyTheWorldPower": {
@@ -272,7 +272,7 @@
   "AllEffort": {
     "NAME": "一直以来的努力",
     "DESCRIPTIONS": [
-      "一直以来的努力与汗水，在此刻开花结果。"
+      "一直以来的努力与汗水，在此刻开花结果。 NL 基于 #y三维 获得 #y伤害加成 。"
     ]
   },
   "EleventhMember": {
@@ -308,7 +308,55 @@
   "BoostExtractPower": {
     "NAME": "Boost精华",
     "DESCRIPTIONS": [
-      "接下来的 #b%d 次伤害 增加 #b%d %%。"
+      " #b%d 回合内伤害增加 #b%d %%。"
+    ]
+  },
+  "BurstAttackTwoRoundPower": {
+    "NAME": "爆发攻击·两回合",
+    "DESCRIPTIONS": [
+      "接下来的两回合，你的下 #b%d 张卡会额外打出1次。"
+    ]
+  },
+  "WhatDoesSheDoPower": {
+    "NAME": "下回合入手",
+    "DESCRIPTIONS": [
+      "下回合开始时，获得 #y%s 。"
+    ]
+  },
+  "MadeOneForYouPower": {
+    "NAME": "给你也做了一份",
+    "DESCRIPTIONS": [
+      "每次使用能量消耗大于 #b1 的卡牌时，获得 [E] 。"
+    ]
+  },
+  "AngelAndDemonPower": {
+    "NAME": "天使与恶魔",
+    "DESCRIPTIONS": [
+      "每回合开始时，在你的手牌中加入一张小天使和小恶魔。"
+    ]
+  },
+  "AngelAndDemonPlusPower": {
+    "NAME": "天使与恶魔+",
+    "DESCRIPTIONS": [
+      "每回合开始时，在你的手牌中加入一张小天使+和小恶魔+。"
+    ]
+  },
+  "TopWisdomPower": {
+    "NAME": "无上智慧",
+    "DESCRIPTIONS": [
+      "每次获得格挡时，对随机敌人造成格挡层数 #b15 %%的伤害 #b%d 次。"
+    ]
+  },
+  "TopWisdomPlusPower": {
+    "NAME": "无上智慧+",
+    "DESCRIPTIONS": [
+      "每次获得格挡时，对随机敌人造成格挡层数 #b25 %%的伤害 #b%d 次。"
+    ]
+  },
+  "OverDamageTransfer": {
+    "NAME": "溢出伤害传递",
+    "DESCRIPTIONS": [
+      "受到伤害而死亡时，将剩余伤害和此状态传递给随机敌人。"
     ]
   }
 }

@@ -20,11 +20,25 @@ import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.ScreenShake;
 import com.megacrit.cardcrawl.random.Random;
+import com.megacrit.cardcrawl.relics.*;
 import com.megacrit.cardcrawl.screens.CharSelectInfo;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import gkmasmod.cards.free.BaseAppeal;
+import gkmasmod.cards.free.BasePerform;
+import gkmasmod.cards.free.BasePose;
+import gkmasmod.cards.logic.BaseAwareness;
+import gkmasmod.cards.logic.BaseVision;
+import gkmasmod.cards.logic.ChangeMood;
+import gkmasmod.cards.logic.KawaiiGesture;
+import gkmasmod.cards.sense.BaseBehave;
+import gkmasmod.cards.sense.BaseExpression;
+import gkmasmod.cards.sense.Challenge;
+import gkmasmod.cards.sense.TryError;
 import gkmasmod.modcore.GkmasMod;
+import gkmasmod.patches.AbstractCardPatch;
+import gkmasmod.relics.CrackedCoreNew;
 import gkmasmod.relics.PocketBook;
+import gkmasmod.relics.ProducerPhone;
 import gkmasmod.screen.SkinSelectScreen;
 import gkmasmod.utils.*;
 
@@ -94,7 +108,6 @@ public class IdolCharacter extends CustomPlayer {
         arcs[1] = new Texture("gkmasModResource/img/UI/ThreeSize/finalCircle/arc_da.png");
         arcs[2] = new Texture("gkmasModResource/img/UI/ThreeSize/finalCircle/arc_vi.png");
         refreshSkin();
-
     }
 
     public void initializeData(){
@@ -126,8 +139,10 @@ public class IdolCharacter extends CustomPlayer {
             this.finalCircleRound.add(this.idolData.getFirstThreeType());
         if(roundNum > 1)
             this.finalCircleRound.add(this.idolData.getSecondThreeType());
+        if(roundNum > 2)
+            this.finalCircleRound.add(this.idolData.getThirdThreeType());
         Random spRng = new Random(Settings.seed, AbstractDungeon.floorNum*20);
-        for(int i = 0; i < roundNum - 2; i++){
+        for(int i = 0; i < roundNum - 3; i++){
             this.finalCircleRound.add(spRng.random(0,2));
         }
         this.IsRenderFinalCircle = true;
@@ -172,20 +187,26 @@ public class IdolCharacter extends CustomPlayer {
     private double calculateDamageRate(int baseRate, int v,int t){
         double rate = 1.0f*v/t;
         if(rate > 1.0f)
-            return 1.0f*baseRate*(1+Math.log(rate))+1;
+            return 1.0f*baseRate*(1+Math.log(rate)/3)+1;
         return (Math.pow(rate,2)+Math.exp(rate-1)+(rate-1)/Math.E)/2*baseRate+1;
+    }
+
+    public double[] calculateDamageRates(){
+        double[] rates = new double[3];
+        for(int i = 0; i < 3; i++){
+            rates[i] = calculateDamageRate(this.idolData.getBaseDamageRate(i),this.threeSize[i],this.idolData.getThreeSizeRequire(i));
+        }
+        return rates;
     }
 
 
     public void refreshSkin() {
-        this.idolName = SkinSelectScreen.Inst.idolName;
-        String idolName_display = CardCrawlGame.languagePack.getCharacterString(NameHelper.addSplitWords("IdolName",this.idolName)).TEXT[0];
-        String skinName = IdolData.getIdol(this.idolName).getSkin(SkinSelectScreen.Inst.skinIndex);
-        //String path = String.format("gkmasModResource/img/idol/stand/%s_%s.scml",this.idolName,skinName);
-        skinName = "skin10";
+        if(this.idolData == null)
+            this.idolData = IdolData.getIdol(SkinSelectScreen.Inst.idolIndex);
+        this.idolName = this.idolData.idolName;
+        String skinName = this.idolData.getSkinImg(SkinSelectScreen.Inst.skinIndex);
         String path = String.format("gkmasModResource/img/idol/%s/stand/stand_%s.scml",SkinSelectScreen.Inst.idolName,skinName);
         this.animation = new SpriterAnimation(path);
-
     }
 
     public ArrayList<AbstractCard> addColorToCardPool(AbstractCard.CardColor color, ArrayList<AbstractCard> tmpPool) {
@@ -229,6 +250,28 @@ public class IdolCharacter extends CustomPlayer {
         ArrayList<String> retVal = new ArrayList<>();
         retVal.add(IdolStartingDeck.getSpecailRelic(SkinSelectScreen.Inst.idolIndex, SkinSelectScreen.Inst.skinIndex));
         retVal.add(PocketBook.ID);
+        retVal.add(ProducerPhone.ID);
+        if(SkinSelectScreen.Inst.updateIndex==1){
+            return retVal;
+        }
+        if(SkinSelectScreen.Inst.idolName==IdolData.fktn){
+            retVal.add(MawBank.ID);
+        }
+        else if(SkinSelectScreen.Inst.idolName==IdolData.hski){
+            retVal.add(Girya.ID);
+        }
+        else if(SkinSelectScreen.Inst.idolName==IdolData.kcna){
+            retVal.add(MembershipCard.ID);
+        }
+        else if(SkinSelectScreen.Inst.idolName==IdolData.ttmr){
+            retVal.add(Pear.ID);
+        }
+        else if(SkinSelectScreen.Inst.idolName==IdolData.shro){
+            retVal.add(MeatOnTheBone.ID);
+        }
+        else if(SkinSelectScreen.Inst.idolName==IdolData.hrnm){
+            retVal.add(CrackedCoreNew.ID);
+        }
         return retVal;
     }
 
@@ -240,13 +283,20 @@ public class IdolCharacter extends CustomPlayer {
         return IdolData.getIdol(SkinSelectScreen.Inst.idolIndex).getGold();
     }
 
+    public int getMaxOrbs(){
+        if(SkinSelectScreen.Inst.idolName.equals(IdolData.hrnm)){
+            return 3;
+        }
+        return 0;
+    }
+
     public CharSelectInfo getLoadout() {
         return new CharSelectInfo(
                 SkinSelectScreen.Inst.curName, // 人物名字
                 "来自初星学园的偶像团体。每位偶像有各自的初始卡组、专属遗物和成长倾向。", // 人物介绍
                 getHP(), // 当前血量
                 getHP(), // 最大血量
-                0, // 初始充能球栏位
+                getMaxOrbs(), // 初始充能球栏位
                 getGold(), // 初始携带金币
                 5, // 每回合抽牌数量
                 this, // 别动
@@ -392,6 +442,10 @@ public class IdolCharacter extends CustomPlayer {
         return this.threeSize.clone();
     }
 
+    public float[] getThreeSizeRate(){
+        return this.threeSizeRate.clone();
+    }
+
     public int[] getPreThreeSize(){
         return this.preThreeSize.clone();
     }
@@ -423,6 +477,23 @@ public class IdolCharacter extends CustomPlayer {
         this.threeSize[2] += vi+(int)((this.threeSizeRate[2]*vi)+0.5F);
     }
 
+    public void changeFixedVo(int vo){
+        this.preThreeSize[0] = this.threeSize[0];
+        this.threeSize[0] += vo;
+    }
+
+    public void changeFixedDa(int da){
+        this.preThreeSize[1] = this.threeSize[1];
+        this.threeSize[1] += da;
+    }
+
+    public void changeFixedVi(int vi){
+        this.preThreeSize[2] = this.threeSize[2];
+        this.threeSize[2] += vi;
+    }
+
+    
+
     public void changeVoRate(float voRate){
         this.threeSizeRate[0] += voRate;
     }
@@ -435,30 +506,79 @@ public class IdolCharacter extends CustomPlayer {
         this.threeSizeRate[2] += viRate;
     }
 
-    public float[]getThreeSizeAndRate(){
+    public float[] getThreeSizeAndRate(){
         return new float[]{this.threeSize[0]*1.0f,this.threeSize[1]*1.0f,this.threeSize[2]*1.0f,this.threeSizeRate[0],this.threeSizeRate[1],this.threeSizeRate[2]};
+    }
+
+    public float[] getThreeSizeScoreRate(){
+
+        int[] count={0,0,0};
+        ArrayList<Integer> masterCardTags = new ArrayList<>();
+        for (AbstractCard card : AbstractDungeon.player.masterDeck.group) {
+            int tag = AbstractCardPatch.ThreeSizeTagField.threeSizeTag.get(card);
+            if(tag!=-1) {
+                count[tag]++;
+            }
+        }
+        int sum=count[0]+count[1]+count[2];
+        return new float[]{1.0f*count[0]/sum,1.0f*count[1]/sum,1.0f*count[2]/sum};
     }
 
     @Override
     public void initializeStarterDeck() {
         super.initializeStarterDeck();
         int num = 0;
-        if(GkmasMod.cardRate>0.3f)
+        if(GkmasMod.cardRate>0.4f)
             num = 1;
-        if(GkmasMod.cardRate>0.5f)
+        if(GkmasMod.cardRate>0.7f)
             num = 2;
-        if(GkmasMod.cardRate>0.8f)
-            num = 3;
 
         ArrayList<AbstractCard> cards = new ArrayList<>();
         AbstractCard specailCard = null;
         this.idolData = IdolData.getIdol(SkinSelectScreen.Inst.idolIndex);
+        int first = idolData.getFirstThreeType();
+        int second = idolData.getSecondThreeType();
+        int third = idolData.getThirdThreeType();
+        int index_attack =0;
+        int index_defend =0;
+        int index_basepose =0;
+        int index_style =0;
         for (AbstractCard c : this.masterDeck.group){
             if(!c.cardID.equals(this.idolData.getCard(SkinSelectScreen.Inst.skinIndex))&&c.canUpgrade()){
                 cards.add(c);
+                if(c.cardID.equals(BaseAppeal.ID)){
+                    AbstractCardPatch.ThreeSizeTagField.threeSizeTag.set(c,index_attack);
+                    index_attack++;
+                }
+                else if(c.cardID.equals(BasePerform.ID)){
+                    AbstractCardPatch.ThreeSizeTagField.threeSizeTag.set(c,index_defend);
+                    index_defend++;
+                }
+                else if(c.cardID.equals(BasePose.ID)){
+                    if(index_basepose==0)
+                        AbstractCardPatch.ThreeSizeTagField.threeSizeTag.set(c,third);
+                    else if(index_basepose==1)
+                        AbstractCardPatch.ThreeSizeTagField.threeSizeTag.set(c,second);
+                    else if(index_basepose==2)
+                        AbstractCardPatch.ThreeSizeTagField.threeSizeTag.set(c,first);
+                    index_basepose++;
+                }
+                else if(c.cardID.equals(BaseExpression.ID)||c.cardID.equals(BaseBehave.ID)||c.cardID.equals(BaseVision.ID)||c.cardID.equals(BaseAwareness.ID)){
+                    if(index_style==0)
+                        AbstractCardPatch.ThreeSizeTagField.threeSizeTag.set(c,first);
+                    else if(index_style==1)
+                        AbstractCardPatch.ThreeSizeTagField.threeSizeTag.set(c,second);
+                    else if(index_style==2)
+                        AbstractCardPatch.ThreeSizeTagField.threeSizeTag.set(c,third);
+                    index_style++;
+                }
+                else if(c.cardID.equals(Challenge.ID)||c.cardID.equals(TryError.ID)||c.cardID.equals(KawaiiGesture.ID)||c.cardID.equals(ChangeMood.ID)){
+                    AbstractCardPatch.ThreeSizeTagField.threeSizeTag.set(c,first);
+                }
             }
             else{
                 specailCard = c;
+                AbstractCardPatch.ThreeSizeTagField.threeSizeTag.set(c,first);
             }
         }
         //从cards中选num张强化

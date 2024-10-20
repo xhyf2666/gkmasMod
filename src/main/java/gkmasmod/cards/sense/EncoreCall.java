@@ -32,8 +32,8 @@ public class EncoreCall extends GkmasCard {
 
     private static final int COST = 1;
     private static final int ATTACK_DMG = 6;
-    private static final int BASE_MAGIC = 3;
-    private static final int UPGRADE_PLUS_MAGIC = -1;
+    private static final int UPGRADE_PLUS_DMG = 3;
+    private static final int BASE_MAGIC = 2;
     private static final int BASE_MAGIC2 = 2;
     private static final int UPGRADE_PLUS_MAGIC2 = 1;
 
@@ -83,7 +83,7 @@ public class EncoreCall extends GkmasCard {
     public void upgrade() {
         if (!this.upgraded) {
             upgradeName();
-            upgradeMagicNumber(UPGRADE_PLUS_MAGIC);
+            upgradeDamage(UPGRADE_PLUS_DMG);
             upgradeSecondMagicNumber(UPGRADE_PLUS_MAGIC2);
             if (CARD_STRINGS.UPGRADE_DESCRIPTION != null)
                 this.rawDescription = CARD_STRINGS.UPGRADE_DESCRIPTION;

@@ -14,6 +14,7 @@ import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.utils.NameHelper;
 import gkmasmod.utils.PlayerHelper;
+import gkmasmod.utils.SoundHelper;
 
 public class Friendly extends GkmasCard {
     private static final String CLASSNAME = Friendly.class.getSimpleName();
@@ -25,7 +26,7 @@ public class Friendly extends GkmasCard {
     private static final String IMG_PATH = String.format("gkmasModResource/img/cards/common/%s.png", CLASSNAME);
 
     private static final int COST = 2;
-    private static final int ATTACK_DMG = 10;
+    private static final int ATTACK_DMG = 7;
     private static final int UPGRADE_PLUS_DMG = 2;
     private static final int BASE_MAGIC = 5;
     private static final int UPGRADE_PLUS_MAGIC = -6;
@@ -60,6 +61,7 @@ public class Friendly extends GkmasCard {
         } else if (amount > magicNumber) {
             addToBot(new DamageAction(m, new DamageInfo(p, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_VERTICAL));
         }
+        SoundHelper.playSound("gkmasModResource/audio/voice/skillcard/cidol_ssmk_1_000_produce_skillcard_01.ogg");
 
     }
 

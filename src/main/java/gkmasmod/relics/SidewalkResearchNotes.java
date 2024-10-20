@@ -26,7 +26,7 @@ public class SidewalkResearchNotes extends CustomRelic {
 
     private int counter = 0;
 
-    private int playTimes = 3;
+    private static int playTimes = 3;
 
     private static final int BASE_MAGIC = 50;
 
@@ -43,7 +43,7 @@ public class SidewalkResearchNotes extends CustomRelic {
 
     @Override
     public String getUpdatedDescription() {
-        return String.format(this.DESCRIPTIONS[0],HP_LOST,BASE_MAGIC);
+        return String.format(this.DESCRIPTIONS[0],HP_LOST,BASE_MAGIC,playTimes);
     }
 
     @Override
@@ -68,7 +68,7 @@ public class SidewalkResearchNotes extends CustomRelic {
             addToBot(new LoseHPAction(AbstractDungeon.player, AbstractDungeon.player, HP_LOST));
             addToTop(new DamageAllEnemiesAction(AbstractDungeon.player, damage, DamageInfo.DamageType.NORMAL, AbstractGameAction.AttackEffect.BLUNT_HEAVY));
             this.counter++;
-            if (this.counter == playTimes-1)
+            if (this.counter == playTimes)
                 this.grayscale = true;
         }
     }

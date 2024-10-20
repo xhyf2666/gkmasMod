@@ -43,10 +43,14 @@ public class GainTrainRoundPowerAction extends AbstractGameAction {
             IdolCharacter idol = (IdolCharacter) this.target;
             CommonEnum.IdolType type = idol.idolData.getType(idol.skinIndex);
             if(type==CommonEnum.IdolType.SENSE){
-                addToBot(new ApplyPowerAction(this.target, this.target, new TrainRoundSensePower(AbstractDungeon.player, this.amount), this.amount));
+                if(idol.hasPower(TrainRoundSensePower.POWER_ID)){
+                    addToBot(new ApplyPowerAction(this.target, this.target, new TrainRoundSensePower(AbstractDungeon.player, this.amount), this.amount));
+                }
             }
             else if (type==CommonEnum.IdolType.LOGIC){
-                addToBot(new ApplyPowerAction(this.target, this.target, new TrainRoundLogicPower(AbstractDungeon.player,  this.amount), this.amount));
+                if(idol.hasPower(TrainRoundLogicPower.POWER_ID)){
+                    addToBot(new ApplyPowerAction(this.target, this.target, new TrainRoundLogicPower(AbstractDungeon.player,  this.amount), this.amount));
+                }
             }
         }
         addToBot(new GainEnergyAction(this.amount));

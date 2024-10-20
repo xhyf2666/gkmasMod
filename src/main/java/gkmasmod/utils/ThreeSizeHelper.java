@@ -26,6 +26,32 @@ public class ThreeSizeHelper {
         VO,DA,VI
     }
 
+    public static void addFixedThreeSize(boolean drawInstantly,int[] value){
+        if(!(AbstractDungeon.player instanceof IdolCharacter))
+            return;
+        IdolCharacter idol = (IdolCharacter) AbstractDungeon.player;
+        if(value.length ==3){
+            idol.changeFixedVo(value[0]);
+            idol.changeFixedDa(value[1]);
+            idol.changeFixedVi(value[2]);
+        }
+        int[] preThreeSize = idol.getPreThreeSize();
+        int[] currentThreeSize = idol.getThreeSize();
+        if(drawInstantly){
+            ThreeSizeChangeScreen.VoInst = null;
+            ThreeSizeChangeScreen.DaInst = null;
+            ThreeSizeChangeScreen.ViInst = null;
+            AbstractDungeon.topLevelEffects.add(new ThreeSizeChangeEffect(0,preThreeSize[0],currentThreeSize[0],Settings.WIDTH/2-750*Settings.xScale,Settings.HEIGHT/2+200*Settings.scale,1.0F));
+            AbstractDungeon.topLevelEffects.add(new ThreeSizeChangeEffect(1,preThreeSize[1],currentThreeSize[1],Settings.WIDTH/2-650*Settings.xScale,Settings.HEIGHT/2+250*Settings.scale,1.0F));
+            AbstractDungeon.topLevelEffects.add(new ThreeSizeChangeEffect(2,preThreeSize[2],currentThreeSize[2],Settings.WIDTH/2-550*Settings.xScale,Settings.HEIGHT/2+200*Settings.scale,1.0F));
+        }
+        else{
+            ThreeSizeChangeScreen.VoInst = new ThreeSizeChangeScreen(0,preThreeSize[0],currentThreeSize[0],Settings.WIDTH/2-750*Settings.xScale,Settings.HEIGHT/2+200*Settings.scale,1.5F);
+            ThreeSizeChangeScreen.DaInst = new ThreeSizeChangeScreen(1,preThreeSize[1],currentThreeSize[1],Settings.WIDTH/2-650*Settings.xScale,Settings.HEIGHT/2+250*Settings.scale,1.5F);
+            ThreeSizeChangeScreen.ViInst = new ThreeSizeChangeScreen(2,preThreeSize[2],currentThreeSize[2],Settings.WIDTH/2-550*Settings.xScale,Settings.HEIGHT/2+200*Settings.scale,1.5F);
+        }
+    }
+
     public static void addThreeSize(boolean drawInstantly){
         ArrayList<Float> res = new ArrayList<>();
         ArrayList<AbstractMonster.EnemyType> types = new ArrayList<>();
@@ -33,14 +59,14 @@ public class ThreeSizeHelper {
         getMonsterInfo(res, types, SPs);
         int size = res.size();
         IdolCharacter idol = (IdolCharacter) AbstractDungeon.player;
+        float[] scoreRate = idol.getThreeSizeScoreRate();
         for(int i = 0; i < size; i++){
             float rate = res.get(i);
             AbstractMonster.EnemyType type = types.get(i);
-            int sp = SPs.get(i);
             int score = getThreeSizeAppend(rate,type);
-            idol.changeVo((int)(0.5F+1.0F*score/3));
-            idol.changeDa((int)(0.5F+1.0F*score/3));
-            idol.changeVi((int)(0.5F+1.0F*score/3));
+            idol.changeVo((int)(0.5F+1.0F*score*scoreRate[0]));
+            idol.changeDa((int)(0.5F+1.0F*score*scoreRate[1]));
+            idol.changeVi((int)(0.5F+1.0F*score*scoreRate[2]));
         }
         int[] preThreeSize = idol.getPreThreeSize();
         int[] currentThreeSize = idol.getThreeSize();
@@ -93,24 +119,33 @@ public class ThreeSizeHelper {
         int actNum = AbstractDungeon.actNum;
         int floorNum = AbstractDungeon.floorNum;
 
-        int base = 20;
+        int base = 15;
         if (actNum == 2)
-            base += 20;
+            base += 15;
         else if (actNum == 3)
-            base += 40;
+            base += 30;
         else if (actNum == 4)
-            base += 60;
+            base += 45;
 
         if (actNum < 4 && floorNum%17 > 8)
-            base += 20;
+            base += 10;
 
         if(type==AbstractMonster.EnemyType.ELITE)
             base = (int)(base * 1.5F);
         else if(type==AbstractMonster.EnemyType.BOSS)
-            base = (int)(base * 2.5F);
+            base = (int)(base * 2.0F);
 
         base = (int)(base * rate);
         return base;
+    }
+
+    public static int getHealthRate(int act){
+        if(act==1)
+            return 5;
+        else if(act==2)
+            return 8;
+        else
+            return 20;
     }
 
 }

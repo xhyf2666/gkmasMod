@@ -48,7 +48,6 @@ public class TurnBackAction extends AbstractGameAction {
 
                 for(Iterator var1 = AbstractDungeon.handCardSelectScreen.selectedCards.group.iterator(); var1.hasNext(); ) {
                     this.handCardSelected = (AbstractCard)var1.next();
-                    //this.p.hand.addToTop(this.handCardSelected);
                 }
 
                 AbstractDungeon.handCardSelectScreen.wereCardsRetrieved = true;
@@ -87,6 +86,8 @@ public class TurnBackAction extends AbstractGameAction {
                 abstractCard.unhover();
                 abstractCard.fadingOut = false;
                 this.p.hand.moveToExhaustPile(this.handCardSelected);
+                AbstractDungeon.handCardSelectScreen.selectedCards.group.clear();
+                AbstractDungeon.gridSelectScreen.selectedCards.clear();
                 this.isDone = true;
             }
         }

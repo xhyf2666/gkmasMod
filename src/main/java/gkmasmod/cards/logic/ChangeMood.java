@@ -28,6 +28,8 @@ public class ChangeMood extends GkmasCard {
     private static final int BASE_MAGIC = 100;
     private static final int UPGRADE_PLUS_MAGIC = 10;
 
+    private static final int BASE_MAGIC2 = 2;
+
     private static final int BASE_HP = 5;
     private static final int UPGRADE_PLUS_HP = -2;
 
@@ -41,9 +43,10 @@ public class ChangeMood extends GkmasCard {
         super(ID, NAME, IMG_PATH, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.baseMagicNumber = BASE_MAGIC;
         this.magicNumber = this.baseMagicNumber;
+        this.baseSecondMagicNumber = BASE_MAGIC2;
+        this.secondMagicNumber = this.baseSecondMagicNumber;
         this.baseHPMagicNumber = BASE_HP;
         this.HPMagicNumber = this.baseHPMagicNumber;
-        this.exhaust = true;
         FlavorText.AbstractCardFlavorFields.boxColor.set(this, CardHelper.getColor(73, 224, 254));
         flavor = FlavorText.CardStringsFlavorField.flavor.get(CARD_STRINGS);
     }
@@ -58,7 +61,15 @@ public class ChangeMood extends GkmasCard {
 
     public void use(AbstractPlayer p, AbstractMonster m) {
         addToBot(new LoseHPAction(p, p, this.HPMagicNumber));
-        addToBot(new BlockDamageAction(1.0F * magicNumber / 100, 0, p, m,this));}
+        addToBot(new BlockDamageAction(1.0F * magicNumber / 100, 0, p, m,this));
+        if(this.secondMagicNumber > 1){
+            upgradeSecondMagicNumber(-1);
+            this.initializeDescription();
+        }
+        else{
+            this.exhaust = true;
+        }
+    }
 
 
     @Override

@@ -25,7 +25,7 @@ public class InnerLightEarrings extends CustomRelic {
     private static final RelicTier RARITY = RelicTier.STARTER;
 
     private static final int magicNumber = 2;
-    private static final int magicNumber2 = 1;
+    private static final int magicNumber2 = 4;
 
     private static final int GOOD_TUNE = 0;
 

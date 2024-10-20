@@ -57,7 +57,12 @@ public class RecoveryDrink extends CustomPotion {
     @Override
     public void use(AbstractCreature target) {
         int amount = getPotency();
-        addToBot(new HealAction(AbstractDungeon.player, AbstractDungeon.player, amount));
+        if((AbstractDungeon.getCurrRoom()).phase == AbstractRoom.RoomPhase.COMBAT){
+            addToBot(new HealAction(AbstractDungeon.player, AbstractDungeon.player, amount));
+        }
+        else{
+            AbstractDungeon.player.heal(amount);
+        }
     }
 
     public boolean canUse() {

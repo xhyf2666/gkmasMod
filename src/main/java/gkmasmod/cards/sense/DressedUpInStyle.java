@@ -15,6 +15,7 @@ import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.powers.GoodTune;
 import gkmasmod.utils.NameHelper;
 import gkmasmod.utils.PlayerHelper;
+import gkmasmod.utils.SoundHelper;
 
 public class DressedUpInStyle extends GkmasCard {
     private static final String CLASSNAME = DressedUpInStyle.class.getSimpleName();
@@ -26,10 +27,10 @@ public class DressedUpInStyle extends GkmasCard {
     private static final String IMG_PATH = String.format("gkmasModResource/img/cards/common/%s.png", CLASSNAME);
 
     private static final int COST = 2;
-    private static final int ATTACK_DMG = 12;
-    private static final int UPGRADE_PLUS_DMG = 6;
-    private static final int ATTACK_DMG2 = 14;
-    private static final int UPGRADE_PLUS_DMG2 = 6;
+    private static final int ATTACK_DMG = 9;
+    private static final int UPGRADE_PLUS_DMG = 3;
+    private static final int ATTACK_DMG2 = 3;
+    private static final int UPGRADE_PLUS_DMG2 = 3;
 
     private static final CardType TYPE = CardType.ATTACK;
     private static final CardColor COLOR = PlayerColorEnum.gkmasModColorSense;
@@ -53,6 +54,8 @@ public class DressedUpInStyle extends GkmasCard {
         if (count > 0) {
             AbstractDungeon.actionManager.addToBottom(new DamageAction(m, new DamageInfo(p, this.secondDamage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_VERTICAL));
         }
+        SoundHelper.playSound("gkmasModResource/audio/voice/skillcard/cidol_amao_3_000_produce_skillcard_01.ogg");
+
     }
 
     @Override

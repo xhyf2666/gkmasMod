@@ -16,6 +16,7 @@ import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.powers.GoodImpression;
 import gkmasmod.utils.NameHelper;
 import gkmasmod.utils.PlayerHelper;
+import gkmasmod.utils.SoundHelper;
 
 public class Pow extends GkmasCard {
     private static final String CLASSNAME = Pow.class.getSimpleName();
@@ -32,7 +33,7 @@ public class Pow extends GkmasCard {
     private static final int UPGRADE_PLUS_MAGIC = 10;
 
     private static final int BASE_HP = 5;
-    private static final int UPGRADE_PLUS_HP = -2;
+    private static final int UPGRADE_PLUS_HP = -1;
 
     private static final CardType TYPE = CardType.ATTACK;
     private static final CardColor COLOR = PlayerColorEnum.gkmasModColorLogic;
@@ -58,6 +59,8 @@ public class Pow extends GkmasCard {
     public void use(AbstractPlayer p, AbstractMonster m) {
         addToBot(new LoseHPAction(p, p, this.HPMagicNumber));
         addToBot(new GoodImpressionDamageAction(1.0F * magicNumber / 100, 0, p, m,this));
+        SoundHelper.playSound("gkmasModResource/audio/voice/skillcard/cidol_hski_3_001_produce_skillcard_01.ogg");
+
     }
 
     public void applyPowers() {

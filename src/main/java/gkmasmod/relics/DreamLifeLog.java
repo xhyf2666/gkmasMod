@@ -4,15 +4,11 @@ import com.badlogic.gdx.Gdx;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.*;
 import com.megacrit.cardcrawl.cards.DamageInfo;
-import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
-import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
-import gkmasmod.actions.ModfifyDamageAction;
-import gkmasmod.actions.ModfifyDamageRandomEnemyAction;
-import gkmasmod.actions.UpgradeAllHandCardAction;
+import gkmasmod.actions.ModifyDamageRandomEnemyAction;
 import gkmasmod.cards.free.BaseAppeal;
 import gkmasmod.powers.GoodImpression;
 
@@ -28,7 +24,7 @@ public class DreamLifeLog extends CustomRelic {
 
     private static final RelicTier RARITY = RelicTier.STARTER;
 
-    private static final int BLOCK = 6;
+    private static final int BLOCK = 11;
 
     private static final int BASE_MAGIC = 50;
     private static final int BASE_MAGIC2 = 30;
@@ -80,7 +76,7 @@ public class DreamLifeLog extends CustomRelic {
                 flash();
                 addToBot(new RelicAboveCreatureAction(AbstractDungeon.player, this));
                 addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new GoodImpression(AbstractDungeon.player, goodImpressionIncrease), goodImpressionIncrease));
-                addToBot(new ModfifyDamageRandomEnemyAction(new DamageInfo(AbstractDungeon.player, damage, DamageInfo.DamageType.NORMAL), AbstractGameAction.AttackEffect.SLASH_VERTICAL,new BaseAppeal()));
+                addToBot(new ModifyDamageRandomEnemyAction(new DamageInfo(AbstractDungeon.player, damage, DamageInfo.DamageType.NORMAL), AbstractGameAction.AttackEffect.SLASH_VERTICAL));
                 this.counter--;
                 if (this.counter == 0) {
                     this.grayscale = true;

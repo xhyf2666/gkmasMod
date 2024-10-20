@@ -12,6 +12,7 @@ import gkmasmod.cards.GkmasCard;
 import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.utils.NameHelper;
+import gkmasmod.utils.SoundHelper;
 
 public class SupportiveFeelings extends GkmasCard {
     private static final String CLASSNAME = SupportiveFeelings.class.getSimpleName();
@@ -23,9 +24,9 @@ public class SupportiveFeelings extends GkmasCard {
     private static final String IMG_PATH = String.format("gkmasModResource/img/cards/common/%s.png", CLASSNAME);
 
     private static final int COST = 2;
-    private static final int BLOCK_AMT = 10;
+    private static final int BLOCK_AMT = 6;
     private static final int UPGRADE_PLUS_BLOCK = 2;
-    private static final int BASE_MAGIC = 4;
+    private static final int BASE_MAGIC = 2;
     private static final int UPGRADE_PLUS_MAGIC = 1;
 
     private static final CardType TYPE = CardType.SKILL;
@@ -48,6 +49,8 @@ public class SupportiveFeelings extends GkmasCard {
     public void use(AbstractPlayer p, AbstractMonster m) {
         addToBot(new GainBlockAction(p, p, this.block));
         addToBot(new ApplyPowerAction(p, p, new StrengthPower(p, this.magicNumber), this.magicNumber));
+        SoundHelper.playSound("gkmasModResource/audio/voice/skillcard/cidol_hrnm_2_000_produce_skillcard_01.ogg");
+
     }
 
     @Override

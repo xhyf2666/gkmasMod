@@ -32,7 +32,6 @@ public class ProudStudent extends GkmasCard {
 
     public ProudStudent() {
         super(ID, NAME, IMG_PATH, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.exhaust = true;
     }
 
 

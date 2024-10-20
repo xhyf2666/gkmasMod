@@ -19,6 +19,7 @@ import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.utils.NameHelper;
 import gkmasmod.utils.PlayerHelper;
+import gkmasmod.utils.SoundHelper;
 
 public class LovesTheStruggle extends GkmasCard {
     private static final String CLASSNAME = LovesTheStruggle.class.getSimpleName();
@@ -61,6 +62,8 @@ public class LovesTheStruggle extends GkmasCard {
     public void use(AbstractPlayer p, AbstractMonster m) {
         addToBot(new GainBlockAction(p, p, this.block));
         addToBot(new DexterityPowerDamageAction(this.magicNumber*1.0F/100, 0,p, m, this));
+        SoundHelper.playSound("gkmasModResource/audio/voice/skillcard/cidol_shro_2_000_produce_skillcard_01.ogg");
+
     }
 
     public void applyPowers() {

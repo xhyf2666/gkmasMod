@@ -26,7 +26,7 @@ public class LightStep extends GkmasCard {
     private static final int BASE_MAGIC = 50;
     private static final int BASE_MAGIC2 = 1;
 
-    private static final int BLOCK_AMT = 4;
+    private static final int BLOCK_AMT = 2;
     private static final int UPGRADE_PLUS_BLOCK = 2;
 
     private static final CardType TYPE = CardType.SKILL;
@@ -50,9 +50,11 @@ public class LightStep extends GkmasCard {
         addToBot((new GainBlockAction(p, p, this.block)));
         float amount = 1.0F * AbstractDungeon.player.currentHealth / AbstractDungeon.player.maxHealth;
         float HP_ = BASE_MAGIC * 1.0F / 100;
-        if (amount >= HP_) {
-            addToBot(new ApplyPowerAction(p, p, new ReduceDamageReceive(p, this.secondMagicNumber), this.secondMagicNumber));
-        }
+        addToBot(new ApplyPowerAction(p, p, new ReduceDamageReceive(p, this.secondMagicNumber), this.secondMagicNumber));
+
+//        if (amount >= HP_) {
+//            addToBot(new ApplyPowerAction(p, p, new ReduceDamageReceive(p, this.secondMagicNumber), this.secondMagicNumber));
+//        }
 
     }
 

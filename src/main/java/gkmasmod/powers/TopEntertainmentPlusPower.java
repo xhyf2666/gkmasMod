@@ -49,8 +49,12 @@ public class TopEntertainmentPlusPower extends AbstractPower {
 
     public void onUseCard(AbstractCard card, UseCardAction action) {
         if(card.type == AbstractCard.CardType.ATTACK) {
+            AbstractCreature target = action.target;
+            if(action.target==null) {
+                target = AbstractDungeon.getMonsters().getRandomMonster(null, true, AbstractDungeon.cardRandomRng);
+            }
             for(int i = 0; i < this.amount; i++) {
-                addToBot(new ModfifyDamageAction(action.target, new DamageInfo(AbstractDungeon.player, 5, action.damageType), AbstractGameAction.AttackEffect.SLASH_VERTICAL,new TopEntertainment()));
+                addToBot(new ModfifyDamageAction(target, new DamageInfo(AbstractDungeon.player, 5, action.damageType), AbstractGameAction.AttackEffect.SLASH_VERTICAL));
             }
         }
     }

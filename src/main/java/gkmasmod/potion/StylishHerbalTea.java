@@ -21,6 +21,7 @@ import com.megacrit.cardcrawl.localization.PotionStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.potions.AbstractPotion;
 import com.megacrit.cardcrawl.powers.AbstractPower;
+import gkmasmod.actions.AojiruAction;
 import gkmasmod.actions.GainBlockWithPowerAction;
 import gkmasmod.actions.GoodImpressionDamageAction;
 import gkmasmod.cards.free.BasePerform;
@@ -62,13 +63,21 @@ public class StylishHerbalTea extends CustomPotion {
     @Override
     public void use(AbstractCreature target) {
         int amount = getPotency();
-        addToBot(new GainBlockWithPowerAction(target, AbstractDungeon.player, amount));
-        addToBot(new GoodImpressionDamageAction(1.0F*magic/100,0,AbstractDungeon.player, (AbstractMonster) target,new BasePerform()));
+        addToBot(new GainBlockWithPowerAction(AbstractDungeon.player, AbstractDungeon.player, amount));
+        addToBot(new GoodImpressionDamageAction(1.0F*magic/100,0,AbstractDungeon.player, (AbstractMonster) target));
+        if (AbstractDungeon.player != null && AbstractDungeon.player.hasRelic("SacredBark")) {
+            addToBot(new GoodImpressionDamageAction(1.0F*magic/100,0,AbstractDungeon.player, (AbstractMonster) target));
+        }
     }
 
     public void initializeData() {
         this.potency = getPotency();
-        this.description = String.format(potionStrings.DESCRIPTIONS[0], potency,100);
+        if (AbstractDungeon.player != null && AbstractDungeon.player.hasRelic("SacredBark")) {
+            this.description = String.format(potionStrings.DESCRIPTIONS[0], potency,100,2);
+        }
+        else{
+            this.description = String.format(potionStrings.DESCRIPTIONS[0], potency,100,1);
+        }
         this.tips.clear();
         this.tips.add(new PowerTip(this.name, this.description));
     }

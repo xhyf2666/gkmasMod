@@ -15,6 +15,7 @@ import gkmasmod.cards.GkmasCard;
 import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.utils.NameHelper;
+import gkmasmod.utils.SoundHelper;
 
 public class Stubborn extends GkmasCard {
     private static final String CLASSNAME = Stubborn.class.getSimpleName();
@@ -26,7 +27,7 @@ public class Stubborn extends GkmasCard {
     private static final String IMG_PATH = String.format("gkmasModResource/img/cards/common/%s.png", CLASSNAME);
 
     private static final int COST = 1;
-    private static final int ATTACK_DMG = 7;
+    private static final int ATTACK_DMG = 4;
     private static final int UPGRADE_PLUS_DMG = 3;
     private static final int BASE_MAGIC = 1;
     private static final int UPGRADE_PLUS_MAGIC = 1;
@@ -51,6 +52,8 @@ public class Stubborn extends GkmasCard {
     public void use(AbstractPlayer p, AbstractMonster m) {
         AbstractDungeon.actionManager.addToBottom(new DamageAction(m, new DamageInfo(p, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
         addToBot(new ApplyPowerAction(p, p, new StrengthPower(p, this.magicNumber), this.magicNumber));
+        SoundHelper.playSound("gkmasModResource/audio/voice/skillcard/cidol_ttmr_1_000_produce_skillcard_01.ogg");
+
     }
 
     @Override

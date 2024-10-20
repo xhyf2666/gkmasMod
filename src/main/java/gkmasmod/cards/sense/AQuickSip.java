@@ -14,6 +14,7 @@ import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.powers.HalfDamageReceive;
 import gkmasmod.utils.NameHelper;
+import gkmasmod.utils.SoundHelper;
 
 public class AQuickSip extends GkmasCard {
     private static final String CLASSNAME = AQuickSip.class.getSimpleName();
@@ -26,7 +27,7 @@ public class AQuickSip extends GkmasCard {
 
     private static final int COST = 2;
     private static final int UPGRADE_COST = 1;
-    private static final int BASE_MAGIC = 3;
+    private static final int BASE_MAGIC = 2;
     private static final int UPGRADE_PLUS_MAGIC = 1;
     private static final int BASE_MAGIC2 = 1;
 
@@ -56,6 +57,8 @@ public class AQuickSip extends GkmasCard {
             addToBot(new ApplyPowerAction(p, p, new HalfDamageReceive(p, this.secondMagicNumber), this.secondMagicNumber));
         }
         addToBot(new GainTrainRoundPowerAction(p, 1));
+        SoundHelper.playSound("gkmasModResource/audio/voice/skillcard/cidol_kcna_3_005_produce_skillcard_01.ogg");
+
     }
 
     @Override

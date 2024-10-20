@@ -6,14 +6,17 @@ import com.megacrit.cardcrawl.actions.common.LoseHPAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.CardHelper;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.random.Random;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.utils.NameHelper;
+import gkmasmod.utils.SoundHelper;
 
 public class BigOnigiri extends GkmasCard {
     private static final String CLASSNAME = BigOnigiri.class.getSimpleName();
@@ -26,12 +29,12 @@ public class BigOnigiri extends GkmasCard {
 
     private static final int COST = 0;
 
-    private static final int BASE_MAGIC = 5;
-    private static final int UPGRADE_PLUS_MAGIC = 3;
+    private static final int BASE_MAGIC = 2;
+    private static final int UPGRADE_PLUS_MAGIC = 2;
 
     private static final int BASE_BLOCK = 2;
 
-    private static final int BASE_HP = 3;
+    private static final int BASE_HP = 4;
 
     private static final CardType TYPE = CardType.SKILL;
     private static final CardColor COLOR = PlayerColorEnum.gkmasModColorLogic;
@@ -61,6 +64,15 @@ public class BigOnigiri extends GkmasCard {
         int count = AbstractDungeon.actionManager.cardsPlayedThisCombat.size() - 1;
         // TODO 分两次获得格挡还是一次获得
         addToBot(new GainBlockAction(p, p, this.block + this.magicNumber * count));
+        Random spRng = new Random(Settings.seed, AbstractDungeon.floorNum*20);
+        java.util.Random random = new java.util.Random();
+        int index = random.nextInt(2);
+        String[] voices = new String[]{
+                "gkmasModResource/audio/voice/skillcard/cidol_hume_3_000_produce_skillcard_01.ogg",
+                "gkmasModResource/audio/voice/skillcard/cidol_hume_3_000_produce_skillcard_02.ogg"
+        };
+        SoundHelper.playSound(voices[index]);
+
     }
 
     public void applyPowers() {
