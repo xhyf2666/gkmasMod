@@ -59,6 +59,7 @@ public class FirstVoiceProofTemari extends CustomRelic {
             if(count>GOOD_IMPRESSION){
                 int damage = count;
                 addToBot(new RelicAboveCreatureAction(AbstractDungeon.player, this));
+                this.flash();
                 addToBot(new ModifyDamageRandomEnemyAction(new DamageInfo(AbstractDungeon.player, damage, DamageInfo.DamageType.THORNS), AbstractGameAction.AttackEffect.SLASH_VERTICAL));
                 this.counter--;
                 if (this.counter == 0) {

@@ -6,11 +6,10 @@ import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
-import gkmasmod.actions.ModfifyDamageAction;
+import gkmasmod.actions.ModifyDamageAction;
 import gkmasmod.actions.ModifyDamageRandomEnemyAction;
 import gkmasmod.cards.sense.CharmPerformance;
 import gkmasmod.utils.NameHelper;
@@ -57,10 +56,10 @@ public class CharmPerformancePower extends AbstractPower {
 
     public void atStartOfTurn() {
         if(!target.halfDead && !target.isDying && !target.isEscaping){
-            addToBot(new ModfifyDamageAction(target, new DamageInfo(AbstractDungeon.player, this.damage, DamageInfo.DamageType.NORMAL), AbstractGameAction.AttackEffect.SLASH_VERTICAL,new CharmPerformance()));
+            addToBot(new ModifyDamageAction(target, new DamageInfo(this.owner, this.damage, DamageInfo.DamageType.NORMAL), AbstractGameAction.AttackEffect.SLASH_VERTICAL,new CharmPerformance()));
         }
         else{
-            addToBot(new ModifyDamageRandomEnemyAction(new DamageInfo(AbstractDungeon.player, this.damage, DamageInfo.DamageType.NORMAL), AbstractGameAction.AttackEffect.SLASH_VERTICAL,new CharmPerformance()));
+            addToBot(new ModifyDamageRandomEnemyAction(new DamageInfo(this.owner, this.damage, DamageInfo.DamageType.NORMAL), AbstractGameAction.AttackEffect.SLASH_VERTICAL,new CharmPerformance()));
         }
         addToBot(new RemoveSpecificPowerAction(this.owner, this.owner, this.ID));
     }

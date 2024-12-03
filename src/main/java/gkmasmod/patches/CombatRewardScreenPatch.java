@@ -17,6 +17,7 @@ import com.megacrit.cardcrawl.screens.charSelect.CharacterSelectScreen;
 import gkmasmod.characters.IdolCharacter;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.relics.FirstStarBracelet;
+import gkmasmod.relics.PocketBook;
 import gkmasmod.screen.SkinSelectScreen;
 import gkmasmod.screen.ThreeSizeChangeScreen;
 import gkmasmod.utils.IdolData;
@@ -26,7 +27,7 @@ public class CombatRewardScreenPatch {
     @SpirePatch(clz = CombatRewardScreen.class, method = "update")
     public static class PrefixCombatRewardScreenPatch_update {
         public static void Prefix(CombatRewardScreen _inst) {
-            if (AbstractDungeon.player instanceof IdolCharacter){
+            if (AbstractDungeon.player.hasRelic(PocketBook.ID)){
                 if(ThreeSizeChangeScreen.VoInst != null)
                     ThreeSizeChangeScreen.VoInst.update();
                 if(ThreeSizeChangeScreen.DaInst != null)
@@ -40,7 +41,7 @@ public class CombatRewardScreenPatch {
     @SpirePatch(clz = CombatRewardScreen.class, method = "render")
     public static class PostfixCombatRewardScreenPatch_render {
         public static void Postfix(CombatRewardScreen _inst, SpriteBatch sb) {
-            if (AbstractDungeon.player instanceof IdolCharacter){
+            if (AbstractDungeon.player.hasRelic(PocketBook.ID)){
                 if(ThreeSizeChangeScreen.VoInst != null)
                     ThreeSizeChangeScreen.VoInst.render(sb);
                 if(ThreeSizeChangeScreen.DaInst != null)

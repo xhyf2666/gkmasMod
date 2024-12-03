@@ -15,6 +15,7 @@ import gkmasmod.actions.HardStretchingAction;
 import gkmasmod.actions.SpecialBlockDamageAction;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.characters.PlayerColorEnum;
+import gkmasmod.patches.AbstractCreaturePatch;
 import gkmasmod.patches.AbstractPlayerPatch;
 import gkmasmod.utils.NameHelper;
 
@@ -59,7 +60,7 @@ public class ClearUp extends GkmasCard {
 
     public void applyPowers() {
         super.applyPowers();
-        int block = AbstractPlayerPatch.BlockField.ThisCombatBlock.get(AbstractDungeon.player);
+        int block = AbstractCreaturePatch.BlockField.ThisCombatBlock.get(AbstractDungeon.player);
         int damage_ = (int) (block * 1.0f*this.magicNumber/100);
         FlavorText.AbstractCardFlavorFields.flavor.set(this, String.format(flavor, block,calculateDamage(damage_)));
     }

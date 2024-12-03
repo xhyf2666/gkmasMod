@@ -28,7 +28,8 @@ public class KawaiiKawaiiKawaii extends GkmasCard {
     private static final String IMG_PATH = String.format("gkmasModResource/img/cards/common/%s.png", CLASSNAME);
 
     private static final int COST = 1;
-
+    private static final int BASE_MAGIC = 2;
+    private static final int BASE_MAGIC2 = 2;
 
     private static final CardType TYPE = CardType.SKILL;
     private static final CardColor COLOR = PlayerColorEnum.gkmasModColor;
@@ -37,15 +38,30 @@ public class KawaiiKawaiiKawaii extends GkmasCard {
 
     public KawaiiKawaiiKawaii() {
         super(ID, NAME, IMG_PATH, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
+        this.baseMagicNumber = BASE_MAGIC;
+        this.magicNumber = this.baseMagicNumber;
+        this.baseSecondMagicNumber = BASE_MAGIC2;
+        this.secondMagicNumber = this.baseSecondMagicNumber;
+        this.exhaust = true;
+        this.tags.add(GkmasCardTag.MORE_ACTION_TAG);
+
     }
 
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        if(this.upgraded)
-            addToBot(new DrawCardAction(1));
+        addToBot(new DrawCardAction(this.magicNumber));
         addToBot(new UpgradeAllHandCardAction());
         addToBot(new GainTrainRoundPowerAction(p, 1));
+        if(this.upgraded){
+            if(this.secondMagicNumber > 1){
+                upgradeSecondMagicNumber(-1);
+                this.initializeDescription();
+            }
+            else{
+                this.exhaust = true;
+            }
+        }
     }
 
     @Override
@@ -57,6 +73,7 @@ public class KawaiiKawaiiKawaii extends GkmasCard {
     public void upgrade() {
         if (!this.upgraded) {
             upgradeName();
+            this.exhaust = false;
             if (CARD_STRINGS.UPGRADE_DESCRIPTION != null)
                 this.rawDescription = CARD_STRINGS.UPGRADE_DESCRIPTION;
             this.initializeDescription();

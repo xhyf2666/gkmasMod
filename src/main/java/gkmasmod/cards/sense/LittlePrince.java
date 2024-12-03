@@ -12,6 +12,7 @@ import gkmasmod.cards.GkmasCard;
 import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.powers.GoodTune;
+import gkmasmod.utils.IdolData;
 import gkmasmod.utils.NameHelper;
 import gkmasmod.utils.PlayerHelper;
 import gkmasmod.utils.SoundHelper;
@@ -26,7 +27,7 @@ public class LittlePrince extends GkmasCard {
     private static final String IMG_PATH = String.format("gkmasModResource/img/cards/common/%s.png", CLASSNAME);
 
     private static final int COST = 1;
-    private static final int ATTACK_DMG = 4;
+    private static final int ATTACK_DMG = 3;
     private static final int UPGRADE_PLUS_DMG = 2;
     private static final int SECOND_ATTACK_DMG = 2;
     private static final int UPGRADE_SECOND_ATTACK_DMG = 1;
@@ -44,6 +45,8 @@ public class LittlePrince extends GkmasCard {
         this.exhaust = true;
         this.tags.add(GkmasCardTag.GOOD_TUNE_TAG);
         this.tags.add(GkmasCardTag.IDOL_CARD_TAG);
+        this.backGroundColor = IdolData.amao;
+        updateBackgroundImg();
     }
 
 

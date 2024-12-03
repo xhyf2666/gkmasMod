@@ -62,6 +62,7 @@ public class ProtectiveEarphones extends CustomRelic {
             int count = AbstractDungeon.player.getPower(StrengthPower.POWER_ID)==null?0:AbstractDungeon.player.getPower(StrengthPower.POWER_ID).amount;
             if(count>STRENGTH){
                 addToBot(new RelicAboveCreatureAction(AbstractDungeon.player, this));
+                this.flash();
                 addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new StrengthPower(AbstractDungeon.player, magicNumber), magicNumber));
                 addToBot(new GainTrainRoundPowerAction(AbstractDungeon.player,1));
                 this.counter--;

@@ -1,17 +1,15 @@
 package gkmasmod.powers;
 
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import gkmasmod.downfall.charbosses.bosses.AbstractCharBoss;
+import gkmasmod.downfall.charbosses.cards.AbstractBossCard;
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardQueueItem;
-import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
@@ -42,6 +40,10 @@ public class BurstAttackPower extends AbstractPower {
     }
 
     public void onUseCard(AbstractCard card, UseCardAction action) {
+        if(!(this.owner instanceof AbstractCharBoss)&&card instanceof AbstractBossCard)
+            return;
+        if(this.owner instanceof AbstractCharBoss&&(!(card instanceof AbstractBossCard)))
+            return;
         if (!card.purgeOnUse && card.type == AbstractCard.CardType.ATTACK && this.amount > 0) {
             flash();
             AbstractMonster m = null;

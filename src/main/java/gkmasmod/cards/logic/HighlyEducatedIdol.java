@@ -10,6 +10,7 @@ import com.megacrit.cardcrawl.powers.DexterityPower;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
+import gkmasmod.utils.IdolData;
 import gkmasmod.utils.NameHelper;
 import gkmasmod.utils.PlayerHelper;
 import gkmasmod.utils.SoundHelper;
@@ -46,6 +47,8 @@ public class HighlyEducatedIdol extends GkmasCard {
         this.exhaust = true;
         this.tags.add(GkmasCardTag.YARUKI_TAG);
         this.tags.add(GkmasCardTag.IDOL_CARD_TAG);
+        this.backGroundColor = IdolData.shro;
+        updateBackgroundImg();
     }
 
 

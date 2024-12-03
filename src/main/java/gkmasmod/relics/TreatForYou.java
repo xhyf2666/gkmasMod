@@ -56,6 +56,7 @@ public class TreatForYou extends CustomRelic {
             int count = AbstractDungeon.player.getPower(StrengthPower.POWER_ID)==null?0:AbstractDungeon.player.getPower(StrengthPower.POWER_ID).amount;
             if(count>STRENGTH){
                 addToBot(new RelicAboveCreatureAction(AbstractDungeon.player, this));
+                this.flash();
                 addToBot(new HealAction(AbstractDungeon.player, AbstractDungeon.player, magicNumber));
                 this.counter--;
                 if (this.counter == 0) {

@@ -10,6 +10,7 @@ import gkmasmod.cards.GkmasCard;
 import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.powers.GoodImpression;
+import gkmasmod.utils.IdolData;
 import gkmasmod.utils.NameHelper;
 import gkmasmod.utils.SoundHelper;
 
@@ -40,6 +41,8 @@ public class TangledFeelings extends GkmasCard {
         this.isInnate = true;
         this.tags.add(GkmasCardTag.GOOD_IMPRESSION_TAG);
         this.tags.add(GkmasCardTag.IDOL_CARD_TAG);
+        this.backGroundColor = IdolData.ttmr;
+        updateBackgroundImg();
     }
 
 

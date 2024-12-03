@@ -1,5 +1,6 @@
 package gkmasmod.powers;
 
+import gkmasmod.downfall.charbosses.actions.unique.EnemyUpgradeAllHandCardAction;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.megacrit.cardcrawl.actions.common.ReducePowerAction;
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
@@ -45,7 +46,11 @@ public class AutoUpgrade extends AbstractPower {
 
     @Override
     public void atStartOfTurnPostDraw() {
-        addToBot(new UpgradeAllHandCardAction());
+        if(this.owner.isPlayer)
+            addToBot(new UpgradeAllHandCardAction());
+        else{
+            addToBot(new EnemyUpgradeAllHandCardAction());
+        }
         if(this.amount > 0){
             addToBot(new ReducePowerAction(this.owner, this.owner, POWER_ID, 1));
         }

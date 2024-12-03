@@ -1,6 +1,7 @@
 package gkmasmod.cards.sense;
 
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
+import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -23,7 +24,7 @@ public class BaseExpression extends GkmasCard {
 
     private static final int COST = 1;
     private static final int BASE_MAGIC = 2;
-    private static final int UPGRADE_PLUS_MAGIC = 1;
+    private static final int BLOCK = 3;
 
 
     private static final CardType TYPE = CardType.POWER;
@@ -35,6 +36,7 @@ public class BaseExpression extends GkmasCard {
         super(ID, NAME, IMG_PATH, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.baseMagicNumber = BASE_MAGIC;
         this.magicNumber = this.baseMagicNumber;
+        this.baseBlock = BLOCK;
         this.tags.add(GkmasCardTag.FOCUS_TAG);
     }
 
@@ -42,6 +44,8 @@ public class BaseExpression extends GkmasCard {
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
         addToBot(new ApplyPowerAction(p, p, new StrengthPower(p, this.magicNumber), this.magicNumber));
+        if(upgraded)
+            addToBot(new GainBlockAction(p, p, this.block));
     }
 
     @Override
@@ -53,7 +57,6 @@ public class BaseExpression extends GkmasCard {
     public void upgrade() {
         if (!this.upgraded) {
             upgradeName();
-            upgradeMagicNumber(UPGRADE_PLUS_MAGIC);
             if (CARD_STRINGS.UPGRADE_DESCRIPTION != null)
                 this.rawDescription = CARD_STRINGS.UPGRADE_DESCRIPTION;
             this.initializeDescription();

@@ -46,6 +46,7 @@ public class FirstStarBracelet extends CustomRelic implements CustomSavable<Inte
             if(MapRoomNodePatch.SPField.isSP.get(AbstractDungeon.getCurrMapNode())){
                 if(AbstractDungeon.player.masterDeck.getUpgradableCards().size() > 0){
                     addToBot(new RelicAboveCreatureAction(AbstractDungeon.player, this));
+                    this.flash();
                     AbstractDungeon.player.currentHealth -= HP_LOST;
                     AbstractDungeon.isScreenUp = false;
                     AbstractDungeon.screen = AbstractDungeon.CurrentScreen.NONE;

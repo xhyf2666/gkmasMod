@@ -7,7 +7,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.events.AbstractImageEvent;
 import com.megacrit.cardcrawl.localization.EventStrings;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
-import gkmasmod.characters.IdolCharacter;
+import gkmasmod.utils.ThreeSizeHelper;
 
 public class KakaSong extends AbstractImageEvent {
     public static final String ID = KakaSong.class.getSimpleName();
@@ -22,7 +22,7 @@ public class KakaSong extends AbstractImageEvent {
     public KakaSong() {
         super(NAME, DESCRIPTIONS[0], String.format("gkmasModResource/img/event/%s.png",ID));
         this.imageEventText.setDialogOption(OPTIONS[0]);
-        vo = ((IdolCharacter)AbstractDungeon.player).getVo();
+        vo = ThreeSizeHelper.getVo();
     }
 
     @Override

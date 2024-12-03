@@ -26,7 +26,8 @@ public class GetCardPatch {
     public static class getRewardCardsInsertPatch {
         @SpirePrefixPatch
         public static SpireReturn<AbstractCard> prefix(AbstractCard.CardRarity rarity){
-            if (AbstractDungeon.player instanceof IdolCharacter && AbstractDungeon.player.hasRelic(BalanceLogicAndSense.ID)){
+            // 感理之衡
+            if (AbstractDungeon.player.hasRelic(BalanceLogicAndSense.ID)){
                 return SpireReturn.Return(getAnyGkmasCard(rarity));
             }
             return SpireReturn.Continue();
@@ -47,6 +48,6 @@ public class GetCardPatch {
     }
 
     public static boolean isGkmasColor(AbstractCard card) {
-        return card.color == PlayerColorEnum.gkmasModColor || card.color == PlayerColorEnum.gkmasModColorLogic || card.color == PlayerColorEnum.gkmasModColorSense;
+        return card.color==AbstractDungeon.player.getCardColor()||card.color == PlayerColorEnum.gkmasModColor || card.color == PlayerColorEnum.gkmasModColorLogic || card.color == PlayerColorEnum.gkmasModColorSense|| card.color == PlayerColorEnum.gkmasModColorAnomaly;
     }
 }

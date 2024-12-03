@@ -1,5 +1,7 @@
 package gkmasmod.powers;
 
+import gkmasmod.downfall.charbosses.bosses.AbstractCharBoss;
+import gkmasmod.downfall.charbosses.cards.AbstractBossCard;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
@@ -9,7 +11,6 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
-import com.megacrit.cardcrawl.powers.StrengthPower;
 import gkmasmod.utils.NameHelper;
 
 public class FantasyCharmPower extends AbstractPower {
@@ -44,6 +45,10 @@ public class FantasyCharmPower extends AbstractPower {
     }
 
     public void onUseCard(AbstractCard card, UseCardAction action) {
+        if(!(this.owner instanceof AbstractCharBoss)&&card instanceof AbstractBossCard)
+            return;
+        if(this.owner instanceof AbstractCharBoss&&(!(card instanceof AbstractBossCard)))
+            return;
         if(card.type == AbstractCard.CardType.SKILL || card.type == AbstractCard.CardType.POWER) {
             addToTop(new ApplyPowerAction(this.owner, this.owner, new GoodImpression(this.owner, amount), amount));
         }

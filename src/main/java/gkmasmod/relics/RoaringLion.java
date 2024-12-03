@@ -60,6 +60,7 @@ public class RoaringLion extends CustomRelic {
             int count = AbstractDungeon.player.getPower(GoodTune.POWER_ID)==null?0:AbstractDungeon.player.getPower(GoodTune.POWER_ID).amount;
             if(count>GOOD_TUNE){
                 addToBot(new RelicAboveCreatureAction(AbstractDungeon.player, this));
+                this.flash();
                 addToBot(new ModifyDamageRandomEnemyAction(new DamageInfo(AbstractDungeon.player, damage, DamageInfo.DamageType.NORMAL), AbstractGameAction.AttackEffect.SLASH_VERTICAL));
                 this.counter--;
                 if (this.counter == 0) {

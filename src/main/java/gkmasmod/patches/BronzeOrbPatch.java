@@ -36,10 +36,13 @@ public class BronzeOrbPatch
     public static class BronzeOrbPostPatch_RenderCard{
         @SpirePrefixPatch
         public static void Prefix(BronzeOrb __instance) {
-            if(__instance.nextMove ==2){
-                int change = ThreeSizeHelper.getHealthRate(2) -1;
-                AbstractDungeon.actionManager.addToBottom(new GainBlockAction(AbstractDungeon.getMonsters().getMonster("BronzeAutomaton"), __instance,change*12));
+            if(AbstractDungeon.player.hasRelic(PocketBook.ID)){
+                if(__instance.nextMove ==2){
+                    int change = ThreeSizeHelper.getHealthRate(2) -1;
+                    AbstractDungeon.actionManager.addToBottom(new GainBlockAction(AbstractDungeon.getMonsters().getMonster("BronzeAutomaton"), __instance,change*12));
+                }
             }
+
         }
     }
 }

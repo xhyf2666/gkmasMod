@@ -10,6 +10,7 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import gkmasmod.actions.GainTrainRoundPowerAction;
 import gkmasmod.cards.GkmasCard;
+import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.powers.AutoUpgrade;
 import gkmasmod.powers.HalfDamageReceive;
@@ -43,6 +44,8 @@ public class NewStudentCouncil extends GkmasCard {
         this.secondMagicNumber = this.baseSecondMagicNumber;
         this.exhaust = true;
         this.isInnate = true;
+        this.tags.add(GkmasCardTag.MORE_ACTION_TAG);
+
     }
 
 

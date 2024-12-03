@@ -62,6 +62,7 @@ public class CracklingSparkler extends CustomRelic {
             int count = AbstractDungeon.player.getPower(GoodImpression.POWER_ID)==null?0:AbstractDungeon.player.getPower(GoodImpression.POWER_ID).amount;
             if(count>GOOD_IMPRESSION){
                 addToBot(new RelicAboveCreatureAction(AbstractDungeon.player, this));
+                this.flash();
                 addToBot(new LoseHPAction(AbstractDungeon.player, AbstractDungeon.player, HP_LOST));
                 addToBot(new GainBlockWithPowerAction(AbstractDungeon.player, AbstractDungeon.player, count));
                 addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new DexterityPower(AbstractDungeon.player, magicNumber), magicNumber));

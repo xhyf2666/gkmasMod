@@ -15,8 +15,10 @@ import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.powers.GoodImpression;
 import gkmasmod.screen.SkinSelectScreen;
+import gkmasmod.utils.IdolData;
 import gkmasmod.utils.NameHelper;
 import gkmasmod.utils.PlayerHelper;
+import gkmasmod.utils.SoundHelper;
 
 public class SeeYouTomorrow extends GkmasCard {
     private static final String CLASSNAME = SeeYouTomorrow.class.getSimpleName();
@@ -31,8 +33,8 @@ public class SeeYouTomorrow extends GkmasCard {
     private static final int BASE_MAGIC = 10;
     private static final int BASE_MAGIC2 = 3;
     private static final int UPGRADE_PLUS_MAGIC2 = 2;
-    private static final int BASE_BLOCK = 5;
-    private static final int UPGRADE_PLUS_BLOCK = 5;
+    private static final int BASE_BLOCK = 4;
+    private static final int UPGRADE_PLUS_BLOCK = 2;
 
 
     private static final CardType TYPE = CardType.SKILL;
@@ -51,6 +53,9 @@ public class SeeYouTomorrow extends GkmasCard {
         this.tags.add(GkmasCardTag.GOOD_IMPRESSION_TAG);
         this.tags.add(GkmasCardTag.IDOL_CARD_TAG);
         this.tags.add(CardTags.HEALING);
+        this.tags.add(GkmasCardTag.MORE_ACTION_TAG);
+        this.backGroundColor = IdolData.hrnm;
+        updateBackgroundImg();
     }
 
     @Override
@@ -60,7 +65,8 @@ public class SeeYouTomorrow extends GkmasCard {
         addToBot(new GainBlockAction(p, p, this.block));
         addToBot(new ApplyPowerAction(p, p, new GoodImpression(p, this.secondMagicNumber), this.secondMagicNumber));
         addToBot(new GainTrainRoundPowerAction(p,1));
-        //TODO 语音
+        SoundHelper.playSound("gkmasModResource/audio/voice/skillcard/cidol_hrnm_3_001_produce_skillcard_01.ogg");
+
     }
 
     @Override

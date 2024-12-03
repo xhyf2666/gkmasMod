@@ -16,6 +16,7 @@ import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import gkmasmod.actions.GainTrainRoundPowerAction;
+import gkmasmod.actions.RollingSourceOfEnergyAction;
 
 public class RollingSourceOfEnergy extends CustomRelic {
 
@@ -29,10 +30,10 @@ public class RollingSourceOfEnergy extends CustomRelic {
 
     private static final RelicTier RARITY = RelicTier.STARTER;
 
-    private static final int magicNumber = 3;
+    private static final int magicNumber = 2;
     private static final int magicNumber2 = 1;
 
-    private static final int YARUKI = 4;
+    private static final int YARUKI = 3;
 
     private static final  int playTimes = 1;
 
@@ -66,16 +67,17 @@ public class RollingSourceOfEnergy extends CustomRelic {
 
     public void onUseCard(AbstractCard card, UseCardAction useCardAction){
         if (this.counter > 0 && card.type == AbstractCard.CardType.SKILL) {
-            int count = AbstractDungeon.player.getPower(DexterityPower.POWER_ID)==null?0:AbstractDungeon.player.getPower(DexterityPower.POWER_ID).amount;
-            if(count>YARUKI){
-                addToBot(new RelicAboveCreatureAction(AbstractDungeon.player, this));
-                addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new DexterityPower(AbstractDungeon.player, magicNumber), magicNumber));
-                addToBot(new GainTrainRoundPowerAction(AbstractDungeon.player,1));
-                this.counter--;
-                if (this.counter == 0) {
-                    this.grayscale = true;
-                }
-            }
+            addToBot(new RollingSourceOfEnergyAction(AbstractDungeon.player, YARUKI, magicNumber));
+//            int count = AbstractDungeon.player.getPower(DexterityPower.POWER_ID)==null?0:AbstractDungeon.player.getPower(DexterityPower.POWER_ID).amount;
+//            if(count>YARUKI){
+//                addToBot(new RelicAboveCreatureAction(AbstractDungeon.player, this));
+//                addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new DexterityPower(AbstractDungeon.player, magicNumber), magicNumber));
+//                addToBot(new GainTrainRoundPowerAction(AbstractDungeon.player,1));
+//                this.counter--;
+//                if (this.counter == 0) {
+//                    this.grayscale = true;
+//                }
+//            }
         }
 
     }

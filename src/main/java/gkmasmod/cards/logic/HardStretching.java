@@ -48,12 +48,14 @@ public class HardStretching extends GkmasCard {
         this.baseSecondMagicNumber = BASE_MAGIC2;
         this.secondMagicNumber = this.baseSecondMagicNumber;
         this.baseBlock = BASE_BLOCK;
+        this.tags.add(GkmasCardTag.MORE_ACTION_TAG);
+
     }
 
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        addToBot(new DrawCardAction(1, new HardStretchingAction(this.block)));
+        addToBot(new DrawCardAction(1, new HardStretchingAction(p,this.block)));
         addToBot(new GainTrainRoundPowerAction(p, this.magicNumber));
         if(this.secondMagicNumber > 1){
             upgradeSecondMagicNumber(-1);

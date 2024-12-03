@@ -34,7 +34,6 @@ public class Flowering extends GkmasCard {
     private static final int COST = 2;
 
     private static final int BASE_MAGIC = 3;
-    private static final int UPGRADE_PLUS_MAGIC = 2;
 
     private static final int BASE_MAGIC2 = 200;
     private static final int UPGRADE_PLUS_MAGIC2 = 100;
@@ -82,7 +81,6 @@ public class Flowering extends GkmasCard {
     public void upgrade() {
         if (!this.upgraded) {
             upgradeName();
-            upgradeMagicNumber(UPGRADE_PLUS_MAGIC);
             upgradeSecondMagicNumber(UPGRADE_PLUS_MAGIC2);
             if (CARD_STRINGS.UPGRADE_DESCRIPTION != null)
                 this.rawDescription = CARD_STRINGS.UPGRADE_DESCRIPTION;

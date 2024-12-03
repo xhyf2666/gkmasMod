@@ -58,6 +58,7 @@ public class LifeSizeLadyLip extends CustomRelic {
 
         if (this.counter < playTimes) {
             addToBot(new RelicAboveCreatureAction(AbstractDungeon.player, this));
+            this.flash();
             addToTop(new DamageAllEnemiesAction(AbstractDungeon.player, damage, DamageInfo.DamageType.NORMAL, AbstractGameAction.AttackEffect.BLUNT_HEAVY));
             this.counter++;
             if (this.counter == playTimes)

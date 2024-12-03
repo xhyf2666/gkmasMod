@@ -14,6 +14,7 @@ import gkmasmod.cards.GkmasCard;
 import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.powers.GoodImpression;
+import gkmasmod.utils.IdolData;
 import gkmasmod.utils.NameHelper;
 import gkmasmod.utils.PlayerHelper;
 import gkmasmod.utils.SoundHelper;
@@ -30,7 +31,7 @@ public class FirstFuture extends GkmasCard {
     private static final int COST = 0;
     private static final int BASE_MAGIC = 190;
     private static final int UPGRADE_PLUS_MAGIC = 10;
-    private static final int BASE_HP = 5;
+    private static final int BASE_HP = 4;
     private static final int UPGRADE_PLUS_HP = -1;
 
     private static final CardType TYPE = CardType.ATTACK;
@@ -50,6 +51,8 @@ public class FirstFuture extends GkmasCard {
         flavor = FlavorText.CardStringsFlavorField.flavor.get(CARD_STRINGS);
         this.tags.add(GkmasCardTag.GOOD_IMPRESSION_TAG);
         this.tags.add(GkmasCardTag.IDOL_CARD_TAG);
+        this.backGroundColor = IdolData.hski;
+        updateBackgroundImg();
     }
 
 

@@ -19,7 +19,6 @@ public class BronzeAutomatonPatch
         @SpirePostfixPatch
         public static void Post(BronzeAutomaton __instance, @ByRef int[] ___blockAmt) {
             if(AbstractDungeon.player.hasRelic(PocketBook.ID)){
-
                 int rate = ThreeSizeHelper.getHealthRate(2);
                 ___blockAmt[0] = ___blockAmt[0] * rate;
             }

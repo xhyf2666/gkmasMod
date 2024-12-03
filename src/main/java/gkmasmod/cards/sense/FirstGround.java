@@ -17,6 +17,7 @@ import gkmasmod.cards.GkmasCard;
 import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.powers.GoodTune;
+import gkmasmod.utils.IdolData;
 import gkmasmod.utils.NameHelper;
 import gkmasmod.utils.PlayerHelper;
 import gkmasmod.utils.SoundHelper;
@@ -31,7 +32,7 @@ public class FirstGround extends GkmasCard {
     private static final String IMG_PATH = String.format("gkmasModResource/img/cards/common/%s.png", CLASSNAME);
 
     private static final int COST = 1;
-    private static final int BASE_MAGIC = 200;
+    private static final int BASE_MAGIC = 150;
     private static final int UPgrade_PLUS_MAGIC = 50;
 
     private static final CardType TYPE = CardType.ATTACK;
@@ -49,6 +50,8 @@ public class FirstGround extends GkmasCard {
         flavor = FlavorText.CardStringsFlavorField.flavor.get(CARD_STRINGS);
         this.tags.add(GkmasCardTag.GOOD_TUNE_TAG);
         this.tags.add(GkmasCardTag.IDOL_CARD_TAG);
+        this.backGroundColor = IdolData.kllj;
+        updateBackgroundImg();
     }
 
 

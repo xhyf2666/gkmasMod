@@ -13,6 +13,7 @@ import com.megacrit.cardcrawl.powers.DexterityPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import gkmasmod.actions.GainTrainRoundPowerAction;
+import gkmasmod.actions.PigDreamPiggyBankAction;
 import gkmasmod.powers.GoodImpression;
 
 public class PigDreamPiggyBank extends CustomRelic {
@@ -30,7 +31,7 @@ public class PigDreamPiggyBank extends CustomRelic {
     private static final int magicNumber = 3;
     private static final int magicNumber2 = 1;
 
-    private static final int GOOD_IMPRESSION = 6;
+    private static final int GOOD_IMPRESSION = 5;
 
     private static final  int playTimes = 1;
 
@@ -60,16 +61,17 @@ public class PigDreamPiggyBank extends CustomRelic {
 
     public void onUseCard(AbstractCard card, UseCardAction useCardAction){
         if (this.counter > 0) {
-            int count = AbstractDungeon.player.getPower(GoodImpression.POWER_ID)==null?0:AbstractDungeon.player.getPower(GoodImpression.POWER_ID).amount;
-            if(count>GOOD_IMPRESSION){
-                addToBot(new RelicAboveCreatureAction(AbstractDungeon.player, this));
-                addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new GoodImpression(AbstractDungeon.player, magicNumber), magicNumber));
-                addToBot(new GainTrainRoundPowerAction(AbstractDungeon.player,1));
-                this.counter--;
-                if (this.counter == 0) {
-                    this.grayscale = true;
-                }
-            }
+            addToBot(new PigDreamPiggyBankAction(AbstractDungeon.player,GOOD_IMPRESSION,magicNumber));
+//            int count = AbstractDungeon.player.getPower(GoodImpression.POWER_ID)==null?0:AbstractDungeon.player.getPower(GoodImpression.POWER_ID).amount;
+//            if(count>GOOD_IMPRESSION){
+//                addToBot(new RelicAboveCreatureAction(AbstractDungeon.player, this));
+//                addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new GoodImpression(AbstractDungeon.player, magicNumber), magicNumber));
+//                addToBot(new GainTrainRoundPowerAction(AbstractDungeon.player,1));
+//                this.counter--;
+//                if (this.counter == 0) {
+//                    this.grayscale = true;
+//                }
+//            }
         }
 
     }

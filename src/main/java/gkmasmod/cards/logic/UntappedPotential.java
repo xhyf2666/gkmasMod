@@ -13,6 +13,7 @@ import com.evacipated.cardcrawl.mod.stslib.patches.FlavorText;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
+import gkmasmod.utils.IdolData;
 import gkmasmod.utils.NameHelper;
 import gkmasmod.utils.SoundHelper;
 
@@ -33,7 +34,7 @@ public class UntappedPotential extends GkmasCard {
     private static final int BASE_BLOCK = 2;
     private static final int UPGRADE_PLUS_BLOCK = 2;
 
-    private static final int BASE_HP = 4;
+    private static final int BASE_HP = 3;
 
     private static final CardType TYPE = CardType.SKILL;
     private static final CardColor COLOR = PlayerColorEnum.gkmasModColorLogic;
@@ -54,6 +55,8 @@ public class UntappedPotential extends GkmasCard {
         FlavorText.AbstractCardFlavorFields.boxColor.set(this, CardHelper.getColor(73, 224, 254));
         flavor = FlavorText.CardStringsFlavorField.flavor.get(CARD_STRINGS);
         this.tags.add(GkmasCardTag.IDOL_CARD_TAG);
+        this.backGroundColor = IdolData.hume;
+        updateBackgroundImg();
     }
 
 

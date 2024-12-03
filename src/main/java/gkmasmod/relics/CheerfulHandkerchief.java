@@ -1,22 +1,15 @@
 package gkmasmod.relics;
 import basemod.abstracts.CustomRelic;
 import com.badlogic.gdx.Gdx;
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
-import com.megacrit.cardcrawl.actions.common.DamageAction;
-import com.megacrit.cardcrawl.actions.common.LoseHPAction;
 import com.megacrit.cardcrawl.actions.common.RelicAboveCreatureAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
-import gkmasmod.actions.ModfifyDamageAction;
-import gkmasmod.cards.free.BaseAppeal;
-import gkmasmod.powers.GoodImpression;
+import gkmasmod.actions.CheerfulHandkerchiefAction;
 
 public class CheerfulHandkerchief extends CustomRelic {
 
@@ -59,16 +52,13 @@ public class CheerfulHandkerchief extends CustomRelic {
     public void onUseCard(AbstractCard card, UseCardAction useCardAction) {
         if (this.counter > 0) {
             if (card.type == AbstractCard.CardType.ATTACK) {
-                int amount = AbstractDungeon.player.currentBlock;
-                int damage = (int)(1.0F*amount*magicNumber);
-                this.flash();
                 AbstractCreature target = useCardAction.target;
                 if(target==null) {
                     target = AbstractDungeon.getMonsters().getRandomMonster(null, true, AbstractDungeon.cardRandomRng);
                 }
+                addToBot(new CheerfulHandkerchiefAction(AbstractDungeon.player,target,magicNumber,HP_COST));
                 addToBot(new RelicAboveCreatureAction(AbstractDungeon.player, this));
-                addToBot(new LoseHPAction(AbstractDungeon.player, AbstractDungeon.player, HP_COST));
-                addToBot(new ModfifyDamageAction(target, new DamageInfo(AbstractDungeon.player, damage, useCardAction.damageType), AbstractGameAction.AttackEffect.SLASH_VERTICAL));
+                this.flash();
                 this.counter--;
                 if (this.counter == 0) {
                     this.grayscale = true;

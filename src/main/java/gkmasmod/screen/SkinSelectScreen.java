@@ -11,7 +11,6 @@ import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.helpers.*;
 import gkmasmod.cards.GkmasCard;
-import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.IdolCharacter;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
@@ -20,13 +19,11 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.input.InputHelper;
-import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.modcore.GkmasMod;
 import gkmasmod.utils.CommonEnum;
 import gkmasmod.utils.IdolData;
 import gkmasmod.utils.NameHelper;
 import gkmasmod.utils.PlayerHelper;
-import gkmasmod.vfx.SimplePlayVideoEffect2;
 
 import java.io.IOException;
 
@@ -59,7 +56,7 @@ public class SkinSelectScreen implements ISubscriber, CustomSavable<int[]> {
 
     public String SpecialName = "";
     public int idolIndex;
-    public int skinIndex;
+    public int skinIndex=3;
     public int updateIndex;
     public CommonEnum.IdolType idolType;
     public CommonEnum.IdolStyle idolStyle;
@@ -128,6 +125,11 @@ public class SkinSelectScreen implements ISubscriber, CustomSavable<int[]> {
                 this.typeHintName = CardCrawlGame.languagePack.getUIString("typeHintName:logic").TEXT[0];
                 this.typeHint = CardCrawlGame.languagePack.getUIString("typeHint:logic").TEXT[0];
                 break;
+            case ANOMALY:
+                this.typeImg = ImageMaster.loadImage("gkmasModResource/img/UI/anomaly.png");
+                this.typeHintName = CardCrawlGame.languagePack.getUIString("typeHintName:anomaly").TEXT[0];
+                this.typeHint = CardCrawlGame.languagePack.getUIString("typeHint:anomaly").TEXT[0];
+                break;
         }
         switch (this.idolStyle){
             case GOOD_TUNE:
@@ -149,6 +151,16 @@ public class SkinSelectScreen implements ISubscriber, CustomSavable<int[]> {
                 this.styleImg = ImageMaster.loadImage("gkmasModResource/img/UI/yaruki.png");
                 this.styleHintName = CardCrawlGame.languagePack.getUIString("styleHintName:yaruki").TEXT[0];
                 this.styleHint = CardCrawlGame.languagePack.getUIString("styleHint:yaruki").TEXT[0];
+                break;
+            case CONCENTRATION:
+                this.styleImg = ImageMaster.loadImage("gkmasModResource/img/UI/concentration.png");
+                this.styleHintName = CardCrawlGame.languagePack.getUIString("styleHintName:concentration").TEXT[0];
+                this.styleHint = CardCrawlGame.languagePack.getUIString("styleHint:concentration").TEXT[0];
+                break;
+            case FULL_POWER:
+                this.styleImg = ImageMaster.loadImage("gkmasModResource/img/UI/fullPower.png");
+                this.styleHintName = CardCrawlGame.languagePack.getUIString("styleHintName:fullPower").TEXT[0];
+                this.styleHint = CardCrawlGame.languagePack.getUIString("styleHint:fullPower").TEXT[0];
                 break;
         }
 
@@ -187,9 +199,9 @@ public class SkinSelectScreen implements ISubscriber, CustomSavable<int[]> {
         this.downHb.move(centerX, centerY - 180.0F * Settings.scale + 50.0F * Settings.scale);
         this.updateHb.move(centerX - 120.0F *Settings.scale, centerY + 150.0F * Settings.scale + 50.0F * Settings.scale);
         this.typeHb.move(centerX - 900.0F *Settings.scale, centerY  + 80.0F * Settings.scale);
-        this.styleHb.move(centerX - 800.0F *Settings.scale, centerY  + 80.0F * Settings.scale);
+        this.styleHb.move(centerX - 800.0F *Settings.scale + Settings.WIDTH*0.02F, centerY  + 80.0F * Settings.scale);
         this.achievementHb1.move(centerX - 900.0F *Settings.scale, centerY  + 150.0F * Settings.scale);
-        this.achievementHb2.move(centerX - 800.0F *Settings.scale, centerY  + 150.0F * Settings.scale);
+        this.achievementHb2.move(centerX - 800.0F *Settings.scale + Settings.WIDTH*0.02F, centerY  + 150.0F * Settings.scale);
         this.video_hb.move((Settings.WIDTH - 540.0F) / 2.0F+ 100.0F*Settings.scale, (Settings.HEIGHT - 960.0F) / 2.0F+ 200.0F*Settings.scale);
         this.updateInput();
         this.updateVideo();
@@ -310,9 +322,9 @@ public class SkinSelectScreen implements ISubscriber, CustomSavable<int[]> {
                 try {
                     this.videoPlayer.setLooping(true);
                     this.videoPlayer.setVolume(1.0f*Settings.MUSIC_VOLUME);
-                    String videoPath = String.format("gkmasModResource/video/%s_%s.webm",idolName,IdolData.getIdol(idolName).getVideo(skinIndex));
-                    if(Gdx.files.internal(videoPath).exists())
-                        this.videoPlayer.play(Gdx.files.internal(videoPath));
+                    String videoPath = String.format("gkmasModResource/video/gacha/%s_%s.webm",idolName,IdolData.getIdol(idolName).getVideo(skinIndex));
+                    if(Gdx.files.local(videoPath).exists())
+                        this.videoPlayer.play(Gdx.files.local(videoPath));
                 } catch (Exception e) {
                     e.printStackTrace();
                     clearVideo();
@@ -345,9 +357,13 @@ public class SkinSelectScreen implements ISubscriber, CustomSavable<int[]> {
         float skin_x = (float) this.usedImg.getWidth() /2;
         float skin_y = (float) this.usedImg.getWidth() /2;
         this.renderSkin(sb, centerX-skin_x, centerY-skin_y + 50.0F * Settings.scale);
-        sb.draw(this.nameImg,centerX-250, centerY-420);
+
+        if(this.nameImg != null)
+            sb.draw(this.nameImg,centerX-250, centerY-420);
+
         sb.draw(this.typeImg,this.typeHb.cX-24.0F, this.typeHb.cY-24.0F);
-        sb.draw(this.styleImg,this.styleHb.cX-24.0F, this.styleHb.cY-24.0F);
+        if(this.styleImg != null)
+            sb.draw(this.styleImg,this.styleHb.cX-24.0F, this.styleHb.cY-24.0F);
         if(GkmasMod.cardRate>0.7f)
             sb.draw(achievementImg2,this.achievementHb1.cX-24.0F, this.achievementHb1.cY-24.0F);
         else if(GkmasMod.cardRate>0.4f)
@@ -359,7 +375,8 @@ public class SkinSelectScreen implements ISubscriber, CustomSavable<int[]> {
         color.a /= 2.0F;
         float dist = 100.0F * Settings.scale;
 
-        renderCardPreviewInSingleView(sb);
+//        if(idolName!=IdolData.jsna)
+            renderCardPreviewInSingleView(sb);
         //FontHelper.renderFontCentered(sb, FontHelper.cardTitleFont, this.curName, centerX, centerY-200, RC);
         //FontHelper.renderFontCentered(sb, FontHelper.cardTitleFont, this.SpecialName, centerX, centerY-250, RC);
         if (this.leftHb.hovered) {
@@ -412,12 +429,15 @@ public class SkinSelectScreen implements ISubscriber, CustomSavable<int[]> {
             sb.setColor(Color.WHITE);
         }
 
-        if(this.styleHb.hovered){
-            sb.setColor(Color.LIGHT_GRAY);
-            TipHelper.renderGenericTip(this.styleHb.cX+ 20.F, this.styleHb.cY + 20.F, this.styleHintName, this.styleHint);
-        }
-        else{
-            sb.setColor(Color.WHITE);
+
+        if(this.styleImg!=null){
+            if(this.styleHb.hovered){
+                sb.setColor(Color.LIGHT_GRAY);
+                TipHelper.renderGenericTip(this.styleHb.cX+ 20.F, this.styleHb.cY + 20.F, this.styleHintName, this.styleHint);
+            }
+            else{
+                sb.setColor(Color.WHITE);
+            }
         }
 
         if(this.achievementHb1.hovered){

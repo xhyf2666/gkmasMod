@@ -3,6 +3,7 @@ import basemod.BaseMod;
 import basemod.abstracts.CustomRelic;
 import com.badlogic.gdx.Gdx;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
+import com.megacrit.cardcrawl.actions.common.GainEnergyAction;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.helpers.controller.CInputActionSet;
@@ -11,6 +12,7 @@ import com.megacrit.cardcrawl.powers.watcher.ForesightPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import gkmasmod.actions.GainTrainRoundPowerAction;
+import gkmasmod.powers.CallMeAnyTimePower;
 import gkmasmod.powers.HalfDamageReceive;
 import gkmasmod.screen.PocketBookViewScreen;
 import gkmasmod.screen.SkinSelectScreen;
@@ -36,8 +38,11 @@ public class ProducerPhone extends CustomRelic {
 
     private boolean RclickStart = false;
 
+    private boolean thisBattle = false;
+
     public ProducerPhone() {
         super(ID, ImageMaster.loadImage(IMG), ImageMaster.loadImage(IMG_OTL), RARITY, LandingSound.CLINK);
+        this.counter = 0;
     }
 
     @Override
@@ -59,7 +64,7 @@ public class ProducerPhone extends CustomRelic {
                 return;
             if (this.hb.hovered) {
                 this.counter++;
-                if(this.counter ==1){
+                if(!this.thisBattle){
                     float amount = 1.0F * AbstractDungeon.player.currentHealth / AbstractDungeon.player.maxHealth;
                     if(amount >=0.5f){
                         addToBot(new GainTrainRoundPowerAction(AbstractDungeon.player,1));
@@ -67,7 +72,7 @@ public class ProducerPhone extends CustomRelic {
                     else{
                         addToBot(new ApplyPowerAction(AbstractDungeon.player,AbstractDungeon.player,new HalfDamageReceive(AbstractDungeon.player,1),1));
                     }
-                    this.grayscale = true;
+                    this.thisBattle = true;
                 }
                 playVoice();
                 CInputActionSet.select.unpress();
@@ -105,7 +110,7 @@ public class ProducerPhone extends CustomRelic {
 
     @Override
     public void atBattleStart() {
-        this.counter = 0;
+        this.thisBattle = false;
     }
 
     @Override
@@ -116,8 +121,7 @@ public class ProducerPhone extends CustomRelic {
     }
 
     public void onVictory() {
-        this.grayscale = false;
-        this.counter = 0;
+        this.thisBattle = false;
     }
 
     public void loadLargeImg() {

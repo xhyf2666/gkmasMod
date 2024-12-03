@@ -14,6 +14,7 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.RitualPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import gkmasmod.characters.IdolCharacter;
+import gkmasmod.relics.PocketBook;
 import gkmasmod.utils.NameHelper;
 import gkmasmod.utils.SoundHelper;
 import gkmasmod.utils.ThreeSizeHelper;
@@ -59,19 +60,21 @@ public class VoSpPower extends AbstractPower {
 
 
     public void onDeath() {
-        if(!this.owner.isPlayer && AbstractDungeon.player instanceof IdolCharacter){
-            IdolCharacter idol = (IdolCharacter) AbstractDungeon.player;
+        if(!this.owner.isPlayer && AbstractDungeon.player.hasRelic(PocketBook.ID)){
             int score = (int) (ThreeSizeHelper.getThreeSizeAppend(1.0f,((AbstractMonster)this.owner).type));
             int change = (int) (score*ThreeSizeHelper.spRate);
-            int change_ = change + (int)((idol.getVoRate()*change)+0.5F);
-            AbstractDungeon.effectList.add(new GainThreeSizeSpEffect(new Random().nextInt(123456789),0,idol.getVo(),idol.getVo()+change_,this.owner.hb.cX, this.owner.hb.cY));
-            idol.changeVo(change);
+            int change_ = change + (int)((ThreeSizeHelper.getVoRate()*change)+0.5F);
+            AbstractDungeon.effectList.add(new GainThreeSizeSpEffect(new Random().nextInt(123456789),0,ThreeSizeHelper.getVo(),ThreeSizeHelper.getVo()+change_,this.owner.hb.cX, this.owner.hb.cY));
+            ThreeSizeHelper.changeVo(change);
             if(AbstractDungeon.getMonsters().areMonstersDead())
                 return;
-            int num = idol.idolData.getSpVoiceNum(0);
-            java.util.Random random = new java.util.Random();
-            int index = random.nextInt(num)+1;
-            SoundHelper.playSound(String.format("gkmasModResource/audio/voice/sp/%s_produce_lesson_vo_%02d.ogg",idol.idolData.idolName,index));
+            if(AbstractDungeon.player instanceof IdolCharacter){
+                IdolCharacter idol = (IdolCharacter) AbstractDungeon.player;
+                int num = idol.idolData.getSpVoiceNum(0);
+                java.util.Random random = new java.util.Random();
+                int index = random.nextInt(num)+1;
+                SoundHelper.playSound(String.format("gkmasModResource/audio/voice/sp/%s_produce_lesson_vo_%02d.ogg",idol.idolData.idolName,index));
+            }
         }
     }
 }

@@ -23,7 +23,7 @@ public class MyFirstSheetMusic extends CustomRelic {
 
     private static final RelicTier RARITY = RelicTier.STARTER;
 
-    private static final int magicNumber = 3;
+    private static final int magicNumber = 2;
     private static final int playTimes = 2;
 
     private static final int HP_LOST = 1;
@@ -58,6 +58,7 @@ public class MyFirstSheetMusic extends CustomRelic {
             int amount = AbstractDungeon.player.currentBlock;
             if(amount < BLOCK){
                 addToBot(new RelicAboveCreatureAction(AbstractDungeon.player, this));
+                this.flash();
                 addToBot(new LoseHPAction(AbstractDungeon.player, AbstractDungeon.player, HP_LOST));
                 addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new StrengthPower(AbstractDungeon.player, magicNumber), magicNumber));
                 this.counter--;

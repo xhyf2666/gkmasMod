@@ -36,10 +36,14 @@ public class GashaAction extends AbstractGameAction {
             else if(type == CommonEnum.IdolType.SENSE){
                 getRandomCard(PlayerColorEnum.gkmasModColorSense,tmpPool);
             }
+            else if(type == CommonEnum.IdolType.ANOMALY){
+                getRandomCard(PlayerColorEnum.gkmasModColorAnomaly,tmpPool);
+            }
         }
         else{
             getRandomCard(PlayerColorEnum.gkmasModColorLogic,tmpPool);
             getRandomCard(PlayerColorEnum.gkmasModColorSense,tmpPool);
+            getRandomCard(PlayerColorEnum.gkmasModColorAnomaly,tmpPool);
         }
         for (int i = 0; i < tmpPool.size(); i++) {
             System.out.println(tmpPool.get(i).name);

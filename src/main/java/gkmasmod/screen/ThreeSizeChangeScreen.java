@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
+import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
@@ -75,7 +76,7 @@ public class ThreeSizeChangeScreen{
     public void render(SpriteBatch sb) {
         FontHelper.renderFontCentered(sb, FontHelper.energyNumFontRed,Integer.toString(Math.round(currentValue)), x, y);
         sb.setColor(Color.WHITE);
-        sb.draw(this.img, this.x-45, this.y+10, (float)this.img.getWidth() / 2.0F, (float)this.img.getHeight() / 2.0F, (float)this.img.getWidth(), (float)this.img.getHeight(), 1.0F, 1.0F, 0, 0, 0, this.img.getWidth(), this.img.getHeight(), false, false);
+        sb.draw(this.img, this.x-45, this.y+10, 64* Settings.xScale, 64*Settings.yScale);
     }
 
     public void dispose() {

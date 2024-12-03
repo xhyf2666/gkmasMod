@@ -19,6 +19,7 @@ import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.powers.GoodImpression;
 import gkmasmod.powers.ReduceDamageReceive;
 import gkmasmod.powers.SummerEveningSparklersPower;
+import gkmasmod.utils.IdolData;
 import gkmasmod.utils.NameHelper;
 import gkmasmod.utils.SoundHelper;
 
@@ -65,6 +66,8 @@ public class RefreshingBreak extends GkmasCard {
         this.exhaust = true;
         FlavorText.AbstractCardFlavorFields.boxColor.set(this, CardHelper.getColor(73, 224, 254));
         flavor = FlavorText.CardStringsFlavorField.flavor.get(CARD_STRINGS);
+        this.backGroundColor = IdolData.hrnm;
+        updateBackgroundImg();
     }
 
 
@@ -72,8 +75,8 @@ public class RefreshingBreak extends GkmasCard {
     public void use(AbstractPlayer p, AbstractMonster m) {
         addToBot(new LoseHPAction(p, p, this.HPMagicNumber));
         addToBot(new ApplyPowerAction(p, p, new ReduceDamageReceive(p, this.thirdMagicNumber), this.thirdMagicNumber));
-        addToBot(new BlockDamageAction(1.0f*this.secondMagicNumber/100,this.block,p,m,this,false,0));
-        SoundHelper.playSound("gkmasModResource/audio/voice/skillcard/cidol_hrnm_3_004_produce_skillcard_01.ogg");
+        addToBot(new BlockDamageAction(1.0f*this.secondMagicNumber/100,block,p,m,this));
+        SoundHelper.playSound("gkmasModResource/audio/voice/skillcard/cidol_hrnm_3_005_produce_skillcard_01.ogg");
 
     }
 
@@ -90,6 +93,20 @@ public class RefreshingBreak extends GkmasCard {
             dexterity.amount = amount;
         }
 
+    }
+
+    @Override
+    public void calculateCardDamage(AbstractMonster mo) {
+        AbstractPower dexterity = AbstractDungeon.player.getPower(DexterityPower.POWER_ID);
+        int amount = 0;
+        if (dexterity != null) {
+            amount = dexterity.amount;
+            dexterity.amount = (int) (dexterity.amount * 1.0f*this.magicNumber/100);
+        }
+        super.calculateCardDamage(mo);
+        if (dexterity != null) {
+            dexterity.amount = amount;
+        }
     }
 
     public void applyPowersToBlock() {

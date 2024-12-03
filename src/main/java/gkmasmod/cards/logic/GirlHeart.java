@@ -50,6 +50,8 @@ public class GirlHeart extends GkmasCard {
         this.thirdMagicNumber = this.baseThirdMagicNumber;
         this.tags.add(GkmasCardTag.YARUKI_TAG);
         this.tags.add(GkmasCardTag.GOOD_IMPRESSION_TAG);
+        this.tags.add(GkmasCardTag.MORE_ACTION_TAG);
+
     }
 
 

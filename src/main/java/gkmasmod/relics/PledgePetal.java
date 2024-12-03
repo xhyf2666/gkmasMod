@@ -42,6 +42,7 @@ public class PledgePetal extends CustomRelic {
 
     public void onUpgradeCard(){
         addToBot(new RelicAboveCreatureAction(AbstractDungeon.player, this));
+        this.flash();
         ThreeSizeHelper.addFixedThreeSize(true,new int[]{magicNumber,magicNumber,magicNumber});
     }
 

@@ -99,6 +99,10 @@
     "NAMES": [""],
     "TEXT": ["1年2班"]
   },
+  "IdolClass:jsna": {
+    "NAMES": [""],
+    "TEXT": ["3年1班"]
+  },
   "IdolBirthday:shro": {
     "NAMES": [""],
     "TEXT": ["12月21日"]
@@ -138,6 +142,10 @@
   "IdolBirthday:ttmr": {
     "NAMES": [""],
     "TEXT": ["6月3日"]
+  },
+  "IdolBirthday:jsna": {
+    "NAMES": [""],
+    "TEXT": ["12月7日"]
   },
   "IdolAge:shro": {
     "NAMES": [""],
@@ -179,6 +187,10 @@
     "NAMES": [""],
     "TEXT": ["15岁"]
   },
+  "IdolAge:jsna": {
+    "NAMES": [""],
+    "TEXT": ["17岁"]
+  },
   "IdolHeight:shro":{
     "NAMES": [""],
     "TEXT": ["159cm"]
@@ -218,6 +230,10 @@
   "IdolHeight:ttmr":{
     "NAMES": [""],
     "TEXT": ["162cm"]
+  },
+  "IdolHeight:jsna":{
+    "NAMES": [""],
+    "TEXT": ["170cm"]
   },
   "IdolWeight:shro":{
     "NAMES": [""],
@@ -259,6 +275,10 @@
     "NAMES": [""],
     "TEXT": ["51kg"]
   },
+  "IdolWeight:jsna":{
+    "NAMES": [""],
+    "TEXT": ["54kg"]
+  },
   "IdolThreeSize:shro":{
     "NAMES": [""],
     "TEXT": ["B72/W54/H76"]
@@ -298,6 +318,10 @@
   "IdolThreeSize:ttmr":{
     "NAMES": [""],
     "TEXT": ["B82/W58/H86"]
+  },
+  "IdolThreeSize:jsna":{
+    "NAMES": [""],
+    "TEXT": ["B88/W56/H86"]
   },
   "IdolInterest:shro":{
     "NAMES": [""],
@@ -339,6 +363,10 @@
     "NAMES": [""],
     "TEXT": ["品尝美味的食物（封印中）"]
   },
+  "IdolInterest:jsna":{
+    "NAMES": [""],
+    "TEXT": ["课程 NL 寻找有才华的偶像"]
+  },
   "IdolSkill:shro":{
     "NAMES": [""],
     "TEXT": ["所有学业，物理 NL 数学，解谜"]
@@ -378,6 +406,10 @@
   "IdolSkill:ttmr":{
     "NAMES": [""],
     "TEXT": ["唱歌"]
+  },
+  "IdolSkill:jsna":{
+    "NAMES": [""],
+    "TEXT": ["发掘偶像的才能"]
   },
   "IdolPlan1:shro": {
     "NAMES": [""],
@@ -499,6 +531,18 @@
     "NAMES": [""],
     "TEXT": ["界限突破"]
   },
+  "IdolPlan1:jsna": {
+    "NAMES": [""],
+    "TEXT": ["重新开始"]
+  },
+  "IdolPlan2:jsna": {
+    "NAMES": [""],
+    "TEXT": ["向前迈进的精英"]
+  },
+  "IdolPlan3:jsna": {
+    "NAMES": [""],
+    "TEXT": ["光辉灿然"]
+  },
   "IdolReward1:shro": {
     "NAMES": [""],
     "TEXT": ["最初的障碍"]
@@ -619,6 +663,18 @@
     "NAMES": [""],
     "TEXT": ["超越极限"]
   },
+  "IdolReward1:jsna": {
+    "NAMES": [""],
+    "TEXT": ["restart"]
+  },
+  "IdolReward2:jsna": {
+    "NAMES": [""],
+    "TEXT": ["向前迈进的精英"]
+  },
+  "IdolReward3:jsna": {
+    "NAMES": [""],
+    "TEXT": ["光辉灿然"]
+  },
   "Sensei:Merchant": {
     "NAMES": [
       "离开",
@@ -681,5 +737,12 @@
       "老师我一直都相信着你啊",
       "Fight On!"
     ]
-  }
+  },
+    "IdolBossStartTalk:shro_hski": {
+        "NAMES": [
+        ],
+        "TEXT": [
+        "啊，是第二名的人"
+        ]
+    }
 }

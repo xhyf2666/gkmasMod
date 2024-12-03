@@ -25,7 +25,7 @@ public class UltimateSourceOfHappiness extends CustomRelic {
 
     private static final RelicTier RARITY = RelicTier.STARTER;
 
-    private static final int magicNumber = 3;
+    private static final int magicNumber = 2;
     private static final int magicNumber2 = 5;
 
 
@@ -52,6 +52,7 @@ public class UltimateSourceOfHappiness extends CustomRelic {
     public void onUseCard(AbstractCard card, UseCardAction useCardAction){
         if (card.cardID.equals(FullAdrenaline.ID)) {
                 addToBot(new RelicAboveCreatureAction(AbstractDungeon.player, this));
+                this.flash();
                 addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new GoodTune(AbstractDungeon.player, magicNumber), magicNumber));
                 addToBot(new GainBlockWithPowerAction(AbstractDungeon.player,AbstractDungeon.player,magicNumber2));
         }

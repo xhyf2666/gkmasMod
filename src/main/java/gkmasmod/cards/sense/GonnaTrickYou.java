@@ -14,6 +14,7 @@ import com.megacrit.cardcrawl.powers.StrengthPower;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
+import gkmasmod.utils.IdolData;
 import gkmasmod.utils.NameHelper;
 import gkmasmod.utils.PlayerHelper;
 import gkmasmod.utils.SoundHelper;
@@ -32,7 +33,6 @@ public class GonnaTrickYou extends GkmasCard {
     private static final int UPGRADE_PLUS_DMG = 2;
     private static final int BASE_MAGIC = 3;
     private static final int BASE_MAGIC2 = 2;
-    private static final int UPGRADE_PLUS_MAGIC2 = 1;
 
     private static final CardType TYPE = CardType.ATTACK;
     private static final CardColor COLOR = PlayerColorEnum.gkmasModColorSense;
@@ -49,18 +49,20 @@ public class GonnaTrickYou extends GkmasCard {
         this.exhaust = true;
         this.tags.add(GkmasCardTag.FOCUS_TAG);
         this.tags.add(GkmasCardTag.IDOL_CARD_TAG);
+        this.backGroundColor = IdolData.kcna;
+        updateBackgroundImg();
     }
 
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        AbstractDungeon.actionManager.addToBottom(new DamageAction(m, new DamageInfo(p, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
-        AbstractDungeon.actionManager.addToBottom(new DamageAction(m, new DamageInfo(p, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_VERTICAL));
+        addToBot(new DamageAction(m, new DamageInfo(p, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
+        addToBot(new DamageAction(m, new DamageInfo(p, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_VERTICAL));
         int count = PlayerHelper.getPowerAmount(p, StrengthPower.POWER_ID);
         if(count > this.magicNumber){
             addToBot(new ApplyPowerAction(p, p, new StrengthPower(p, this.secondMagicNumber), this.secondMagicNumber));
         }
-        SoundHelper.playSound("gkmasModResource/audio/voice/skillcard/cidol_kcna_3_002_produce_skillcard_01.ogg");
+        SoundHelper.playSound("gkmasModResource/audio/voice/skillcard/cidol_kcna_3_006_produce_skillcard_01.ogg");
 
     }
 
@@ -74,7 +76,6 @@ public class GonnaTrickYou extends GkmasCard {
         if (!this.upgraded) {
             upgradeName();
             upgradeDamage(UPGRADE_PLUS_DMG);
-            upgradeSecondMagicNumber(UPGRADE_PLUS_MAGIC2);
             if (CARD_STRINGS.UPGRADE_DESCRIPTION != null)
                 this.rawDescription = CARD_STRINGS.UPGRADE_DESCRIPTION;
             this.initializeDescription();

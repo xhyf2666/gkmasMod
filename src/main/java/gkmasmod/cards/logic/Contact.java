@@ -11,6 +11,7 @@ import gkmasmod.cards.GkmasCard;
 import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.powers.GoodImpression;
+import gkmasmod.powers.Uplifting;
 import gkmasmod.screen.SkinSelectScreen;
 import gkmasmod.utils.NameHelper;
 
@@ -26,8 +27,10 @@ public class Contact extends GkmasCard {
     private static final int COST = 2;
     private static final int BASE_MAGIC = 5;
     private static final int UPGRADE_PLUS_MAGIC = 2;
-    private static final int BLOCK_AMT = 9;
-    private static final int UPGRADE_PLUS_BLOCK = 4;
+    private static final int BASE_MAGIC2 = 3;
+    private static final int UPGRADE_PLUS_MAGIC2 = 1;
+    private static final int BLOCK_AMT = 3;
+    private static final int UPGRADE_PLUS_BLOCK = 1;
 
 
     private static final CardType TYPE = CardType.SKILL;
@@ -41,6 +44,8 @@ public class Contact extends GkmasCard {
         this.updateShowImg = true;
         this.baseMagicNumber = BASE_MAGIC;
         this.magicNumber = this.baseMagicNumber;
+        this.baseSecondMagicNumber = BASE_MAGIC2;
+        this.secondMagicNumber = this.baseSecondMagicNumber;
         this.baseBlock = BLOCK_AMT;
         this.block = this.baseBlock;
         this.tags.add(GkmasCardTag.GOOD_IMPRESSION_TAG);
@@ -51,6 +56,7 @@ public class Contact extends GkmasCard {
     public void use(AbstractPlayer p, AbstractMonster m) {
         addToBot(new ApplyPowerAction(p, p, new GoodImpression(p, this.magicNumber), this.magicNumber));
         addToBot(new GainBlockAction(p, p, this.block));
+        addToBot(new ApplyPowerAction(p,p,new Uplifting(p,this.secondMagicNumber),this.secondMagicNumber));
     }
 
 

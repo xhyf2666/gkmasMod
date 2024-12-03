@@ -27,7 +27,7 @@ public class LastSummerMemory extends CustomRelic {
 
     private static final int STRENGTH = 2;
 
-    private static final  int playTimes = 2;
+    private static final int playTimes = 2;
 
     public LastSummerMemory() {
         super(ID, ImageMaster.loadImage(IMG), ImageMaster.loadImage(IMG_OTL), RARITY, LandingSound.CLINK);
@@ -57,6 +57,7 @@ public class LastSummerMemory extends CustomRelic {
             int count = AbstractDungeon.player.getPower(StrengthPower.POWER_ID)==null?0:AbstractDungeon.player.getPower(StrengthPower.POWER_ID).amount;
             if(count>STRENGTH){
                 addToBot(new RelicAboveCreatureAction(AbstractDungeon.player, this));
+                this.flash();
                 addToBot(new GainBlockWithPowerAction(AbstractDungeon.player, AbstractDungeon.player, magicNumber));
                 this.counter--;
                 if (this.counter == 0) {

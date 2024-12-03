@@ -58,7 +58,7 @@ public class MisuzuNature extends AbstractPower {
             //TODO 播放语音
         }
         if (!flag2&&this.count >= this.amount2) {
-            this.addToBot(new ApplyPowerAction(this.owner, this.owner, new FullPowerValue(this.owner,1),1));
+            this.addToBot(new ApplyPowerAction(this.owner, this.owner, new FullPowerValueMisuzu(this.owner,2),2));
             flag2 = true;
             //TODO 播放语音
         }

@@ -37,7 +37,7 @@ public class AnotherStorePotion {
     public void update(float rugY) {
         if (this.potion != null) {
             if (!this.isPurchased) {
-                this.potion.posX = 1000.0F * Settings.xScale + 150.0F * (float)this.slot * Settings.xScale;
+                this.potion.posX = 1000.0F * Settings.xScale + 120.0F * (float)this.slot * Settings.xScale;
                 this.potion.posY = rugY + 200.0F * Settings.yScale;
                 this.potion.hb.move(this.potion.posX, this.potion.posY);
                 this.potion.hb.update();

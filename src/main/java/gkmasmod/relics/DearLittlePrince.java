@@ -59,6 +59,7 @@ public class DearLittlePrince extends CustomRelic {
     public void onGoodTuneIncrease(){
         if (this.counter > 0 && isRefresh) {
             addToBot(new RelicAboveCreatureAction(AbstractDungeon.player, this));
+            this.flash();
             addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new GoodTune(AbstractDungeon.player, magicNumber), magicNumber));
             this.counter--;
             isRefresh = false;

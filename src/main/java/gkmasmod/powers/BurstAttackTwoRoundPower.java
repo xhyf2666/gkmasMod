@@ -1,5 +1,7 @@
 package gkmasmod.powers;
 
+import gkmasmod.downfall.charbosses.bosses.AbstractCharBoss;
+import gkmasmod.downfall.charbosses.cards.AbstractBossCard;
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -47,6 +49,10 @@ public class BurstAttackTwoRoundPower extends AbstractPower {
     }
 
     public void onUseCard(AbstractCard card, UseCardAction action) {
+        if(!(this.owner instanceof AbstractCharBoss)&&card instanceof AbstractBossCard)
+            return;
+        if(this.owner instanceof AbstractCharBoss&&(!(card instanceof AbstractBossCard)))
+            return;
         if (!card.purgeOnUse && card.type == AbstractCard.CardType.ATTACK && this.amount > 0) {
             flash();
             AbstractMonster m = null;

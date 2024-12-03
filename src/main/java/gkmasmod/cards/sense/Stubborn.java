@@ -14,6 +14,7 @@ import com.megacrit.cardcrawl.powers.StrengthPower;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
+import gkmasmod.utils.IdolData;
 import gkmasmod.utils.NameHelper;
 import gkmasmod.utils.SoundHelper;
 
@@ -30,7 +31,6 @@ public class Stubborn extends GkmasCard {
     private static final int ATTACK_DMG = 4;
     private static final int UPGRADE_PLUS_DMG = 3;
     private static final int BASE_MAGIC = 1;
-    private static final int UPGRADE_PLUS_MAGIC = 1;
 
     private static final CardType TYPE = CardType.ATTACK;
     private static final CardColor COLOR = PlayerColorEnum.gkmasModColorSense;
@@ -45,12 +45,14 @@ public class Stubborn extends GkmasCard {
         this.exhaust = true;
         this.tags.add(GkmasCardTag.FOCUS_TAG);
         this.tags.add(GkmasCardTag.IDOL_CARD_TAG);
+        this.backGroundColor = IdolData.ttmr;
+        updateBackgroundImg();
     }
 
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        AbstractDungeon.actionManager.addToBottom(new DamageAction(m, new DamageInfo(p, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
+        addToBot(new DamageAction(m, new DamageInfo(p, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
         addToBot(new ApplyPowerAction(p, p, new StrengthPower(p, this.magicNumber), this.magicNumber));
         SoundHelper.playSound("gkmasModResource/audio/voice/skillcard/cidol_ttmr_1_000_produce_skillcard_01.ogg");
 
@@ -66,7 +68,6 @@ public class Stubborn extends GkmasCard {
         if (!this.upgraded) {
             upgradeName();
             upgradeDamage(UPGRADE_PLUS_DMG);
-            upgradeMagicNumber(UPGRADE_PLUS_MAGIC);
             if (CARD_STRINGS.UPGRADE_DESCRIPTION != null)
                 this.rawDescription = CARD_STRINGS.UPGRADE_DESCRIPTION;
             this.initializeDescription();

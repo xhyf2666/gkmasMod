@@ -11,16 +11,34 @@
       "当前有 #b%d 层。 NL 回合结束时，对随机敌人造成 #b%d 点伤害，然后层数减 #b1 。"
     ]
   },
+  "BadImpression": {
+    "NAME": "好印象",
+    "DESCRIPTIONS": [
+      "当前有 #b%d 层。 NL 回合结束时，使随机敌人回复 #b%d 点体力，然后层数减 #b1 。"
+    ]
+  },
   "GoodTune": {
     "NAME": "好调",
     "DESCRIPTIONS": [
       "当前有 #b%d 层。 NL 造成的伤害增加 #b50 %%。 NL 回合结束时层数减 #b1 。"
     ]
   },
+  "NegativeGoodTune": {
+    "NAME": "好调",
+    "DESCRIPTIONS": [
+      "当前有 #b%d 层。 NL 造成的伤害减少 #b33 %%。 NL 回合结束时层数减 #b1 。"
+    ]
+  },
   "GreatGoodTune": {
     "NAME": "绝好调",
     "DESCRIPTIONS": [
       "当前有 #b%d 层。 NL 每层 #y好调 额外增伤 #b10 %%。 NL 回合结束时层数减 #b1 。"
+    ]
+  },
+  "GreatNotGoodTune": {
+    "NAME": "绝不调",
+    "DESCRIPTIONS": [
+      "当前有 #b%d 层。 NL 每层 #y不调 额外减伤 #b10 %%。 NL 回合结束时层数减 #b1 。"
     ]
   },
   "RemainBuff": {
@@ -185,6 +203,12 @@
       "当前有 #b%d 层。 NL 进入战斗时，给随机敌人施加 #y溢出伤害传递 。 NL 格挡在回合结束时不会消失。 NL 每次出牌或结束回合时减少 #b1 层。 NL 战斗胜利或该Buff首次移除时，基于敌人的损失HP百分比获得 #y三维 。 NL 三维分配比例由卡组中卡牌的TAG数决定。 NL 回合结束时若能量大于 #b0 ，则回复 #b1 点体力。 NL 战斗胜利时，每剩余 #b3 层回复 #b2 点体力。"
     ]
   },
+  "TrainRoundAnomalyPower": {
+    "NAME": "训练时间·非凡",
+    "DESCRIPTIONS": [
+      "当前有 #b%d 层。 NL 回合开始时，抽 #b1 张牌， #y暂存 1张手牌。 NL 每次出牌或结束回合时减少 #b1 层。 NL 战斗胜利或该Buff首次移除时，基于敌人的损失HP百分比获得 #y三维 。 NL 三维分配比例由卡组中卡牌的TAG数决定。 NL 回合结束时若能量大于 #b0 ，则回复 #b1 点体力。 NL 战斗胜利时，每剩余 #b3 层回复 #b2 点体力。"
+    ]
+  },
   "TrainRoundSensePower": {
     "NAME": "训练时间·感性",
     "DESCRIPTIONS": [
@@ -206,7 +230,7 @@
   "StrongPower": {
     "NAME": "强气",
     "DESCRIPTIONS": [
-      "造成和受到的伤害增加 #b50 %% 。"
+      "造成和受到的伤害增加 #b50 %% 。 NL 你每次出牌时，对你造成攻击，使你的体力下降 #b1 。"
     ]
   },
   "FullPower": {
@@ -218,13 +242,19 @@
   "FullPowerValue": {
     "NAME": "全力值",
     "DESCRIPTIONS": [
+      "回合开始时，如果 #y全力值 不低于 #b10 ，则失去 #b10 点 #y全力值 ，进入 #y全力 。 NL 进入 #y全力 时，按照以下顺序依次消耗剩余的 #y全力值 ，获得额外效果，直到无法继续触发： NL #y· 消耗2点：获得 #b5 点 #y格挡 。 NL #y· 消耗3点：获得 #b3 层 #y热意 。 NL #y· 消耗5点： #y再动 。"
+    ]
+  },
+  "FullPowerValueMisuzu": {
+    "NAME": "全力值",
+    "DESCRIPTIONS": [
       "获得 #b10 点全力值时，进入 #y全力 。"
     ]
   },
   "MisuzuNature": {
     "NAME": "秦谷美玲的本质",
     "DESCRIPTIONS": [
-      "本回合受到的伤害大于 #b%d 时，进入 #y强气 ，否则进入 #y温存 。 NL 本回合受到的伤害大于 #b%d 时，额外获得 #b1 点全力值。"
+      "本回合受到的伤害大于 #b%d 时，进入 #y强气 ，否则进入 #y温存 。 NL 本回合受到的伤害大于 #b%d 时，额外获得 #b2 点全力值。"
     ]
   },
   "SleepPower": {
@@ -273,12 +303,6 @@
     "NAME": "一直以来的努力",
     "DESCRIPTIONS": [
       "一直以来的努力与汗水，在此刻开花结果。 NL 基于 #y三维 获得 #y伤害加成 。"
-    ]
-  },
-  "EleventhMember": {
-    "NAME": "第十一人",
-    "DESCRIPTIONS": [
-      "狗代你什么时候实装？"
     ]
   },
   "AutoUpgrade": {
@@ -357,6 +381,271 @@
     "NAME": "溢出伤害传递",
     "DESCRIPTIONS": [
       "受到伤害而死亡时，将剩余伤害和此状态传递给随机敌人。"
+    ]
+  },
+  "SSDSecretPower": {
+    "NAME": "SSD的秘密",
+    "DESCRIPTIONS": [
+      "回合结束时，额外触发 #b%d 次 #y好印象 效果。"
+    ]
+  },
+  "MasterRollerPower": {
+    "NAME": "增强型滚轮",
+    "DESCRIPTIONS": [
+      "当前有 #b%d 层。 NL 造成伤害减少 #b50 %%。 NL 回合结束时层数减 #b1 。"
+    ]
+  },
+  "MasterTreadmillPower": {
+    "NAME": "增强型跑步机",
+    "DESCRIPTIONS": [
+      "造成伤害减少 #b20 %%。"
+    ]
+  },
+  "GachaAgainPower": {
+    "NAME": "钱包一直空空的",
+    "DESCRIPTIONS": [
+      "每回合开始时，获得 #b%d 张 #y钱包空空的 。"
+    ]
+  },
+  "GachaAgainPlusPower": {
+    "NAME": "钱包一直空空的+",
+    "DESCRIPTIONS": [
+      "每回合开始时，获得 #b%d 张 #y钱包空空的+ 。"
+    ]
+  },
+  "EnthusiasticPower": {
+    "NAME": "热意",
+    "DESCRIPTIONS": [
+      "造成伤害增加 #b%d 点。 NL 回合结束时移除。"
+    ]
+  },
+  "TopSkyPower": {
+    "NAME": "上浮",
+    "DESCRIPTIONS": [
+      "造成伤害低于 #b%d 时，将伤害提升至 #b%d 。"
+    ]
+  },
+  "AnotherFullPowerValue": {
+    "NAME": "全力值",
+    "DESCRIPTIONS": [
+      "获得 #b10 点全力值时，进入 #y全力 。"
+    ]
+  },
+  "VeryEasyPower": {
+    "NAME": "非常简单",
+    "DESCRIPTIONS": [
+      " #b%d 回合内，回合结束时对随机敌人造成 #b%d 点伤害。"
+    ]
+  },
+  "IsENotAPower": {
+    "NAME": "是E不是A",
+    "DESCRIPTIONS": [
+      " #y好印象 每次下降时，获得 #b%d 点 #y格挡 。 "
+    ]
+  },
+  "Uplifting": {
+    "NAME": "高扬",
+    "DESCRIPTIONS": [
+      "回合结束时，获得 #b%d 点 #y格挡 。 NL 体力下降时，层数减少 #b1 。"
+    ]
+  },
+  "TheTwelfth": {
+    "NAME": "第十二人",
+    "DESCRIPTIONS": [
+      "打出 #b%d 张牌后，结束你的回合，并使你获得 #b1 层 #y绝不调 。 NL (每回合打出的前 #b2 张 #y再动 牌不计数)。"
+    ]
+  },
+  "DrawCardNextXTurnPower": {
+    "NAME": "下X回合抽牌",
+    "DESCRIPTIONS": [
+      "下 #b%d 个回合开始时，抽 #b%d 张牌。"
+    ]
+  },
+  "AutumnOfAppetitePower": {
+    "NAME": "食欲之秋",
+    "DESCRIPTIONS": [
+      "每失去 #b%d 层 #y训练时间 ，抽 #b1 张牌。"
+    ]
+  },
+  "SkipTurnPower": {
+    "NAME": "跳过人生",
+    "DESCRIPTIONS": [
+      "跳过 #b%d 回合。"
+    ]
+  },
+  "SteelSoul": {
+    "NAME": "钢之魂",
+    "DESCRIPTIONS": [
+      "获得 #y格挡 和 受到 #y攻击 时，将 #y格挡 和 #y攻击 转移至 #y小高达 。"
+    ]
+  },
+  "CallMeAnyTimePower": {
+    "NAME": "没事也可以打电话",
+    "DESCRIPTIONS": [
+      "每回合开始时，触发 #b%d 次 #y制作人的电话 效果。"
+    ]
+  },
+  "SaySomethingToYouPower": {
+    "NAME": "我有话想对你说",
+    "DESCRIPTIONS": [
+      "每回合开始时，给予所有敌人 #b%d 点 格挡 。 NL 每回合首次突破敌人 格挡 时，取消该攻击，给予敌人 #b%d 层 易伤 。"
+    ]
+  },
+  "DanceWithYouPower": {
+    "NAME": "灵敏",
+    "DESCRIPTIONS": [
+      "当前有 #b%d 层。 NL 受到伤害时，有 #b%d %%概率闪避该伤害，闪避成功时层数减 #b1 ，闪避失败时获得 #b%d 层 脆弱 。"
+    ]
+  },
+  "MotherAIPower": {
+    "NAME": "母体AI革命",
+    "DESCRIPTIONS": [
+      "每回合开始时，在所有人的手牌中加入一张 #ySSD的秘密 。"
+    ]
+  },
+  "TrueLateBloomerPower": {
+    "NAME": "真正的大器晚成",
+    "DESCRIPTIONS": [
+      "每回合开始时，获得 #b%d 层 #y好调 。 NL #b%d 回合后，额外获得 #b%d 层 绝好调 。",
+      "每回合开始时，获得 #b%d 层 #y好调 和 #b%d 层 绝好调 。"
+    ]
+  },
+  "ListenToMyTrueHeartPower": {
+    "NAME": "全心全意",
+    "DESCRIPTIONS": [
+      "当前有 #b%d 层。 NL 出牌后，失去 #b%d 点体力，对随机敌人造成 #b%d 点伤害，然后层数减 #b1 。"
+    ]
+  },
+  "EvenIfDreamNotRealizePower": {
+    "NAME": "即使无法实现理想",
+    "DESCRIPTIONS": [
+      "失去体力时，在手牌中加入一张 #y让我成为你的梦想 。"
+    ]
+  },
+  "KawaiiPower": {
+    "NAME": "卡哇伊",
+    "DESCRIPTIONS": [
+      "当前有 #b%d 层。 NL 受到攻击时，获得伤害 #b%d %%的 #y好印象 ，然后层数减 #b1 。"
+    ]
+  },
+  "GrowthProcessPower": {
+    "NAME": "成长的过程",
+    "DESCRIPTIONS": [
+      "每回合开始时，获得 [E] [E] #b%d 次。"
+    ]
+  },
+  "RebirthPower": {
+    "NAME": "复苏",
+    "DESCRIPTIONS": [
+      "即将死亡时，移除所有层数，免死并回复 #b%d 点体力。 NL 战斗胜利时，回复 #y复苏 层数 #b80 %%的体力。"
+    ]
+  },
+  "CoolModePower": {
+    "NAME": "帅气",
+    "DESCRIPTIONS": [
+      "造成伤害增加 #b25 %%。 NL 与 #y可爱 无法同时存在。"
+    ]
+  },
+  "CuteModePower": {
+    "NAME": "可爱",
+    "DESCRIPTIONS": [
+      "受到伤害减少 #b20 %%。 NL 与 #y帅气 无法同时存在。"
+    ]
+  },
+  "ParalysisPower": {
+    "NAME": "麻痹",
+    "DESCRIPTIONS": [
+      "回合结束以及每次出牌时，受到 #b%d 点伤害，然后层数减 #b1 。"
+    ]
+  },
+  "TempSavePower": {
+    "NAME": "暂存",
+    "DESCRIPTIONS": [
+      "进入 #y全力 时，将 #b%s 加入手牌。 NL (最多暂存 #b%d 张牌)"
+    ]
+  },
+  "TrainingResultPower": {
+    "NAME": "下回合温存",
+    "DESCRIPTIONS": [
+      "回合开始时，进入 #y温存 #b%d 次。"
+    ]
+  },
+  "TrainingResultPlusPower": {
+    "NAME": "下回合温存Ⅱ",
+    "DESCRIPTIONS": [
+      "回合开始时，进入 #y温存Ⅱ #b%d 次。"
+    ]
+  },
+  "StanceLock": {
+    "NAME": "姿态锁定",
+    "DESCRIPTIONS": [
+      " #b%d 回合内，无法转化姿态和升级姿态。 NL (敌人回合结束时，层数减 #b1 )"
+    ]
+  },
+  "HeartAndSoulPower": {
+    "NAME": "全身全霊",
+    "DESCRIPTIONS": [
+      "接下来使用的 #b%d 张卡，能量消耗变为 #b0 。"
+    ]
+  },
+  "ToTheTopPower": {
+    "NAME": "向着顶点",
+    "DESCRIPTIONS": [
+      "回合开始时，如果拥有 #y姿态 则使你的所有牌获得 #y伤害追加 #b%d 。"
+    ]
+  },
+  "MayRainPower": {
+    "NAME": "五月雨",
+    "DESCRIPTIONS": [
+      "回合结束时，保留 #b50 %%的 #y热意 。"
+    ]
+  },
+  "ThunderWillStopPower": {
+    "NAME": "雷鸣将歇",
+    "DESCRIPTIONS": [
+      "回合结束时，获得 #b%d 点 #y全力值 。"
+    ]
+  },
+  "StepOnStagePower": {
+    "NAME": "登上舞台",
+    "DESCRIPTIONS": [
+      "每次进入 #y温存2段 或 #y强气2段 时，抽 #b%d 张牌。"
+    ]
+  },
+  "LikeStarsPower": {
+    "NAME": "如繁星一般",
+    "DESCRIPTIONS": [
+      "每次 #y暂存 卡牌时，使该牌获得 #y伤害追加 #b%d 。"
+    ]
+  },
+  "WhereDreamsArePower": {
+    "NAME": "梦想之所在",
+    "DESCRIPTIONS": [
+      "每次进入 #y全力 时，将 #b1 张 #y留手 加入手牌。"
+    ]
+  },
+  "AnotherTurnPower": {
+    "NAME": "额外回合",
+    "DESCRIPTIONS": [
+      "回合结束时，获得 #b%d 个 #y额外回合 。"
+    ]
+  },
+  "SelectFirstStarChaiPower": {
+    "NAME": "初星严选·奶茶",
+    "DESCRIPTIONS": [
+      "每回合开始时，获得 #b%d 点 #y全力值 。"
+    ]
+  },
+  "ShareSomethingWithYouPower": {
+    "NAME": "分给你一点！",
+    "DESCRIPTIONS": [
+      "每回合开始时，获得 #b%d 层 #y好调 。"
+    ]
+  },
+  "HappyChristmasPower": {
+    "NAME": "圣诞快乐♪",
+    "DESCRIPTIONS": [
+      "每次出牌时，获得 #b%d 点 #y敏捷 。"
     ]
   }
 }

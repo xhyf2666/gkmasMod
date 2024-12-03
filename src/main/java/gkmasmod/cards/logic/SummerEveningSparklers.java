@@ -13,6 +13,7 @@ import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.powers.GoodImpression;
 import gkmasmod.powers.SummerEveningSparklersPower;
+import gkmasmod.utils.IdolData;
 import gkmasmod.utils.NameHelper;
 import gkmasmod.utils.SoundHelper;
 
@@ -30,7 +31,6 @@ public class SummerEveningSparklers extends GkmasCard {
     private static final int BASE_MAGIC = 3;
     private static final int UPGRADE_PLUS_MAGIC = 1;
     private static final int BASE_MAGIC2 = 2;
-    private static final int UPGRADE_PLUS_MAGIC2 = 1;
     private static final int BASE_MAGIC3 = 1;
 
     private static final int BASE_HP = 5;
@@ -54,6 +54,8 @@ public class SummerEveningSparklers extends GkmasCard {
         this.tags.add(GkmasCardTag.YARUKI_TAG);
         this.tags.add(GkmasCardTag.GOOD_IMPRESSION_TAG);
         this.tags.add(GkmasCardTag.IDOL_CARD_TAG);
+        this.backGroundColor = IdolData.fktn;
+        updateBackgroundImg();
     }
 
 
@@ -63,7 +65,7 @@ public class SummerEveningSparklers extends GkmasCard {
         addToBot(new ApplyPowerAction(p, p, new GoodImpression(p, this.magicNumber), this.magicNumber));
         addToBot(new ApplyPowerAction(p, p, new DexterityPower(p, this.secondMagicNumber), this.secondMagicNumber));
         addToBot(new ApplyPowerAction(p, p, new SummerEveningSparklersPower(p, this.thirdMagicNumber), this.thirdMagicNumber));
-        SoundHelper.playSound("gkmasModResource/audio/voice/skillcard/cidol_fktn_3_002_produce_skillcard_01.ogg");
+        SoundHelper.playSound("gkmasModResource/audio/voice/skillcard/cidol_fktn_3_004_produce_skillcard_01.ogg");
 
     }
 
@@ -77,7 +79,6 @@ public class SummerEveningSparklers extends GkmasCard {
         if (!this.upgraded) {
             upgradeName();
             upgradeMagicNumber(UPGRADE_PLUS_MAGIC);
-            upgradeSecondMagicNumber(UPGRADE_PLUS_MAGIC2);
             if (CARD_STRINGS.UPGRADE_DESCRIPTION != null)
                 this.rawDescription = CARD_STRINGS.UPGRADE_DESCRIPTION;
             this.initializeDescription();

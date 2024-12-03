@@ -32,7 +32,7 @@ public class CheckPosition extends GkmasCard {
 
     private static final int ATTACK_DMG = 7;
     private static final int UPGRADE_PLUS_DMG = 8;
-    private static final int BASE_MAGIC = 3;
+    private static final int BASE_MAGIC = 2;
     private static final int BASE_MAGIC2 = 2;
     private static final int BLOCK_AMT = 10;
 

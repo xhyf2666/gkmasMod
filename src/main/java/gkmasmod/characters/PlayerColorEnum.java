@@ -22,4 +22,7 @@ public class PlayerColorEnum {
 
     @SpireEnum(name = "gkmasMod:sense")
     public static AbstractCard.CardColor gkmasModColorSense;
+
+    @SpireEnum(name = "gkmasMod:anomaly")
+    public static AbstractCard.CardColor gkmasModColorAnomaly;
 }

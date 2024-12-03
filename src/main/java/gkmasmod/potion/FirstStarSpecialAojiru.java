@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
@@ -58,9 +59,9 @@ public class FirstStarSpecialAojiru extends CustomPotion {
     public void use(AbstractCreature target) {
         int amount = getPotency();
         if (AbstractDungeon.player != null && AbstractDungeon.player.hasRelic("SacredBark")) {
-            addToBot(new AojiruAction(AbstractDungeon.player,true));
+            addToBot(new AojiruAction(AbstractDungeon.player,true, AbstractCard.CardRarity.RARE));
         }
-        addToBot(new AojiruAction(AbstractDungeon.player,true));
+        addToBot(new AojiruAction(AbstractDungeon.player,true,AbstractCard.CardRarity.RARE));
     }
 
     public void initializeData() {

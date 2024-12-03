@@ -1,5 +1,6 @@
 package gkmasmod.powers;
 
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
@@ -25,6 +26,8 @@ public class GoodTune extends AbstractPower {
     public static final String POWER_ID = NameHelper.makePath(CLASSNAME);
     // 能力的本地化字段
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(CLASSNAME);
+
+    private static final PowerStrings powerStrings2 = CardCrawlGame.languagePack.getPowerStrings("NegativeGoodTune");
     // 能力的名称
     private static final String NAME = powerStrings.NAME;
     // 能力的描述
@@ -32,8 +35,12 @@ public class GoodTune extends AbstractPower {
 
     private static float BASR_RATE = 1.5f;
 
-    String path128 = String.format("gkmasModResource/img/powers/%s_84.png",CLASSNAME);;
-    String path48 = String.format("gkmasModResource/img/powers/%s_32.png",CLASSNAME);;
+    String path128 = String.format("gkmasModResource/img/powers/%s_84.png",CLASSNAME);
+    String path48 = String.format("gkmasModResource/img/powers/%s_32.png",CLASSNAME);
+    Texture tex84 = ImageMaster.loadImage(path128);
+    Texture tex32 = ImageMaster.loadImage(path48);
+    Texture tex84_2 = ImageMaster.loadImage(String.format("gkmasModResource/img/powers/%s_84.png","NegativeGoodTune"));
+    Texture tex32_2 = ImageMaster.loadImage(String.format("gkmasModResource/img/powers/%s_32.png","NegativeGoodTune"));
 
     public GoodTune(AbstractCreature owner, int Amount) {
         this.name = NAME;
@@ -48,36 +55,65 @@ public class GoodTune extends AbstractPower {
 
         // 首次添加能力更新描述
         this.updateDescription();
+        this.canGoNegative = true;
     }
 
-    // 能力在更新时如何修改描述
     public void updateDescription() {
-        this.description = String.format(DESCRIPTIONS[0], this.amount);
+        if(amount>=0){
+            this.name = NAME;
+            this.description = String.format(DESCRIPTIONS[0], this.amount,this.amount);
+            this.region128 = new TextureAtlas.AtlasRegion(tex84, 0, 0, 84, 84);
+            this.region48 = new TextureAtlas.AtlasRegion(tex32, 0, 0, 32, 32);
+        }
+        else{
+            this.name = powerStrings2.NAME;
+            this.description = String.format(powerStrings2.DESCRIPTIONS[0], this.amount,this.amount*-1);
+            this.region128 = new TextureAtlas.AtlasRegion(tex84_2, 0, 0, 84, 84);
+            this.region48 = new TextureAtlas.AtlasRegion(tex32_2, 0, 0, 32, 32);
+        }
     }
 
     public void stackPower(int stackAmount) {
-        super.stackPower(stackAmount);
+        this.amount += stackAmount;
         if (this.amount == 0)
             addToTop(new RemoveSpecificPowerAction(this.owner, this.owner, this.ID));
+        if(this.amount>9999)
+            this.amount = 9999;
+        if(this.amount<-9999)
+            this.amount = -9999;
+        updateDescription();
     }
 
     public void atEndOfTurnPreEndTurnCards(boolean isPlayer){
         flash();
-        if(this.amount > 0){
-                addToBot(new ReducePowerAction(this.owner, this.owner, POWER_ID, 1));
+        if(this.amount == 0){
+            addToBot(new RemoveSpecificPowerAction(this.owner, this.owner, POWER_ID));
             }
         else
-            addToBot(new RemoveSpecificPowerAction(this.owner, this.owner, POWER_ID));
+            addToBot(new ReducePowerAction(this.owner, this.owner, POWER_ID, 1));
     }
 
 
     public float atDamageFinalGive(float damage, DamageInfo.DamageType type) {
-        if (type == DamageInfo.DamageType.NORMAL) {
-            int count = AbstractDungeon.player.getPower(GreatGoodTune.POWER_ID)==null?0:AbstractDungeon.player.getPower(GreatGoodTune.POWER_ID).amount;
-            if(count > 0)
-                return damage * (1.5F+amount*0.1F);
-            else
-                return damage * 1.5F;
+        if(this.amount>0){
+            if (type == DamageInfo.DamageType.NORMAL) {
+                int count = this.owner.getPower(GreatGoodTune.POWER_ID)==null?0:this.owner.getPower(GreatGoodTune.POWER_ID).amount;
+                if(count > 0)
+                    return damage * (1.5F+amount*0.1F);
+                else
+                    return damage * 1.5F;
+            }
+        }
+        else if(this.amount<0){
+            if (type == DamageInfo.DamageType.NORMAL) {
+                int count = this.owner.getPower(GreatGoodTune.POWER_ID)==null?0:this.owner.getPower(GreatGoodTune.POWER_ID).amount;
+                if(count > 0){
+                    int dmg = (int) (damage * (0.667F+amount*0.1F));
+                    return dmg>0?dmg:0;
+                }
+                else
+                    return damage * 0.667F;
+            }
         }
         return damage;
     }

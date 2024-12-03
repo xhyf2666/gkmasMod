@@ -25,7 +25,6 @@ public class Inspire extends GkmasCard {
 
     private static final int COST = 2;
     private static final int BASE_MAGIC = 3;
-    private static final int UPGRADE_PLUS_MAGIC = 1;
     private static final int BASE_MAGIC2 = 5;
     private static final int BASE_MAGIC3 = 4;
     private static final int UPGRADE_PLUS_MAGIC3 = 2;
@@ -66,7 +65,6 @@ public class Inspire extends GkmasCard {
     public void upgrade() {
         if (!this.upgraded) {
             upgradeName();
-            upgradeMagicNumber(UPGRADE_PLUS_MAGIC);
             upgradeThirdMagicNumber(UPGRADE_PLUS_MAGIC3);
             if (CARD_STRINGS.UPGRADE_DESCRIPTION != null)
                 this.rawDescription = CARD_STRINGS.UPGRADE_DESCRIPTION;

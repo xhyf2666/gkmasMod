@@ -66,6 +66,7 @@ public class UltimateSleepMask extends CustomRelic {
 
         if (this.counter < playTimes) {
             addToBot(new RelicAboveCreatureAction(AbstractDungeon.player, this));
+            this.flash();
             addToBot(new LoseHPAction(AbstractDungeon.player, AbstractDungeon.player, HP_LOST));
             addToTop(new DamageAllEnemiesAction(AbstractDungeon.player, damage, DamageInfo.DamageType.NORMAL, AbstractGameAction.AttackEffect.BLUNT_HEAVY));
             this.counter++;

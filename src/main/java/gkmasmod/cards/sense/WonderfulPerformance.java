@@ -31,9 +31,9 @@ public class WonderfulPerformance extends GkmasCard {
     private static final int COST = 1;
     private static final int ATTACK_DMG = 7;
     private static final int BLOCK_AMT = 4;
-    private static final int BASE_MAGIC = 3;
+    private static final int BASE_MAGIC = 2;
     private static final int UPGRADE_PLUS_MAGIC = 1;
-    private static final int BASE_MAGIC2 = 2;
+    private static final int BASE_MAGIC2 = 1;
 
     private static final CardType TYPE = CardType.ATTACK;
     private static final CardColor COLOR = PlayerColorEnum.gkmasModColorSense;
@@ -56,7 +56,7 @@ public class WonderfulPerformance extends GkmasCard {
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        AbstractDungeon.actionManager.addToBottom( new DamageAction( m, new DamageInfo( p, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
+        addToBot( new DamageAction( m, new DamageInfo( p, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
         addToBot(new GainBlockAction(p, p, this.block));
         addToBot(new ApplyPowerAction(p, p, new StrengthPower(p, this.magicNumber), this.magicNumber));
         addToBot(new ApplyPowerAction(p, p, new DoubleDamageReceive(p, this.secondMagicNumber), this.secondMagicNumber));

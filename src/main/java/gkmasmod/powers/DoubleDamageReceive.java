@@ -51,7 +51,7 @@ public class DoubleDamageReceive extends AbstractPower {
 
     public int onAttacked(DamageInfo info, int damageAmount) {
         if(info.type == DamageInfo.DamageType.HP_LOSS){
-            return (int) (damageAmount*2.0F);
+            return (int) (damageAmount*1.5F);
         }
         return damageAmount;
     }

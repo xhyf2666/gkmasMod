@@ -56,7 +56,6 @@ public class GreatGoodTune extends AbstractPower {
 
     public void atEndOfTurnPreEndTurnCards(boolean isPlayer){
         flash();
-
         if(this.amount > 0){
                 addToBot(new ReducePowerAction(this.owner, this.owner, POWER_ID, 1));
             }

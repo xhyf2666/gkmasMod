@@ -20,22 +20,19 @@ public class TrueVictoryRoomPatch {
     @SpirePatch2(clz = TrueVictoryRoom.class, method = "onPlayerEntry")
     public static class AbstractPlayerPowerTipPatch {
         public static SpireReturn<Void> Prefix() {
+            System.out.println("TrueVictoryRoomPatch AbstractPlayerPowerTipPatch");
             if (AbstractDungeon.player instanceof IdolCharacter) {
                 if(!existsVideo()){
                     return SpireReturn.Continue();
                 }
-                String videoPath = String.format("gkmasModResource/video/end/%s_%s.webm", SkinSelectScreen.Inst.idolName, IdolData.getIdol(SkinSelectScreen.Inst.idolIndex).getSkin(SkinSelectScreen.Inst.skinIndex));
-                String videoPath2 = String.format("D:/gkmasMod/video/end/%s_%s.webm", SkinSelectScreen.Inst.idolName, IdolData.getIdol(SkinSelectScreen.Inst.idolIndex).getSkin(SkinSelectScreen.Inst.skinIndex));
+                String videoPath = String.format("gkmasModResource/video/live/%s_%s.webm", SkinSelectScreen.Inst.idolName, IdolData.getIdol(SkinSelectScreen.Inst.idolIndex).getLive(SkinSelectScreen.Inst.skinIndex));
 
                 AbstractDungeon.isScreenUp = true;
                 AbstractDungeon.overlayMenu.proceedButton.hide();
                 CardCrawlGame.fadeIn(1.0F);
                 CardCrawlGame.music.dispose();
-                if(Gdx.files.internal(videoPath).exists()){
-                    AbstractDungeon.actionManager.addToBottom(new CanStopMediaPlayerAction(new SimplePlayVideoEffect(videoPath,false)));
-                }
-                else if(Gdx.files.absolute(videoPath2).exists()){
-                    AbstractDungeon.actionManager.addToBottom(new CanStopMediaPlayerAction(new SimplePlayVideoEffect(videoPath2,true)));
+                if(Gdx.files.local(videoPath).exists()){
+                    AbstractDungeon.actionManager.addToBottom(new CanStopMediaPlayerAction(new SimplePlayVideoEffect(videoPath,true)));
                 }
 
                 notShowPlayerPowerTip = true;
@@ -85,10 +82,9 @@ public class TrueVictoryRoomPatch {
     }
 
     public static boolean existsVideo(){
-        String videoPath = String.format("gkmasModResource/video/end/%s_%s.webm", SkinSelectScreen.Inst.idolName, IdolData.getIdol(SkinSelectScreen.Inst.idolIndex).getSkin(SkinSelectScreen.Inst.skinIndex));
-        String videoPath2 = String.format("D:/gkmasMod/video/end/%s_%s.webm", SkinSelectScreen.Inst.idolName, IdolData.getIdol(SkinSelectScreen.Inst.idolIndex).getSkin(SkinSelectScreen.Inst.skinIndex));
+        String videoPath = String.format("gkmasModResource\\video\\live\\%s_%s.webm", SkinSelectScreen.Inst.idolName, IdolData.getIdol(SkinSelectScreen.Inst.idolIndex).getLive(SkinSelectScreen.Inst.skinIndex));
 
-        if(Gdx.files.internal(videoPath).exists()||Gdx.files.absolute(videoPath2).exists()){
+        if(Gdx.files.local(videoPath).exists()){
             return true;
         }
         return false;

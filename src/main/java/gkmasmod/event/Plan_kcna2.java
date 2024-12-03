@@ -37,6 +37,11 @@ public class Plan_kcna2 extends AbstractImageEvent {
             this.imageEventText.setDialogOption(String.format(OPTIONS[1],new HotCoffee().name));
             this.imageEventText.setDialogOption(String.format(OPTIONS[2],new RooibosTea().name));
         }
+        else if (type==CommonEnum.IdolType.ANOMALY){
+            this.imageEventText.setDialogOption(String.format(OPTIONS[0],new OolongTea().name));
+            this.imageEventText.setDialogOption(String.format(OPTIONS[1],new GingerAle().name));
+            this.imageEventText.setDialogOption(String.format(OPTIONS[2],new Hojicha().name));
+        }
     }
 
     @Override
@@ -51,6 +56,9 @@ public class Plan_kcna2 extends AbstractImageEvent {
                             AbstractDungeon.player.obtainPotion(new FirstStarWater());
                         }
                         else if (type==CommonEnum.IdolType.LOGIC){
+                            AbstractDungeon.player.obtainPotion(new OolongTea());
+                        }
+                        else if (type==CommonEnum.IdolType.ANOMALY){
                             AbstractDungeon.player.obtainPotion(new OolongTea());
                         }
                         if (!AbstractDungeon.player.hasRelic(AmakawaRamenTour.ID)) {
@@ -69,6 +77,9 @@ public class Plan_kcna2 extends AbstractImageEvent {
                         else if (type==CommonEnum.IdolType.LOGIC){
                             AbstractDungeon.player.obtainPotion(new HotCoffee());
                         }
+                        else if (type==CommonEnum.IdolType.ANOMALY){
+                            AbstractDungeon.player.obtainPotion(new GingerAle());
+                        }
                         if (!AbstractDungeon.player.hasRelic(AmakawaRamenTour.ID)) {
                             AbstractDungeon.getCurrRoom().spawnRelicAndObtain(this.drawX, this.drawY, new AmakawaRamenTour());
                         } else {
@@ -84,6 +95,9 @@ public class Plan_kcna2 extends AbstractImageEvent {
                         }
                         else if (type==CommonEnum.IdolType.LOGIC){
                             AbstractDungeon.player.obtainPotion(new RooibosTea());
+                        }
+                        else if (type==CommonEnum.IdolType.ANOMALY){
+                            AbstractDungeon.player.obtainPotion(new Hojicha());
                         }
                         if (!AbstractDungeon.player.hasRelic(AmakawaRamenTour.ID)) {
                             AbstractDungeon.getCurrRoom().spawnRelicAndObtain(this.drawX, this.drawY, new AmakawaRamenTour());

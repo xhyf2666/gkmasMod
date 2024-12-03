@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import gkmasmod.actions.GainTrainRoundPowerAction;
 import gkmasmod.cards.GkmasCard;
+import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.powers.HalfDamageReceive;
 import gkmasmod.screen.SkinSelectScreen;
@@ -26,7 +27,7 @@ public class IdolDeclaration extends GkmasCard {
     private static final int BASE_MAGIC = 2;
     private static final int BASE_MAGIC2 = 1;
 
-    private static final int BASE_HP = 3;
+    private static final int BASE_HP = 2;
 
     private static final CardType TYPE = CardType.SKILL;
     private static final CardColor COLOR = PlayerColorEnum.gkmasModColor;
@@ -44,6 +45,8 @@ public class IdolDeclaration extends GkmasCard {
         this.baseHPMagicNumber = BASE_HP;
         this.HPMagicNumber = this.baseHPMagicNumber;
         this.exhaust = true;
+        this.tags.add(GkmasCardTag.MORE_ACTION_TAG);
+
     }
 
 

@@ -15,6 +15,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.powers.DoubleDamageReceive;
+import gkmasmod.powers.GoodTune;
 import gkmasmod.screen.SkinSelectScreen;
 import gkmasmod.utils.NameHelper;
 
@@ -30,6 +31,7 @@ public class SplendidSusuki extends GkmasCard {
     private static final int COST = 1;
     private static final int ATTACK_DMG = 5;
     private static final int UPGRADE_PLUS_DMG = 3;
+    private static final int BASE_MAGIC = 1;
 
     private static final CardType TYPE = CardType.ATTACK;
     private static final CardColor COLOR = PlayerColorEnum.gkmasModColorSense;
@@ -39,12 +41,20 @@ public class SplendidSusuki extends GkmasCard {
     public SplendidSusuki() {
         super(ID, NAME, IMG_PATH, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.baseDamage = ATTACK_DMG;
+        this.baseMagicNumber = BASE_MAGIC;
+        this.magicNumber = this.baseMagicNumber;
     }
 
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        AbstractDungeon.actionManager.addToBottom(new DamageAllEnemiesAction(AbstractDungeon.player, this.baseDamage, DamageInfo.DamageType.NORMAL, AbstractGameAction.AttackEffect.SLASH_VERTICAL));
+        addToBot(new DamageAllEnemiesAction(AbstractDungeon.player, this.baseDamage, DamageInfo.DamageType.NORMAL, AbstractGameAction.AttackEffect.SLASH_VERTICAL));
+        int count = 0;
+        for (AbstractMonster mon : (AbstractDungeon.getMonsters()).monsters) {
+            if (!mon.isDeadOrEscaped())
+                count++;
+        }
+        addToBot(new ApplyPowerAction(p, p, new GoodTune(p, count*this.magicNumber), count*this.magicNumber));
     }
 
     @Override

@@ -12,6 +12,7 @@ import com.megacrit.cardcrawl.powers.DexterityPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
+import gkmasmod.actions.EnjoyAfterHotSpringAction;
 import gkmasmod.utils.PlayerHelper;
 
 public class EnjoyAfterHotSpring extends CustomRelic {
@@ -26,7 +27,7 @@ public class EnjoyAfterHotSpring extends CustomRelic {
 
     private static final RelicTier RARITY = RelicTier.STARTER;
 
-    private static final int magicNumber = 130;
+    private static final int magicNumber = 30;
     private static final int magicNumber2 = 4;
 
 
@@ -41,7 +42,7 @@ public class EnjoyAfterHotSpring extends CustomRelic {
 
     @Override
     public String getUpdatedDescription() {
-        return String.format(this.DESCRIPTIONS[0],4,magicNumber-100,magicNumber2,playTimes);
+        return String.format(this.DESCRIPTIONS[0],4,magicNumber,magicNumber2,playTimes);
     }
 
     @Override
@@ -56,14 +57,15 @@ public class EnjoyAfterHotSpring extends CustomRelic {
         if(currentTimes < playTimes){
             counter = (counter + 1)%4;
             if(counter == 0){
+                addToBot(new RelicAboveCreatureAction(AbstractDungeon.player, this));
                 this.flash();
-                AbstractDungeon.actionManager.addToBottom(new RelicAboveCreatureAction(AbstractDungeon.player, this));
                 addToBot(new GainBlockAction(AbstractDungeon.player, AbstractDungeon.player, magicNumber2));
-                int strength = PlayerHelper.getPowerAmount(AbstractDungeon.player, StrengthPower.POWER_ID);
-                int add = (int) (1.0F*magicNumber/100*strength);
-                if(add > 0){
-                    addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new StrengthPower(AbstractDungeon.player, add), add));
-                }
+                addToBot(new EnjoyAfterHotSpringAction(AbstractDungeon.player,1.0F*magicNumber/100));
+//                int strength = PlayerHelper.getPowerAmount(AbstractDungeon.player, StrengthPower.POWER_ID);
+//                int add = (int) (1.0F*magicNumber/100*strength);
+//                if(add > 0){
+//                    addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new StrengthPower(AbstractDungeon.player, add), add));
+//                }
                 currentTimes++;
                 if(currentTimes == playTimes){
                     grayscale = true;
@@ -73,7 +75,7 @@ public class EnjoyAfterHotSpring extends CustomRelic {
     }
 
     public void atBattleStart() {
-
+        counter = 0;
     }
 
     public  void  onPlayerEndTurn(){

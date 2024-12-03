@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.powers.DexterityPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import gkmasmod.characters.IdolCharacter;
+import gkmasmod.utils.ThreeSizeHelper;
 
 public class MorningHelp extends CustomRelic {
 
@@ -47,7 +48,7 @@ public class MorningHelp extends CustomRelic {
 
     public void onCardUpgrade() {
         flash();
-        if(AbstractDungeon.player instanceof IdolCharacter && ((IdolCharacter) AbstractDungeon.player).getVo()>magicNumber){
+        if(AbstractDungeon.player.hasRelic(PocketBook.ID) && ThreeSizeHelper.getVo()>magicNumber){
             addToBot(new RelicAboveCreatureAction(AbstractDungeon.player, this));
             AbstractDungeon.player.gainGold(magicNumber2);
         }

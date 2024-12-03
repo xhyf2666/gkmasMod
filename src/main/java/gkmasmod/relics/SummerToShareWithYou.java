@@ -46,7 +46,7 @@ public class SummerToShareWithYou extends CustomRelic {
 
     @Override
     public AbstractRelic makeCopy() {
-        return (AbstractRelic)new SummerToShareWithYou();
+        return new SummerToShareWithYou();
     }
 
 
@@ -57,6 +57,7 @@ public class SummerToShareWithYou extends CustomRelic {
             int count = AbstractDungeon.player.getPower(HalfDamageReceive.POWER_ID)==null?0:AbstractDungeon.player.getPower(HalfDamageReceive.POWER_ID).amount;
             if(count>HALF_DAMAGE_RECEIVE){
                 addToBot(new RelicAboveCreatureAction(AbstractDungeon.player, this));
+                this.flash();
                 addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new GreatGoodTune(AbstractDungeon.player, magicNumber), magicNumber));
                 this.counter--;
                 if (this.counter == 0) {

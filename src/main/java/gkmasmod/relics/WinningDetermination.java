@@ -40,7 +40,7 @@ public class WinningDetermination extends CustomRelic {
 
     @Override
     public AbstractRelic makeCopy() {
-        return (AbstractRelic)new WinningDetermination();
+        return new WinningDetermination();
     }
 
 
@@ -50,8 +50,9 @@ public class WinningDetermination extends CustomRelic {
         if (AbstractDungeon.getCurrRoom().phase != AbstractRoom.RoomPhase.COMBAT){
             return;
         }
-            addToBot(new RelicAboveCreatureAction(AbstractDungeon.player, this));
-            addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new GoodImpression(AbstractDungeon.player, magicNumber), magicNumber));
+        addToBot(new RelicAboveCreatureAction(AbstractDungeon.player, this));
+        this.flash();
+        addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new GoodImpression(AbstractDungeon.player, magicNumber), magicNumber));
         }
 
 

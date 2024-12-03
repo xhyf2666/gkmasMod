@@ -26,7 +26,7 @@ public class SparklingInTheBottle extends CustomRelic {
 
     private static final int magicNumber = 2;
 
-    private static final int GOOD_TUNE = 5;
+    private static final int GOOD_TUNE = 2;
 
     private static final  int playTimes = 3;
 
@@ -53,11 +53,12 @@ public class SparklingInTheBottle extends CustomRelic {
 
     public void onEquip() {}
 
-    public void atTurnStart() {
+    public void onPlayerEndTurn() {
         if (this.counter > 0) {
-            int count = AbstractDungeon.player.getPower(StrengthPower.POWER_ID)==null?0:AbstractDungeon.player.getPower(StrengthPower.POWER_ID).amount;
+            int count = AbstractDungeon.player.getPower(GoodTune.POWER_ID)==null?0:AbstractDungeon.player.getPower(GoodTune.POWER_ID).amount;
             if(count>GOOD_TUNE){
                 addToBot(new RelicAboveCreatureAction(AbstractDungeon.player, this));
+                this.flash();
                 addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new GoodTune(AbstractDungeon.player, magicNumber), magicNumber));
                 this.counter--;
                 if (this.counter == 0) {
@@ -72,8 +73,6 @@ public class SparklingInTheBottle extends CustomRelic {
         this.counter = playTimes;
     }
 
-    public  void  onPlayerEndTurn(){
-    }
 
     public void justEnteredRoom(AbstractRoom room) {
         this.grayscale = false;

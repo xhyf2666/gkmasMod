@@ -60,6 +60,7 @@ public class ShibaInuPochette extends CustomRelic {
         }
         if (this.counter == 0) {
             addToBot(new RelicAboveCreatureAction(AbstractDungeon.player, this));
+            this.flash();
             addToBot(new GainBlockWithPowerAction(AbstractDungeon.player, AbstractDungeon.player, magicNumber));
         }
     }

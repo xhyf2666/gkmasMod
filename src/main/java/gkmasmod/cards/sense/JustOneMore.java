@@ -12,6 +12,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.powers.StrengthPower;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
@@ -53,6 +54,7 @@ public class JustOneMore extends GkmasCard {
         int count = AbstractDungeon.player.getPower(GoodTune.POWER_ID) == null ? 0 : AbstractDungeon.player.getPower(GoodTune.POWER_ID).amount;
         if (count > 0) {
             addToBot(new RemoveSpecificPowerAction(p, p, GoodTune.POWER_ID));
+            addToTop(new ApplyPowerAction(p, p, new StrengthPower(p, count), count));
         } else {
             addToBot(new ApplyPowerAction(p,  p,  new NotGoodTune( p, this.magicNumber), this.magicNumber));
 

@@ -15,6 +15,7 @@ import gkmasmod.actions.BlockDamageAction;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
+import gkmasmod.utils.IdolData;
 import gkmasmod.utils.NameHelper;
 import gkmasmod.utils.SoundHelper;
 
@@ -30,13 +31,12 @@ public class FullOfEnergy extends GkmasCard {
     private static final int COST = 0;
 
     private static final int BASE_MAGIC = 2;
-    private static final int UPGRADE_PLUS_MAGIC = 1;
     private static final int BASE_MAGIC2 = 50;
     private static final int UPGRADE_PLUS_MAGIC2 = 20;
 
     private static final int BASE_BLOCK = 2;
 
-    private static final int BASE_HP = 4;
+    private static final int BASE_HP = 3;
 
     private static final CardType TYPE = CardType.ATTACK;
     private static final CardColor COLOR = PlayerColorEnum.gkmasModColorLogic;
@@ -59,6 +59,8 @@ public class FullOfEnergy extends GkmasCard {
         flavor = FlavorText.CardStringsFlavorField.flavor.get(CARD_STRINGS);
         this.tags.add(GkmasCardTag.YARUKI_TAG);
         this.tags.add(GkmasCardTag.IDOL_CARD_TAG);
+        this.backGroundColor = IdolData.kcna;
+        updateBackgroundImg();
     }
 
 
@@ -86,7 +88,6 @@ public class FullOfEnergy extends GkmasCard {
     public void upgrade() {
         if (!this.upgraded) {
             upgradeName();
-            upgradeMagicNumber(UPGRADE_PLUS_MAGIC);
             upgradeSecondMagicNumber(UPGRADE_PLUS_MAGIC2);
             if (CARD_STRINGS.UPGRADE_DESCRIPTION != null)
                 this.rawDescription = CARD_STRINGS.UPGRADE_DESCRIPTION;

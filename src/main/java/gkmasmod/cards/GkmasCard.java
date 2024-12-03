@@ -43,6 +43,11 @@ public abstract class GkmasCard extends CustomCard  implements CardImgUpdateList
     public boolean upgradedHPMagicNumber;
     public boolean isHPMagicNumberModified;
 
+    public int growMagicNumber;
+    public int baseGrowMagicNumber;
+    public boolean upgradedGrowMagicNumber;
+    public boolean isGrowMagicNumberModified;
+
     public int secondDamage;
     public int baseSecondDamage;
     public boolean upgradedSecondDamage;
@@ -62,6 +67,8 @@ public abstract class GkmasCard extends CustomCard  implements CardImgUpdateList
     public int cardPreviewCount = 0;
 
     public int cardPreviewIndex = 0;
+
+    public String backGroundColor="";
 
     public boolean updateShowImg=false;
     public GkmasCard(final String id,
@@ -84,6 +91,7 @@ public abstract class GkmasCard extends CustomCard  implements CardImgUpdateList
         isSecondMagicNumberModified = false;
         isThirdMagicNumberModified = false;
         isHPMagicNumberModified = false;
+        isGrowMagicNumberModified = false;
         isSecondDamageModified = false;
         isSecondBlockModified = false;
         //imgMap.clear();
@@ -113,6 +121,7 @@ public abstract class GkmasCard extends CustomCard  implements CardImgUpdateList
         isSecondMagicNumberModified = false;
         isThirdMagicNumberModified = false;
         isHPMagicNumberModified = false;
+        isGrowMagicNumberModified = false;
         isSecondDamageModified = false;
         isSecondBlockModified = false;
         //imgMap.clear();
@@ -144,6 +153,10 @@ public abstract class GkmasCard extends CustomCard  implements CardImgUpdateList
             secondBlock = baseSecondBlock;
             isSecondBlockModified = true;
         }
+        if (upgradedGrowMagicNumber) {
+            growMagicNumber = baseGrowMagicNumber;
+            isGrowMagicNumberModified = true;
+        }
 
     }
 
@@ -163,6 +176,12 @@ public abstract class GkmasCard extends CustomCard  implements CardImgUpdateList
         baseHPMagicNumber += amount; // Upgrade the number by the amount you provide in your card.
         HPMagicNumber = baseHPMagicNumber; // Set the number to be equal to the base value.
         upgradedHPMagicNumber = true; // Upgraded = true - which does what the above method does.
+    }
+
+    public void upgradeGrowMagicNumber(int amount) { // If we're upgrading (read: changing) the number. Note "upgrade" and NOT "upgraded" - 2 different things. One is a boolean, and then this one is what you will usually use - change the integer by how much you want to upgrade.
+        baseGrowMagicNumber += amount; // Upgrade the number by the amount you provide in your card.
+        growMagicNumber = baseGrowMagicNumber; // Set the number to be equal to the base value.
+        upgradedGrowMagicNumber = true; // Upgraded = true - which does what the above method does.
     }
 
     public void upgradeSecondDamage(int amount) { // If we're upgrading (read: changing) the number. Note "upgrade" and NOT "upgraded" - 2 different things. One is a boolean, and then this one is what you will usually use - change the integer by how much you want to upgrade.
@@ -376,17 +395,38 @@ public abstract class GkmasCard extends CustomCard  implements CardImgUpdateList
     public void updateImg(){
         //imgMap.clear();
         String CLASSNAME = this.getClass().getSimpleName();
+        String idolName;
         if (updateShowImg){
-            this.textureImg = String.format("gkmasModResource/img/idol/%s/cards/%s.png", SkinSelectScreen.Inst.idolName , CLASSNAME);
-            System.out.println("updateImg: "+this.textureImg);
-            loadCardImage(String.format("gkmasModResource/img/idol/%s/cards/%s.png", SkinSelectScreen.Inst.idolName , CLASSNAME));
+            idolName = SkinSelectScreen.Inst.idolName;
+            this.textureImg = String.format("gkmasModResource/img/idol/%s/cards/%s.png", idolName , CLASSNAME);
+//            System.out.println("updateImg: "+this.textureImg);
+            loadCardImage(String.format("gkmasModResource/img/idol/%s/cards/%s.png", idolName , CLASSNAME));
         }
     }
 
     public void updateBackgroundImg(){
+        String idolName;
+        idolName = SkinSelectScreen.Inst.idolName;
         Color color = Settings.RED_TEXT_COLOR.cpy();
-        if(SkinSelectScreen.Inst.idolName.equals(IdolData.fktn)){
+        Color textColor = Settings.BLUE_RELIC_COLOR.cpy();
+        if(backGroundColor!="")
+            idolName = backGroundColor;
+        if(idolName.equals(IdolData.fktn)){
+            basemod.ReflectionHacks.setPrivate(this, AbstractCard.class, "textColor", textColor);
             basemod.ReflectionHacks.setPrivate(this, AbstractCard.class, "goldColor", color);
+            this.initializeDescription();
+        }
+        else if(idolName.equals(IdolData.jsna)){
+            basemod.ReflectionHacks.setPrivate(this, AbstractCard.class, "textColor", textColor);
+            basemod.ReflectionHacks.setPrivate(this, AbstractCard.class, "goldColor", color);
+            this.initializeDescription();
+        }
+        else{
+            color = Settings.GOLD_COLOR.cpy();
+            textColor = Settings.CREAM_COLOR.cpy();
+            basemod.ReflectionHacks.setPrivate(this, AbstractCard.class, "textColor", textColor);
+            basemod.ReflectionHacks.setPrivate(this, AbstractCard.class, "goldColor", color);
+
             this.initializeDescription();
         }
 
@@ -408,10 +448,13 @@ public abstract class GkmasCard extends CustomCard  implements CardImgUpdateList
         else if (this.color == PlayerColorEnum.gkmasModColorSense){
             colorTypeString = "sense_";
         }
+        else if (this.color == PlayerColorEnum.gkmasModColorAnomaly){
+            colorTypeString = "anomaly_";
+        }
 
         setBackgroundTexture(
-                String.format(carduiImgFormat, SkinSelectScreen.Inst.idolName ,512,colorTypeString, typeString),
-                String.format(carduiImgFormat, SkinSelectScreen.Inst.idolName ,1024,colorTypeString, typeString)
+                String.format(carduiImgFormat, idolName ,512,colorTypeString, typeString),
+                String.format(carduiImgFormat, idolName ,1024,colorTypeString, typeString)
                 );
     }
 
@@ -509,6 +552,10 @@ public abstract class GkmasCard extends CustomCard  implements CardImgUpdateList
 
             fontData.setScale(originalScale);
         }
+    }
+
+    public void customTrigger(){
+
     }
 
     public void renderCardHeader(SpriteBatch sb) {

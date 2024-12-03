@@ -3,7 +3,7 @@
     "NAME": "超绝安眠眼罩",
     "FLAVOR": "睡得更香。",
     "DESCRIPTIONS": [
-      "训练时间结束时，消耗 #b%d 点体力，对所有敌人造成自身 #y格挡 #b%d %%的伤害。 NL (每场战斗可触发 #b%d 次)。"
+      "训练时间结束时，失去 #b%d 点体力，对所有敌人造成自身 #y格挡 #b%d %%的伤害。 NL (每场战斗可触发 #b%d 次)。"
     ]
   },
   "BeginnerGuideForEveryone": {
@@ -17,7 +17,7 @@
     "NAME": "路边野草研究笔记",
     "FLAVOR": "这些笔记记录了一些有趣研究结果。",
     "DESCRIPTIONS": [
-      "训练时间剩余 #b1 层时和结束时，消耗 #b%d 点体力，对所有敌人造成自身 #y格挡 #b%d %%的伤害。 NL (每场战斗可触发 #b%d 次)。"
+      "训练时间剩余 #b1 层时和结束时，失去 #b%d 点体力，对所有敌人造成自身 #y格挡 #b%d %%的伤害。 NL (每场战斗可触发 #b%d 次)。"
     ]
   },
   "TowardsAnUnseenWorld": {
@@ -66,7 +66,7 @@
     "NAME": "永不沮丧的手帕",
     "FLAVOR": "这块手帕会让人开心。",
     "DESCRIPTIONS": [
-      "使用 #y攻击牌 时，消耗 #b%d 点体力，对敌人造成自身 #y格挡 层数 #b%d %%的伤害。 NL (每场战斗可触发 #b%d 次)。"
+      "使用 #y攻击牌 后，失去 #b%d 点体力，对敌人造成自身 #y格挡 层数 #b%d %%的伤害。 NL (每场战斗可触发 #b%d 次)。"
     ]
   },
   "SecretTrainingCardigan": {
@@ -80,7 +80,7 @@
     "NAME": "满满一杯的心动",
     "FLAVOR": "要来咯。",
     "DESCRIPTIONS": [
-      "训练时间结束时，消耗 #b%d 点体力，对随机敌人造成 #b%d 点伤害。 NL 每打出一张牌伤害增加 #b%d 。 NL (每场战斗可触发 #b%d 次)。"
+      "训练时间结束时，失去 #b%d 点体力，对随机敌人造成 #b%d 点伤害。 NL 每打出一张牌伤害增加 #b%d 。 NL (每场战斗可触发 #b%d 次)。"
     ]
   },
   "TechnoDog": {
@@ -101,7 +101,7 @@
     "NAME": "源源不断的活力之源",
     "FLAVOR": "是佑芽最喜欢的东西。",
     "DESCRIPTIONS": [
-      "使用 #y技能牌 时，如果 #y敏捷 大于 #b%d ，则获得 #b%d 点 #y敏捷 ， #y再动 。 NL (每场战斗可触发 #b%d 次)。"
+      "使用 #y技能牌 后，如果 #y敏捷 大于 #b%d ，则获得 #b%d 点 #y敏捷 ， #y再动 。 NL (每场战斗可触发 #b%d 次)。"
     ]
   },
   "RoaringLion": {
@@ -129,7 +129,7 @@
     "NAME": "并肩作战的毛巾",
     "FLAVOR": "这块毛巾是用来战斗的。",
     "DESCRIPTIONS": [
-      "使用 #y攻击牌 时，获得 #b%d 层 #y好调 ， #y再动 。 NL (每场战斗可触发 #b%d 次)。"
+      "使用 #y攻击牌 后，获得 #b%d 层 #y好调 ， #y再动 。 NL (每场战斗可触发 #b%d 次)。"
     ]
   },
   "WinningDetermination": {
@@ -213,7 +213,7 @@
     "NAME": "噼啪作响的烟火",
     "FLAVOR": "这是噼啪作响的烟火。",
     "DESCRIPTIONS": [
-      "每 #b%d 回合，如果 #y好印象 大于 #b%d ，则消耗 #y%d 点体力，获得等于 #y好印象 层数的 #y格挡 以及 #b%d 点 #y敏捷 。"
+      "每 #b%d 回合，如果 #y好印象 大于 #b%d ，则失去 #y%d 点体力，获得等于 #y好印象 层数的 #y格挡 以及 #b%d 点 #y敏捷 。"
     ]
   },
   "GentlemanHandkerchief": {
@@ -269,7 +269,7 @@
     "NAME": "青蛙风扇",
     "FLAVOR": "这是青蛙风扇。",
     "DESCRIPTIONS": [
-      "使用 #y攻击牌 时，如果 #y敏捷 大于 #b%d ，则消耗 #b%d 点体力，对目标造成 #y敏捷 层数 #b%d %%的伤害。 NL (每场战斗可触发 #b%d 次)。"
+      "使用 #y攻击牌 后，如果 #y敏捷 大于 #b%d ，则失去 #b%d 点体力，对目标造成 #y敏捷 层数 #b%d %%的伤害。 NL (每场战斗可触发 #b%d 次)。"
     ]
   },
   "EssentialStainlessSteelBottle": {
@@ -290,7 +290,7 @@
     "NAME": "我「最初」的乐谱",
     "FLAVOR": "这是我的第一份乐谱。",
     "DESCRIPTIONS": [
-      "回合结束时，如果 #y格挡 小于 #b%d ，则消耗 #b%d 点体力，获得 #b%d 点 #y力量 。 NL (每场战斗可触发 #b%d 次)。"
+      "回合结束时，如果 #y格挡 小于 #b%d ，则失去 #b%d 点体力，获得 #b%d 点 #y力量 。 NL (每场战斗可触发 #b%d 次)。"
     ]
   },
   "ProtectiveEarphones": {
@@ -346,7 +346,7 @@
     "NAME": "初心之证·千奈",
     "FLAVOR": "千奈的初心之证。",
     "DESCRIPTIONS": [
-      " #y训练时间 结束时，消耗 #b%d 点体力，对随机敌人造成 #b%d 点伤害。 NL 每打出一张牌伤害增加 #b%d 。 NL (每场战斗可触发 #b%d 次)。"
+      " #y训练时间 结束时，失去 #b%d 点体力，对随机敌人造成 #b%d 点伤害。 NL 每打出一张牌伤害增加 #b%d 。 NL (每场战斗可触发 #b%d 次)。"
     ]
   },
   "FirstHeartProofLilja": {
@@ -360,7 +360,7 @@
     "NAME": "感理之衡",
     "FLAVOR": "感性与理性的完美平衡。",
     "DESCRIPTIONS": [
-      "战斗奖励掉落的卡牌现在会同时出现 #y感性卡 和 #y理性卡 。"
+      "战斗奖励掉落的卡牌现在会同时出现 #y感性卡 、 #y理性卡 和 #y非凡卡 。"
     ]
   },
   "FashionMode": {
@@ -372,7 +372,7 @@
   },
   "FirstStarBracelet": {
     "NAME": "初星手镯",
-    "FLAVOR": "初星手镯。",
+    "FLAVOR": "初星手镯，但是只拥有一半神力。",
     "DESCRIPTIONS": [
       "SP战斗结束后，失去 #b%d 点体力， #y升级 一张牌。 NL (本局游戏可触发 #b%d 次)。"
     ]
@@ -444,14 +444,14 @@
     "NAME": "笨拙的蝙蝠",
     "FLAVOR": "笨拙的蝙蝠。",
     "DESCRIPTIONS": [
-      "每 #b%d 回合，如果 #y好印象 大于 #b%d ，则对随机敌人造成 #y格挡 层数 #b%d %%、 #y敏捷 层数 #b%d %%的伤害， #y好印象 层数减少 #b%d 。"
+      "每 #b%d 回合，在回合结束时，如果 #y好印象 大于 #b%d ，则对随机敌人造成 #y格挡 层数 #b%d %%、 #y敏捷 层数 #b%d %%的伤害， #y好印象 层数减少 #b%d 。"
     ]
   },
   "CursedSpirit": {
     "NAME": "呜~啦~咪~嘻~呀~",
     "FLAVOR": "呜~啦~咪~嘻~呀~",
     "DESCRIPTIONS": [
-      "使用 #y攻击牌 后，获得 #b%d 点 #y固定格挡 。 NL (每场战斗可触发 #b%d 次)。"
+      "使用 #y攻击牌 后，获得 #b%d 点 #y固定格挡 。"
     ]
   },
   "NaughtyPuppet": {
@@ -479,7 +479,7 @@
     "NAME": "初恋之证·清夏",
     "FLAVOR": "初恋之证·清夏",
     "DESCRIPTIONS": [
-      "出牌后，如果 #y敏捷 大于 #b%d ，则消耗 #b%d 点体力，对目标造成 #y敏捷 层数 #b%d %%的伤害。 NL (每场战斗可触发 #b%d 次)。"
+      "出牌后，如果 #y敏捷 大于 #b%d ，则失去 #b%d 点体力，对目标造成 #y敏捷 层数 #b%d %%的伤害。 NL (每场战斗可触发 #b%d 次)。"
     ]
   },
   "ItsPerfect": {
@@ -509,6 +509,160 @@
     "DESCRIPTIONS": [
       "右键使用，获得制作人的帮助。 NL (每场战斗可呼叫 #b1 次)。"
     ]
+  },
+  "StruggleRecord": {
+    "NAME": "斗争的记录",
+    "FLAVOR": "战斗，爽。",
+    "DESCRIPTIONS": [
+      "SP触发概率增加 #b%d %%。"
+    ]
+  },
+  "MasterGirding": {
+    "NAME": "增强型束带",
+    "FLAVOR": "增强型束带。",
+    "DESCRIPTIONS": [
+      "每次进入特殊商店时，回复 #b%d 点体力， NL 特殊商店涨价 #b%d %%，敌人血量提高 #b%d %%。 NL 获得属性提高 #b%d 。"
+    ]
+  },
+  "MasterHighHeels": {
+    "NAME": "增强型高跟鞋",
+    "FLAVOR": "增强型高跟鞋。",
+    "DESCRIPTIONS": [
+      "战斗开始时，获得 #b%d 点 #y格挡 。 NL 获得 #y%s 牌时，失去 #b%d 点金币，敌方血量提高 #b%d %%。 NL (本局游戏可触发 #b%d 次)。 NL 获得属性提高 #b%d 。"
+    ]
+  },
+  "MasterVest": {
+    "NAME": "增强型背心",
+    "FLAVOR": "真得删卡！",
+    "DESCRIPTIONS": [
+      "随机删除 #b%d 张 #y初始卡 。 NL 敌人血量提高 #b%d %%。 NL 获得属性提高 #b%d 。"
+    ]
+  },
+  "MasterSupportFrame": {
+    "NAME": "增强型支撑架",
+    "FLAVOR": "增强型支撑架。",
+    "DESCRIPTIONS": [
+      "战斗开始时，获得 #b%d 点 #y格挡 和 #b%d %s #y%s 。 NL Boss战中，特殊回合减少 #b%d 。 NL 敌人血量提高 #b%d %%。 NL 获得属性提高 #b%d 。",
+      "战斗开始时，获得 #b%d 点 #y全力值 ，进入 #y温存 。 NL Boss战中，特殊回合减少 #b%d 。 NL 敌人血量提高 #b%d %%。 NL 获得属性提高 #b%d 。",
+      "战斗开始时，所有牌获得 #y伤害追加 #b%d ，进入 #y温存 。 NL Boss战中，特殊回合减少 #b%d 。 NL 敌人血量提高 #b%d %%。 NL 获得属性提高 #b%d 。"
+    ]
+  },
+  "MasterRoller": {
+    "NAME": "增强型滚轮",
+    "FLAVOR": "增强型滚轮。",
+    "DESCRIPTIONS": [
+      "战斗开始时，获得 #b%d 点 #y格挡 和 #b%d %s #y%s 。 NL SP战斗开始时，首回合造成伤害减少 #b%d %%。 NL 获得属性提高 #b%d 。",
+      "战斗开始时，获得 #b%d 点 #y格挡 和 #b%d 点 #y全力值 ，进入 #y温存 。 NL SP战斗开始时，失去 [E] 。 NL 获得属性提高 #b%d 。",
+      "战斗开始时，获得 #b%d 点 #y格挡 ，进入 #y温存2段 。 NL SP战斗开始时，首回合造成伤害减少 #b%d %%。 NL 获得属性提高 #b%d 。"
+    ]
+  },
+  "MasterBall": {
+    "NAME": "增强型球",
+    "FLAVOR": "增强型球。",
+    "DESCRIPTIONS": [
+      "获得 #b%d 点金币。 NL 敌人血量提高 #b%d %%。 NL 获得属性提高 #b%d 。"
+    ]
+  },
+  "MasterTreadmill": {
+    "NAME": "增强型跑步机",
+    "FLAVOR": "增强型跑步机。",
+    "DESCRIPTIONS": [
+      "SP战斗开始时，获得 #b%d 点 #y格挡 和 #b%d %s #y%s ，造成伤害减少 #b%d %%。 NL 敌人血量提高 #b%d %%。 NL 获得属性提高 #b%d 。",
+      "SP战斗开始时，进入 #y温存 ，获得 #b%d 点 #y全力值 ，造成伤害减少 #b%d %%。 NL 敌人血量提高 #b%d %%。 NL 获得属性提高 #b%d 。",
+      "SP战斗开始时，进入 #y温存 ，所有牌获得 #y伤害追加 #b%d ，造成伤害减少 #b%d %%。 NL 敌人血量提高 #b%d %%。 NL 获得属性提高 #b%d 。"
+    ]
+  },
+  "MasterDumbbell": {
+    "NAME": "增强型哑铃",
+    "FLAVOR": "增强型哑铃。",
+    "DESCRIPTIONS": [
+      "回合开始时，抽 #b%d 张牌。 NL 回合结束时，失去 #b%d %s #y%s 。 NL 敌人血量提高 #b%d %%。 NL 获得属性提高 #b%d 。",
+      "回合开始时，抽 #b%d 张牌，退出当前 #y姿态 。 NL 敌人血量提高 #b%d %%。 NL 获得属性提高 #b%d 。",
+      "回合开始时，抽 #b%d 张牌，所有牌获得 #y伤害减少 #b%d 。 NL 敌人血量提高 #b%d %%。 NL 获得属性提高 #b%d 。"
+    ]
+  },
+  "AnimateEquipment": {
+    "NAME": "Animate装备",
+    "FLAVOR": "Animate联动装备。",
+    "DESCRIPTIONS": [
+      "每 #b%d 回合，如果拥有 #y好调 ，则获得 #y好调 层数 #b%d %%的 #y力量 ，获得 #b%d 点 #y力量 和 #b%d 点 #y格挡 。 NL (每场战斗可触发 #b%d 次)。"
+    ]
+  },
+  "ReChallenge": {
+    "NAME": "再挑战券",
+    "FLAVOR": "在新的世界线，继续寻找无限的可能性——",
+    "DESCRIPTIONS": [
+      "在精英战和Boss战中可右键使用，使用新的 #y随机数 重新挑战。 NL (每次进入特殊商店后获得 #b1 次使用次数)"
+    ]
+  },
+  "FreeTicket": {
+    "NAME": "无料抽奖券",
+    "FLAVOR": "这次会抽中什么呢？",
+    "DESCRIPTIONS": [
+      "进入商店时，使随机物品免费。"
+    ]
+  },
+  "EveryoneTextbook": {
+    "NAME": "大家的教科书",
+    "FLAVOR": "好奇心害死__？",
+    "DESCRIPTIONS": [
+      "进入 #y？ 时，获得 #b%d 点Vo， #b%d 点Da， #b%d 点Vi。"
+    ]
+  },
+  "IdolNoSoul": {
+    "NAME": "偶像之魂",
+    "FLAVOR": "偶像之道，尽在其中。",
+    "DESCRIPTIONS": [
+      "战斗开始时，将一张 #y偶像魂 加入手牌。"
+    ]
+  },
+  "FirstStarClock": {
+    "NAME": "初星时钟",
+    "FLAVOR": "初星时钟。",
+    "DESCRIPTIONS": [
+      "回合开始时，如果 #y全力值 大于 #b%d ，则获得 #b%d 点 #y全力值 ， #y再动 。 NL (每场战斗可触发 #b%d 次)。"
+    ]
+  },
+  "FirstStarModel": {
+    "NAME": "初星模型",
+    "FLAVOR": "初星模型。",
+    "DESCRIPTIONS": [
+      "回合开始时，如果处于 #y强气 ，则进入 #y温存2段 ， #y再动 。 NL (每场战斗可触发 #b%d 次)。"
+    ]
+  },
+  "TeaCaddy": {
+    "NAME": "茶叶罐",
+    "FLAVOR": "茶叶罐。",
+    "DESCRIPTIONS": [
+      "使用 #y攻击牌 后，如果处于 #y强气 ，则对随机敌人造成 #b%d 点伤害，回复 #b%d 点体力。 NL (每场战斗可触发 #b%d 次)。"
+    ]
+  },
+  "EveryoneDream": {
+    "NAME": "大家的憧憬",
+    "FLAVOR": "大家的憧憬。",
+    "DESCRIPTIONS": [
+      "出牌时，如果处于 #y全力 ，则对随机敌人造成 #b%d 点伤害，获得 #b%d #y格挡 。 NL (每场战斗可触发 #b%d 次)。"
+    ]
+  },
+  "AbsoluteNewSelf": {
+    "NAME": "全新的我",
+    "FLAVOR": "全新的我。",
+    "DESCRIPTIONS": [
+      "使用 #y攻击牌 后，如果处于 #y强气 ，则对随机敌人造成 #b%d 点伤害，回复 #b%d 点体力。 NL (每场战斗可触发 #b%d 次)。"
+    ]
+  },
+  "FreeLoveMax": {
+    "NAME": "费用零元 爱情MAX",
+    "FLAVOR": "费用零元 爱情MAX。",
+    "DESCRIPTIONS": [
+      "回合开始时，如果 敏捷 大于 #b%d ，则获得 #b%d 点 #y格挡 。 NL (每场战斗可触发 #b%d 次)。"
+    ]
+  },
+  "ChristmasLion": {
+    "NAME": "圣诞狮子",
+    "FLAVOR": "圣诞狮子。",
+    "DESCRIPTIONS": [
+      "训练时间剩余 #b1 层时和结束时，对随机敌人造成 #y好调 层数 #b%d %%的伤害。 NL (每场战斗可触发 #b%d 次)。"
+    ]
   }
-
 }

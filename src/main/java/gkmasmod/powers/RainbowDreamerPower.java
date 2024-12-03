@@ -49,7 +49,7 @@ public class RainbowDreamerPower extends AbstractPower {
 
     public void atEndOfTurnPreEndTurnCards(boolean isPlayer) {
         flash();
-        int count = PlayerHelper.getPowerAmount(AbstractDungeon.player,GoodImpression.POWER_ID);
+        int count = PlayerHelper.getPowerAmount(this.owner,GoodImpression.POWER_ID);
         if(count>2){
             addToTop(new ApplyPowerAction(this.owner, this.owner, new GoodImpression(this.owner, this.amount*3), this.amount*3));
         }

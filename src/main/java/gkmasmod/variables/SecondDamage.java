@@ -3,6 +3,7 @@ package gkmasmod.variables;
 import basemod.abstracts.DynamicVariable;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import gkmasmod.cards.GkmasCard;
+import gkmasmod.downfall.cards.GkmasBossCard;
 
 
 public class SecondDamage extends DynamicVariable {
@@ -19,22 +20,38 @@ public class SecondDamage extends DynamicVariable {
 
     @Override
     public boolean isModified(AbstractCard card) {
-        return ((GkmasCard) card).isSecondDamageModified;
+        if(card instanceof GkmasCard)
+            return ((GkmasCard) card).isSecondDamageModified;
+        else if(card instanceof GkmasBossCard)
+            return ((GkmasBossCard) card).isSecondDamageModified;
+        return false;
 
     }
 
     @Override
     public int value(AbstractCard card) {
+        if (card instanceof GkmasCard)
+            return ((GkmasCard) card).secondDamage;
+        else if (card instanceof GkmasBossCard)
+            return ((GkmasBossCard) card).secondDamage;
         return ((GkmasCard) card).secondDamage;
     }
 
     @Override
     public int baseValue(AbstractCard card) {
+        if (card instanceof GkmasCard)
+            return ((GkmasCard) card).baseSecondDamage;
+        else if (card instanceof GkmasBossCard)
+            return ((GkmasBossCard) card).baseSecondDamage;
         return ((GkmasCard) card).baseSecondDamage;
     }
 
     @Override
     public boolean upgraded(AbstractCard card) {
+        if (card instanceof GkmasCard)
+            return ((GkmasCard) card).upgradedSecondDamage;
+        else if (card instanceof GkmasBossCard)
+            return ((GkmasBossCard) card).upgradedSecondDamage;
         return ((GkmasCard) card).upgradedSecondDamage;
     }
 }

@@ -2,6 +2,7 @@ package gkmasmod.utils;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 
@@ -10,7 +11,7 @@ import static gkmasmod.characters.PlayerColorEnum.gkmasModColor;
 import static gkmasmod.characters.PlayerColorEnum.gkmasModColorSense;
 
 public class PlayerHelper {
-    public static int getPowerAmount(AbstractPlayer p,String powerID) {
+    public static int getPowerAmount(AbstractCreature p, String powerID) {
         return p.getPower(powerID)==null?0:p.getPower(powerID).amount;
     }
 

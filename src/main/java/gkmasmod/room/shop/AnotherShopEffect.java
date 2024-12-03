@@ -38,7 +38,7 @@ public class AnotherShopEffect extends AbstractGameEffect {
 
     private void updatePurge() {
         if (!AbstractDungeon.gridSelectScreen.selectedCards.isEmpty() &&AbstractDungeon.gridSelectScreen.forPurge==true) {
-            ShopScreen.purgeCard();
+            AnotherShopScreen.purgeCard();
             for (AbstractCard card : AbstractDungeon.gridSelectScreen.selectedCards) {
                 CardCrawlGame.metricData.addPurgedItem(card.getMetricID());
                 AbstractDungeon.topLevelEffects.add(new PurgeCardEffect(card, Settings.WIDTH / 2.0F, Settings.HEIGHT / 2.0F));

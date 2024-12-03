@@ -60,6 +60,7 @@ public class ThisIsMe extends CustomRelic {
             if(count>GOOD_IMPRESSION){
                 int damage = count;
                 addToBot(new RelicAboveCreatureAction(AbstractDungeon.player, this));
+                this.flash();
                 addToBot(new ModifyDamageRandomEnemyAction(new DamageInfo(AbstractDungeon.player, damage, DamageInfo.DamageType.THORNS), AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
                 addToBot(new GainBlockWithPowerAction(AbstractDungeon.player, magicNumber));
                 this.counter--;

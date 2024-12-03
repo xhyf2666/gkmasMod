@@ -1,22 +1,18 @@
 package gkmasmod.powers;
 
+import gkmasmod.downfall.charbosses.actions.common.EnemyGainEnergyAction;
+import gkmasmod.downfall.charbosses.bosses.AbstractCharBoss;
+import gkmasmod.downfall.charbosses.cards.AbstractBossCard;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.GainEnergyAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
-import com.megacrit.cardcrawl.relics.MummifiedHand;
-import gkmasmod.actions.ForShiningYouDamageAction;
-import gkmasmod.cards.logic.ForShiningYou;
 import gkmasmod.utils.NameHelper;
-import gkmasmod.utils.PlayerHelper;
 
 public class MadeOneForYouPower extends AbstractPower {
     private static final String CLASSNAME = MadeOneForYouPower.class.getSimpleName();
@@ -49,9 +45,16 @@ public class MadeOneForYouPower extends AbstractPower {
     }
 
     public void onUseCard(AbstractCard card, UseCardAction action) {
+        if(!(this.owner instanceof AbstractCharBoss)&&card instanceof AbstractBossCard)
+            return;
+        if(this.owner instanceof AbstractCharBoss&&(!(card instanceof AbstractBossCard)))
+            return;
         flash();
         if(card.costForTurn > 1){
-            addToBot(new GainEnergyAction(1));
+            if(this.owner.isPlayer)
+                addToBot(new GainEnergyAction(1));
+            else
+                addToBot(new EnemyGainEnergyAction(1));
         }
     }
 }

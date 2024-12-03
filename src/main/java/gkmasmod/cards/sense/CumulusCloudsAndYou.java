@@ -13,6 +13,7 @@ import gkmasmod.powers.BurstAttackPower;
 import gkmasmod.powers.BurstAttackTwoRoundPower;
 import gkmasmod.powers.GoodTune;
 import gkmasmod.powers.HalfDamageReceive;
+import gkmasmod.utils.IdolData;
 import gkmasmod.utils.NameHelper;
 import gkmasmod.utils.SoundHelper;
 
@@ -45,6 +46,8 @@ public class CumulusCloudsAndYou extends GkmasCard {
         this.exhaust = true;
         this.tags.add(GkmasCardTag.GOOD_TUNE_TAG);
         this.tags.add(GkmasCardTag.IDOL_CARD_TAG);
+        this.backGroundColor = IdolData.hrnm;
+        updateBackgroundImg();
     }
 
 
@@ -53,7 +56,7 @@ public class CumulusCloudsAndYou extends GkmasCard {
         addToBot(new ApplyPowerAction(p, p, new GoodTune(p, this.magicNumber), this.magicNumber));
         addToBot(new ApplyPowerAction(p, p, new HalfDamageReceive(p, this.secondMagicNumber), this.secondMagicNumber));
         addToBot(new ApplyPowerAction(p, p, new BurstAttackTwoRoundPower(p, 1), 1));
-        SoundHelper.playSound("gkmasModResource/audio/voice/skillcard/cidol_hrnm_3_001_produce_skillcard_01.ogg");
+        SoundHelper.playSound("gkmasModResource/audio/voice/skillcard/cidol_hrnm_3_003_produce_skillcard_01.ogg");
 
     }
 

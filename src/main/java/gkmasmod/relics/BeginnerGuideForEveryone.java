@@ -24,7 +24,7 @@ public class BeginnerGuideForEveryone extends CustomRelic {
 
     private static final RelicTier RARITY = RelicTier.STARTER;
 
-    private static final int magicNumber = 5;
+    private static final int magicNumber = 3;
     private static final int playTimes = 1;
 
     private static final int BLOCK = 6;
@@ -57,6 +57,7 @@ public class BeginnerGuideForEveryone extends CustomRelic {
             int amount = AbstractDungeon.player.currentBlock;
             if(amount>BLOCK){
                 addToBot(new RelicAboveCreatureAction(AbstractDungeon.player, this));
+                this.flash();
                 addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new DexterityPower(AbstractDungeon.player, magicNumber), magicNumber));
                 this.counter--;
                 if (this.counter == 0) {

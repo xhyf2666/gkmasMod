@@ -53,12 +53,14 @@ public class EncoreCall extends GkmasCard {
         this.secondMagicNumber = this.baseSecondMagicNumber;
         this.tags.add(GkmasCardTag.GOOD_TUNE_TAG);
         this.tags.add(GkmasCardTag.FOCUS_TAG);
+        this.tags.add(GkmasCardTag.MORE_ACTION_TAG);
+
     }
 
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        AbstractDungeon.actionManager.addToBottom( new DamageAction( m, new DamageInfo( p, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
+        addToBot( new DamageAction( m, new DamageInfo( p, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
         addToBot(new ApplyPowerAction(p, p, new StrengthPower(p, -this.magicNumber), -this.magicNumber));
         addToBot(new ApplyPowerAction(p, p, new GoodTune(p, this.secondMagicNumber), this.secondMagicNumber));
         addToBot(new GainTrainRoundPowerAction(p,1));

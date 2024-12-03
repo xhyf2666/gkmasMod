@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import gkmasmod.cards.GkmasCard;
+import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.powers.ReduceDamageReceive;
 import gkmasmod.utils.NameHelper;
@@ -42,6 +43,7 @@ public class LightStep extends GkmasCard {
         this.secondMagicNumber = this.baseSecondMagicNumber;
         this.baseBlock = BLOCK_AMT;
         this.exhaust = true;
+        this.tags.add(GkmasCardTag.OUTSIDE_TAG);
     }
 
 

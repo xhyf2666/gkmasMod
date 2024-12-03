@@ -12,11 +12,11 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import gkmasmod.actions.GainTrainRoundPowerAction;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.cards.GkmasCardTag;
-import gkmasmod.characters.IdolCharacter;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.powers.GoodTune;
 import gkmasmod.powers.GreatGoodTune;
 import gkmasmod.utils.CommonEnum;
+import gkmasmod.utils.IdolData;
 import gkmasmod.utils.NameHelper;
 import gkmasmod.utils.SoundHelper;
 
@@ -30,10 +30,9 @@ public class WelcomeToTeaParty extends GkmasCard {
     private static final String IMG_PATH = String.format("gkmasModResource/img/cards/common/%s.png", CLASSNAME);
 
     private static final int COST = 2;
-    private static final int UPGRADE_COST = 1;
     private static final int BASE_MAGIC = 2;
     private static final int UPGRADE_PLUS_MAGIC = 1;
-    private static final int BLOCK_AMT = 3;
+    private static final int BLOCK_AMT = 4;
     private static final int UPGRADE_PLUS_BLOCK = 2;
 
 
@@ -50,6 +49,10 @@ public class WelcomeToTeaParty extends GkmasCard {
         this.exhaust = true;
         this.tags.add(GkmasCardTag.GOOD_TUNE_TAG);
         this.tags.add(GkmasCardTag.IDOL_CARD_TAG);
+        this.tags.add(GkmasCardTag.MORE_ACTION_TAG);
+        this.backGroundColor = IdolData.kcna;
+        updateBackgroundImg();
+
     }
 
 
@@ -72,7 +75,6 @@ public class WelcomeToTeaParty extends GkmasCard {
     public void upgrade() {
         if (!this.upgraded) {
             upgradeName();
-            upgradeBaseCost(UPGRADE_COST);
             upgradeMagicNumber(UPGRADE_PLUS_MAGIC);
             upgradeBlock(UPGRADE_PLUS_BLOCK);
             if (CARD_STRINGS.UPGRADE_DESCRIPTION != null)

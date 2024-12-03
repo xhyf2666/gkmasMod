@@ -17,6 +17,7 @@ import com.megacrit.cardcrawl.powers.BlurPower;
 import com.megacrit.cardcrawl.powers.MinionPower;
 import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
 import gkmasmod.characters.IdolCharacter;
+import gkmasmod.patches.AbstractPlayerPatch;
 import gkmasmod.relics.*;
 import gkmasmod.utils.NameHelper;
 import gkmasmod.utils.PlayerHelper;
@@ -90,6 +91,9 @@ public class TrainRoundSensePower extends AbstractPower {
             if(AbstractDungeon.player.hasRelic(LifeSizeLadyLip.ID)){
                 ((LifeSizeLadyLip)AbstractDungeon.player.getRelic(LifeSizeLadyLip.ID)).onTrainRoundRemove();
             }
+            if(AbstractDungeon.player.hasRelic(ChristmasLion.ID)){
+                ((ChristmasLion)AbstractDungeon.player.getRelic(ChristmasLion.ID)).onTrainRoundRemove();
+            }
         }
         if (this.amount-reduceAmount == 0){
             addToTop(new RemoveSpecificPowerAction(this.owner, this.owner, this.ID));
@@ -117,8 +121,6 @@ public class TrainRoundSensePower extends AbstractPower {
 
     public void atEndOfTurn(boolean isPlayer) {
         flash();
-        if(this.isDone)
-            return;
         if(this.amount > 0){
             addToBot(new ReducePowerAction(this.owner, this.owner, POWER_ID, 1));
         }
@@ -127,6 +129,8 @@ public class TrainRoundSensePower extends AbstractPower {
     }
 
     public void onAfterUseCard(AbstractCard card, UseCardAction action) {
+        if(action.source!=this.owner)
+            return;
         flash();
 
         addToBot(new ReducePowerAction(this.owner, this.owner, POWER_ID, 1));
@@ -157,6 +161,9 @@ public class TrainRoundSensePower extends AbstractPower {
             if(AbstractDungeon.player.hasRelic(FirstHeartProofChina.ID)){
                 ((FirstHeartProofChina)AbstractDungeon.player.getRelic(FirstHeartProofChina.ID)).onTrainRoundRemove();
             }
+            if(AbstractDungeon.player.hasRelic(ChristmasLion.ID)){
+                ((ChristmasLion)AbstractDungeon.player.getRelic(ChristmasLion.ID)).onTrainRoundRemove();
+            }
         }
         if(!this.isDone){
             ThreeSizeHelper.addThreeSize(true);
@@ -178,8 +185,8 @@ public class TrainRoundSensePower extends AbstractPower {
         int count = (int) (1.0F*damageAmount * currentMagicNumber /100);
         if(AbstractDungeon.player instanceof IdolCharacter){
             IdolCharacter idol = (IdolCharacter) AbstractDungeon.player;
-            if(idol.finalDamageRate > 0){
-                count = (int) (count / idol.finalDamageRate);
+            if(AbstractPlayerPatch.FinalCircleRoundField.finalCircleRound.get(AbstractDungeon.player).size()>0){
+                count = (int) (1.0f*count / (AbstractPlayerPatch.FinalDamageRateField.finalDamageRate.get(AbstractDungeon.player)*1.0f));
             }
         }
         addToTop(new GainBlockAction(AbstractDungeon.player, AbstractDungeon.player, count));

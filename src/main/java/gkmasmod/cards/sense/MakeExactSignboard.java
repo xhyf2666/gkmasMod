@@ -14,6 +14,7 @@ import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.powers.GoodTune;
 import gkmasmod.powers.GreatGoodTune;
+import gkmasmod.utils.IdolData;
 import gkmasmod.utils.NameHelper;
 import gkmasmod.utils.SoundHelper;
 
@@ -27,8 +28,8 @@ public class MakeExactSignboard extends GkmasCard {
     private static final String IMG_PATH = String.format("gkmasModResource/img/cards/common/%s.png", CLASSNAME);
 
     private static final int COST = 2;
-    private static final int BASE_MAGIC = 3;
-    private static final int UPGRADE_PLUS_MAGIC = 2;
+    private static final int BASE_MAGIC = 2;
+    private static final int UPGRADE_PLUS_MAGIC = 1;
     private static final int BASE_MAGIC2 = 1;
 
 
@@ -47,6 +48,10 @@ public class MakeExactSignboard extends GkmasCard {
         this.isInnate = true;
         this.tags.add(GkmasCardTag.GOOD_TUNE_TAG);
         this.tags.add(GkmasCardTag.IDOL_CARD_TAG);
+        this.tags.add(GkmasCardTag.MORE_ACTION_TAG);
+        this.backGroundColor = IdolData.shro;
+        updateBackgroundImg();
+
     }
 
 
@@ -55,7 +60,7 @@ public class MakeExactSignboard extends GkmasCard {
         addToBot(new ApplyPowerAction(p, p, new GoodTune(p, this.magicNumber), this.magicNumber));
         addToBot(new ApplyPowerAction(p, p, new ArtifactPower(p, this.secondMagicNumber), this.secondMagicNumber));
         addToBot(new GainTrainRoundPowerAction(p,1));
-        SoundHelper.playSound("gkmasModResource/audio/voice/skillcard/cidol_shro_3_002_produce_skillcard_01.ogg");
+        SoundHelper.playSound("gkmasModResource/audio/voice/skillcard/cidol_shro_3_006_produce_skillcard_01.ogg");
 
     }
 

@@ -1,0 +1,32 @@
+{
+  "ConcentrationStance1": {
+    "NAME": "强气",
+    "DESCRIPTION": [
+      "造成的伤害和受到的伤害增加 #b100 %。 NL 重复进入这一 #y姿态 时，进入 #y强气2段 。"
+    ]
+  },
+  "ConcentrationStance2": {
+    "NAME": "强气2段",
+    "DESCRIPTION": [
+      "造成的伤害和受到的伤害增加 #b150 %，出牌后失去 #b1 点体力。"
+    ]
+  },
+  "PreservationStance1": {
+    "NAME": "温存",
+    "DESCRIPTION": [
+      "造成的伤害和受到的伤害减少 #b30 %。 NL 离开这一 #y姿态 时，获得 #b2 层 #y热意 ， #y再动 。 NL 重复进入这一 #y姿态 时，进入 #y温存2段 。"
+    ]
+  },
+  "PreservationStance2": {
+    "NAME": "温存2段",
+    "DESCRIPTION": [
+      "造成的伤害和受到的伤害减少 #b50 %。 NL 离开这一 #y姿态 时，获得 #b4 层 #y热意 和 #b5 点 #y格挡 ， #y再动 。"
+    ]
+  },
+  "FullPowerStance": {
+    "NAME": "全力",
+    "DESCRIPTION": [
+      "进入这一 #y姿态 时， #y再动 ，将 #y暂存 的卡牌加入手牌。 NL 造成伤害增加 #b200 %。 NL 回合结束时自动退出这一 #y姿态 。 NL 无法转化为其他 #y姿态 。"
+    ]
+  }
+}

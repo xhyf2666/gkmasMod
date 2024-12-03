@@ -26,12 +26,12 @@ public class StartDash extends GkmasCard {
     private static final String DESCRIPTION = CARD_STRINGS.DESCRIPTION;
     private static String IMG_PATH = String.format("gkmasModResource/img/idol/%s/cards/%s.png", SkinSelectScreen.Inst.idolName, CLASSNAME);
 
-    private static final int COST = 2;
+    private static final int COST = 1;
     private static final int ATTACK_DMG = 10;
     private static final int UPGRADE_PLUS_DMG = 5;
     private static final int BLOCK_AMT = 7;
     private static final int UPGRADE_PLUS_BLOCK = 3;
-    private static final int BASE_MAGIC = 2;
+    private static final int BASE_MAGIC = 1;
 
     private static final CardType TYPE = CardType.ATTACK;
     private static final CardColor COLOR = PlayerColorEnum.gkmasModColorSense;
@@ -51,7 +51,7 @@ public class StartDash extends GkmasCard {
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        AbstractDungeon.actionManager.addToBottom( new DamageAction( m, new DamageInfo( p, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
+        addToBot( new DamageAction( m, new DamageInfo( p, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
         addToBot(new GainBlockAction(p, p, this.block));
         addToBot(new ApplyPowerAction(p, p, new DoubleDamageReceive(p, this.magicNumber), this.magicNumber));
     }

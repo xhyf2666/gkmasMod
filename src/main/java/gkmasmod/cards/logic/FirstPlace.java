@@ -10,6 +10,7 @@ import gkmasmod.cards.GkmasCard;
 import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.powers.GoodImpression;
+import gkmasmod.utils.IdolData;
 import gkmasmod.utils.NameHelper;
 import gkmasmod.utils.SoundHelper;
 
@@ -23,7 +24,7 @@ public class FirstPlace extends GkmasCard {
     private static final String IMG_PATH = String.format("gkmasModResource/img/cards/common/%s.png", CLASSNAME);
 
     private static final int COST = 2;
-    private static final int BASE_MAGIC = 6;
+    private static final int BASE_MAGIC = 8;
     private static final int UPGRADE_PLUS_MAGIC = 2;
 
 
@@ -39,6 +40,8 @@ public class FirstPlace extends GkmasCard {
         this.exhaust = true;
         this.tags.add(GkmasCardTag.GOOD_IMPRESSION_TAG);
         this.tags.add(GkmasCardTag.IDOL_CARD_TAG);
+        this.backGroundColor = IdolData.ttmr;
+        updateBackgroundImg();
     }
 
 

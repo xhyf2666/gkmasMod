@@ -47,6 +47,8 @@ public class Existence extends GkmasCard {
         this.secondMagicNumber = this.baseSecondMagicNumber;
         this.tags.add(GkmasCardTag.GOOD_TUNE_TAG);
         this.tags.add(GkmasCardTag.FOCUS_TAG);
+        this.tags.add(GkmasCardTag.MORE_ACTION_TAG);
+
     }
 
 

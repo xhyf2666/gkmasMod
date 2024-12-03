@@ -3,6 +3,7 @@ package gkmasmod.room.shop;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.PotionHelper;
 import com.megacrit.cardcrawl.potions.AbstractPotion;
+import gkmasmod.characters.IdolCharacter;
 import gkmasmod.potion.*;
 import gkmasmod.screen.SkinSelectScreen;
 import gkmasmod.utils.CommonEnum;
@@ -27,6 +28,8 @@ public class AnotherShopPotions {
 
     public static AbstractPotion returnRandomPotion(AbstractPotion.PotionRarity rarity, boolean limited) {
         AbstractPotion temp = PotionHelper.getRandomPotion();
+        if(!(AbstractDungeon.player instanceof IdolCharacter))
+            return temp;
         CommonEnum.IdolType type = IdolData.getIdol(SkinSelectScreen.Inst.idolIndex).getType(SkinSelectScreen.Inst.skinIndex);
         ArrayList<String> potions = new ArrayList<>();
         if (type == CommonEnum.IdolType.LOGIC) {
@@ -36,10 +39,11 @@ public class AnotherShopPotions {
                     FirstStarWater.ID,
                     FirstStarWheyProtein.ID,
                     FreshVinegar.ID,
-                    HotCoffee.ID,
                     MixedSmoothie.ID,
                     OolongTea.ID,
                     RecoveryDrink.ID,
+                    PowerfulHerbalDrink.ID,
+                    HotCoffee.ID,
                     RooibosTea.ID,
                     SelectFirstStarBlend.ID,
                     SelectFirstStarTea.ID,
@@ -49,18 +53,38 @@ public class AnotherShopPotions {
         } else if (type == CommonEnum.IdolType.SENSE) {
             potions = new ArrayList<>(Arrays.asList(new String[]{
                     BoostExtract.ID,
-                    FirstStarBoostEnergy.ID,
                     FirstStarSpecialAojiru.ID,
                     FirstStarWater.ID,
                     FirstStarWheyProtein.ID,
                     FreshVinegar.ID,
-                    IcedCoffee.ID,
                     MixedSmoothie.ID,
                     OolongTea.ID,
                     RecoveryDrink.ID,
+                    PowerfulHerbalDrink.ID,
+                    IcedCoffee.ID,
                     SelectFirstStarMacchiato.ID,
                     StaminaExplosionDrink.ID,
-                    VitaminDrink.ID
+                    VitaminDrink.ID,
+                    FirstStarBoostEnergy.ID,
+            }));
+        }
+        else if (type == CommonEnum.IdolType.ANOMALY) {
+            potions = new ArrayList<>(Arrays.asList(new String[]{
+                    BoostExtract.ID,
+                    FirstStarSpecialAojiru.ID,
+                    FirstStarWater.ID,
+                    FirstStarWheyProtein.ID,
+                    FreshVinegar.ID,
+                    MixedSmoothie.ID,
+                    OolongTea.ID,
+                    RecoveryDrink.ID,
+                    PowerfulHerbalDrink.ID,
+                    GingerAle.ID,
+                    Hojicha.ID,
+                    HotGreenTea.ID,
+                    SelectFirstStarChai.ID,
+                    SelectFirstStarMilkTea.ID,
+                    FirstStarSoup.ID
             }));
         }
 

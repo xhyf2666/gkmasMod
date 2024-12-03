@@ -10,6 +10,7 @@ import com.megacrit.cardcrawl.powers.EquilibriumPower;
 import gkmasmod.actions.GainTrainRoundPowerAction;
 import gkmasmod.actions.WhatDoesSheDoAction;
 import gkmasmod.cards.GkmasCard;
+import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.utils.NameHelper;
 
@@ -36,6 +37,8 @@ public class WhatDoesSheDo extends GkmasCard {
         this.baseMagicNumber =  MAGIC;
         this.magicNumber = this.baseMagicNumber;
         this.exhaust = true;
+        this.tags.add(GkmasCardTag.MORE_ACTION_TAG);
+
     }
 
 

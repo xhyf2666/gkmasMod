@@ -50,6 +50,14 @@ public class PotionHelperPatch
                         tmp.add(SelectFirstStarBlend.ID);
                         tmp.add(SpecialFirstStarExtract.ID);
                     }
+                    else if(type== CommonEnum.IdolType.ANOMALY){
+                        tmp.add(GingerAle.ID);
+                        tmp.add(Hojicha.ID);
+                        tmp.add(HotGreenTea.ID);
+                        tmp.add(SelectFirstStarChai.ID);
+                        tmp.add(SelectFirstStarMilkTea.ID);
+                        tmp.add(FirstStarSoup.ID);
+                    }
                     retVal[0] = tmp;
                     return;
                 }
@@ -66,6 +74,12 @@ public class PotionHelperPatch
                 tmp.add(SelectFirstStarTea.ID);
                 tmp.add(SelectFirstStarBlend.ID);
                 tmp.add(SpecialFirstStarExtract.ID);
+                tmp.add(GingerAle.ID);
+                tmp.add(Hojicha.ID);
+                tmp.add(HotGreenTea.ID);
+                tmp.add(SelectFirstStarChai.ID);
+                tmp.add(SelectFirstStarMilkTea.ID);
+                tmp.add(FirstStarSoup.ID);
                 retVal[0] = tmp;
             }
         }
@@ -110,6 +124,24 @@ public class PotionHelperPatch
             }
             if (name.equals(SpecialFirstStarExtract.ID)) {
                 return SpireReturn.Return(new SpecialFirstStarExtract());
+            }
+            if (name.equals(GingerAle.ID)) {
+                return SpireReturn.Return(new GingerAle());
+            }
+            if (name.equals(Hojicha.ID)) {
+                return SpireReturn.Return(new Hojicha());
+            }
+            if (name.equals(HotGreenTea.ID)) {
+                return SpireReturn.Return(new HotGreenTea());
+            }
+            if (name.equals(SelectFirstStarChai.ID)) {
+                return SpireReturn.Return(new SelectFirstStarChai());
+            }
+            if (name.equals(SelectFirstStarMilkTea.ID)) {
+                return SpireReturn.Return(new SelectFirstStarMilkTea());
+            }
+            if (name.equals(FirstStarSoup.ID)) {
+                return SpireReturn.Return(new FirstStarSoup());
             }
 
             return SpireReturn.Continue();

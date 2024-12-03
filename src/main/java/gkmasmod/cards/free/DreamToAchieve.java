@@ -27,7 +27,7 @@ public class DreamToAchieve extends GkmasCard {
     private static final int BASE_MAGIC = 1;
     private static final int UPGRADE_PLUS_MAGIC = 1;
 
-    private static final int BLOCK_AMT = 8;
+    private static final int BLOCK_AMT = 4;
     private static final int UPGRADE_PLUS_BLOCK = 4;
 
     private static final int BASE_HP = 1;

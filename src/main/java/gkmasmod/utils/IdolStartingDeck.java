@@ -1,5 +1,6 @@
 package gkmasmod.utils;
 
+import gkmasmod.cards.anomaly.*;
 import gkmasmod.cards.free.BaseAppeal;
 import gkmasmod.cards.free.BasePerform;
 import gkmasmod.cards.free.BasePose;
@@ -76,6 +77,34 @@ public class IdolStartingDeck {
             ChangeMood.ID
     };
 
+    public static final String[] anomalyFullPowerStartingDeck = {
+            BaseAppeal.ID,
+            BaseAppeal.ID,
+            BaseAppeal.ID,
+            BasePerform.ID,
+            BasePerform.ID,
+            BasePerform.ID,
+            BaseImage.ID,
+            BaseImage.ID,
+            BaseMental.ID,
+            BaseMental.ID,
+            FinalSpurt.ID
+    };
+
+    public static final String[] anomalyConcentrationStartingDeck = {
+            BaseAppeal.ID,
+            BaseAppeal.ID,
+            BaseAppeal.ID,
+            BasePerform.ID,
+            BasePerform.ID,
+            BasePerform.ID,
+            BaseImage.ID,
+            BaseImage.ID,
+            BaseAppeal.ID,
+            BaseGreeting.ID,
+            Intensely.ID
+    };
+
     public static String[] getSenseGoodTuneStartingDeck() {
         return senseGoodTuneStartingDeck.clone();
     }
@@ -129,6 +158,12 @@ public class IdolStartingDeck {
             case YARUKI:
                 startingDeck = new ArrayList<>(Arrays.asList(logicYarukiStartingDeck));
                 break;
+            case FULL_POWER:
+                startingDeck = new ArrayList<>(Arrays.asList(anomalyFullPowerStartingDeck));
+                break;
+            case CONCENTRATION:
+                startingDeck = new ArrayList<>(Arrays.asList(anomalyConcentrationStartingDeck));
+                break;
             default:
                 break;
         }
@@ -158,6 +193,12 @@ public class IdolStartingDeck {
                 break;
             case YARUKI:
                 startingDeck = new ArrayList<>(Arrays.asList(logicYarukiStartingDeck));
+                break;
+            case FULL_POWER:
+                startingDeck = new ArrayList<>(Arrays.asList(anomalyFullPowerStartingDeck));
+                break;
+            case CONCENTRATION:
+                startingDeck = new ArrayList<>(Arrays.asList(anomalyConcentrationStartingDeck));
                 break;
             default:
                 break;

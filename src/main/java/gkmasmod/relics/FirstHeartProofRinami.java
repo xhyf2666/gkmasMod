@@ -52,8 +52,8 @@ public class FirstHeartProofRinami extends CustomRelic {
         if(currentTimes < playTimes){
             counter = (counter + 1)%3;
             if(counter == 0){
+                addToBot(new RelicAboveCreatureAction(AbstractDungeon.player, this));
                 this.flash();
-                AbstractDungeon.actionManager.addToBottom(new RelicAboveCreatureAction(AbstractDungeon.player, this));
                 addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new DexterityPower(AbstractDungeon.player, magicNumber), magicNumber));
                 currentTimes++;
                 if(currentTimes == playTimes){
@@ -64,7 +64,7 @@ public class FirstHeartProofRinami extends CustomRelic {
     }
 
     public void atBattleStart() {
-
+        counter = 0;
     }
 
     public  void  onPlayerEndTurn(){

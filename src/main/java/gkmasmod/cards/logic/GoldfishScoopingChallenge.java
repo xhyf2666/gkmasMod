@@ -14,6 +14,7 @@ import gkmasmod.cards.GkmasCard;
 import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.powers.GoodImpression;
+import gkmasmod.utils.IdolData;
 import gkmasmod.utils.NameHelper;
 import gkmasmod.utils.SoundHelper;
 
@@ -46,6 +47,10 @@ public class GoldfishScoopingChallenge extends GkmasCard {
         this.exhaust = true;
         this.tags.add(GkmasCardTag.GOOD_IMPRESSION_TAG);
         this.tags.add(GkmasCardTag.IDOL_CARD_TAG);
+        this.tags.add(GkmasCardTag.MORE_ACTION_TAG);
+        this.backGroundColor = IdolData.hski;
+        updateBackgroundImg();
+
     }
 
 
@@ -55,7 +60,7 @@ public class GoldfishScoopingChallenge extends GkmasCard {
         addToBot(new ApplyPowerAction(p, p, new GoodImpression(p, this.magicNumber), this.magicNumber));
         addToBot(new DrawCardAction(1));
         addToBot(new GainTrainRoundPowerAction(p,1));
-        SoundHelper.playSound("gkmasModResource/audio/voice/skillcard/cidol_hski_3_002_produce_skillcard_01.ogg");
+        SoundHelper.playSound("gkmasModResource/audio/voice/skillcard/cidol_hski_3_004_produce_skillcard_01.ogg");
 
     }
 

@@ -11,6 +11,7 @@ import com.megacrit.cardcrawl.powers.DexterityPower;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
+import gkmasmod.utils.IdolData;
 import gkmasmod.utils.NameHelper;
 import gkmasmod.utils.PlayerHelper;
 import gkmasmod.utils.SoundHelper;
@@ -26,12 +27,12 @@ public class AfternoonBreeze extends GkmasCard {
 
     private static final int COST = 0;
 
-    private static final int BASE_MAGIC = 7;
+    private static final int BASE_MAGIC = 3;
     private static final int UPGRADE_PLUS_MAGIC = 1;
     private static final int BASE_MAGIC2 = 5;
     private static final int UPGRADE_PLUS_MAGIC2 = -3;
-    private static final int BASE_MAGIC3 = 3;
-    private static final int UPGRADE_PLUS_MAGIC3 = 2;
+    private static final int BASE_MAGIC3 = 1;
+    private static final int UPGRADE_PLUS_MAGIC3 = 1;
 
     private static final int BASE_HP = 4;
 
@@ -53,6 +54,8 @@ public class AfternoonBreeze extends GkmasCard {
         this.exhaust = true;
         this.tags.add(GkmasCardTag.YARUKI_TAG);
         this.tags.add(GkmasCardTag.IDOL_CARD_TAG);
+        this.backGroundColor = IdolData.ssmk;
+        updateBackgroundImg();
     }
 
 

@@ -1,6 +1,7 @@
 package gkmasmod.actions;
 
 
+import gkmasmod.downfall.charbosses.bosses.AbstractCharBoss;
 import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
@@ -8,74 +9,70 @@ import com.megacrit.cardcrawl.actions.common.DamageAllEnemiesAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
-import gkmasmod.characters.IdolCharacter;
+import gkmasmod.patches.AbstractPlayerPatch;
+import gkmasmod.relics.PocketBook;
 
 import java.util.Iterator;
 
 public class BlockDamageWallopAction extends AbstractGameAction {
-    private AbstractMonster m;
+    private AbstractCreature m;
 
-    private AbstractPlayer p;
+    private AbstractCreature p;
 
     private int blockAdd;
 
     private float rate;
 
-    private float yarukiRate;
 
     private boolean damageAll;
 
     private AbstractCard card;
 
-    public BlockDamageWallopAction(float rate, int blockAdd, AbstractPlayer p, AbstractMonster m, AbstractCard card) {
+    public BlockDamageWallopAction(float rate, int blockAdd, AbstractCreature p, AbstractCreature m, AbstractCard card) {
         this(rate, blockAdd, p, m,card, false);
     }
 
-    public BlockDamageWallopAction(float rate, int blockAdd, AbstractPlayer p, AbstractMonster m, AbstractCard card, boolean damageAll) {
-        this(rate, blockAdd, p, m,card,damageAll,1.0f);
-    }
-
-    public BlockDamageWallopAction(float rate, int blockAdd, AbstractPlayer p, AbstractMonster m, AbstractCard card, boolean damageAll, float yarukiRate) {
+    public BlockDamageWallopAction(float rate, int blockAdd, AbstractCreature p, AbstractCreature m, AbstractCard card, boolean damageAll) {
         this.m = m;
         this.p = p;
         this.blockAdd = blockAdd;
         this.rate = rate;
         this.damageAll = damageAll;
         this.card = card;
-        this.yarukiRate = yarukiRate;
     }
 
+
     public void update() {
-        if(yarukiRate>1.0f){
-            this.blockAdd += (yarukiRate-1.0f)*this.blockAdd;
-        }
         if(this.blockAdd > 0)
             p.addBlock(this.blockAdd);
         int damage = (int)(this.rate*p.currentBlock);
-        damage = calculateDamage(damage);
+        damage = calculateDamage(damage, this.m);
         int count = damage;
-        if(AbstractDungeon.player instanceof IdolCharacter){
-            IdolCharacter idol = (IdolCharacter) AbstractDungeon.player;
-            if(idol.finalDamageRate > 0){
-                count = (int) (count / idol.finalDamageRate);
+        if(AbstractDungeon.player.hasRelic(PocketBook.ID)){
+            if(AbstractPlayerPatch.FinalCircleRoundField.finalCircleRound.get(AbstractDungeon.player).size()>0){
+                count = (int) (1.0f*count / (AbstractPlayerPatch.FinalDamageRateField.finalDamageRate.get(AbstractDungeon.player)*1.0f));
             }
         }
         p.addBlock(count);
-        if(damageAll){
+        if(damageAll&&p.isPlayer){
             addToBot(new DamageAllEnemiesAction(p, DamageInfo.createDamageMatrix(damage, true), DamageInfo.DamageType.NORMAL, AttackEffect.SLASH_HORIZONTAL));
         }
         else{
+            if(this.p instanceof AbstractCharBoss)
+                damage = calculateDamage2(damage, this.m);
+            else
+                damage = calculateDamage(damage, this.m);
             AbstractDungeon.actionManager.addToBottom(new DamageAction(m, new DamageInfo(p, damage , DamageInfo.DamageType.NORMAL), AttackEffect.SLASH_HORIZONTAL));
         }
 
         this.isDone = true;
     }
 
-    public int calculateDamage(int baseDamage){
+    public int calculateDamage(int baseDamage,AbstractCreature m){
         AbstractPlayer player = AbstractDungeon.player;
         if (m != null) {
             float tmp = (float)baseDamage;
@@ -102,6 +99,47 @@ public class BlockDamageWallopAction extends AbstractGameAction {
             }
 
             for(var9 = m.powers.iterator(); var9.hasNext(); tmp = p.atDamageFinalReceive(tmp, DamageInfo.DamageType.NORMAL, this.card)) {
+                p = (AbstractPower)var9.next();
+            }
+
+            if (tmp < 0.0F) {
+                tmp = 0.0F;
+            }
+
+            return MathUtils.floor(tmp);
+        }
+        return baseDamage;
+    }
+
+    private int calculateDamage2(int baseDamage,AbstractCreature m) {
+        AbstractCharBoss charBoss = (AbstractCharBoss) this.p;
+        if (m != null) {
+            float tmp = (float)baseDamage;
+            Iterator var9 = charBoss.relics.iterator();
+
+            if(this.card!=null){
+                while(var9.hasNext()) {
+                    AbstractRelic r = (AbstractRelic)var9.next();
+                    tmp = r.atDamageModify(tmp, this.card);
+                }
+            }
+
+            AbstractPower p;
+            for(var9 = charBoss.powers.iterator(); var9.hasNext(); tmp = p.atDamageGive(tmp, DamageInfo.DamageType.NORMAL)) {
+                p = (AbstractPower)var9.next();
+            }
+
+            tmp = charBoss.stance.atDamageGive(tmp, DamageInfo.DamageType.NORMAL);
+
+            for(var9 = m.powers.iterator(); var9.hasNext(); tmp = p.atDamageReceive(tmp, DamageInfo.DamageType.NORMAL)) {
+                p = (AbstractPower)var9.next();
+            }
+
+            for(var9 = charBoss.powers.iterator(); var9.hasNext(); tmp = p.atDamageFinalGive(tmp, DamageInfo.DamageType.NORMAL)) {
+                p = (AbstractPower)var9.next();
+            }
+
+            for(var9 = m.powers.iterator(); var9.hasNext(); tmp = p.atDamageFinalReceive(tmp, DamageInfo.DamageType.NORMAL)) {
                 p = (AbstractPower)var9.next();
             }
 

@@ -23,6 +23,7 @@ import com.megacrit.cardcrawl.random.Random;
 import com.megacrit.cardcrawl.relics.*;
 import com.megacrit.cardcrawl.screens.CharSelectInfo;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
+import gkmasmod.cards.anomaly.*;
 import gkmasmod.cards.free.BaseAppeal;
 import gkmasmod.cards.free.BasePerform;
 import gkmasmod.cards.free.BasePose;
@@ -36,6 +37,7 @@ import gkmasmod.cards.sense.Challenge;
 import gkmasmod.cards.sense.TryError;
 import gkmasmod.modcore.GkmasMod;
 import gkmasmod.patches.AbstractCardPatch;
+import gkmasmod.relics.BalanceLogicAndSense;
 import gkmasmod.relics.CrackedCoreNew;
 import gkmasmod.relics.PocketBook;
 import gkmasmod.relics.ProducerPhone;
@@ -52,19 +54,7 @@ public class IdolCharacter extends CustomPlayer {
     // 人物死亡图像
     private static final String CORPSE_IMAGE = "gkmasModResource/img/idol/shro/sleep_skin10.png";
     // 战斗界面左下角能量图标的每个图层
-    private static final String[] ORB_TEXTURES = new String[] {
-            "gkmasModResource/img/UI/energy_bg.png",
-            "gkmasModResource/img/UI/layer.png",
-            "gkmasModResource/img/UI/star.png",
-            "gkmasModResource/img/UI/energy_bg.png",
-            "gkmasModResource/img/UI/energy_bg.png",
-            "gkmasModResource/img/UI/layer_d.png",
-            "gkmasModResource/img/UI/star_d.png" };
 
-    private static final String ORB_VFX = "gkmasModResource/img/UI/vfx.png";
-
-    // 每个图层的旋转速度
-    private static final float[] LAYER_SPEED = new float[]{-40.0F, -32.0F, 20.0F, -20.0F, 0.0F, -10.0F, -8.0F, 5.0F, -5.0F, 0.0F};
 
     private static final int STARTING_HP = 80;
     private static final int MAX_HP = 80;
@@ -77,25 +67,25 @@ public class IdolCharacter extends CustomPlayer {
 
     public static String idolName= IdolData.shro;
 
-    public int[] threeSize = new int[]{0,0,0};
-    public int[] preThreeSize = new int[]{0,0,0};
-    public float[] threeSizeRate = new float[]{0.0f,0.0f,0.0f};
+//    public int[] threeSize = new int[]{0,0,0};
+//    public int[] preThreeSize = new int[]{0,0,0};
+//    public float[] threeSizeRate = new float[]{0.0f,0.0f,0.0f};
 
-    private Texture finalCircleBg;
-    private Texture[] arcs= new Texture[3];
+//    private Texture finalCircleBg;
+//    private Texture[] arcs= new Texture[3];
 
     public Idol idolData;
 
     public int skinIndex = 0;
 
-    public ArrayList<Integer> finalCircleRound = new ArrayList<>();
-
-    public boolean IsRenderFinalCircle = false;
-
-    public double finalDamageRate=1.0F;
+//    public ArrayList<Integer> finalCircleRound = new ArrayList<>();
+//
+//    public boolean IsRenderFinalCircle = false;
+//
+//    public double finalDamageRate=1.0F;
 
     public IdolCharacter(String name) {
-        super(name, PlayerColorEnum.gkmasMod_character,new CustomEnergyOrb(ORB_TEXTURES, ORB_VFX, LAYER_SPEED), new SpriterAnimation(filepath));
+        super(name, PlayerColorEnum.gkmasMod_character,new IdolEnergyOrb(), new SpriterAnimation(filepath));
 
 
         // 人物对话气泡的大小，如果游戏中尺寸不对在这里修改（libgdx的坐标轴左下为原点）
@@ -103,10 +93,10 @@ public class IdolCharacter extends CustomPlayer {
         this.dialogY = (this.drawY + 150.0F * Settings.scale);
         initializeData();
 
-        this.finalCircleBg = new Texture("gkmasModResource/img/UI/ThreeSize/finalCircle/bg.png");
-        arcs[0] = new Texture("gkmasModResource/img/UI/ThreeSize/finalCircle/arc_vo.png");
-        arcs[1] = new Texture("gkmasModResource/img/UI/ThreeSize/finalCircle/arc_da.png");
-        arcs[2] = new Texture("gkmasModResource/img/UI/ThreeSize/finalCircle/arc_vi.png");
+//        this.finalCircleBg = new Texture("gkmasModResource/img/UI/ThreeSize/finalCircle/bg.png");
+//        arcs[0] = new Texture("gkmasModResource/img/UI/ThreeSize/finalCircle/arc_vo.png");
+//        arcs[1] = new Texture("gkmasModResource/img/UI/ThreeSize/finalCircle/arc_da.png");
+//        arcs[2] = new Texture("gkmasModResource/img/UI/ThreeSize/finalCircle/arc_vi.png");
         refreshSkin();
     }
 
@@ -124,80 +114,80 @@ public class IdolCharacter extends CustomPlayer {
         );
     }
 
-    public void renderHealth(SpriteBatch sb) {
-        super.renderHealth(sb);
-        if (this.IsRenderFinalCircle) {
-            renderFinalCircle(sb);
-        }
-    }
+//    public void renderHealth(SpriteBatch sb) {
+//        super.renderHealth(sb);
+//        if (this.IsRenderFinalCircle) {
+//            renderFinalCircle(sb);
+//        }
+//    }
 
-    public void generateCircle(int roundNum){
-        if(roundNum < 1)
-            return;
-        this.finalCircleRound = new ArrayList<>();
-        if(roundNum > 0)
-            this.finalCircleRound.add(this.idolData.getFirstThreeType());
-        if(roundNum > 1)
-            this.finalCircleRound.add(this.idolData.getSecondThreeType());
-        if(roundNum > 2)
-            this.finalCircleRound.add(this.idolData.getThirdThreeType());
-        Random spRng = new Random(Settings.seed, AbstractDungeon.floorNum*20);
-        for(int i = 0; i < roundNum - 3; i++){
-            this.finalCircleRound.add(spRng.random(0,2));
-        }
-        this.IsRenderFinalCircle = true;
-        int currentThreeType = this.finalCircleRound.get(this.finalCircleRound.size()-1);
-        int baseDamageRate = this.idolData.getBaseDamageRate(currentThreeType);
+//    public void generateCircle(int roundNum){
+//        if(roundNum < 1)
+//            return;
+//        this.finalCircleRound = new ArrayList<>();
+//        if(roundNum > 0)
+//            this.finalCircleRound.add(this.idolData.getFirstThreeType());
+//        if(roundNum > 1)
+//            this.finalCircleRound.add(this.idolData.getSecondThreeType());
+//        if(roundNum > 2)
+//            this.finalCircleRound.add(this.idolData.getThirdThreeType());
+//        Random spRng = new Random(Settings.seed, AbstractDungeon.floorNum*20);
+//        for(int i = 0; i < roundNum - 3; i++){
+//            this.finalCircleRound.add(spRng.random(0,2));
+//        }
+//        this.IsRenderFinalCircle = true;
+//        int currentThreeType = this.finalCircleRound.get(this.finalCircleRound.size()-1);
+//        int baseDamageRate = this.idolData.getBaseDamageRate(currentThreeType);
+//
+//        this.finalDamageRate = calculateDamageRate(baseDamageRate, this.threeSize[currentThreeType],this.idolData.getThreeSizeRequire(currentThreeType));
+//
+//        System.out.println(this.finalCircleRound);
+//    }
 
-        this.finalDamageRate = calculateDamageRate(baseDamageRate, this.threeSize[currentThreeType],this.idolData.getThreeSizeRequire(currentThreeType));
+//    public void generateHajimeCircle(int roundNum){
+//        if(roundNum < 1)
+//            return;
+//        this.finalCircleRound = new ArrayList<>();
+//        if(roundNum > 0)
+//            this.finalCircleRound.add(this.idolData.getFirstThreeType());
+//        Random spRng = new Random(Settings.seed, AbstractDungeon.floorNum*20);
+//        for(int i = 0; i < roundNum - 2; i++){
+//            this.finalCircleRound.add(spRng.random(0,2));
+//        }
+//        this.IsRenderFinalCircle = true;
+//        int currentThreeType = this.finalCircleRound.get(this.finalCircleRound.size()-1);
+//        int baseDamageRate = this.idolData.getBaseDamageRate(currentThreeType);
+//
+//        this.finalDamageRate = calculateDamageRate(baseDamageRate, this.threeSize[currentThreeType],this.idolData.getThreeSizeRequire(currentThreeType));
+//
+//        System.out.println(this.finalCircleRound);
+//    }
 
-        System.out.println(this.finalCircleRound);
-    }
+//    public void renderFinalCircle(SpriteBatch sb) {
+//        sb.setColor(Color.WHITE);
+//        sb.draw(this.finalCircleBg, Settings.WIDTH / 2.0F - 500.0F*Settings.xScale, Settings.HEIGHT / 2.0F + 000.0F*Settings.scale, 256.0F, 256.0F, 512, 512, Settings.scale*0.5F, Settings.scale*0.5F, 0.0F, 0, 0, 512, 512, false, false);
+//        for(int i = 0; i<this.finalCircleRound.size();i++){
+//            sb.draw(arcs[this.finalCircleRound.get(i)], Settings.WIDTH / 2.0F - 500.0F*Settings.xScale, Settings.HEIGHT / 2.0F + 000.0F*Settings.scale, 256.0F, 256.0F, 512, 512, Settings.scale*0.5F, Settings.scale*0.5F, 330.0F-30.F*i, 0, 0, 512, 512, false, false);
+//        }
+//        FontHelper.renderSmartText(sb, FontHelper.bannerNameFont, String.valueOf(this.finalCircleRound.size()), Settings.WIDTH / 2.0F - 275.0F*Settings.xScale, Settings.HEIGHT / 2.0F + 290.0F*Settings.scale, 10000.0F, 30.0F * Settings.scale, Settings.CREAM_COLOR,1.5f);
+//        FontHelper.renderSmartText(sb, FontHelper.tipHeaderFont, String.format("%.0f%%",this.finalDamageRate*100), Settings.WIDTH / 2.0F - 300.0F*Settings.xScale, Settings.HEIGHT / 2.0F + 325.0F*Settings.scale, 10000.0F, 30.0F * Settings.scale, Settings.CREAM_COLOR);
+//
+//    }
 
-    public void generateHajimeCircle(int roundNum){
-        if(roundNum < 1)
-            return;
-        this.finalCircleRound = new ArrayList<>();
-        if(roundNum > 0)
-            this.finalCircleRound.add(this.idolData.getFirstThreeType());
-        Random spRng = new Random(Settings.seed, AbstractDungeon.floorNum*20);
-        for(int i = 0; i < roundNum - 2; i++){
-            this.finalCircleRound.add(spRng.random(0,2));
-        }
-        this.IsRenderFinalCircle = true;
-        int currentThreeType = this.finalCircleRound.get(this.finalCircleRound.size()-1);
-        int baseDamageRate = this.idolData.getBaseDamageRate(currentThreeType);
-
-        this.finalDamageRate = calculateDamageRate(baseDamageRate, this.threeSize[currentThreeType],this.idolData.getThreeSizeRequire(currentThreeType));
-
-        System.out.println(this.finalCircleRound);
-    }
-
-    public void renderFinalCircle(SpriteBatch sb) {
-        sb.setColor(Color.WHITE);
-        sb.draw(this.finalCircleBg, Settings.WIDTH / 2.0F - 500.0F*Settings.xScale, Settings.HEIGHT / 2.0F + 000.0F*Settings.scale, 256.0F, 256.0F, 512, 512, Settings.scale*0.5F, Settings.scale*0.5F, 0.0F, 0, 0, 512, 512, false, false);
-        for(int i = 0; i<this.finalCircleRound.size();i++){
-            sb.draw(arcs[this.finalCircleRound.get(i)], Settings.WIDTH / 2.0F - 500.0F*Settings.xScale, Settings.HEIGHT / 2.0F + 000.0F*Settings.scale, 256.0F, 256.0F, 512, 512, Settings.scale*0.5F, Settings.scale*0.5F, 330.0F-30.F*i, 0, 0, 512, 512, false, false);
-        }
-        FontHelper.renderSmartText(sb, FontHelper.bannerNameFont, String.valueOf(this.finalCircleRound.size()), Settings.WIDTH / 2.0F - 275.0F*Settings.xScale, Settings.HEIGHT / 2.0F + 290.0F*Settings.scale, 10000.0F, 30.0F * Settings.scale, Settings.CREAM_COLOR,1.5f);
-        FontHelper.renderSmartText(sb, FontHelper.tipHeaderFont, String.format("%.0f%%",this.finalDamageRate*100), Settings.WIDTH / 2.0F - 300.0F*Settings.xScale, Settings.HEIGHT / 2.0F + 325.0F*Settings.scale, 10000.0F, 30.0F * Settings.scale, Settings.CREAM_COLOR);
-
-    }
-
-    private double calculateDamageRate(int baseRate, int v,int t){
-        double rate = 1.0f*v/t;
-        if(rate > 1.0f)
-            return 1.0f*baseRate*(1+Math.log(rate)/3)+1;
-        return (Math.pow(rate,2)+Math.exp(rate-1)+(rate-1)/Math.E)/2*baseRate+1;
-    }
-
-    public double[] calculateDamageRates(){
-        double[] rates = new double[3];
-        for(int i = 0; i < 3; i++){
-            rates[i] = calculateDamageRate(this.idolData.getBaseDamageRate(i),this.threeSize[i],this.idolData.getThreeSizeRequire(i));
-        }
-        return rates;
-    }
+//    private double calculateDamageRate(int baseRate, int v,int t){
+//        double rate = 1.0f*v/t;
+//        if(rate > 1.0f)
+//            return 1.0f*baseRate*(1+Math.log(rate)/3)+1;
+//        return (Math.pow(rate,2)+Math.exp(rate-1)+(rate-1)/Math.E)/2*baseRate+1;
+//    }
+//
+//    public double[] calculateDamageRates(){
+//        double[] rates = new double[3];
+//        for(int i = 0; i < 3; i++){
+//            rates[i] = calculateDamageRate(this.idolData.getBaseDamageRate(i),this.threeSize[i],this.idolData.getThreeSizeRequire(i));
+//        }
+//        return rates;
+//    }
 
 
     public void refreshSkin() {
@@ -230,9 +220,12 @@ public class IdolCharacter extends CustomPlayer {
             addColorToCardPool(PlayerColorEnum.gkmasModColorLogic, tmpPool);
         } else if (type == CommonEnum.IdolType.SENSE) {
             addColorToCardPool(PlayerColorEnum.gkmasModColorSense, tmpPool);
+        }else if(type == CommonEnum.IdolType.ANOMALY){
+            addColorToCardPool(PlayerColorEnum.gkmasModColorAnomaly, tmpPool);
         } else{
             addColorToCardPool(PlayerColorEnum.gkmasModColorSense, tmpPool);
             addColorToCardPool(PlayerColorEnum.gkmasModColorLogic, tmpPool);
+            addColorToCardPool(PlayerColorEnum.gkmasModColorAnomaly, tmpPool);
         }
 
         return tmpPool;
@@ -245,14 +238,14 @@ public class IdolCharacter extends CustomPlayer {
     }
 
     @Override
-    // 初始遗物的ID，可以先写个原版遗物凑数
     public ArrayList<String> getStartingRelics() {
         ArrayList<String> retVal = new ArrayList<>();
         retVal.add(IdolStartingDeck.getSpecailRelic(SkinSelectScreen.Inst.idolIndex, SkinSelectScreen.Inst.skinIndex));
         retVal.add(PocketBook.ID);
         retVal.add(ProducerPhone.ID);
         if(SkinSelectScreen.Inst.updateIndex==1){
-            return retVal;
+            retVal.add(BalanceLogicAndSense.ID);
+//            return retVal;
         }
         if(SkinSelectScreen.Inst.idolName==IdolData.fktn){
             retVal.add(MawBank.ID);
@@ -412,117 +405,103 @@ public class IdolCharacter extends CustomPlayer {
         return this.idolName;
     }
 
-    public void setThreeSize(int[] threeSize){
-        this.threeSize = threeSize.clone();
-        this.preThreeSize = threeSize.clone();
-    }
-
-    public void setThreeSizeRate(float[] threeSizeRate){
-        this.threeSizeRate = threeSizeRate.clone();
-    }
-
-    public void setThreeSizeAndRate(float[] data){
-        this.threeSize = new int[]{(int)data[0], (int)data[1], (int)data[2]};
-        this.threeSizeRate = new float[]{data[3], data[4], data[5]};
-    }
-
-    public int getVo(){
-        return this.threeSize[0];
-    }
-
-    public int getDa(){
-        return this.threeSize[1];
-    }
-
-    public int getVi(){
-        return this.threeSize[2];
-    }
-
-    public int[] getThreeSize(){
-        return this.threeSize.clone();
-    }
-
-    public float[] getThreeSizeRate(){
-        return this.threeSizeRate.clone();
-    }
-
-    public int[] getPreThreeSize(){
-        return this.preThreeSize.clone();
-    }
-
-    public float getVoRate(){
-        return this.threeSizeRate[0];
-    }
-
-    public float getDaRate(){
-        return this.threeSizeRate[1];
-    }
-
-    public float getViRate(){
-        return this.threeSizeRate[2];
-    }
-
-    public void changeVo(int vo){
-        this.preThreeSize[0] = this.threeSize[0];
-        this.threeSize[0] += vo+(int)((this.threeSizeRate[0]*vo)+0.5F);
-    }
-
-    public void changeDa(int da){
-        this.preThreeSize[1] = this.threeSize[1];
-        this.threeSize[1] += da+(int)((this.threeSizeRate[1]*da)+0.5F);
-    }
-
-    public void changeVi(int vi){
-        this.preThreeSize[2] = this.threeSize[2];
-        this.threeSize[2] += vi+(int)((this.threeSizeRate[2]*vi)+0.5F);
-    }
-
-    public void changeFixedVo(int vo){
-        this.preThreeSize[0] = this.threeSize[0];
-        this.threeSize[0] += vo;
-    }
-
-    public void changeFixedDa(int da){
-        this.preThreeSize[1] = this.threeSize[1];
-        this.threeSize[1] += da;
-    }
-
-    public void changeFixedVi(int vi){
-        this.preThreeSize[2] = this.threeSize[2];
-        this.threeSize[2] += vi;
-    }
-
-    
-
-    public void changeVoRate(float voRate){
-        this.threeSizeRate[0] += voRate;
-    }
-
-    public void changeDaRate(float daRate){
-        this.threeSizeRate[1] += daRate;
-    }
-
-    public void changeViRate(float viRate){
-        this.threeSizeRate[2] += viRate;
-    }
-
-    public float[] getThreeSizeAndRate(){
-        return new float[]{this.threeSize[0]*1.0f,this.threeSize[1]*1.0f,this.threeSize[2]*1.0f,this.threeSizeRate[0],this.threeSizeRate[1],this.threeSizeRate[2]};
-    }
-
-    public float[] getThreeSizeScoreRate(){
-
-        int[] count={0,0,0};
-        ArrayList<Integer> masterCardTags = new ArrayList<>();
-        for (AbstractCard card : AbstractDungeon.player.masterDeck.group) {
-            int tag = AbstractCardPatch.ThreeSizeTagField.threeSizeTag.get(card);
-            if(tag!=-1) {
-                count[tag]++;
-            }
-        }
-        int sum=count[0]+count[1]+count[2];
-        return new float[]{1.0f*count[0]/sum,1.0f*count[1]/sum,1.0f*count[2]/sum};
-    }
+//    public void setThreeSize(int[] threeSize){
+//        this.threeSize = threeSize.clone();
+//        this.preThreeSize = threeSize.clone();
+//    }
+//
+//    public void setThreeSizeRate(float[] threeSizeRate){
+//        this.threeSizeRate = threeSizeRate.clone();
+//    }
+//
+//    public void setThreeSizeAndRate(float[] data){
+//        this.threeSize = new int[]{(int)data[0], (int)data[1], (int)data[2]};
+//        this.threeSizeRate = new float[]{data[3], data[4], data[5]};
+//    }
+//
+//    public int getVo(){
+//        return this.threeSize[0];
+//    }
+//
+//    public int getDa(){
+//        return this.threeSize[1];
+//    }
+//
+//    public int getVi(){
+//        return this.threeSize[2];
+//    }
+//
+//    public int[] getThreeSize(){
+//        return this.threeSize.clone();
+//    }
+//
+//    public float[] getThreeSizeRate(){
+//        return this.threeSizeRate.clone();
+//    }
+//
+//    public int[] getPreThreeSize(){
+//        return this.preThreeSize.clone();
+//    }
+//
+//    public float getVoRate(){
+//        return this.threeSizeRate[0];
+//    }
+//
+//    public float getDaRate(){
+//        return this.threeSizeRate[1];
+//    }
+//
+//    public float getViRate(){
+//        return this.threeSizeRate[2];
+//    }
+//
+//    public void changeVo(int vo){
+//        this.preThreeSize[0] = this.threeSize[0];
+//        this.threeSize[0] += vo+(int)((this.threeSizeRate[0]*vo)+0.5F);
+//    }
+//
+//    public void changeDa(int da){
+//        this.preThreeSize[1] = this.threeSize[1];
+//        this.threeSize[1] += da+(int)((this.threeSizeRate[1]*da)+0.5F);
+//    }
+//
+//    public void changeVi(int vi){
+//        this.preThreeSize[2] = this.threeSize[2];
+//        this.threeSize[2] += vi+(int)((this.threeSizeRate[2]*vi)+0.5F);
+//    }
+//
+//    public void changeFixedVo(int vo){
+//        this.preThreeSize[0] = this.threeSize[0];
+//        this.threeSize[0] += vo;
+//    }
+//
+//    public void changeFixedDa(int da){
+//        this.preThreeSize[1] = this.threeSize[1];
+//        this.threeSize[1] += da;
+//    }
+//
+//    public void changeFixedVi(int vi){
+//        this.preThreeSize[2] = this.threeSize[2];
+//        this.threeSize[2] += vi;
+//    }
+//
+//
+//
+//    public void changeVoRate(float voRate){
+//        this.threeSizeRate[0] += voRate;
+//    }
+//
+//    public void changeDaRate(float daRate){
+//        this.threeSizeRate[1] += daRate;
+//    }
+//
+//    public void changeViRate(float viRate){
+//        this.threeSizeRate[2] += viRate;
+//    }
+//
+//    public float[] getThreeSizeAndRate(){
+//        return new float[]{this.threeSize[0]*1.0f,this.threeSize[1]*1.0f,this.threeSize[2]*1.0f,this.threeSizeRate[0],this.threeSizeRate[1],this.threeSizeRate[2]};
+//    }
 
     @Override
     public void initializeStarterDeck() {
@@ -534,8 +513,9 @@ public class IdolCharacter extends CustomPlayer {
             num = 2;
 
         ArrayList<AbstractCard> cards = new ArrayList<>();
-        AbstractCard specailCard = null;
+        AbstractCard specialCard = null;
         this.idolData = IdolData.getIdol(SkinSelectScreen.Inst.idolIndex);
+        String specialCardID = this.idolData.getCard(SkinSelectScreen.Inst.skinIndex);
         int first = idolData.getFirstThreeType();
         int second = idolData.getSecondThreeType();
         int third = idolData.getThirdThreeType();
@@ -543,42 +523,79 @@ public class IdolCharacter extends CustomPlayer {
         int index_defend =0;
         int index_basepose =0;
         int index_style =0;
+        int index_image =0;
+        int index_mental =0;
+        ArrayList<AbstractCard> needToSet = new ArrayList<>();
         for (AbstractCard c : this.masterDeck.group){
-            if(!c.cardID.equals(this.idolData.getCard(SkinSelectScreen.Inst.skinIndex))&&c.canUpgrade()){
+            if(c.rarity == AbstractCard.CardRarity.BASIC&&c.canUpgrade()&&!c.cardID.equals(specialCardID))
                 cards.add(c);
-                if(c.cardID.equals(BaseAppeal.ID)){
-                    AbstractCardPatch.ThreeSizeTagField.threeSizeTag.set(c,index_attack);
-                    index_attack++;
+            if(c.cardID.equals(BaseAppeal.ID)){
+                if(index_attack>2){
+                    needToSet.add(c);
+                    continue;
                 }
-                else if(c.cardID.equals(BasePerform.ID)){
-                    AbstractCardPatch.ThreeSizeTagField.threeSizeTag.set(c,index_defend);
-                    index_defend++;
-                }
-                else if(c.cardID.equals(BasePose.ID)){
-                    if(index_basepose==0)
-                        AbstractCardPatch.ThreeSizeTagField.threeSizeTag.set(c,third);
-                    else if(index_basepose==1)
-                        AbstractCardPatch.ThreeSizeTagField.threeSizeTag.set(c,second);
-                    else if(index_basepose==2)
-                        AbstractCardPatch.ThreeSizeTagField.threeSizeTag.set(c,first);
-                    index_basepose++;
-                }
-                else if(c.cardID.equals(BaseExpression.ID)||c.cardID.equals(BaseBehave.ID)||c.cardID.equals(BaseVision.ID)||c.cardID.equals(BaseAwareness.ID)){
-                    if(index_style==0)
-                        AbstractCardPatch.ThreeSizeTagField.threeSizeTag.set(c,first);
-                    else if(index_style==1)
-                        AbstractCardPatch.ThreeSizeTagField.threeSizeTag.set(c,second);
-                    else if(index_style==2)
-                        AbstractCardPatch.ThreeSizeTagField.threeSizeTag.set(c,third);
-                    index_style++;
-                }
-                else if(c.cardID.equals(Challenge.ID)||c.cardID.equals(TryError.ID)||c.cardID.equals(KawaiiGesture.ID)||c.cardID.equals(ChangeMood.ID)){
-                    AbstractCardPatch.ThreeSizeTagField.threeSizeTag.set(c,first);
-                }
+                AbstractCardPatch.ThreeSizeTagField.threeSizeTag.set(c,index_attack);
+                index_attack++;
             }
-            else{
-                specailCard = c;
+            else if(c.cardID.equals(BasePerform.ID)){
+                if(index_defend>2){
+                    needToSet.add(c);
+                    continue;
+                }
+                AbstractCardPatch.ThreeSizeTagField.threeSizeTag.set(c,index_defend);
+                index_defend++;
+            }
+            else if(c.cardID.equals(BasePose.ID)){
+                if(index_basepose==0)
+                    AbstractCardPatch.ThreeSizeTagField.threeSizeTag.set(c,third);
+                else if(index_basepose==1)
+                    AbstractCardPatch.ThreeSizeTagField.threeSizeTag.set(c,second);
+                else if(index_basepose==2)
+                    AbstractCardPatch.ThreeSizeTagField.threeSizeTag.set(c,first);
+                index_basepose++;
+            }
+            else if(c.cardID.equals(BaseExpression.ID)||c.cardID.equals(BaseBehave.ID)||c.cardID.equals(BaseVision.ID)||c.cardID.equals(BaseAwareness.ID)){
+                if(index_style==0)
+                    AbstractCardPatch.ThreeSizeTagField.threeSizeTag.set(c,first);
+                else if(index_style==1)
+                    AbstractCardPatch.ThreeSizeTagField.threeSizeTag.set(c,second);
+                else if(index_style==2)
+                    AbstractCardPatch.ThreeSizeTagField.threeSizeTag.set(c,third);
+                index_style++;
+            }
+            else if(c.cardID.equals(BaseImage.ID)){
+                if(index_image==0)
+                    AbstractCardPatch.ThreeSizeTagField.threeSizeTag.set(c,first);
+                else if(index_image==1)
+                    AbstractCardPatch.ThreeSizeTagField.threeSizeTag.set(c,second);
+                index_image++;
+            }
+            else if(c.cardID.equals(BaseMental.ID)){
+                if(index_mental==0)
+                    AbstractCardPatch.ThreeSizeTagField.threeSizeTag.set(c,second);
+                else if(index_mental==1)
+                    AbstractCardPatch.ThreeSizeTagField.threeSizeTag.set(c,third);
+                index_mental++;
+            }
+            else if(c.cardID.equals(BaseGreeting.ID)){
+                AbstractCardPatch.ThreeSizeTagField.threeSizeTag.set(c,second);
+            }
+            else if(c.cardID.equals(Challenge.ID)||c.cardID.equals(TryError.ID)||c.cardID.equals(KawaiiGesture.ID)||c.cardID.equals(ChangeMood.ID)||c.cardID.equals(Intensely.ID)||c.cardID.equals(FinalSpurt.ID)){
                 AbstractCardPatch.ThreeSizeTagField.threeSizeTag.set(c,first);
+            }
+            else if(c.cardID.equals(specialCardID)){
+                specialCard = c;
+                AbstractCardPatch.ThreeSizeTagField.threeSizeTag.set(c,first);
+            }
+
+        }
+
+        for(AbstractCard c : needToSet){
+            if(c.cardID.equals(BaseAppeal.ID)){
+                AbstractCardPatch.ThreeSizeTagField.threeSizeTag.set(c,third);
+            }
+            else if(c.cardID.equals(BasePerform.ID)){
+                AbstractCardPatch.ThreeSizeTagField.threeSizeTag.set(c,third);
             }
         }
         //从cards中选num张强化
@@ -590,7 +607,9 @@ public class IdolCharacter extends CustomPlayer {
             cards.remove(c);
         }
         if(GkmasMod.beat_hmsz >0){
-            specailCard.upgrade();
+            if(specialCard!=null){
+                specialCard.upgrade();
+            }
         }
 
 

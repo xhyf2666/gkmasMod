@@ -1,6 +1,9 @@
 package gkmasmod.room.shop;
 
+import basemod.BaseMod;
+import basemod.abstracts.CustomSavable;
 import basemod.abstracts.CustomScreen;
+import basemod.interfaces.ISubscriber;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
@@ -32,9 +35,9 @@ import com.megacrit.cardcrawl.vfx.ShopSpeechBubble;
 import com.megacrit.cardcrawl.vfx.SpeechTextEffect;
 import com.megacrit.cardcrawl.vfx.cardManip.PurgeCardEffect;
 import gkmasmod.modcore.GkmasMod;
-import gkmasmod.relics.MysteriousObject;
-import gkmasmod.relics.OverpoweredBall;
+import gkmasmod.relics.*;
 import gkmasmod.screen.PocketBookViewScreen;
+import gkmasmod.utils.NameHelper;
 import gkmasmod.utils.SoundHelper;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -45,7 +48,7 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.Random;
 
-public class AnotherShopScreen extends CustomScreen {
+public class AnotherShopScreen extends CustomScreen{
     private static final Logger logger = LogManager.getLogger(com.megacrit.cardcrawl.shop.ShopScreen.class.getName());
     private static final TutorialStrings tutorialStrings;
     public static final String[] MSG;
@@ -115,6 +118,7 @@ public class AnotherShopScreen extends CustomScreen {
     public AnotherStorePotion touchPotion;
     private AbstractCard touchCard;
     private boolean touchPurge;
+    public static int purgeTimes=0;
 
     public AnotherShopScreen() {
         this.rugY = (float) Settings.HEIGHT / 2.0F + 540.0F * Settings.yScale;
@@ -267,9 +271,28 @@ public class AnotherShopScreen extends CustomScreen {
         this.purgeCardY = -1000.0F;
         this.purgeCardX = (float)Settings.WIDTH * 0.73F * Settings.scale;
         this.purgeCardScale = 0.7F;
+        purgeCost = 100+25*purgeTimes;
         actualPurgeCost = purgeCost;
         if (AbstractDungeon.ascensionLevel >= 16) {
             this.applyDiscount(1.1F, false);
+        }
+
+        if (AbstractDungeon.player.hasRelic(MasterGirding.ID)){
+            MasterGirding relic = (MasterGirding)AbstractDungeon.player.getRelic(MasterGirding.ID);
+            relic.onEnterSpecialShop();
+            int times = relic.counter;
+            this.applyDiscount(1.0F + 0.05F * times, false);
+        }
+        if(AbstractDungeon.player.hasRelic(ReChallenge.ID)){
+            ReChallenge reChallenge = (ReChallenge)AbstractDungeon.player.getRelic(ReChallenge.ID);
+            reChallenge.counter++;
+        }
+        else {
+            ReChallenge reChallenge = new ReChallenge();
+            AbstractDungeon.getCurrRoom().relics.add(reChallenge);
+            reChallenge.instantObtain(AbstractDungeon.player, AbstractDungeon.player.relics.size(), true);
+            reChallenge.flash();
+
         }
 
         if (AbstractDungeon.player.hasRelic("The Courier")) {
@@ -284,11 +307,10 @@ public class AnotherShopScreen extends CustomScreen {
             actualPurgeCost = 50;
         }
 
-    }
+        if (AbstractDungeon.player.hasRelic(FreeTicket.ID)) {
+            freeItem();
+        }
 
-    public static void resetPurgeCost() {
-        purgeCost = 75;
-        actualPurgeCost = 75;
     }
 
     private void initCards() {
@@ -338,7 +360,13 @@ public class AnotherShopScreen extends CustomScreen {
     public static void purgeCard() {
         AbstractDungeon.player.loseGold(actualPurgeCost);
         CardCrawlGame.sound.play("SHOP_PURCHASE", 0.1F);
-        purgeCost += 25;
+        purgeTimes++;
+        purgeCost = 100+25*purgeTimes;
+        if (AbstractDungeon.player.hasRelic(MasterGirding.ID)){
+            MasterGirding relic = (MasterGirding)AbstractDungeon.player.getRelic(MasterGirding.ID);
+            int times = relic.counter;
+            purgeCost = MathUtils.round((float)purgeCost * (1.0F + 0.05F * times));;
+        }
         actualPurgeCost = purgeCost;
         if (AbstractDungeon.player.hasRelic("Smiling Mask")) {
             actualPurgeCost = 50;
@@ -450,6 +478,35 @@ public class AnotherShopScreen extends CustomScreen {
 
     }
 
+    public void freeItem() {
+        int relicCount = 0;
+        int potionCount = 0;
+        int cardCount1 = 0;
+        int cardCount2 = 0;
+        int purgeCount = 0;
+        relicCount = this.relics.size();
+        potionCount = this.potions.size();
+        cardCount1 = this.coloredCards.size();
+        cardCount2 = this.colorlessCards.size();
+        purgeCount = 1;
+        com.megacrit.cardcrawl.random.Random spRng = new com.megacrit.cardcrawl.random.Random(Settings.seed, AbstractDungeon.floorNum*100);
+        int roll = spRng.random(0,relicCount + potionCount + cardCount1 + cardCount2 + purgeCount-1);
+        if(roll < relicCount){
+            this.relics.get(roll).price = 0;
+        }else if(roll < relicCount + potionCount){
+            this.potions.get(roll-relicCount).price = 0;
+        }
+        else if(roll < relicCount + potionCount + cardCount1){
+            this.coloredCards.get(roll-relicCount-potionCount).price = 0;
+        }
+        else if(roll < relicCount + potionCount + cardCount1 + cardCount2){
+            this.colorlessCards.get(roll-relicCount-potionCount-cardCount1).price = 0;
+        }
+        else{
+            actualPurgeCost = 0;
+        }
+    }
+
     @Override
     public boolean allowOpenDeck() {
         return true;
@@ -486,11 +543,13 @@ public class AnotherShopScreen extends CustomScreen {
         this.potions.clear();
         this.potions = new ArrayList();
 
-        for(int i = 0; i < 3; ++i) {
+        for(int i = 0; i < 4; ++i) {
             AnotherStorePotion potion = new AnotherStorePotion(AnotherShopPotions.returnRandomPotion(), i, this);
             if (!Settings.isDailyRun) {
                 potion.price = MathUtils.round((float)potion.price * AbstractDungeon.merchantRng.random(0.95F, 1.05F));
             }
+            if(i==0)
+                potion.price = potion.price/2;
 
             this.potions.add(potion);
         }
@@ -1520,4 +1579,5 @@ public class AnotherShopScreen extends CustomScreen {
         private StoreSelectionType() {
         }
     }
+
 }

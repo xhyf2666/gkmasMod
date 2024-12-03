@@ -11,6 +11,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.vfx.WallopEffect;
 import com.megacrit.cardcrawl.vfx.combat.FlashAtkImgEffect;
 import gkmasmod.characters.IdolCharacter;
+import gkmasmod.patches.AbstractPlayerPatch;
 
 
 public class PushingTooHardAgainAction extends AbstractGameAction {
@@ -34,10 +35,10 @@ public class PushingTooHardAgainAction extends AbstractGameAction {
                 this.target.damage(this.info);
                 if (this.target.lastDamageTaken > 0) {
                     int count = this.target.lastDamageTaken;
-                    if(AbstractDungeon.player instanceof IdolCharacter){
+                    if(this.source instanceof IdolCharacter){
                         IdolCharacter idol = (IdolCharacter) AbstractDungeon.player;
-                        if(idol.finalDamageRate > 0){
-                            count = (int) (count / idol.finalDamageRate);
+                        if(AbstractPlayerPatch.FinalCircleRoundField.finalCircleRound.get(AbstractDungeon.player).size()>0){
+                            count = (int) (1.0f*count / (AbstractPlayerPatch.FinalDamageRateField.finalDamageRate.get(AbstractDungeon.player)*1.0f));
                         }
                     }
                     this.addToTop(new GainBlockAction(this.source, count));

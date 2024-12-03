@@ -1,22 +1,14 @@
 package gkmasmod.relics;
 import basemod.abstracts.CustomRelic;
 import com.badlogic.gdx.Gdx;
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.common.DamageAction;
-import com.megacrit.cardcrawl.actions.common.LoseHPAction;
-import com.megacrit.cardcrawl.actions.common.RelicAboveCreatureAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
-import com.megacrit.cardcrawl.powers.DexterityPower;
-import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
-import gkmasmod.actions.ModfifyDamageAction;
-import gkmasmod.cards.free.BaseAppeal;
+import gkmasmod.actions.FrogFanAction;
 
 public class FrogFan extends CustomRelic {
 
@@ -31,9 +23,9 @@ public class FrogFan extends CustomRelic {
     private static final RelicTier RARITY = RelicTier.STARTER;
 
     private static final int HP_COST = 2;
-    private static final int BASE_MAGIC = 270;
+    private static final int BASE_MAGIC = 220;
 
-    private static final int YARUKI = 11;
+    private static final int YARUKI = 9;
     private float magicNumber;
     private static int playTimes = 4;
 
@@ -59,24 +51,28 @@ public class FrogFan extends CustomRelic {
     }
 
     public void onUseCard(AbstractCard card, UseCardAction useCardAction) {
-        if (this.counter > 0) {
-            int amount = AbstractDungeon.player.getPower(DexterityPower.POWER_ID)==null?0:AbstractDungeon.player.getPower(DexterityPower.POWER_ID).amount;
-
-            if (card.type == AbstractCard.CardType.ATTACK && amount>YARUKI) {
-                int damage = (int)(1.0F*amount*magicNumber);
-                this.flash();
-                AbstractCreature target = useCardAction.target;
-                if(target==null) {
-                    target = AbstractDungeon.getMonsters().getRandomMonster(null, true, AbstractDungeon.cardRandomRng);
-                }
-                addToBot(new RelicAboveCreatureAction(AbstractDungeon.player, this));
-                addToBot(new LoseHPAction(AbstractDungeon.player, AbstractDungeon.player, HP_COST));
-                addToBot(new ModfifyDamageAction(target, new DamageInfo(AbstractDungeon.player, damage, useCardAction.damageType), AbstractGameAction.AttackEffect.SLASH_VERTICAL));
-                this.counter--;
-                if (this.counter == 0) {
-                    this.grayscale = true;
-                }
+        if (card.type == AbstractCard.CardType.ATTACK &&this.counter > 0) {
+            AbstractCreature target = useCardAction.target;
+            if(target==null) {
+                target = AbstractDungeon.getMonsters().getRandomMonster(null, true, AbstractDungeon.cardRandomRng);
             }
+            addToBot(new FrogFanAction(AbstractDungeon.player,target,YARUKI,magicNumber,HP_COST));
+//            int amount = AbstractDungeon.player.getPower(DexterityPower.POWER_ID)==null?0:AbstractDungeon.player.getPower(DexterityPower.POWER_ID).amount;
+//
+//            if (card.type == AbstractCard.CardType.ATTACK && amount>YARUKI) {
+//                int damage = (int)(1.0F*amount*magicNumber);
+//                AbstractCreature target = useCardAction.target;
+//                if(target==null) {
+//                    target = AbstractDungeon.getMonsters().getRandomMonster(null, true, AbstractDungeon.cardRandomRng);
+//                }
+//                addToBot(new RelicAboveCreatureAction(AbstractDungeon.player, this));
+//                addToBot(new LoseHPAction(AbstractDungeon.player, AbstractDungeon.player, HP_COST));
+//                addToBot(new ModfifyDamageAction(target, new DamageInfo(AbstractDungeon.player, damage, useCardAction.damageType), AbstractGameAction.AttackEffect.SLASH_VERTICAL));
+//                this.counter--;
+//                if (this.counter == 0) {
+//                    this.grayscale = true;
+//                }
+//            }
         }
 
     }

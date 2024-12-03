@@ -13,7 +13,9 @@ import com.megacrit.cardcrawl.powers.DexterityPower;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
+import gkmasmod.powers.Uplifting;
 import gkmasmod.utils.NameHelper;
+import gkmasmod.utils.PlayerHelper;
 
 public class WeAreSoStrong extends GkmasCard {
     private static final String CLASSNAME = WeAreSoStrong.class.getSimpleName();
@@ -25,7 +27,9 @@ public class WeAreSoStrong extends GkmasCard {
     private static final String IMG_PATH = String.format("gkmasModResource/img/cards/common/%s.png", CLASSNAME);
 
     private static final int COST = 2;
-    private static final int UPGRADE_COST = 1;
+
+    private static final int MAGIC = 150;
+    private static final int UPGRADE_MAGIC_PLUS = 50;
 
 
     private static final CardType TYPE = CardType.POWER;
@@ -36,13 +40,19 @@ public class WeAreSoStrong extends GkmasCard {
     public WeAreSoStrong() {
         super(ID, NAME, IMG_PATH, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.isEthereal = true;
+        this.baseMagicNumber = this.magicNumber = MAGIC;
         this.tags.add(GkmasCardTag.YARUKI_TAG);
     }
 
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
+        int count = PlayerHelper.getPowerAmount(p, DexterityPower.POWER_ID);
+        count = (int) (1.0f*MAGIC*count/100);
         addToBot(new RemoveSpecificPowerAction(p, p, DexterityPower.POWER_ID));
+        if(count > 0) {
+            addToBot(new ApplyPowerAction(p,p,new Uplifting(p,count)));
+        }
         addToBot(new ApplyPowerAction(p, p, new BarricadePower(p), 1));
     }
 
@@ -55,7 +65,7 @@ public class WeAreSoStrong extends GkmasCard {
     public void upgrade() {
         if (!this.upgraded) {
             upgradeName();
-            upgradeBaseCost(UPGRADE_COST);
+            upgradeMagicNumber(UPGRADE_MAGIC_PLUS);
             if (CARD_STRINGS.UPGRADE_DESCRIPTION != null)
                 this.rawDescription = CARD_STRINGS.UPGRADE_DESCRIPTION;
             this.initializeDescription();

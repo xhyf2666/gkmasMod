@@ -18,6 +18,7 @@ import gkmasmod.cards.GkmasCard;
 import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.powers.GoodTune;
+import gkmasmod.utils.IdolData;
 import gkmasmod.utils.NameHelper;
 import gkmasmod.utils.PlayerHelper;
 import gkmasmod.utils.SoundHelper;
@@ -52,6 +53,8 @@ public class FirstRamune extends GkmasCard {
         flavor = FlavorText.CardStringsFlavorField.flavor.get(CARD_STRINGS);
         this.tags.add(GkmasCardTag.GOOD_TUNE_TAG);
         this.tags.add(GkmasCardTag.IDOL_CARD_TAG);
+        this.backGroundColor = IdolData.kllj;
+        updateBackgroundImg();
     }
 
 
@@ -61,7 +64,7 @@ public class FirstRamune extends GkmasCard {
             addToBot(new VFXAction(new VerticalImpactEffect(m.hb.cX + m.hb.width / 4.0F, m.hb.cY - m.hb.height / 4.0F)));
         addToBot(new DamageAction(m, new DamageInfo(p, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.BLUNT_HEAVY));
         addToBot(new GoodTuneDamageAction(1.0F*this.magicNumber/100,0,p,m,this));
-        SoundHelper.playSound("gkmasModResource/audio/voice/skillcard/cidol_kllj_3_001_produce_skillcard_01.ogg");
+        SoundHelper.playSound("gkmasModResource/audio/voice/skillcard/cidol_kllj_3_004_produce_skillcard_01.ogg");
 
     }
 
@@ -69,8 +72,7 @@ public class FirstRamune extends GkmasCard {
         super.applyPowers();
         int count = PlayerHelper.getPowerAmount(AbstractDungeon.player, GoodTune.POWER_ID);
         if (count == 0) {
-            // TODO 本地化
-            FlavorText.AbstractCardFlavorFields.flavor.set(this, "当前无法使用");
+            FlavorText.AbstractCardFlavorFields.flavor.set(this, CardCrawlGame.languagePack.getUIString("gkmasMod:NotEnoughGoodTune").TEXT[0]);
             return;
         }
         int damage_ = (int) (1.0F * count * this.magicNumber / 100);
@@ -82,8 +84,7 @@ public class FirstRamune extends GkmasCard {
         if (AbstractDungeon.player.hasPower(GoodTune.POWER_ID)) {
             return true;
         }
-        // TODO 本地化
-        this.cantUseMessage = "好调还不够";
+        this.cantUseMessage = CardCrawlGame.languagePack.getUIString("gkmasMod:NotEnoughGoodTune").TEXT[0];
         return false;
     }
 

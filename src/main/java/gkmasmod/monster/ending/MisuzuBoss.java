@@ -33,7 +33,9 @@ import com.megacrit.cardcrawl.vfx.combat.BloodShotEffect;
 import com.megacrit.cardcrawl.vfx.combat.HeartBuffEffect;
 import com.megacrit.cardcrawl.vfx.combat.IntenseZoomEffect;
 import com.megacrit.cardcrawl.vfx.combat.ViceCrushEffect;
+import gkmasmod.cards.anomaly.BecomeIdol;
 import gkmasmod.cards.free.Sleepy;
+import gkmasmod.cards.logic.SparklingConfetti;
 import gkmasmod.cards.logic.WakeUp;
 import gkmasmod.cards.sense.WantToGoThere;
 import gkmasmod.characters.IdolCharacter;
@@ -107,19 +109,20 @@ public class MisuzuBoss extends CustomMonster {
         this.img = new Texture("gkmasModResource/img/monsters/Misuzu/Misuzu_sleep.png");
         this.type = AbstractMonster.EnemyType.BOSS;
         if (AbstractDungeon.ascensionLevel >= 19) {
-            setHp(2200);
+            setHp(2000);
         } else {
-            setHp(1700);
+            setHp(1500);
         }
         if (AbstractDungeon.ascensionLevel >= 4) {
             this.damage.add(new DamageInfo(this, 40));
-            this.damage.add(new DamageInfo(this, 6));
-            this.damage.add(new DamageInfo(this, 60));
-            this.bloodHitCount = 4;
+            this.damage.add(new DamageInfo(this, 8));
+            this.damage.add(new DamageInfo(this, 10));
+            this.bloodHitCount = 3;
         } else {
             this.damage.add(new DamageInfo(this, 25));
             this.damage.add(new DamageInfo(this, 6));
-            this.bloodHitCount = 3;
+            this.damage.add(new DamageInfo(this, 10));
+            this.bloodHitCount = 2;
         }
         this.sleepCount = 0;
     }
@@ -134,7 +137,7 @@ public class MisuzuBoss extends CustomMonster {
         AbstractDungeon.scene.fadeOutAmbiance();
         CardCrawlGame.music.playTempBgmInstantly("gkmasModResource/audio/bgm/hmsz_001.ogg",true);
 
-        invincibleAmt = 600;
+        invincibleAmt = 700;
         int MetallicizeAmt = 50;
         if (AbstractDungeon.ascensionLevel >= 19) {
             invincibleAmt -= 100;
@@ -143,12 +146,24 @@ public class MisuzuBoss extends CustomMonster {
         else if(AbstractDungeon.ascensionLevel >= 10) {
             MetallicizeAmt += 20;
         }
+        if(AbstractDungeon.player.hasRelic(PocketBook.ID)){
+            PocketBook book = (PocketBook)AbstractDungeon.player.getRelic(PocketBook.ID);
+            invincibleAmt = (int)(invincibleAmt*book.healthRate);
+        }
         AbstractDungeon.actionManager.addToBottom(new GainBlockAction(this, MetallicizeAmt));
+        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(this, this, new TheTwelfth(this)));
         AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(this, this, new InvinciblePower(this, invincibleAmt), invincibleAmt));
         AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(this, this, new MetallicizePower(this, MetallicizeAmt), MetallicizeAmt));
-        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(this, this, new MisuzuNature(this,100,300)));
+        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(this, this, new MisuzuNature(this,350,450)));
         AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(this, this, new SleepPower(this)));
         helloVoice();
+
+        if(AbstractDungeon.player instanceof IdolCharacter){
+            IdolCharacter idol = (IdolCharacter) AbstractDungeon.player;
+            if(idol.idolData.idolName.equals(IdolData.fktn)){
+                AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(AbstractDungeon.player, this, new GoodImpression(this, -5), -5));
+            }
+        }
     }
 
     public void takeTurn() {
@@ -206,8 +221,11 @@ public class MisuzuBoss extends CustomMonster {
                     case 1:
                         AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(this, this, new StrengthPower(this, 2), 2));
                         break;
-                    default:
+                    case 2:
                         AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(this, this, new StrengthPower(this, 5), 5));
+                        break;
+                    default:
+                        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(this, this, new StrengthPower(this, 13), 13));
                         break;
                 }
                 this.buffCount++;
@@ -299,7 +317,7 @@ public class MisuzuBoss extends CustomMonster {
         if(stage==2){
             switch (this.moveCount % 2) {
                 case 0:
-                    setMove((byte)1, AbstractMonster.Intent.ATTACK, (this.damage.get(2)).base, this.bloodHitCount, true);
+                    setMove((byte)1, AbstractMonster.Intent.ATTACK, (this.damage.get(1)).base, this.bloodHitCount, true);
                     break;
                 case 1:
                     setMove((byte) 5, AbstractMonster.Intent.BUFF);
@@ -334,7 +352,11 @@ public class MisuzuBoss extends CustomMonster {
     public void changeState(String key) {
         switch (key) {
             case "REBIRTH":
-                this.maxHealth = 140000;
+                this.maxHealth = 110000;
+                if(AbstractDungeon.player.hasRelic(PocketBook.ID)){
+                    PocketBook book = (PocketBook)AbstractDungeon.player.getRelic(PocketBook.ID);
+                    this.maxHealth = (int)(this.maxHealth*book.healthRate);
+                }
                 this.halfDead = false;
                 this.buffCount = 3;
                 stage = 2;
@@ -356,16 +378,17 @@ public class MisuzuBoss extends CustomMonster {
                 }));
                 AbstractDungeon.actionManager.addToBottom(new HealAction(this, this, this.maxHealth));
 //                AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(this, this, new InvinciblePower(this, 9000), 9000));
+                AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(this, this, new TheTwelfth(this)));
                 AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(this, this, new SleepPower2(this)));
                 AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(this, this, new AutoFullPowerValue(this, 10), 10));
                 AbstractDungeon.actionManager.addToBottom(new CanLoseAction());
-                AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(this, this, new StrengthPower(this, 11), 11));
+                AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(this, this, new StrengthPower(this, 22), 22));
                 AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(this, this, new SleepyAttackPower(this)));
                 AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(this, this, new FullPower(this)));
                 this.moveCount = 0;
                 this.nextMove = 0;
                 this.bloodHitCount = 3;
-                if(AbstractDungeon.player instanceof IdolCharacter&&AbstractDungeon.player.hasRelic(PocketBook.ID)){
+                if(AbstractDungeon.player.hasRelic(PocketBook.ID)){
                     ((PocketBook)AbstractDungeon.player.getRelic(PocketBook.ID)).startFinalCircle();
                 }
                 break;
@@ -390,7 +413,7 @@ public class MisuzuBoss extends CustomMonster {
             this.img = new Texture("gkmasModResource/img/monsters/Misuzu/Misuzu.png");
         }
 
-        if(stage==2&&!this.isOutTriggered && this.currentHealth <= 110000) {
+        if(stage==2&&!this.isOutTriggered && this.currentHealth <= 100000) {
             CardCrawlGame.music.dispose();
             CardCrawlGame.music.playTempBgmInstantly(
                     String.format("gkmasModResource/audio/song/%s_00%s.ogg",SkinSelectScreen.Inst.idolName,
@@ -410,10 +433,17 @@ public class MisuzuBoss extends CustomMonster {
                 }
                 else if(style == CommonEnum.IdolStyle.YARUKI){
                     AbstractDungeon.player.obtainPotion(new OolongTea());
-                    AbstractDungeon.player.obtainPotion(new OolongTea());
+                    card = new SparklingConfetti();
+                    card.upgrade();
+                    AbstractDungeon.actionManager.addToBottom(new MakeTempCardInHandAction(card, 1));
                 }
-                else{
+                else if(style == CommonEnum.IdolStyle.FOCUS||style == CommonEnum.IdolStyle.GOOD_TUNE){
                     card = new WantToGoThere();
+                    card.upgrade();
+                    AbstractDungeon.actionManager.addToBottom(new MakeTempCardInHandAction(card, 2));
+                }
+                else if(style == CommonEnum.IdolStyle.FULL_POWER||style == CommonEnum.IdolStyle.CONCENTRATION){
+                    card = new BecomeIdol();
                     card.upgrade();
                     AbstractDungeon.actionManager.addToBottom(new MakeTempCardInHandAction(card, 1));
                 }

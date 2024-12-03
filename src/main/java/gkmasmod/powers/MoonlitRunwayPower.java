@@ -1,5 +1,7 @@
 package gkmasmod.powers;
 
+import gkmasmod.downfall.charbosses.bosses.AbstractCharBoss;
+import gkmasmod.downfall.charbosses.cards.AbstractBossCard;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
@@ -57,6 +59,10 @@ public class MoonlitRunwayPower extends AbstractPower {
     }
 
     public void onUseCard(AbstractCard card, UseCardAction action) {
+        if(!(this.owner instanceof AbstractCharBoss)&&card instanceof AbstractBossCard)
+            return;
+        if(this.owner instanceof AbstractCharBoss&&(!(card instanceof AbstractBossCard)))
+            return;
         if(useCardFinished) {
             return;
         }

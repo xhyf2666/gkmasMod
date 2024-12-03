@@ -31,11 +31,11 @@ public class SpecialHuHu extends GkmasCard {
 
     private static final CardType TYPE = CardType.SKILL;
     private static final CardColor COLOR = PlayerColorEnum.gkmasModColor;
-    private static final CardRarity RARITY = CardRarity.UNCOMMON;
+    private static final CardRarity RARITY = CardRarity.SPECIAL;
     private static final CardTarget TARGET = CardTarget.SELF;
 
     public SpecialHuHu() {
-        super(ID, NAME, IMG_PATH, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
+        super(ID, NAME, IMG_PATH, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET,"yellow");
 
         if(SkinSelectScreen.Inst.idolName== IdolData.hski || SkinSelectScreen.Inst.idolName== IdolData.hume){
             this.baseMagicNumber = 6;

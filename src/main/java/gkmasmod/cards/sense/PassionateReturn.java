@@ -10,6 +10,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.StrengthPower;
+import gkmasmod.actions.PassionateReturnAction;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
@@ -26,11 +27,10 @@ public class PassionateReturn extends GkmasCard {
     private static String IMG_PATH = String.format("gkmasModResource/img/idol/%s/cards/%s.png", SkinSelectScreen.Inst.idolName, CLASSNAME);
 
     private static final int COST = 2;
-    private static final int ATTACK_DMG = 7;
-    private static final int UPGRADE_PLUS_DMG = 2;
+    private static final int ATTACK_DMG = 11;
+    private static final int UPGRADE_PLUS_DMG = 4;
 
-    private static final int BASE_MAGIC = 3;
-    private static final int UPGRADE_PLUS_MAGIC = 1;
+    private static final int BASE_MAGIC = 4;
 
 
     private static final CardType TYPE = CardType.ATTACK;
@@ -45,14 +45,12 @@ public class PassionateReturn extends GkmasCard {
         this.baseDamage = ATTACK_DMG;
         this.baseMagicNumber = BASE_MAGIC;
         this.magicNumber = this.baseMagicNumber;
-        this.tags.add(GkmasCardTag.FOCUS_TAG);
     }
 
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        addToBot( new DamageAction( m, new DamageInfo( p, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
-        addToBot( new ApplyPowerAction( p,  p,  new StrengthPower(p, this.magicNumber), this.magicNumber));
+        addToBot(new PassionateReturnAction(m, new DamageInfo( p, this.damage, this.damageTypeForTurn), this.magicNumber));
     }
 
     @Override
@@ -65,7 +63,7 @@ public class PassionateReturn extends GkmasCard {
         if (!this.upgraded) {
             upgradeName();
             upgradeDamage(UPGRADE_PLUS_DMG);
-            upgradeMagicNumber(UPGRADE_PLUS_MAGIC);
+//            upgradeMagicNumber(UPGRADE_PLUS_MAGIC);
             if (CARD_STRINGS.UPGRADE_DESCRIPTION != null)
                 this.rawDescription = CARD_STRINGS.UPGRADE_DESCRIPTION;
             this.initializeDescription();

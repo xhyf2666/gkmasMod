@@ -12,6 +12,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.MalleablePower;
 import gkmasmod.characters.IdolCharacter;
+import gkmasmod.patches.AbstractPlayerPatch;
 import gkmasmod.utils.NameHelper;
 import gkmasmod.utils.ThreeSizeHelper;
 
@@ -51,9 +52,8 @@ public class AllEffort extends AbstractPower {
 
     @Override
     public float atDamageFinalGive(float damage, DamageInfo.DamageType type) {
-        IdolCharacter idol = (IdolCharacter) AbstractDungeon.player;
-        if(idol.finalCircleRound.size()>0){
-            return (float) (damage * idol.finalDamageRate);
+        if(AbstractPlayerPatch.FinalCircleRoundField.finalCircleRound.get(AbstractDungeon.player).size()>0){
+            return (float) (damage * AbstractPlayerPatch.FinalDamageRateField.finalDamageRate.get(AbstractDungeon.player));
         }
         else return damage;
     }

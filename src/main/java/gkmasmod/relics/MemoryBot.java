@@ -53,8 +53,8 @@ public class MemoryBot extends CustomRelic {
         float amount = 1.0F*AbstractDungeon.player.currentHealth / AbstractDungeon.player.maxHealth;
         float HP_ = HP*1.0F/100;
         if(amount>=HP_){
-            flash();
             addToBot(new RelicAboveCreatureAction(AbstractDungeon.player, this));
+            this.flash();
             addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new GoodImpression(AbstractDungeon.player, magicNumber), magicNumber));
         }
 

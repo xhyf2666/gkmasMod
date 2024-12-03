@@ -35,10 +35,13 @@ public class TimeEaterPatch
     public static class TimeEaterPrePatch_RenderCard {
         @SpirePrefixPatch
         public static void Prefix(TimeEater __instance) {
-            if (__instance.nextMove == 3) {
-                int change = ThreeSizeHelper.getHealthRate(3) - 1;
-                AbstractDungeon.actionManager.addToBottom(new GainBlockAction(__instance, __instance, 20 * change));
+            if(AbstractDungeon.player.hasRelic(PocketBook.ID)){
+                if (__instance.nextMove == 3) {
+                    int change = ThreeSizeHelper.getHealthRate(3) - 1;
+                    AbstractDungeon.actionManager.addToBottom(new GainBlockAction(__instance, __instance, 20 * change));
+                }
             }
+
         }
     }
 }

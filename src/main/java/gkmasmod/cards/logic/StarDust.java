@@ -52,6 +52,8 @@ public class StarDust extends GkmasCard {
         this.exhaust = true;
         this.tags.add(GkmasCardTag.YARUKI_TAG);
         this.tags.add(GkmasCardTag.GOOD_IMPRESSION_TAG);
+        this.tags.add(GkmasCardTag.MORE_ACTION_TAG);
+
     }
 
 
@@ -59,7 +61,9 @@ public class StarDust extends GkmasCard {
     public void use(AbstractPlayer p, AbstractMonster m) {
         addToBot(new ApplyPowerAction(p, p, new DexterityPower(p, -this.magicNumber), -this.magicNumber));
         addToBot(new ApplyPowerAction(p, p, new GoodImpression(p, this.secondMagicNumber), this.secondMagicNumber));
-        addToBot(new DrawCardAction(1));
+        if(this.upgraded){
+            addToBot(new DrawCardAction(thirdMagicNumber));
+        }
         addToBot(new GainTrainRoundPowerAction(p,1));
     }
 

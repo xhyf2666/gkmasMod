@@ -59,6 +59,7 @@ public class TogetherInBattleTowel extends CustomRelic {
     public void onUseCard(AbstractCard card, UseCardAction useCardAction){
         if (this.counter > 0 && card.type == AbstractCard.CardType.ATTACK) {
                 addToBot(new RelicAboveCreatureAction(AbstractDungeon.player, this));
+                this.flash();
                 addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new GoodTune(AbstractDungeon.player, magicNumber), magicNumber));
                 addToBot(new GainTrainRoundPowerAction(AbstractDungeon.player,1));
                 this.counter--;

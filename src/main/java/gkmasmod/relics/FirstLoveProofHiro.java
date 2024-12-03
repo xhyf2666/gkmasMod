@@ -55,6 +55,7 @@ public class FirstLoveProofHiro extends CustomRelic {
             if(amount<=HP_){
                 flash();
                 addToBot(new RelicAboveCreatureAction(AbstractDungeon.player, this));
+                this.flash();
                 addToBot(new UpgradeAllHandCardAction());
                 addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new StrengthPower(AbstractDungeon.player, magicNumber), magicNumber));
                 addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new ReduceDamageReceive(AbstractDungeon.player, magicNumber2), magicNumber2));

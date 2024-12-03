@@ -13,6 +13,7 @@ import gkmasmod.cards.GkmasCard;
 import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.powers.GoodImpression;
+import gkmasmod.utils.IdolData;
 import gkmasmod.utils.NameHelper;
 import gkmasmod.utils.PlayerHelper;
 import gkmasmod.utils.SoundHelper;
@@ -28,9 +29,9 @@ public class StruggleHandmade extends GkmasCard {
 
     private static final int COST = 0;
 
-    private static final int BASE_MAGIC = 4;
+    private static final int BASE_MAGIC = 3;
     private static final int UPGRADE_PLUS_MAGIC = 2;
-    private static final int BASE_MAGIC2 = 4;
+    private static final int BASE_MAGIC2 = 2;
     private static final int UPGRADE_PLUS_MAGIC2 = 1;
     private static final int BASE_MAGIC3 = 2;
 
@@ -55,6 +56,10 @@ public class StruggleHandmade extends GkmasCard {
         this.tags.add(GkmasCardTag.GOOD_IMPRESSION_TAG);
         this.tags.add(GkmasCardTag.YARUKI_TAG);
         this.tags.add(GkmasCardTag.IDOL_CARD_TAG);
+        this.tags.add(GkmasCardTag.MORE_ACTION_TAG);
+        this.backGroundColor = IdolData.ttmr;
+        updateBackgroundImg();
+
     }
 
 
@@ -67,7 +72,7 @@ public class StruggleHandmade extends GkmasCard {
         if (count > thirdMagicNumber) {
             addToBot(new GainTrainRoundPowerAction(p,1));
         }
-        SoundHelper.playSound("gkmasModResource/audio/voice/skillcard/cidol_ttmr_3_002_produce_skillcard_01.ogg");
+        SoundHelper.playSound("gkmasModResource/audio/voice/skillcard/cidol_ttmr_3_006_produce_skillcard_01.ogg");
 
     }
 

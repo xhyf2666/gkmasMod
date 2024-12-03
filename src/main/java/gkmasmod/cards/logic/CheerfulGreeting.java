@@ -25,7 +25,7 @@ public class CheerfulGreeting extends GkmasCard {
 
     private static final int COST = 1;
 
-    private static final int BASE_MAGIC = 110;
+    private static final int BASE_MAGIC = 70;
     private static final int UPGRADE_PLUS_MAGIC = 10;
 
     private static final int BASE_HP = 4;
@@ -34,7 +34,7 @@ public class CheerfulGreeting extends GkmasCard {
     private static final CardType TYPE = CardType.ATTACK;
     private static final CardColor COLOR = PlayerColorEnum.gkmasModColorLogic;
     private static final CardRarity RARITY = CardRarity.COMMON;
-    private static final CardTarget TARGET = CardTarget.ENEMY;
+    private static final CardTarget TARGET = CardTarget.ALL_ENEMY;
     private String flavor = "";
 
     public CheerfulGreeting() {
@@ -50,7 +50,7 @@ public class CheerfulGreeting extends GkmasCard {
 
     public void use(AbstractPlayer p, AbstractMonster m) {
         addToBot(new LoseHPAction(p, p, this.HPMagicNumber));
-        addToBot(new BlockDamageAction(1.0F * this.magicNumber / 100, 0, p, m,this));
+        addToBot(new BlockDamageAction(1.0F * this.magicNumber / 100, 0, p, m,this,true,0));
     }
 
     public void applyPowersToBlock() {

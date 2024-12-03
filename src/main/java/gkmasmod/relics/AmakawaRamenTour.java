@@ -45,6 +45,7 @@ public class AmakawaRamenTour extends CustomRelic {
     public void atBattleStart() {
         if(MapRoomNodePatch.SPField.isSP.get(AbstractDungeon.getCurrMapNode())){
             addToBot(new RelicAboveCreatureAction(AbstractDungeon.player, this));
+            this.flash();
             addToBot(new GainTrainRoundPowerAction(AbstractDungeon.player,magicNumber));
         }
     }

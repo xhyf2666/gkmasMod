@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.localization.EventStrings;
 import com.megacrit.cardcrawl.relics.Circlet;
 import com.megacrit.cardcrawl.vfx.RainingGoldEffect;
 import gkmasmod.modcore.GkmasMod;
+import gkmasmod.relics.EveryoneTextbook;
 import gkmasmod.relics.MysteriousObject;
 import gkmasmod.relics.OverpoweredBall;
 import gkmasmod.relics.PledgePetal;
@@ -27,6 +28,8 @@ public class Plan_hume1 extends AbstractImageEvent {
         this.imageEventText.setDialogOption(OPTIONS[0],new MysteriousObject());
         this.imageEventText.setDialogOption(OPTIONS[1],new OverpoweredBall());
         this.imageEventText.setDialogOption(OPTIONS[2],new PledgePetal());
+        this.imageEventText.setDialogOption(OPTIONS[3],new EveryoneTextbook());
+
     }
 
     @Override
@@ -36,7 +39,7 @@ public class Plan_hume1 extends AbstractImageEvent {
                 switch (i) {
                     case 0:
                         this.imageEventText.clearAllDialogs();
-                        this.imageEventText.setDialogOption(OPTIONS[3]);
+                        this.imageEventText.setDialogOption(OPTIONS[4]);
                         AbstractDungeon.effectList.add(new RainingGoldEffect(this.gold));
                         AbstractDungeon.player.gainGold(this.gold);
                         if (!AbstractDungeon.player.hasRelic(MysteriousObject.ID)) {
@@ -48,7 +51,7 @@ public class Plan_hume1 extends AbstractImageEvent {
                         return;
                     case 1:
                         this.imageEventText.clearAllDialogs();
-                        this.imageEventText.setDialogOption(OPTIONS[3]);
+                        this.imageEventText.setDialogOption(OPTIONS[4]);
                         AbstractDungeon.effectList.add(new RainingGoldEffect(this.gold));
                         AbstractDungeon.player.gainGold(this.gold);
                         if (!AbstractDungeon.player.hasRelic(OverpoweredBall.ID)) {
@@ -60,11 +63,23 @@ public class Plan_hume1 extends AbstractImageEvent {
                         return;
                     case 2:
                         this.imageEventText.clearAllDialogs();
-                        this.imageEventText.setDialogOption(OPTIONS[3]);
+                        this.imageEventText.setDialogOption(OPTIONS[4]);
                         AbstractDungeon.effectList.add(new RainingGoldEffect(this.gold));
                         AbstractDungeon.player.gainGold(this.gold);
                         if (!AbstractDungeon.player.hasRelic(PledgePetal.ID)) {
                             AbstractDungeon.getCurrRoom().spawnRelicAndObtain(this.drawX, this.drawY, new PledgePetal());
+                        } else {
+                            AbstractDungeon.getCurrRoom().spawnRelicAndObtain(this.drawX, this.drawY, new Circlet());
+                        }
+                        screenNum++;
+                        return;
+                    case 3:
+                        this.imageEventText.clearAllDialogs();
+                        this.imageEventText.setDialogOption(OPTIONS[4]);
+                        AbstractDungeon.effectList.add(new RainingGoldEffect(this.gold));
+                        AbstractDungeon.player.gainGold(this.gold);
+                        if (!AbstractDungeon.player.hasRelic(EveryoneTextbook.ID)) {
+                            AbstractDungeon.getCurrRoom().spawnRelicAndObtain(this.drawX, this.drawY, new EveryoneTextbook());
                         } else {
                             AbstractDungeon.getCurrRoom().spawnRelicAndObtain(this.drawX, this.drawY, new Circlet());
                         }

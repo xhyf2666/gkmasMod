@@ -1,0 +1,96 @@
+package gkmasmod.downfall.bosses;
+
+import gkmasmod.downfall.charbosses.bosses.AbstractBossDeckArchetype;
+import gkmasmod.downfall.charbosses.bosses.AbstractCharBoss;
+import gkmasmod.downfall.charbosses.relics.CBR_CoffeeDripper;
+import gkmasmod.downfall.charbosses.relics.CBR_Girya;
+import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
+import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.core.AbstractCreature;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.powers.BarricadePower;
+import gkmasmod.downfall.cards.free.ENBaseAppeal;
+import gkmasmod.downfall.cards.free.ENIdolSoul;
+import gkmasmod.downfall.cards.sense.*;
+import gkmasmod.downfall.relics.CBR_EnjoyAfterHotSpring;
+import gkmasmod.downfall.relics.CBR_OldCoin;
+
+import java.util.ArrayList;
+
+public class BossConfig_kcna3 extends AbstractBossDeckArchetype {
+
+    public BossConfig_kcna3() {
+        super("hski_config2","hski", "goodImpression");
+        maxHPModifier += 200;
+        actNum = 3;
+    }
+
+    @Override
+    public void addedPreBattle() {
+        super.addedPreBattle();
+        AbstractCreature p = AbstractCharBoss.boss;
+        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new BarricadePower(p)));
+    }
+
+    public void initialize() {
+        addRelic(new CBR_OldCoin());
+        addRelic(new CBR_OldCoin());
+        addRelic(new CBR_OldCoin());
+        addRelic(new CBR_CoffeeDripper());
+        addRelic(new CBR_Girya(5));
+        addRelic(new CBR_EnjoyAfterHotSpring());
+    }
+
+    @Override
+    public ArrayList<AbstractCard> getThisTurnCards() {
+        ArrayList<AbstractCard> cardsList = new ArrayList<>();
+        boolean extraUpgrades = AbstractDungeon.ascensionLevel >= 3;
+        if (!looped) {
+            switch (turn) {
+                case 0:
+                    addToList(cardsList, new ENSteadyWill(),extraUpgrades);
+                    addToList(cardsList, new ENAQuickSip(),extraUpgrades);
+                    addToList(cardsList, new ENDeepBreath(),extraUpgrades);
+                    addToList(cardsList, new ENWarmUp());
+                    turn++;
+                    break;
+                case 1:
+                    addToList(cardsList, new ENIdolSoul(),extraUpgrades);
+                    addToList(cardsList, new ENNationalIdol());
+                    addToList(cardsList, new ENJustOneMore(),extraUpgrades);
+                    addToList(cardsList, new ENBalance(),extraUpgrades);
+                    turn++;
+                    break;
+                case 2:
+                    addToList(cardsList, new ENWelcomeToTeaParty(),extraUpgrades);
+                    addToList(cardsList, new ENEncoreCall(),extraUpgrades);
+                    addToList(cardsList, new ENEyePower());
+                    addToList(cardsList, new ENBaseAppeal());
+                    turn++;
+                    break;
+                case 3:
+                    addToList(cardsList, new ENCharmPerformance(),extraUpgrades);
+                    addToList(cardsList, new ENStartSignal());
+                    addToList(cardsList, new ENGonnaTrickYou(),extraUpgrades);
+                    turn = 0;
+                    looped = true;
+                    break;
+            }
+        } else {
+            switch (turn) {
+                case 0:
+                    addToList(cardsList, new ENExistence(),extraUpgrades);
+                    addToList(cardsList, new ENEncoreCall());
+                    addToList(cardsList, new ENAwakening());
+                    addToList(cardsList, new ENSpecialTreasure());
+                    addToList(cardsList, new ENBaseAppeal());
+                    break;
+            }
+        }
+        return cardsList;
+    }
+
+    @Override
+    public void initializeBonusRelic() {
+    }
+}

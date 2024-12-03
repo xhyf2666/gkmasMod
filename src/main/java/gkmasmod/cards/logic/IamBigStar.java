@@ -16,6 +16,7 @@ import gkmasmod.actions.GainTrainRoundPowerAction;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
+import gkmasmod.powers.AnotherTurnPower;
 import gkmasmod.powers.GoodImpression;
 import gkmasmod.screen.SkinSelectScreen;
 import gkmasmod.utils.NameHelper;
@@ -55,6 +56,8 @@ public class IamBigStar extends GkmasCard {
         this.exhaust = true;
         this.tags.add(GkmasCardTag.GOOD_IMPRESSION_TAG);
         this.tags.add(GkmasCardTag.OUTSIDE_TAG);
+        this.tags.add(GkmasCardTag.MORE_ACTION_TAG);
+
     }
 
 
@@ -62,7 +65,8 @@ public class IamBigStar extends GkmasCard {
     public void use(AbstractPlayer p, AbstractMonster m) {
         addToBot(new ApplyPowerAction(p, p, new GoodImpression(p, -this.magicNumber), -this.magicNumber));
         addToBot(new VFXAction(new WhirlwindEffect(new Color(1.0F, 0.9F, 0.4F, 1.0F), true)));
-        addToBot(new SkipEnemiesTurnAction());
+        addToBot(new ApplyPowerAction(p,p,new AnotherTurnPower(p,1),1));
+//        addToBot(new SkipEnemiesTurnAction());
         addToBot(new GainTrainRoundPowerAction(p,1));
         if(this.upgraded)
             addToBot(new DrawCardAction(1));

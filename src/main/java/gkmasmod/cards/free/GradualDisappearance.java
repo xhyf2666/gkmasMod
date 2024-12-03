@@ -11,6 +11,7 @@ import com.megacrit.cardcrawl.powers.ArtifactPower;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.powers.AutoUpgrade;
+import gkmasmod.powers.DrawCardNextXTurnPower;
 import gkmasmod.screen.SkinSelectScreen;
 import gkmasmod.utils.NameHelper;
 
@@ -25,6 +26,7 @@ public class GradualDisappearance extends GkmasCard {
 
     private static final int COST = 1;
     private static final int BASE_MAGIC = 2;
+    private static final int BASE_MAGIC2 = 2;
 
     private static final int BLOCK_AMT = 6;
     private static final int BLOCK_PLUS = 3;
@@ -39,6 +41,8 @@ public class GradualDisappearance extends GkmasCard {
         super(ID, NAME, IMG_PATH, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.baseMagicNumber = BASE_MAGIC;
         this.magicNumber = this.baseMagicNumber;
+        this.baseSecondMagicNumber = BASE_MAGIC2;
+        this.secondMagicNumber = this.baseSecondMagicNumber;
         this.baseBlock = BLOCK_AMT;
         this.exhaust = true;
     }
@@ -47,7 +51,7 @@ public class GradualDisappearance extends GkmasCard {
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
         addToBot(new GainBlockAction(p, p, this.block));
-        addToBot(new ApplyPowerAction(p, p, new AutoUpgrade(p, this.magicNumber), this.magicNumber));
+        addToBot(new ApplyPowerAction(p, p, new DrawCardNextXTurnPower(p, this.magicNumber), this.magicNumber));
     }
 
     @Override

@@ -73,8 +73,8 @@ public class DreamLifeLog extends CustomRelic {
                 int goodImpressionAmount = AbstractDungeon.player.getPower(GoodImpression.POWER_ID) ==null?0:AbstractDungeon.player.getPower(GoodImpression.POWER_ID).amount;
                 int goodImpressionIncrease = (int) (1.0F*goodImpressionAmount*magicNumber);
 
-                flash();
                 addToBot(new RelicAboveCreatureAction(AbstractDungeon.player, this));
+                this.flash();
                 addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new GoodImpression(AbstractDungeon.player, goodImpressionIncrease), goodImpressionIncrease));
                 addToBot(new ModifyDamageRandomEnemyAction(new DamageInfo(AbstractDungeon.player, damage, DamageInfo.DamageType.NORMAL), AbstractGameAction.AttackEffect.SLASH_VERTICAL));
                 this.counter--;

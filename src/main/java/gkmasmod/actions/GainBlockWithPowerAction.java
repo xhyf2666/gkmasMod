@@ -53,19 +53,21 @@ public class GainBlockWithPowerAction extends AbstractGameAction {
         if (!this.target.isDying && !this.target.isDead && this.duration == this.startDuration) {
             AbstractDungeon.effectList.add(new FlashAtkImgEffect(this.target.hb.cX, this.target.hb.cY, AttackEffect.SHIELD));
 
-            int DexterityPowerAmount = AbstractDungeon.player.getPower(DexterityPower.POWER_ID) == null ? 0 : AbstractDungeon.player.getPower(DexterityPower.POWER_ID).amount;
+            int DexterityPowerAmount = this.target.getPower(DexterityPower.POWER_ID) == null ? 0 : this.target.getPower(DexterityPower.POWER_ID).amount;
             this.amount = this.amount + DexterityPowerAmount > 0 ? this.amount + DexterityPowerAmount : 0;
 
-            if(AbstractDungeon.player.getPower(FrailPower.POWER_ID) != null){
+            if(this.target.getPower(FrailPower.POWER_ID) != null){
                 this.amount = (int)((float)this.amount * 0.75F);
             }
 
             this.target.addBlock(this.amount);
-            Iterator var1 = AbstractDungeon.player.hand.group.iterator();
+            if(this.target.isPlayer){
+                Iterator var1 = AbstractDungeon.player.hand.group.iterator();
 
-            while(var1.hasNext()) {
-                AbstractCard c = (AbstractCard)var1.next();
-                c.applyPowers();
+                while(var1.hasNext()) {
+                    AbstractCard c = (AbstractCard)var1.next();
+                    c.applyPowers();
+                }
             }
         }
 

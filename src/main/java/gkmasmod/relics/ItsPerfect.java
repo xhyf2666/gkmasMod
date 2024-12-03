@@ -1,20 +1,14 @@
 package gkmasmod.relics;
 import basemod.abstracts.CustomRelic;
 import com.badlogic.gdx.Gdx;
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.common.LoseHPAction;
 import com.megacrit.cardcrawl.actions.common.RelicAboveCreatureAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.DamageInfo;
-import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
-import com.megacrit.cardcrawl.powers.DexterityPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import gkmasmod.actions.ItsPerfectAction;
-import gkmasmod.actions.ModfifyDamageAction;
 
 public class ItsPerfect extends CustomRelic {
 
@@ -56,9 +50,9 @@ public class ItsPerfect extends CustomRelic {
     public void onUseCard(AbstractCard card, UseCardAction useCardAction) {
         if (this.counter > 0) {
             if (card.tags.contains(AbstractCard.CardTags.HEALING)) {
-                this.flash();
                 addToBot(new RelicAboveCreatureAction(AbstractDungeon.player, this));
-                addToBot(new ItsPerfectAction(BASE_MAGIC,BASE_MAGIC2,HP_COST));
+                this.flash();
+                addToBot(new ItsPerfectAction(AbstractDungeon.player,BASE_MAGIC,BASE_MAGIC2,HP_COST));
                 this.counter--;
                 if (this.counter == 0) {
                     this.grayscale = true;

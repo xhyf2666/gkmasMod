@@ -32,7 +32,7 @@ public class LikeEveryone extends GkmasCard {
 
     private static final int COST = 1;
 
-    private static final int BASE_MAGIC = 3;
+    private static final int BASE_MAGIC = 2;
     private static final int UPGRADE_PLUS_MAGIC = -1;
     private static final int BASE_MAGIC2 = 90;
     private static final int UPGRADE_PLUS_MAGIC2 = 30;
@@ -58,6 +58,8 @@ public class LikeEveryone extends GkmasCard {
         flavor = FlavorText.CardStringsFlavorField.flavor.get(CARD_STRINGS);
         this.tags.add(GkmasCardTag.YARUKI_TAG);
         this.tags.add(GkmasCardTag.GOOD_IMPRESSION_TAG);
+        this.tags.add(GkmasCardTag.MORE_ACTION_TAG);
+
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {

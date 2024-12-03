@@ -51,7 +51,7 @@ public class ClumsyBat extends CustomRelic {
         this.counter = 0;
     }
 
-    public void atTurnStart() {
+    public void onPlayerEndTurn() {
         if (this.counter == -1) {
             this.counter += 2;
         } else {
@@ -61,6 +61,7 @@ public class ClumsyBat extends CustomRelic {
             int count = AbstractDungeon.player.getPower(GoodImpression.POWER_ID)==null?0:AbstractDungeon.player.getPower(GoodImpression.POWER_ID).amount;
             if(count>GOOD_IMPRESSION){
                 addToBot(new RelicAboveCreatureAction(AbstractDungeon.player, this));
+                this.flash();
                 int damage = (int) (1.0F*AbstractDungeon.player.currentBlock * magicNumber2/100);
                 addToBot(new ModifyDamageRandomEnemyAction(new DamageInfo(AbstractDungeon.player, damage, DamageInfo.DamageType.NORMAL), AbstractGameAction.AttackEffect.SLASH_VERTICAL));
                 damage = (int) (1.0F* PlayerHelper.getPowerAmount(AbstractDungeon.player, DexterityPower.POWER_ID) * magicNumber3/100);

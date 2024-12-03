@@ -25,10 +25,10 @@ public class PopPhrase extends GkmasCard {
     private static final String DESCRIPTION = CARD_STRINGS.DESCRIPTION;
     private static String IMG_PATH = String.format("gkmasModResource/img/idol/%s/cards/%s.png", SkinSelectScreen.Inst.idolName, CLASSNAME);
 
-    private static final int COST = 2;
+    private static final int COST = 3;
 
-    private static final int ATTACK_DMG = 22;
-    private static final int UPGRADE_PLUS_DMG = 13;
+    private static final int ATTACK_DMG = 34;
+    private static final int UPGRADE_PLUS_DMG = 11;
 
 
     private static final CardType TYPE = CardType.ATTACK;

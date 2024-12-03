@@ -57,6 +57,7 @@ public class UndefeatedPoi extends CustomRelic {
             int count = AbstractDungeon.player.getPower(GoodImpression.POWER_ID)==null?0:AbstractDungeon.player.getPower(GoodImpression.POWER_ID).amount;
             if(count>GOOD_IMPRESSION){
                 addToBot(new RelicAboveCreatureAction(AbstractDungeon.player, this));
+                this.flash();
                 addToBot(new HealAction(AbstractDungeon.player, AbstractDungeon.player, magicNumber));
                 this.counter--;
                 if (this.counter == 0) {

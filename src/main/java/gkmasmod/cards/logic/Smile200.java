@@ -30,8 +30,8 @@ public class Smile200 extends GkmasCard {
     private static final int BASE_MAGIC = 5;
     private static final int UPGRADE_PLUS_MAGIC = 1;
 
-    private static final int BASE_MAGIC2 = 100;
-    private static final int UPGRADE_PLUS_MAGIC2 = 70;
+    private static final int BASE_MAGIC2 = 150;
+    private static final int UPGRADE_PLUS_MAGIC2 = 50;
 
     private static final CardType TYPE = CardType.ATTACK;
     private static final CardColor COLOR = PlayerColorEnum.gkmasModColorLogic;

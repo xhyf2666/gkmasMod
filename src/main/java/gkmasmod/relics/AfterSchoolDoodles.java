@@ -64,6 +64,7 @@ public class AfterSchoolDoodles extends CustomRelic {
             float HP_ = HP*1.0F/100;
             if (amount >= HP_) {
                 addToBot(new RelicAboveCreatureAction(AbstractDungeon.player, this));
+                this.flash();
                 addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new StrengthPower(AbstractDungeon.player, magicNumber), magicNumber));
                 this.counter--;
                 isRefresh = false;

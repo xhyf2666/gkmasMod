@@ -50,7 +50,7 @@ public class EyePowerPower extends AbstractPower {
 
     public void atEndOfTurnPreEndTurnCards(boolean isPlayer) {
         flash();
-        int count = PlayerHelper.getPowerAmount(AbstractDungeon.player,StrengthPower.POWER_ID);
+        int count = PlayerHelper.getPowerAmount(this.owner,StrengthPower.POWER_ID);
         count = (int) (amount*0.5F*count);
         if(count>0){
             addToBot(new GainBlockAction(owner,owner,count));

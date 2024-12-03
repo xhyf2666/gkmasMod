@@ -8,5 +8,10 @@
     "NAME": "老师",
     "DIALOG": [],
     "MOVES": ["想睡觉了"]
+  },
+  "gkmasMod:LittleGundam": {
+    "NAME": "小高达",
+    "DIALOG": [],
+    "MOVES": ["biu"]
   }
 }

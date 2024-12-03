@@ -50,7 +50,7 @@ public class SleepPower extends AbstractPower {
     @Override
     public void onExhaust(AbstractCard card) {
         if(card.cardID== Sleepy.ID){
-            this.addToBot(new ApplyPowerAction(this.owner, this.owner, new FullPowerValue(this.owner,1),1));
+            this.addToBot(new ApplyPowerAction(this.owner, this.owner, new FullPowerValueMisuzu(this.owner,1),1));
         }
     }
 }

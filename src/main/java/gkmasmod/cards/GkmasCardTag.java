@@ -10,4 +10,8 @@ public class GkmasCardTag {
     @SpireEnum public static AbstractCard.CardTags YARUKI_TAG;
     @SpireEnum public static AbstractCard.CardTags IDOL_CARD_TAG;
     @SpireEnum public static AbstractCard.CardTags OUTSIDE_TAG;
+    @SpireEnum public static AbstractCard.CardTags MORE_ACTION_TAG;
+    @SpireEnum public static AbstractCard.CardTags CONCENTRATION_TAG;
+    @SpireEnum public static AbstractCard.CardTags PRESERVATION_TAG;
+    @SpireEnum public static AbstractCard.CardTags FULL_POWER_TAG;
 }

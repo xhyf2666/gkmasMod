@@ -54,11 +54,12 @@ public class InnerLightEarrings extends CustomRelic {
 
     public void onEquip() {}
 
-    public void atTurnStart() {
+    public void onPlayerEndTurn() {
         if (this.counter > 0) {
             int count = AbstractDungeon.player.getPower(GoodTune.POWER_ID)==null?0:AbstractDungeon.player.getPower(GoodTune.POWER_ID).amount;
             if(count>GOOD_TUNE){
                 addToBot(new RelicAboveCreatureAction(AbstractDungeon.player, this));
+                this.flash();
                 addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new StrengthPower(AbstractDungeon.player, magicNumber), magicNumber));
                 addToBot(new GainBlockWithPowerAction(AbstractDungeon.player, AbstractDungeon.player, magicNumber2));
                 this.counter--;
@@ -74,8 +75,6 @@ public class InnerLightEarrings extends CustomRelic {
         this.counter = playTimes;
     }
 
-    public  void  onPlayerEndTurn(){
-    }
 
     public void justEnteredRoom(AbstractRoom room) {
         this.grayscale = false;

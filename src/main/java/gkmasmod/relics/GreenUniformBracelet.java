@@ -62,6 +62,7 @@ public class GreenUniformBracelet extends CustomRelic {
     public void onGoodImpressionIncrease(){
         if (this.counter > 0 && isRefresh) {
             addToBot(new RelicAboveCreatureAction(AbstractDungeon.player, this));
+            this.flash();
             addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new GoodImpression(AbstractDungeon.player, magicNumber), magicNumber));
             this.counter--;
             // 防止自己触发自己

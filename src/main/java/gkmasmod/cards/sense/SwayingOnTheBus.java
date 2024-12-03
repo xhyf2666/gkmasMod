@@ -16,6 +16,7 @@ import com.megacrit.cardcrawl.vfx.combat.VerticalImpactEffect;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
+import gkmasmod.utils.IdolData;
 import gkmasmod.utils.NameHelper;
 import gkmasmod.utils.SoundHelper;
 
@@ -51,6 +52,8 @@ public class SwayingOnTheBus extends GkmasCard {
         this.exhaust = true;
         this.tags.add(GkmasCardTag.FOCUS_TAG);
         this.tags.add(GkmasCardTag.IDOL_CARD_TAG);
+        this.backGroundColor = IdolData.shro;
+        updateBackgroundImg();
     }
 
 

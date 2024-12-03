@@ -1,18 +1,13 @@
 package gkmasmod.relics;
 import basemod.abstracts.CustomRelic;
 import com.badlogic.gdx.Gdx;
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.GainBlockAction;
-import com.megacrit.cardcrawl.actions.common.LoseHPAction;
 import com.megacrit.cardcrawl.actions.common.RelicAboveCreatureAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
-import com.megacrit.cardcrawl.rooms.AbstractRoom;
-import gkmasmod.actions.ModfifyDamageAction;
 
 public class CursedSpirit extends CustomRelic {
 
@@ -26,24 +21,19 @@ public class CursedSpirit extends CustomRelic {
 
     private static final RelicTier RARITY = RelicTier.STARTER;
 
-    private static final int BLOCK = 7;
+    private static final int BLOCK = 4;
 
     private float magicNumber;
-    private static int playTimes = 2;
 
     public CursedSpirit() {
         super(ID, ImageMaster.loadImage(IMG), ImageMaster.loadImage(IMG_OTL), RARITY, LandingSound.CLINK);
     }
 
 
-    @Override
-    public void onVictory() {
-        this.counter = playTimes;
-    }
 
     @Override
     public String getUpdatedDescription() {
-        return String.format(this.DESCRIPTIONS[0],BLOCK,playTimes);
+        return String.format(this.DESCRIPTIONS[0],BLOCK);
     }
 
     @Override
@@ -52,26 +42,12 @@ public class CursedSpirit extends CustomRelic {
     }
 
     public void onUseCard(AbstractCard card, UseCardAction useCardAction) {
-        if (this.counter > 0) {
-            if (card.type == AbstractCard.CardType.ATTACK) {
-                addToBot(new RelicAboveCreatureAction(AbstractDungeon.player, this));
-                addToBot(new GainBlockAction(AbstractDungeon.player, AbstractDungeon.player, BLOCK));
-                this.counter--;
-                if (this.counter == 0) {
-                    this.grayscale = true;
-                }
-            }
+        if (card.type == AbstractCard.CardType.ATTACK) {
+            addToBot(new RelicAboveCreatureAction(AbstractDungeon.player, this));
+            this.flash();
+            addToBot(new GainBlockAction(AbstractDungeon.player, AbstractDungeon.player, BLOCK));
         }
 
-    }
-
-    public void atBattleStart() {
-        this.counter = playTimes;
-    }
-
-
-    public void justEnteredRoom(AbstractRoom room) {
-        this.grayscale = false;
     }
 
     public void loadLargeImg() {

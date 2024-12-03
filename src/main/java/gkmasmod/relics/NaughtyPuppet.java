@@ -5,7 +5,6 @@ import com.evacipated.cardcrawl.mod.stslib.patches.FlavorText;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.HealAction;
-import com.megacrit.cardcrawl.actions.common.LoseHPAction;
 import com.megacrit.cardcrawl.actions.common.RelicAboveCreatureAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -16,11 +15,10 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.CardHelper;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.helpers.PowerTip;
-import com.megacrit.cardcrawl.powers.DexterityPower;
 import com.megacrit.cardcrawl.powers.NoBlockPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
-import gkmasmod.actions.ModfifyDamageAction;
+import gkmasmod.actions.ModifyDamageAction;
 
 public class NaughtyPuppet extends CustomRelic {
 
@@ -73,13 +71,13 @@ public class NaughtyPuppet extends CustomRelic {
             float HP_ = HP*1.0F/100;
             if (card.type == AbstractCard.CardType.ATTACK && amount<=HP_) {
                 int damage = (int)(1.0F*this.hp_lost*BASE_MAGIC/100);
-                this.flash();
                 AbstractCreature target = useCardAction.target;
                 if(target==null) {
                     target = AbstractDungeon.getMonsters().getRandomMonster(null, true, AbstractDungeon.cardRandomRng);
                 }
                 addToBot(new RelicAboveCreatureAction(AbstractDungeon.player, this));
-                addToBot(new ModfifyDamageAction(target, new DamageInfo(AbstractDungeon.player, damage, useCardAction.damageType), AbstractGameAction.AttackEffect.SLASH_VERTICAL));
+                this.flash();
+                addToBot(new ModifyDamageAction(target, new DamageInfo(AbstractDungeon.player, damage, useCardAction.damageType), AbstractGameAction.AttackEffect.SLASH_VERTICAL));
                 addToBot(new HealAction(AbstractDungeon.player, AbstractDungeon.player, BASE_MAGIC2));
                 addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new NoBlockPower(AbstractDungeon.player, BASE_MAGIC3,false), BASE_MAGIC3));
                 this.counter--;

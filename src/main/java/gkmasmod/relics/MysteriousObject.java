@@ -24,7 +24,7 @@ public class MysteriousObject extends CustomRelic {
 
     private static final RelicTier RARITY = RelicTier.SPECIAL;
 
-    private static final int magicNumber = 40;
+    private static final int magicNumber = 30;
 
     public MysteriousObject() {
         super(ID, ImageMaster.loadImage(IMG), ImageMaster.loadImage(IMG_OTL), RARITY, LandingSound.CLINK);
@@ -46,6 +46,7 @@ public class MysteriousObject extends CustomRelic {
 
     public void onSleep(){
         addToBot(new RelicAboveCreatureAction(AbstractDungeon.player, this));
+        this.flash();
         ThreeSizeHelper.addFixedThreeSize(true,new int[]{magicNumber,magicNumber,magicNumber});
     }
 

@@ -18,4 +18,7 @@ public class PlayerLibraryEnum {
 
     @SpireEnum(name = "gkmasMod:sense")
     public static CardLibrary.LibraryType gkmasModColorSense;
+
+    @SpireEnum(name = "gkmasMod:anomaly")
+    public static CardLibrary.LibraryType gkmasModColorAnomaly;
 }

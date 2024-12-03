@@ -3,6 +3,7 @@ package gkmasmod.variables;
 import basemod.abstracts.DynamicVariable;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import gkmasmod.cards.GkmasCard;
+import gkmasmod.downfall.cards.GkmasBossCard;
 
 
 public class ThirdMagicNumber extends DynamicVariable {
@@ -19,22 +20,38 @@ public class ThirdMagicNumber extends DynamicVariable {
 
     @Override
     public boolean isModified(AbstractCard card) {
-        return ((GkmasCard) card).isThirdMagicNumberModified;
+        if(card instanceof GkmasCard)
+            return ((GkmasCard) card).isThirdMagicNumberModified;
+        else if(card instanceof GkmasBossCard)
+            return ((GkmasBossCard) card).isThirdMagicNumberModified;
+        return false;
 
     }
 
     @Override
     public int value(AbstractCard card) {
+        if (card instanceof GkmasCard)
+            return ((GkmasCard) card).thirdMagicNumber;
+        else if (card instanceof GkmasBossCard)
+            return ((GkmasBossCard) card).thirdMagicNumber;
         return ((GkmasCard) card).thirdMagicNumber;
     }
 
     @Override
     public int baseValue(AbstractCard card) {
+        if (card instanceof GkmasCard)
+            return ((GkmasCard) card).baseThirdMagicNumber;
+        else if (card instanceof GkmasBossCard)
+            return ((GkmasBossCard) card).baseThirdMagicNumber;
         return ((GkmasCard) card).baseThirdMagicNumber;
     }
 
     @Override
     public boolean upgraded(AbstractCard card) {
+        if (card instanceof GkmasCard)
+            return ((GkmasCard) card).upgradedThirdMagicNumber;
+        else if (card instanceof GkmasBossCard)
+            return ((GkmasBossCard) card).upgradedThirdMagicNumber;
         return ((GkmasCard) card).upgradedThirdMagicNumber;
     }
 }

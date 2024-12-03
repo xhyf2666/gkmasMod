@@ -25,13 +25,18 @@ public class Idol {
     public int[] baseThreeSize;
     public float[] threeSizeRate;
     public int[] threeSizeRequires;
+    public int[] anotherThreeSizeRequires;
     private int firstThreeType;
     private int secondThreeType;
     public int[] planTypes;
     public int[] planRequires;
     public int[] spVoiceNum;
+    public String[] lives;
+    public String[] bossSongs;
+    public String[] bossReward;
+    public String[] bossSkins;
 
-    public Idol(String idolName,String[] skins,String[] skinImg,String[] cards,String[] relics,IdolType[] types,IdolStyle[] styles,ArrayList<String[]> comments,String[] texts,String[] songs,String[] bgms,String[] videos,int hp,int gold,int[] baseThreeSize,float[] threeSizeRate,int[] threeSizeRequires,int[] planTypes,int[] planRequires,int[] spVoiceNum){
+    public Idol(String idolName,String[] skins,String[] skinImg,String[] cards,String[] relics,IdolType[] types,IdolStyle[] styles,ArrayList<String[]> comments,String[] texts,String[] songs,String[] bgms,String[] videos,int hp,int gold,int[] baseThreeSize,float[] threeSizeRate,int[] threeSizeRequires,int[] planTypes,int[] planRequires,int[] spVoiceNum,String[] lives,String[] bossSongs,String[] bossReward,String[] bossSkins){
         this.idolName = idolName;
         this.skins = skins.clone();
         this.skinImg = skinImg.clone();
@@ -55,6 +60,10 @@ public class Idol {
         this.planTypes = planTypes.clone();
         this.planRequires = planRequires.clone();
         this.spVoiceNum = spVoiceNum.clone();
+        this.lives = lives.clone();
+        this.bossSongs = bossSongs.clone();
+        this.bossReward = bossReward.clone();
+        this.bossSkins = bossSkins.clone();
 
         //得到threeSizeRequires中最大值和次大值的索引
         int maxIndex = 0;
@@ -104,12 +113,34 @@ public class Idol {
         return cards[num];
     }
 
+    public ArrayList<String> getCardList(){
+        ArrayList<String> cardList = new ArrayList<>();
+        for(String card : this.cards){
+            if(cardList.contains(card)){
+                continue;
+            }
+            cardList.add(card);
+        }
+        return cardList;
+    }
+
     public String getRelic(String skin){
         return relics[skinToNum.get(skin)];
     }
 
     public String getRelic(int num){
         return relics[num];
+    }
+
+    public ArrayList<String> getRelicList(){
+        ArrayList<String> relicList = new ArrayList<>();
+        for(String relic : this.relics){
+            if(relicList.contains(relic)){
+                continue;
+            }
+            relicList.add(relic);
+        }
+        return relicList;
     }
 
     public IdolType getType(String skin){
@@ -150,6 +181,22 @@ public class Idol {
 
     public String getVideo(int num){
         return videos[num];
+    }
+
+    public String getLive(int num){
+        return lives[num];
+    }
+
+    public String getBossSong(int num){
+        return bossSongs[num];
+    }
+
+    public String getBossReward(int num){
+        return bossReward[num];
+    }
+
+    public String getBossSkin(int num){
+        return bossSkins[num];
     }
 
     public int getHp(){
@@ -213,4 +260,15 @@ public class Idol {
         return planRequires;
     }
 
+    public void setAnotherThreeSizeRequires(int[] anotherThreeSizeRequires){
+        this.anotherThreeSizeRequires = anotherThreeSizeRequires.clone();
+    }
+
+    public int[] getAnotherThreeSizeRequires() {
+        return anotherThreeSizeRequires;
+    }
+
+    public int getAnotherThreeSizeRequire(int index) {
+        return anotherThreeSizeRequires[index];
+    }
 }

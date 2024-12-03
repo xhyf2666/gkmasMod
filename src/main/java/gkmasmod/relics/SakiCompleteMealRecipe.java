@@ -31,7 +31,7 @@ public class SakiCompleteMealRecipe extends CustomRelic {
 
     private static final int GOOD_TUNE = 0;
 
-    private static final  int playTimes = 1;
+    private static final  int playTimes = 2;
 
     public SakiCompleteMealRecipe() {
         super(ID, ImageMaster.loadImage(IMG), ImageMaster.loadImage(IMG_OTL), RARITY, LandingSound.CLINK);
@@ -61,6 +61,7 @@ public class SakiCompleteMealRecipe extends CustomRelic {
             int count = AbstractDungeon.player.getPower(GoodTune.POWER_ID)==null?0:AbstractDungeon.player.getPower(GoodTune.POWER_ID).amount;
             if(count>GOOD_TUNE){
                 addToBot(new RelicAboveCreatureAction(AbstractDungeon.player, this));
+                this.flash();
                 addToBot(new GainBlockWithPowerAction(AbstractDungeon.player, AbstractDungeon.player, magicNumber));
                 this.counter--;
                 if (this.counter == 0) {

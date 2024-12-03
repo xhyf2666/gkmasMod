@@ -1,16 +1,20 @@
 package gkmasmod.powers;
 
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.evacipated.cardcrawl.modthespire.lib.SpireReturn;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.actions.watcher.ChangeStanceAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.watcher.MantraPower;
+import gkmasmod.actions.FullPowerValueAction;
+import gkmasmod.stances.FullPowerStance;
 import gkmasmod.utils.NameHelper;
 
 public class FullPowerValue extends AbstractPower {
@@ -33,6 +37,7 @@ public class FullPowerValue extends AbstractPower {
         this.owner = owner;
         this.type = PowerType.BUFF;
         this.amount = amount;
+        this.priority = 90;
 
         // 添加一大一小两张能力图
         this.region128 = new TextureAtlas.AtlasRegion(ImageMaster.loadImage(path128), 0, 0, 84, 84);
@@ -42,16 +47,9 @@ public class FullPowerValue extends AbstractPower {
         this.updateDescription();
     }
 
-    public void stackPower(int stackAmount) {
-        super.stackPower(stackAmount);
-        if (this.amount >= 10) {
-            this.addToTop(new ApplyPowerAction(this.owner, this.owner, new FullPower(this.owner)));
-            this.amount -= 10;
-            if (this.amount <= 0) {
-                this.addToTop(new RemoveSpecificPowerAction(this.owner, this.owner, this.ID));
-            }
-        }
-
+    @Override
+    public void atStartOfTurnPostDraw() {
+        addToBot(new FullPowerValueAction());
     }
 
     // 能力在更新时如何修改描述

@@ -61,6 +61,7 @@ public class TechnoDog extends CustomRelic {
 
             if(amount>YARUKI){
                 addToBot(new RelicAboveCreatureAction(AbstractDungeon.player, this));
+                this.flash();
                 addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new DexterityPower(AbstractDungeon.player, magicNumber), magicNumber));
                 this.counter--;
                 if (this.counter == 0) {

@@ -1,17 +1,18 @@
 package gkmasmod.powers;
 
+import gkmasmod.downfall.charbosses.actions.common.EnemyMakeTempCardInHandAction;
+import gkmasmod.downfall.charbosses.bosses.AbstractCharBoss;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.MakeTempCardInHandAction;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
-import com.megacrit.cardcrawl.powers.StrengthPower;
 import gkmasmod.cards.free.JustAngel;
 import gkmasmod.cards.free.JustDemon;
+import gkmasmod.downfall.cards.free.ENJustAngel;
+import gkmasmod.downfall.cards.free.ENJustDemon;
 import gkmasmod.utils.NameHelper;
 
 public class AngelAndDemonPower extends AbstractPower {
@@ -49,7 +50,14 @@ public class AngelAndDemonPower extends AbstractPower {
     }
 
     public void atStartOfTurn() {
-        addToBot(new MakeTempCardInHandAction(new JustAngel()));
-        addToBot(new MakeTempCardInHandAction(new JustDemon()));
+        if(this.owner.isPlayer){
+            addToBot(new MakeTempCardInHandAction(new JustAngel()));
+            addToBot(new MakeTempCardInHandAction(new JustDemon()));
+        }
+        else if(this.owner instanceof AbstractCharBoss){
+            addToBot(new EnemyMakeTempCardInHandAction(new ENJustAngel()));
+            addToBot(new EnemyMakeTempCardInHandAction(new ENJustDemon()));
+        }
+
     }
 }

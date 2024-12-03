@@ -1,23 +1,25 @@
 package gkmasmod.utils;
 
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.MinionPower;
+import com.megacrit.cardcrawl.random.Random;
 import gkmasmod.characters.IdolCharacter;
-import gkmasmod.patches.CardGroupPatch;
-import gkmasmod.patches.MapRoomNodePatch;
+import gkmasmod.patches.AbstractCardPatch;
+import gkmasmod.patches.AbstractPlayerPatch;
 import gkmasmod.powers.DaSpPower;
 import gkmasmod.powers.ViSpPower;
 import gkmasmod.powers.VoSpPower;
+import gkmasmod.relics.ChristmasLion;
 import gkmasmod.relics.PocketBook;
+import gkmasmod.screen.SkinSelectScreen;
 import gkmasmod.screen.ThreeSizeChangeScreen;
-import gkmasmod.vfx.effect.DelayedEffect;
-import gkmasmod.vfx.effect.GainThreeSizeSpEffect;
 import gkmasmod.vfx.effect.ThreeSizeChangeEffect;
 
 import java.util.ArrayList;
-import java.util.Random;
+import java.util.Collections;
 
 public class ThreeSizeHelper {
     public static float spRate = 0.7f;
@@ -27,16 +29,15 @@ public class ThreeSizeHelper {
     }
 
     public static void addFixedThreeSize(boolean drawInstantly,int[] value){
-        if(!(AbstractDungeon.player instanceof IdolCharacter))
+        if(!(AbstractDungeon.player.hasRelic(PocketBook.ID)))
             return;
-        IdolCharacter idol = (IdolCharacter) AbstractDungeon.player;
         if(value.length ==3){
-            idol.changeFixedVo(value[0]);
-            idol.changeFixedDa(value[1]);
-            idol.changeFixedVi(value[2]);
+            changeFixedVo(value[0]);
+            changeFixedDa(value[1]);
+            changeFixedVi(value[2]);
         }
-        int[] preThreeSize = idol.getPreThreeSize();
-        int[] currentThreeSize = idol.getThreeSize();
+        int[] preThreeSize = getPreThreeSize();
+        int[] currentThreeSize = getThreeSize();
         if(drawInstantly){
             ThreeSizeChangeScreen.VoInst = null;
             ThreeSizeChangeScreen.DaInst = null;
@@ -58,18 +59,20 @@ public class ThreeSizeHelper {
         ArrayList<Integer> SPs = new ArrayList<>();
         getMonsterInfo(res, types, SPs);
         int size = res.size();
-        IdolCharacter idol = (IdolCharacter) AbstractDungeon.player;
-        float[] scoreRate = idol.getThreeSizeScoreRate();
+        int[] preThreeSize = getPreThreeSize();
+        float[] scoreRate = getThreeSizeScoreRate();
         for(int i = 0; i < size; i++){
             float rate = res.get(i);
             AbstractMonster.EnemyType type = types.get(i);
             int score = getThreeSizeAppend(rate,type);
-            idol.changeVo((int)(0.5F+1.0F*score*scoreRate[0]));
-            idol.changeDa((int)(0.5F+1.0F*score*scoreRate[1]));
-            idol.changeVi((int)(0.5F+1.0F*score*scoreRate[2]));
+            changeVo((int)(0.5F+1.0F*score*scoreRate[0]));
+            changeDa((int)(0.5F+1.0F*score*scoreRate[1]));
+            changeVi((int)(0.5F+1.0F*score*scoreRate[2]));
         }
-        int[] preThreeSize = idol.getPreThreeSize();
-        int[] currentThreeSize = idol.getThreeSize();
+
+        int[] currentThreeSize = getThreeSize();
+        System.out.println(preThreeSize);
+        System.out.println(currentThreeSize);
         if(drawInstantly){
             ThreeSizeChangeScreen.VoInst = null;
             ThreeSizeChangeScreen.DaInst = null;
@@ -135,17 +138,259 @@ public class ThreeSizeHelper {
         else if(type==AbstractMonster.EnemyType.BOSS)
             base = (int)(base * 2.0F);
 
+        if(AbstractDungeon.player.hasRelic(PocketBook.ID)){
+            PocketBook book = (PocketBook)AbstractDungeon.player.getRelic(PocketBook.ID);
+            base +=book.threeSizeIncrease;
+        }
+
         base = (int)(base * rate);
         return base;
     }
 
     public static int getHealthRate(int act){
-        if(act==1)
-            return 5;
-        else if(act==2)
-            return 8;
-        else
-            return 20;
+        if(AbstractDungeon.player instanceof IdolCharacter){
+            if(act==1)
+                return 4;
+            else if(act==2)
+                return 11;
+            else
+                return 25;
+        }
+        else{
+            if(act==1)
+                return 2;
+            else if(act==2)
+                return 6;
+            else
+                return 10;
+        }
     }
+
+    public static void generateCircle(int roundNum){
+        if(roundNum < 1)
+            return;
+        ArrayList<Integer> tmp = new ArrayList<>();
+        int baseDamageRate;
+        int currentThreeType;
+        int require;
+        int currentThreeSizeValue = 0;
+        if(AbstractDungeon.player instanceof IdolCharacter){
+            IdolCharacter idol = (IdolCharacter)AbstractDungeon.player;
+            if(roundNum > 0)
+                tmp.add(idol.idolData.getFirstThreeType());
+            if(roundNum > 1)
+                tmp.add(idol.idolData.getSecondThreeType());
+            if(roundNum > 2)
+                tmp.add(idol.idolData.getThirdThreeType());
+            ArrayList<Integer> tmp2 = new ArrayList<>();
+//            com.megacrit.cardcrawl.random.Random spRng = new Random(Settings.seed, AbstractDungeon.floorNum*20);
+            for(int i = 0; i < roundNum - 3; i++){
+                if(i%3==0)
+                    tmp2.add(idol.idolData.getFirstThreeType());
+                else if (i%3==1)
+                    tmp2.add(idol.idolData.getSecondThreeType());
+                else
+                    tmp2.add(idol.idolData.getThirdThreeType());
+            }
+            Collections.shuffle(tmp2, new java.util.Random(Settings.seed+AbstractDungeon.floorNum*20));
+            for(int i = 0; i < tmp2.size(); i++){
+                tmp.add(tmp2.get(i));
+            }
+            currentThreeType = tmp.get(tmp.size()-1);
+            baseDamageRate = idol.idolData.getBaseDamageRate(currentThreeType);
+            require = idol.idolData.getThreeSizeRequire(currentThreeType);
+            if(idol.idolData.idolName.equals(IdolData.hume)&&idol.idolData.getRelic(SkinSelectScreen.Inst.skinIndex).equals(ChristmasLion.ID)){
+                require = idol.idolData.getAnotherThreeSizeRequire(currentThreeType);
+            }
+        }
+        else{
+            if(roundNum > 0)
+                tmp.add(0);
+            if(roundNum > 1)
+                tmp.add(1);
+            if(roundNum > 2)
+                tmp.add(2);
+            com.megacrit.cardcrawl.random.Random spRng = new Random(Settings.seed, AbstractDungeon.floorNum*20);
+            for(int i = 0; i < roundNum - 3; i++){
+                tmp.add(spRng.random(0,2));
+            }
+            currentThreeType = tmp.get(tmp.size()-1);
+            baseDamageRate = 11;
+            require = 1000;
+        }
+        currentThreeSizeValue = AbstractPlayerPatch.ThreeSizeField.threeSize.get(AbstractDungeon.player)[currentThreeType];
+
+        AbstractPlayerPatch.FinalCircleRoundField.finalCircleRound.set(AbstractDungeon.player,tmp);
+
+        AbstractPlayerPatch.IsRenderFinalCircleField.IsRenderFinalCircle.set(AbstractDungeon.player,true);
+
+        double finalDamageRate = calculateDamageRate(baseDamageRate, currentThreeSizeValue,require);
+
+        AbstractPlayerPatch.FinalDamageRateField.finalDamageRate.set(AbstractDungeon.player,finalDamageRate);
+    }
+
+    private static double calculateDamageRate(int baseRate, int v,int t){
+        double rate = 1.0f*v/t;
+        if(rate > 1.0f)
+            return 1.0f*baseRate*(1+Math.log(rate)/3)+1;
+        return (Math.pow(rate,2)+Math.exp(rate-1)+(rate-1)/Math.E)/2*baseRate+1;
+    }
+
+    public static double[] calculateDamageRates(){
+        double[] rates = new double[3];
+        if(AbstractDungeon.player instanceof IdolCharacter){
+            IdolCharacter idol = (IdolCharacter)AbstractDungeon.player;
+            for(int i = 0; i < 3; i++){
+                int require = idol.idolData.getThreeSizeRequire(i);
+                if(idol.idolData.idolName.equals(IdolData.hume)&&idol.idolData.getRelic(SkinSelectScreen.Inst.skinIndex).equals(ChristmasLion.ID)){
+                    require = idol.idolData.getAnotherThreeSizeRequire(i);
+                }
+                rates[i] = calculateDamageRate(idol.idolData.getBaseDamageRate(i),AbstractPlayerPatch.ThreeSizeField.threeSize.get(AbstractDungeon.player)[i],require);
+            }
+        }
+        else{
+            for(int i = 0; i < 3; i++){
+                rates[i] = calculateDamageRate(11,AbstractPlayerPatch.ThreeSizeField.threeSize.get(AbstractDungeon.player)[i],1000);
+            }
+        }
+
+        return rates;
+    }
+
+    public static void setThreeSize(int[] threeSize){
+        AbstractPlayerPatch.ThreeSizeField.threeSize.set(AbstractDungeon.player,threeSize);
+        AbstractPlayerPatch.PreThreeSizeField.preThreeSize.set(AbstractDungeon.player,threeSize);
+    }
+
+    public static void setThreeSizeRate(float[] threeSizeRate){
+        AbstractPlayerPatch.ThreeSizeRateField.threeSizeRate.set(AbstractDungeon.player,threeSizeRate);
+    }
+
+    public static int getVo(){
+        return AbstractPlayerPatch.ThreeSizeField.threeSize.get(AbstractDungeon.player)[0];
+    }
+
+    public static int getDa(){
+        return AbstractPlayerPatch.ThreeSizeField.threeSize.get(AbstractDungeon.player)[1];
+    }
+
+    public static int getVi(){
+        return AbstractPlayerPatch.ThreeSizeField.threeSize.get(AbstractDungeon.player)[2];
+    }
+
+    public static int[] getThreeSize(){
+        return AbstractPlayerPatch.ThreeSizeField.threeSize.get(AbstractDungeon.player);
+    }
+
+    public static float[] getThreeSizeRate(){
+        return AbstractPlayerPatch.ThreeSizeRateField.threeSizeRate.get(AbstractDungeon.player);
+    }
+
+    public static int[] getPreThreeSize(){
+        return AbstractPlayerPatch.PreThreeSizeField.preThreeSize.get(AbstractDungeon.player);
+    }
+
+    public static float getVoRate(){
+        return AbstractPlayerPatch.ThreeSizeRateField.threeSizeRate.get(AbstractDungeon.player)[0];
+    }
+
+    public static float getDaRate(){
+        return AbstractPlayerPatch.ThreeSizeRateField.threeSizeRate.get(AbstractDungeon.player)[1];
+    }
+
+    public static float getViRate(){
+        return AbstractPlayerPatch.ThreeSizeRateField.threeSizeRate.get(AbstractDungeon.player)[2];
+    }
+
+    public static void changeVo(int vo){
+        int[] preThreeSize = AbstractPlayerPatch.PreThreeSizeField.preThreeSize.get(AbstractDungeon.player).clone();
+        int[] threeSize = AbstractPlayerPatch.ThreeSizeField.threeSize.get(AbstractDungeon.player).clone();
+        float[] threeSizeRate = AbstractPlayerPatch.ThreeSizeRateField.threeSizeRate.get(AbstractDungeon.player);
+        preThreeSize[0] = threeSize[0];
+        threeSize[0] += vo+(int)((threeSizeRate[0]*vo)+0.5F);
+        AbstractPlayerPatch.PreThreeSizeField.preThreeSize.set(AbstractDungeon.player,preThreeSize);
+        AbstractPlayerPatch.ThreeSizeField.threeSize.set(AbstractDungeon.player,threeSize);
+    }
+
+    public static void changeDa(int da){
+        int[] preThreeSize = AbstractPlayerPatch.PreThreeSizeField.preThreeSize.get(AbstractDungeon.player).clone();
+        int[] threeSize = AbstractPlayerPatch.ThreeSizeField.threeSize.get(AbstractDungeon.player).clone();
+        float[] threeSizeRate = AbstractPlayerPatch.ThreeSizeRateField.threeSizeRate.get(AbstractDungeon.player);
+        preThreeSize[1] = threeSize[1];
+        threeSize[1] += da+(int)((threeSizeRate[1]*da)+0.5F);
+        AbstractPlayerPatch.PreThreeSizeField.preThreeSize.set(AbstractDungeon.player,preThreeSize);
+        AbstractPlayerPatch.ThreeSizeField.threeSize.set(AbstractDungeon.player,threeSize);
+    }
+
+    public static void changeVi(int vi){
+        int[] preThreeSize = AbstractPlayerPatch.PreThreeSizeField.preThreeSize.get(AbstractDungeon.player).clone();
+        int[] threeSize = AbstractPlayerPatch.ThreeSizeField.threeSize.get(AbstractDungeon.player).clone();
+        float[] threeSizeRate = AbstractPlayerPatch.ThreeSizeRateField.threeSizeRate.get(AbstractDungeon.player);
+        preThreeSize[2] = threeSize[2];
+        threeSize[2] += vi+(int)((threeSizeRate[2]*vi)+0.5F);
+        AbstractPlayerPatch.PreThreeSizeField.preThreeSize.set(AbstractDungeon.player,preThreeSize);
+        AbstractPlayerPatch.ThreeSizeField.threeSize.set(AbstractDungeon.player,threeSize);
+    }
+
+    public static void changeFixedVo(int vo){
+        int[] preThreeSize = AbstractPlayerPatch.PreThreeSizeField.preThreeSize.get(AbstractDungeon.player).clone();
+        int[] threeSize = AbstractPlayerPatch.ThreeSizeField.threeSize.get(AbstractDungeon.player).clone();
+        preThreeSize[0] = threeSize[0];
+        threeSize[0] += vo;
+        AbstractPlayerPatch.PreThreeSizeField.preThreeSize.set(AbstractDungeon.player,preThreeSize);
+        AbstractPlayerPatch.ThreeSizeField.threeSize.set(AbstractDungeon.player,threeSize);
+    }
+
+    public static void changeFixedDa(int da){
+        int[] preThreeSize = AbstractPlayerPatch.PreThreeSizeField.preThreeSize.get(AbstractDungeon.player).clone();
+        int[] threeSize = AbstractPlayerPatch.ThreeSizeField.threeSize.get(AbstractDungeon.player).clone();
+        preThreeSize[1] = threeSize[1];
+        threeSize[1] += da;
+        AbstractPlayerPatch.PreThreeSizeField.preThreeSize.set(AbstractDungeon.player,preThreeSize);
+        AbstractPlayerPatch.ThreeSizeField.threeSize.set(AbstractDungeon.player,threeSize);
+    }
+
+    public static void changeFixedVi(int vi){
+        int[] preThreeSize = AbstractPlayerPatch.PreThreeSizeField.preThreeSize.get(AbstractDungeon.player).clone();
+        int[] threeSize = AbstractPlayerPatch.ThreeSizeField.threeSize.get(AbstractDungeon.player).clone();
+        preThreeSize[2] = threeSize[2];
+        threeSize[2] += vi;
+        AbstractPlayerPatch.PreThreeSizeField.preThreeSize.set(AbstractDungeon.player,preThreeSize);
+        AbstractPlayerPatch.ThreeSizeField.threeSize.set(AbstractDungeon.player,threeSize);
+    }
+
+    public static void changeVoRate(float voRate){
+        float[] threeSizeRate = AbstractPlayerPatch.ThreeSizeRateField.threeSizeRate.get(AbstractDungeon.player);
+        threeSizeRate[0] += voRate;
+        AbstractPlayerPatch.ThreeSizeRateField.threeSizeRate.set(AbstractDungeon.player,threeSizeRate);
+    }
+
+    public static void changeDaRate(float daRate){
+        float[] threeSizeRate = AbstractPlayerPatch.ThreeSizeRateField.threeSizeRate.get(AbstractDungeon.player);
+        threeSizeRate[1] += daRate;
+        AbstractPlayerPatch.ThreeSizeRateField.threeSizeRate.set(AbstractDungeon.player,threeSizeRate);
+    }
+
+    public static void changeViRate(float viRate){
+        float[] threeSizeRate = AbstractPlayerPatch.ThreeSizeRateField.threeSizeRate.get(AbstractDungeon.player);
+        threeSizeRate[2] += viRate;
+        AbstractPlayerPatch.ThreeSizeRateField.threeSizeRate.set(AbstractDungeon.player,threeSizeRate);
+    }
+
+    public static float[] getThreeSizeScoreRate(){
+
+        int[] count={0,0,0};
+        ArrayList<Integer> masterCardTags = new ArrayList<>();
+        for (AbstractCard card : AbstractDungeon.player.masterDeck.group) {
+            int tag = AbstractCardPatch.ThreeSizeTagField.threeSizeTag.get(card);
+            if(tag!=-1) {
+                count[tag]++;
+            }
+        }
+        int sum=count[0]+count[1]+count[2];
+        return new float[]{1.0f*count[0]/sum,1.0f*count[1]/sum,1.0f*count[2]/sum};
+    }
+
+
 
 }

@@ -155,7 +155,7 @@ public class GainThreeSizeSpEffect extends AbstractGameEffect {
     public void render(SpriteBatch sb) {
         if (!(this.staggerTimer > 0.0F)) {
             sb.setColor(this.color);
-            sb.draw(this.img, this.x, this.y, (float)this.img.getWidth() / 2.0F, (float)this.img.getHeight() / 2.0F, (float)this.img.getWidth(), (float)this.img.getHeight(), this.scale, this.scale, this.rotation, 0, 0, this.img.getWidth(), this.img.getHeight(), false, false);
+            sb.draw(this.img, this.x, this.y, 64* Settings.xScale, 64*Settings.yScale);
         }
     }
 

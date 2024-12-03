@@ -60,12 +60,9 @@ public class AngelAndDemon extends GkmasCard {
     public void upgrade() {
         if (!this.upgraded) {
             upgradeName();
-            AbstractCard card1 = new JustAngel();
-            card1.upgrade();
-            AbstractCard card2 = new JustDemon();
-            card2.upgrade();
-            this.cardsToPreview = card1;
-            this.cardPreviewList = new ArrayList<>(Arrays.asList(card1, card2));
+            this.cardsToPreview.upgrade();
+            this.cardPreviewList.get(0).upgrade();
+            this.cardPreviewList.get(1).upgrade();
             if (CARD_STRINGS.UPGRADE_DESCRIPTION != null)
                 this.rawDescription = CARD_STRINGS.UPGRADE_DESCRIPTION;
             this.initializeDescription();

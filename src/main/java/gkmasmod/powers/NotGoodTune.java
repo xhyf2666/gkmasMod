@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
@@ -59,8 +60,16 @@ public class NotGoodTune extends AbstractPower {
 
 
     public float atDamageGive(float damage, DamageInfo.DamageType type) {
+        float tmp = damage;
         if (type == DamageInfo.DamageType.NORMAL) {
-            return damage * 2F/3F;
+            int count = AbstractDungeon.player.getPower(GreatNotGoodTune.POWER_ID)==null?0:AbstractDungeon.player.getPower(GreatNotGoodTune.POWER_ID).amount;
+            if(count>0)
+                tmp = tmp * (2F/3F-0.1F*this.amount);
+            else
+                tmp = tmp * 2F/3F;
+            if(tmp<0)
+                tmp = 0;
+            return tmp;
         }
         return damage;
     }

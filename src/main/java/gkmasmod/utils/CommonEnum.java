@@ -3,8 +3,7 @@ package gkmasmod.utils;
 public class CommonEnum {
 
     // 定义一个枚举类型
-    public enum IdolType {SENSE, LOGIC}
+    public enum IdolType {SENSE, LOGIC, ANOMALY}
 
-    public enum IdolStyle {YARUKI, GOOD_IMPRESSION, FOCUS, GOOD_TUNE;
-    }
+    public enum IdolStyle {YARUKI, GOOD_IMPRESSION, FOCUS, GOOD_TUNE,CONCENTRATION,FULL_POWER}
 }

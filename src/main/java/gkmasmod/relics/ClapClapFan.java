@@ -28,7 +28,7 @@ public class ClapClapFan extends CustomRelic {
     private static final RelicTier RARITY = RelicTier.STARTER;
 
     private static final int magicNumber = 1;
-    private static final int magicNumber2 = 3;
+    private static final int magicNumber2 = 2;
 
 
     private static final  int playTimes = 2;
@@ -57,8 +57,8 @@ public class ClapClapFan extends CustomRelic {
         if(currentTimes < playTimes){
             counter = (counter + 1)%3;
             if(counter == 0){
+                addToBot(new RelicAboveCreatureAction(AbstractDungeon.player, this));
                 this.flash();
-                AbstractDungeon.actionManager.addToBottom(new RelicAboveCreatureAction(AbstractDungeon.player, this));
                 addToBot(new GainBlockWithPowerAction(AbstractDungeon.player, AbstractDungeon.player, magicNumber));
                 addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new DexterityPower(AbstractDungeon.player, magicNumber2), magicNumber2));
                 currentTimes++;

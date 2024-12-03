@@ -54,12 +54,13 @@ public class FirstHeartProofLilja extends CustomRelic {
 
     public void onEquip() {}
 
-    public void atTurnStart() {
+    public void onPlayerEndTurn() {
         if (this.counter > 0) {
-            int count = AbstractDungeon.player.getPower(StrengthPower.POWER_ID)==null?0:AbstractDungeon.player.getPower(StrengthPower.POWER_ID).amount;
+            int count = AbstractDungeon.player.getPower(GoodTune.POWER_ID)==null?0:AbstractDungeon.player.getPower(GoodTune.POWER_ID).amount;
             if(count>GOOD_TUNE){
                 addToBot(new LoseHPAction(AbstractDungeon.player, AbstractDungeon.player, HP_LOST));
                 addToBot(new RelicAboveCreatureAction(AbstractDungeon.player, this));
+                this.flash();
                 addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new GoodTune(AbstractDungeon.player, magicNumber), magicNumber));
                 this.counter--;
                 if (this.counter == 0) {
@@ -74,8 +75,6 @@ public class FirstHeartProofLilja extends CustomRelic {
         this.counter = playTimes;
     }
 
-    public  void  onPlayerEndTurn(){
-    }
 
     public void justEnteredRoom(AbstractRoom room) {
         this.grayscale = false;

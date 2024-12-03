@@ -11,6 +11,7 @@ import com.megacrit.cardcrawl.powers.DexterityPower;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
+import gkmasmod.utils.IdolData;
 import gkmasmod.utils.NameHelper;
 import gkmasmod.utils.SoundHelper;
 
@@ -25,7 +26,7 @@ public class Wholeheartedly extends GkmasCard {
 
     private static final int COST = 2;
 
-    private static final int BASE_MAGIC = 5;
+    private static final int BASE_MAGIC = 3;
     private static final int UPGRADE_PLUS_MAGIC = 1;
 
     private static final int BASE_BLOCK = 1;
@@ -45,6 +46,8 @@ public class Wholeheartedly extends GkmasCard {
         this.exhaust = true;
         this.tags.add(GkmasCardTag.YARUKI_TAG);
         this.tags.add(GkmasCardTag.IDOL_CARD_TAG);
+        this.backGroundColor = IdolData.kcna;
+        updateBackgroundImg();
     }
 
 

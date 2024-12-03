@@ -37,6 +37,11 @@ public class HajimeReward extends AbstractImageEvent {
             this.imageEventText.setDialogOption(OPTIONS[1],new UnofficialMascot());
             this.imageEventText.setDialogOption(OPTIONS[2],new FirstStarKeychain());
         }
+        else if(type == CommonEnum.IdolType.ANOMALY){
+            this.imageEventText.setDialogOption(OPTIONS[0],new FirstStarBracelet());
+            this.imageEventText.setDialogOption(OPTIONS[1],new FirstStarClock());
+            this.imageEventText.setDialogOption(OPTIONS[2],new FirstStarModel());
+        }
 
     }
 
@@ -72,6 +77,13 @@ public class HajimeReward extends AbstractImageEvent {
                                 AbstractDungeon.getCurrRoom().spawnRelicAndObtain(this.drawX, this.drawY, new Circlet());
                             }
                         }
+                        else if(type == CommonEnum.IdolType.ANOMALY){
+                            if (!AbstractDungeon.player.hasRelic(FirstStarClock.ID)) {
+                                AbstractDungeon.getCurrRoom().spawnRelicAndObtain(this.drawX, this.drawY, new FirstStarClock());
+                            } else {
+                                AbstractDungeon.getCurrRoom().spawnRelicAndObtain(this.drawX, this.drawY, new Circlet());
+                            }
+                        }
                         screenNum++;
                         return;
                     case 2:
@@ -87,6 +99,13 @@ public class HajimeReward extends AbstractImageEvent {
                         else if (type==CommonEnum.IdolType.LOGIC){
                             if (!AbstractDungeon.player.hasRelic(FirstStarKeychain.ID)) {
                                 AbstractDungeon.getCurrRoom().spawnRelicAndObtain(this.drawX, this.drawY, new FirstStarKeychain());
+                            } else {
+                                AbstractDungeon.getCurrRoom().spawnRelicAndObtain(this.drawX, this.drawY, new Circlet());
+                            }
+                        }
+                        else if(type == CommonEnum.IdolType.ANOMALY){
+                            if (!AbstractDungeon.player.hasRelic(FirstStarModel.ID)) {
+                                AbstractDungeon.getCurrRoom().spawnRelicAndObtain(this.drawX, this.drawY, new FirstStarModel());
                             } else {
                                 AbstractDungeon.getCurrRoom().spawnRelicAndObtain(this.drawX, this.drawY, new Circlet());
                             }

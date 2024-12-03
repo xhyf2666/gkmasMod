@@ -51,6 +51,7 @@ public class FirstVoiceProofKotone extends CustomRelic {
     public void onUseCard(AbstractCard card, UseCardAction useCardAction){
         if (card.cardID.equals(FirstReward.ID)) {
                 addToBot(new RelicAboveCreatureAction(AbstractDungeon.player, this));
+                this.flash();
                 addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new GoodTune(AbstractDungeon.player, magicNumber), magicNumber));
         }
 

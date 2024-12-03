@@ -29,7 +29,7 @@ public class Improvise extends GkmasCard {
     private static final int ATTACK_DMG = 6;
     private static final int UPGRADE_PLUS_DMG = 3;
 
-    private static final int BASE_MAGIC = 2;
+    private static final int BASE_MAGIC = 3;
 
 
     private static final CardType TYPE = CardType.ATTACK;

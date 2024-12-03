@@ -19,10 +19,12 @@ import java.util.Map;
 public class AojiruAction extends AbstractGameAction {
     private AbstractPlayer p;
     private boolean isUpgraded;
+    private AbstractCard.CardRarity rarity;
 
-    public AojiruAction(AbstractPlayer p, boolean isUpgraded) {
+    public AojiruAction(AbstractPlayer p, boolean isUpgraded, AbstractCard.CardRarity rarity) {
         this.p = p;
         this.isUpgraded = isUpgraded;
+        this.rarity = rarity;
     }
 
     public void update() {
@@ -30,16 +32,21 @@ public class AojiruAction extends AbstractGameAction {
         if(p instanceof IdolCharacter){
             IdolCharacter idol = (IdolCharacter)p;
             CommonEnum.IdolType type = idol.idolData.getType(idol.skinIndex);
+            getRandomCard(PlayerColorEnum.gkmasModColor,tmpPool);
             if(type == CommonEnum.IdolType.LOGIC){
                 getRandomCard(PlayerColorEnum.gkmasModColorLogic,tmpPool);
             }
             else if(type == CommonEnum.IdolType.SENSE){
                 getRandomCard(PlayerColorEnum.gkmasModColorSense,tmpPool);
             }
+            else if(type == CommonEnum.IdolType.ANOMALY){
+                getRandomCard(PlayerColorEnum.gkmasModColorAnomaly,tmpPool);
+            }
         }
         else{
             getRandomCard(PlayerColorEnum.gkmasModColorLogic,tmpPool);
             getRandomCard(PlayerColorEnum.gkmasModColorSense,tmpPool);
+            getRandomCard(PlayerColorEnum.gkmasModColorAnomaly,tmpPool);
         }
         for (int i = 0; i < tmpPool.size(); i++) {
             System.out.println(tmpPool.get(i).name);
@@ -58,8 +65,15 @@ public class AojiruAction extends AbstractGameAction {
                 return tmpPool;
             Map.Entry c = cardLib.next();
             AbstractCard card = (AbstractCard)c.getValue();
-            if (card.color.equals(color) && !card.tags.contains(GkmasCardTag.IDOL_CARD_TAG) && card.rarity == AbstractCard.CardRarity.RARE)
-                tmpPool.add(card);
+            if(this.rarity==null){
+                if (card.color.equals(color) && !card.tags.contains(GkmasCardTag.IDOL_CARD_TAG) && card.rarity != AbstractCard.CardRarity.BASIC && card.rarity != AbstractCard.CardRarity.SPECIAL && card.rarity != AbstractCard.CardRarity.CURSE)
+                    tmpPool.add(card);
+            }
+            else{
+                if (card.color.equals(color) && !card.tags.contains(GkmasCardTag.IDOL_CARD_TAG) && card.rarity == this.rarity)
+                    tmpPool.add(card);
+            }
+
         }
     }
 

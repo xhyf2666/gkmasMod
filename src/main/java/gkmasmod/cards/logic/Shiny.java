@@ -33,7 +33,7 @@ public class Shiny extends GkmasCard {
 
     private static final int BASE_MAGIC = 200;
     private static final int UPGRADE_PLUS_MAGIC = 50;
-    private static final int BASE_MAGIC2 = 2;
+    private static final int BASE_MAGIC2 = 1;
 
     private static final int BASE_BLOCK = 5;
 

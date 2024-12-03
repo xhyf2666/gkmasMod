@@ -26,9 +26,9 @@ public class RoadToSuccess extends GkmasCard {
     private static String IMG_PATH = String.format("gkmasModResource/img/idol/%s/cards/%s.png", SkinSelectScreen.Inst.idolName, CLASSNAME);
 
     private static final int COST = 1;
-    private static final int BASE_MAGIC = 2;
+    private static final int BASE_MAGIC = 1;
     private static final int BASE_MAGIC2 = 3;
-    private static final int UPGRADE_PLUS_MAGIC2 = 2;
+    private static final int UPGRADE_PLUS_MAGIC2 = 1;
     private static final int BLOCK_AMT = 5;
     private static final int UPGRADE_PLUS_BLOCK = 3;
 
@@ -51,6 +51,7 @@ public class RoadToSuccess extends GkmasCard {
         this.exhaust = true;
         this.tags.add(GkmasCardTag.GOOD_TUNE_TAG);
         this.tags.add(GkmasCardTag.FOCUS_TAG);
+        this.cardHeader = "Road To the Top";
     }
 
 

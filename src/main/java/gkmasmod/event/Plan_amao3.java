@@ -74,7 +74,7 @@ public class Plan_amao3 extends AbstractImageEvent {
                         if (CardGroup.getGroupWithoutBottledCards(AbstractDungeon.player.masterDeck.getPurgeableCards())
                                 .size() > 0)
                             AbstractDungeon.gridSelectScreen.open(AbstractDungeon.player.masterDeck
-                                    .getUpgradableCards(), 1, OPTIONS[0], true, false, false, false);
+                                    .getUpgradableCards(), 1, OPTIONS[3], true, false, false, false);
                         screenNum++;
                         this.pickCard = true;
                         return;
@@ -86,7 +86,7 @@ public class Plan_amao3 extends AbstractImageEvent {
                                 .size() > 0)
                             AbstractDungeon.gridSelectScreen.open(
                                     CardGroup.getGroupWithoutBottledCards(AbstractDungeon.player.masterDeck
-                                            .getPurgeableCards()), 1, OPTIONS[1], false, false, false, true);
+                                            .getPurgeableCards()), 1, OPTIONS[4], false, false, false, true);
                         screenNum++;
                         this.pickCard = true;
                         return;

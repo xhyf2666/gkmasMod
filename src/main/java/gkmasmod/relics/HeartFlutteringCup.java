@@ -72,6 +72,7 @@ public class HeartFlutteringCup extends CustomRelic {
         int damage = counter * magicNumber2 + magicNumber;
         if(this.playCounter < playTimes){
             addToBot(new RelicAboveCreatureAction(AbstractDungeon.player, this));
+            this.flash();
             addToBot(new LoseHPAction(AbstractDungeon.player, AbstractDungeon.player, HP_LOST));
             addToTop(new ModifyDamageRandomEnemyAction(new DamageInfo(AbstractDungeon.player, damage, DamageInfo.DamageType.NORMAL), AbstractGameAction.AttackEffect.SLASH_VERTICAL));
             if(this.playCounter==playTimes){

@@ -9,7 +9,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.CardHelper;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import gkmasmod.actions.BlockReduceDamageAction;
+import gkmasmod.actions.BlockDamageAction;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.screen.SkinSelectScreen;
@@ -58,7 +58,7 @@ public class FingerHeart extends GkmasCard {
 
     public void use(AbstractPlayer p, AbstractMonster m) {
         addToBot(new LoseHPAction(p, p, this.HPMagicNumber));
-        addToBot(new BlockReduceDamageAction(1.0F * this.secondMagicNumber / 100, BLOCK_REDUCE_RATE, p, m,this));
+        addToBot(new BlockDamageAction(1.0F * this.secondMagicNumber / 100, 0, p, m,this,false,BLOCK_REDUCE_RATE));
     }
 
     public void applyPowersToBlock() {

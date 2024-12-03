@@ -45,6 +45,6 @@ public class AutoFullPowerValue extends AbstractPower {
     }
 
     public void atStartOfTurn(){
-        this.addToBot(new ApplyPowerAction(this.owner, this.owner, new FullPowerValue(this.owner, this.amount), this.amount));
+        this.addToBot(new ApplyPowerAction(this.owner, this.owner, new FullPowerValueMisuzu(this.owner, this.amount), this.amount));
     }
 }

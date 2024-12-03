@@ -8,11 +8,17 @@
   "gkmasMod:sense": {
     "TEXT": ["IDOL:感性"]
   },
+  "gkmasMod:anomaly": {
+    "TEXT": ["IDOL:非凡"]
+  },
   "typeHintName:logic": {
     "TEXT": ["理性"]
   },
   "typeHintName:sense": {
     "TEXT": ["感性"]
+  },
+  "typeHintName:anomaly": {
+    "TEXT": ["非凡"]
   },
   "typeHint:sense": {
     "TEXT": ["卡池为感性卡和通用卡，偏向 #y攻杀 。"]
@@ -20,17 +26,26 @@
   "typeHint:logic": {
     "TEXT": ["卡池为理性卡和通用卡，偏向 #y防杀 。"]
   },
+  "typeHint:anomaly": {
+    "TEXT": ["卡池为非凡卡和通用卡，在 #y温存 、 #y强气 和 #y全力 三态间灵活切换。"]
+  },
   "styleHintName:goodTune": {
     "TEXT": ["好调"]
   },
   "styleHintName:focus": {
-    "TEXT": ["集中"]
+    "TEXT": ["力量"]
   },
   "styleHintName:goodImpression": {
     "TEXT": ["好印象"]
   },
   "styleHintName:yaruki": {
-    "TEXT": ["干劲"]
+    "TEXT": ["敏捷"]
+  },
+  "styleHintName:fullPower": {
+    "TEXT": ["全力"]
+  },
+  "styleHintName:concentration": {
+    "TEXT": ["强气"]
   },
   "styleHint:goodTune": {
     "TEXT": ["叠加 #y好调 和 #y绝好调 ，获得高额增伤。"]
@@ -38,11 +53,17 @@
   "styleHint:focus": {
     "TEXT": ["叠加 #y力量 ，提高基础伤害。"]
   },
+  "styleHint:yaruki": {
+    "TEXT": ["叠加 #y敏捷 和 #y格挡 ，基于 #y格挡 造成伤害。"]
+  },
   "styleHint:goodImpression": {
     "TEXT": ["叠加 #y好印象 ，回合结束时自动出伤。"]
   },
-  "styleHint:yaruki": {
-    "TEXT": ["叠加 #y敏捷 ，基于 #y格挡 造成伤害。"]
+  "styleHint:fullPower": {
+    "TEXT": ["叠加 #y全力值 ，利用 #y暂存 在 #y全力 回合爆发。"]
+  },
+  "styleHint:concentration": {
+    "TEXT": ["在 #y强气 和 #y温存 间灵活切换，叠加 #y成长 。"]
   },
   "gkmasMod:PocketBookUI": {
     "TEXT": ["姓名","班级","生日","年龄","身高","体重","三维","兴趣","朋友","特长","关闭","下一页","考核标准","满足考核标准可以使担当偶像更容易通过最终考核。","育成课题","完成育成课题后，可以获得对应奖励。 NL 育成课题需要按顺序完成。"]
@@ -71,8 +92,38 @@
   "gkmasMod:NotEnoughGoodTune": {
     "TEXT": ["好调还不够"]
   },
+  "gkmasMod:NotStance": {
+    "TEXT": ["未进入姿态"]
+  },
+  "gkmasMod:NotFullPowerStance": {
+    "TEXT": ["未进入全力"]
+  },
+  "gkmasMod:NotPreservationStance": {
+    "TEXT": ["未进入温存"]
+  },
+  "gkmasMod:NotConcentrationStance": {
+    "TEXT": ["未进入强气"]
+  },
+  "gkmasMod:NotEnoughFullPowerValue": {
+    "TEXT": ["全力值还不够"]
+  },
   "gkmasMod:ProudStudentAction": {
     "TEXT": ["选择一张卡保留"]
+  },
+  "gkmasMod:PotentialAbilityAction": {
+    "TEXT": ["选择%d张卡暂存"]
+  },
+  "gkmasMod:DiggingTalentAction": {
+    "TEXT": ["选择一张卡暂存"]
+  },
+  "gkmasMod:BlossomingSeasonAction": {
+    "TEXT": ["除外"]
+  },
+  "gkmasMod:AlternativesAction": {
+    "TEXT": ["，第一张牌转化为第二张牌"]
+  },
+  "gkmasMod:ProducingIsChallengingAction": {
+    "TEXT": ["交换成果效果"]
   },
   "gkmasMod:TurnBackAction": {
     "TEXT": ["选择一张手牌","选择一张消耗卡"]
@@ -80,8 +131,26 @@
   "gkmasMod:Retain": {
     "TEXT": ["保留 。"]
   },
+  "gkmasMod:TempSave": {
+    "TEXT": ["暂存 。"]
+  },
   "gkmasMod:WakeUpHeader": {
     "TEXT": ["并非"]
+  },
+  "gkmasMod:GachaAgainHeader": {
+    "TEXT": ["万代凯子"]
+  },
+  "gkmasMod:FutureTrajectory": {
+    "TEXT": ["白线"]
+  },
+  "gkmasMod:CallMeAnyTimeHeader": {
+    "TEXT": ["没事也可以打电话"]
+  },
+  "gkmasMod:ListenToMyTrueHeartHeader": {
+    "TEXT": ["あのね"]
+  },
+  "gkmasMod:MotherAIHeader": {
+    "TEXT": ["MOTHER"]
   },
   "gkmasMod:AnotherShopOption": {
     "TEXT": [
@@ -92,6 +161,9 @@
   },
   "gkmasMod:WhatDoesSheDoAction": {
     "TEXT": ["选择%s张卡，下回合获得。"]
+  },
+  "gkmasMod:BattlePracticeAction": {
+    "TEXT": ["选择%s张卡暂存。"]
   },
   "gkmasMod:FirstHeartProofChinaTip": {
     "TEXT": ["当前可造成%d伤害"]
@@ -116,5 +188,56 @@
   },
   "gkmasMod:Hint:achievement2": {
     "TEXT": ["战胜过美玲。 NL #y专属卡 升级。"]
+  },
+  "gkmasMod:UnitName:One": {
+    "TEXT": ["点"]
+  },
+  "gkmasMod:UnitName:Two": {
+    "TEXT": ["层"]
+  },
+  "gkmasMod:CreditsScreen": {
+    "TEXT": [
+      "再次点击以跳过",
+      "跳过",
+      "再次触碰以跳过"
+    ]
+  },
+  "gkmasMod:EctoplasmSpecial": {
+    "TEXT": [
+      " NL (对某人好像不管用)"
+    ]
+  },
+  "downfall:EnergyPanelTip": {
+    "TEXT": [
+      "敌人当前的能量。打出卡牌需要能量。"
+    ],
+    "EXTRA_TEXT": [
+      "能量"
+    ]
+  },
+  "growEffect:DamageGrow": {
+    "TEXT": [
+      "伤害追加 %d"
+    ]
+  },
+  "growEffect:AttackTimeGrow": {
+    "TEXT": [
+      "连击 %d"
+    ]
+  },
+  "growEffect:EnergyGrow": {
+    "TEXT": [
+      "耗能追加 %d"
+    ]
+  },
+  "growEffect:EnergyReduceGrow": {
+    "TEXT": [
+      "耗能减少 %d"
+    ]
+  },
+  "growEffect:BlockGrow": {
+    "TEXT": [
+      "格挡追加 %d"
+    ]
   }
 }

@@ -29,7 +29,7 @@ public class TowardsAnUnseenWorld extends CustomRelic {
     private static final RelicTier RARITY = RelicTier.STARTER;
 
     private static final int HP = 50;
-    private static final int magicNumber = 5;
+    private static final int magicNumber = 3;
     private static final int magicNumber2 = 2;
     private static int playTimes = 1;
 
@@ -58,8 +58,8 @@ public class TowardsAnUnseenWorld extends CustomRelic {
             float amount = 1.0F*AbstractDungeon.player.currentHealth / AbstractDungeon.player.maxHealth;
             float HP_ = HP*1.0F/100;
             if(amount<=HP_){
-                flash();
                 addToBot(new RelicAboveCreatureAction(AbstractDungeon.player, this));
+                this.flash();
                 addToBot(new UpgradeAllHandCardAction());
                 addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new StrengthPower(AbstractDungeon.player, magicNumber), magicNumber));
                 addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new ReduceDamageReceive(AbstractDungeon.player, magicNumber2), magicNumber2));

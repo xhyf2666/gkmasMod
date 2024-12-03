@@ -1,7 +1,9 @@
 package gkmasmod.cards.sense;
 
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
+import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
@@ -25,8 +27,8 @@ public class Achievement extends GkmasCard {
 
     private static final int COST = 2;
 
-    private static final int ATTACK_DMG = 14;
-    private static final int UPGRADE_PLUS_DMG = 6;
+    private static final int ATTACK_DMG = 7;
+    private static final int UPGRADE_PLUS_DMG = 3;
     private static final int BASE_MAGIC = 3;
     private static final int UPGRADE_PLUS_MAGIC = 2;
 
@@ -50,6 +52,7 @@ public class Achievement extends GkmasCard {
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
         addToBot(new ApplyPowerAction(p,p,new GoodTune(p,this.magicNumber),this.magicNumber));
+        addToBot(new DamageAction(m,new DamageInfo(p,this.damage,this.damageTypeForTurn)));
         addToBot(new ApplyPowerAction(p,p,new AchievementPower(p,this.baseDamage,m),this.baseDamage));
     }
 

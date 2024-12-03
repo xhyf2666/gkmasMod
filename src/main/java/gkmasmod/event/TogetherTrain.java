@@ -8,10 +8,10 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.events.AbstractImageEvent;
 import com.megacrit.cardcrawl.helpers.MonsterHelper;
 import com.megacrit.cardcrawl.localization.EventStrings;
-import gkmasmod.characters.IdolCharacter;
 import gkmasmod.potion.HotCoffee;
 import gkmasmod.relics.PocketBook;
 import gkmasmod.room.shop.AnotherShopPotions;
+import gkmasmod.utils.ThreeSizeHelper;
 
 public class TogetherTrain extends AbstractImageEvent {
     public static final String ID = TogetherTrain.class.getSimpleName();
@@ -67,7 +67,6 @@ public class TogetherTrain extends AbstractImageEvent {
     }
 
     private void addVi() {
-        IdolCharacter player = (IdolCharacter) AbstractDungeon.player;
-        player.changeVi(vi_add);
+        ThreeSizeHelper.changeVi(vi_add);
     }
 }

@@ -48,12 +48,11 @@ public class InnocencePower extends AbstractPower {
     // 能力在更新时如何修改描述
     public void updateDescription() {
         this.description = String.format(DESCRIPTIONS[0], this.amount*2);
-
     }
 
     public void atEndOfTurnPreEndTurnCards(boolean isPlayer) {
         flash();
-        int count = AbstractDungeon.player.getPower(StrengthPower.POWER_ID)==null?0:AbstractDungeon.player.getPower(StrengthPower.POWER_ID).amount;
+        int count = this.owner.getPower(StrengthPower.POWER_ID)==null?0:this.owner.getPower(StrengthPower.POWER_ID).amount;
         if(count>2){
             addToBot(new ApplyPowerAction(this.owner, this.owner, new StrengthPower(this.owner, this.amount*2), this.amount*2));
         }

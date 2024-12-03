@@ -58,6 +58,7 @@ public class FirstStarTshirt extends CustomRelic {
             int count = PlayerHelper.getPowerAmount(AbstractDungeon.player, GoodTune.POWER_ID);
             if(count>REQUIRE){
                 addToBot(new RelicAboveCreatureAction(AbstractDungeon.player, this));
+                this.flash();
                 addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new GoodTune(AbstractDungeon.player, magicNumber), magicNumber));
                 addToBot(new GainTrainRoundPowerAction(AbstractDungeon.player,1));
                 this.counter--;

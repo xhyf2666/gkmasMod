@@ -11,6 +11,7 @@ import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.powers.GoodTune;
 import gkmasmod.powers.GreatGoodTune;
+import gkmasmod.utils.IdolData;
 import gkmasmod.utils.NameHelper;
 import gkmasmod.utils.SoundHelper;
 
@@ -25,9 +26,9 @@ public class FullAdrenaline extends GkmasCard {
 
     private static final int COST = 2;
 
-    private static final int BASE_MAGIC = 3;
+    private static final int BASE_MAGIC = 2;
     private static final int UPGRADE_PLUS_MAGIC = 1;
-    private static final int BASE_MAGIC2 = 4;
+    private static final int BASE_MAGIC2 = 2;
     private static final int UPGRADE_PLUS_MAGIC2 = 1;
 
     private static final CardType TYPE = CardType.SKILL;
@@ -44,6 +45,8 @@ public class FullAdrenaline extends GkmasCard {
         this.exhaust = true;
         this.tags.add(GkmasCardTag.GOOD_TUNE_TAG);
         this.tags.add(GkmasCardTag.IDOL_CARD_TAG);
+        this.backGroundColor = IdolData.fktn;
+        updateBackgroundImg();
     }
 
 

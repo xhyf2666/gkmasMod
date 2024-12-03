@@ -25,7 +25,7 @@ public class SecretTrainingCardigan extends CustomRelic {
 
     private static final RelicTier RARITY = RelicTier.STARTER;
 
-    private static final int magicNumber = 3;
+    private static final int magicNumber = 2;
 
     private static final  int playTimes = 2;
 
@@ -60,6 +60,7 @@ public class SecretTrainingCardigan extends CustomRelic {
     public void onDexterityPowerIncrease(){
         if (this.counter > 0 && isRefresh) {
             addToBot(new RelicAboveCreatureAction(AbstractDungeon.player, this));
+            this.flash();
             addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new DexterityPower(AbstractDungeon.player, magicNumber), magicNumber));
             this.counter--;
             isRefresh = false;

@@ -23,7 +23,7 @@ public class Yeah extends GkmasCard {
     private static final int COST = 1;
     private static final int BASE_MAGIC = 1;
 
-    private static final int BLOCK_AMT = 2;
+    private static final int BLOCK_AMT = 4;
     private static final int UPGRADE_PLUS_BLOCK = 2;
 
     private static final CardType TYPE = CardType.SKILL;

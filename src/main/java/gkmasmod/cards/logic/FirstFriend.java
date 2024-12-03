@@ -17,6 +17,7 @@ import gkmasmod.cards.GkmasCard;
 import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.powers.ReduceDamageReceive;
+import gkmasmod.utils.IdolData;
 import gkmasmod.utils.NameHelper;
 import gkmasmod.utils.SoundHelper;
 
@@ -38,7 +39,7 @@ public class FirstFriend extends GkmasCard {
     private static final int UPGRADE_PLUS_MAGIC2 = 10;
     private static final int BASE_MAGIC3 = 1;
 
-    private static final int BASE_HP = 5;
+    private static final int BASE_HP = 4;
     private static final int BASE_HP_UPGRADE = -1;
 
     private static final CardType TYPE = CardType.ATTACK;
@@ -64,6 +65,8 @@ public class FirstFriend extends GkmasCard {
         this.exhaust = true;
         FlavorText.AbstractCardFlavorFields.boxColor.set(this, CardHelper.getColor(73, 224, 254));
         flavor = FlavorText.CardStringsFlavorField.flavor.get(CARD_STRINGS);
+        this.backGroundColor = IdolData.hrnm;
+        updateBackgroundImg();
     }
 
 
@@ -71,7 +74,7 @@ public class FirstFriend extends GkmasCard {
     public void use(AbstractPlayer p, AbstractMonster m) {
         addToBot(new LoseHPAction(p, p, this.HPMagicNumber));
         addToBot(new ApplyPowerAction(p, p, new ReduceDamageReceive(p, this.thirdMagicNumber), this.thirdMagicNumber));
-        addToBot(new BlockDamageAction(1.0f*this.secondMagicNumber/100,this.block,p,m,this,false,0));
+        addToBot(new BlockDamageAction(1.0f*this.secondMagicNumber/100,block,p,m,this));
         SoundHelper.playSound("gkmasModResource/audio/voice/skillcard/cidol_hrnm_1_001_produce_skillcard_01.ogg");
 
     }
@@ -111,6 +114,20 @@ public class FirstFriend extends GkmasCard {
             dexterity.amount = amount;
         }
         return res;
+    }
+
+    @Override
+    public void calculateCardDamage(AbstractMonster mo) {
+        AbstractPower dexterity = AbstractDungeon.player.getPower(DexterityPower.POWER_ID);
+        int amount = 0;
+        if (dexterity != null) {
+            amount = dexterity.amount;
+            dexterity.amount = (int) (dexterity.amount * 1.0f*this.magicNumber/100);
+        }
+        super.calculateCardDamage(mo);
+        if (dexterity != null) {
+            dexterity.amount = amount;
+        }
     }
 
     @Override

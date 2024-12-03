@@ -41,6 +41,7 @@ public class OverpoweredBall extends CustomRelic {
 
     public void onBuySomething(){
         addToBot(new RelicAboveCreatureAction(AbstractDungeon.player, this));
+        this.flash();
         ThreeSizeHelper.addFixedThreeSize(true,new int[]{magicNumber,magicNumber,magicNumber});
     }
 

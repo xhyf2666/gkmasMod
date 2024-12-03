@@ -16,6 +16,7 @@ import gkmasmod.powers.ForShiningYouPower;
 import gkmasmod.powers.MoonlitRunwayPlusPower;
 import gkmasmod.powers.MoonlitRunwayPower;
 import gkmasmod.screen.SkinSelectScreen;
+import gkmasmod.utils.IdolData;
 import gkmasmod.utils.NameHelper;
 import gkmasmod.utils.PlayerHelper;
 import gkmasmod.utils.SoundHelper;
@@ -49,6 +50,8 @@ public class MoonlitRunway extends GkmasCard {
         this.secondMagicNumber = this.baseSecondMagicNumber;
         this.tags.add(GkmasCardTag.YARUKI_TAG);
         this.tags.add(GkmasCardTag.GOOD_IMPRESSION_TAG);
+        this.backGroundColor = IdolData.amao;
+        updateBackgroundImg();
     }
 
     @Override
@@ -60,7 +63,7 @@ public class MoonlitRunway extends GkmasCard {
         else{
             addToBot(new ApplyPowerAction(p, p, new MoonlitRunwayPower(p, 1), 1));
         }
-        SoundHelper.playSound("gkmasModResource/audio/voice/skillcard/cidol_amao_3_002_produce_skillcard_01.ogg");
+        SoundHelper.playSound("gkmasModResource/audio/voice/skillcard/cidol_amao_3_001_produce_skillcard_01.ogg");
 
     }
 

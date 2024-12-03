@@ -1,5 +1,6 @@
 package gkmasmod.powers;
 
+import gkmasmod.downfall.charbosses.cards.AbstractBossCard;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.HealAction;
@@ -12,17 +13,12 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.localization.PowerStrings;
-import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.BlurPower;
-import com.megacrit.cardcrawl.powers.MinionPower;
 import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
-import gkmasmod.patches.MapRoomNodePatch;
 import gkmasmod.relics.*;
 import gkmasmod.utils.NameHelper;
 import gkmasmod.utils.ThreeSizeHelper;
-
-import java.util.ArrayList;
 
 public class TrainRoundLogicPower extends AbstractPower {
     private static final String CLASSNAME = TrainRoundLogicPower.class.getSimpleName();
@@ -81,6 +77,9 @@ public class TrainRoundLogicPower extends AbstractPower {
             if(AbstractDungeon.player.hasRelic(LifeSizeLadyLip.ID)){
                 ((LifeSizeLadyLip)AbstractDungeon.player.getRelic(LifeSizeLadyLip.ID)).onTrainRoundRemove();
             }
+            if(AbstractDungeon.player.hasRelic(ChristmasLion.ID)){
+                ((ChristmasLion)AbstractDungeon.player.getRelic(ChristmasLion.ID)).onTrainRoundRemove();
+            }
         }
         if (this.amount-reduceAmount == 0){
             addToTop(new RemoveSpecificPowerAction(this.owner, this.owner, this.ID));
@@ -101,6 +100,7 @@ public class TrainRoundLogicPower extends AbstractPower {
 
     public void atEndOfTurnPreEndTurnCards(boolean isPlayer) {
         flash();
+        System.out.println("TrainRoundLogicPower atEndOfTurnPreEndTurnCards");
         if(EnergyPanel.totalCount > 0){
             addToTop(new HealAction(this.owner, this.owner, 1));
         }
@@ -108,8 +108,7 @@ public class TrainRoundLogicPower extends AbstractPower {
 
     public void atEndOfTurn(boolean isPlayer) {
         flash();
-        if(this.isDone)
-            return;
+        System.out.println("TrainRoundLogicPower atEndOfTurn");
         if(this.amount > 0){
             addToBot(new ReducePowerAction(this.owner, this.owner, POWER_ID, 1));
             addToTop(new ApplyPowerAction(this.owner, this.owner, new BlurPower(this.owner, 1)));
@@ -119,6 +118,8 @@ public class TrainRoundLogicPower extends AbstractPower {
     }
 
     public void onAfterUseCard(AbstractCard card, UseCardAction action) {
+        if(card instanceof AbstractBossCard)
+            return;
         flash();
         if(this.amount == 1){
         }
@@ -148,6 +149,9 @@ public class TrainRoundLogicPower extends AbstractPower {
         }
         if(AbstractDungeon.player.hasRelic(FirstHeartProofChina.ID)){
             ((FirstHeartProofChina)AbstractDungeon.player.getRelic(FirstHeartProofChina.ID)).onTrainRoundRemove();
+        }
+        if(AbstractDungeon.player.hasRelic(ChristmasLion.ID)){
+            ((ChristmasLion)AbstractDungeon.player.getRelic(ChristmasLion.ID)).onTrainRoundRemove();
         }
         if(!this.isDone){
             ThreeSizeHelper.addThreeSize(true);

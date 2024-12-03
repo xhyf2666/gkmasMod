@@ -74,5 +74,33 @@
   "gkmasMod:SpecialFirstStarExtract": {
     "NAME": "特制初星精华",
     "DESCRIPTIONS": ["失去 #b%d 点 #y体力 。 NL 获得 #b%d 层 受伤剧增 。 NL 本回合使用的下 #b%d 张攻击牌额外触发一次。"]
+  },
+  "gkmasMod:GingerAle": {
+    "NAME": "姜汁汽水",
+    "DESCRIPTIONS": ["进入 #y强气 。 NL 获得 #b%d 点 全力值 。", "进入 #y强气2段 。 NL 获得 #b%d 点 全力值 。"]
+  },
+  "gkmasMod:Hojicha": {
+    "NAME": "焙茶",
+    "DESCRIPTIONS": ["进入 #y温存 。 NL 获得 #b%d 点 全力值 。", "进入 #y温存2段 。 NL 获得 #b%d 点 全力值 。"]
+  },
+  "gkmasMod:HotGreenTea": {
+    "NAME": "热绿茶",
+    "DESCRIPTIONS": ["进入 #y温存2段 。 NL 从 #y抽牌堆 和 #y弃牌堆 中选择 #b%d 张牌 #y暂存 。"]
+  },
+  "gkmasMod:SelectFirstStarChai": {
+    "NAME": "初星严选·奶茶",
+    "DESCRIPTIONS": ["回合开始时，获得 #b%d 点 全力值 。"]
+  },
+  "gkmasMod:SelectFirstStarMilkTea": {
+    "NAME": "初星超级汽水",
+    "DESCRIPTIONS": ["进入 #y强气2段 。 NL 获得 #b%d 层 受伤锐减 。"]
+  },
+  "gkmasMod:FirstStarSoup": {
+    "NAME": "初星汤",
+    "DESCRIPTIONS": ["失去 #b%d 点 #y体力 。 NL 获得 #b%d 层 受伤剧增 。 NL 获得 #b%d 个 #y额外回合 。"]
+  },
+  "gkmasMod:PowerfulHerbalDrink": {
+    "NAME": "强效汉方饮料",
+    "DESCRIPTIONS": ["获得 #b%d 层 受伤锐减 。 NL 将 #y弃牌堆 或 #y抽牌堆 中的 #y偶像专属卡 加入手牌。"]
   }
 }
