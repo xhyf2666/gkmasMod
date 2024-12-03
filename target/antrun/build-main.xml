@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<project name="maven-antrun-" default="main"  >
-<target name="main">
-  <copy file="target/gkmas-mod.jar" tofile="D:/[Software]/[Game]/steam/steamapps/common/SlayTheSpire/mods/gkmas-mod.jar"/>
-</target>
-</project>
