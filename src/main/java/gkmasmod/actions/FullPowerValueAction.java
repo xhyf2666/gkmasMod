@@ -64,8 +64,6 @@ public class FullPowerValueAction extends AbstractGameAction {
             else{
                 addToBot(new RemoveSpecificPowerAction(AbstractDungeon.player, AbstractDungeon.player, FullPowerValue.POWER_ID));
             }
-
-            System.out.println();
 //            AbstractDungeon.player.getPower(FullPowerValue.POWER_ID).amount -= 10;
 //            if (PlayerHelper.getPowerAmount(AbstractDungeon.player,FullPowerValue.POWER_ID) <= 0) {
 //                this.addToTop(new RemoveSpecificPowerAction(AbstractDungeon.player, AbstractDungeon.player, FullPowerValue.POWER_ID));
