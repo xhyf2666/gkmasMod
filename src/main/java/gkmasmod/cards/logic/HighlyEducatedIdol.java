@@ -25,7 +25,7 @@ public class HighlyEducatedIdol extends GkmasCard {
     private static final String IMG_PATH = String.format("gkmasModResource/img/cards/common/%s.png", CLASSNAME);
 
     private static final int COST = 0;
-    private static final int BASE_MAGIC = 5;
+    private static final int BASE_MAGIC = 3;
 
     private static final int BLOCK_AMT = 2;
     private static final int UPGRADE_PLUS_BLOCK = 2;

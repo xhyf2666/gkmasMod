@@ -13,6 +13,7 @@ public class BlockGrow extends AbstractGrowEffect {
     public BlockGrow(int damage) {
         this.amount = damage;
         growEffectID = growID;
+        priority = 10;
     }
 
     public String modifyDescription(String rawDescription, AbstractCard card) {

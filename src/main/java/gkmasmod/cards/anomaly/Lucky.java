@@ -30,7 +30,7 @@ public class Lucky extends GkmasCard {
 
     private static final int COST = 1;
 
-    private static final int BASE_DAMAGE = 4;
+    private static final int BASE_DAMAGE = 5;
     private static final int UPGRADE_DAMAGE_PLUS = 2;
 
     private static final int BASE_MAGIC = 3;
@@ -48,7 +48,6 @@ public class Lucky extends GkmasCard {
         this.baseDamage = BASE_DAMAGE;
         this.baseMagicNumber = BASE_MAGIC;
         this.magicNumber = this.baseMagicNumber;
-        this.exhaust = true;
     }
 
     @Override

@@ -12,6 +12,7 @@ import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.downfall.cards.GkmasBossCard;
 import gkmasmod.powers.HalfDamageReceive;
 import gkmasmod.screen.SkinSelectScreen;
+import gkmasmod.utils.ImageHelper;
 import gkmasmod.utils.NameHelper;
 
 public class ENOnTV extends GkmasBossCard {
@@ -23,7 +24,7 @@ public class ENOnTV extends GkmasBossCard {
 
     private static final String NAME = CARD_STRINGS.NAME;
     private static final String DESCRIPTION = CARD_STRINGS.DESCRIPTION;
-    private static String IMG_PATH = String.format("gkmasModResource/img/idol/%s/cards/%s.png", AbstractCharBoss.theIdolName, CLASSNAME2);
+    private static String IMG_PATH = ImageHelper.idolImgPath(AbstractCharBoss.theIdolName, CLASSNAME2);
 
     private static final int COST = 1;
     private static final int BASE_MAGIC = 2;

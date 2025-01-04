@@ -7,12 +7,18 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.DexterityPower;
+import gkmasmod.cardCustomEffect.MagicCustom;
+import gkmasmod.cardCustomEffect.SecondMagicCustom;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.powers.GoodImpression;
 import gkmasmod.screen.SkinSelectScreen;
+import gkmasmod.utils.CustomHelper;
+import gkmasmod.utils.ImageHelper;
 import gkmasmod.utils.NameHelper;
+
+import java.util.ArrayList;
 
 public class BeforeThePerformance extends GkmasCard {
     private static final String CLASSNAME = BeforeThePerformance.class.getSimpleName();
@@ -21,7 +27,7 @@ public class BeforeThePerformance extends GkmasCard {
 
     private static final String NAME = CARD_STRINGS.NAME;
     private static final String DESCRIPTION = CARD_STRINGS.DESCRIPTION;
-    private static String IMG_PATH = String.format("gkmasModResource/img/idol/%s/cards/%s.png", SkinSelectScreen.Inst.idolName, CLASSNAME);
+    private static String IMG_PATH = ImageHelper.idolImgPath(SkinSelectScreen.Inst.idolName, CLASSNAME);
 
     private static final int COST = 2;
     private static final int UPGRADED_COST = 1;
@@ -35,8 +41,8 @@ public class BeforeThePerformance extends GkmasCard {
     private static final CardTarget TARGET = CardTarget.SELF;
 
     public BeforeThePerformance() {
-        super(ID, NAME, String.format("gkmasModResource/img/idol/%s/cards/%s.png", SkinSelectScreen.Inst.idolName, CLASSNAME), COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        IMG_PATH = String.format("gkmasModResource/img/idol/%s/cards/%s.png", SkinSelectScreen.Inst.idolName, CLASSNAME);
+        super(ID, NAME, ImageHelper.idolImgPath(SkinSelectScreen.Inst.idolName, CLASSNAME), COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
+        IMG_PATH = ImageHelper.idolImgPath(SkinSelectScreen.Inst.idolName, CLASSNAME);
         this.updateShowImg = true;
         this.baseMagicNumber = BASE_MAGIC;
         this.magicNumber = this.baseMagicNumber;
@@ -46,6 +52,10 @@ public class BeforeThePerformance extends GkmasCard {
         this.exhaust = true;
         this.tags.add(GkmasCardTag.YARUKI_TAG);
         this.tags.add(GkmasCardTag.GOOD_IMPRESSION_TAG);
+        this.customLimit = 2;
+        this.customEffectList = new ArrayList<>();
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(MagicCustom.growID,new int[]{1,2},new int[]{40,70},CustomHelper.CustomEffectType.GOOD_IMPRESSION_ADD));
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(SecondMagicCustom.growID,new int[]{1,1},new int[]{60,60},CustomHelper.CustomEffectType.DEXTERITY_ADD));
     }
 
 

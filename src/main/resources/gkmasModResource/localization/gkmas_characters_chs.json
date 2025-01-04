@@ -147,6 +147,10 @@
     "NAMES": [""],
     "TEXT": ["12月7日"]
   },
+  "IdolBirthday:hmsz": {
+    "NAMES": [""],
+    "TEXT": ["2月6日"]
+  },
   "IdolAge:shro": {
     "NAMES": [""],
     "TEXT": ["15岁"]
@@ -190,6 +194,10 @@
   "IdolAge:jsna": {
     "NAMES": [""],
     "TEXT": ["17岁"]
+  },
+  "IdolAge:hmsz": {
+    "NAMES": [""],
+    "TEXT": ["15岁"]
   },
   "IdolHeight:shro":{
     "NAMES": [""],

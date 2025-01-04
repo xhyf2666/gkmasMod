@@ -27,39 +27,32 @@ public class FullPowerValueAction extends AbstractGameAction {
 
         int amount = PlayerHelper.getPowerAmount(AbstractDungeon.player,FullPowerValue.POWER_ID);
 
-        int amountBak = amount;
-
         if (amount >= 10) {
             addToTop(new ChangeStanceAction(FullPowerStance.STANCE_ID));
             AbstractDungeon.player.getPower(FullPowerValue.POWER_ID).flash();
-            amount -= 10;
 
-            while(amount>0){
-                if(amount>=2){
-                    amount-=2;
-                    addToBot(new GainBlockWithPowerAction(AbstractDungeon.player,AbstractDungeon.player,5));
-                }
-                else{
-                    break;
-                }
-                if(amount>=3){
-                    amount-=3;
-                    addToBot(new ApplyPowerAction(AbstractDungeon.player,AbstractDungeon.player,new EnthusiasticPower(AbstractDungeon.player,3),3));
-                }
-                else{
-                    break;
-                }
-                if(amount>=5){
-                    amount-=5;
-                    addToBot(new GainTrainRoundPowerAction(AbstractDungeon.player,1));
-                }
-                else{
-                    break;
-                }
+            int a = amount/10-1;
+            int b = amount%10;
+            int left = b;
+
+            int p1,p2,p3;
+            p1 = p2 = p3 = a;
+
+            if(b>=2){
+                p1++;
+                left -= 2;
+            }
+            if(b>=5){
+                p2++;
+                left -= 2;
             }
 
-            if(amount>0){
-                addToBot(new ReducePowerAction(AbstractDungeon.player,AbstractDungeon.player,FullPowerValue.POWER_ID,amountBak-amount));
+            addToBot(new ApplyPowerAction(AbstractDungeon.player,AbstractDungeon.player,new EnthusiasticPower(AbstractDungeon.player,p1*5),p1*5));
+            addToBot(new GainBlockWithPowerAction(AbstractDungeon.player,AbstractDungeon.player,p2*16));
+            addToBot(new GainTrainRoundPowerAction(AbstractDungeon.player,p3));
+
+            if(left>0){
+                addToBot(new ReducePowerAction(AbstractDungeon.player,AbstractDungeon.player,FullPowerValue.POWER_ID,amount-left));
             }
             else{
                 addToBot(new RemoveSpecificPowerAction(AbstractDungeon.player, AbstractDungeon.player, FullPowerValue.POWER_ID));

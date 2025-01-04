@@ -22,20 +22,23 @@ public class ModifyDamageAction extends AbstractGameAction {
     private DamageInfo info;
     private AbstractCard card;
     private AbstractCreature owner;
+    private boolean countTime = false;
 
     public ModifyDamageAction(AbstractCreature target, DamageInfo info, AttackEffect effect) {
+        this(target, info, effect, null);
+    }
+
+    public ModifyDamageAction(AbstractCreature target, DamageInfo info, AttackEffect effect, AbstractCard card) {
+        this(target, info, effect, card, false);
+    }
+
+    public ModifyDamageAction(AbstractCreature target, DamageInfo info, AttackEffect effect, AbstractCard card, boolean countTime) {
         this.target = target;
         this.info = info;
         this.owner = info.owner;
         this.attackEffect = effect;
-        this.card = null;
-    }
-
-    public ModifyDamageAction(AbstractCreature target, DamageInfo info, AttackEffect effect, AbstractCard card) {
-        this.target = target;
-        this.info = info;
-        this.attackEffect = effect;
         this.card = card;
+        this.countTime = countTime;
     }
 
     @Override
@@ -47,7 +50,7 @@ public class ModifyDamageAction extends AbstractGameAction {
                 for (AbstractCardModifier mod : CardModifierManager.modifiers(this.card)) {
                     if(mod instanceof DamageGrow)
                         damage += ((DamageGrow)mod).getAmount();
-                    if(mod instanceof AttackTimeGrow)
+                    if(this.countTime&&mod instanceof AttackTimeGrow)
                         attackTime += ((AttackTimeGrow)mod).getAmount();
                 }
             }
@@ -77,17 +80,18 @@ public class ModifyDamageAction extends AbstractGameAction {
             }
 
             AbstractPower p;
-            for(var9 = player.powers.iterator(); var9.hasNext(); tmp = p.atDamageGive(tmp, DamageInfo.DamageType.NORMAL)) {
+            for(var9 = this.owner.powers.iterator(); var9.hasNext(); tmp = p.atDamageGive(tmp, DamageInfo.DamageType.NORMAL)) {
                 p = (AbstractPower)var9.next();
             }
 
-            tmp = player.stance.atDamageGive(tmp, DamageInfo.DamageType.NORMAL);
+            if(this.owner.isPlayer)
+                tmp = player.stance.atDamageGive(tmp, DamageInfo.DamageType.NORMAL);
 
             for(var9 = m.powers.iterator(); var9.hasNext(); tmp = p.atDamageReceive(tmp, DamageInfo.DamageType.NORMAL)) {
                 p = (AbstractPower)var9.next();
             }
 
-            for(var9 = player.powers.iterator(); var9.hasNext(); tmp = p.atDamageFinalGive(tmp, DamageInfo.DamageType.NORMAL)) {
+            for(var9 = this.owner.powers.iterator(); var9.hasNext(); tmp = p.atDamageFinalGive(tmp, DamageInfo.DamageType.NORMAL)) {
                 p = (AbstractPower)var9.next();
             }
 

@@ -1,6 +1,7 @@
 package gkmasmod.patches;
 
 import basemod.ReflectionHacks;
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.evacipated.cardcrawl.modthespire.lib.*;
@@ -77,10 +78,11 @@ public class SkinSelectPatch {
         String name = IdolData.idolNames[SkinSelectScreen.Inst.idolIndex];
         String skinName = IdolData.getIdol(name).getSkin(SkinSelectScreen.Inst.skinIndex);
         int updateIndex = SkinSelectScreen.Inst.updateIndex;
-        System.out.println(skinName);
         String IMG_PATH = String.format("gkmasModResource/img/charSelect/%s_%s_%d.jpg", name, skinName,updateIndex);
-        // TODO 检查文件是否存在
-        return new Texture(IMG_PATH);
+
+        if(Gdx.files.internal(IMG_PATH).exists())
+            return new Texture(IMG_PATH);
+        return new Texture("gkmasModResource/img/charSelect/background_init.png");
     }
 }
 

@@ -26,7 +26,7 @@ public class OrreryPatch
         @SpireInsertPatch(rloc = 0)
         public static void Insert(Orrery __instance) {
             if(AbstractDungeon.player.hasRelic(PocketBook.ID)){
-                if(GkmasMod.AnotherShopUp)
+                if(GkmasMod.screenIndex==1)
                     AbstractDungeon.getCurrRoom().addCardToRewards();
             }
         }

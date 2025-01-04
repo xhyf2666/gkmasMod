@@ -10,12 +10,18 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import gkmasmod.cardCustomEffect.DexterityCustom;
+import gkmasmod.cardCustomEffect.MagicCustom;
+import gkmasmod.cardCustomEffect.StrengthCustom;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.powers.GoodTune;
+import gkmasmod.utils.CustomHelper;
 import gkmasmod.utils.NameHelper;
 import gkmasmod.utils.PlayerHelper;
+
+import java.util.ArrayList;
 
 public class LightGait extends GkmasCard {
     private static final String CLASSNAME = LightGait.class.getSimpleName();
@@ -44,13 +50,17 @@ public class LightGait extends GkmasCard {
         this.baseMagicNumber = BASE_MAGIC;
         this.magicNumber = this.baseMagicNumber;
         this.tags.add(GkmasCardTag.GOOD_TUNE_TAG);
+        this.customLimit = 3;
+        this.customEffectList = new ArrayList<>();
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(MagicCustom.growID,new int[]{1,1,1},new int[]{50,50,80},CustomHelper.CustomEffectType.GOOD_TUNE_ADD));
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(DexterityCustom.growID,new int[]{1},new int[]{60},CustomHelper.CustomEffectType.DEXTERITY_ADD));
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(StrengthCustom.growID,new int[]{1},new int[]{60},CustomHelper.CustomEffectType.STRENGTH_ADD));
     }
 
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        addToBot(new DamageAction( m, new DamageInfo( p, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
-        int count = PlayerHelper.getPowerAmount(p, GoodTune.POWER_ID);
+        addToBot(new DamageAction(m, new DamageInfo(p, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
         addToBot(new ApplyPowerAction(p, p, new GoodTune(p, this.magicNumber), this.magicNumber));
     }
 

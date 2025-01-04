@@ -20,7 +20,6 @@ public class TrueVictoryRoomPatch {
     @SpirePatch2(clz = TrueVictoryRoom.class, method = "onPlayerEntry")
     public static class AbstractPlayerPowerTipPatch {
         public static SpireReturn<Void> Prefix() {
-            System.out.println("TrueVictoryRoomPatch AbstractPlayerPowerTipPatch");
             if (AbstractDungeon.player instanceof IdolCharacter) {
                 if(!existsVideo()){
                     return SpireReturn.Continue();

@@ -1,6 +1,7 @@
 package gkmasmod.monster.ending;
 
 import basemod.abstracts.CustomMonster;
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
@@ -172,10 +173,15 @@ public class MisuzuBoss extends CustomMonster {
         if(stage==1&&this.secondMove == 2){
             this.secondMove = 3;
             CardCrawlGame.music.dispose();
-            CardCrawlGame.music.playTempBgmInstantly(
-                    String.format("gkmasModResource/audio/bgm/inst_%s.ogg",
-                            IdolData.getIdol(SkinSelectScreen.Inst.idolIndex).getBgm(SkinSelectScreen.Inst.skinIndex)),
-                    true);
+
+            String bgm = String.format("gkmasModResource/audio/bgm/inst_%s.ogg",
+                    IdolData.getIdol(SkinSelectScreen.Inst.idolIndex).getBgm(SkinSelectScreen.Inst.skinIndex));
+            if(Gdx.files.internal(bgm).exists())
+                CardCrawlGame.music.playTempBgmInstantly(bgm, true);
+            else{
+                bgm = String.format("gkmasModResource/audio/bgm/inst_%s_00%d.ogg",SkinSelectScreen.Inst.idolName,1);
+                CardCrawlGame.music.playTempBgmInstantly(bgm, true);
+            }
         }
 
         switch (this.nextMove) {
@@ -415,10 +421,14 @@ public class MisuzuBoss extends CustomMonster {
 
         if(stage==2&&!this.isOutTriggered && this.currentHealth <= 100000) {
             CardCrawlGame.music.dispose();
-            CardCrawlGame.music.playTempBgmInstantly(
-                    String.format("gkmasModResource/audio/song/%s_00%s.ogg",SkinSelectScreen.Inst.idolName,
-                            IdolData.getIdol(SkinSelectScreen.Inst.idolIndex).getSong(SkinSelectScreen.Inst.skinIndex)),
-                    true);
+            String song = String.format("gkmasModResource/audio/song/%s_00%s.ogg",SkinSelectScreen.Inst.idolName,
+                    IdolData.getIdol(SkinSelectScreen.Inst.idolIndex).getSong(SkinSelectScreen.Inst.skinIndex));
+            if(Gdx.files.internal(song).exists())
+                CardCrawlGame.music.playTempBgmInstantly(song, true);
+            else{
+                song = String.format("gkmasModResource/audio/song/%s_00%s.ogg",SkinSelectScreen.Inst.idolName,2);
+                CardCrawlGame.music.playTempBgmInstantly(song, true);
+            }
             this.img = new Texture("gkmasModResource/img/monsters/Misuzu/Misuzu.png");
 
             if(AbstractDungeon.player instanceof IdolCharacter){

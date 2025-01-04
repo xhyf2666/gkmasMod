@@ -9,11 +9,17 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import gkmasmod.cardCustomEffect.DamageCustom;
+import gkmasmod.cardCustomEffect.DrawCardCustom;
+import gkmasmod.cardCustomEffect.GoodTuneCustom;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.powers.GoodTune;
+import gkmasmod.utils.CustomHelper;
 import gkmasmod.utils.NameHelper;
+
+import java.util.ArrayList;
 
 public class TalkTime extends GkmasCard {
     private static final String CLASSNAME = TalkTime.class.getSimpleName();
@@ -36,6 +42,11 @@ public class TalkTime extends GkmasCard {
     public TalkTime() {
         super(ID, NAME, IMG_PATH, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.baseDamage = ATTACK_DMG;
+        this.customLimit = 3;
+        this.customEffectList = new ArrayList<>();
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(DamageCustom.growID,new int[]{2,2},new int[]{50,50},CustomHelper.CustomEffectType.DEXTERITY_ADD));
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(DrawCardCustom.growID,new int[]{1},new int[]{80},CustomHelper.CustomEffectType.DRAW_CARD_ADD));
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(GoodTuneCustom.growID,new int[]{1,1},new int[]{50,50},CustomHelper.CustomEffectType.GOOD_TUNE_ADD));
     }
 
 

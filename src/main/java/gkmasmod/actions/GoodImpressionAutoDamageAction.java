@@ -43,6 +43,9 @@ public class GoodImpressionAutoDamageAction extends AbstractGameAction {
             rate *= 0.5f;
         if(p.hasPower(MasterTreadmillPower.POWER_ID))
             rate *= 0.8f;
+        if(p.hasPower(IdolExamPower.POWER_ID)){
+            rate *= ((IdolExamPower)p.getPower(IdolExamPower.POWER_ID)).getRate();
+        }
         int countNotGoodTune = 0;
         int countGreatNotGoodTune = 0;
         if(p.hasPower(NotGoodTune.POWER_ID))

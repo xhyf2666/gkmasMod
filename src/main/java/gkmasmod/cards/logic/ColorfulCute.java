@@ -24,8 +24,8 @@ public class ColorfulCute extends GkmasCard {
     private static final String IMG_PATH = String.format("gkmasModResource/img/cards/common/%s.png", CLASSNAME);
 
     private static final int COST = 2;
-    private static final int BASE_MAGIC = 8;
-    private static final int UPGRADE_PLUS_MAGIC = 2;
+    private static final int BASE_MAGIC = 7;
+    private static final int UPGRADE_PLUS_MAGIC = 3;
 
 
     private static final CardType TYPE = CardType.SKILL;

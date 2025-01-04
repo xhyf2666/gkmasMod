@@ -10,9 +10,15 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import gkmasmod.cardCustomEffect.DamageCustom;
+import gkmasmod.cardCustomEffect.GoodTuneCustom;
+import gkmasmod.cardCustomEffect.GreatGoodTuneCustom;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.characters.PlayerColorEnum;
+import gkmasmod.utils.CustomHelper;
 import gkmasmod.utils.NameHelper;
+
+import java.util.ArrayList;
 
 public class ServiceSpirit extends GkmasCard {
     private static final String CLASSNAME = ServiceSpirit.class.getSimpleName();
@@ -41,6 +47,11 @@ public class ServiceSpirit extends GkmasCard {
         this.baseDamage = ATTACK_DMG;
         this.baseMagicNumber = BASE_MAGIC;
         this.magicNumber = this.baseMagicNumber;
+        this.customLimit = 3;
+        this.customEffectList = new ArrayList<>();
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(DamageCustom.growID,new int[]{2,2},new int[]{50,50},CustomHelper.CustomEffectType.DAMAGE_ADD));
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(GoodTuneCustom.growID,new int[]{1},new int[]{50},CustomHelper.CustomEffectType.GOOD_TUNE_ADD));
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(GreatGoodTuneCustom.growID,new int[]{1},new int[]{60},CustomHelper.CustomEffectType.GREAT_GOOD_TUNE_ADD));
     }
 
 

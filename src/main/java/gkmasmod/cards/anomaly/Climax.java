@@ -14,12 +14,11 @@ import gkmasmod.actions.ModifyDamageAction;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
-import gkmasmod.powers.FullPowerValue;
-import gkmasmod.powers.TrainingResultPlusPower;
-import gkmasmod.powers.TrainingResultPower;
+import gkmasmod.powers.*;
 import gkmasmod.screen.SkinSelectScreen;
 import gkmasmod.stances.ConcentrationStance;
 import gkmasmod.stances.FullPowerStance;
+import gkmasmod.utils.ImageHelper;
 import gkmasmod.utils.NameHelper;
 
 public class Climax extends GkmasCard {
@@ -29,11 +28,11 @@ public class Climax extends GkmasCard {
 
     private static final String NAME = CARD_STRINGS.NAME;
     private static final String DESCRIPTION = CARD_STRINGS.DESCRIPTION;
-    private static String IMG_PATH = String.format("gkmasModResource/img/idol/%s/cards/%s.png", SkinSelectScreen.Inst.idolName, CLASSNAME);
+    private static String IMG_PATH = ImageHelper.idolImgPath(SkinSelectScreen.Inst.idolName, CLASSNAME);
 
     private static final int COST = 2;
 
-    private static final int BASE_DAMAGE = 7;
+    private static final int BASE_DAMAGE = 6;
     private static final int UPGRADE_DAMAGE_PLUS = 3;
 
     private static final int BASE_MAGIC = 2;
@@ -44,31 +43,22 @@ public class Climax extends GkmasCard {
     private static final CardTarget TARGET = CardTarget.ENEMY;
 
     public Climax() {
-        super(ID, NAME, String.format("gkmasModResource/img/idol/%s/cards/%s.png", SkinSelectScreen.Inst.idolName, CLASSNAME), COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        IMG_PATH = String.format("gkmasModResource/img/idol/%s/cards/%s.png", SkinSelectScreen.Inst.idolName, CLASSNAME);
+        super(ID, NAME, ImageHelper.idolImgPath(SkinSelectScreen.Inst.idolName, CLASSNAME), COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
+        IMG_PATH = ImageHelper.idolImgPath(SkinSelectScreen.Inst.idolName, CLASSNAME);
         this.updateShowImg = true;
         this.tags.add(GkmasCardTag.PRESERVATION_TAG);
         this.tags.add(GkmasCardTag.CONCENTRATION_TAG);
         this.baseDamage = BASE_DAMAGE;
         this.baseMagicNumber = BASE_MAGIC;
         this.magicNumber = this.baseMagicNumber;
-        this.exhaust = true;
-
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        if(this.upgraded){
-            addToBot(new ChangeStanceAction(ConcentrationStance.STANCE_ID2));
-            addToBot(new ApplyPowerAction(p,p,new TrainingResultPlusPower(p,1),1));
-        }
-        else{
-            addToBot(new ChangeStanceAction(ConcentrationStance.STANCE_ID));
-            addToBot(new ApplyPowerAction(p,p,new TrainingResultPower(p,1),1));
-        }
-
-            addToBot(new ModifyDamageAction(m,new DamageInfo(p,this.damage,this.damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_VERTICAL,this));
-            addToBot(new ModifyDamageAction(m,new DamageInfo(p,this.damage,this.damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_HORIZONTAL,this));
+        addToBot(new ChangeStanceAction(ConcentrationStance.STANCE_ID2));
+        addToBot(new ApplyPowerAction(p,p,new EndOfTurnPreservationStancePlusPower(p,1),1));
+        addToBot(new ModifyDamageAction(m,new DamageInfo(p,this.baseDamage,this.damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_VERTICAL,this,false));
+        addToBot(new ModifyDamageAction(m,new DamageInfo(p,this.baseDamage,this.damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_HORIZONTAL,this,false));
     }
 
     @Override

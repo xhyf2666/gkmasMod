@@ -17,6 +17,7 @@ import gkmasmod.powers.FullPowerValue;
 import gkmasmod.powers.TrainingResultPlusPower;
 import gkmasmod.powers.TrainingResultPower;
 import gkmasmod.screen.SkinSelectScreen;
+import gkmasmod.utils.ImageHelper;
 import gkmasmod.utils.NameHelper;
 
 public class TrainingResult extends GkmasCard {
@@ -26,12 +27,12 @@ public class TrainingResult extends GkmasCard {
 
     private static final String NAME = CARD_STRINGS.NAME;
     private static final String DESCRIPTION = CARD_STRINGS.DESCRIPTION;
-    private static String IMG_PATH = String.format("gkmasModResource/img/idol/%s/cards/%s.png", SkinSelectScreen.Inst.idolName, CLASSNAME);
+    private static String IMG_PATH = ImageHelper.idolImgPath(SkinSelectScreen.Inst.idolName, CLASSNAME);
 
-    private static final int COST = 2;
+    private static final int COST = 1;
 
-    private static final int BASE_DAMAGE = 5;
-    private static final int UPGRADE_DMG_PLUS = 2;
+    private static final int BASE_DAMAGE = 3;
+    private static final int UPGRADE_DMG_PLUS = 1;
     private static final int BASE_MAGIC = 3;
     private static final int UPGRADE_MAGIC_PLUS = 1;
 
@@ -42,8 +43,8 @@ public class TrainingResult extends GkmasCard {
     private static final CardTarget TARGET = CardTarget.ENEMY;
 
     public TrainingResult() {
-        super(ID, NAME, String.format("gkmasModResource/img/idol/%s/cards/%s.png", SkinSelectScreen.Inst.idolName, CLASSNAME), COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        IMG_PATH = String.format("gkmasModResource/img/idol/%s/cards/%s.png", SkinSelectScreen.Inst.idolName, CLASSNAME);
+        super(ID, NAME, ImageHelper.idolImgPath(SkinSelectScreen.Inst.idolName, CLASSNAME), COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
+        IMG_PATH = ImageHelper.idolImgPath(SkinSelectScreen.Inst.idolName, CLASSNAME);
         this.updateShowImg = true;
         this.baseDamage = BASE_DAMAGE;
         this.baseMagicNumber = BASE_MAGIC;

@@ -10,9 +10,13 @@ import com.megacrit.cardcrawl.helpers.CardHelper;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import gkmasmod.actions.BlockDamageAction;
+import gkmasmod.cardCustomEffect.*;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.characters.PlayerColorEnum;
+import gkmasmod.utils.CustomHelper;
 import gkmasmod.utils.NameHelper;
+
+import java.util.ArrayList;
 
 public class CheerfulGreeting extends GkmasCard {
     private static final String CLASSNAME = CheerfulGreeting.class.getSimpleName();
@@ -45,6 +49,11 @@ public class CheerfulGreeting extends GkmasCard {
         this.HPMagicNumber = this.baseHPMagicNumber;
         FlavorText.AbstractCardFlavorFields.boxColor.set(this, CardHelper.getColor(73, 224, 254));
         flavor = FlavorText.CardStringsFlavorField.flavor.get(CARD_STRINGS);
+        this.customLimit = 3;
+        this.customEffectList = new ArrayList<>();
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(MagicCustom.growID,new int[]{20,20,40},new int[]{40,40,70},CustomHelper.CustomEffectType.RATE_ADD));
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(HPMagicCustom.growID,new int[]{-1},new int[]{50},CustomHelper.CustomEffectType.HP_REDUCE));
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(DexterityRateAttackCustom.growID,new int[]{70},new int[]{100},CustomHelper.CustomEffectType.DEXTERITY_RATE_ATTACK));
     }
 
 

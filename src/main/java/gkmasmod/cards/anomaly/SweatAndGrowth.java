@@ -1,19 +1,28 @@
 package gkmasmod.cards.anomaly;
 
+import basemod.abstracts.AbstractCardModifier;
+import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.stances.NeutralStance;
+import gkmasmod.cardCustomEffect.MoreActionCustom;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
+import gkmasmod.growEffect.AbstractGrowEffect;
+import gkmasmod.growEffect.DamageGrow;
+import gkmasmod.growEffect.DrawCardGrow;
 import gkmasmod.screen.SkinSelectScreen;
 import gkmasmod.stances.FullPowerStance;
+import gkmasmod.utils.GrowHelper;
+import gkmasmod.utils.ImageHelper;
 import gkmasmod.utils.NameHelper;
 
 public class SweatAndGrowth extends GkmasCard {
@@ -23,12 +32,13 @@ public class SweatAndGrowth extends GkmasCard {
 
     private static final String NAME = CARD_STRINGS.NAME;
     private static final String DESCRIPTION = CARD_STRINGS.DESCRIPTION;
-    private static String IMG_PATH = String.format("gkmasModResource/img/idol/%s/cards/%s.png", SkinSelectScreen.Inst.idolName, CLASSNAME);
+    private static String IMG_PATH = ImageHelper.idolImgPath(SkinSelectScreen.Inst.idolName, CLASSNAME);
 
     private static final int COST = 0;
 
-    private static final int BASE_DAMAGE = 18;
-    private static final int UPGRADE_DMG_PLUS = 5;
+    private static final int BASE_DAMAGE = 5;
+
+    private static final int BASE_MAGIC = 40;
 
 
     private static final CardType TYPE = CardType.ATTACK;
@@ -37,12 +47,14 @@ public class SweatAndGrowth extends GkmasCard {
     private static final CardTarget TARGET = CardTarget.ENEMY;
 
     public SweatAndGrowth() {
-        super(ID, NAME, String.format("gkmasModResource/img/idol/%s/cards/%s.png", SkinSelectScreen.Inst.idolName, CLASSNAME), COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        IMG_PATH = String.format("gkmasModResource/img/idol/%s/cards/%s.png", SkinSelectScreen.Inst.idolName, CLASSNAME);
+        super(ID, NAME, ImageHelper.idolImgPath(SkinSelectScreen.Inst.idolName, CLASSNAME), COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
+        IMG_PATH = ImageHelper.idolImgPath(SkinSelectScreen.Inst.idolName, CLASSNAME);
         this.updateShowImg = true;
         this.baseDamage = BASE_DAMAGE;
+        this.baseMagicNumber = BASE_MAGIC;
+        this.magicNumber = this.baseMagicNumber;
         this.tags.add(GkmasCardTag.FULL_POWER_TAG);
-        this.exhaust = true;
+        CardModifierManager.addModifier(this,new DamageGrow(6));
     }
 
     @Override
@@ -59,6 +71,23 @@ public class SweatAndGrowth extends GkmasCard {
     }
 
     @Override
+    public void switchedStance() {
+        if(AbstractDungeon.player.stance.ID.equals(FullPowerStance.STANCE_ID)){
+            int count = 0;
+            for(AbstractCardModifier modifier:CardModifierManager.modifiers(this)){
+                if(modifier instanceof AbstractGrowEffect){
+                    AbstractGrowEffect growEffect = (AbstractGrowEffect) modifier;
+                    if(growEffect.growEffectID.equals(DamageGrow.growID)){
+                        count=growEffect.amount;
+                    }
+                }
+            }
+            count = (int) (1.0F*count*this.magicNumber/100);
+            GrowHelper.grow(this,DamageGrow.growID,count);
+        }
+    }
+
+    @Override
     public AbstractCard makeCopy() {
         return new SweatAndGrowth();
     }
@@ -67,7 +96,7 @@ public class SweatAndGrowth extends GkmasCard {
     public void upgrade() {
         if (!this.upgraded) {
             upgradeName();
-            upgradeDamage(UPGRADE_DMG_PLUS);
+            GrowHelper.grow(this,DamageGrow.growID,4);
             if (CARD_STRINGS.UPGRADE_DESCRIPTION != null)
                 this.rawDescription = CARD_STRINGS.UPGRADE_DESCRIPTION;
             this.initializeDescription();

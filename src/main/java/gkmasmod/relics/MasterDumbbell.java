@@ -67,9 +67,9 @@ public class MasterDumbbell extends MasterRelic {
         else if(style == CommonEnum.IdolStyle.YARUKI)
             return String.format(this.DESCRIPTIONS[0],1,MAGIC,unit1,yarukiString,magic1,magic2);
         else if(style == CommonEnum.IdolStyle.FULL_POWER)
-            return String.format(this.DESCRIPTIONS[1],magic1,magic2);
+            return String.format(this.DESCRIPTIONS[1],1,magic1,magic2);
         else if(style == CommonEnum.IdolStyle.CONCENTRATION)
-            return String.format(this.DESCRIPTIONS[2],DAMAGE_GROW,magic1,magic2);
+            return String.format(this.DESCRIPTIONS[2],1,DAMAGE_GROW,magic1,magic2);
         else
             return String.format(this.DESCRIPTIONS[0],1,MAGIC,unit1,focusString,magic1,magic2);
     }

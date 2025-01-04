@@ -60,7 +60,7 @@ public class SlowGrowth extends GkmasCard {
     public void use(AbstractPlayer p, AbstractMonster m) {
         addToBot(new LoseHPAction(p, p, this.HPMagicNumber));
         addToBot(new BlockDamageWallopAction(1.0F * this.magicNumber / 100, 0, p, m,this));
-        if(playCount < 4){
+        if(playCount < 3){
             playCount++;
             this.textureImg = String.format("gkmasModResource/img/cards/common/%s_%d.png", CLASSNAME,playCount);
             loadCardImage(String.format("gkmasModResource/img/cards/common/%s_%d.png", CLASSNAME,playCount));

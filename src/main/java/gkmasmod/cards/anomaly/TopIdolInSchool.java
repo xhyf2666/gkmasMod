@@ -28,7 +28,7 @@ public class TopIdolInSchool extends GkmasCard {
 
     private static final int COST = 1;
 
-    private static final int BASE_DAMAGE = 1;
+    private static final int BASE_DAMAGE = 2;
     private static final int UPGRADE_DMG_PLUS = 1;
     private static final int BASE_MAGIC = 2;
 
@@ -53,8 +53,8 @@ public class TopIdolInSchool extends GkmasCard {
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
         addToBot(new ChangeStanceAction(ConcentrationStance.STANCE_ID));
-        addToBot(new ModifyDamageAction(m, new DamageInfo(p, this.baseDamage, DamageInfo.DamageType.NORMAL), AbstractGameAction.AttackEffect.SLASH_VERTICAL,this));
-        addToBot(new ModifyDamageAction(m, new DamageInfo(p, this.baseDamage, DamageInfo.DamageType.NORMAL), AbstractGameAction.AttackEffect.SLASH_VERTICAL,this));
+        addToBot(new ModifyDamageAction(m, new DamageInfo(p, this.baseDamage, DamageInfo.DamageType.NORMAL), AbstractGameAction.AttackEffect.SLASH_VERTICAL,this,false));
+        addToBot(new ModifyDamageAction(m, new DamageInfo(p, this.baseDamage, DamageInfo.DamageType.NORMAL), AbstractGameAction.AttackEffect.SLASH_VERTICAL,this,false));
         SoundHelper.playSound("gkmasModResource/audio/voice/skillcard/cidol_jsna_1_000_produce_skillcard_01.ogg");
 
     }

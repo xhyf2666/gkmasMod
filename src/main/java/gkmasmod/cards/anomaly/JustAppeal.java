@@ -10,7 +10,6 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import gkmasmod.actions.ModifyDamageAction;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
@@ -27,11 +26,11 @@ public class JustAppeal extends GkmasCard {
     private static final String DESCRIPTION = CARD_STRINGS.DESCRIPTION;
     private static final String IMG_PATH = String.format("gkmasModResource/img/cards/common/%s.png", CLASSNAME);
 
-    private static final int COST = 2;
+    private static final int COST = 1;
 
-    private static final int BASE_DAMAGE = 8;
+    private static final int BASE_DAMAGE = 7;
 
-    private static final int BASE_MAGIC = 2;
+    private static final int BASE_MAGIC = 3;
     private static final int UPGRADE_MAGIC_PLUS = 1;
 
 

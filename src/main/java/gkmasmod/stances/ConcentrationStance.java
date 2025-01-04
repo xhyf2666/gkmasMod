@@ -65,9 +65,9 @@ public class ConcentrationStance extends GkmasModStance {
     @Override
     public float atDamageGive(float damage, DamageInfo.DamageType type) {
         if(this.stage==1)
-            return damage * 2.5F;
-        else
             return damage * 2.0F;
+        else
+            return damage * 1.5F;
     }
 
     @Override
@@ -79,7 +79,10 @@ public class ConcentrationStance extends GkmasModStance {
 
     @Override
     public float atDamageReceive(float damage, DamageInfo.DamageType damageType) {
-        return damage * 2.0F;
+        if(this.stage==1)
+            return damage * 2.0F;
+        else
+            return damage * 1.5F;
     }
 
     @Override

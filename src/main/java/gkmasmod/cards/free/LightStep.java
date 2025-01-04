@@ -8,11 +8,18 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import gkmasmod.cardCustomEffect.BlockCustom;
+import gkmasmod.cardCustomEffect.DamageCustom;
+import gkmasmod.cardCustomEffect.InnateCustom;
+import gkmasmod.cardCustomEffect.MagicCustom;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.powers.ReduceDamageReceive;
+import gkmasmod.utils.CustomHelper;
 import gkmasmod.utils.NameHelper;
+
+import java.util.ArrayList;
 
 public class LightStep extends GkmasCard {
     private static final String CLASSNAME = LightStep.class.getSimpleName();
@@ -44,6 +51,11 @@ public class LightStep extends GkmasCard {
         this.baseBlock = BLOCK_AMT;
         this.exhaust = true;
         this.tags.add(GkmasCardTag.OUTSIDE_TAG);
+        this.customLimit = 3;
+        this.customEffectList = new ArrayList<>();
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(BlockCustom.growID,new int[]{2,2,4},new int[]{40,40,70},CustomHelper.CustomEffectType.BLOCK_ADD));
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(DamageCustom.growID,new int[]{4},new int[]{60},CustomHelper.CustomEffectType.DAMAGE_ADD));
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(InnateCustom.growID,new int[]{0},new int[]{80},CustomHelper.CustomEffectType.INNATE_ADD));
     }
 
 

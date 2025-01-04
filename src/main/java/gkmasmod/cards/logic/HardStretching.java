@@ -1,5 +1,6 @@
 package gkmasmod.cards.logic;
 
+import basemod.helpers.CardModifierManager;
 import com.evacipated.cardcrawl.mod.stslib.patches.FlavorText;
 import com.megacrit.cardcrawl.actions.common.DrawCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -12,6 +13,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import gkmasmod.actions.GainTrainRoundPowerAction;
 import gkmasmod.actions.GoodImpressionDamageAction;
 import gkmasmod.actions.HardStretchingAction;
+import gkmasmod.cardCustomEffect.MoreActionCustom;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
@@ -49,14 +51,14 @@ public class HardStretching extends GkmasCard {
         this.secondMagicNumber = this.baseSecondMagicNumber;
         this.baseBlock = BASE_BLOCK;
         this.tags.add(GkmasCardTag.MORE_ACTION_TAG);
-
+        CardModifierManager.addModifier(this,new MoreActionCustom(1));
     }
 
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
         addToBot(new DrawCardAction(1, new HardStretchingAction(p,this.block)));
-        addToBot(new GainTrainRoundPowerAction(p, this.magicNumber));
+//        addToBot(new GainTrainRoundPowerAction(p, this.magicNumber));
         if(this.secondMagicNumber > 1){
             upgradeSecondMagicNumber(-1);
             this.initializeDescription();

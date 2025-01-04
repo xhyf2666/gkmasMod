@@ -7,12 +7,16 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.DexterityPower;
+import gkmasmod.cardCustomEffect.*;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.powers.GoodImpression;
+import gkmasmod.utils.CustomHelper;
 import gkmasmod.utils.NameHelper;
 import gkmasmod.utils.PlayerHelper;
+
+import java.util.ArrayList;
 
 public class Smile extends GkmasCard {
     private static final String CLASSNAME = Smile.class.getSimpleName();
@@ -45,6 +49,11 @@ public class Smile extends GkmasCard {
         this.thirdMagicNumber = this.baseThirdMagicNumber;
         this.tags.add(GkmasCardTag.YARUKI_TAG);
         this.tags.add(GkmasCardTag.GOOD_IMPRESSION_TAG);
+        this.customLimit = 3;
+        this.customEffectList = new ArrayList<>();
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(MagicCustom.growID,new int[]{1,1,2},new int[]{50,50,80},CustomHelper.CustomEffectType.GOOD_IMPRESSION_ADD));
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(ThirdMagicCustom.growID,new int[]{1,1,1},new int[]{60,60,90},CustomHelper.CustomEffectType.DEXTERITY_ADD));
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(GoodImpressionRateAttackCustom.growID,new int[]{50},new int[]{70},CustomHelper.CustomEffectType.GOOD_IMPRESSION_RATE_ATTACK));
     }
 
 

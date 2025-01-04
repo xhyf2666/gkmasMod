@@ -8,7 +8,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import gkmasmod.actions.ModifyDamageAction;
+import gkmasmod.actions.DoYourBestAction;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
@@ -24,11 +24,10 @@ public class DoYourBest extends GkmasCard {
     private static final String DESCRIPTION = CARD_STRINGS.DESCRIPTION;
     private static final String IMG_PATH = String.format("gkmasModResource/img/cards/common/%s.png", CLASSNAME);
 
-    private static final int COST = 2;
+    private static final int COST = -1;
 
-    private static final int BASE_DAMAGE = 3;
+    private static final int BASE_DAMAGE = 1;
     private static final int UPGRADE_DMG_PLUS = 1;
-    private static final int BASE_MAGIC = 2;
 
 
     private static final CardType TYPE = CardType.ATTACK;
@@ -38,19 +37,13 @@ public class DoYourBest extends GkmasCard {
 
     public DoYourBest() {
         super(ID, NAME, IMG_PATH, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.tags.add(GkmasCardTag.CONCENTRATION_TAG);
+        this.tags.add(GkmasCardTag.FULL_POWER_TAG);
         this.baseDamage = BASE_DAMAGE;
-        this.baseMagicNumber = BASE_MAGIC;
-        this.magicNumber = this.baseMagicNumber;
-        this.exhaust = true;
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        addToBot(new ChangeStanceAction(ConcentrationStance.STANCE_ID));
-        addToBot(new ModifyDamageAction(m, new DamageInfo(p, this.baseDamage, DamageInfo.DamageType.NORMAL), AbstractGameAction.AttackEffect.SLASH_VERTICAL,this));
-        addToBot(new ModifyDamageAction(m, new DamageInfo(p, this.baseDamage, DamageInfo.DamageType.NORMAL), AbstractGameAction.AttackEffect.SLASH_VERTICAL,this));
-
+        addToBot(new DoYourBestAction(p,m,this.damage));
     }
 
     @Override

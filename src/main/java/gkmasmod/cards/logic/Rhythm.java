@@ -6,9 +6,14 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import gkmasmod.cardCustomEffect.*;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.characters.PlayerColorEnum;
+import gkmasmod.powers.HalfDamageReceive;
+import gkmasmod.utils.CustomHelper;
 import gkmasmod.utils.NameHelper;
+
+import java.util.ArrayList;
 
 public class Rhythm extends GkmasCard {
     private static final String CLASSNAME = Rhythm.class.getSimpleName();
@@ -34,6 +39,11 @@ public class Rhythm extends GkmasCard {
         this.baseBlock = BLOCK_AMT;
         this.exhaust = true;
         this.isInnate = true;
+        this.customLimit = 3;
+        this.customEffectList = new ArrayList<>();
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(GoodImpressionCustom.growID,new int[]{1,1,2},new int[]{50,50,80},CustomHelper.CustomEffectType.GOOD_IMPRESSION_ADD));
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(DexterityCustom.growID,new int[]{1,1},new int[]{60,60},CustomHelper.CustomEffectType.DEXTERITY_ADD));
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(HalfDamageReceiveCustom.growID,new int[]{1},new int[]{60},CustomHelper.CustomEffectType.HALF_DAMAGE_RECEIVE_ADD));
     }
 
 

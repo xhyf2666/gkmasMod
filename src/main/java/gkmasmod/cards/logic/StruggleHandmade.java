@@ -56,10 +56,8 @@ public class StruggleHandmade extends GkmasCard {
         this.tags.add(GkmasCardTag.GOOD_IMPRESSION_TAG);
         this.tags.add(GkmasCardTag.YARUKI_TAG);
         this.tags.add(GkmasCardTag.IDOL_CARD_TAG);
-        this.tags.add(GkmasCardTag.MORE_ACTION_TAG);
         this.backGroundColor = IdolData.ttmr;
         updateBackgroundImg();
-
     }
 
 

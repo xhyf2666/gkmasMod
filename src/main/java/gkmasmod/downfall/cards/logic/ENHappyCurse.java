@@ -26,7 +26,7 @@ public class ENHappyCurse extends GkmasBossCard {
 
     private static final int COST = 2;
     private static final int UPGRADE_COST = 1;
-    private static final int BASE_MAGIC = 6;
+    private static final int BASE_MAGIC = 7;
 
     private static final CardType TYPE = CardType.SKILL;
     private static final CardColor COLOR = PlayerColorEnum.gkmasModColorLogic;

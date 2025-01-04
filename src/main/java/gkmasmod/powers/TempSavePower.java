@@ -76,9 +76,6 @@ public class TempSavePower extends AbstractPower {
             power = new TempSavePower(p);
             AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p,p,power));
         }
-        int count = PlayerHelper.getPowerAmount(p,LikeStarsPower.POWER_ID);
-        if(count>0)
-            GrowHelper.grow(card, DamageGrow.growID,count);
         power.cards.offer(card);
         AbstractDungeon.player.discardPile.removeCard(card);
         AbstractDungeon.player.drawPile.removeCard(card);
@@ -91,6 +88,9 @@ public class TempSavePower extends AbstractPower {
                 ((GkmasCard) c).customTrigger();
             }
         }
+        int count = PlayerHelper.getPowerAmount(p,LikeStarsPower.POWER_ID);
+        if(count>0)
+            GrowHelper.growAllTempSave(DamageGrow.growID,count);
         power.updateDescription();
     }
 
@@ -99,12 +99,6 @@ public class TempSavePower extends AbstractPower {
         if(power == null){
             power = new TempSavePower(p);
             AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p,p,power));
-        }
-        int count = PlayerHelper.getPowerAmount(p,LikeStarsPower.POWER_ID);
-        if(count>0){
-            for(AbstractCard card:cards){
-                GrowHelper.grow(card, DamageGrow.growID,count);
-            }
         }
         for(AbstractCard card:cards){
             power.cards.offer(card);
@@ -132,6 +126,9 @@ public class TempSavePower extends AbstractPower {
             }
             i++;
         }
+        int count = PlayerHelper.getPowerAmount(p,LikeStarsPower.POWER_ID);
+        if(count>0)
+            GrowHelper.growAllTempSave(DamageGrow.growID,count);
         power.updateDescription();
     }
 

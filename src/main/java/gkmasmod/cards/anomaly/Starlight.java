@@ -24,11 +24,11 @@ public class Starlight extends GkmasCard {
     private static final String DESCRIPTION = CARD_STRINGS.DESCRIPTION;
     private static final String IMG_PATH = String.format("gkmasModResource/img/cards/common/%s.png", CLASSNAME);
 
-    private static final int COST = 2;
+    private static final int COST = 1;
 
-    private static final int BASE_DAMAGE = 6;
+    private static final int BASE_DAMAGE = 5;
 
-    private static final int UPGRADE_DMG_PLUS = 6;
+    private static final int UPGRADE_DMG_PLUS = 2;
 
 
     private static final CardType TYPE = CardType.ATTACK;
@@ -46,7 +46,7 @@ public class Starlight extends GkmasCard {
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
         addToBot(new ChangeStanceAction(ConcentrationStance.STANCE_ID));
-        addToBot(new ModifyDamageAction(m, new DamageInfo(p, this.baseDamage, DamageInfo.DamageType.NORMAL), AbstractGameAction.AttackEffect.SLASH_VERTICAL,this));
+        addToBot(new ModifyDamageAction(m, new DamageInfo(p, this.baseDamage, DamageInfo.DamageType.NORMAL), AbstractGameAction.AttackEffect.SLASH_VERTICAL,this,false));
     }
 
     @Override

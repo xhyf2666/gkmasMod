@@ -11,6 +11,12 @@
   "gkmasMod:anomaly": {
     "TEXT": ["IDOL:非凡"]
   },
+  "gkmasMod:misuzu": {
+    "TEXT": ["秦谷美玲"]
+  },
+  "gkmasMod:moon": {
+    "TEXT": ["极月"]
+  },
   "typeHintName:logic": {
     "TEXT": ["理性"]
   },
@@ -116,6 +122,9 @@
   "gkmasMod:DiggingTalentAction": {
     "TEXT": ["选择一张卡暂存"]
   },
+  "gkmasMod:SelectCardGrowAction": {
+    "TEXT": ["选择一张卡成长"]
+  },
   "gkmasMod:BlossomingSeasonAction": {
     "TEXT": ["除外"]
   },
@@ -123,7 +132,7 @@
     "TEXT": ["，第一张牌转化为第二张牌"]
   },
   "gkmasMod:ProducingIsChallengingAction": {
-    "TEXT": ["交换成果效果"]
+    "TEXT": ["转移成长效果"]
   },
   "gkmasMod:TurnBackAction": {
     "TEXT": ["选择一张手牌","选择一张消耗卡"]
@@ -156,6 +165,13 @@
     "TEXT": [
       "相谈(自由行动)",
       "进入特殊商店。",
+      "已经进入过了。"
+    ]
+  },
+  "gkmasMod:SpecialTeachOption": {
+    "TEXT": [
+      "特别指导(自由行动)",
+      "进行卡牌定制。",
       "已经进入过了。"
     ]
   },
@@ -225,6 +241,11 @@
       "连击 %d"
     ]
   },
+  "growEffect:DrawCardGrow": {
+    "TEXT": [
+      "抽牌追加 %d"
+    ]
+  },
   "growEffect:EnergyGrow": {
     "TEXT": [
       "耗能追加 %d"
@@ -238,6 +259,272 @@
   "growEffect:BlockGrow": {
     "TEXT": [
       "格挡追加 %d"
+    ]
+  },
+  "growEffect:BaseDamageGrow": {
+    "TEXT": [
+      "基础伤害追加 %d"
+    ]
+  },
+  "growEffect:BaseBlockGrow": {
+    "TEXT": [
+      "基础格挡追加 %d"
+    ]
+  },
+  "growEffect:CanNotPlayGrow": {
+    "TEXT": [
+      "不能被打出"
+    ]
+  },
+  "customEffect:MoreActionCustom": {
+    "TEXT": [
+      "再动"
+    ]
+  },
+  "customEffect:AttackTimeCustom": {
+    "TEXT": [
+      "连击 %d"
+    ]
+  },
+  "customEffect:BlockTimeCustom": {
+    "TEXT": [
+      "连盾 %d"
+    ]
+  },
+  "customEffect:VigorCustom": {
+    "TEXT": [
+      "获得%d层 活力 。"
+    ]
+  },
+  "customEffect:DamageCustom": {
+    "TEXT": [
+      "造成 !D! 点伤害。"
+    ]
+  },
+  "customEffect:BlockCustom": {
+    "TEXT": [
+      "获得 !B! 点 格挡 。"
+    ]
+  },
+  "customEffect:ExhaustRemoveCustom": {
+    "TEXT": [
+      " 消耗 。",
+      " 除外 。"
+    ]
+  },
+  "customEffect:InnateCustom": {
+    "TEXT": [
+      "固有 。"
+    ]
+  },
+  "customEffect:SelfRetainCustom": {
+    "TEXT": [
+      "保留 。"
+    ]
+  },
+  "customEffect:StrengthCustom": {
+    "TEXT": [
+      "获得%d层 力量 。"
+    ]
+  },
+  "customEffect:DexterityCustom": {
+    "TEXT": [
+      "获得%d层 敏捷 。"
+    ]
+  },
+  "customEffect:GoodImpressionCustom": {
+    "TEXT": [
+      "获得%d层 好印象 。"
+    ]
+  },
+  "customEffect:GoodTuneCustom": {
+    "TEXT": [
+      "获得%d层 好调 。"
+    ]
+  },
+  "customEffect:GreatGoodTuneCustom": {
+    "TEXT": [
+      "获得%d层 绝好调 。"
+    ]
+  },
+  "customEffect:SlowCustom": {
+    "TEXT": [
+      "使目标获得%d层 缓慢 。"
+    ]
+  },
+  "customEffect:DexterityRateAttackCustom": {
+    "TEXT": [
+      "造成 敏捷 层数 %d %% 的伤害。"
+    ]
+  },
+  "customEffect:GoodImpressionRateAttackCustom": {
+    "TEXT": [
+      "造成 好印象 层数 %d %% 的伤害。"
+    ]
+  },
+  "customEffect:BlockRateAttackCustom": {
+    "TEXT": [
+      "造成 格挡 层数 %d %% 的伤害。"
+    ]
+  },
+  "customEffect:GoodTuneRateAttackCustom": {
+    "TEXT": [
+      "造成 好调 层数 %d %% 的伤害。"
+    ]
+  },
+  "customEffect:GreatGoodTuneRateAttackCustom": {
+    "TEXT": [
+      "造成 绝好调 层数 %d %% 的伤害。"
+    ]
+  },
+  "customEffect:DrawCardCustom": {
+    "TEXT": [
+      "抽 %d 张牌。"
+    ]
+  },
+  "customEffect:BlockAdd": {
+    "TEXT": [
+      "格挡增加 %d"
+    ]
+  },
+  "customEffect:DamageAdd": {
+    "TEXT": [
+      "伤害增加 %d"
+    ]
+  },
+  "customEffect:AttackTimeAdd": {
+    "TEXT": [
+      "伤害次数增加 %d"
+    ]
+  },
+  "customEffect:DrawCardAdd": {
+    "TEXT": [
+      "抽牌增加 %d"
+    ]
+  },
+  "customEffect:EnergyCostReduce": {
+    "TEXT": [
+      "耗能减少 %d"
+    ]
+  },
+  "customEffect:GoodTuneAdd": {
+    "TEXT": [
+      "好调增加 %d"
+    ]
+  },
+  "customEffect:GreatGoodTuneAdd": {
+    "TEXT": [
+      "绝好调增加 %d"
+    ]
+  },
+  "customEffect:StrengthAdd": {
+    "TEXT": [
+      "力量增加 %d"
+    ]
+  },
+  "customEffect:DexterityAdd": {
+    "TEXT": [
+      "敏捷增加 %d"
+    ]
+  },
+  "customEffect:GoodImpressionAdd": {
+    "TEXT": [
+      "好印象增加 %d"
+    ]
+  },
+  "customEffect:HalfDamageReceiveCustom": {
+    "TEXT": [
+      "受伤锐减增加 %d"
+    ]
+  },
+  "customEffect:RateAdd": {
+    "TEXT": [
+      "倍率增加 %d %%"
+    ]
+  },
+  "customEffect:EffectAdd": {
+    "TEXT": [
+      "效果追加"
+    ]
+  },
+  "customEffect:EffectChange": {
+    "TEXT": [
+      "效果变更"
+    ]
+  },
+  "customEffect:EffectReduce": {
+    "TEXT": [
+      "效果削除"
+    ]
+  },
+  "customEffect:DexterityRateAttack": {
+    "TEXT": [
+      "追加敏捷倍率伤害 %d %%"
+    ]
+  },
+  "customEffect:BlockRateAttack": {
+    "TEXT": [
+      "追加格挡倍率伤害 %d %%"
+    ]
+  },
+  "customEffect:GoodImpressionRateAttack": {
+    "TEXT": [
+      "追加好印象倍率伤害 %d %%"
+    ]
+  },
+  "customEffect:GoodTuneRateAttack": {
+    "TEXT": [
+      "追加好调倍率伤害 %d %%"
+    ]
+  },
+  "customEffect:GreatGoodTuneRateAttack": {
+    "TEXT": [
+      "追加绝好调倍率伤害 %d %%"
+    ]
+  },
+  "customEffect:VigorAdd": {
+    "TEXT": [
+      "活力增加 %d"
+    ]
+  },
+  "customEffect:HpReduce": {
+    "TEXT": [
+      "体力减少 %d"
+    ]
+  },
+  "customEffect:HalfDamageReceiveAdd": {
+    "TEXT": [
+      "受伤锐减效果延长 %d"
+    ]
+  },
+  "customEffect:HalfDamageReceiveReduce": {
+    "TEXT": [
+      "受伤剧增效果缩短 %d"
+    ]
+  },
+  "customEffect:ExhaustRemove": {
+    "TEXT": [
+      "消耗移除"
+    ]
+  },
+  "customEffect:InnateAdd": {
+    "TEXT": [
+      "固有"
+    ]
+  },
+  "customEffect:SelfRetain": {
+    "TEXT": [
+      "保留"
+    ]
+  },
+  "customEffect:TempMoreActionAdd": {
+    "TEXT": [
+      "临时再动 %d "
+    ]
+  },
+  "customEffect:MoreActionReduce": {
+    "TEXT": [
+      "再动 "
     ]
   }
 }

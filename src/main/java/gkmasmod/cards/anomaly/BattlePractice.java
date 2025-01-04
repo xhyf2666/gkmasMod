@@ -1,5 +1,6 @@
 package gkmasmod.cards.anomaly;
 
+import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -11,12 +12,14 @@ import com.megacrit.cardcrawl.powers.watcher.CannotChangeStancePower;
 import gkmasmod.actions.BattlePracticeAction;
 import gkmasmod.actions.GainTrainRoundPowerAction;
 import gkmasmod.actions.PotentialAbilityAction;
+import gkmasmod.cardCustomEffect.MoreActionCustom;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.powers.FullPowerValue;
 import gkmasmod.powers.StanceLock;
 import gkmasmod.screen.SkinSelectScreen;
+import gkmasmod.utils.ImageHelper;
 import gkmasmod.utils.NameHelper;
 
 public class BattlePractice extends GkmasCard {
@@ -26,14 +29,14 @@ public class BattlePractice extends GkmasCard {
 
     private static final String NAME = CARD_STRINGS.NAME;
     private static final String DESCRIPTION = CARD_STRINGS.DESCRIPTION;
-    private static String IMG_PATH = String.format("gkmasModResource/img/idol/%s/cards/%s.png", SkinSelectScreen.Inst.idolName, CLASSNAME);
+    private static String IMG_PATH = ImageHelper.idolImgPath(SkinSelectScreen.Inst.idolName, CLASSNAME);
 
     private static final int COST = 1;
     private static final int UPGRADE_COST = 0;
 
     private static final int BASE_MAGIC = 2;
     private static final int UPGRADE_MAGIC_PLUS = 1;
-    private static final int BASE_MAGIC2 = 2;
+    private static final int BASE_MAGIC2 = 1;
     private static final int BASE_MAGIC3 = 1;
 
 
@@ -43,8 +46,8 @@ public class BattlePractice extends GkmasCard {
     private static final CardTarget TARGET = CardTarget.SELF;
 
     public BattlePractice() {
-        super(ID, NAME, String.format("gkmasModResource/img/idol/%s/cards/%s.png", SkinSelectScreen.Inst.idolName, CLASSNAME), COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        IMG_PATH = String.format("gkmasModResource/img/idol/%s/cards/%s.png", SkinSelectScreen.Inst.idolName, CLASSNAME);
+        super(ID, NAME, ImageHelper.idolImgPath(SkinSelectScreen.Inst.idolName, CLASSNAME), COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
+        IMG_PATH = ImageHelper.idolImgPath(SkinSelectScreen.Inst.idolName, CLASSNAME);
         this.updateShowImg = true;
         this.baseMagicNumber = BASE_MAGIC;
         this.magicNumber = this.baseMagicNumber;
@@ -53,13 +56,15 @@ public class BattlePractice extends GkmasCard {
         this.baseThirdMagicNumber = BASE_MAGIC3;
         this.thirdMagicNumber = this.baseThirdMagicNumber;
         this.tags.add(GkmasCardTag.FULL_POWER_TAG);
+        this.tags.add(GkmasCardTag.MORE_ACTION_TAG);
+        CardModifierManager.addModifier(this,new MoreActionCustom(1));
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
         addToBot(new ApplyPowerAction(p,p,new FullPowerValue(p,this.magicNumber),this.magicNumber));
         addToBot(new BattlePracticeAction(1));
-        addToBot(new GainTrainRoundPowerAction(p,1));
+//        addToBot(new GainTrainRoundPowerAction(p,1));
         addToBot(new ApplyPowerAction(p,p,new StanceLock(p,this.secondMagicNumber),this.secondMagicNumber));
     }
 

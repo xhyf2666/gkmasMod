@@ -67,7 +67,7 @@ public class AfternoonBreeze extends GkmasCard {
             addToBot(new ApplyPowerAction(p, p, new DexterityPower(p, this.thirdMagicNumber), this.thirdMagicNumber));
         }
         addToBot(new ApplyPowerAction(p, p, new DexterityPower(p, this.magicNumber), this.magicNumber));
-        SoundHelper.playSound("gkmasModResource/audio/voice/skillcard/cidol_ssmk_3_001_produce_skillcard_01.ogg");
+        SoundHelper.playSound("gkmasModResource/audio/voice/skillcard/cidol_ssmk_3_003_produce_skillcard_01.ogg");
 
     }
 

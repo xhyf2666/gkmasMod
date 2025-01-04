@@ -26,8 +26,8 @@ public class Challenge extends GkmasCard {
     private static final String IMG_PATH = String.format("gkmasModResource/img/cards/common/%s.png", CLASSNAME);
 
     private static final int COST = 2;
-    private static final int ATTACK_DMG = 16;
-    private static final int UPGRADE_PLUS_DMG = 6;
+    private static final int ATTACK_DMG = 14;
+    private static final int UPGRADE_PLUS_DMG = 4;
 
     private static final int BASE_MAGIC = 2;
 

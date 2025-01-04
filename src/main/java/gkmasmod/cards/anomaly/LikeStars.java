@@ -24,8 +24,8 @@ public class LikeStars extends GkmasCard {
 
     private static final int COST = 2;
 
-    private static final int BASE_MAGIC = 3;
-    private static final int UPGRADE_MAGIC_PLUS = 1;
+    private static final int BASE_MAGIC = 4;
+    private static final int UPGRADE_MAGIC_PLUS = 2;
 
     private static final CardType TYPE = CardType.POWER;
     private static final CardColor COLOR = PlayerColorEnum.gkmasModColorAnomaly;

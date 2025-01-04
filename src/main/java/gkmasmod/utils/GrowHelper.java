@@ -13,7 +13,6 @@ public class GrowHelper {
     public static void grow(AbstractCard card, String effect, int amount) {
         for(AbstractCardModifier modifier:CardModifierManager.modifiers(card)){
             if(modifier instanceof AbstractGrowEffect){
-                System.out.println(card.name+" "+modifier.getClass().getName());
                 AbstractGrowEffect growEffect = (AbstractGrowEffect) modifier;
                 if(growEffect.growEffectID.equals(effect)){
                     growEffect.changeAmount(amount);
@@ -30,6 +29,12 @@ public class GrowHelper {
             CardModifierManager.addModifier(card,new EnergyGrow(amount));
         else if(effect.equals(BlockGrow.growID))
             CardModifierManager.addModifier(card,new BlockGrow(amount));
+        else if(effect.equals(BaseDamageGrow.growID))
+            CardModifierManager.addModifier(card,new BaseDamageGrow(amount));
+        else if(effect.equals(BaseBlockGrow.growID))
+            CardModifierManager.addModifier(card,new BaseBlockGrow(amount));
+        else if(effect.equals(DrawCardGrow.growID))
+            CardModifierManager.addModifier(card,new DrawCardGrow(amount));
     }
 
     public static void growAll(String effect, int amount){

@@ -14,6 +14,7 @@ import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.watcher.MantraPower;
 import gkmasmod.actions.FullPowerValueAction;
+import gkmasmod.relics.PlasticUmbrellaThatDay;
 import gkmasmod.stances.FullPowerStance;
 import gkmasmod.utils.NameHelper;
 
@@ -48,8 +49,19 @@ public class FullPowerValue extends AbstractPower {
     }
 
     @Override
+    public void stackPower(int stackAmount) {
+        super.stackPower(stackAmount);
+//        if(this.amount<=0){
+//            addToBot(new RemoveSpecificPowerAction(this.owner,this.owner,this));
+//        }
+    }
+
+    @Override
     public void atStartOfTurnPostDraw() {
         addToBot(new FullPowerValueAction());
+        if(AbstractDungeon.player.hasRelic(PlasticUmbrellaThatDay.ID)){
+            AbstractDungeon.player.getRelic(PlasticUmbrellaThatDay.ID).onTrigger();
+        }
     }
 
     // 能力在更新时如何修改描述

@@ -45,6 +45,7 @@ import gkmasmod.room.FixedMonsterRoom;
 import gkmasmod.room.GkmasBossRoom;
 import gkmasmod.room.shop.AnotherShopOption;
 import gkmasmod.room.shop.AnotherShopScreen;
+import gkmasmod.room.specialTeach.SpecialTeachOption;
 import gkmasmod.screen.PocketBookViewScreen;
 import gkmasmod.screen.SkinSelectScreen;
 import gkmasmod.utils.*;
@@ -223,6 +224,7 @@ public class PocketBook extends CustomRelic  implements ISubscriber, CustomSavab
     public void addCampfireOption(ArrayList<AbstractCampfireOption> options) {
         if(AbstractDungeon.floorNum==15||AbstractDungeon.floorNum==32||AbstractDungeon.floorNum==49) {
             options.add(new AnotherShopOption(true));
+            options.add(new SpecialTeachOption(true));
         }
     }
 
@@ -325,6 +327,10 @@ public class PocketBook extends CustomRelic  implements ISubscriber, CustomSavab
         }
 
         if(AbstractDungeon.getCurrRoom() instanceof MonsterRoomBoss && !AbstractDungeon.id.equals(IdolRoad.ID)){
+            int act = AbstractDungeon.actNum;
+            if(act>3){
+                return;
+            }
             for (AbstractMonster monster : AbstractDungeon.getMonsters().monsters) {
                 if(monster.id.equals(MisuzuBoss.ID)){
                     return;

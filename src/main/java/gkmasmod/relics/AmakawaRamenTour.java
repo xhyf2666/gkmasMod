@@ -39,7 +39,6 @@ public class AmakawaRamenTour extends CustomRelic {
     }
 
 
-    public void onEquip() {}
 
     @Override
     public void atBattleStart() {

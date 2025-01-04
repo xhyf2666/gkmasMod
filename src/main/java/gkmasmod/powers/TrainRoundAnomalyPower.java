@@ -13,6 +13,7 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
 import gkmasmod.actions.PotentialAbilityAction;
 import gkmasmod.actions.GrowAction;
+import gkmasmod.downfall.charbosses.cards.AbstractBossCard;
 import gkmasmod.growEffect.BlockGrow;
 import gkmasmod.growEffect.DamageGrow;
 import gkmasmod.relics.*;
@@ -89,8 +90,8 @@ public class TrainRoundAnomalyPower extends AbstractPower {
 
     public void atStartOfTurnPostDraw() {
         addToBot(new DrawCardAction(1));
-//        addToBot(new GrowAction(DamageGrow.growID, GrowAction.GrowType.allHand,1));
-//        addToBot(new GrowAction(BlockGrow.growID, GrowAction.GrowType.allHand,1));
+        addToBot(new GrowAction(DamageGrow.growID, GrowAction.GrowType.allHand,2));
+        addToBot(new GrowAction(BlockGrow.growID, GrowAction.GrowType.allHand,2));
         addToBot(new PotentialAbilityAction(1));
     }
 
@@ -122,7 +123,7 @@ public class TrainRoundAnomalyPower extends AbstractPower {
     }
 
     public void onAfterUseCard(AbstractCard card, UseCardAction action) {
-        if(action.source!=this.owner)
+        if(card instanceof AbstractBossCard)
             return;
         flash();
         if(this.amount == 1){

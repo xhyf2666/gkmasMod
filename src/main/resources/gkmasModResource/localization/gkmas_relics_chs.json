@@ -664,5 +664,26 @@
     "DESCRIPTIONS": [
       "训练时间剩余 #b1 层时和结束时，对随机敌人造成 #y好调 层数 #b%d %%的伤害。 NL (每场战斗可触发 #b%d 次)。"
     ]
+  },
+  "BeyondTheSea": {
+    "NAME": "到海的另一边",
+    "FLAVOR": "到海的另一边。",
+    "DESCRIPTIONS": [
+      "回合开始时，如果 #y敏捷 大于 #b%d ，则使 #y敏捷 层数增加 #b%d %%，抽 #b%d 张牌。 NL (每场战斗可触发 #b%d 次)。"
+    ]
+  },
+  "SyngUpRelic": {
+    "NAME": "昔日幻影",
+    "FLAVOR": "已经无法回到的过去。",
+    "DESCRIPTIONS": [
+      "战斗开始时，召唤过去的 #y月村手毬 和 #y贺阳燐羽 。"
+    ]
+  },
+  "PlasticUmbrellaThatDay": {
+    "NAME": "那一天的塑料伞",
+    "FLAVOR": "那一天的塑料伞。",
+    "DESCRIPTIONS": [
+      "回合开始时，如果本场战斗中累计获得的 #y全力值 大于 #b%d ，则获得 #b%d 点 #y全力值 ，将 #y道口的前方 暂存 。 NL (每场战斗可触发 #b%d 次)。"
+    ]
   }
 }

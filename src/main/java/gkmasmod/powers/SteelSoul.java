@@ -10,7 +10,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
-import gkmasmod.monster.LittleGundam;
+import gkmasmod.monster.friend.LittleGundam;
 import gkmasmod.utils.NameHelper;
 
 import java.util.ArrayList;
@@ -85,6 +85,7 @@ public class SteelSoul extends AbstractPower {
             addToBot(new GainBlockAction(littleGundam, (int) blockAmount));
         }
         else{
+            addToTop(new RemoveSpecificPowerAction(this.owner, this.owner, this));
             addToBot(new GainBlockAction(this.owner, (int) blockAmount));
         }
     }

@@ -1,5 +1,6 @@
 package gkmasmod.cards.free;
 
+import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.DrawCardAction;
 import com.megacrit.cardcrawl.actions.common.GainEnergyAction;
@@ -13,6 +14,7 @@ import com.megacrit.cardcrawl.powers.BarricadePower;
 import com.megacrit.cardcrawl.powers.DexterityPower;
 import gkmasmod.actions.GainTrainRoundPowerAction;
 import gkmasmod.actions.UpgradeAllHandCardAction;
+import gkmasmod.cardCustomEffect.MoreActionCustom;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
@@ -44,7 +46,7 @@ public class KawaiiKawaiiKawaii extends GkmasCard {
         this.secondMagicNumber = this.baseSecondMagicNumber;
         this.exhaust = true;
         this.tags.add(GkmasCardTag.MORE_ACTION_TAG);
-
+        CardModifierManager.addModifier(this,new MoreActionCustom(1));
     }
 
 
@@ -52,7 +54,7 @@ public class KawaiiKawaiiKawaii extends GkmasCard {
     public void use(AbstractPlayer p, AbstractMonster m) {
         addToBot(new DrawCardAction(this.magicNumber));
         addToBot(new UpgradeAllHandCardAction());
-        addToBot(new GainTrainRoundPowerAction(p, 1));
+//        addToBot(new GainTrainRoundPowerAction(p, 1));
         if(this.upgraded){
             if(this.secondMagicNumber > 1){
                 upgradeSecondMagicNumber(-1);

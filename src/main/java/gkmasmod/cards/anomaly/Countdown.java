@@ -16,6 +16,7 @@ import gkmasmod.powers.FullPowerValue;
 import gkmasmod.powers.TrainingResultPower;
 import gkmasmod.screen.SkinSelectScreen;
 import gkmasmod.stances.PreservationStance;
+import gkmasmod.utils.ImageHelper;
 import gkmasmod.utils.NameHelper;
 
 public class Countdown extends GkmasCard {
@@ -25,9 +26,9 @@ public class Countdown extends GkmasCard {
 
     private static final String NAME = CARD_STRINGS.NAME;
     private static final String DESCRIPTION = CARD_STRINGS.DESCRIPTION;
-    private static String IMG_PATH = String.format("gkmasModResource/img/idol/%s/cards/%s.png", SkinSelectScreen.Inst.idolName, CLASSNAME);
+    private static String IMG_PATH = ImageHelper.idolImgPath(SkinSelectScreen.Inst.idolName, CLASSNAME);
 
-    private static final int COST = 1;
+    private static final int COST = 2;
 
     private static final int BASE_BLOCK = 6;
     private static final int UPGRADE_BLOCK_PLUS = 3;
@@ -39,8 +40,8 @@ public class Countdown extends GkmasCard {
     private static final CardTarget TARGET = CardTarget.SELF;
 
     public Countdown() {
-        super(ID, NAME, String.format("gkmasModResource/img/idol/%s/cards/%s.png", SkinSelectScreen.Inst.idolName, CLASSNAME), COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        IMG_PATH = String.format("gkmasModResource/img/idol/%s/cards/%s.png", SkinSelectScreen.Inst.idolName, CLASSNAME);
+        super(ID, NAME, ImageHelper.idolImgPath(SkinSelectScreen.Inst.idolName, CLASSNAME), COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
+        IMG_PATH = ImageHelper.idolImgPath(SkinSelectScreen.Inst.idolName, CLASSNAME);
         this.updateShowImg = true;
         this.baseBlock = BASE_BLOCK;
         this.tags.add(GkmasCardTag.PRESERVATION_TAG);
@@ -49,8 +50,8 @@ public class Countdown extends GkmasCard {
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
         addToBot(new GainBlockAction(p,p,this.block));
-        addToBot(new ChangeStanceAction(PreservationStance.STANCE_ID));
-        addToBot(new ApplyPowerAction(p,p,new TrainingResultPower(p,1),1));
+        addToBot(new ChangeStanceAction(PreservationStance.STANCE_ID2));
+//        addToBot(new ApplyPowerAction(p,p,new TrainingResultPower(p,1),1));
     }
 
     @Override

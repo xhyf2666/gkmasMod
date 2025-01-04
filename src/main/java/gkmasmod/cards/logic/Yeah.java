@@ -7,9 +7,13 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import gkmasmod.cardCustomEffect.*;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.characters.PlayerColorEnum;
+import gkmasmod.utils.CustomHelper;
 import gkmasmod.utils.NameHelper;
+
+import java.util.ArrayList;
 
 public class Yeah extends GkmasCard {
     private static final String CLASSNAME = Yeah.class.getSimpleName();
@@ -36,6 +40,11 @@ public class Yeah extends GkmasCard {
         this.baseMagicNumber = BASE_MAGIC;
         this.magicNumber = this.baseMagicNumber;
         this.baseBlock = BLOCK_AMT;
+        this.customLimit = 3;
+        this.customEffectList = new ArrayList<>();
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(BlockCustom.growID,new int[]{2,2,4},new int[]{40,40,70},CustomHelper.CustomEffectType.BLOCK_ADD));
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(MagicCustom.growID,new int[]{1},new int[]{70},CustomHelper.CustomEffectType.DRAW_CARD_ADD));
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(TempMoreActionCustom.growID,new int[]{1,1},new int[]{70,70},CustomHelper.CustomEffectType.TEMP_MORE_ACTION_ADD));
     }
 
 

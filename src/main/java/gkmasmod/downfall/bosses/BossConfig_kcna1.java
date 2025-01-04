@@ -78,7 +78,7 @@ public class BossConfig_kcna1 extends AbstractBossDeckArchetype {
                     addToList(cardsList, new ENBasePerform());
                     addToList(cardsList, new ENSlowGrowth(slowGrowth),extraUpgrades);
                     addToList(cardsList, new ENBasePerform());
-                    if(slowGrowth <4)
+                    if(slowGrowth <3)
                         slowGrowth++;
                     break;
             }

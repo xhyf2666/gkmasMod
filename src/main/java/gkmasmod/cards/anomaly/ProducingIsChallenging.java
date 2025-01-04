@@ -33,7 +33,6 @@ public class ProducingIsChallenging extends GkmasCard {
     public ProducingIsChallenging() {
         super(ID, NAME, IMG_PATH, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.exhaust = true;
-        this.tags.add(GkmasCardTag.OUTSIDE_TAG);
     }
 
 

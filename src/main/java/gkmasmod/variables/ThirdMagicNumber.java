@@ -1,7 +1,11 @@
 package gkmasmod.variables;
 
+import basemod.abstracts.AbstractCardModifier;
 import basemod.abstracts.DynamicVariable;
+import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import gkmasmod.cardCustomEffect.SecondMagicCustom;
+import gkmasmod.cardCustomEffect.ThirdMagicCustom;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.downfall.cards.GkmasBossCard;
 
@@ -26,6 +30,18 @@ public class ThirdMagicNumber extends DynamicVariable {
             return ((GkmasBossCard) card).isThirdMagicNumberModified;
         return false;
 
+    }
+
+    public int modifiedBaseValue(AbstractCard card) {
+        int base = baseValue(card);
+        if (card instanceof GkmasCard) {
+            for(AbstractCardModifier mod : CardModifierManager.modifiers(card)) {
+                if(mod instanceof AbstractCardModifier && mod instanceof ThirdMagicCustom) {
+                    base += ((ThirdMagicCustom) mod).amount;
+                }
+            }
+        }
+        return base;
     }
 
     @Override

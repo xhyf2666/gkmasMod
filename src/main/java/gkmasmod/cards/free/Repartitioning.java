@@ -1,5 +1,6 @@
 package gkmasmod.cards.free;
 
+import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.DrawCardAction;
 import com.megacrit.cardcrawl.actions.common.GainEnergyAction;
@@ -10,11 +11,13 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import gkmasmod.actions.GainTrainRoundPowerAction;
+import gkmasmod.cardCustomEffect.MoreActionCustom;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.powers.HalfDamageReceive;
 import gkmasmod.screen.SkinSelectScreen;
+import gkmasmod.utils.ImageHelper;
 import gkmasmod.utils.NameHelper;
 
 public class Repartitioning extends GkmasCard {
@@ -24,7 +27,7 @@ public class Repartitioning extends GkmasCard {
 
     private static final String NAME = CARD_STRINGS.NAME;
     private static final String DESCRIPTION = CARD_STRINGS.DESCRIPTION;
-    private static String IMG_PATH = String.format("gkmasModResource/img/idol/%s/cards/%s.png", SkinSelectScreen.Inst.idolName, CLASSNAME);
+    private static String IMG_PATH = ImageHelper.idolImgPath(SkinSelectScreen.Inst.idolName, CLASSNAME);
 
     private static final int COST = 2;
     private static final int UPGRADE_COST = 1;
@@ -37,8 +40,8 @@ public class Repartitioning extends GkmasCard {
     private static final CardTarget TARGET = CardTarget.SELF;
 
     public Repartitioning() {
-        super(ID, NAME, String.format("gkmasModResource/img/idol/%s/cards/%s.png", SkinSelectScreen.Inst.idolName, CLASSNAME), COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        IMG_PATH = String.format("gkmasModResource/img/idol/%s/cards/%s.png", SkinSelectScreen.Inst.idolName, CLASSNAME);
+        super(ID, NAME, ImageHelper.idolImgPath(SkinSelectScreen.Inst.idolName, CLASSNAME), COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
+        IMG_PATH = ImageHelper.idolImgPath(SkinSelectScreen.Inst.idolName, CLASSNAME);
         this.updateShowImg = true;
         this.baseMagicNumber = BASE_MAGIC;
         this.magicNumber = this.baseMagicNumber;
@@ -46,7 +49,7 @@ public class Repartitioning extends GkmasCard {
         this.secondMagicNumber = this.baseSecondMagicNumber;
         this.exhaust = true;
         this.tags.add(GkmasCardTag.MORE_ACTION_TAG);
-
+        CardModifierManager.addModifier(this,new MoreActionCustom(1));
     }
 
 
@@ -55,7 +58,7 @@ public class Repartitioning extends GkmasCard {
         addToBot(new ApplyPowerAction(p, p, new HalfDamageReceive(p, this.magicNumber), this.magicNumber));
         addToBot(new CalculatedGambleAction(false));
         addToBot(new DrawCardAction(this.secondMagicNumber));
-        addToBot(new GainTrainRoundPowerAction(p,1));
+//        addToBot(new GainTrainRoundPowerAction(p,1));
     }
 
     @Override

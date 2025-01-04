@@ -1,5 +1,6 @@
 package gkmasmod.cards.sense;
 
+import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
@@ -11,6 +12,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import gkmasmod.actions.GainTrainRoundPowerAction;
+import gkmasmod.cardCustomEffect.MoreActionCustom;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
@@ -49,7 +51,7 @@ public class WantToGoThere extends GkmasCard {
         this.tags.add(GkmasCardTag.GOOD_TUNE_TAG);
         this.tags.add(GkmasCardTag.OUTSIDE_TAG);
         this.tags.add(GkmasCardTag.MORE_ACTION_TAG);
-
+        CardModifierManager.addModifier(this,new MoreActionCustom(1));
     }
 
 
@@ -57,7 +59,7 @@ public class WantToGoThere extends GkmasCard {
     public void use(AbstractPlayer p, AbstractMonster m) {
         addToBot(new ApplyPowerAction(p, p, new GreatGoodTune(p, this.magicNumber), this.magicNumber));
         addToBot(new DrawCardAction(p, this.secondMagicNumber));
-        addToBot(new GainTrainRoundPowerAction(p,1));
+//        addToBot(new GainTrainRoundPowerAction(p,1));
     }
 
     @Override

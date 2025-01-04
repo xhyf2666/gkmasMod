@@ -1,5 +1,6 @@
 package gkmasmod.cards.anomaly;
 
+import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.actions.watcher.ChangeStanceAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -8,6 +9,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import gkmasmod.actions.GainTrainRoundPowerAction;
+import gkmasmod.cardCustomEffect.MoreActionCustom;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
@@ -38,13 +40,14 @@ public class HoldBack extends GkmasCard {
         this.exhaust = true;
         this.isEthereal = true;
         this.tags.add(GkmasCardTag.MORE_ACTION_TAG);
+        CardModifierManager.addModifier(this,new MoreActionCustom(1));
     }
 
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
         addToBot(new ChangeStanceAction(FullPowerStance.STANCE_ID2));
-        addToBot(new GainTrainRoundPowerAction(p,1));
+//        addToBot(new GainTrainRoundPowerAction(p,1));
     }
 
     @Override

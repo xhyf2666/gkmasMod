@@ -44,13 +44,12 @@ public class Intensely extends GkmasCard {
         this.baseDamage = BASE_DAMAGE;
         this.baseMagicNumber = BASE_MAGIC;
         this.magicNumber = this.baseMagicNumber;
-
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
         addToBot(new ChangeStanceAction(ConcentrationStance.STANCE_ID));
-        addToBot(new ModifyDamageAction(m, new DamageInfo(p, this.baseDamage, DamageInfo.DamageType.NORMAL), AbstractGameAction.AttackEffect.SLASH_VERTICAL,this));
+        addToBot(new ModifyDamageAction(m, new DamageInfo(p, this.baseDamage, DamageInfo.DamageType.NORMAL), AbstractGameAction.AttackEffect.SLASH_VERTICAL,this,false));
         if(this.magicNumber > 1){
             upgradeMagicNumber(-1);
             this.initializeDescription();

@@ -29,7 +29,7 @@ public class ENBaseAppeal extends GkmasBossCard {
 
     private static final int COST = 1;
     private static final int ATTACK_DMG = 6;
-    private static final int UPGRADE_PLUS_DMG = 2;
+    private static final int UPGRADE_PLUS_DMG = 3;
     private static final int BASE_MAGIC = 0;
     private static final int UPGRADE_PLUS_MAGIC = 0;
 

@@ -1,5 +1,6 @@
 package gkmasmod.cards.sense;
 
+import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.DrawCardAction;
 import com.megacrit.cardcrawl.actions.common.GainBlockAction;
@@ -10,6 +11,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import gkmasmod.actions.GainTrainRoundPowerAction;
+import gkmasmod.cardCustomEffect.MoreActionCustom;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
@@ -52,7 +54,7 @@ public class WelcomeToTeaParty extends GkmasCard {
         this.tags.add(GkmasCardTag.MORE_ACTION_TAG);
         this.backGroundColor = IdolData.kcna;
         updateBackgroundImg();
-
+        CardModifierManager.addModifier(this,new MoreActionCustom(1));
     }
 
 
@@ -61,7 +63,7 @@ public class WelcomeToTeaParty extends GkmasCard {
         addToBot(new GainBlockAction(p, p, this.block));
         addToBot(new ApplyPowerAction(p, p, new GreatGoodTune(p, this.magicNumber), this.magicNumber));
         addToBot(new DrawCardAction(1));
-        addToBot(new GainTrainRoundPowerAction(p,1));
+//        addToBot(new GainTrainRoundPowerAction(p,1));
         SoundHelper.playSound("gkmasModResource/audio/voice/skillcard/cidol_kcna_3_001_produce_skillcard_01.ogg");
 
     }

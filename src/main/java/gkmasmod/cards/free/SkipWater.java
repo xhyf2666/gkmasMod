@@ -1,5 +1,6 @@
 package gkmasmod.cards.free;
 
+import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.actions.common.LoseHPAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -8,6 +9,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import gkmasmod.actions.GainTrainRoundPowerAction;
+import gkmasmod.cardCustomEffect.MoreActionCustom;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
@@ -40,7 +42,7 @@ public class SkipWater extends GkmasCard {
         this.HPMagicNumber = this.baseHPMagicNumber;
         this.baseBlock = BLOCK_AMT;
         this.tags.add(GkmasCardTag.MORE_ACTION_TAG);
-
+        CardModifierManager.addModifier(this,new MoreActionCustom(1));
     }
 
 
@@ -48,7 +50,7 @@ public class SkipWater extends GkmasCard {
     public void use(AbstractPlayer p, AbstractMonster m) {
         addToBot(new LoseHPAction(p, p, this.HPMagicNumber));
         addToBot(new GainBlockAction(p, p, this.block));
-        addToBot(new GainTrainRoundPowerAction(p,  1));
+//        addToBot(new GainTrainRoundPowerAction(p,  1));
     }
 
 

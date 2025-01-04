@@ -5,12 +5,15 @@ import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.MakeTempCardInHandAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.green.Reflex;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.UIStrings;
 import gkmasmod.growEffect.AbstractGrowEffect;
+import gkmasmod.growEffect.CanNotPlayGrow;
+import gkmasmod.utils.GrowHelper;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -80,32 +83,24 @@ public class ProducingIsChallengingAction extends AbstractGameAction {
                             }
                         }
 
-                        List<AbstractCardModifier> modifiersC2 = CardModifierManager.modifiers(c2);
-                        if (modifiersC2 != null) {
-                            Iterator<AbstractCardModifier> iteratorC2 = modifiersC2.iterator();
-                            while (iteratorC2.hasNext()) {
-                                AbstractCardModifier mod = iteratorC2.next();
-                                if (mod instanceof AbstractGrowEffect) {
-                                    iteratorC2.remove();  // 同样的方式安全地移除元素
-                                }
-                            }
-                        }
-//                        for(AbstractCardModifier mod : CardModifierManager.modifiers(c1)){
-//                            if(mod instanceof AbstractGrowEffect){
-//                                CardModifierManager.removeSpecificModifier(c1,mod,false);
-//                            }
-//                        }
-//                        for(AbstractCardModifier mod : CardModifierManager.modifiers(c2)){
-//                            if(mod instanceof AbstractGrowEffect){
-//                                CardModifierManager.removeSpecificModifier(c2,mod,false);
+//                        List<AbstractCardModifier> modifiersC2 = CardModifierManager.modifiers(c2);
+//                        if (modifiersC2 != null) {
+//                            Iterator<AbstractCardModifier> iteratorC2 = modifiersC2.iterator();
+//                            while (iteratorC2.hasNext()) {
+//                                AbstractCardModifier mod = iteratorC2.next();
+//                                if (mod instanceof AbstractGrowEffect) {
+//                                    iteratorC2.remove();  // 同样的方式安全地移除元素
+//                                }
 //                            }
 //                        }
                         for(AbstractCardModifier mod : c1mods){
-                            CardModifierManager.addModifier(c2,mod);
+                            AbstractGrowEffect effect = (AbstractGrowEffect)mod;
+                            GrowHelper.grow(c2,effect.growEffectID,effect.amount);
                         }
-                        for(AbstractCardModifier mod : c2mods){
-                            CardModifierManager.addModifier(c1,mod);
-                        }
+                        CardModifierManager.addModifier(c1,new CanNotPlayGrow());
+//                        for(AbstractCardModifier mod : c2mods){
+//                            CardModifierManager.addModifier(c1,mod);
+//                        }
                         AbstractDungeon.player.hand.addToTop(c1);
                         AbstractDungeon.player.hand.addToTop(c2);
                     }

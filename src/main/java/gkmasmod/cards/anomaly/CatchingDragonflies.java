@@ -1,6 +1,7 @@
 package gkmasmod.cards.anomaly;
 
 import com.megacrit.cardcrawl.actions.common.DrawCardAction;
+import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -9,6 +10,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.growEffect.DamageGrow;
+import gkmasmod.stances.FullPowerStance;
 import gkmasmod.utils.GrowHelper;
 import gkmasmod.utils.NameHelper;
 
@@ -23,24 +25,29 @@ public class CatchingDragonflies extends GkmasCard {
 
     private static final int COST = 0;
 
-    private static final int BASE_MAGIC = 2;
+    private static final int BASE_MAGIC = 3;
     private static final int UPGRADE_PLUS_MAGIC = 1;
+
+    private static final int BASE_BLOCK = 5;
 
     private static final CardType TYPE = CardType.SKILL;
     private static final CardColor COLOR = PlayerColorEnum.gkmasModColorAnomaly;
-    private static final CardRarity RARITY = CardRarity.UNCOMMON;
+    private static final CardRarity RARITY = CardRarity.COMMON;
     private static final CardTarget TARGET = CardTarget.SELF;
 
     public CatchingDragonflies() {
         super(ID, NAME, IMG_PATH, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.baseMagicNumber = BASE_MAGIC;
         this.magicNumber = this.baseMagicNumber;
+        this.baseBlock = BASE_BLOCK;
     }
 
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-
+        if(p.stance.ID.equals(FullPowerStance.STANCE_ID)){
+            addToBot(new GainBlockAction(p, p, this.block));
+        }
     }
 
     @Override

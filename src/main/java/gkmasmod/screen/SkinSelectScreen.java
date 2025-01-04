@@ -312,7 +312,6 @@ public class SkinSelectScreen implements ISubscriber, CustomSavable<int[]> {
 
     public void updateVideo(){
         if(!hasVideo){
-            System.out.println("play video");
             clearVideo();
             this.videoPlayer =  VideoPlayerCreator.createVideoPlayer();
             if (this.videoPlayer == null) {
@@ -339,7 +338,6 @@ public class SkinSelectScreen implements ISubscriber, CustomSavable<int[]> {
 //        }
         if (this.video_hb.clicked) {
             this.video_hb.clicked = false;
-            System.out.println("video_hb");
             if (this.videoPlayer != null) {
                 this.videoPlayer.dispose();
                 this.videoPlayer = null;
@@ -356,6 +354,7 @@ public class SkinSelectScreen implements ISubscriber, CustomSavable<int[]> {
         float centerY = (float)Settings.HEIGHT * 0.5F;
         float skin_x = (float) this.usedImg.getWidth() /2;
         float skin_y = (float) this.usedImg.getWidth() /2;
+        sb.setColor(Color.WHITE);
         this.renderSkin(sb, centerX-skin_x, centerY-skin_y + 50.0F * Settings.scale);
 
         if(this.nameImg != null)
@@ -548,6 +547,5 @@ public class SkinSelectScreen implements ISubscriber, CustomSavable<int[]> {
     static {
         Inst = new SkinSelectScreen();
     }
-
 
 }

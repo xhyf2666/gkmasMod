@@ -36,7 +36,7 @@ public class GridCardSelectScreenPatch {
         @SpireInsertPatch(rloc = 145)
         public static void Insert(GridCardSelectScreen __instance) {
             if(AbstractDungeon.player.hasRelic(PocketBook.ID)){
-                if(GkmasMod.AnotherShopUp){
+                if(GkmasMod.screenIndex==1){
                     AbstractDungeon.overlayMenu.cancelButton.show(AnotherShopScreen.NAMES[12]);
                 }
             }

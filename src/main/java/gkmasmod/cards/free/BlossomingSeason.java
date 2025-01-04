@@ -1,5 +1,6 @@
 package gkmasmod.cards.free;
 
+import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.DrawCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -10,6 +11,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.DrawCardNextTurnPower;
 import gkmasmod.actions.BlossomingSeasonAction;
 import gkmasmod.actions.GainTrainRoundPowerAction;
+import gkmasmod.cardCustomEffect.MoreActionCustom;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
@@ -39,14 +41,14 @@ public class BlossomingSeason extends GkmasCard {
         this.exhaust = true;
         this.tags.add(GkmasCardTag.OUTSIDE_TAG);
         this.tags.add(GkmasCardTag.MORE_ACTION_TAG);
-
+        CardModifierManager.addModifier(this,new MoreActionCustom(1));
     }
 
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
         addToBot(new BlossomingSeasonAction(2,this.upgraded));
-        addToBot(new GainTrainRoundPowerAction(p,1));
+//        addToBot(new GainTrainRoundPowerAction(p,1));
     }
 
     @Override

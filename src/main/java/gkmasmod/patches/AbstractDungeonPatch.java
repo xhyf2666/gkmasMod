@@ -28,6 +28,7 @@ import gkmasmod.relics.PocketBook;
 import gkmasmod.relics.ReChallenge;
 import gkmasmod.relics.StruggleRecord;
 import gkmasmod.room.shop.AnotherShopScreen;
+import gkmasmod.room.specialTeach.SpecialTeachScreen;
 import gkmasmod.screen.SkinSelectScreen;
 import gkmasmod.utils.IdolData;
 import gkmasmod.utils.PlayerHelper;
@@ -244,8 +245,10 @@ public class AbstractDungeonPatch {
         @SpirePrefixPatch
         public static SpireReturn<Void> Prefix() {
             if(AbstractDungeon.player.hasRelic(PocketBook.ID)){
-                if(GkmasMod.AnotherShopUp)
+                if(GkmasMod.screenIndex==1)
                     AbstractDungeon.previousScreen = AnotherShopScreen.Enum.AnotherShop_Screen;
+                else if(GkmasMod.screenIndex==2)
+                    AbstractDungeon.previousScreen = SpecialTeachScreen.Enum.SpecialTeach_Screen;
             }
             return SpireReturn.Continue();
         }

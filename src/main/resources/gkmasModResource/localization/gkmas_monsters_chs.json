@@ -13,5 +13,25 @@
     "NAME": "小高达",
     "DIALOG": [],
     "MOVES": ["biu"]
+  },
+  "gkmasMod:FriendTemari": {
+    "NAME": "月村手毬的幻影",
+    "DIALOG": [],
+    "MOVES": ["biu"]
+  },
+  "gkmasMod:FriendRinha": {
+    "NAME": "贺阳燐羽的幻影",
+    "DIALOG": [],
+    "MOVES": ["biu"]
+  },
+  "gkmasMod:FriendBlackHole": {
+    "NAME": "黑洞",
+    "DIALOG": [],
+    "MOVES": ["biu"]
+  },
+  "gkmasMod:FriendKnife": {
+    "NAME": "秦谷美玲的小刀",
+    "DIALOG": [],
+    "MOVES": ["biu"]
   }
 }

@@ -56,7 +56,8 @@ public class FullPowerStance extends GkmasModStance {
         }
     }
 
-    public void atStartOfTurn() {
+    @Override
+    public void onEndOfTurn() {
         AbstractDungeon.actionManager.addToBottom(new ChangeStanceAction(STANCE_ID2));
     }
 

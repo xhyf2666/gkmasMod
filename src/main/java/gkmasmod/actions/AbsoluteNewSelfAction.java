@@ -43,6 +43,7 @@ public class AbsoluteNewSelfAction extends AbstractGameAction {
         addToBot(new HealAction(this.p, this.p, HP));
         addToBot(new ModifyDamageAction(this.m, new DamageInfo(this.p, damage, DamageInfo.DamageType.NORMAL), AttackEffect.SLASH_VERTICAL));
         if(p.isPlayer){
+            AbstractDungeon.player.getRelic(AbsoluteNewSelf.ID).flash();
             AbstractDungeon.player.getRelic(AbsoluteNewSelf.ID).counter--;
             if(AbstractDungeon.player.getRelic(AbsoluteNewSelf.ID).counter == 0){
                 AbstractDungeon.player.getRelic(AbsoluteNewSelf.ID).grayscale = true;

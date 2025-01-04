@@ -10,10 +10,17 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import gkmasmod.cardCustomEffect.*;
+import gkmasmod.cards.CustomEffect;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.screen.SkinSelectScreen;
+import gkmasmod.utils.CustomHelper;
+import gkmasmod.utils.ImageHelper;
 import gkmasmod.utils.NameHelper;
+
+import java.util.ArrayList;
+import java.util.Collections;
 
 public class BrightFuture extends GkmasCard {
     private static final String CLASSNAME = BrightFuture.class.getSimpleName();
@@ -22,7 +29,7 @@ public class BrightFuture extends GkmasCard {
 
     private static final String NAME = CARD_STRINGS.NAME;
     private static final String DESCRIPTION = CARD_STRINGS.DESCRIPTION;
-    private static String IMG_PATH = String.format("gkmasModResource/img/idol/%s/cards/%s.png", SkinSelectScreen.Inst.idolName, CLASSNAME);
+    private static String IMG_PATH = ImageHelper.idolImgPath(SkinSelectScreen.Inst.idolName, CLASSNAME);
 
     private static final int COST = 2;
     private static final int ATTACK_DMG = 9;
@@ -36,17 +43,21 @@ public class BrightFuture extends GkmasCard {
     private static final CardTarget TARGET = CardTarget.ENEMY;
 
     public BrightFuture() {
-        super(ID, NAME, String.format("gkmasModResource/img/idol/%s/cards/%s.png", SkinSelectScreen.Inst.idolName, CLASSNAME), COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET,"yellow");
-        IMG_PATH = String.format("gkmasModResource/img/idol/%s/cards/%s.png", SkinSelectScreen.Inst.idolName, CLASSNAME);
+        super(ID, NAME, ImageHelper.idolImgPath(SkinSelectScreen.Inst.idolName, CLASSNAME), COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET,"yellow");
+        IMG_PATH = ImageHelper.idolImgPath(SkinSelectScreen.Inst.idolName, CLASSNAME);
         this.updateShowImg = true;
         this.baseDamage = ATTACK_DMG;
         this.baseBlock = BLOCK_AMT;
+        this.customLimit = 2;
+        this.customEffectList = new ArrayList<>();
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(CostCustom.growID,new int[]{1},new int[]{70},CustomHelper.CustomEffectType.ENERGY_COST_REDUCE));
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(AttackTimeCustom.growID,new int[]{1},new int[]{100},CustomHelper.CustomEffectType.ATTACK_TIME_ADD));
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(BlockTimeCustom.growID,new int[]{1},new int[]{100},CustomHelper.CustomEffectType.BLOCK_TIME_ADD));
     }
-
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        addToBot((new GainBlockAction(p, p, this.block)));
+        addToBot(new GainBlockAction(p, p, this.block));
         addToBot(new DamageAction(m, new DamageInfo(p, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
     }
 

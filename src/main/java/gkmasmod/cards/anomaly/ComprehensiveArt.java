@@ -20,6 +20,7 @@ import gkmasmod.screen.SkinSelectScreen;
 import gkmasmod.stances.ConcentrationStance;
 import gkmasmod.stances.FullPowerStance;
 import gkmasmod.utils.GrowHelper;
+import gkmasmod.utils.ImageHelper;
 import gkmasmod.utils.NameHelper;
 
 public class ComprehensiveArt extends GkmasCard {
@@ -29,11 +30,11 @@ public class ComprehensiveArt extends GkmasCard {
 
     private static final String NAME = CARD_STRINGS.NAME;
     private static final String DESCRIPTION = CARD_STRINGS.DESCRIPTION;
-    private static String IMG_PATH = String.format("gkmasModResource/img/idol/%s/cards/%s.png", SkinSelectScreen.Inst.idolName, CLASSNAME);
+    private static String IMG_PATH = ImageHelper.idolImgPath(SkinSelectScreen.Inst.idolName, CLASSNAME);
 
     private static final int COST = 2;
 
-    private static final int BASE_DAMAGE = 5;
+    private static final int BASE_DAMAGE = 8;
 
     private static final int BASE_MAGIC = 3;
     private static final int UPGRADE_MAGIC_PLUS = 2;
@@ -45,8 +46,8 @@ public class ComprehensiveArt extends GkmasCard {
     private static final CardTarget TARGET = CardTarget.ENEMY;
 
     public ComprehensiveArt() {
-        super(ID, NAME, String.format("gkmasModResource/img/idol/%s/cards/%s.png", SkinSelectScreen.Inst.idolName, CLASSNAME), COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        IMG_PATH = String.format("gkmasModResource/img/idol/%s/cards/%s.png", SkinSelectScreen.Inst.idolName, CLASSNAME);
+        super(ID, NAME, ImageHelper.idolImgPath(SkinSelectScreen.Inst.idolName, CLASSNAME), COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
+        IMG_PATH = ImageHelper.idolImgPath(SkinSelectScreen.Inst.idolName, CLASSNAME);
         this.updateShowImg = true;
         this.baseDamage = BASE_DAMAGE;
         this.baseMagicNumber = BASE_MAGIC;
@@ -59,7 +60,7 @@ public class ComprehensiveArt extends GkmasCard {
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
         addToBot(new ChangeStanceAction(ConcentrationStance.STANCE_ID));
-        addToBot(new ModifyDamageAction(m, new DamageInfo(p, this.damage, DamageInfo.DamageType.NORMAL), AbstractGameAction.AttackEffect.SLASH_VERTICAL,this));
+        addToBot(new ModifyDamageAction(m, new DamageInfo(p, this.damage, DamageInfo.DamageType.NORMAL), AbstractGameAction.AttackEffect.SLASH_VERTICAL,this,false));
     }
 
     @Override

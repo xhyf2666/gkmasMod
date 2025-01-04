@@ -38,7 +38,7 @@ public class BaseImage extends GkmasCard {
         super(ID, NAME, IMG_PATH, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.baseBlock = BLOCK_AMT;
         this.tags.add(GkmasCardTag.PRESERVATION_TAG);
-        this.tags.add(CardTags.STARTER_DEFEND);
+//        this.tags.add(CardTags.STARTER_DEFEND);
     }
 
 

@@ -1,6 +1,7 @@
 package gkmasmod.downfall.cards;
 
 import basemod.BaseMod;
+import com.badlogic.gdx.Gdx;
 import gkmasmod.downfall.charbosses.bosses.AbstractCharBoss;
 import gkmasmod.downfall.charbosses.cards.AbstractBossCard;
 import gkmasmod.downfall.charbosses.cards.purple.AbstractStanceChangeCard;
@@ -24,6 +25,7 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.screens.SingleCardViewPopup;
 import gkmasmod.characters.PlayerColorEnum;
+import gkmasmod.screen.SkinSelectScreen;
 import gkmasmod.utils.IdolData;
 
 import java.util.ArrayList;
@@ -453,14 +455,23 @@ public abstract class GkmasBossCard extends AbstractBossCard {
         String idolName;
         if (updateShowImg){
             idolName = AbstractCharBoss.theIdolName;
-            if(idolName == IdolData.jsna)
-                idolName = IdolData.fktn;
-//            this.textureImg = String.format("gkmasModResource/img/idol/%s/cards/%s.png", idolName , CLASSNAME);
-            loadCardImage(String.format("gkmasModResource/img/idol/%s/cards/%s.png", idolName , CLASSNAME));
+            String imgPath = String.format("gkmasModResource/img/idol/%s/cards/%s.png", idolName , CLASSNAME);
+            if(!Gdx.files.internal(imgPath).exists()){
+                imgPath = String.format("gkmasModResource/img/idol/%s/cards/%s.png", IdolData.shro , CLASSNAME);
+            }
+            loadCardImage(imgPath);
         }
         else{
             loadCardImage(assetUrl);
         }
+//        if (updateShowImg){
+//            idolName = AbstractCharBoss.theIdolName;
+////            this.textureImg = String.format("gkmasModResource/img/idol/%s/cards/%s.png", idolName , CLASSNAME);
+//            loadCardImage(String.format("gkmasModResource/img/idol/%s/cards/%s.png", idolName , CLASSNAME));
+//        }
+//        else{
+//            loadCardImage(assetUrl);
+//        }
     }
 
     public void updateBackgroundImg(){

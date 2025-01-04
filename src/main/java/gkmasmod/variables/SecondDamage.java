@@ -1,7 +1,10 @@
 package gkmasmod.variables;
 
+import basemod.abstracts.AbstractCardModifier;
 import basemod.abstracts.DynamicVariable;
+import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import gkmasmod.cardCustomEffect.SecondDamageCustom;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.downfall.cards.GkmasBossCard;
 
@@ -26,6 +29,19 @@ public class SecondDamage extends DynamicVariable {
             return ((GkmasBossCard) card).isSecondDamageModified;
         return false;
 
+    }
+
+    @Override
+    public int modifiedBaseValue(AbstractCard card) {
+        int base = baseValue(card);
+        if (card instanceof GkmasCard) {
+            for(AbstractCardModifier mod : CardModifierManager.modifiers(card)) {
+                if(mod instanceof AbstractCardModifier && mod instanceof SecondDamageCustom) {
+                    base += ((SecondDamageCustom) mod).amount;
+                }
+            }
+        }
+        return base;
     }
 
     @Override

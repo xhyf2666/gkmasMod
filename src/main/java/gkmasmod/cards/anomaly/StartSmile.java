@@ -19,6 +19,7 @@ import gkmasmod.powers.FullPowerValue;
 import gkmasmod.powers.HalfDamageReceive;
 import gkmasmod.screen.SkinSelectScreen;
 import gkmasmod.stances.ConcentrationStance;
+import gkmasmod.utils.ImageHelper;
 import gkmasmod.utils.NameHelper;
 import gkmasmod.utils.PlayerHelper;
 
@@ -29,15 +30,15 @@ public class StartSmile extends GkmasCard {
 
     private static final String NAME = CARD_STRINGS.NAME;
     private static final String DESCRIPTION = CARD_STRINGS.DESCRIPTION;
-    private static String IMG_PATH = String.format("gkmasModResource/img/idol/%s/cards/%s.png", SkinSelectScreen.Inst.idolName, CLASSNAME);
+    private static String IMG_PATH = ImageHelper.idolImgPath(SkinSelectScreen.Inst.idolName, CLASSNAME);
 
-    private static final int COST = 1;
+    private static final int COST = 0;
 
-    private static final int BASE_DAMAGE = 3;
+    private static final int BASE_DAMAGE = 5;
     private static final int UPGRADE_DMG_PLUS = 1;
     private static final int BASE_MAGIC = 2;
     private static final int UPGRADE_MAGIC_PLUS = -1;
-    private static final int BASE_MAGIC2 = 2;
+    private static final int BASE_MAGIC2 = 1;
     private static final int BASE_MAGIC3 = 1;
 
 
@@ -47,8 +48,8 @@ public class StartSmile extends GkmasCard {
     private static final CardTarget TARGET = CardTarget.ENEMY;
 
     public StartSmile() {
-        super(ID, NAME, String.format("gkmasModResource/img/idol/%s/cards/%s.png", SkinSelectScreen.Inst.idolName, CLASSNAME), COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        IMG_PATH = String.format("gkmasModResource/img/idol/%s/cards/%s.png", SkinSelectScreen.Inst.idolName, CLASSNAME);
+        super(ID, NAME, ImageHelper.idolImgPath(SkinSelectScreen.Inst.idolName, CLASSNAME), COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
+        IMG_PATH = ImageHelper.idolImgPath(SkinSelectScreen.Inst.idolName, CLASSNAME);
         this.updateShowImg = true;
         this.baseDamage = BASE_DAMAGE;
         this.baseMagicNumber = BASE_MAGIC;
@@ -66,7 +67,7 @@ public class StartSmile extends GkmasCard {
         addToBot(new ChangeStanceAction(ConcentrationStance.STANCE_ID));
         addToBot(new ApplyPowerAction(p,p,new FullPowerValue(p,-this.magicNumber),-this.magicNumber));
         addToBot(new ApplyPowerAction(p,p,new HalfDamageReceive(p,this.secondMagicNumber),this.secondMagicNumber));
-        addToBot(new ModifyDamageAction(m, new DamageInfo(p, this.baseDamage, DamageInfo.DamageType.NORMAL), AbstractGameAction.AttackEffect.SLASH_VERTICAL,this));
+        addToBot(new ModifyDamageAction(m, new DamageInfo(p, this.baseDamage, DamageInfo.DamageType.NORMAL), AbstractGameAction.AttackEffect.SLASH_VERTICAL,this,false));
         addToBot(new ApplyPowerAction(p,p,new DrawCardNextTurnPower(p,this.thirdMagicNumber),this.thirdMagicNumber));
     }
 

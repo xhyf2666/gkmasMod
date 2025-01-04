@@ -9,12 +9,18 @@ import com.megacrit.cardcrawl.helpers.CardHelper;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import gkmasmod.actions.GoodImpressionDamageAction;
+import gkmasmod.cardCustomEffect.CostCustom;
+import gkmasmod.cardCustomEffect.GoodImpressionCustom;
+import gkmasmod.cardCustomEffect.MagicCustom;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.powers.GoodImpression;
+import gkmasmod.utils.CustomHelper;
 import gkmasmod.utils.NameHelper;
 import gkmasmod.utils.PlayerHelper;
+
+import java.util.ArrayList;
 
 public class Clap extends GkmasCard {
     private static final String CLASSNAME = Clap.class.getSimpleName();
@@ -44,6 +50,11 @@ public class Clap extends GkmasCard {
         FlavorText.AbstractCardFlavorFields.boxColor.set(this, CardHelper.getColor(73, 224, 254));
         flavor = FlavorText.CardStringsFlavorField.flavor.get(CARD_STRINGS);
         this.tags.add(GkmasCardTag.GOOD_IMPRESSION_TAG);
+        this.customLimit = 3;
+        this.customEffectList = new ArrayList<>();
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(MagicCustom.growID,new int[]{20,20,40},new int[]{40,40,70},CustomHelper.CustomEffectType.RATE_ADD));
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(CostCustom.growID,new int[]{1},new int[]{70},CustomHelper.CustomEffectType.ENERGY_COST_REDUCE));
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(GoodImpressionCustom.growID,new int[]{1,1,2},new int[]{50,50,80},CustomHelper.CustomEffectType.GOOD_IMPRESSION_ADD));
     }
 
 

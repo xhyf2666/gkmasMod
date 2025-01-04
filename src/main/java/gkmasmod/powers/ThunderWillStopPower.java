@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
+import com.megacrit.cardcrawl.stances.AbstractStance;
 import gkmasmod.utils.NameHelper;
 import gkmasmod.utils.PlayerHelper;
 
@@ -26,12 +27,12 @@ public class ThunderWillStopPower extends AbstractPower {
     String path128 = String.format("gkmasModResource/img/powers/%s_84.png",CLASSNAME);;
     String path48 = String.format("gkmasModResource/img/powers/%s_32.png",CLASSNAME);;
 
-    public ThunderWillStopPower(AbstractCreature owner, int Amount) {
+    public ThunderWillStopPower(AbstractCreature owner, int amount) {
         this.name = NAME;
         this.ID = POWER_ID;
         this.owner = owner;
         this.type = PowerType.BUFF;
-        this.amount = Amount;
+        this.amount = amount;
 
         // 添加一大一小两张能力图
         this.region128 = new TextureAtlas.AtlasRegion(ImageMaster.loadImage(path128), 0, 0, 84, 84);
@@ -51,4 +52,9 @@ public class ThunderWillStopPower extends AbstractPower {
         addToBot(new ApplyPowerAction(owner,owner,new FullPowerValue(owner,amount),amount));
     }
 
+    @Override
+    public void onChangeStance(AbstractStance oldStance, AbstractStance newStance) {
+        flash();
+        addToBot(new ApplyPowerAction(owner,owner,new FullPowerValue(owner,amount),amount));
+    }
 }

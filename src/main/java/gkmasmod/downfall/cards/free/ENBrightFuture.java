@@ -12,6 +12,7 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.downfall.cards.GkmasBossCard;
+import gkmasmod.utils.ImageHelper;
 import gkmasmod.utils.NameHelper;
 
 public class ENBrightFuture extends GkmasBossCard {
@@ -23,13 +24,13 @@ public class ENBrightFuture extends GkmasBossCard {
 
     private static final String NAME = CARD_STRINGS.NAME;
     private static final String DESCRIPTION = CARD_STRINGS.DESCRIPTION;
-    private static String IMG_PATH = String.format("gkmasModResource/img/idol/%s/cards/%s.png", AbstractCharBoss.theIdolName, CLASSNAME2);
+    private static String IMG_PATH = ImageHelper.idolImgPath(AbstractCharBoss.theIdolName, CLASSNAME2);
 
     private static final int COST = 2;
-    private static final int ATTACK_DMG = 9;
+    private static final int ATTACK_DMG = 11;
     private static final int UPGRADE_PLUS_DMG = 3;
-    private static final int BLOCK_AMT = 6;
-    private static final int UPGRADE_PLUS_BLOCK = 2;
+    private static final int BLOCK_AMT = 9;
+    private static final int UPGRADE_PLUS_BLOCK = 3;
 
     private static final CardType TYPE = CardType.ATTACK;
     private static final CardColor COLOR = PlayerColorEnum.gkmasModColor;
@@ -37,8 +38,8 @@ public class ENBrightFuture extends GkmasBossCard {
     private static final CardTarget TARGET = CardTarget.ENEMY;
 
     public ENBrightFuture() {
-        super(ID, NAME, String.format("gkmasModResource/img/idol/%s/cards/%s.png", AbstractCharBoss.theIdolName, CLASSNAME2), COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET,"yellow");
-        IMG_PATH = String.format("gkmasModResource/img/idol/%s/cards/%s.png", AbstractCharBoss.theIdolName, CLASSNAME2);
+        super(ID, NAME, ImageHelper.idolImgPath(AbstractCharBoss.theIdolName, CLASSNAME2), COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET,"yellow");
+        IMG_PATH = ImageHelper.idolImgPath(AbstractCharBoss.theIdolName, CLASSNAME2);
         this.updateShowImg = true;
         updateImg();
         this.baseDamage = ATTACK_DMG;

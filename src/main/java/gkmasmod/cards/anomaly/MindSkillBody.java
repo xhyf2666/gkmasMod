@@ -21,6 +21,7 @@ import gkmasmod.screen.SkinSelectScreen;
 import gkmasmod.stances.ConcentrationStance;
 import gkmasmod.stances.FullPowerStance;
 import gkmasmod.utils.GrowHelper;
+import gkmasmod.utils.ImageHelper;
 import gkmasmod.utils.NameHelper;
 
 public class MindSkillBody extends GkmasCard {
@@ -30,7 +31,7 @@ public class MindSkillBody extends GkmasCard {
 
     private static final String NAME = CARD_STRINGS.NAME;
     private static final String DESCRIPTION = CARD_STRINGS.DESCRIPTION;
-    private static String IMG_PATH = String.format("gkmasModResource/img/idol/%s/cards/%s.png", SkinSelectScreen.Inst.idolName, CLASSNAME);
+    private static String IMG_PATH = ImageHelper.idolImgPath(SkinSelectScreen.Inst.idolName, CLASSNAME);
 
     private static final int COST = 2;
 
@@ -50,8 +51,8 @@ public class MindSkillBody extends GkmasCard {
     private static final CardTarget TARGET = CardTarget.ENEMY;
 
     public MindSkillBody() {
-        super(ID, NAME, String.format("gkmasModResource/img/idol/%s/cards/%s.png", SkinSelectScreen.Inst.idolName, CLASSNAME), COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        IMG_PATH = String.format("gkmasModResource/img/idol/%s/cards/%s.png", SkinSelectScreen.Inst.idolName, CLASSNAME);
+        super(ID, NAME, ImageHelper.idolImgPath(SkinSelectScreen.Inst.idolName, CLASSNAME), COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
+        IMG_PATH = ImageHelper.idolImgPath(SkinSelectScreen.Inst.idolName, CLASSNAME);
         this.updateShowImg = true;
         this.tags.add(GkmasCardTag.FULL_POWER_TAG);
         this.tags.add(GkmasCardTag.CONCENTRATION_TAG);
@@ -68,7 +69,7 @@ public class MindSkillBody extends GkmasCard {
         addToBot(new ChangeStanceAction(ConcentrationStance.STANCE_ID2));
         addToBot(new ApplyPowerAction(p,p,new FullPowerValue(p,this.magicNumber),this.magicNumber));
         addToBot(new ApplyPowerAction(p,p,new HalfDamageReceive(p,this.secondMagicNumber),this.secondMagicNumber));
-        addToBot(new ModifyDamageAction(m,new DamageInfo(p,this.baseDamage,this.damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_VERTICAL,this));
+        addToBot(new ModifyDamageAction(m,new DamageInfo(p,this.baseDamage,this.damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_VERTICAL,this,false));
     }
 
     @Override

@@ -49,8 +49,9 @@ public class BeginnerGuideForEveryone extends CustomRelic {
         return new BeginnerGuideForEveryone();
     }
 
-
-    public void onEquip() {}
+    public void onEquip() {
+        this.counter = playTimes;
+    }
 
     public void onPlayerEndTurn() {
         if (this.counter > 0) {

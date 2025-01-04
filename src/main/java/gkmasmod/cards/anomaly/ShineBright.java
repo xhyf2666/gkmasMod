@@ -10,17 +10,14 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import gkmasmod.actions.ModifyDamageAction;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
-import gkmasmod.powers.FullPowerValue;
-import gkmasmod.powers.HalfDamageReceive;
-import gkmasmod.powers.TrainingResultPlusPower;
-import gkmasmod.powers.TrainingResultPower;
+import gkmasmod.powers.*;
 import gkmasmod.screen.SkinSelectScreen;
 import gkmasmod.stances.ConcentrationStance;
 import gkmasmod.stances.FullPowerStance;
+import gkmasmod.utils.ImageHelper;
 import gkmasmod.utils.NameHelper;
 
 public class ShineBright extends GkmasCard {
@@ -30,12 +27,12 @@ public class ShineBright extends GkmasCard {
 
     private static final String NAME = CARD_STRINGS.NAME;
     private static final String DESCRIPTION = CARD_STRINGS.DESCRIPTION;
-    private static String IMG_PATH = String.format("gkmasModResource/img/idol/%s/cards/%s.png", SkinSelectScreen.Inst.idolName, CLASSNAME);
+    private static String IMG_PATH = ImageHelper.idolImgPath(SkinSelectScreen.Inst.idolName, CLASSNAME);
 
     private static final int COST = 2;
 
-    private static final int BASE_DAMAGE = 10;
-    private static final int UPGRADE_DAMAGE_PLUS = 2;
+    private static final int BASE_DAMAGE = 9;
+    private static final int UPGRADE_DAMAGE_PLUS = 3;
 
     private static final int BASE_MAGIC = 2;
     private static final int BASE_MAGIC2 = 3;
@@ -49,8 +46,8 @@ public class ShineBright extends GkmasCard {
     private static final CardTarget TARGET = CardTarget.ENEMY;
 
     public ShineBright() {
-        super(ID, NAME, String.format("gkmasModResource/img/idol/%s/cards/%s.png", SkinSelectScreen.Inst.idolName, CLASSNAME), COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        IMG_PATH = String.format("gkmasModResource/img/idol/%s/cards/%s.png", SkinSelectScreen.Inst.idolName, CLASSNAME);
+        super(ID, NAME, ImageHelper.idolImgPath(SkinSelectScreen.Inst.idolName, CLASSNAME), COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
+        IMG_PATH = ImageHelper.idolImgPath(SkinSelectScreen.Inst.idolName, CLASSNAME);
         this.updateShowImg = true;
         this.tags.add(GkmasCardTag.FULL_POWER_TAG);
         this.tags.add(GkmasCardTag.PRESERVATION_TAG);
@@ -59,7 +56,6 @@ public class ShineBright extends GkmasCard {
         this.magicNumber = this.baseMagicNumber;
         this.baseSecondMagicNumber = BASE_MAGIC2;
         this.secondMagicNumber = this.baseSecondMagicNumber;
-        this.exhaust = true;
 
     }
 
@@ -67,10 +63,10 @@ public class ShineBright extends GkmasCard {
     public void use(AbstractPlayer p, AbstractMonster m) {
         addToBot(new ApplyPowerAction(p,p,new FullPowerValue(p,this.secondMagicNumber),this.secondMagicNumber));
         if(this.upgraded){
-            addToBot(new ApplyPowerAction(p,p,new TrainingResultPlusPower(p,1),1));
+            addToBot(new ApplyPowerAction(p,p,new EndOfTurnPreservationStancePlusPower(p,1),1));
         }
         else{
-            addToBot(new ApplyPowerAction(p,p,new TrainingResultPower(p,1),1));
+            addToBot(new ApplyPowerAction(p,p,new EndOfTurnPreservationStancePower(p,1),1));
         }
 
         if(p.stance instanceof FullPowerStance){

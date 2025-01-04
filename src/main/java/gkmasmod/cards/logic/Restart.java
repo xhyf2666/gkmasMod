@@ -6,12 +6,19 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import gkmasmod.cardCustomEffect.BlockCustom;
+import gkmasmod.cardCustomEffect.CostCustom;
+import gkmasmod.cardCustomEffect.GoodImpressionCustom;
+import gkmasmod.cardCustomEffect.MagicCustom;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.powers.GoodImpression;
+import gkmasmod.utils.CustomHelper;
 import gkmasmod.utils.NameHelper;
 import gkmasmod.utils.PlayerHelper;
+
+import java.util.ArrayList;
 
 public class Restart extends GkmasCard {
     private static final String CLASSNAME = Restart.class.getSimpleName();
@@ -25,7 +32,7 @@ public class Restart extends GkmasCard {
     private static final int COST = 1;
     private static final int BASE_MAGIC = 20;
     private static final int UPGRADE_PLUS_MAGIC = 10;
-    private static final int BLOCK_AMT = 2;
+    private static final int BLOCK_AMT = 4;
 
     private static final CardType TYPE = CardType.SKILL;
     private static final CardColor COLOR = PlayerColorEnum.gkmasModColorLogic;
@@ -38,6 +45,10 @@ public class Restart extends GkmasCard {
         this.baseBlock = BLOCK_AMT;
         this.magicNumber = this.baseMagicNumber;
         this.tags.add(GkmasCardTag.GOOD_IMPRESSION_TAG);
+        this.customLimit = 2;
+        this.customEffectList = new ArrayList<>();
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(BlockCustom.growID,new int[]{2},new int[]{40},CustomHelper.CustomEffectType.BLOCK_ADD));
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(MagicCustom.growID,new int[]{10,10},new int[]{50,50},CustomHelper.CustomEffectType.RATE_ADD));
     }
 
 

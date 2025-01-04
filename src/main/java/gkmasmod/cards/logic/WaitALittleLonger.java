@@ -11,10 +11,16 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.DexterityPower;
+import gkmasmod.cardCustomEffect.DamageCustom;
+import gkmasmod.cardCustomEffect.EffectAddCustom;
+import gkmasmod.cardCustomEffect.MagicCustom;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
+import gkmasmod.utils.CustomHelper;
 import gkmasmod.utils.NameHelper;
+
+import java.util.ArrayList;
 
 public class WaitALittleLonger extends GkmasCard {
     private static final String CLASSNAME = WaitALittleLonger.class.getSimpleName();
@@ -43,6 +49,11 @@ public class WaitALittleLonger extends GkmasCard {
         this.magicNumber = this.baseMagicNumber;
         this.exhaust = true;
         this.tags.add(GkmasCardTag.YARUKI_TAG);
+        this.customLimit = 3;
+        this.customEffectList = new ArrayList<>();
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(MagicCustom.growID,new int[]{1,1,2},new int[]{50,50,80},CustomHelper.CustomEffectType.DEXTERITY_ADD));
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(DamageCustom.growID,new int[]{2,2},new int[]{50,50},CustomHelper.CustomEffectType.DAMAGE_ADD));
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(EffectAddCustom.growID,new int[]{0},new int[]{80},CustomHelper.CustomEffectType.EFFECT_ADD));
     }
 
 

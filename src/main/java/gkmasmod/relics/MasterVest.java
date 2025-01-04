@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.random.Random;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.vfx.cardManip.PurgeCardEffect;
 import gkmasmod.cards.GkmasCardTag;
+import gkmasmod.cards.anomaly.Intensely;
 import gkmasmod.cards.logic.BaseAwareness;
 import gkmasmod.cards.logic.BaseVision;
 import gkmasmod.cards.logic.ChangeMood;
@@ -61,7 +62,7 @@ public class MasterVest extends MasterRelic {
 
             for(AbstractCard card:group.group){
                 if(card.rarity == AbstractCard.CardRarity.BASIC&&!card.tags.contains(GkmasCardTag.IDOL_CARD_TAG)){
-                    if(card.cardID.equals(Challenge.ID)||card.cardID.equals(TryError.ID)||card.cardID.equals(KawaiiGesture.ID)||card.cardID.equals(ChangeMood.ID)){
+                    if(card.cardID.equals(Challenge.ID)||card.cardID.equals(TryError.ID)||card.cardID.equals(KawaiiGesture.ID)||card.cardID.equals(ChangeMood.ID)||card.cardID.equals(Intensely.ID)){
                         continue;
                     }
                     cards.add(card);

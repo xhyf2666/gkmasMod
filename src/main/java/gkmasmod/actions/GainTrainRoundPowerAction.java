@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.actions.common.GainEnergyAction;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import gkmasmod.characters.IdolCharacter;
+import gkmasmod.powers.TimeLoopPower;
 import gkmasmod.powers.TrainRoundAnomalyPower;
 import gkmasmod.powers.TrainRoundLogicPower;
 import gkmasmod.powers.TrainRoundSensePower;
@@ -42,6 +43,9 @@ public class GainTrainRoundPowerAction extends AbstractGameAction {
                 addToTop(new GainEnergyAction(this.amount));
             else{
                 addToTop(new EnemyGainEnergyAction(this.amount));
+            }
+            if(this.target.hasPower(TimeLoopPower.POWER_ID)){
+                this.target.getPower(TimeLoopPower.POWER_ID).onSpecificTrigger();
             }
         }
         if(this.target.isPlayer){

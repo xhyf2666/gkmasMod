@@ -17,6 +17,7 @@ import com.megacrit.cardcrawl.powers.BlurPower;
 import com.megacrit.cardcrawl.powers.MinionPower;
 import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
 import gkmasmod.characters.IdolCharacter;
+import gkmasmod.downfall.charbosses.cards.AbstractBossCard;
 import gkmasmod.patches.AbstractPlayerPatch;
 import gkmasmod.relics.*;
 import gkmasmod.utils.NameHelper;
@@ -129,7 +130,7 @@ public class TrainRoundSensePower extends AbstractPower {
     }
 
     public void onAfterUseCard(AbstractCard card, UseCardAction action) {
-        if(action.source!=this.owner)
+        if(card instanceof AbstractBossCard)
             return;
         flash();
 

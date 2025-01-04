@@ -13,6 +13,7 @@ public class DamageGrow extends AbstractGrowEffect {
     public DamageGrow(int damage) {
         this.amount = damage;
         growEffectID = growID;
+        priority = 10;
     }
 
     public String modifyDescription(String rawDescription, AbstractCard card) {

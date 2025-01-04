@@ -53,7 +53,9 @@ public class AfterSchoolDoodles extends CustomRelic {
     }
 
 
-    public void onEquip() {}
+    public void onEquip() {
+        this.counter = playTimes;
+    }
 
     public void atTurnStart() {
     }

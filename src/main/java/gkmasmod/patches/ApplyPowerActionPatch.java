@@ -18,6 +18,7 @@ import gkmasmod.powers.TempSavePower;
 import gkmasmod.relics.*;
 
 public class ApplyPowerActionPatch {
+    private static AbstractPower lastPower = null;
 
     @SpirePatch(clz = ApplyPowerAction.class, method = "update")
     public static class PowerIncreasePatch {
@@ -49,6 +50,14 @@ public class ApplyPowerActionPatch {
                         }
                     }
                     else if(___powerToApply instanceof FullPowerValue){
+                        if(lastPower!=null&&lastPower==___powerToApply){
+                            return;
+                        }
+                        else{
+                            lastPower = ___powerToApply;
+                        }
+                        GameActionManagerPatch.FullPowerValueThisCombatField.fullPowerValueThisCombat.set(GameActionManagerPatch.FullPowerValueThisCombatField.fullPowerValueThisCombat.get()+___powerToApply.amount);
+                        System.out.println("FullPowerValueThisCombat:"+GameActionManagerPatch.FullPowerValueThisCombatField.fullPowerValueThisCombat.get());
                         for(AbstractCard c:AbstractDungeon.player.hand.group){
                             if(c instanceof TakeFlight){
                                 ((TakeFlight) c).onFullPowerValueIncrease(___powerToApply);

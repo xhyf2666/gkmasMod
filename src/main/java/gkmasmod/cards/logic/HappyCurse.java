@@ -6,11 +6,15 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import gkmasmod.cardCustomEffect.*;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.powers.GoodImpression;
+import gkmasmod.utils.CustomHelper;
 import gkmasmod.utils.NameHelper;
+
+import java.util.ArrayList;
 
 public class HappyCurse extends GkmasCard {
     private static final String CLASSNAME = HappyCurse.class.getSimpleName();
@@ -23,7 +27,7 @@ public class HappyCurse extends GkmasCard {
 
     private static final int COST = 2;
     private static final int UPGRADE_COST = 1;
-    private static final int BASE_MAGIC = 6;
+    private static final int BASE_MAGIC = 7;
 
     private static final CardType TYPE = CardType.SKILL;
     private static final CardColor COLOR = PlayerColorEnum.gkmasModColorLogic;
@@ -36,6 +40,11 @@ public class HappyCurse extends GkmasCard {
         this.magicNumber = this.baseMagicNumber;
         this.exhaust = true;
         this.tags.add(GkmasCardTag.GOOD_IMPRESSION_TAG);
+        this.customLimit = 3;
+        this.customEffectList = new ArrayList<>();
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(BlockCustom.growID,new int[]{2,2,4},new int[]{40,40,70},CustomHelper.CustomEffectType.BLOCK_ADD));
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(MagicCustom.growID,new int[]{1,1,1},new int[]{50,50,80},CustomHelper.CustomEffectType.GOOD_IMPRESSION_ADD));
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(GoodImpressionRateAttackCustom.growID,new int[]{50},new int[]{70},CustomHelper.CustomEffectType.GOOD_IMPRESSION_RATE_ATTACK));
     }
 
 

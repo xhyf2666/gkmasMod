@@ -42,6 +42,14 @@ public class EnthusiasticPower extends AbstractPower {
         this.updateDescription();
     }
 
+    @Override
+    public void stackPower(int stackAmount) {
+        super.stackPower(stackAmount);
+        if(this.amount<=0){
+            addToBot(new RemoveSpecificPowerAction(this.owner,this.owner,this));
+        }
+    }
+
     // 能力在更新时如何修改描述
     public void updateDescription() {
         this.description = String.format(DESCRIPTIONS[0], this.amount);

@@ -2,6 +2,7 @@ package gkmasmod.downfall.bosses;
 
 
 
+import com.badlogic.gdx.Gdx;
 import gkmasmod.downfall.charbosses.actions.util.CharbossTurnstartDrawAction;
 import gkmasmod.downfall.charbosses.actions.util.DelayedActionAction;
 import gkmasmod.downfall.charbosses.bosses.AbstractBossDeckArchetype;
@@ -39,6 +40,7 @@ import com.megacrit.cardcrawl.vfx.combat.IntenseZoomEffect;
 import gkmasmod.characters.IdolEnergyOrb;
 import gkmasmod.monster.ChangeScene;
 import gkmasmod.monster.LatterEffect;
+import gkmasmod.powers.IdolExamPower;
 import gkmasmod.relics.PocketBook;
 import gkmasmod.room.GkmasBossRoom;
 import gkmasmod.screen.SkinSelectScreen;
@@ -61,6 +63,8 @@ public class AbstractIdolBoss extends AbstractCharBoss {
     public boolean shroFlag = true;
 
     public boolean changeSong = true;
+
+    public boolean hasChange = false;
 
     public AbstractIdolBoss(String idolName,String ID) {
         super(CardCrawlGame.languagePack.getCharacterString(String.format("IdolName:%s",idolName)).NAMES[0], ID, baseHP, 000.0f, -16.0f, 220.0f, 290.0f, String.format("gkmasModResource/img/idol/%s/stand/stand_%s.png",idolName,"skin10"), 0.0f, -20.0f, gkmasMod_character);
@@ -98,7 +102,12 @@ public class AbstractIdolBoss extends AbstractCharBoss {
         CardCrawlGame.music.dispose();
         CardCrawlGame.music.unsilenceBGM();
         AbstractDungeon.scene.fadeOutAmbiance();
-        CardCrawlGame.music.playTempBgmInstantly(String.format("gkmasModResource/audio/song/%s_%s.ogg", this.idolName, IdolData.getIdol(this.idolName).getBossSong(stage),true));
+        String song = String.format("gkmasModResource/audio/song/%s_%s.ogg", this.idolName, IdolData.getIdol(this.idolName).getBossSong(stage));
+        if(!Gdx.files.internal(song).exists()){
+            song = String.format("gkmasModResource/audio/song/%s_%s.ogg", this.idolName, "002");
+        }
+        CardCrawlGame.music.playTempBgmInstantly(song,true);
+
     }
 
     @Override
@@ -117,6 +126,7 @@ public class AbstractIdolBoss extends AbstractCharBoss {
             AbstractDungeon.actionManager.addToBottom(new SFXAction("VO_AWAKENEDONE_1"));
             AbstractDungeon.actionManager.addToBottom(new VFXAction(this, new IntenseZoomEffect(this.hb.cX, this.hb.cY, true), 0.05F, true));
             AbstractDungeon.actionManager.addToBottom(new ChangeStateAction(this, "REBIRTH"));
+            hasChange=true;
             return;
         }
         super.takeTurn();
@@ -129,6 +139,8 @@ public class AbstractIdolBoss extends AbstractCharBoss {
 
     public void endTurnStartTurn() {
         if(rebirth){
+            if(hasChange==false)
+                return;
             rebirth=false;
             addToBot(new WaitAction(0.2f));
             this.applyStartOfTurnPostDrawRelics();
@@ -156,6 +168,8 @@ public class AbstractIdolBoss extends AbstractCharBoss {
                     maxHP = Math.round(maxHP * 1.2F);
                 }
                 this.maxHealth = maxHP;
+                int idolExamPowerCount = (int) (this.maxHealth / 1.6F);
+                addToBot(new ApplyPowerAction(this, this, new IdolExamPower(this, idolExamPowerCount), idolExamPowerCount));
                 archetype.initialize();
                 this.img = new Texture(String.format("gkmasModResource/img/idol/%s/stand/stand_%s.png",idolName,IdolData.getIdol(idolName).getBossSkin(stage)));
                 chosenArchetype = archetype;
@@ -194,7 +208,11 @@ public class AbstractIdolBoss extends AbstractCharBoss {
                 CardCrawlGame.music.dispose();
                 CardCrawlGame.music.unsilenceBGM();
                 AbstractDungeon.scene.fadeOutAmbiance();
-                CardCrawlGame.music.playTempBgmInstantly(String.format("gkmasModResource/audio/song/%s_%s.ogg", this.idolName, IdolData.getIdol(this.idolName).getBossSong(stage),true));
+                String song = String.format("gkmasModResource/audio/song/%s_%s.ogg", this.idolName, IdolData.getIdol(this.idolName).getBossSong(stage));
+                if(!Gdx.files.internal(song).exists()){
+                    song = String.format("gkmasModResource/audio/song/%s_%s.ogg", this.idolName, "002");
+                }
+                CardCrawlGame.music.playTempBgmInstantly(song,true);
                 break;
         }
     }
@@ -218,10 +236,11 @@ public class AbstractIdolBoss extends AbstractCharBoss {
             else{
                 this.changeSong=false;
                 CardCrawlGame.music.dispose();
-                CardCrawlGame.music.playTempBgmInstantly(
-                        String.format("gkmasModResource/audio/song/%s_%s.ogg",SkinSelectScreen.Inst.idolName,
-                                IdolData.getIdol(SkinSelectScreen.Inst.idolIndex).getBossSong(stage)),
-                        true);
+                String song = String.format("gkmasModResource/audio/song/%s_%s.ogg", SkinSelectScreen.Inst.idolName, IdolData.getIdol(SkinSelectScreen.Inst.idolName).getBossSong(stage));
+                if(!Gdx.files.internal(song).exists()){
+                    song = String.format("gkmasModResource/audio/song/%s_%s.ogg", SkinSelectScreen.Inst.idolName, "002");
+                }
+                CardCrawlGame.music.playTempBgmInstantly(song,true);
             }
         }
 
@@ -250,6 +269,7 @@ public class AbstractIdolBoss extends AbstractCharBoss {
             this.powers.clear();
 //            deathVoice();
             stage++;
+            hasChange = false;
             rebirth=true;
             CardCrawlGame.music.dispose();
             CardCrawlGame.music.playTempBgmInstantly("gkmasModResource/audio/bgm/gasha_002.ogg",true);
@@ -270,9 +290,7 @@ public class AbstractIdolBoss extends AbstractCharBoss {
     public void die() {
         if (!(AbstractDungeon.getCurrRoom()).cannotLose) {
             super.die();
-            System.out.println("boss die");
             if(AbstractDungeon.getCurrRoom() instanceof GkmasBossRoom){
-                System.out.println("boss die");
                 onBossVictoryLogic();
                 onFinalBossVictoryLogic();
             }

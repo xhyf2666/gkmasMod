@@ -32,6 +32,10 @@ public class AbsoluteNewSelf extends CustomRelic {
     }
 
 
+    public void onEquip() {
+        this.counter = playTimes;
+    }
+
     @Override
     public void onVictory() {
         this.counter = playTimes;
@@ -49,14 +53,11 @@ public class AbsoluteNewSelf extends CustomRelic {
 
     public void onUseCard(AbstractCard card, UseCardAction useCardAction) {
         if (card.type == AbstractCard.CardType.ATTACK &&this.counter > 0) {
-            AbstractCreature target = useCardAction.target;
-            if(target==null) {
-                target = AbstractDungeon.getMonsters().getRandomMonster(null, true, AbstractDungeon.cardRandomRng);
-            }
+            AbstractCreature target = AbstractDungeon.getMonsters().getRandomMonster(null, true, AbstractDungeon.cardRandomRng);
             addToBot(new AbsoluteNewSelfAction(AbstractDungeon.player,target,BASE_DAMAGE,HP));
         }
-
     }
+
 
     public void atBattleStart() {
         this.counter = playTimes;

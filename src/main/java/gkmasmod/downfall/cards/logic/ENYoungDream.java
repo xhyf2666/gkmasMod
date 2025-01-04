@@ -11,7 +11,7 @@ import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.cards.logic.FutureTrajectory;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.downfall.cards.GkmasBossCard;
-import gkmasmod.monster.LittleGundam;
+import gkmasmod.monster.friend.LittleGundam;
 import gkmasmod.powers.SteelSoul;
 import gkmasmod.utils.NameHelper;
 

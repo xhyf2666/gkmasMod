@@ -169,7 +169,7 @@ public class AnotherShopScreen extends CustomScreen{
         AbstractDungeon.overlayMenu.proceedButton.hide();
         AbstractDungeon.overlayMenu.cancelButton.show(NAMES[12]);
         System.out.println(AbstractDungeon.screen);
-        GkmasMod.AnotherShopUp = true;
+        GkmasMod.screenIndex = 1;
     }
 
     @Override
@@ -177,7 +177,7 @@ public class AnotherShopScreen extends CustomScreen{
         System.out.println("AnotherShopScreen close");
         RestRoom r = (RestRoom)AbstractDungeon.getCurrRoom();
         AbstractDungeon.isScreenUp = false;
-        GkmasMod.AnotherShopUp = false;
+        GkmasMod.screenIndex = 0;
         AbstractDungeon.overlayMenu.hideBlackScreen();
         AnotherShopEffect.isFinished = true;
         r.campfireUI.reopen();

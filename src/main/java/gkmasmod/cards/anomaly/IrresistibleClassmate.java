@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.characters.PlayerColorEnum;
+import gkmasmod.stances.FullPowerStance;
 import gkmasmod.utils.NameHelper;
 
 public class IrresistibleClassmate extends GkmasCard {
@@ -23,6 +24,7 @@ public class IrresistibleClassmate extends GkmasCard {
 
     private static final int BASE_MAGIC = 2;
     private static final int UPGRADE_PLUS_MAGIC = 1;
+    private static final int BASE_MAGIC2 = 2;
 
     private static final CardType TYPE = CardType.SKILL;
     private static final CardColor COLOR = PlayerColorEnum.gkmasModColorAnomaly;
@@ -33,12 +35,16 @@ public class IrresistibleClassmate extends GkmasCard {
         super(ID, NAME, IMG_PATH, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.baseMagicNumber = BASE_MAGIC;
         this.magicNumber = this.baseMagicNumber;
+        this.baseSecondMagicNumber = BASE_MAGIC2;
+        this.secondMagicNumber = this.baseSecondMagicNumber;
     }
 
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-
+        if(p.stance.ID.equals(FullPowerStance.STANCE_ID)){
+            addToBot(new DrawCardAction(this.secondMagicNumber));
+        }
     }
 
     @Override

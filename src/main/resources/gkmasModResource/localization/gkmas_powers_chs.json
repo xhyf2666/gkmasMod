@@ -206,7 +206,7 @@
   "TrainRoundAnomalyPower": {
     "NAME": "训练时间·非凡",
     "DESCRIPTIONS": [
-      "当前有 #b%d 层。 NL 回合开始时，抽 #b1 张牌， #y暂存 1张手牌。 NL 每次出牌或结束回合时减少 #b1 层。 NL 战斗胜利或该Buff首次移除时，基于敌人的损失HP百分比获得 #y三维 。 NL 三维分配比例由卡组中卡牌的TAG数决定。 NL 回合结束时若能量大于 #b0 ，则回复 #b1 点体力。 NL 战斗胜利时，每剩余 #b3 层回复 #b2 点体力。"
+      "当前有 #b%d 层。 NL 回合开始时，抽 #b1 张牌， #y暂存 1张手牌，所有手牌获得 #y伤害追加 #b2 和 #y格挡追加 #b2 。 NL 每次出牌或结束回合时减少 #b1 层。 NL 战斗胜利或该Buff首次移除时，基于敌人的损失HP百分比获得 #y三维 。 NL 三维分配比例由卡组中卡牌的TAG数决定。 NL 回合结束时若能量大于 #b0 ，则回复 #b1 点体力。 NL 战斗胜利时，每剩余 #b3 层回复 #b2 点体力。"
     ]
   },
   "TrainRoundSensePower": {
@@ -242,7 +242,7 @@
   "FullPowerValue": {
     "NAME": "全力值",
     "DESCRIPTIONS": [
-      "回合开始时，如果 #y全力值 不低于 #b10 ，则失去 #b10 点 #y全力值 ，进入 #y全力 。 NL 进入 #y全力 时，按照以下顺序依次消耗剩余的 #y全力值 ，获得额外效果，直到无法继续触发： NL #y· 消耗2点：获得 #b5 点 #y格挡 。 NL #y· 消耗3点：获得 #b3 层 #y热意 。 NL #y· 消耗5点： #y再动 。"
+      "回合开始时，如果 #y全力值 不低于 #b10 ，则失去 #b10 点 #y全力值 ，进入 #y全力 。 NL 进入 #y全力 时，按照以下顺序依次消耗剩余的 #y全力值 ，获得额外效果，直到无法继续触发： NL #y· 消耗2点：获得 #b5 层 #y热意 。 NL #y· 消耗3点：获得 #b16 点 #y格挡 。 NL #y· 消耗5点： #y再动 。"
     ]
   },
   "FullPowerValueMisuzu": {
@@ -488,7 +488,7 @@
   "SaySomethingToYouPower": {
     "NAME": "我有话想对你说",
     "DESCRIPTIONS": [
-      "每回合开始时，给予所有敌人 #b%d 点 格挡 。 NL 每回合首次突破敌人 格挡 时，取消该攻击，给予敌人 #b%d 层 易伤 。"
+      "每回合开始时，给予所有敌人 #b%d 点 格挡 。 NL 每回合首次突破敌人 格挡 时，取消该伤害，给予敌人 #b%d 层 易伤 。"
     ]
   },
   "DanceWithYouPower": {
@@ -571,9 +571,9 @@
     ]
   },
   "TrainingResultPlusPower": {
-    "NAME": "下回合温存Ⅱ",
+    "NAME": "下回合温存2段",
     "DESCRIPTIONS": [
-      "回合开始时，进入 #y温存Ⅱ #b%d 次。"
+      "回合开始时，进入 #y温存2段 #b%d 次。"
     ]
   },
   "StanceLock": {
@@ -603,7 +603,7 @@
   "ThunderWillStopPower": {
     "NAME": "雷鸣将歇",
     "DESCRIPTIONS": [
-      "回合结束时，获得 #b%d 点 #y全力值 。"
+      "回合结束时和转化 #y姿态 时，获得 #b%d 点 #y全力值 。"
     ]
   },
   "StepOnStagePower": {
@@ -615,7 +615,7 @@
   "LikeStarsPower": {
     "NAME": "如繁星一般",
     "DESCRIPTIONS": [
-      "每次 #y暂存 卡牌时，使该牌获得 #y伤害追加 #b%d 。"
+      "每次 #y暂存 卡牌时，使所有 #y暂存 区卡牌获得 #y伤害追加 #b%d 。"
     ]
   },
   "WhereDreamsArePower": {
@@ -646,6 +646,84 @@
     "NAME": "圣诞快乐♪",
     "DESCRIPTIONS": [
       "每次出牌时，获得 #b%d 点 #y敏捷 。"
+    ]
+  },
+  "EndOfTurnPreservationStancePower": {
+    "NAME": "回合结束温存",
+    "DESCRIPTIONS": [
+      "回合结束时，进入 #y温存 。"
+    ]
+  },
+  "EndOfTurnPreservationStancePlusPower": {
+    "NAME": "回合结束温存2段",
+    "DESCRIPTIONS": [
+      "回合结束时，进入 #y温存2段 。"
+    ]
+  },
+  "UnpredictablePower": {
+    "NAME": "阴晴不定",
+    "DESCRIPTIONS": [
+      "每次进入 #y温存 时，使手牌和弃牌堆中的所有卡获得 #y格挡追加 #b%d 。 NL 每次进入 #y强气 时，使手牌和弃牌堆中的所有卡获得 #y伤害追加 #b%d 。"
+    ]
+  },
+  "LikeUsualPower": {
+    "NAME": "像往常一样",
+    "DESCRIPTIONS": [
+      "每次退出 #y温存2段 时，获得 [E] * #b%d 。"
+    ]
+  },
+  "FriendTemariPower1": {
+    "NAME": "月村手毬的呼唤",
+    "DESCRIPTIONS": [
+      "体力不低于 #b%d 时，在 #y秦谷美玲 使用 #y攻击牌 后，失去 #b%d 点体力，对目标造成伤害为 #b%d 的协同攻击。 NL 体力低于 #b%d 时， #y休息 ，下回合开始时回复 #b%d %%的体力。"
+    ]
+  },
+  "FriendRinhaPower1": {
+    "NAME": "贺阳燐羽的陪伴",
+    "DESCRIPTIONS": [
+      "回合结束时，对所有敌人造成 #b%d 点伤害。"
+    ]
+  },
+  "WantToSleep": {
+    "NAME": "困意",
+    "DESCRIPTIONS": [
+      "当前有 #b%d 层。 NL #y困意 层数达到 #b%d 时，失去 #b%d 层 #y困意 ，进入 #y睡眠 。"
+    ]
+  },
+  "WantToSleepEnemy": {
+    "NAME": "困意",
+    "DESCRIPTIONS": [
+      "当前有 #b%d 层。 NL 回合开始时， 如果 #y困意 层数不低于 #b%d ，则失去 #b%d 层 #y困意 ，进入 #y睡眠 。"
+    ]
+  },
+  "FatPower":  {
+    "NAME": "肥胖值",
+    "DESCRIPTIONS": [
+      "当前有 #b%d 层。每层 #肥胖值 使持有者造成的伤害减少 #b10 %%。 NL 回合结束时，减少 #b%d 层。"
+    ]
+  },
+  "SleepingPower": {
+    "NAME": "睡眠",
+    "DESCRIPTIONS": [
+      "当前有 #b%d 层。 NL 跳过行动。 NL 回合结束时，减少 #b%d 层。"
+    ]
+  },
+  "TimeLoopPower": {
+    "NAME": "时间循环",
+    "DESCRIPTIONS": [
+      "当前已触发 #b%d 次 #y再动 。 NL 累计触发 #b%d 次 再动 后，获得 1个 #y额外回合 。"
+    ]
+  },
+  "FriendKnifePower": {
+    "NAME": "刀锋",
+    "DESCRIPTIONS": [
+      "每次使用 #y攻击牌 时，失去 #b%d 点耐久，对目标造成 #b%d 点伤害，施加 #b%d 层 #y易伤 。"
+    ]
+  },
+  "IdolExamPower": {
+    "NAME": "偶像考核",
+    "DESCRIPTIONS": [
+      "本回合最多受到 #b%d 点伤害，当前已受到 #b%d 点伤害。 NL 本回合累计受到伤害超过 #b%d 点时，造成伤害减少 #b50 %%。 NL 累计受到伤害超过 #b%d 点时，造成伤害额外减少  #b30 %%。"
     ]
   }
 }

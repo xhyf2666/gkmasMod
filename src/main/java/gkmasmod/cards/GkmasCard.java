@@ -1,6 +1,7 @@
 package gkmasmod.cards;
 
 import basemod.abstracts.CustomCard;
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -69,6 +70,14 @@ public abstract class GkmasCard extends CustomCard  implements CardImgUpdateList
     public int cardPreviewIndex = 0;
 
     public String backGroundColor="";
+
+    public int customLimit=0;
+
+    public int currentCustomCount=0;
+
+//    public ArrayList<Integer> customCountList = null;
+
+    public ArrayList<ArrayList<CustomEffect>> customEffectList = null;
 
     public boolean updateShowImg=false;
     public GkmasCard(final String id,
@@ -399,16 +408,21 @@ public abstract class GkmasCard extends CustomCard  implements CardImgUpdateList
         if (updateShowImg){
             idolName = SkinSelectScreen.Inst.idolName;
             this.textureImg = String.format("gkmasModResource/img/idol/%s/cards/%s.png", idolName , CLASSNAME);
+            if(!Gdx.files.internal(this.textureImg).exists()){
+                this.textureImg = String.format("gkmasModResource/img/idol/%s/cards/%s.png", IdolData.shro , CLASSNAME);
+            }
 //            System.out.println("updateImg: "+this.textureImg);
-            loadCardImage(String.format("gkmasModResource/img/idol/%s/cards/%s.png", idolName , CLASSNAME));
+            loadCardImage(this.textureImg);
         }
     }
 
     public void updateBackgroundImg(){
+        if(this.color == PlayerColorEnum.gkmasModColorMisuzu||this.color == PlayerColorEnum.gkmasModColorMoon)
+            return;
         String idolName;
         idolName = SkinSelectScreen.Inst.idolName;
         Color color = Settings.RED_TEXT_COLOR.cpy();
-        Color textColor = Settings.BLUE_RELIC_COLOR.cpy();
+        Color textColor = Settings.PURPLE_RELIC_COLOR.cpy();
         if(backGroundColor!="")
             idolName = backGroundColor;
         if(idolName.equals(IdolData.fktn)){
@@ -560,6 +574,7 @@ public abstract class GkmasCard extends CustomCard  implements CardImgUpdateList
 
     public void renderCardHeader(SpriteBatch sb) {
         renderCardHeader(sb, this.current_x, this.current_y, 400.0F, this.drawScale); }
+
 
 
 

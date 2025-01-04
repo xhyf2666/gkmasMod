@@ -45,7 +45,7 @@ public class BossConfig_kllj1 extends AbstractBossDeckArchetype {
         if (!looped) {
             switch (turn) {
                 case 0:
-                    addToList(cardsList,new ENBeforeThePerformance(),extraUpgrades);
+                    addToList(cardsList, new ENBeforeThePerformance(),extraUpgrades);
                     addToList(cardsList, new ENUnstoppableThoughts(),extraUpgrades);
                     addToList(cardsList, new ENYoungDream(),extraUpgrades);
                     addToList(cardsList, new ENHeartbeat(),extraUpgrades);

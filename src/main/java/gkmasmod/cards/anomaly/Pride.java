@@ -15,6 +15,7 @@ import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.powers.FullPowerValue;
 import gkmasmod.screen.SkinSelectScreen;
 import gkmasmod.stances.PreservationStance;
+import gkmasmod.utils.ImageHelper;
 import gkmasmod.utils.NameHelper;
 
 public class Pride extends GkmasCard {
@@ -24,12 +25,12 @@ public class Pride extends GkmasCard {
 
     private static final String NAME = CARD_STRINGS.NAME;
     private static final String DESCRIPTION = CARD_STRINGS.DESCRIPTION;
-    private static String IMG_PATH = String.format("gkmasModResource/img/idol/%s/cards/%s.png", SkinSelectScreen.Inst.idolName, CLASSNAME);
+    private static String IMG_PATH = ImageHelper.idolImgPath(SkinSelectScreen.Inst.idolName, CLASSNAME);
 
     private static final int COST = 2;
     private static final int UPGRADE_COST = 1;
 
-    private static final int BASE_BLOCK = 4;
+    private static final int BASE_BLOCK = 6;
     private static final int BASE_MAGIC = 2;
     private static final int UPGRADE_MAGIC_PLUS = 1;
 
@@ -40,8 +41,8 @@ public class Pride extends GkmasCard {
     private static final CardTarget TARGET = CardTarget.SELF;
 
     public Pride() {
-        super(ID, NAME, String.format("gkmasModResource/img/idol/%s/cards/%s.png", SkinSelectScreen.Inst.idolName, CLASSNAME), COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        IMG_PATH = String.format("gkmasModResource/img/idol/%s/cards/%s.png", SkinSelectScreen.Inst.idolName, CLASSNAME);
+        super(ID, NAME, ImageHelper.idolImgPath(SkinSelectScreen.Inst.idolName, CLASSNAME), COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
+        IMG_PATH = ImageHelper.idolImgPath(SkinSelectScreen.Inst.idolName, CLASSNAME);
         this.updateShowImg = true;
         this.baseBlock = BASE_BLOCK;
         this.baseMagicNumber = BASE_MAGIC;

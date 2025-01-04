@@ -255,7 +255,7 @@
   },
   "gkmasMod:SummerEveningSparklers": {
     "NAME": "夏夜的线香花火",
-    "DESCRIPTION": "失去 !HP! 点 体力。 NL 获得 !M! 层 好印象 和 !M2! 层 敏捷 。 NL 每次出牌获得 格挡 时，获得 !M3! 层 好印象 。 NL 固有 。"
+    "DESCRIPTION": "失去 !HP! 点 体力。 NL 获得 !M! 层 好印象 和 !M2! 点 敏捷 。 NL 每次出牌获得 格挡 时，获得 !M3! 层 好印象 。 NL 固有 。"
   },
   "gkmasMod:LightGait": {
     "NAME": "轻快舞步",
@@ -267,7 +267,7 @@
   },
   "gkmasMod:WarmUp": {
     "NAME": "热身运动",
-    "DESCRIPTION": "造成 !D! 点伤害。 NL 获得 !M! 点 力量 。 NL 消耗 。"
+    "DESCRIPTION": "造成 !D! 点伤害。 NL 获得 !M! 点 力量 。"
   },
   "gkmasMod:ServiceSpirit": {
     "NAME": "服务精神",
@@ -383,7 +383,7 @@
   },
   "gkmasMod:Bless": {
     "NAME": "祝福",
-    "DESCRIPTION": "失去 !HP! 点体力。 NL 造成 !D! 点伤害，获得 !M! 层 好调 。 NL 击杀时，获得随机 *祝福 。"
+    "DESCRIPTION": "失去 !HP! 点体力。 NL 造成 !D! 点伤害。 NL 获得 !M! 层 好调 。 NL 击杀时，获得随机 *祝福 。"
   },
   "gkmasMod:StartDash": {
     "NAME": "疾跑",
@@ -886,7 +886,7 @@
   },
   "gkmasMod:SaySomethingToYou": {
     "NAME": "我有话想对你说",
-    "DESCRIPTION": "每回合开始时，给予所有敌人 !M! 点 固定格挡 。 NL 每回合首次突破敌人 格挡 时，取消该攻击，给予敌人 !M2! 层 易伤 。"
+    "DESCRIPTION": "每回合开始时，给予所有敌人 !M! 点 固定格挡 。 NL 每回合首次突破敌人 格挡 时，取消该伤害，给予敌人 !M2! 层 易伤 。"
   },
   "gkmasMod:CallMeAnyTime": {
     "NAME": "独属于我的特权",
@@ -1014,11 +1014,11 @@
   },
   "gkmasMod:OneStep": {
     "NAME": "一步",
-    "DESCRIPTION": "造成 !D! 点伤害 。 NL 消耗 。"
+    "DESCRIPTION": "造成 !D! 点伤害 。 NL 抽 1 张牌 。 NL 暂存 1张手牌。"
   },
   "gkmasMod:Lucky": {
     "NAME": "Lucky♪",
-    "DESCRIPTION": "造成 !D! 点伤害。 NL 强气 ： 获得 !M! 点 全力值 。 NL 消耗 。"
+    "DESCRIPTION": "造成 !D! 点伤害。 NL 强气 ： 获得 !M! 点 全力值 。"
   },
   "gkmasMod:StepByStep": {
     "NAME": "不断积累",
@@ -1026,23 +1026,23 @@
   },
   "gkmasMod:DoYourBest": {
     "NAME": "尽全力",
-    "DESCRIPTION": "进入 强气 。 NL 造成 !D! 点伤害 !M! 次。 NL 消耗 。"
+    "DESCRIPTION": "失去所有 全力值 。 NL 造成 !D! 点伤害 ( *X + 全力值 层数 /3)次。"
   },
   "gkmasMod:Happy": {
     "NAME": "Happy♪",
-    "DESCRIPTION": "进入 温存 。 NL 获得 !B! 点 格挡 。 NL 消耗 。"
+    "DESCRIPTION": "进入 温存 。 NL 获得 !B! 点 格挡 。"
   },
   "gkmasMod:SurpriseMiss": {
     "NAME": "惊喜的误算",
-    "DESCRIPTION": " 全力值 大于 !M2! 时，进入 温存 。 NL 获得 !B! 点 格挡 。 NL 获得 !M! 点 全力值 。 NL 消耗 。"
+    "DESCRIPTION": " 全力值 大于 !M2! 时，进入 温存 。 NL 获得 !B! 点 格挡 。 NL 获得 !M! 点 全力值 。"
   },
   "gkmasMod:TearfulMemories": {
     "NAME": "泪水的回忆",
-    "DESCRIPTION": "进入 温存 。 NL 获得 !B! 点 格挡 。 NL 强气 ： 获得 !M! 点 全力值 。 NL 消耗 。"
+    "DESCRIPTION": " 全力值 大于 !M2! 时，抽 !M! 张 牌。 NL 成长 !GROW! ：进入 全力 时，获得 抽牌追加 !M3! 。"
   },
   "gkmasMod:ReadyToGo": {
     "NAME": "seno♪",
-    "DESCRIPTION": "进入 强气 。 NL 造成 !D! 点 伤害 。"
+    "DESCRIPTION": "进入 强气2段 。 NL 造成 !D! 点 伤害 。"
   },
   "gkmasMod:AccelerateLand": {
     "NAME": "加速状态",
@@ -1050,15 +1050,15 @@
   },
   "gkmasMod:BurstingPassion": {
     "NAME": "爆发的热情",
-    "DESCRIPTION": "拥有 姿态 时，才可使用。 NL 造成 !D! 点 伤害 !M! 次。"
+    "DESCRIPTION": "拥有 姿态 时，才可使用。 NL 造成 !D! 点 伤害 !M! 次。 NL 抽 !M2! 张牌。"
   },
   "gkmasMod:SweatAndGrowth": {
     "NAME": "汗水与成长",
-    "DESCRIPTION": "处于 全力 时，才可使用。 NL 造成 !D! 点 伤害。 NL 消耗 。"
+    "DESCRIPTION": "处于 全力 时才可使用。 NL 造成 !D! 点 伤害。 NL 成长 ： 进入 全力 时， 伤害追加 效果 增加 !M! %。"
   },
   "gkmasMod:OpeningAct": {
     "NAME": "开场演出",
-    "DESCRIPTION": "进入 强气 。 NL 造成 !D! 点 伤害。 NL 获得 !M! 点 全力值 。"
+    "DESCRIPTION": "进入 强气2段 。 NL 造成 !D! 点 伤害。 NL 获得 !M! 点 全力值 。"
   },
   "gkmasMod:StartSmile": {
     "NAME": "开始的笑颜",
@@ -1066,20 +1066,20 @@
   },
   "gkmasMod:IdealTempo": {
     "NAME": "理想的节拍",
-    "DESCRIPTION": "造成 !D! 点伤害 !M2! 次。 NL 成长 ： 姿态 转变时， 获得 伤害追加 !M! 。 NL 消耗 。"
+    "DESCRIPTION": "造成 !D! 点伤害 !M2! 次。 NL 成长 ： 姿态 转变时， 获得 伤害追加 !M! 。"
   },
   "gkmasMod:TrainingResult": {
     "NAME": "训练的成果",
     "DESCRIPTION": "造成 !D! 点伤害。 NL 获得 !M! 点 全力值 。 NL 下回合开始时，进入 温存 。",
-    "DESCRIPTION": "造成 !D! 点伤害。 NL 获得 !M! 点 全力值 。 NL 下回合开始时，进入 温存2段 。"
+    "UPGRADE_DESCRIPTION": "造成 !D! 点伤害。 NL 获得 !M! 点 全力值 。 NL 下回合开始时，进入 温存2段 。"
   },
   "gkmasMod:PotentialAbility": {
     "NAME": "潜在能力",
-    "DESCRIPTION": "获得 !B! 点 格挡 。 NL 获得 !M! 点 全力值 。 NL 选择 !M2! 张手牌 暂存 。"
+    "DESCRIPTION": "获得 !B! 点 格挡 。 NL 获得 !M! 点 全力值 。 NL 暂存 !M2! 张手牌 。"
   },
   "gkmasMod:Countdown": {
     "NAME": "倒计时",
-    "DESCRIPTION": "进入 温存 。 NL 获得 !B! 点 格挡 。 NL 下回合进入 温存 。"
+    "DESCRIPTION": "进入 温存2段 。 NL 获得 !B! 点 格挡 。"
   },
   "gkmasMod:Pride": {
     "NAME": "Pride",
@@ -1087,7 +1087,8 @@
   },
   "gkmasMod:Endurance": {
     "NAME": "忍耐力",
-    "DESCRIPTION": "进入 温存 。 NL 获得 !B! 点 格挡 。 NL 获得 !M! 点 全力值 。"
+    "DESCRIPTION": "进入 温存 。 NL 获得 !B! 点 格挡 。 NL 获得 !M! 点 全力值 。",
+    "UPGRADE_DESCRIPTION": "进入 温存2段 。 NL 获得 !B! 点 格挡 。 NL 获得 !M! 点 全力值 。"
   },
   "gkmasMod:BattlePractice": {
     "NAME": "切磋琢磨",
@@ -1095,7 +1096,7 @@
   },
   "gkmasMod:TakeFlight": {
     "NAME": "飞翔吧！",
-    "DESCRIPTION": "获得 !M! 点 全力值 。 NL 造成 !D! 点伤害。(基于本场战斗中累计获得的 全力值 的 !M2! %提升基础伤害) NL 成长 !GROW! ： 进入 全力 时， 获得 伤害追加 !M3! 。 NL 消耗 。"
+    "DESCRIPTION": "获得 !M! 点 全力值 。 NL 造成 !D! 点伤害。(基于本场战斗中累计获得的 全力值 的 !M2! %提升基础伤害) NL 成长 !GROW! ： 进入 全力 时， 获得 伤害追加 !M3! 。"
   },
   "gkmasMod:ComprehensiveArt": {
     "NAME": "综合艺术",
@@ -1107,11 +1108,12 @@
   },
   "gkmasMod:ShineBright": {
     "NAME": "闪耀吧！",
-    "DESCRIPTION": " 全力 ： 造成 !D! 点伤害 !M! 次。 NL 获得 !M2! 点 全力值 。 NL 下回合开始时，进入 温存2段 。 NL 消耗 。"
+    "DESCRIPTION": " 全力 ： 造成 !D! 点伤害 !M! 次。 NL 获得 !M2! 点 全力值 。 NL 回合结束时，进入 温存 。",
+    "UPGRADE_DESCRIPTION": " 全力 ： 造成 !D! 点伤害 !M! 次。 NL 获得 !M2! 点 全力值 。 NL 回合结束时，进入 温存2段 。"
   },
   "gkmasMod:Climax": {
     "NAME": "Climax",
-    "DESCRIPTION": "进入 强气2段 。 NL 造成 !D! 点伤害 !M! 次。 NL 下回合开始时，进入 温存2段 。 NL 消耗 。"
+    "DESCRIPTION": "进入 强气2段 。 NL 造成 !D! 点伤害 !M! 次。 NL 回合结束时，进入 温存2段 。"
   },
   "gkmasMod:HeartAndSoul": {
     "NAME": "全身全霊",
@@ -1120,8 +1122,8 @@
   },
   "gkmasMod:BecomeIdol": {
     "NAME": "想要成为偶像",
-    "DESCRIPTION": "失去 !M! 点 全力值 。 NL 使所有手牌获得 连击 !M2! 。 NL 除外 。",
-    "UPGRADE_DESCRIPTION": "失去 !M! 点 全力值 。 NL 获得 !B! 点 格挡 。 NL 进入 温存 。 NL 使所有手牌获得 连击 !M2! 。 NL 除外 。"
+    "DESCRIPTION": "失去 !M! 点 全力值 。 NL 使所有手牌获得 连击 !M2! 。 NL 再动 。 除外 。",
+    "UPGRADE_DESCRIPTION": "失去 !M! 点 全力值 。 NL 获得 !B! 点 格挡 。 NL 进入 温存 。 NL 使所有手牌获得 连击 !M2! 。 NL  再动 。 除外 。"
   },
   "gkmasMod:ToTheTop": {
     "NAME": "向着顶点",
@@ -1146,7 +1148,7 @@
   },
   "gkmasMod:MiracleMagic": {
     "NAME": "奇迹的魔法",
-    "DESCRIPTION": "失去 !HP! 点体力。 NL 造成 好印象 层数 !M! %的伤害。 NL 消耗 。",
+    "DESCRIPTION": "失去 !HP! 点体力。 NL 造成 好印象 层数 !M! %的伤害。",
     "FLAVOR": "当前可造成%d点伤害。"
   },
   "gkmasMod:Excite": {
@@ -1168,33 +1170,33 @@
   },
   "gkmasMod:IrresistibleClassmate": {
     "NAME": "不能不关心的同班同学",
-    "DESCRIPTION": " 释出 ：抽 !M! 张牌。"
+    "DESCRIPTION": " 全力 ：抽 !M2! 张牌 。 NL 释出 ：抽 !M! 张牌。"
   },
   "gkmasMod:MyPaceMyLife": {
     "NAME": "我的节奏 我的生活",
-    "DESCRIPTION": " 释出 ：再动 !M! 。 NL 虚无 。",
-    "UPGRADE_DESCRIPTION": " 释出 ： 再动 !M! 。"
+    "DESCRIPTION": " 全力 ：抽 !M2! 张牌 。 NL 释出 ：再动 !M! 。 NL 虚无 。",
+    "UPGRADE_DESCRIPTION": " 全力 ：抽 !M2! 张牌 。 NL 释出 ： 再动 !M! 。"
   },
   "gkmasMod:CatchingDragonflies": {
     "NAME": "捕捉蜻蜓",
-    "DESCRIPTION": " 释出 ：所有手牌获得 伤害追加 !M! 。"
+    "DESCRIPTION": " 全力 ：获得 !B! 点 格挡 。 NL 释出 ：所有手牌获得 伤害追加 !M! 。"
   },
   "gkmasMod:EverythingIsReady": {
     "NAME": "一切都准备好了",
-    "DESCRIPTION": "抽 !M! 张牌。 NL 选择1张手牌将其 暂存 。"
+    "DESCRIPTION": "抽 !M! 张牌。 NL 暂存 1张手牌。"
   },
   "gkmasMod:ProducingIsChallenging": {
     "NAME": "当制作人真不容易",
-    "DESCRIPTION": "选择2张手牌，交换它们的 成长 效果。 NL 除外 。"
+    "DESCRIPTION": "选择2张手牌，将第1张牌的 成长 效果 转移至 第2张牌，第1张牌获得 不能被打出 。 NL 消耗 。"
   },
   "gkmasMod:MayRain": {
     "NAME": "五月雨",
-    "DESCRIPTION": "回合结束时，保留 !M! %的 热意 。",
-    "UPGRADE_DESCRIPTION": "进入 温存 。 NL 回合结束时，保留 !M! %的 热意 。"
+    "DESCRIPTION": "回合结束时，保留 !M! %的 热意 。 NL (不可叠加)",
+    "UPGRADE_DESCRIPTION": "进入 温存 。 NL 回合结束时，保留 !M! %的 热意 。 NL (不可叠加)"
   },
   "gkmasMod:ThunderWillStop": {
     "NAME": "雷鸣将歇",
-    "DESCRIPTION": "回合结束时，获得 !M! 点 全力值 。"
+    "DESCRIPTION": "回合结束时和转化 姿态 时，获得 !M! 点 全力值 。"
   },
   "gkmasMod:BeyondTheSky": {
     "NAME": "天之彼方",
@@ -1206,12 +1208,12 @@
   },
   "gkmasMod:LikeStars": {
     "NAME": "如繁星一般",
-    "DESCRIPTION": "每当你 暂存 卡牌时，使该牌获得 伤害追加 !M! 。"
+    "DESCRIPTION": "每当你 暂存 卡牌时，使 暂存 区所有卡牌获得 伤害追加 !M! 。"
   },
   "gkmasMod:StarPicking": {
     "NAME": "摘星",
-    "DESCRIPTION": "选择进入 温存 或 强气 。",
-    "UPGRADE_DESCRIPTION": "选择进入 温存 或 强气 。 NL 保留 。"
+    "DESCRIPTION": "选择进入 强气 或 温存 。",
+    "UPGRADE_DESCRIPTION": "选择进入 强气 或 温存 。 NL 保留 。"
   },
   "gkmasMod:StarPickingConcentration": {
     "NAME": "摘星：强气",
@@ -1239,6 +1241,164 @@
   },
   "gkmasMod:HappyChristmas": {
     "NAME": "圣诞快乐♪",
-    "DESCRIPTION": "获得 !M! 好印象 。 NL 每次出牌时，获得 !M2! 点 敏捷 。"
+    "DESCRIPTION": "获得 !M! 层 好印象 。 NL 每次出牌时，获得 !M2! 点 敏捷 。"
+  },
+  "gkmasMod:Unpredictable": {
+    "NAME": "阴晴不定",
+    "DESCRIPTION": "每当你进入 温存 时，使手牌和弃牌堆中的所有卡获得 格挡追加 !M! 。 NL 每当你进入 强气 时，使手牌和弃牌堆中的所有卡获得 伤害追加 !M! 。"
+  },
+  "gkmasMod:LikeUsual": {
+    "NAME": "像往常一样",
+    "DESCRIPTION": "每当你退出 温存2段 时，获得 [E] 。"
+  },
+  "gkmasMod:EyesOfTheScenery": {
+    "NAME": "你眼中的景色",
+    "DESCRIPTION": " 全力值 层数增加 !M! %。 NL 须臾 !M2! 。"
+  },
+  "gkmasMod:WarmMemories": {
+    "NAME": "温暖的回忆",
+    "DESCRIPTION": "拥有 姿态 时，才可使用。 NL 抽 !M! 张牌。 NL 暂存 !M2! 张手牌。"
+  },
+  "gkmasMod:AllMembersGather": {
+    "NAME": "全员集结",
+    "DESCRIPTION": "选择一张手牌，使其获得 基础伤害追加 !M! 或 基础格挡追加 !M! 。 NL 消耗 。",
+    "UPGRADE_DESCRIPTION": "选择一张手牌，使其获得 基础伤害追加 !M! 或 基础格挡追加 !M! 。 NL 须臾 !M2! 。"
+  },
+  "gkmasMod:AllMembersGatherSense": {
+    "NAME": "全员集结·伤害",
+    "DESCRIPTION": "选择一张手牌，使其获得 基础伤害追加 !M! 。"
+  },
+  "gkmasMod:AllMembersGatherLogic": {
+    "NAME": "全员集结·格挡",
+    "DESCRIPTION": "选择一张手牌，使其获得 基础格挡追加 !M! 。"
+  },
+  "gkmasMod:WithLove": {
+    "NAME": "带着爱意",
+    "DESCRIPTION": "获得 !B! 点 格挡 。 NL ( 敏捷 发挥 !M! %的效果) NL 造成 敏捷 层数 !M2! %的伤害。 NL 消耗 。",
+    "FLAVOR": "当前可造成%d点伤害"
+  },
+  "gkmasMod:StartingLine": {
+    "NAME": "执念",
+    "DESCRIPTION": "失去 !HP! 点体力。 NL 进入 温存 。 NL 获得 !M! 点 力量 、 !M! 点 敏捷 、 !M! 层 好调 、 !M2! 层 好印象 和 !M3! 点 全力值 。 NL 固有 。 消耗 。",
+    "UPGRADE_DESCRIPTION": "失去 !HP! 点体力。 NL 进入 温存 。 NL 获得 !M! 点 力量 、 !M! 点 敏捷 、 !M! 层 好调 、 !M2! 层 好印象 和 !M3! 点 全力值 。 NL 固有 。 再动 。 消耗 。"
+  },
+  "gkmasMod:YawnAttack": {
+    "NAME": "哈欠",
+    "DESCRIPTION": "造成 !D! 点伤害。 NL 给予目标 !M! 层 困意 。"
+  },
+  "gkmasMod:SleepWall": {
+    "NAME": "昏睡之墙",
+    "DESCRIPTION": "获得 !B! 点 格挡 。 NL 成长 ：获得 困意 时，获得 格挡追加 !M! 。"
+  },
+  "gkmasMod:SleepBarrier": {
+    "NAME": "昏睡屏障",
+    "DESCRIPTION": "获得 !B! 点 格挡 。 NL 本回合每次受到攻击时，给予攻击者 !M! 层 困意 。"
+  },
+  "gkmasMod:SleepyForever": {
+    "NAME": "永眠",
+    "DESCRIPTION": "使目标的 困意 层数 增加 !M! %。 NL 消耗 。",
+    "UPGRADE_DESCRIPTION": "使目标的 困意 层数 增加 !M! %。 NL 须臾 !M2! 。"
+  },
+  "gkmasMod:SleepyTogether": {
+    "NAME": "一起睡觉吧",
+    "DESCRIPTION": "使所有人获得 !M! 层 困意 。 NL 消耗 。"
+  },
+  "gkmasMod:SunshineIsJustRight": {
+    "NAME": "阳光正好",
+    "DESCRIPTION": "获得 !B! 点 格挡 。 NL 进入 睡眠 。 NL 消耗 。"
+  },
+  "gkmasMod:SleepyKiller": {
+    "NAME": "吾好梦中杀人",
+    "DESCRIPTION": "造成 !D! 点伤害。 NL 处于 睡眠 时，伤害翻倍。 NL 梦游 。"
+  },
+  "gkmasMod:DreamFood": {
+    "NAME": "梦幻料理",
+    "DESCRIPTION": "睡眠 ：获得 !M! 个随机料理。 NL 保留 。 梦游 。"
+  },
+  "gkmasMod:SleepyEnchantment": {
+    "NAME": "眠气附魔",
+    "DESCRIPTION": "每次使用攻击牌时，使目标获得 !M! 点 困意 。"
+  },
+  "gkmasMod:SleepyInfection": {
+    "NAME": "瞌睡传染",
+    "DESCRIPTION": "使目标获得等于自身 困意 层数的 困意 。",
+    "UPGRADE_DESCRIPTION": "使目标获得等于自身 困意 层数+ !M! 的 困意 。"
+  },
+  "gkmasMod:SleepyReflex": {
+    "NAME": "条件反射",
+    "DESCRIPTION": "获得 !B! 点 格挡 。 NL 处于 睡眠 时，额外获得 !B2! 点 格挡 。 NL 梦游 。"
+  },
+  "gkmasMod:ShockWakeUp": {
+    "NAME": "惊醒",
+    "DESCRIPTION": "失去 !HP! 点体力。 NL 进入 清醒 。 NL 梦游 。 消耗 。",
+    "UPGRADE_DESCRIPTION": "失去 !HP! 点体力。 NL 进入 清醒 。 NL 再动 。 梦游 。 消耗 。"
+  },
+  "gkmasMod:AttackRush": {
+    "NAME": "趁其不备",
+    "DESCRIPTION": "造成 !D! 点伤害。 NL 目标拥有 困意 时，额外造成 !D2! 点伤害。"
+  },
+  "gkmasMod:PillowBlock": {
+    "NAME": "枕头防护",
+    "DESCRIPTION": "失去所有 困意 。 NL 每失去1层，获得 !B! 点 格挡 。"
+  },
+  "gkmasMod:LittleTired": {
+    "NAME": "有些累了",
+    "DESCRIPTION": "进入 困倦 。 NL 抽 !M! 张牌。"
+  },
+  "gkmasMod:CookingMaster": {
+    "NAME": "厨艺大师",
+    "DESCRIPTION": "料理效果翻倍。 NL (不可叠加)"
+  },
+  "gkmasMod:GrowTogether": {
+    "NAME": "共同进步",
+    "DESCRIPTION": "队友获得 力量 和 敏捷 时，获得相等层数的 力量 和 敏捷 。"
+  },
+  "gkmasMod:TrainingPlan": {
+    "NAME": "培养计划",
+    "DESCRIPTION": "每回合开始时，所有成员获得 !M! 点 力量 。"
+  },
+  "gkmasMod:GiveMeStrength": {
+    "NAME": "将力量借给我",
+    "DESCRIPTION": "本回合内，将所有成员的 力量 集中于一人。"
+  },
+  "gkmasMod:FoodCultist": {
+    "NAME": "咔咔鸡丁",
+    "DESCRIPTION": "获得 !M! 点 肥胖值 。 NL 获得 !M2! 层 仪式 。"
+  },
+  "gkmasMod:FoodAcidSlime": {
+    "NAME": "史莱姆拉面",
+    "DESCRIPTION": "获得 !M! 层 虚弱 。 NL 获得 !M2! 层 脆弱 。"
+  },
+  "gkmasMod:FoodGremlin": {
+    "NAME": "地精串烧",
+    "DESCRIPTION": "获得 !M! 点 肥胖值 。 NL 下回合造成 !D! 点伤害。"
+  },
+  "gkmasMod:FoodJawWorm": {
+    "NAME": "大颚虫天妇罗",
+    "DESCRIPTION": "获得 !M! 点 肥胖值 。 NL 获得 !B! 点 格挡 。 NL 获得 !M2! 点 力量 。"
+  },
+  "gkmasMod:FoodFungiBeast": {
+    "NAME": "真菌兽炖肉",
+    "DESCRIPTION": "失去 !M! 点 肥胖值 。 NL 获得 !M2! 层 易伤 。"
+  },
+  "gkmasMod:FoodLooter": {
+    "NAME": "金钱蛋",
+    "DESCRIPTION": "获得 !M! 点 肥胖值 。 NL 获得 !M2! 点 金币 。"
+  },
+  "gkmasMod:FoodGremlinNob": {
+    "NAME": "大地精骨头汤",
+    "DESCRIPTION": "获得 !M! 点 肥胖值 。 NL 获得 !M2! 层 激怒 。"
+  },
+  "gkmasMod:FoodLagavulin": {
+    "NAME": "乐加威士忌",
+    "DESCRIPTION": "失去 !M! 点 肥胖值 。 NL 失去 !M2! 层 力量 和 敏捷 。"
+  },
+  "gkmasMod:TimeLoop": {
+    "NAME": "时间循环",
+    "DESCRIPTION": "本场战斗中，每触发 !M! 次 再动 效果，获得 1 个 *额外回合 。 NL (不可叠加)"
+  },
+  "gkmasMod:BeyondTheCrossing": {
+    "NAME": "道口的前方",
+    "DESCRIPTION": "处于 全力 时，才可使用。 NL 造成 !D! 点伤害 !M! 次。 NL 回合结束时，进入 温存2段 。 NL 消耗 。"
   }
 }

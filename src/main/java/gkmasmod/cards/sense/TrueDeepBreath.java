@@ -7,11 +7,15 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.StrengthPower;
+import gkmasmod.cardCustomEffect.*;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.powers.GoodTune;
+import gkmasmod.utils.CustomHelper;
 import gkmasmod.utils.NameHelper;
+
+import java.util.ArrayList;
 
 public class TrueDeepBreath extends GkmasCard {
     private static final String CLASSNAME = TrueDeepBreath.class.getSimpleName();
@@ -42,6 +46,11 @@ public class TrueDeepBreath extends GkmasCard {
         this.exhaust = true;
         this.tags.add(GkmasCardTag.GOOD_TUNE_TAG);
         this.tags.add(GkmasCardTag.FOCUS_TAG);
+        this.customLimit = 3;
+        this.customEffectList = new ArrayList<>();
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(BlockCustom.growID,new int[]{5},new int[]{70},CustomHelper.CustomEffectType.BLOCK_ADD));
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(SecondMagicCustom.growID,new int[]{1},new int[]{50},CustomHelper.CustomEffectType.STRENGTH_ADD));
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(CostCustom.growID,new int[]{1},new int[]{70},CustomHelper.CustomEffectType.ENERGY_COST_REDUCE));
     }
 
 

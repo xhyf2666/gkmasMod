@@ -28,7 +28,7 @@ public class ENTangledFeelings extends GkmasBossCard {
 
     private static final int COST = 3;
     private static final int UPGRADE_COST = 2;
-    private static final int BASE_MAGIC = 8;
+    private static final int BASE_MAGIC = 11;
 
 
     private static final CardType TYPE = CardType.SKILL;

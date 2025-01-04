@@ -8,9 +8,15 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import gkmasmod.cardCustomEffect.CostCustom;
+import gkmasmod.cardCustomEffect.DamageCustom;
+import gkmasmod.cardCustomEffect.SlowCustom;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.characters.PlayerColorEnum;
+import gkmasmod.utils.CustomHelper;
 import gkmasmod.utils.NameHelper;
+
+import java.util.ArrayList;
 
 public class AiJiao extends GkmasCard {
     private static final String CLASSNAME = AiJiao.class.getSimpleName();
@@ -34,8 +40,12 @@ public class AiJiao extends GkmasCard {
     public AiJiao() {
         super(ID, NAME, IMG_PATH, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.baseDamage = ATTACK_DMG;
+        this.customLimit = 3;
+        this.customEffectList = new ArrayList<>();
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(DamageCustom.growID,new int[]{2,2},new int[]{50,50},CustomHelper.CustomEffectType.DAMAGE_ADD));
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(CostCustom.growID,new int[]{1},new int[]{100},CustomHelper.CustomEffectType.ENERGY_COST_REDUCE));
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(SlowCustom.growID,new int[]{1},new int[]{100},CustomHelper.CustomEffectType.SLOW_ADD));
     }
-
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {

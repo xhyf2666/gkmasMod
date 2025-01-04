@@ -11,7 +11,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
-import gkmasmod.monster.LittleGundam;
+import gkmasmod.monster.friend.LittleGundam;
 import gkmasmod.powers.SteelSoul;
 import gkmasmod.utils.IdolData;
 import gkmasmod.utils.NameHelper;

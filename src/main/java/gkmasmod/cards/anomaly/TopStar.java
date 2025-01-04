@@ -31,8 +31,8 @@ public class TopStar extends GkmasCard {
 
     private static final int COST = 2;
 
-    private static final int BASE_DAMAGE = 2;
-    private static final int UPGRADE_DMG_PLUS = 1;
+    private static final int BASE_DAMAGE = 3;
+    private static final int UPGRADE_DMG_PLUS = 2;
     private static final int BASE_MAGIC = 2;
     private static final int BASE_MAGIC2 = 2;
     private static final int UPGRADE_MAGIC2_PLUS = 1;
@@ -66,8 +66,8 @@ public class TopStar extends GkmasCard {
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
         addToBot(new ChangeStanceAction(ConcentrationStance.STANCE_ID));
-        addToBot(new ModifyDamageAction(m, new DamageInfo(p, this.baseDamage, DamageInfo.DamageType.NORMAL), AbstractGameAction.AttackEffect.SLASH_VERTICAL,this));
-        addToBot(new ModifyDamageAction(m, new DamageInfo(p, this.baseDamage, DamageInfo.DamageType.NORMAL), AbstractGameAction.AttackEffect.SLASH_VERTICAL,this));
+        addToBot(new ModifyDamageAction(m, new DamageInfo(p, this.baseDamage, DamageInfo.DamageType.NORMAL), AbstractGameAction.AttackEffect.SLASH_VERTICAL,this,false));
+        addToBot(new ModifyDamageAction(m, new DamageInfo(p, this.baseDamage, DamageInfo.DamageType.NORMAL), AbstractGameAction.AttackEffect.SLASH_VERTICAL,this,false));
         SoundHelper.playSound("gkmasModResource/audio/voice/skillcard/cidol_jsna_3_000_produce_skillcard_01.ogg");
     }
 

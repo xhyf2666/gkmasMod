@@ -1,5 +1,6 @@
 package gkmasmod.cards.free;
 
+import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.watcher.ChooseOneAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -8,7 +9,9 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import gkmasmod.actions.GainTrainRoundPowerAction;
+import gkmasmod.cardCustomEffect.MoreActionCustom;
 import gkmasmod.cards.GkmasCard;
+import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.powers.CallMeAnyTimePower;
 import gkmasmod.utils.IdolData;
@@ -42,6 +45,8 @@ public class LoveMyself extends GkmasCard {
         this.cardsToPreview = new FightSkills();
         this.cardPreviewList = new ArrayList<>(Arrays.asList(new FightSkills(), new DefensiveSkills()));
         updateBackgroundImg();
+        this.tags.add(GkmasCardTag.MORE_ACTION_TAG);
+        CardModifierManager.addModifier(this,new MoreActionCustom(1));
     }
 
 
@@ -51,7 +56,7 @@ public class LoveMyself extends GkmasCard {
         stanceChoices.add(new LoveMyselfCool());
         stanceChoices.add(new LoveMyselfCute());
         addToBot(new ChooseOneAction(stanceChoices));
-        addToBot(new GainTrainRoundPowerAction(p,1));
+//        addToBot(new GainTrainRoundPowerAction(p,1));
     }
 
     @Override

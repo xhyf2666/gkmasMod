@@ -12,9 +12,7 @@ import com.megacrit.cardcrawl.stances.AbstractStance;
 import gkmasmod.modcore.GkmasMod;
 import gkmasmod.relics.PledgePetal;
 import gkmasmod.relics.PocketBook;
-import gkmasmod.stances.ConcentrationStance;
-import gkmasmod.stances.FullPowerStance;
-import gkmasmod.stances.PreservationStance;
+import gkmasmod.stances.*;
 import gkmasmod.utils.ImageHelper;
 
 
@@ -34,6 +32,12 @@ public class AbstractStancePatch
                 return SpireReturn.Return(new PreservationStance(1));
             else if(name.equals(ConcentrationStance.STANCE_ID2))
                 return SpireReturn.Return(new ConcentrationStance(1));
+            else if(name.equals(SleepyStance.STANCE_ID))
+                return SpireReturn.Return(new SleepyStance());
+            else if(name.equals(SleepStance.STANCE_ID))
+                return SpireReturn.Return(new SleepStance());
+            else if(name.equals(WakeStance.STANCE_ID))
+                return SpireReturn.Return(new WakeStance());
             return SpireReturn.Continue();
         }
     }

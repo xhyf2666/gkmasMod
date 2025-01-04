@@ -1,6 +1,8 @@
 package gkmasmod.patches;
 
 import basemod.BaseMod;
+import basemod.abstracts.AbstractCardModifier;
+import basemod.helpers.CardModifierManager;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -12,16 +14,23 @@ import com.megacrit.cardcrawl.cards.AbstractCard.CardColor;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.cards.curses.Pride;
 import com.megacrit.cardcrawl.cards.status.Slimed;
+import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
+import gkmasmod.cardCustomEffect.SecondMagicCustom;
+import gkmasmod.cardCustomEffect.ThirdMagicCustom;
+import gkmasmod.cards.GkmasCard;
+import gkmasmod.characters.IdolCharacter;
 import gkmasmod.downfall.cards.GkmasBossCard;
 import gkmasmod.modcore.GkmasMod;
 import gkmasmod.relics.PledgePetal;
 import gkmasmod.relics.PocketBook;
+import gkmasmod.screen.SkinSelectScreen;
+import gkmasmod.stances.SleepStance;
 import gkmasmod.utils.ImageHelper;
 import javassist.CannotCompileException;
 import javassist.CtBehavior;
@@ -32,14 +41,53 @@ import org.apache.logging.log4j.Logger;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.ArrayList;
 
 
 public class AbstractCardPatch
 {
 
+    @SpirePatch(
+            clz = AbstractCard.class,
+            method = "applyPowers"
+    )
+    public static class CardModifierOnApplyPowers {
+        //modifyBaseSecondMagic
+        public static void Prefix(AbstractCard __instance) {
+            if(__instance instanceof GkmasCard){
+                GkmasCard card = (GkmasCard)__instance;
+                for(AbstractCardModifier mod : CardModifierManager.modifiers(card)) {
+                    if(mod instanceof AbstractCardModifier && mod instanceof SecondMagicCustom) {
+                        card.secondMagicNumber = card.baseSecondMagicNumber+(((SecondMagicCustom)mod).amount);
+                    }
+                    if(mod instanceof AbstractCardModifier && mod instanceof ThirdMagicCustom) {
+                        card.secondMagicNumber = card.baseThirdMagicNumber+(((ThirdMagicCustom)mod).amount);
+                    }
+                }
+
+            }
+        }
+    }
+
+    @SpirePatch(clz = AbstractCard.class,method = "hasEnoughEnergy")
+    public static class PrePatchAbstractCard_hasEnoughEnergy {
+        @SpirePrefixPatch
+        public static SpireReturn<Boolean> Prefix(AbstractCard __instance) {
+            if(AbstractDungeon.player.stance.ID.equals(SleepStance.STANCE_ID)&&!isDreamField.isDream.get(__instance)){
+                return SpireReturn.Return(false);
+            }
+            return SpireReturn.Continue();
+        }
+    }
+
     @SpirePatch(clz = AbstractCard.class,method = SpirePatch.CLASS)
     public static class ThreeSizeTagField {
         public static SpireField<Integer> threeSizeTag = new SpireField<>(() -> -1);
+    }
+
+    @SpirePatch(clz = AbstractCard.class,method = SpirePatch.CLASS)
+    public static class isDreamField {
+        public static SpireField<Boolean> isDream = new SpireField<>(() -> false);
     }
 
     @SpirePatch(clz = AbstractCard.class,method = "upgradeName")
@@ -47,7 +95,6 @@ public class AbstractCardPatch
         public static void Postfix(AbstractCard __instance) {
             if(AbstractDungeon.currMapNode!=null&&AbstractDungeon.getCurrRoom()!=null&&((AbstractDungeon.getCurrRoom()).phase != AbstractRoom.RoomPhase.COMBAT)){
                 if(AbstractDungeon.player.masterDeck.contains(__instance)){
-                    System.out.println("upgradeName "+AbstractDungeon.screen.name()+" "+__instance.name);
                     if(AbstractDungeon.player.hasRelic(PledgePetal.ID)){
                         ((PledgePetal)AbstractDungeon.player.getRelic(PledgePetal.ID)).onUpgradeCard();
                     }

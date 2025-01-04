@@ -1,5 +1,6 @@
 package gkmasmod.cards.logic;
 
+import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.DrawCardAction;
 import com.megacrit.cardcrawl.actions.common.GainEnergyAction;
@@ -10,6 +11,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import gkmasmod.actions.GainTrainRoundPowerAction;
+import gkmasmod.cardCustomEffect.MoreActionCustom;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
@@ -50,7 +52,7 @@ public class GoldfishScoopingChallenge extends GkmasCard {
         this.tags.add(GkmasCardTag.MORE_ACTION_TAG);
         this.backGroundColor = IdolData.hski;
         updateBackgroundImg();
-
+        CardModifierManager.addModifier(this,new MoreActionCustom(1));
     }
 
 
@@ -59,7 +61,7 @@ public class GoldfishScoopingChallenge extends GkmasCard {
         addToBot(new LoseHPAction(p, p, this.HPMagicNumber));
         addToBot(new ApplyPowerAction(p, p, new GoodImpression(p, this.magicNumber), this.magicNumber));
         addToBot(new DrawCardAction(1));
-        addToBot(new GainTrainRoundPowerAction(p,1));
+//        addToBot(new GainTrainRoundPowerAction(p,1));
         SoundHelper.playSound("gkmasModResource/audio/voice/skillcard/cidol_hski_3_004_produce_skillcard_01.ogg");
 
     }

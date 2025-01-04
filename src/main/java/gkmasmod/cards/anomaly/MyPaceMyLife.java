@@ -11,6 +11,7 @@ import gkmasmod.actions.GainBlockWithPowerAction;
 import gkmasmod.actions.GainTrainRoundPowerAction;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.characters.PlayerColorEnum;
+import gkmasmod.stances.FullPowerStance;
 import gkmasmod.utils.NameHelper;
 
 public class MyPaceMyLife extends GkmasCard {
@@ -25,6 +26,7 @@ public class MyPaceMyLife extends GkmasCard {
     private static final int COST = 0;
 
     private static final int BASE_MAGIC = 2;
+    private static final int BASE_MAGIC2 = 2;
 
     private static final CardType TYPE = CardType.SKILL;
     private static final CardColor COLOR = PlayerColorEnum.gkmasModColorAnomaly;
@@ -36,12 +38,16 @@ public class MyPaceMyLife extends GkmasCard {
         this.baseMagicNumber = BASE_MAGIC;
         this.magicNumber = this.baseMagicNumber;
         this.isEthereal = true;
+        this.baseSecondMagicNumber = BASE_MAGIC2;
+        this.secondMagicNumber = this.baseSecondMagicNumber;
     }
 
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-
+        if(p.stance.ID.equals(FullPowerStance.STANCE_ID)){
+            addToBot(new DrawCardAction(this.secondMagicNumber));
+        }
     }
 
     @Override

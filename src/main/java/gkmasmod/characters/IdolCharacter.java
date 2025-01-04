@@ -114,81 +114,6 @@ public class IdolCharacter extends CustomPlayer {
         );
     }
 
-//    public void renderHealth(SpriteBatch sb) {
-//        super.renderHealth(sb);
-//        if (this.IsRenderFinalCircle) {
-//            renderFinalCircle(sb);
-//        }
-//    }
-
-//    public void generateCircle(int roundNum){
-//        if(roundNum < 1)
-//            return;
-//        this.finalCircleRound = new ArrayList<>();
-//        if(roundNum > 0)
-//            this.finalCircleRound.add(this.idolData.getFirstThreeType());
-//        if(roundNum > 1)
-//            this.finalCircleRound.add(this.idolData.getSecondThreeType());
-//        if(roundNum > 2)
-//            this.finalCircleRound.add(this.idolData.getThirdThreeType());
-//        Random spRng = new Random(Settings.seed, AbstractDungeon.floorNum*20);
-//        for(int i = 0; i < roundNum - 3; i++){
-//            this.finalCircleRound.add(spRng.random(0,2));
-//        }
-//        this.IsRenderFinalCircle = true;
-//        int currentThreeType = this.finalCircleRound.get(this.finalCircleRound.size()-1);
-//        int baseDamageRate = this.idolData.getBaseDamageRate(currentThreeType);
-//
-//        this.finalDamageRate = calculateDamageRate(baseDamageRate, this.threeSize[currentThreeType],this.idolData.getThreeSizeRequire(currentThreeType));
-//
-//        System.out.println(this.finalCircleRound);
-//    }
-
-//    public void generateHajimeCircle(int roundNum){
-//        if(roundNum < 1)
-//            return;
-//        this.finalCircleRound = new ArrayList<>();
-//        if(roundNum > 0)
-//            this.finalCircleRound.add(this.idolData.getFirstThreeType());
-//        Random spRng = new Random(Settings.seed, AbstractDungeon.floorNum*20);
-//        for(int i = 0; i < roundNum - 2; i++){
-//            this.finalCircleRound.add(spRng.random(0,2));
-//        }
-//        this.IsRenderFinalCircle = true;
-//        int currentThreeType = this.finalCircleRound.get(this.finalCircleRound.size()-1);
-//        int baseDamageRate = this.idolData.getBaseDamageRate(currentThreeType);
-//
-//        this.finalDamageRate = calculateDamageRate(baseDamageRate, this.threeSize[currentThreeType],this.idolData.getThreeSizeRequire(currentThreeType));
-//
-//        System.out.println(this.finalCircleRound);
-//    }
-
-//    public void renderFinalCircle(SpriteBatch sb) {
-//        sb.setColor(Color.WHITE);
-//        sb.draw(this.finalCircleBg, Settings.WIDTH / 2.0F - 500.0F*Settings.xScale, Settings.HEIGHT / 2.0F + 000.0F*Settings.scale, 256.0F, 256.0F, 512, 512, Settings.scale*0.5F, Settings.scale*0.5F, 0.0F, 0, 0, 512, 512, false, false);
-//        for(int i = 0; i<this.finalCircleRound.size();i++){
-//            sb.draw(arcs[this.finalCircleRound.get(i)], Settings.WIDTH / 2.0F - 500.0F*Settings.xScale, Settings.HEIGHT / 2.0F + 000.0F*Settings.scale, 256.0F, 256.0F, 512, 512, Settings.scale*0.5F, Settings.scale*0.5F, 330.0F-30.F*i, 0, 0, 512, 512, false, false);
-//        }
-//        FontHelper.renderSmartText(sb, FontHelper.bannerNameFont, String.valueOf(this.finalCircleRound.size()), Settings.WIDTH / 2.0F - 275.0F*Settings.xScale, Settings.HEIGHT / 2.0F + 290.0F*Settings.scale, 10000.0F, 30.0F * Settings.scale, Settings.CREAM_COLOR,1.5f);
-//        FontHelper.renderSmartText(sb, FontHelper.tipHeaderFont, String.format("%.0f%%",this.finalDamageRate*100), Settings.WIDTH / 2.0F - 300.0F*Settings.xScale, Settings.HEIGHT / 2.0F + 325.0F*Settings.scale, 10000.0F, 30.0F * Settings.scale, Settings.CREAM_COLOR);
-//
-//    }
-
-//    private double calculateDamageRate(int baseRate, int v,int t){
-//        double rate = 1.0f*v/t;
-//        if(rate > 1.0f)
-//            return 1.0f*baseRate*(1+Math.log(rate)/3)+1;
-//        return (Math.pow(rate,2)+Math.exp(rate-1)+(rate-1)/Math.E)/2*baseRate+1;
-//    }
-//
-//    public double[] calculateDamageRates(){
-//        double[] rates = new double[3];
-//        for(int i = 0; i < 3; i++){
-//            rates[i] = calculateDamageRate(this.idolData.getBaseDamageRate(i),this.threeSize[i],this.idolData.getThreeSizeRequire(i));
-//        }
-//        return rates;
-//    }
-
 
     public void refreshSkin() {
         if(this.idolData == null)
@@ -215,6 +140,7 @@ public class IdolCharacter extends CustomPlayer {
 
     public ArrayList<AbstractCard> getCardPool(ArrayList<AbstractCard> tmpPool) {
         addColorToCardPool(PlayerColorEnum.gkmasModColor, tmpPool);
+        addColorToCardPool(PlayerColorEnum.gkmasModColorMoon, tmpPool);
         CommonEnum.IdolType type = IdolData.getIdol(SkinSelectScreen.Inst.idolIndex).getType(SkinSelectScreen.Inst.skinIndex);
         if (type == CommonEnum.IdolType.LOGIC) {
             addColorToCardPool(PlayerColorEnum.gkmasModColorLogic, tmpPool);
