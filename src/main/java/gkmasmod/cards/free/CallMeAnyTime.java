@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.helpers.CardHelper;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import gkmasmod.cards.GkmasCard;
+import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.powers.AngelAndDemonPlusPower;
 import gkmasmod.powers.AngelAndDemonPower;
@@ -54,7 +55,7 @@ public class CallMeAnyTime extends GkmasCard {
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        addToBot(new ApplyPowerAction(p,p,new CallMeAnyTimePower(p)));
+        addToBot(new ApplyPowerAction(p,p,new CallMeAnyTimePower(p,this.magicNumber),this.magicNumber));
     }
 
     @Override

@@ -10,8 +10,6 @@ import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
-import com.megacrit.cardcrawl.powers.MalleablePower;
-import gkmasmod.characters.IdolCharacter;
 import gkmasmod.patches.AbstractPlayerPatch;
 import gkmasmod.utils.NameHelper;
 import gkmasmod.utils.ThreeSizeHelper;

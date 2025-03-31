@@ -7,13 +7,20 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.StrengthPower;
+import gkmasmod.cardCustomEffect.DrawCardCustom;
+import gkmasmod.cardCustomEffect.MagicCustom;
+import gkmasmod.cardCustomEffect.MoreActionCustom;
+import gkmasmod.cardCustomEffect.SecondMagicCustom;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.powers.InnocencePower;
 import gkmasmod.screen.SkinSelectScreen;
+import gkmasmod.utils.CustomHelper;
 import gkmasmod.utils.ImageHelper;
 import gkmasmod.utils.NameHelper;
+
+import java.util.ArrayList;
 
 public class Innocence extends GkmasCard {
     private static final String CLASSNAME = Innocence.class.getSimpleName();
@@ -48,13 +55,17 @@ public class Innocence extends GkmasCard {
         this.baseThirdMagicNumber = BASE_MAGIC3;
         this.thirdMagicNumber = this.baseThirdMagicNumber;
         this.tags.add(GkmasCardTag.FOCUS_TAG);
+        this.customLimit = 1;
+        this.customEffectList = new ArrayList<>();
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(MagicCustom.growID,new int[]{1},new int[]{60},CustomHelper.CustomEffectType.STRENGTH_ADD));
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(DrawCardCustom.growID, new int[]{1}, new int[]{70}, CustomHelper.CustomEffectType.DRAW_CARD_ADD));
     }
 
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        addToBot( new ApplyPowerAction( p,  p,  new StrengthPower( p, this.magicNumber), this.magicNumber));
-        addToBot( new ApplyPowerAction( p,  p,  new InnocencePower( p, 1), 1));
+        addToBot( new ApplyPowerAction(p,  p,  new StrengthPower( p, this.magicNumber), this.magicNumber));
+        addToBot( new ApplyPowerAction(p,  p,  new InnocencePower( p, 1), 1));
     }
 
     @Override

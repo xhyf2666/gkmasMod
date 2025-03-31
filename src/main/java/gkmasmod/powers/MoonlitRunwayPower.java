@@ -67,7 +67,7 @@ public class MoonlitRunwayPower extends AbstractPower {
             return;
         }
         if(card.tags.contains(GkmasCardTag.GOOD_IMPRESSION_TAG)) {
-            int count = PlayerHelper.getPowerAmount(AbstractDungeon.player, GoodImpression.POWER_ID);
+            int count = PlayerHelper.getPowerAmount(this.owner, GoodImpression.POWER_ID);
             int damage_ = (int) (1.0F*count * rate);
             for(int i = 0; i < this.amount; i++) {
                 addToBot(new ForShiningYouDamageAction(new DamageInfo(this.owner, damage_, DamageInfo.DamageType.THORNS), AbstractGameAction.AttackEffect.POISON, new ForShiningYou()));

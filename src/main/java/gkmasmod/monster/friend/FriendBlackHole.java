@@ -44,12 +44,4 @@ public class FriendBlackHole extends CustomMonster {
         setMove((byte) 0, Intent.NONE);
     }
 
-    @Override
-    public void damage(DamageInfo info) {
-        return;
-//        if(info.owner.isPlayer){
-//            return;
-//        }
-//        super.damage(info);
-    }
 }

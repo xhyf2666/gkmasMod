@@ -3,6 +3,7 @@ package gkmasmod.monster.friend;
 import basemod.abstracts.AbstractCardModifier;
 import basemod.abstracts.CustomMonster;
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
+import com.megacrit.cardcrawl.vfx.SpeechBubble;
 import gkmasmod.downfall.charbosses.bosses.AbstractCharBoss;
 import com.badlogic.gdx.graphics.Texture;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
@@ -19,6 +20,8 @@ import com.megacrit.cardcrawl.powers.BarricadePower;
 import gkmasmod.downfall.bosses.AbstractIdolBoss;
 import gkmasmod.patches.AbstractMonsterPatch;
 import gkmasmod.powers.SteelSoul;
+
+import java.util.Random;
 
 public class LittleGundam extends CustomMonster {
 
@@ -38,7 +41,6 @@ public class LittleGundam extends CustomMonster {
 
     public LittleGundam(float x, float y) {
         this(x, y,AbstractDungeon.player);
-
     }
 
     public LittleGundam(float x, float y, AbstractCreature owner) {
@@ -51,7 +53,8 @@ public class LittleGundam extends CustomMonster {
             AbstractMonsterPatch.friendlyField.friendly.set(this,true);
         }
         else{
-            this.drawX -= (float) Settings.WIDTH *0.2F;
+            AbstractMonsterPatch.friendlyField.friendly.set(this,false);
+            this.drawX -= (float) Settings.WIDTH *0.3F;
             int rate = 30;
             if(AbstractCharBoss.boss!=null&&AbstractCharBoss.boss instanceof AbstractIdolBoss){
                 AbstractIdolBoss idol = (AbstractIdolBoss) AbstractCharBoss.boss;
@@ -63,7 +66,16 @@ public class LittleGundam extends CustomMonster {
             this.currentHealth = this.maxHealth;
         }
 //        this.drawY = y;
-        this.img = new Texture("gkmasModResource/img/monsters/other/LittleGundam.png");
+
+        Random random = new Random();
+        int index = random.nextInt(4);
+        if(index == 0){
+            this.img = new Texture("gkmasModResource/img/monsters/other/LittleGundam_shro.png");
+            AbstractDungeon.effectList.add(new SpeechBubble(this.drawX + this.dialogX - 50, this.hb.cY + this.dialogY + 50, 3.0F, "我其实，有21m哦。呼呼~", false));
+        }
+        else{
+            this.img = new Texture("gkmasModResource/img/monsters/other/LittleGundam.png");
+        }
     }
 
     @Override
@@ -83,7 +95,10 @@ public class LittleGundam extends CustomMonster {
 
     @Override
     public void damage(DamageInfo info) {
-        if(info.owner == this.owner){
+        if(info.owner!=null&&info.owner.isPlayer&&AbstractMonsterPatch.friendlyField.friendly.get(this)){
+            return;
+        }
+        if(AbstractMonsterPatch.friendlyField.friendly.get(this)&&info.owner==null){
             return;
         }
         super.damage(info);
@@ -93,12 +108,29 @@ public class LittleGundam extends CustomMonster {
     public void die() {
         super.die();
         if(this.owner.isPlayer){
-            if(AbstractDungeon.player.hasPower(SteelSoul.POWER_ID)){
+
+            int count = 0;
+            for (int i = 0; i < AbstractDungeon.getMonsters().monsters.size(); i++) {
+                AbstractCreature monster = AbstractDungeon.getMonsters().monsters.get(i);
+                if(monster instanceof LittleGundam && !monster.isDeadOrEscaped()){
+                    if(AbstractMonsterPatch.friendlyField.friendly.get(this))
+                        count++;
+                }
+            }
+            if(count<1&&AbstractDungeon.player.hasPower(SteelSoul.POWER_ID)){
                 addToBot(new RemoveSpecificPowerAction(AbstractDungeon.player,this,SteelSoul.POWER_ID));
             }
         }
         else if(!this.owner.isPlayer&&AbstractCharBoss.boss!=null&&AbstractCharBoss.boss instanceof AbstractIdolBoss){
-            if(AbstractCharBoss.boss.hasPower(SteelSoul.POWER_ID)){
+            int count = 0;
+            for (int i = 0; i < AbstractDungeon.getMonsters().monsters.size(); i++) {
+                AbstractCreature monster = AbstractDungeon.getMonsters().monsters.get(i);
+                if(monster instanceof LittleGundam && !monster.isDeadOrEscaped()){
+                    if(!AbstractMonsterPatch.friendlyField.friendly.get(this))
+                        count++;
+                }
+            }
+            if(count<1&&AbstractCharBoss.boss.hasPower(SteelSoul.POWER_ID)){
                 addToBot(new RemoveSpecificPowerAction(AbstractCharBoss.boss,this,SteelSoul.POWER_ID));
             }
         }

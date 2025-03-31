@@ -2,6 +2,7 @@ package gkmasmod.powers;
 
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.megacrit.cardcrawl.actions.common.GainEnergyAction;
+import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
@@ -9,6 +10,9 @@ import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.stances.AbstractStance;
 import gkmasmod.actions.GrowAction;
+import gkmasmod.downfall.charbosses.actions.common.EnemyGainEnergyAction;
+import gkmasmod.downfall.charbosses.bosses.AbstractCharBoss;
+import gkmasmod.downfall.charbosses.stances.ENPreservationStance;
 import gkmasmod.growEffect.BlockGrow;
 import gkmasmod.growEffect.DamageGrow;
 import gkmasmod.stances.ConcentrationStance;
@@ -52,10 +56,20 @@ public class LikeUsualPower extends AbstractPower {
 
     @Override
     public void onChangeStance(AbstractStance oldStance, AbstractStance newStance) {
-        if(oldStance.ID.equals(PreservationStance.STANCE_ID)){
-            PreservationStance preservationStance = (PreservationStance) oldStance;
-            if(preservationStance.stage==1){
-                addToBot(new GainEnergyAction(this.amount));
+        if(this.owner instanceof AbstractPlayer){
+            if(oldStance.ID.equals(PreservationStance.STANCE_ID)){
+                PreservationStance preservationStance = (PreservationStance) oldStance;
+                if(preservationStance.stage==1){
+                    addToBot(new GainEnergyAction(this.amount));
+                }
+            }
+        }
+        else if(this.owner instanceof AbstractCharBoss){
+            if(oldStance.ID.equals(ENPreservationStance.STANCE_ID)){
+                ENPreservationStance preservationStance = (ENPreservationStance) oldStance;
+                if(preservationStance.stage==1){
+                    addToBot(new EnemyGainEnergyAction(this.amount));
+                }
             }
         }
     }

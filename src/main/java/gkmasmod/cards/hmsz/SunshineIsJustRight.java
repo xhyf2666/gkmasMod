@@ -23,20 +23,17 @@ public class SunshineIsJustRight extends GkmasCard {
     private static final String IMG_PATH = String.format("gkmasModResource/img/cards/common/%s.png", CLASSNAME);
 
     private static final int COST = 1;
-    private static final int BASE_BLOCK = 15;
+    private static final int BASE_BLOCK = 10;
     private static final int UPGRADE_PLUS_BLOCK = 5;
-
-
 
     private static final CardType TYPE = CardType.SKILL;
     private static final CardColor COLOR = PlayerColorEnum.gkmasModColorMisuzu;
     private static final CardRarity RARITY = CardRarity.UNCOMMON;
-    private static final CardTarget TARGET = CardTarget.ENEMY;
+    private static final CardTarget TARGET = CardTarget.SELF;
 
     public SunshineIsJustRight() {
         super(ID, NAME, ImageHelper.getCardImgPath(CLASSNAME,TYPE), COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.baseBlock = BASE_BLOCK;
-        this.exhaust = true;
     }
 
 

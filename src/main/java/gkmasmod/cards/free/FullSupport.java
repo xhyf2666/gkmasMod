@@ -11,13 +11,19 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.DrawCardNextTurnPower;
 import gkmasmod.actions.GainTrainRoundPowerAction;
+import gkmasmod.cardCustomEffect.DrawCardCustom;
+import gkmasmod.cardCustomEffect.MagicCustom;
 import gkmasmod.cardCustomEffect.MoreActionCustom;
+import gkmasmod.cardCustomEffect.ThirdMagicCustom;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.powers.HalfDamageReceive;
 import gkmasmod.screen.SkinSelectScreen;
+import gkmasmod.utils.CustomHelper;
 import gkmasmod.utils.NameHelper;
+
+import java.util.ArrayList;
 
 public class FullSupport extends GkmasCard {
     private static final String CLASSNAME = FullSupport.class.getSimpleName();
@@ -31,8 +37,8 @@ public class FullSupport extends GkmasCard {
     private static final int COST = 1;
     private static final int BASE_MAGIC = 2;
     private static final int BASE_MAGIC2 = 1;
-    private static final int BASE_MAGIC3 = 3;
-    private static final int UPGRADE_PLUS_MAGIC3 = 2;
+    private static final int BASE_MAGIC3 = 2;
+    private static final int UPGRADE_PLUS_MAGIC3 = 1;
 
     private static final CardType TYPE = CardType.SKILL;
     private static final CardColor COLOR = PlayerColorEnum.gkmasModColor;
@@ -49,6 +55,9 @@ public class FullSupport extends GkmasCard {
         this.thirdMagicNumber = this.baseThirdMagicNumber;
         this.tags.add(GkmasCardTag.MORE_ACTION_TAG);
         CardModifierManager.addModifier(this,new MoreActionCustom(1));
+        this.customLimit = 2;
+        this.customEffectList = new ArrayList<>();
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(ThirdMagicCustom.growID,new int[]{1,1},new int[]{50,50},CustomHelper.CustomEffectType.USE_TIME_ADD));
     }
 
 

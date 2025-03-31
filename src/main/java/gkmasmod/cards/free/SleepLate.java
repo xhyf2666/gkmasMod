@@ -26,7 +26,7 @@ public class SleepLate extends GkmasCard {
 
     private static final CardType TYPE = CardType.SKILL;
     private static final CardColor COLOR = PlayerColorEnum.gkmasModColor;
-    private static final CardRarity RARITY = CardRarity.UNCOMMON;
+    private static final CardRarity RARITY = CardRarity.COMMON;
     private static final CardTarget TARGET = CardTarget.SELF;
 
     public SleepLate() {
@@ -34,7 +34,6 @@ public class SleepLate extends GkmasCard {
         this.baseMagicNumber = BASE_MAGIC;
         this.magicNumber = this.baseMagicNumber;
         this.cardsToPreview = new Sleepy();
-        this.selfRetain = true;
     }
 
 

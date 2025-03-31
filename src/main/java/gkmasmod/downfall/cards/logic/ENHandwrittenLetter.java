@@ -51,7 +51,7 @@ public class ENHandwrittenLetter extends GkmasBossCard {
         this.baseBlock = BLOCK_AMT;
         this.block = this.baseBlock;
         this.intent = AbstractMonster.Intent.DEFEND;
-        this.tags.add(GkmasCardTag.GOOD_IMPRESSION_TAG);
+        this.tags.add(GkmasCardTag.COST_POWER_TAG);
     }
 
 
@@ -66,7 +66,7 @@ public class ENHandwrittenLetter extends GkmasBossCard {
     public boolean canUse(AbstractPlayer p, AbstractMonster m) {
         int count = PlayerHelper.getPowerAmount(m, GoodImpression.POWER_ID);
         if (count >= this.magicNumber)
-            return true;
+            return super.canUse(p, m);
         this.cantUseMessage = CardCrawlGame.languagePack.getUIString("gkmasMod:NotEnoughGoodImpression").TEXT[0];
         return false;
     }

@@ -56,7 +56,7 @@ public class ENSeeYouTomorrow extends GkmasBossCard {
         this.tags.add(GkmasCardTag.IDOL_CARD_TAG);
         this.tags.add(CardTags.HEALING);
         this.tags.add(GkmasCardTag.MORE_ACTION_TAG);
-
+        this.energyGeneratedIfPlayed = 1;
     }
 
     @Override
@@ -74,7 +74,7 @@ public class ENSeeYouTomorrow extends GkmasBossCard {
     public boolean canUse(AbstractPlayer p, AbstractMonster m) {
         int count = PlayerHelper.getPowerAmount(m, GoodImpression.POWER_ID);
         if (count > 0)
-            return true;
+            return super.canUse(p, m);
         this.cantUseMessage = CardCrawlGame.languagePack.getUIString("gkmasMod:NotEnoughGoodImpression").TEXT[0];
         return false;
     }

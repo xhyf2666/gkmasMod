@@ -1,5 +1,7 @@
 package gkmasmod.downfall.cards.sense;
 
+import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
+import gkmasmod.actions.GainTrainRoundPowerAction;
 import gkmasmod.downfall.charbosses.bosses.AbstractCharBoss;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
@@ -11,8 +13,11 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.downfall.cards.GkmasBossCard;
+import gkmasmod.powers.GreatNotGoodTune;
+import gkmasmod.powers.NotGoodTune;
 import gkmasmod.utils.ImageHelper;
 import gkmasmod.utils.NameHelper;
+import gkmasmod.utils.PlayerHelper;
 
 public class ENClassicPose extends GkmasBossCard {
     private static final String CLASSNAME = ENClassicPose.class.getSimpleName();
@@ -28,6 +33,8 @@ public class ENClassicPose extends GkmasBossCard {
     private static final int COST = 1;
     private static final int ATTACK_DMG = 9;
     private static final int UPGRADE_PLUS_DMG = 3;
+    private static final int BASE_MAGIC = 2;
+    private static final int UPGRADE_PLUS_MAGIC = 1;
 
     private static final CardType TYPE = CardType.ATTACK;
     private static final CardColor COLOR = PlayerColorEnum.gkmasModColorSense;
@@ -40,14 +47,20 @@ public class ENClassicPose extends GkmasBossCard {
         this.updateShowImg = true;
         updateImg();
         this.baseDamage = ATTACK_DMG;
+        this.baseMagicNumber = BASE_MAGIC;
+        this.magicNumber = this.baseMagicNumber;
         this.intent = AbstractMonster.Intent.ATTACK;
-        this.isEthereal = true;
     }
 
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
         addToBot(new DamageAction(p, new DamageInfo(m, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
+        addToBot(new ApplyPowerAction(p,p,new NotGoodTune(p,this.magicNumber),this.magicNumber));
+        int count = PlayerHelper.getPowerAmount(p, GreatNotGoodTune.POWER_ID);
+        if(count > 0){
+            addToBot(new GainTrainRoundPowerAction(m,1));
+        }
     }
 
     @Override
@@ -60,6 +73,7 @@ public class ENClassicPose extends GkmasBossCard {
         if (!this.upgraded) {
             upgradeName();
             upgradeDamage(UPGRADE_PLUS_DMG);
+            upgradeMagicNumber(UPGRADE_PLUS_MAGIC);
             if (CARD_STRINGS.UPGRADE_DESCRIPTION != null)
                 this.rawDescription = CARD_STRINGS.UPGRADE_DESCRIPTION;
             this.initializeDescription();

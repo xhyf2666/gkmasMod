@@ -6,12 +6,18 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import gkmasmod.cardCustomEffect.BlockCustom;
+import gkmasmod.cardCustomEffect.DamageCustom;
+import gkmasmod.cardCustomEffect.MagicCustom;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.powers.StepOnStagePower;
 import gkmasmod.powers.ThunderWillStopPower;
+import gkmasmod.utils.CustomHelper;
 import gkmasmod.utils.NameHelper;
+
+import java.util.ArrayList;
 
 public class StepOnStage extends GkmasCard {
     private static final String CLASSNAME = StepOnStage.class.getSimpleName();
@@ -38,6 +44,10 @@ public class StepOnStage extends GkmasCard {
         this.magicNumber = this.baseMagicNumber;
         this.tags.add(GkmasCardTag.CONCENTRATION_TAG);
         this.tags.add(GkmasCardTag.PRESERVATION_TAG);
+        this.customLimit = 1;
+        this.customEffectList = new ArrayList<>();
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(DamageCustom.growID, new int[]{2}, new int[]{40}, CustomHelper.CustomEffectType.DAMAGE_ADD));
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(MagicCustom.growID, new int[]{1}, new int[]{100}, CustomHelper.CustomEffectType.DRAW_CARD_ADD));
     }
 
 

@@ -45,7 +45,7 @@ public class ENWeAreSoStrong extends GkmasBossCard {
         this.isEthereal = true;
         this.baseMagicNumber = this.magicNumber = MAGIC;
         this.intent = AbstractMonster.Intent.MAGIC;
-        this.tags.add(GkmasCardTag.YARUKI_TAG);
+        this.tags.add(GkmasCardTag.COST_POWER_TAG);
     }
 
 

@@ -10,6 +10,7 @@ import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import gkmasmod.powers.GoodImpression;
+import gkmasmod.utils.PlayerHelper;
 
 public class HandmadeMedal extends CustomRelic {
 
@@ -27,50 +28,41 @@ public class HandmadeMedal extends CustomRelic {
 
     private static final int GOOD_IMPRESSION = 5;
 
-    private static final  int playTimes = 2;
+//    private static final  int playTimes = 2;
 
     public HandmadeMedal() {
         super(ID, ImageMaster.loadImage(IMG), ImageMaster.loadImage(IMG_OTL), RARITY, LandingSound.CLINK);
     }
 
 
-    @Override
-    public void onVictory() {
-        this.counter = playTimes;
-    }
+//    @Override
+//    public void onVictory() {
+//        this.counter = playTimes;
+//    }
 
     @Override
     public String getUpdatedDescription() {
-        return String.format(this.DESCRIPTIONS[0],GOOD_IMPRESSION,magicNumber,playTimes);
+        return String.format(this.DESCRIPTIONS[0],GOOD_IMPRESSION,magicNumber);
     }
 
     @Override
     public AbstractRelic makeCopy() {
-        return (AbstractRelic)new HandmadeMedal();
+        return new HandmadeMedal();
     }
 
-
-    public void onEquip() {}
 
     public void onPlayerEndTurn() {
-        if (this.counter > 0) {
-            int count = AbstractDungeon.player.getPower(GoodImpression.POWER_ID)==null?0:AbstractDungeon.player.getPower(GoodImpression.POWER_ID).amount;
-            if(count>GOOD_IMPRESSION){
-                addToBot(new RelicAboveCreatureAction(AbstractDungeon.player, this));
-                this.flash();
-                addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new GoodImpression(AbstractDungeon.player, magicNumber), magicNumber));
-                this.counter--;
-                if (this.counter == 0) {
-                    this.grayscale = true;
-                }
-            }
+        int count = PlayerHelper.getPowerAmount(AbstractDungeon.player, GoodImpression.POWER_ID);
+        if(count>GOOD_IMPRESSION){
+            addToBot(new RelicAboveCreatureAction(AbstractDungeon.player, this));
+            this.flash();
+            addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new GoodImpression(AbstractDungeon.player, magicNumber), magicNumber));
         }
-
     }
 
-    public void atBattleStart() {
-        this.counter = playTimes;
-    }
+//    public void atBattleStart() {
+//        this.counter = playTimes;
+//    }
 
     public void justEnteredRoom(AbstractRoom room) {
         this.grayscale = false;

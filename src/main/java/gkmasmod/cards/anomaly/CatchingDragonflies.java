@@ -5,14 +5,24 @@ import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import gkmasmod.cardCustomEffect.BlockCustom;
+import gkmasmod.cardCustomEffect.DamageCustom;
+import gkmasmod.cardCustomEffect.MagicCustom;
+import gkmasmod.cardCustomEffect.SecondMagicCustom;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.characters.PlayerColorEnum;
+import gkmasmod.growEffect.AttackTimeGrow;
+import gkmasmod.growEffect.BlockTimeGrow;
 import gkmasmod.growEffect.DamageGrow;
 import gkmasmod.stances.FullPowerStance;
+import gkmasmod.utils.CustomHelper;
 import gkmasmod.utils.GrowHelper;
 import gkmasmod.utils.NameHelper;
+
+import java.util.ArrayList;
 
 public class CatchingDragonflies extends GkmasCard {
     private static final String CLASSNAME = CatchingDragonflies.class.getSimpleName();
@@ -25,10 +35,13 @@ public class CatchingDragonflies extends GkmasCard {
 
     private static final int COST = 0;
 
-    private static final int BASE_MAGIC = 3;
+    private static final int BASE_MAGIC = 2;
     private static final int UPGRADE_PLUS_MAGIC = 1;
 
     private static final int BASE_BLOCK = 5;
+
+    private static final int BASE_GROW = 1;
+    private static final int UPGRADE_PLUS_GROW = 1;
 
     private static final CardType TYPE = CardType.SKILL;
     private static final CardColor COLOR = PlayerColorEnum.gkmasModColorAnomaly;
@@ -40,6 +53,12 @@ public class CatchingDragonflies extends GkmasCard {
         this.baseMagicNumber = BASE_MAGIC;
         this.magicNumber = this.baseMagicNumber;
         this.baseBlock = BASE_BLOCK;
+        this.baseGrowMagicNumber = BASE_GROW;
+        this.growMagicNumber = this.baseGrowMagicNumber;
+        this.customLimit = 1;
+        this.customEffectList = new ArrayList<>();
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(DamageCustom.growID,new int[]{2},new int[]{40},CustomHelper.CustomEffectType.DAMAGE_ADD));
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(BlockCustom.growID, new int[]{2}, new int[]{40}, CustomHelper.CustomEffectType.BLOCK_ADD));
     }
 
 
@@ -56,6 +75,17 @@ public class CatchingDragonflies extends GkmasCard {
     }
 
     @Override
+    public void switchedStance() {
+        if(AbstractDungeon.player.stance.ID.equals(FullPowerStance.STANCE_ID)){
+            if(this.growMagicNumber > 0){
+                upgradeGrowMagicNumber(-1);
+                this.initializeDescription();
+                GrowHelper.grow(this, BlockTimeGrow.growID,1);
+            }
+        }
+    }
+
+    @Override
     public AbstractCard makeCopy() {
         return new CatchingDragonflies();
     }
@@ -65,6 +95,7 @@ public class CatchingDragonflies extends GkmasCard {
         if (!this.upgraded) {
             upgradeName();
             upgradeMagicNumber(UPGRADE_PLUS_MAGIC);
+            upgradeGrowMagicNumber(UPGRADE_PLUS_GROW);
             if (CARD_STRINGS.UPGRADE_DESCRIPTION != null)
                 this.rawDescription = CARD_STRINGS.UPGRADE_DESCRIPTION;
             this.initializeDescription();

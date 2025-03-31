@@ -9,16 +9,18 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import gkmasmod.actions.ModifyDamageAction;
+import gkmasmod.cardCustomEffect.CostCustom;
+import gkmasmod.cardCustomEffect.DamageCustom;
+import gkmasmod.cardCustomEffect.ExhaustRemoveCustom;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.growEffect.DamageGrow;
 import gkmasmod.growEffect.EnergyGrow;
 import gkmasmod.stances.ConcentrationStance;
-import gkmasmod.utils.GrowHelper;
-import gkmasmod.utils.IdolData;
-import gkmasmod.utils.NameHelper;
-import gkmasmod.utils.SoundHelper;
+import gkmasmod.utils.*;
+
+import java.util.ArrayList;
 
 public class TopStar extends GkmasCard {
     private static final String CLASSNAME = TopStar.class.getSimpleName();
@@ -61,6 +63,11 @@ public class TopStar extends GkmasCard {
         this.exhaust = true;
         this.backGroundColor = IdolData.jsna;
         updateBackgroundImg();
+        this.customLimit = 1;
+        this.customEffectList = new ArrayList<>();
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(DamageCustom.growID, new int[]{3}, new int[]{70}, CustomHelper.CustomEffectType.DAMAGE_ADD));
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(CostCustom.growID, new int[]{-1}, new int[]{80}, CustomHelper.CustomEffectType.ENERGY_COST_REDUCE));
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(ExhaustRemoveCustom.growID,new int[]{0},new int[]{80},CustomHelper.CustomEffectType.EXHAUST_REMOVE));
     }
 
     @Override

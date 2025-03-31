@@ -8,7 +8,9 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
+import gkmasmod.downfall.charbosses.actions.unique.EnemyChangeStanceAction;
 import gkmasmod.downfall.charbosses.bosses.AbstractCharBoss;
+import gkmasmod.downfall.charbosses.stances.ENPreservationStance;
 import gkmasmod.stances.PreservationStance;
 import gkmasmod.utils.NameHelper;
 
@@ -54,7 +56,9 @@ public class EndOfTurnPreservationStancePower extends AbstractPower {
             }
         }
         else if(this.owner instanceof AbstractCharBoss){
-
+            for (int i = 0; i < this.amount; i++) {
+                addToBot(new EnemyChangeStanceAction(ENPreservationStance.STANCE_ID));
+            }
         }
         addToBot(new RemoveSpecificPowerAction(this.owner,this.owner,this.ID));
     }

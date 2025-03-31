@@ -1,5 +1,8 @@
 package gkmasmod.downfall.cards.free;
 
+import gkmasmod.downfall.bosses.IdolBoss_jsna;
+import gkmasmod.downfall.cards.anomaly.ENTakeFlight;
+import gkmasmod.downfall.cards.sense.ENTheScenerySawSomeday;
 import gkmasmod.downfall.charbosses.actions.common.EnemyMakeTempCardInHandAction;
 import gkmasmod.downfall.charbosses.bosses.AbstractCharBoss;
 import gkmasmod.downfall.charbosses.cards.curses.EnNormality;
@@ -45,7 +48,21 @@ public class ENAlternatives extends GkmasBossCard {
     public void use(AbstractPlayer p, AbstractMonster m) {
         if(m instanceof IdolBoss_kllj){
             AbstractCharBoss.boss.hand.removeCard(EnNormality.ID);
-            addToBot(new EnemyMakeTempCardInHandAction(new ENPopPhrase()));
+            AbstractCard card = new ENTheScenerySawSomeday();
+            card.upgrade();
+            addToBot(new EnemyMakeTempCardInHandAction(card));
+        }
+        if(m instanceof IdolBoss_jsna){
+            AbstractCard card=null;
+            for(AbstractCard c:AbstractCharBoss.boss.hand.group){
+                if(c instanceof ENBasePose){
+                    card=c;
+                    break;
+                }
+            }
+            AbstractCharBoss.boss.hand.removeCard(ENTakeFlight.ID);
+            if(card!=null)
+                addToBot(new EnemyMakeTempCardInHandAction(card));
         }
     }
 

@@ -54,10 +54,9 @@ public class ENJustOneMore extends GkmasBossCard {
         int count = AbstractCharBoss.boss.getPower(GoodTune.POWER_ID) == null ? 0 : AbstractCharBoss.boss.getPower(GoodTune.POWER_ID).amount;
         if (count > 0) {
             addToBot(new RemoveSpecificPowerAction(m, m, GoodTune.POWER_ID));
-            addToTop(new ApplyPowerAction(m, m, new StrengthPower(m, count), count));
+            addToBot(new ApplyPowerAction(m, m, new StrengthPower(m, count), count));
         } else {
-            addToBot(new ApplyPowerAction(m,  m,  new NotGoodTune( m, this.magicNumber), this.magicNumber));
-
+            addToBot(new ApplyPowerAction(m, m, new NotGoodTune( m, this.magicNumber), this.magicNumber));
         }
         addToBot(new EnemyLimitBreakAction());
     }

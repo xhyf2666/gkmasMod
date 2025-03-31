@@ -26,9 +26,8 @@ public class ENImaginaryTraining extends GkmasBossCard {
     private static final String DESCRIPTION = CARD_STRINGS.DESCRIPTION;
     private static String IMG_PATH = ImageHelper.idolImgPath(AbstractCharBoss.theIdolName, CLASSNAME2);
 
-    private static final int COST = 2;
+    private static final int COST = 1;
     private static final int BASE_MAGIC = 2;
-    private static final int UPGRADE_PLUS_MAGIC = 1;
     private static final int BASE_MAGIC2 = 2;
     private static final int BLOCK_AMT = 7;
     private static final int UPGRADE_PLUS_BLOCK = 4;
@@ -49,6 +48,7 @@ public class ENImaginaryTraining extends GkmasBossCard {
         this.secondMagicNumber = this.baseSecondMagicNumber;
         this.baseBlock = BLOCK_AMT;
         this.block = this.baseBlock;
+        this.exhaust = true;
         this.intent = AbstractMonster.Intent.DEFEND_BUFF;
         this.tags.add(GkmasCardTag.YARUKI_TAG);
     }
@@ -58,13 +58,6 @@ public class ENImaginaryTraining extends GkmasBossCard {
     public void use(AbstractPlayer p, AbstractMonster m) {
         addToBot(new ApplyPowerAction(m, m, new DexterityPower(m, this.magicNumber), this.magicNumber));
         addToBot(new GainBlockAction(m, m, this.block));
-        if(this.secondMagicNumber > 1){
-            upgradeSecondMagicNumber(-1);
-            this.initializeDescription();
-        }
-        else{
-            this.exhaust = true;
-        }
     }
 
     @Override
@@ -76,7 +69,6 @@ public class ENImaginaryTraining extends GkmasBossCard {
     public void upgrade() {
         if (!this.upgraded) {
             upgradeName();
-            upgradeMagicNumber(UPGRADE_PLUS_MAGIC);
             upgradeBlock(UPGRADE_PLUS_BLOCK);
             if (CARD_STRINGS.UPGRADE_DESCRIPTION != null)
                 this.rawDescription = CARD_STRINGS.UPGRADE_DESCRIPTION;

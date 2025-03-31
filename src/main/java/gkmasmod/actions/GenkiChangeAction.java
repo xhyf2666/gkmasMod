@@ -35,9 +35,9 @@ public class GenkiChangeAction extends AbstractGameAction {
     }
 
     public void update() {
-        System.out.println("this.magicNumber "+this.magicNumber);
-        System.out.println("this.magicAdd "+this.magicAdd);
-        System.out.println("this.rate "+this.rate);
+//        System.out.println("this.magicNumber "+this.magicNumber);
+//        System.out.println("this.magicAdd "+this.magicAdd);
+//        System.out.println("this.rate "+this.rate);
 
 
         addToBot(new ApplyPowerAction(p, p, new GoodImpression(p,this.magicAdd), this.magicAdd));

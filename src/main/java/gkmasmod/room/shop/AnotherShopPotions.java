@@ -4,6 +4,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.PotionHelper;
 import com.megacrit.cardcrawl.potions.AbstractPotion;
 import gkmasmod.characters.IdolCharacter;
+import gkmasmod.characters.MisuzuCharacter;
 import gkmasmod.potion.*;
 import gkmasmod.screen.SkinSelectScreen;
 import gkmasmod.utils.CommonEnum;
@@ -28,9 +29,12 @@ public class AnotherShopPotions {
 
     public static AbstractPotion returnRandomPotion(AbstractPotion.PotionRarity rarity, boolean limited) {
         AbstractPotion temp = PotionHelper.getRandomPotion();
-        if(!(AbstractDungeon.player instanceof IdolCharacter))
+        if(!(AbstractDungeon.player instanceof IdolCharacter)&&!(AbstractDungeon.player instanceof MisuzuCharacter))
             return temp;
         CommonEnum.IdolType type = IdolData.getIdol(SkinSelectScreen.Inst.idolIndex).getType(SkinSelectScreen.Inst.skinIndex);
+        if(AbstractDungeon.player instanceof MisuzuCharacter){
+            type = CommonEnum.IdolType.SENSE;
+        }
         ArrayList<String> potions = new ArrayList<>();
         if (type == CommonEnum.IdolType.LOGIC) {
             potions = new ArrayList<>(Arrays.asList(new String[]{

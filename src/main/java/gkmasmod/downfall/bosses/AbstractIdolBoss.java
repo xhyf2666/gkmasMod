@@ -3,6 +3,9 @@ package gkmasmod.downfall.bosses;
 
 
 import com.badlogic.gdx.Gdx;
+import com.megacrit.cardcrawl.powers.DexterityPower;
+import com.megacrit.cardcrawl.powers.StrengthPower;
+import gkmasmod.characters.MisuzuCharacter;
 import gkmasmod.downfall.charbosses.actions.util.CharbossTurnstartDrawAction;
 import gkmasmod.downfall.charbosses.actions.util.DelayedActionAction;
 import gkmasmod.downfall.charbosses.bosses.AbstractBossDeckArchetype;
@@ -40,7 +43,7 @@ import com.megacrit.cardcrawl.vfx.combat.IntenseZoomEffect;
 import gkmasmod.characters.IdolEnergyOrb;
 import gkmasmod.monster.ChangeScene;
 import gkmasmod.monster.LatterEffect;
-import gkmasmod.powers.IdolExamPower;
+import gkmasmod.powers.*;
 import gkmasmod.relics.PocketBook;
 import gkmasmod.room.GkmasBossRoom;
 import gkmasmod.screen.SkinSelectScreen;
@@ -66,8 +69,10 @@ public class AbstractIdolBoss extends AbstractCharBoss {
 
     public boolean hasChange = false;
 
+    public static int skipTurn = 0;
+
     public AbstractIdolBoss(String idolName,String ID) {
-        super(CardCrawlGame.languagePack.getCharacterString(String.format("IdolName:%s",idolName)).NAMES[0], ID, baseHP, 000.0f, -16.0f, 220.0f, 290.0f, String.format("gkmasModResource/img/idol/%s/stand/stand_%s.png",idolName,"skin10"), 0.0f, -20.0f, gkmasMod_character);
+        super(CardCrawlGame.languagePack.getCharacterString(String.format("IdolName:%s",idolName)).NAMES[0], ID, baseHP, 00.0f, 0.0f, 220.0f, 290.0f, String.format("gkmasModResource/img/idol/%s/stand/stand_%s.png",idolName,"skin10"), 00.0f, 00.0f, gkmasMod_character);
         this.idolName = idolName;
         maxHP = baseHP;
         AbstractCharBoss.theIdolName = idolName;
@@ -77,6 +82,7 @@ public class AbstractIdolBoss extends AbstractCharBoss {
         AbstractCharBoss.theIdolName = idolName;
         this.energyString = "[E]";
         type = EnemyType.BOSS;
+        skipTurn = 0;
     }
 
     @Override
@@ -168,11 +174,10 @@ public class AbstractIdolBoss extends AbstractCharBoss {
                     maxHP = Math.round(maxHP * 1.2F);
                 }
                 this.maxHealth = maxHP;
-                int idolExamPowerCount = (int) (this.maxHealth / 1.6F);
-                addToBot(new ApplyPowerAction(this, this, new IdolExamPower(this, idolExamPowerCount), idolExamPowerCount));
                 archetype.initialize();
                 this.img = new Texture(String.format("gkmasModResource/img/idol/%s/stand/stand_%s.png",idolName,IdolData.getIdol(idolName).getBossSkin(stage)));
                 chosenArchetype = archetype;
+                skipTurn = 0;
                 if(stage<maxStage-1)
                     AbstractDungeon.getCurrRoom().cannotLose = true;
                 else{
@@ -198,12 +203,40 @@ public class AbstractIdolBoss extends AbstractCharBoss {
                     this.maxHealth = (int)(this.maxHealth * mod);
                 }
                 if (ModHelper.isModEnabled("MonsterHunter"))
-                    this.currentHealth = (int)(this.currentHealth * 1.5F);
+                    this.maxHealth = (int)(this.maxHealth * 1.5F);
+                int idolExamPowerCount = (int) (this.maxHealth / 1.9F);
+                if(idolName.equals(IdolData.shro)&&this.stage==maxStage-1){
+                    idolExamPowerCount = (int) (this.maxHealth*1.5F-3);
+                }
+                addToBot(new ApplyPowerAction(this, this, new IdolExamPower(this, idolExamPowerCount), idolExamPowerCount));
                 AbstractGameEffect effect =  new ChangeScene(ImageMaster.loadImage(String.format(bgFormat,this.idolName,stage+1)));
                 AbstractDungeon.effectList.add(new LatterEffect(() -> {
                     AbstractDungeon.effectsQueue.add(effect);
                 }));
                 AbstractDungeon.actionManager.addToBottom(new HealAction(this, this, this.maxHealth));
+                if(stage==1){
+                    if(AbstractDungeon.ascensionLevel>=5)
+                        addToBot(new ApplyPowerAction(this,this,new StarNature(this,40),40));
+                    else
+                        addToBot(new ApplyPowerAction(this,this,new StarNature(this,20),20));
+                    addToBot(new ApplyPowerAction(this,this,new StrengthPower(this,5),5));
+                    addToBot(new ApplyPowerAction(this,this,new DexterityPower(this,5),5));
+                    addToBot(new ApplyPowerAction(this,this,new GoodImpression(this,10),10));
+                    addToBot(new ApplyPowerAction(this,this,new GoodTune(this,5),5));
+                    addToBot(new ApplyPowerAction(this,this,new GreatGoodTune(this,2),2));
+                }
+                else if(stage==2){
+                    if(AbstractDungeon.ascensionLevel>=5)
+                        addToBot(new ApplyPowerAction(this,this,new StarNature(this,60),60));
+                    else
+                        addToBot(new ApplyPowerAction(this,this,new StarNature(this,30),30));
+                    addToBot(new ApplyPowerAction(this,this,new StrengthPower(this,10),10));
+                    addToBot(new ApplyPowerAction(this,this,new DexterityPower(this,10),10));
+                    addToBot(new ApplyPowerAction(this,this,new GoodImpression(this,20),20));
+                    addToBot(new ApplyPowerAction(this,this,new GoodTune(this,10),10));
+                    addToBot(new ApplyPowerAction(this,this,new GreatGoodTune(this,3),3));
+                }
+                
                 setMove((byte) 0, Intent.NONE);
                 CardCrawlGame.music.dispose();
                 CardCrawlGame.music.unsilenceBGM();
@@ -237,6 +270,9 @@ public class AbstractIdolBoss extends AbstractCharBoss {
                 this.changeSong=false;
                 CardCrawlGame.music.dispose();
                 String song = String.format("gkmasModResource/audio/song/%s_%s.ogg", SkinSelectScreen.Inst.idolName, IdolData.getIdol(SkinSelectScreen.Inst.idolName).getBossSong(stage));
+                if(AbstractDungeon.player instanceof MisuzuCharacter){
+                    song = String.format("gkmasModResource/audio/song/%s_%s.ogg", IdolData.hmsz, IdolData.hmszData.getBossSong(stage));
+                }
                 if(!Gdx.files.internal(song).exists()){
                     song = String.format("gkmasModResource/audio/song/%s_%s.ogg", SkinSelectScreen.Inst.idolName, "002");
                 }

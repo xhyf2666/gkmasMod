@@ -14,6 +14,8 @@ import com.megacrit.cardcrawl.localization.StanceStrings;
 import com.megacrit.cardcrawl.vfx.BorderFlashEffect;
 import com.megacrit.cardcrawl.vfx.stance.CalmParticleEffect;
 import com.megacrit.cardcrawl.vfx.stance.StanceAuraEffect;
+import gkmasmod.actions.GainTrainRoundPowerAction;
+import gkmasmod.characters.MisuzuCharacter;
 import gkmasmod.powers.WantToSleep;
 import gkmasmod.vfx.effect.StanceAuraEffect2;
 
@@ -70,11 +72,11 @@ public class WakeStance extends GkmasModStance {
 
     @Override
     public void onEnterStance() {
-//        if (sfxId != -1L)
-//            stopIdleSfx();
-//        CardCrawlGame.sound.play("STANCE_ENTER_CALM");
-//        sfxId = CardCrawlGame.sound.playAndLoop("STANCE_LOOP_CALM");
+        AbstractDungeon.actionManager.addToBottom(new GainTrainRoundPowerAction(AbstractDungeon.player,1));
         AbstractDungeon.effectsQueue.add(new BorderFlashEffect(Color.SKY, true));
+        if(AbstractDungeon.player instanceof MisuzuCharacter){
+            ((MisuzuCharacter) AbstractDungeon.player).refreshSkin(2);
+        }
     }
 
     @Override

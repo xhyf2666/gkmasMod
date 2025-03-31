@@ -1,5 +1,6 @@
 package gkmasmod.downfall.bosses;
 
+import gkmasmod.cards.free.GradualDisappearance;
 import gkmasmod.downfall.charbosses.bosses.AbstractBossDeckArchetype;
 import gkmasmod.downfall.charbosses.bosses.AbstractCharBoss;
 import gkmasmod.downfall.charbosses.relics.*;
@@ -11,6 +12,7 @@ import com.megacrit.cardcrawl.powers.BarricadePower;
 import gkmasmod.downfall.cards.free.*;
 import gkmasmod.downfall.cards.sense.*;
 import gkmasmod.downfall.relics.*;
+import gkmasmod.powers.DanceWithYouPower;
 
 import java.util.ArrayList;
 
@@ -27,6 +29,9 @@ public class BossConfig_ssmk1 extends AbstractBossDeckArchetype {
         super.addedPreBattle();
         AbstractCreature p = AbstractCharBoss.boss;
         AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new BarricadePower(p)));
+        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new DanceWithYouPower(p,4),4));
+        if(AbstractDungeon.ascensionLevel >= 15)
+            AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new DanceWithYouPower(p,4),4));
     }
 
     public void initialize() {
@@ -35,6 +40,8 @@ public class BossConfig_ssmk1 extends AbstractBossDeckArchetype {
         addRelic(new CBR_RedSkull());
         addRelic(new CBR_AfterSchoolDoodles());
         addRelic(new CBR_ArcadeLoot());
+        if(AbstractDungeon.ascensionLevel >= 10)
+            addRelic(new CBR_Sozu());
     }
 
     @Override
@@ -44,14 +51,15 @@ public class BossConfig_ssmk1 extends AbstractBossDeckArchetype {
         if (!looped) {
             switch (turn) {
                 case 0:
-                    addToList(cardsList,new ENSleepLate(),extraUpgrades);
-                    addToList(cardsList,new ENSteadyWill(),extraUpgrades);
+                    addToList(cardsList, new ENSleepLate(),extraUpgrades);
+                    addToList(cardsList, new ENSteadyWill(),extraUpgrades);
                     addToList(cardsList, new ENTopEntertainment(),extraUpgrades);
                     addToList(cardsList, new ENInnocence(),extraUpgrades);
                     addToList(cardsList, new ENBaseAppeal());
                     turn++;
                     break;
                 case 1:
+                    addToList(cardsList, new ENGradualDisappearance(),extraUpgrades);
                     addToList(cardsList, new ENStartSignal());
                     addToList(cardsList, new ENWarmUp());
                     addToList(cardsList, new ENLeap());

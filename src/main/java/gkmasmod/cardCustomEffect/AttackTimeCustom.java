@@ -11,6 +11,10 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import gkmasmod.actions.GainTrainRoundPowerAction;
 import gkmasmod.actions.ModifyDamageAction;
 import gkmasmod.cards.GkmasCardTag;
+import gkmasmod.cards.anomaly.FinalSpurt;
+import gkmasmod.cards.anomaly.ShineBright;
+import gkmasmod.cards.anomaly.StepByStep;
+import gkmasmod.stances.FullPowerStance;
 
 public class AttackTimeCustom extends AbstractCardCustomEffect {
 
@@ -22,12 +26,18 @@ public class AttackTimeCustom extends AbstractCardCustomEffect {
     }
 
     public String modifyDescription(String rawDescription, AbstractCard card) {
-        return rawDescription + " " + String.format(CardCrawlGame.languagePack.getUIString("customEffect:AttackTimeCustom").TEXT[0],this.amount);
+        if(this.amount>1)
+            return rawDescription + " NL " + String.format(CardCrawlGame.languagePack.getUIString("customEffect:AttackTimeCustom").TEXT[1],this.amount);
+        return rawDescription + " NL " + CardCrawlGame.languagePack.getUIString("customEffect:AttackTimeCustom").TEXT[0];
     }
 
     public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
         if(card.baseDamage<0)
             return;
+        if(card instanceof StepByStep){
+            if(!AbstractDungeon.player.stance.ID.equals(FullPowerStance.STANCE_ID))
+                return;
+        }
         for (int i = 0; i < this.amount; i++) {
             addToBot(new ModifyDamageAction(target,new DamageInfo(AbstractDungeon.player,card.baseDamage,card.damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_VERTICAL,card,false));
         }

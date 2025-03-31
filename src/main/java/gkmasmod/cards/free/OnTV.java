@@ -6,12 +6,20 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import gkmasmod.cardCustomEffect.DamageCustom;
+import gkmasmod.cardCustomEffect.MagicCustom;
+import gkmasmod.cardCustomEffect.MoreActionCustom;
+import gkmasmod.cardCustomEffect.SecondMagicCustom;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.powers.HalfDamageReceive;
 import gkmasmod.screen.SkinSelectScreen;
+import gkmasmod.utils.CustomHelper;
 import gkmasmod.utils.ImageHelper;
 import gkmasmod.utils.NameHelper;
+import gkmasmod.utils.ThreeSizeHelper;
+
+import java.util.ArrayList;
 
 public class OnTV extends GkmasCard {
     private static final String CLASSNAME = OnTV.class.getSimpleName();
@@ -24,7 +32,9 @@ public class OnTV extends GkmasCard {
 
     private static final int COST = 1;
     private static final int BASE_MAGIC = 2;
-    private static final int UPGRADE_PLUS_MAGIC = 2;
+    private static final int UPGRADE_PLUS_MAGIC = 1;
+
+    private static final int BASE_MAGIC2 = 500;
 
     private static final int BLOCK_AMT = 5;
     private static final int UPGRADE_PLUS_BLOCK = 2;
@@ -42,13 +52,21 @@ public class OnTV extends GkmasCard {
         this.magicNumber = this.baseMagicNumber;
         this.baseBlock = BLOCK_AMT;
         this.block = this.baseBlock;
+        this.baseSecondMagicNumber = BASE_MAGIC2;
+        this.secondMagicNumber = this.baseSecondMagicNumber;
         this.exhaust = true;
+        this.customLimit = 1;
+        this.customEffectList = new ArrayList<>();
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(DamageCustom.growID,new int[]{4},new int[]{60},CustomHelper.CustomEffectType.DAMAGE_ADD));
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(MoreActionCustom.growID, new int[]{1}, new int[]{80}, CustomHelper.CustomEffectType.MORE_ACTION_ADD));
     }
 
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        addToBot(new ApplyPowerAction(p, p, new HalfDamageReceive(p, this.magicNumber), this.magicNumber));
+        int count = ThreeSizeHelper.getVo()+ThreeSizeHelper.getDa()+ThreeSizeHelper.getVi();
+        count/=this.secondMagicNumber;
+        addToBot(new ApplyPowerAction(p, p, new HalfDamageReceive(p, this.magicNumber+count), this.magicNumber+count));
         addToBot(new GainBlockAction(p, p, this.block));
     }
 

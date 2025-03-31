@@ -69,7 +69,7 @@ public class ENFirstRamune extends GkmasBossCard {
     @Override
     public boolean canUse(AbstractPlayer p, AbstractMonster m) {
         if (AbstractCharBoss.boss.hasPower(GoodTune.POWER_ID)) {
-            return true;
+            return super.canUse(p, m);
         }
         this.cantUseMessage = CardCrawlGame.languagePack.getUIString("gkmasMod:NotEnoughGoodTune").TEXT[0];
         return false;

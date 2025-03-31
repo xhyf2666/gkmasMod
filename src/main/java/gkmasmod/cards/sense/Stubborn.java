@@ -11,12 +11,18 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.StrengthPower;
+import gkmasmod.cardCustomEffect.DamageCustom;
+import gkmasmod.cardCustomEffect.ExhaustRemoveCustom;
+import gkmasmod.cardCustomEffect.GoodTuneCustom;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
+import gkmasmod.utils.CustomHelper;
 import gkmasmod.utils.IdolData;
 import gkmasmod.utils.NameHelper;
 import gkmasmod.utils.SoundHelper;
+
+import java.util.ArrayList;
 
 public class Stubborn extends GkmasCard {
     private static final String CLASSNAME = Stubborn.class.getSimpleName();
@@ -47,6 +53,11 @@ public class Stubborn extends GkmasCard {
         this.tags.add(GkmasCardTag.IDOL_CARD_TAG);
         this.backGroundColor = IdolData.ttmr;
         updateBackgroundImg();
+        this.customLimit = 3;
+        this.customEffectList = new ArrayList<>();
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(DamageCustom.growID, new int[]{2,2,2}, new int[]{50,50,50}, CustomHelper.CustomEffectType.DAMAGE_ADD));
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(GoodTuneCustom.growID, new int[]{1,1,1}, new int[]{50,50,50}, CustomHelper.CustomEffectType.GOOD_TUNE_ADD));
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(ExhaustRemoveCustom.growID,new int[]{0},new int[]{80},CustomHelper.CustomEffectType.EXHAUST_REMOVE));
     }
 
 

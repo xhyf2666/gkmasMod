@@ -54,12 +54,10 @@ public class TurnBackAction extends AbstractGameAction {
                 AbstractDungeon.handCardSelectScreen.selectedCards.group.clear();
             }
             else{
-                System.out.println("TurnBackAction: "+this.handCardSelected.name);
 
                 if(p.exhaustPile.size() == 1){
                     AbstractCard abstractCard = this.p.exhaustPile.getTopCard();
                     abstractCard.unfadeOut();
-                    System.out.println("exhaustPile: "+abstractCard.name);
                     this.p.hand.addToTop(abstractCard);
                     if (AbstractDungeon.player.hasPower("Corruption") && abstractCard.type == AbstractCard.CardType.SKILL)
                         abstractCard.setCostForTurn(-9);

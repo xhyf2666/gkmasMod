@@ -29,8 +29,7 @@ public class PassionateReturnAction extends AbstractGameAction {
             AbstractDungeon.effectList.add(new FlashAtkImgEffect(this.target.hb.cX, this.target.hb.cY, AbstractGameAction.AttackEffect.NONE));
             this.target.damage(this.info);
             if (((this.target).isDying || this.target.currentHealth <= 0) && !this.target.halfDead) {
-                AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(this.source,this.source,new EnthusiasticPower(this.source,this.amount)));
-                AbstractDungeon.actionManager.addToBottom(new GainTrainRoundPowerAction(this.source,2));
+                AbstractDungeon.actionManager.addToBottom(new GainTrainRoundPowerAction(this.source,this.amount));
             }
             if ((AbstractDungeon.getCurrRoom()).monsters.areMonstersBasicallyDead())
                 AbstractDungeon.actionManager.clearPostCombatActions();

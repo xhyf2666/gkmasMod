@@ -28,7 +28,8 @@ public class ENPassionateReturn extends GkmasBossCard {
     private static final int ATTACK_DMG = 11;
     private static final int UPGRADE_PLUS_DMG = 4;
 
-    private static final int BASE_MAGIC = 4;
+    private static final int BASE_MAGIC = 2;
+    private static final int BASE_MAGIC2 = 2;
 
 
     private static final CardType TYPE = CardType.ATTACK;
@@ -44,13 +45,15 @@ public class ENPassionateReturn extends GkmasBossCard {
         this.baseDamage = ATTACK_DMG;
         this.baseMagicNumber = BASE_MAGIC;
         this.magicNumber = this.baseMagicNumber;
+        this.baseSecondMagicNumber = BASE_MAGIC2;
+        this.secondMagicNumber = this.baseSecondMagicNumber;
         this.intent = AbstractMonster.Intent.ATTACK;
     }
 
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        addToBot(new PassionateReturnAction(p, new DamageInfo(m, this.damage, this.damageTypeForTurn), this.magicNumber));
+        addToBot(new PassionateReturnAction(p, new DamageInfo(m, this.damage, this.damageTypeForTurn), this.secondMagicNumber));
     }
 
     @Override

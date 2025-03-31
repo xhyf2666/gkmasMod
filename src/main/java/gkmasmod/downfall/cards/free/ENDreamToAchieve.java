@@ -1,5 +1,6 @@
 package gkmasmod.downfall.cards.free;
 
+import com.megacrit.cardcrawl.powers.BufferPower;
 import gkmasmod.downfall.charbosses.bosses.AbstractCharBoss;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.GainBlockAction;
@@ -32,6 +33,8 @@ public class ENDreamToAchieve extends GkmasBossCard {
     private static final int BLOCK_AMT = 4;
     private static final int UPGRADE_PLUS_BLOCK = 4;
 
+    private static final int BASE_MAGIC2 = 1;
+
     private static final int BASE_HP = 1;
 
     private static final CardType TYPE = CardType.POWER;
@@ -47,6 +50,9 @@ public class ENDreamToAchieve extends GkmasBossCard {
         this.magicNumber = this.baseMagicNumber;
         this.baseBlock = BLOCK_AMT;
         this.block = this.baseBlock;
+        this.baseSecondMagicNumber = BASE_MAGIC2;
+        this.secondMagicNumber = this.baseSecondMagicNumber;
+        this.intent = AbstractMonster.Intent.DEFEND_BUFF;
     }
 
 
@@ -54,6 +60,7 @@ public class ENDreamToAchieve extends GkmasBossCard {
     public void use(AbstractPlayer p, AbstractMonster m) {
         addToBot(new ApplyPowerAction(m, m, new ReduceDamageReceive(m, this.magicNumber), this.magicNumber));
         addToBot(new GainBlockAction(m, m, this.block));
+        addToBot(new ApplyPowerAction(m,m,new BufferPower(m,this.secondMagicNumber),this.secondMagicNumber));
     }
 
     @Override

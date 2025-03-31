@@ -1,5 +1,6 @@
 package gkmasmod.downfall.cards.sense;
 
+import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import gkmasmod.downfall.charbosses.bosses.AbstractCharBoss;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
@@ -15,6 +16,7 @@ import com.megacrit.cardcrawl.vfx.combat.VerticalImpactEffect;
 import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.downfall.cards.GkmasBossCard;
+import gkmasmod.powers.GreatNotGoodTune;
 import gkmasmod.utils.NameHelper;
 
 public class ENHighFive extends GkmasBossCard {
@@ -28,13 +30,13 @@ public class ENHighFive extends GkmasBossCard {
     private static final String DESCRIPTION = CARD_STRINGS.DESCRIPTION;
     private static final String IMG_PATH = String.format("gkmasModResource/img/cards/common/%s.png", CLASSNAME2);
 
-    private static final int COST = 2;
-    private static final int ATTACK_DMG = 15;
-    private static final int UPGRADE_PLUS_DMG = 7;
+    private static final int COST = 1;
+    private static final int ATTACK_DMG = 5;
+    private static final int UPGRADE_PLUS_DMG = 2;
 
     private static final int BASE_MAGIC = 150;
     private static final int UPGRADE_PLUS_MAGIC = 50;
-
+    private static final int BASE_MAGIC2 = 1;
 
     private static final CardType TYPE = CardType.ATTACK;
     private static final CardColor COLOR = PlayerColorEnum.gkmasModColorSense;
@@ -46,6 +48,8 @@ public class ENHighFive extends GkmasBossCard {
         this.baseDamage = ATTACK_DMG;
         this.baseMagicNumber = BASE_MAGIC;
         this.magicNumber = this.baseMagicNumber;
+        this.baseSecondMagicNumber = BASE_MAGIC2;
+        this.secondMagicNumber = this.baseSecondMagicNumber;
         this.intent = AbstractMonster.Intent.ATTACK;
         this.tags.add(GkmasCardTag.FOCUS_TAG);
     }
@@ -55,6 +59,7 @@ public class ENHighFive extends GkmasBossCard {
         if (p != null)
             addToBot(new VFXAction(new VerticalImpactEffect(p.hb.cX + p.hb.width / 4.0F, p.hb.cY - p.hb.height / 4.0F)));
         addToBot(new DamageAction(p, new DamageInfo(m, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.BLUNT_HEAVY));
+        addToBot(new ApplyPowerAction(p,p,new GreatNotGoodTune(p,this.secondMagicNumber),this.secondMagicNumber));
     }
 
     public void applyPowers() {

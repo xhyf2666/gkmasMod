@@ -8,12 +8,19 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.BufferPower;
+import gkmasmod.cardCustomEffect.BlockTimeCustom;
+import gkmasmod.cardCustomEffect.DamageCustom;
+import gkmasmod.cardCustomEffect.MoreActionCustom;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.powers.ReduceDamageReceive;
 import gkmasmod.screen.SkinSelectScreen;
+import gkmasmod.utils.CustomHelper;
 import gkmasmod.utils.ImageHelper;
 import gkmasmod.utils.NameHelper;
+
+import java.util.ArrayList;
 
 public class DreamToAchieve extends GkmasCard {
     private static final String CLASSNAME = DreamToAchieve.class.getSimpleName();
@@ -27,6 +34,7 @@ public class DreamToAchieve extends GkmasCard {
     private static final int COST = 1;
     private static final int BASE_MAGIC = 1;
     private static final int UPGRADE_PLUS_MAGIC = 1;
+    private static final int BASE_MAGIC2 = 1;
 
     private static final int BLOCK_AMT = 4;
     private static final int UPGRADE_PLUS_BLOCK = 4;
@@ -46,6 +54,12 @@ public class DreamToAchieve extends GkmasCard {
         this.magicNumber = this.baseMagicNumber;
         this.baseBlock = BLOCK_AMT;
         this.block = this.baseBlock;
+        this.baseSecondMagicNumber = BASE_MAGIC2;
+        this.secondMagicNumber = this.baseSecondMagicNumber;
+        this.customLimit = 1;
+        this.customEffectList = new ArrayList<>();
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(DamageCustom.growID,new int[]{4},new int[]{60},CustomHelper.CustomEffectType.DAMAGE_ADD));
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(BlockTimeCustom.growID, new int[]{1}, new int[]{80}, CustomHelper.CustomEffectType.BLOCK_TIME_ADD));
     }
 
 
@@ -53,6 +67,7 @@ public class DreamToAchieve extends GkmasCard {
     public void use(AbstractPlayer p, AbstractMonster m) {
         addToBot(new ApplyPowerAction(p, p, new ReduceDamageReceive(p, this.magicNumber), this.magicNumber));
         addToBot(new GainBlockAction(p, p, this.block));
+        addToBot(new ApplyPowerAction(p,p,new BufferPower(p,this.secondMagicNumber),this.secondMagicNumber));
     }
 
     @Override

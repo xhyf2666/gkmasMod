@@ -37,7 +37,6 @@ public class BaseGreeting extends GkmasCard {
     public BaseGreeting() {
         super(ID, NAME, IMG_PATH, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tags.add(GkmasCardTag.CONCENTRATION_TAG);
-        this.tags.add(CardTags.STARTER_DEFEND);
     }
 
 

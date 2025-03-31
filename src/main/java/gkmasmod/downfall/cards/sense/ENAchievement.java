@@ -30,7 +30,7 @@ public class ENAchievement extends GkmasBossCard {
 
     private static final int COST = 2;
 
-    private static final int ATTACK_DMG = 7;
+    private static final int ATTACK_DMG = 10;
     private static final int UPGRADE_PLUS_DMG = 3;
     private static final int BASE_MAGIC = 3;
     private static final int UPGRADE_PLUS_MAGIC = 2;

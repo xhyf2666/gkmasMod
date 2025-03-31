@@ -26,10 +26,11 @@ public class ENPerformancePlan extends GkmasBossCard {
     private static final String DESCRIPTION = CARD_STRINGS.DESCRIPTION;
     private static String IMG_PATH = ImageHelper.idolImgPath(AbstractCharBoss.theIdolName, CLASSNAME2);
 
-    private static final int COST = 2;
-    private static final int UPGRADE_COST = 1;
+    private static final int COST = 1;
     private static final int BASE_MAGIC = 2;
+    private static final int UPGRADE_MAGIC_PLUS = 1;
     private static final int BASE_MAGIC2 = 2;
+    private static final int UPGRADE_MAGIC2_PLUS = 1;
 
 
     private static final CardType TYPE = CardType.POWER;
@@ -54,7 +55,7 @@ public class ENPerformancePlan extends GkmasBossCard {
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
        addToBot(new ApplyPowerAction(m,m,new GreatGoodTune(m,this.magicNumber),this.magicNumber));
-       addToBot(new ApplyPowerAction(m,m,new PerformancePlanPower(m,1),1));
+       addToBot(new ApplyPowerAction(p,p,new PerformancePlanPower(p,this.secondMagicNumber),this.secondMagicNumber));
     }
 
     @Override
@@ -66,7 +67,8 @@ public class ENPerformancePlan extends GkmasBossCard {
     public void upgrade() {
         if (!this.upgraded) {
             upgradeName();
-            upgradeBaseCost(UPGRADE_COST);
+            upgradeMagicNumber(UPGRADE_MAGIC_PLUS);
+            upgradeSecondMagicNumber(UPGRADE_MAGIC2_PLUS);
             if (CARD_STRINGS.UPGRADE_DESCRIPTION != null)
                 this.rawDescription = CARD_STRINGS.UPGRADE_DESCRIPTION;
             this.initializeDescription();

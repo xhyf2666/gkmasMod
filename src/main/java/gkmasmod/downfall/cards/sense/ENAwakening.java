@@ -15,6 +15,7 @@ import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.downfall.cards.GkmasBossCard;
 import gkmasmod.powers.GoodTune;
+import gkmasmod.powers.NotGoodTune;
 import gkmasmod.utils.ImageHelper;
 import gkmasmod.utils.NameHelper;
 import gkmasmod.utils.PlayerHelper;
@@ -36,7 +37,7 @@ public class ENAwakening extends GkmasBossCard {
     private static final int UPGRADE_PLUS_DMG = 1;
 
     private static final int BASE_MAGIC = 1;
-    private static final int BASE_MAGIC2 = 2;
+    private static final int BASE_MAGIC2 = 1;
     private static final int BASE_MAGIC3 = 3;
     private static final int UPGRADE_PLUS_MAGIC3 = 1;
 
@@ -59,7 +60,7 @@ public class ENAwakening extends GkmasBossCard {
         this.baseThirdMagicNumber = BASE_MAGIC3;
         this.thirdMagicNumber = this.baseThirdMagicNumber;
         this.intent = AbstractMonster.Intent.ATTACK_BUFF;
-        this.tags.add(GkmasCardTag.GOOD_TUNE_TAG);
+        this.tags.add(GkmasCardTag.COST_POWER_TAG);
         this.tags.add(GkmasCardTag.FOCUS_TAG);
     }
 
@@ -70,13 +71,14 @@ public class ENAwakening extends GkmasBossCard {
         addToBot(new DamageAction(p, new DamageInfo(m, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
         addToBot(new DamageAction(p, new DamageInfo(m, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_VERTICAL));
         addToBot(new ApplyPowerAction(m, m, new StrengthPower(m, this.thirdMagicNumber), this.thirdMagicNumber));
+        addToBot(new ApplyPowerAction(p,p,new NotGoodTune(p,this.secondMagicNumber),this.secondMagicNumber));
     }
 
     @Override
     public boolean canUse(AbstractPlayer p, AbstractMonster m) {
         int count = PlayerHelper.getPowerAmount(m,GoodTune.POWER_ID);
         if (count >= magicNumber)
-            return true;
+            return super.canUse(p, m);
         this.cantUseMessage = CardCrawlGame.languagePack.getUIString("gkmasMod:NotEnoughGoodTune").TEXT[0];
         return false;
     }

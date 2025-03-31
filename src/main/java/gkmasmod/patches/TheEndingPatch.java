@@ -19,8 +19,9 @@ import com.megacrit.cardcrawl.rooms.MonsterRoom;
 import com.megacrit.cardcrawl.rooms.MonsterRoomBoss;
 import com.megacrit.cardcrawl.saveAndContinue.SaveFile;
 import gkmasmod.characters.IdolCharacter;
+import gkmasmod.characters.MisuzuCharacter;
 import gkmasmod.monster.MonsterRoomCustomBoss;
-import gkmasmod.monster.ending.MisuzuBoss;
+import gkmasmod.relics.NIABadge;
 import gkmasmod.screen.SkinSelectScreen;
 import gkmasmod.utils.IdolData;
 
@@ -32,7 +33,11 @@ public class TheEndingPatch {
     public static class InGameConstructor {
         public static void Postfix(TheEnding __instance) {
             if(AbstractDungeon.actNum == 4){
-                if(AbstractDungeon.player instanceof IdolCharacter){
+                if(AbstractDungeon.player instanceof MisuzuCharacter||AbstractDungeon.player.hasRelic(NIABadge.ID)){
+                    DungeonMap.boss = ImageMaster.loadImage("gkmasModResource/img/monsters/Rinha/icon.png");
+                    DungeonMap.bossOutline = ImageMaster.loadImage("gkmasModResource/img/monsters/Rinha/icon.png");
+                }
+                else if(AbstractDungeon.player instanceof IdolCharacter){
                     DungeonMap.boss = ImageMaster.loadImage("gkmasModResource/img/monsters/Misuzu/icon.png");
                     DungeonMap.bossOutline = ImageMaster.loadImage("gkmasModResource/img/monsters/Misuzu/icon.png");
                 }

@@ -111,7 +111,7 @@ public class BlueSenpaiHelpAction extends AbstractGameAction {
                 return tmpPool;
             Map.Entry c = cardLib.next();
             AbstractCard card = (AbstractCard)c.getValue();
-            if (card.color.equals(color) && card.rarity != AbstractCard.CardRarity.SPECIAL && card.rarity != AbstractCard.CardRarity.CURSE) {
+            if (card.color.equals(color) && card.rarity != AbstractCard.CardRarity.BASIC &&card.rarity != AbstractCard.CardRarity.SPECIAL && card.rarity != AbstractCard.CardRarity.CURSE) {
                 tmpPool.add(card);
             }
         }

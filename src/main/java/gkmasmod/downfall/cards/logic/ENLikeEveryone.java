@@ -58,10 +58,9 @@ public class ENLikeEveryone extends GkmasBossCard {
         this.intent = AbstractMonster.Intent.ATTACK;
         FlavorText.AbstractCardFlavorFields.boxColor.set(this, CardHelper.getColor(73, 224, 254));
         flavor = FlavorText.CardStringsFlavorField.flavor.get(CARD_STRINGS);
-        this.tags.add(GkmasCardTag.YARUKI_TAG);
-        this.tags.add(GkmasCardTag.GOOD_IMPRESSION_TAG);
+        this.tags.add(GkmasCardTag.COST_POWER_TAG);
         this.tags.add(GkmasCardTag.MORE_ACTION_TAG);
-
+        this.energyGeneratedIfPlayed = 1;
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
@@ -74,7 +73,7 @@ public class ENLikeEveryone extends GkmasBossCard {
     public boolean canUse(AbstractPlayer p, AbstractMonster m) {
         int count = PlayerHelper.getPowerAmount(m, DexterityPower.POWER_ID);
         if (count >= this.magicNumber)
-            return true;
+            return super.canUse(p, m);
         this.cantUseMessage = CardCrawlGame.languagePack.getUIString("gkmasMod:NotEnoughDexterityPower").TEXT[0];
         return false;
     }

@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.screens.CardRewardScreen;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndAddToDiscardEffect;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndAddToHandEffect;
 import gkmasmod.cards.GkmasCard;
+import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.utils.IdolData;
 
@@ -88,7 +89,7 @@ public class SisterHelpAction extends AbstractGameAction {
         ArrayList<AbstractCard> tmpPool = new ArrayList<>();
         getRandomCard(PlayerColorEnum.gkmasModColorLogic,tmpPool);
         getRandomCard(PlayerColorEnum.gkmasModColorSense,tmpPool);
-        //TODO 以后加上非凡卡
+        getRandomCard(PlayerColorEnum.gkmasModColorAnomaly,tmpPool);
         getRandomCard(PlayerColorEnum.gkmasModColor,tmpPool);
 
         while (derp.size() != showCardCount) {
@@ -114,7 +115,7 @@ public class SisterHelpAction extends AbstractGameAction {
                 return tmpPool;
             Map.Entry c = cardLib.next();
             AbstractCard card = (AbstractCard)c.getValue();
-            if (card.color.equals(color) &&card.rarity != AbstractCard.CardRarity.CURSE) {
+            if (card.hasTag(GkmasCardTag.IDOL_CARD_TAG)&&card.color.equals(color) &&card.rarity != AbstractCard.CardRarity.CURSE) {
                 if(card instanceof GkmasCard){
                     GkmasCard gkmasCard = (GkmasCard)card;
                     if(gkmasCard.backGroundColor.equals(IdolData.hski))

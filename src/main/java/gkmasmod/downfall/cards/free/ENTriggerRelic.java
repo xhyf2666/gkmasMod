@@ -9,6 +9,8 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.downfall.cards.GkmasBossCard;
 import gkmasmod.downfall.relics.*;
+import gkmasmod.powers.MyPrideBigSisterPower;
+import gkmasmod.powers.SayGoodbyeToDislikeMyselfPower;
 import gkmasmod.utils.NameHelper;
 
 public class ENTriggerRelic extends GkmasBossCard {
@@ -56,6 +58,12 @@ public class ENTriggerRelic extends GkmasBossCard {
         }
         if(AbstractCharBoss.boss.hasRelic(CBR_ChristmasLion.ID2)){
             ((CBR_ChristmasLion)AbstractCharBoss.boss.getRelic(CBR_ChristmasLion.ID2)).onTrainRoundRemove();
+        }
+        if(AbstractCharBoss.boss.hasPower(MyPrideBigSisterPower.POWER_ID)){
+            AbstractCharBoss.boss.getPower(MyPrideBigSisterPower.POWER_ID).onSpecificTrigger();
+        }
+        if(AbstractCharBoss.boss.hasRelic(SayGoodbyeToDislikeMyselfPower.POWER_ID)){
+            AbstractCharBoss.boss.getPower(SayGoodbyeToDislikeMyselfPower.POWER_ID).onSpecificTrigger();
         }
     }
 

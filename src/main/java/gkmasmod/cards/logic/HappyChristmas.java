@@ -9,14 +9,21 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.helpers.CardHelper;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import gkmasmod.cardCustomEffect.MagicCustom;
+import gkmasmod.cardCustomEffect.MoreActionCustom;
+import gkmasmod.cardCustomEffect.SecondMagicCustom;
 import gkmasmod.cards.GkmasCard;
+import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.powers.EvenIfDreamNotRealizePower;
 import gkmasmod.powers.GoodImpression;
 import gkmasmod.powers.HappyChristmasPower;
+import gkmasmod.utils.CustomHelper;
 import gkmasmod.utils.IdolData;
 import gkmasmod.utils.NameHelper;
 import gkmasmod.utils.SoundHelper;
+
+import java.util.ArrayList;
 
 public class HappyChristmas extends GkmasCard {
     private static final String CLASSNAME = HappyChristmas.class.getSimpleName();
@@ -42,8 +49,13 @@ public class HappyChristmas extends GkmasCard {
         super(ID, NAME, IMG_PATH, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET,"color");
         this.baseMagicNumber = this.magicNumber = BASE_MAGIC;
         this.baseSecondMagicNumber = this.secondMagicNumber = BASE_MAGIC2;
+        this.tags.add(GkmasCardTag.IDOL_CARD_TAG);
         this.backGroundColor = IdolData.fktn;
         updateBackgroundImg();
+        this.customLimit = 1;
+        this.customEffectList = new ArrayList<>();
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(MagicCustom.growID, new int[]{2}, new int[]{70}, CustomHelper.CustomEffectType.GOOD_IMPRESSION_ADD));
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(MoreActionCustom.growID,new int[]{1},new int[]{80},CustomHelper.CustomEffectType.MORE_ACTION_ADD));
     }
 
 

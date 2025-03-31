@@ -13,7 +13,7 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.CorruptionPower;
 import gkmasmod.actions.GainTrainRoundPowerAction;
-import gkmasmod.cardCustomEffect.MoreActionCustom;
+import gkmasmod.cardCustomEffect.*;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
@@ -25,6 +25,8 @@ import gkmasmod.stances.ConcentrationStance;
 import gkmasmod.utils.CustomHelper;
 import gkmasmod.utils.ImageHelper;
 import gkmasmod.utils.NameHelper;
+
+import java.util.ArrayList;
 
 public class HeartAndSoul extends GkmasCard {
     private static final String CLASSNAME = HeartAndSoul.class.getSimpleName();
@@ -62,6 +64,10 @@ public class HeartAndSoul extends GkmasCard {
         this.thirdMagicNumber = this.baseThirdMagicNumber;
         this.exhaust = true;
         CardModifierManager.addModifier(this,new MoreActionCustom(this.thirdMagicNumber));
+        this.customLimit = 1;
+        this.customEffectList = new ArrayList<>();
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(CostCustom.growID,new int[]{-1},new int[]{80},CustomHelper.CustomEffectType.ENERGY_COST_REDUCE));
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(EffectChangeCustom.growID, new int[]{0}, new int[]{100}, CustomHelper.CustomEffectType.EFFECT_CHANGE));
     }
 
     @Override

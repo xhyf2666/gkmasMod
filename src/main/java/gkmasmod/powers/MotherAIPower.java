@@ -47,7 +47,7 @@ public class MotherAIPower extends AbstractPower {
 
     }
 
-    public void atStartOfTurn() {
+    public void atStartOfTurnPostDraw() {
         addToBot(new MakeTempCardInHandAction(new SSDSecret()));
         if(AbstractCharBoss.boss != null){
             addToBot(new EnemyMakeTempCardInHandAction(new ENSSDSecret()));

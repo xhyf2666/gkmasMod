@@ -14,15 +14,19 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import gkmasmod.actions.GainTrainRoundPowerAction;
-import gkmasmod.cardCustomEffect.MoreActionCustom;
+import gkmasmod.cardCustomEffect.*;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.powers.GoodTune;
+import gkmasmod.powers.NotGoodTune;
 import gkmasmod.screen.SkinSelectScreen;
+import gkmasmod.utils.CustomHelper;
 import gkmasmod.utils.ImageHelper;
 import gkmasmod.utils.NameHelper;
 import gkmasmod.utils.PlayerHelper;
+
+import java.util.ArrayList;
 
 public class EncoreCall extends GkmasCard {
     private static final String CLASSNAME = EncoreCall.class.getSimpleName();
@@ -39,6 +43,7 @@ public class EncoreCall extends GkmasCard {
     private static final int BASE_MAGIC = 2;
     private static final int BASE_MAGIC2 = 2;
     private static final int UPGRADE_PLUS_MAGIC2 = 1;
+    private static final int BASE_MAGIC3 = 1;
 
     private static final CardType TYPE = CardType.ATTACK;
     private static final CardColor COLOR = PlayerColorEnum.gkmasModColorSense;
@@ -54,10 +59,17 @@ public class EncoreCall extends GkmasCard {
         this.magicNumber = this.baseMagicNumber;
         this.baseSecondMagicNumber = BASE_MAGIC2;
         this.secondMagicNumber = this.baseSecondMagicNumber;
+        this.baseThirdMagicNumber = BASE_MAGIC3;
+        this.thirdMagicNumber = this.baseThirdMagicNumber;
         this.tags.add(GkmasCardTag.GOOD_TUNE_TAG);
-        this.tags.add(GkmasCardTag.FOCUS_TAG);
         this.tags.add(GkmasCardTag.MORE_ACTION_TAG);
+        this.tags.add(GkmasCardTag.COST_POWER_TAG);
         CardModifierManager.addModifier(this,new MoreActionCustom(1));
+        this.customLimit = 1;
+        this.customEffectList = new ArrayList<>();
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(MagicCustom.growID,new int[]{-1},new int[]{60},CustomHelper.CustomEffectType.STRENGTH_ADD));
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(SecondMagicCustom.growID,new int[]{1},new int[]{50},CustomHelper.CustomEffectType.GOOD_TUNE_ADD));
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(UpgradeAllHandCustom.growID,new int[]{0},new int[]{60},CustomHelper.CustomEffectType.UPGRADE_ALL_HAND));
     }
 
 
@@ -66,6 +78,7 @@ public class EncoreCall extends GkmasCard {
         addToBot( new DamageAction( m, new DamageInfo( p, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
         addToBot(new ApplyPowerAction(p, p, new StrengthPower(p, -this.magicNumber), -this.magicNumber));
         addToBot(new ApplyPowerAction(p, p, new GoodTune(p, this.secondMagicNumber), this.secondMagicNumber));
+        addToBot(new ApplyPowerAction(m,m,new NotGoodTune(m,this.thirdMagicNumber),this.thirdMagicNumber));
 //        addToBot(new GainTrainRoundPowerAction(p,1));
     }
 

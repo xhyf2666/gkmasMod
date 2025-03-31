@@ -21,7 +21,7 @@ public class DrawCardCustom extends AbstractCardCustomEffect {
     }
 
     public String modifyDescription(String rawDescription, AbstractCard card) {
-        return rawDescription + " " + String.format(CardCrawlGame.languagePack.getUIString("customEffect:DrawCardCustom").TEXT[0],this.amount);
+        return rawDescription + " NL " + String.format(CardCrawlGame.languagePack.getUIString("customEffect:DrawCardCustom").TEXT[0],this.amount);
     }
 
     public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {

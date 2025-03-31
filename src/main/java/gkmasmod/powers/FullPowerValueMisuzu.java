@@ -56,5 +56,4 @@ public class FullPowerValueMisuzu extends AbstractPower {
         this.description = String.format(DESCRIPTIONS[0]);
     }
 
-
 }

@@ -21,14 +21,28 @@ public class EnergyGrow extends AbstractGrowEffect {
         if(this.amount>=0)
         return rawDescription + " " + String.format(CardCrawlGame.languagePack.getUIString("growEffect:EnergyGrow").TEXT[0], this.amount);
         else
-            return rawDescription + " " + String.format(CardCrawlGame.languagePack.getUIString("growEffect:EnergyReduceGrow").TEXT[0], this.amount);
+            return rawDescription + " " + String.format(CardCrawlGame.languagePack.getUIString("growEffect:EnergyReduceGrow").TEXT[0], -this.amount);
     }
 
     public void onInitialApplication(AbstractCard card) {
         this.originalCost = card.cost;
+        if(card.cost<0){
+            return;
+        }
         card.cost += this.amount;
+        card.costForTurn = card.cost;
         if(card.cost<0){
             card.cost = 0;
+            card.costForTurn = 0;
+        }
+    }
+
+    public void reApply(AbstractCard card) {
+        card.cost = this.originalCost + this.amount;
+        card.costForTurn = card.cost;
+        if(card.cost<0){
+            card.cost = 0;
+            card.costForTurn = 0;
         }
     }
 

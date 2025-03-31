@@ -2,17 +2,27 @@ package gkmasmod.cards.anomaly;
 
 import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.actions.watcher.ChangeStanceAction;
+import com.megacrit.cardcrawl.actions.watcher.ChooseOneAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import gkmasmod.actions.GrowAction;
+import gkmasmod.cardCustomEffect.*;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.cards.GkmasCardTag;
+import gkmasmod.cards.sense.WishPowerGoodTune;
+import gkmasmod.cards.sense.WishPowerStrength;
 import gkmasmod.characters.PlayerColorEnum;
+import gkmasmod.growEffect.DamageGrow;
 import gkmasmod.powers.TempSavePower;
 import gkmasmod.stances.PreservationStance;
+import gkmasmod.utils.CustomHelper;
 import gkmasmod.utils.NameHelper;
+
+import java.util.ArrayList;
 
 public class PacificSaury extends GkmasCard {
     private static final String CLASSNAME = PacificSaury.class.getSimpleName();
@@ -27,6 +37,7 @@ public class PacificSaury extends GkmasCard {
 
     private static final int BASE_MAGIC = 1;
     private static final int UPGRADE_PLUS_MAGIC = 1;
+    private static final int BASE_MAGIC2 = 1;
 
     private static final CardType TYPE = CardType.POWER;
     private static final CardColor COLOR = PlayerColorEnum.gkmasModColorAnomaly;
@@ -37,17 +48,35 @@ public class PacificSaury extends GkmasCard {
         super(ID, NAME, IMG_PATH, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.baseMagicNumber = BASE_MAGIC;
         this.magicNumber = this.baseMagicNumber;
+        this.baseSecondMagicNumber = BASE_MAGIC2;
+        this.secondMagicNumber = this.baseSecondMagicNumber;
+        this.customLimit = 1;
+        this.customEffectList = new ArrayList<>();
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(CostCustom.growID,new int[]{-1},new int[]{80},CustomHelper.CustomEffectType.ENERGY_COST_REDUCE));
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(FullPowerValueCustom.growID, new int[]{2}, new int[]{60}, CustomHelper.CustomEffectType.FULL_POWER_VALUE_ADD));
     }
 
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        TempSavePower.changeLimit(p, this.magicNumber);
+        ArrayList<AbstractCard> stanceChoices = new ArrayList<>();
+        AbstractCard tmp = new PacificSauryAdd();
+        if(this.upgraded){
+            tmp.upgrade();
+        }
+        stanceChoices.add(tmp);
+        stanceChoices.add(new PacificSauryReduce());
+        addToBot(new ChooseOneAction(stanceChoices));
     }
 
     @Override
     public AbstractCard makeCopy() {
         return new PacificSaury();
+    }
+
+    @Override
+    public void onChoseThisOption() {
+        TempSavePower.changeLimit(AbstractDungeon.player, this.magicNumber);
     }
 
     @Override

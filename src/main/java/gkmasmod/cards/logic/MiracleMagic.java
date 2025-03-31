@@ -1,6 +1,7 @@
 package gkmasmod.cards.logic;
 
 import com.evacipated.cardcrawl.mod.stslib.patches.FlavorText;
+import com.megacrit.cardcrawl.actions.common.LoseHPAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -9,14 +10,20 @@ import com.megacrit.cardcrawl.helpers.CardHelper;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import gkmasmod.actions.GoodImpressionDamageAction;
+import gkmasmod.cardCustomEffect.ExhaustRemoveCustom;
+import gkmasmod.cardCustomEffect.MagicCustom;
+import gkmasmod.cardCustomEffect.SecondMagicCustom;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.powers.GoodImpression;
 import gkmasmod.screen.SkinSelectScreen;
+import gkmasmod.utils.CustomHelper;
 import gkmasmod.utils.ImageHelper;
 import gkmasmod.utils.NameHelper;
 import gkmasmod.utils.PlayerHelper;
+
+import java.util.ArrayList;
 
 public class MiracleMagic extends GkmasCard {
     private static final String CLASSNAME = MiracleMagic.class.getSimpleName();
@@ -48,14 +55,20 @@ public class MiracleMagic extends GkmasCard {
         this.HPMagicNumber = this.baseHPMagicNumber;
         this.baseMagicNumber = BASE_MAGIC;
         this.magicNumber = this.baseMagicNumber;
+        this.exhaust = true;
         FlavorText.AbstractCardFlavorFields.boxColor.set(this, CardHelper.getColor(73, 224, 254));
         flavor = FlavorText.CardStringsFlavorField.flavor.get(CARD_STRINGS);
         this.tags.add(GkmasCardTag.GOOD_IMPRESSION_TAG);
+        this.customLimit = 1;
+        this.customEffectList = new ArrayList<>();
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(MagicCustom.growID,new int[]{60},new int[]{100},CustomHelper.CustomEffectType.RATE_ADD));
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(ExhaustRemoveCustom.growID, new int[]{0}, new int[]{80}, CustomHelper.CustomEffectType.EXHAUST_REMOVE));
     }
 
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
+        addToBot(new LoseHPAction(p, p, HPMagicNumber));
         addToBot(new GoodImpressionDamageAction(1.0F * magicNumber / 100, 0, p, m,this));
     }
 
@@ -81,4 +94,5 @@ public class MiracleMagic extends GkmasCard {
             this.initializeDescription();
         }
     }
+
 }

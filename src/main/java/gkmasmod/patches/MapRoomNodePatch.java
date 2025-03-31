@@ -10,7 +10,11 @@ import com.evacipated.cardcrawl.modthespire.lib.SpirePostfixPatch;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.map.MapRoomNode;
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.rooms.MonsterRoomBoss;
 import com.megacrit.cardcrawl.screens.DungeonMapScreen;
+import gkmasmod.monster.exordium.MonsterNadeshiko;
+import gkmasmod.monster.exordium.MonsterShion;
 import gkmasmod.room.FixedMonsterRoom;
 import gkmasmod.room.GkmasBossRoom;
 
@@ -40,6 +44,14 @@ public class MapRoomNodePatch {
         public static void inerst(MapRoomNode __instance, SpriteBatch sb) {
             if(__instance.room instanceof FixedMonsterRoom||__instance.room instanceof GkmasBossRoom){
                 sb.setColor(Color.WHITE);
+            }
+            if(__instance.room instanceof MonsterRoomBoss){
+                for(AbstractMonster m:(__instance.room).monsters.monsters){
+                    if(m instanceof MonsterShion || m instanceof MonsterNadeshiko){
+                        sb.setColor(Color.WHITE);
+//                        System.out.println("boss");
+                    }
+                }
             }
         }
     }

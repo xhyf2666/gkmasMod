@@ -27,7 +27,7 @@ public class AwakenedOnePatch
     public static class AwakenedOneInsertPatch_changeState{
         @SpireInsertPatch(rloc = 17)
         public static void Insert(AwakenedOne __instance, String key) {
-            if(AbstractDungeon.player.hasRelic(PocketBook.ID)){
+            if(AbstractDungeon.player!=null&&AbstractDungeon.player.hasRelic(PocketBook.ID)){
                 __instance.maxHealth = __instance.maxHealth * ThreeSizeHelper.getHealthRate(3);
                 __instance.currentHealth = __instance.currentHealth * ThreeSizeHelper.getHealthRate(3);
             }

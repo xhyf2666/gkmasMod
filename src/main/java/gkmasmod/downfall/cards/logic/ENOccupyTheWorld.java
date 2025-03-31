@@ -27,6 +27,7 @@ public class ENOccupyTheWorld extends GkmasBossCard {
 
     private static final int COST = 2;
     private static final int BASE_MAGIC = 4;
+    private static final int UPGRADE_PLUS_MAGIC = 3;
 
 
     private static final CardType TYPE = CardType.POWER;
@@ -46,9 +47,7 @@ public class ENOccupyTheWorld extends GkmasBossCard {
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
         addToBot(new ApplyPowerAction(m, m, new OccupyTheWorldPower(m)));
-        if(this.upgraded){
-            addToBot(new ApplyPowerAction(m, m, new GoodImpression(m, this.magicNumber), this.magicNumber));
-        }
+        addToBot(new ApplyPowerAction(m, m, new GoodImpression(m, this.magicNumber), this.magicNumber));
     }
 
     @Override
@@ -60,6 +59,7 @@ public class ENOccupyTheWorld extends GkmasBossCard {
     public void upgrade() {
         if (!this.upgraded) {
             upgradeName();
+            upgradeMagicNumber(UPGRADE_PLUS_MAGIC);
             if (CARD_STRINGS.UPGRADE_DESCRIPTION != null)
                 this.rawDescription = CARD_STRINGS.UPGRADE_DESCRIPTION;
             this.initializeDescription();

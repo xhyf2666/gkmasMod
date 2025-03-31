@@ -8,12 +8,21 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import gkmasmod.actions.GrowAction;
 import gkmasmod.actions.ModifyDamageAction;
+import gkmasmod.cardCustomEffect.DamageCustom;
+import gkmasmod.cardCustomEffect.MagicCustom;
+import gkmasmod.cardCustomEffect.SecondMagicCustom;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
+import gkmasmod.growEffect.DamageGrow;
 import gkmasmod.stances.ConcentrationStance;
+import gkmasmod.utils.CustomHelper;
+import gkmasmod.utils.GrowHelper;
 import gkmasmod.utils.NameHelper;
+
+import java.util.ArrayList;
 
 public class Starlight extends GkmasCard {
     private static final String CLASSNAME = Starlight.class.getSimpleName();
@@ -27,9 +36,8 @@ public class Starlight extends GkmasCard {
     private static final int COST = 1;
 
     private static final int BASE_DAMAGE = 5;
-
     private static final int UPGRADE_DMG_PLUS = 2;
-
+    private static final int BASE_MAGIC = 0;
 
     private static final CardType TYPE = CardType.ATTACK;
     private static final CardColor COLOR = PlayerColorEnum.gkmasModColorAnomaly;
@@ -40,13 +48,23 @@ public class Starlight extends GkmasCard {
         super(ID, NAME, IMG_PATH, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tags.add(GkmasCardTag.CONCENTRATION_TAG);
         this.baseDamage = BASE_DAMAGE;
+        this.baseMagicNumber = BASE_MAGIC;
+        this.magicNumber = this.baseMagicNumber;
         this.cardHeader = "Star Light";
+        this.customLimit = 3;
+        this.customEffectList = new ArrayList<>();
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(DamageCustom.growID,new int[]{2,2,2},new int[]{50,50,50},CustomHelper.CustomEffectType.DAMAGE_ADD));
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(MagicCustom.growID, new int[]{1,2}, new int[]{60,80}, CustomHelper.CustomEffectType.EFFECT_ADD));
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
         addToBot(new ChangeStanceAction(ConcentrationStance.STANCE_ID));
         addToBot(new ModifyDamageAction(m, new DamageInfo(p, this.baseDamage, DamageInfo.DamageType.NORMAL), AbstractGameAction.AttackEffect.SLASH_VERTICAL,this,false));
+        if(this.magicNumber > 0){
+            addToBot(new GrowAction(DamageGrow.growID, GrowAction.GrowType.all, this.magicNumber));
+            GrowHelper.grow(this, DamageGrow.growID, this.magicNumber);
+        }
     }
 
     @Override

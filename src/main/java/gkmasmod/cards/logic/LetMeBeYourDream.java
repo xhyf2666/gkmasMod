@@ -26,8 +26,8 @@ public class LetMeBeYourDream extends GkmasCard {
     private static final String DESCRIPTION = CARD_STRINGS.DESCRIPTION;
     private static final String IMG_PATH = String.format("gkmasModResource/img/cards/common/%s.png", CLASSNAME);
 
-    private static final int COST = 0;
-    private static final int BASE_BLOCK = 4;
+    private static final int COST = 1;
+    private static final int BASE_BLOCK = 3;
     private static final int UPGRADE_BASE_BLOCK = 2;
 
 
@@ -43,6 +43,7 @@ public class LetMeBeYourDream extends GkmasCard {
         this.baseBlock = BASE_BLOCK;
         this.exhaust = true;
         this.tags.add(GkmasCardTag.OUTSIDE_TAG);
+        this.tags.add(GkmasCardTag.MORE_ACTION_TAG);
         FlavorText.AbstractCardFlavorFields.boxColor.set(this, CardHelper.getColor(0, 190, 216));
         flavor = FlavorText.CardStringsFlavorField.flavor.get(CARD_STRINGS);
         this.backGroundColor = IdolData.shro;

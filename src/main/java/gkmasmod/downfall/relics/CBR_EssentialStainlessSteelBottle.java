@@ -32,7 +32,8 @@ public class CBR_EssentialStainlessSteelBottle extends AbstractCharbossRelic {
     private static final  int playTimes = 1;
 
     public CBR_EssentialStainlessSteelBottle() {
-        super(new EssentialStainlessSteelBottle(),IMG);    }
+        super(new EssentialStainlessSteelBottle(),IMG);
+    }
 
 
     @Override

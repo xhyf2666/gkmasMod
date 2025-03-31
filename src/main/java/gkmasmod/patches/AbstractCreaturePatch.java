@@ -1,5 +1,12 @@
 package gkmasmod.patches;
 
+import com.evacipated.cardcrawl.modthespire.Loader;
+import com.evacipated.cardcrawl.modthespire.patcher.PatchingException;
+import com.megacrit.cardcrawl.actions.common.GainBlockAction;
+import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.helpers.PowerTip;
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.AbstractPower;
 import gkmasmod.downfall.charbosses.bosses.AbstractCharBoss;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -10,11 +17,14 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.FontHelper;
-import gkmasmod.powers.SaySomethingToYouPower;
-import gkmasmod.powers.SteelSoul;
+import gkmasmod.modcore.GkmasMod;
+import gkmasmod.powers.*;
 import gkmasmod.relics.PocketBook;
 import gkmasmod.utils.ImageHelper;
+import javassist.CannotCompileException;
 import javassist.CtBehavior;
+import javassist.expr.ExprEditor;
+import javassist.expr.MethodCall;
 
 import java.util.ArrayList;
 
@@ -34,10 +44,17 @@ public class AbstractCreaturePatch {
     public static class PostPatchAbstractCreature_addBlock {
         @SpireInsertPatch(locator = Locator.class, localvars = {"tmp"})
         public static void Insert(AbstractCreature __instance, int blockAmount,float tmp) {
-//            if(__instance.isPlayer){
+            if(AbstractDungeon.player!=null&&AbstractDungeon.player.hasRelic(PocketBook.ID)){
                 int increase = MathUtils.floor(tmp);
-                if(increase>9999){
-                    increase = 9999;
+                if(increase>99999){
+                    increase = 99999;
+                }
+                if(__instance.isPlayer){
+                    for(AbstractMonster m:AbstractDungeon.getMonsters().monsters){
+                        if(!m.isDeadOrEscaped()&&m.hasPower(FateCommunityPower2.POWER_ID)){
+                            AbstractDungeon.actionManager.addToBottom(new GainBlockAction(m,m, (int) (increase*0.5F)));
+                        }
+                    }
                 }
                 int block;
                 if(__instance.hasPower(SteelSoul.POWER_ID)){
@@ -48,14 +65,15 @@ public class AbstractCreaturePatch {
                 else{
                     block = __instance.currentBlock + increase;
                 }
-                if(block>9999){
-                    block = 9999;
+                if(block>99999){
+                    block = 99999;
                 }
                 blockBakField.blockBak.set(__instance, block);
 
                 int count = AbstractCreaturePatch.BlockField.ThisCombatBlock.get(__instance);
-            AbstractCreaturePatch.BlockField.ThisCombatBlock.set(__instance, count+increase);
-//            }
+                AbstractCreaturePatch.BlockField.ThisCombatBlock.set(__instance, count+increase);
+            }
+
         }
     }
 
@@ -63,13 +81,36 @@ public class AbstractCreaturePatch {
     public static class PostPatchAbstractCreature_addBlock2 {
         @SpireInsertPatch(rloc =37 ,localvars = {"tmp"})
         public static void Insert(AbstractCreature __instance, int blockAmount,float tmp) {
-            if(AbstractDungeon.player.hasRelic(PocketBook.ID)){
-                if(__instance.isPlayer){
-                    __instance.currentBlock = blockBakField.blockBak.get(__instance);
-                    return;
+            if(AbstractDungeon.player!=null&&AbstractDungeon.player.hasRelic(PocketBook.ID)){
+                __instance.currentBlock = blockBakField.blockBak.get(__instance);
+            }
+        }
+    }
+
+    @SpirePatch(clz = AbstractCreature.class,method = "addBlock")
+    public static class PostPatchAbstractCreature_addBlock3 {
+        @SpireInsertPatch(rloc =484-479 ,localvars = {"tmp"})
+        public static void Insert(AbstractCreature __instance, int blockAmount,float tmp) {
+            if(tmp<=0)
+                return;
+            for(AbstractMonster m:AbstractDungeon.getMonsters().monsters){
+                if(m.hasPower(FriendHiroPower2.POWER_ID)){
+                    m.getPower(FriendHiroPower2.POWER_ID).onSpecificTrigger();
                 }
             }
-            __instance.currentBlock = blockBakField.blockBak.get(__instance);
+        }
+    }
+
+    @SpirePatch(clz = AbstractCreature.class,method = "loseBlock",paramtypez = {int.class, boolean.class})
+    public static class PostPatchAbstractCreature_loseBlock {
+        @SpireInsertPatch(rloc =0)
+        public static SpireReturn Insert(AbstractCreature __instance, int amount, boolean noAnimation) {
+            System.out.println("loseBlock");
+            if(__instance.isPlayer&&AbstractDungeon.player.hasPower(TrainRoundLogicPower.POWER_ID)&& GkmasMod.loseBlock){
+                GkmasMod.loseBlock = false;
+                return SpireReturn.Return(null);
+            }
+            return SpireReturn.Continue();
         }
     }
 
@@ -94,15 +135,19 @@ public class AbstractCreaturePatch {
 
     public static void renderFinalCircle(AbstractCreature __instance,SpriteBatch sb) {
         sb.setColor(Color.WHITE);
-        sb.draw(ImageHelper.finalCircleBg, Settings.WIDTH / 2.0F - 500.0F*Settings.xScale, Settings.HEIGHT / 2.0F + 000.0F*Settings.scale, 256.0F, 256.0F, 512, 512, Settings.scale*0.5F, Settings.scale*0.5F, 0.0F, 0, 0, 512, 512, false, false);
+        sb.draw(ImageHelper.finalCircleBg, Settings.WIDTH / 2.0F - 500.0F*Settings.xScale, Settings.HEIGHT / 2.0F + 200.0F*Settings.yScale-200.0F, 256.0F, 256.0F, 512, 512, Settings.scale*0.5F, Settings.scale*0.5F, 0.0F, 0, 0, 512, 512, false, false);
 
         ArrayList<Integer> finalCircleRound = AbstractPlayerPatch.FinalCircleRoundField.finalCircleRound.get(AbstractDungeon.player);
         double finalDamageRate = AbstractPlayerPatch.FinalDamageRateField.finalDamageRate.get(AbstractDungeon.player);
         for(int i = 0; i<finalCircleRound.size();i++){
-            sb.draw(ImageHelper.arcs[finalCircleRound.get(i)], Settings.WIDTH / 2.0F - 500.0F*Settings.xScale, Settings.HEIGHT / 2.0F + 000.0F*Settings.scale, 256.0F, 256.0F, 512, 512, Settings.scale*0.5F, Settings.scale*0.5F, 330.0F-30.F*i, 0, 0, 512, 512, false, false);
+            sb.draw(ImageHelper.arcs[finalCircleRound.get(i)], Settings.WIDTH / 2.0F - 500.0F*Settings.xScale, Settings.HEIGHT / 2.0F + 200.0F*Settings.yScale-200.0F, 256.0F, 256.0F, 512, 512, Settings.scale*0.5F, Settings.scale*0.5F, 330.0F-30.F*i, 0, 0, 512, 512, false, false);
         }
-        FontHelper.renderSmartText(sb, FontHelper.bannerNameFont, String.valueOf(finalCircleRound.size()), Settings.WIDTH / 2.0F - 275.0F*Settings.xScale, Settings.HEIGHT / 2.0F + 290.0F*Settings.scale, 10000.0F, 30.0F * Settings.scale, Settings.CREAM_COLOR,1.5f);
-        FontHelper.renderSmartText(sb, FontHelper.tipHeaderFont, String.format("%.0f%%",finalDamageRate*100), Settings.WIDTH / 2.0F - 300.0F*Settings.xScale, Settings.HEIGHT / 2.0F + 325.0F*Settings.scale, 10000.0F, 30.0F * Settings.scale, Settings.CREAM_COLOR);
+        if(finalCircleRound.size()>9)
+            FontHelper.renderSmartText(sb, FontHelper.bannerNameFont, String.valueOf(finalCircleRound.size()), Settings.WIDTH / 2.0F - 380.0F*Settings.xScale+90.0F, Settings.HEIGHT / 2.0F + 250.0F*Settings.yScale+40.0F, 10000.0F, 30.0F * Settings.scale, Settings.CREAM_COLOR,1.5f);
+        else{
+            FontHelper.renderSmartText(sb, FontHelper.bannerNameFont, String.valueOf(finalCircleRound.size()), Settings.WIDTH / 2.0F - 360.0F*Settings.xScale+105.0F, Settings.HEIGHT / 2.0F + 250.0F*Settings.yScale+40.0F, 10000.0F, 30.0F * Settings.scale, Settings.CREAM_COLOR,1.5f);
+        }
+        FontHelper.renderSmartText(sb, FontHelper.tipHeaderFont, String.format("%.0f%%",finalDamageRate*100), Settings.WIDTH / 2.0F - 400.0F*Settings.xScale+100.0F, Settings.HEIGHT / 2.0F + 325.0F*Settings.yScale, 10000.0F, 30.0F * Settings.scale, Settings.CREAM_COLOR);
     }
 
     @SpirePatch(clz = AbstractCreature.class,method = "decrementBlock")

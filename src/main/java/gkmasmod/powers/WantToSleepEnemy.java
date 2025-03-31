@@ -27,12 +27,13 @@ public class WantToSleepEnemy extends AbstractPower {
     String path48 = String.format("gkmasModResource/img/powers/%s_32.png",CLASSNAME);
 
     private static final int require = 10;
+    public boolean flag = false;
 
     public WantToSleepEnemy(AbstractCreature owner, int amount) {
         this.name = NAME;
         this.ID = POWER_ID;
         this.owner = owner;
-        this.type = PowerType.BUFF;
+        this.type = PowerType.DEBUFF;
         this.amount = amount;
 
         // 添加一大一小两张能力图
@@ -41,10 +42,6 @@ public class WantToSleepEnemy extends AbstractPower {
 
         // 首次添加能力更新描述
         this.updateDescription();
-    }
-
-    public void stackPower(int stackAmount) {
-        super.stackPower(stackAmount);
     }
 
     // 能力在更新时如何修改描述
@@ -60,11 +57,16 @@ public class WantToSleepEnemy extends AbstractPower {
 
     @Override
     public void onSpecificTrigger() {
+        if(flag){
+            flag = false;
+            return;
+        }
         if (this.amount >= 10) {
             this.addToTop(new ApplyPowerAction(this.owner, this.owner, new SleepingPower(this.owner, 1), 1));
             this.amount -= 10;
+            flag = true;
             if (this.amount <= 0) {
-                this.addToTop(new RemoveSpecificPowerAction(this.owner, this.owner, this.ID));
+                this.amount = 0;
             }
             else{
                 updateDescription();

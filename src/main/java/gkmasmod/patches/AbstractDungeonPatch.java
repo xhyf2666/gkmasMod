@@ -2,6 +2,7 @@ package gkmasmod.patches;
 
 import com.badlogic.gdx.Gdx;
 import com.evacipated.cardcrawl.modthespire.lib.*;
+import com.megacrit.cardcrawl.actions.GameActionManager;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -18,7 +19,10 @@ import com.megacrit.cardcrawl.random.Random;
 import com.megacrit.cardcrawl.rooms.MonsterRoom;
 import com.megacrit.cardcrawl.saveAndContinue.SaveFile;
 import gkmasmod.characters.IdolCharacter;
+import gkmasmod.characters.MisuzuCharacter;
 import gkmasmod.downfall.bosses.*;
+import gkmasmod.monster.ending.MonsterRinha;
+import gkmasmod.relics.NIABadge;
 import gkmasmod.room.EventMonsterRoom;
 import gkmasmod.room.FixedMonsterRoom;
 import gkmasmod.dungeons.IdolRoad;
@@ -33,6 +37,10 @@ import gkmasmod.screen.SkinSelectScreen;
 import gkmasmod.utils.IdolData;
 import gkmasmod.utils.PlayerHelper;
 import gkmasmod.vfx.IdolRoadOPEffect;
+import javassist.CannotCompileException;
+import javassist.expr.ExprEditor;
+import javassist.expr.MethodCall;
+import org.lwjgl.Sys;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -56,6 +64,19 @@ public class AbstractDungeonPatch {
                     SkinSelectScreen.Inst.videoPlayer.dispose();
                     SkinSelectScreen.Inst.videoPlayer = null;
                 }
+                if(AbstractDungeon.id.equals(IdolRoad.ID)){
+                    String videoPath = "gkmasModResource/video/other/op4.webm";
+                    CardCrawlGame.fadeIn(1.0F);
+                    CardCrawlGame.music.dispose();
+                    if(Gdx.files.local(videoPath).exists()){
+                        AbstractDungeon.topLevelEffectsQueue.add(new IdolRoadOPEffect(videoPath,true));
+                    }
+                    if(Gdx.files.internal(videoPath).exists()){
+                        AbstractDungeon.topLevelEffectsQueue.add(new IdolRoadOPEffect(videoPath,false));
+                    }
+                }
+            }
+            else if(p instanceof MisuzuCharacter){
                 if(AbstractDungeon.id.equals(IdolRoad.ID)){
                     String videoPath = "gkmasModResource/video/other/op4.webm";
                     CardCrawlGame.fadeIn(1.0F);
@@ -114,13 +135,17 @@ public class AbstractDungeonPatch {
             if(AbstractDungeon.name.equals(IdolRoad.ID)){
                 return;
             }
-            if(AbstractDungeon.player.hasRelic(PocketBook.ID)){
+            if(AbstractDungeon.player!=null&&AbstractDungeon.player.hasRelic(PocketBook.ID)){
                 GkmasMod.listeners.forEach(listener -> listener.onCardImgUpdate());
                 Random spRng = new Random(Settings.seed, AbstractDungeon.actNum*100);
-                float chance = 0.15f;
+                float chance = 0.2f;
                 if(AbstractDungeon.player.hasRelic(StruggleRecord.ID))
                     chance += 0.1f;
                 chance += AbstractDungeon.actNum * 0.1f;
+                if(AbstractDungeon.actNum==2)
+                    chance += AbstractDungeon.ascensionLevel * 0.005f;
+                if(AbstractDungeon.actNum==3)
+                    chance += AbstractDungeon.ascensionLevel * 0.01f;
                 if(AbstractDungeon.floorNum %17 >7)
                     chance += 0.05f;
                 int row_num = AbstractDungeon.map.size() - 1;
@@ -143,9 +168,21 @@ public class AbstractDungeonPatch {
     public static class PrePatchAbstractDungeon_setBoss {
         @SpirePrefixPatch
         public static SpireReturn<Void> Prefix(AbstractDungeon __instance, String key) {
-            System.out.println("setBoss");
+//            System.out.println("setBoss");
             if(AbstractDungeon.player.hasRelic(PocketBook.ID)){
-                if (key!=null&&key.equals("The Heart")){
+                if(AbstractDungeon.player instanceof MisuzuCharacter||AbstractDungeon.player.hasRelic(NIABadge.ID)){
+                    if (key!=null&&key.equals("The Heart")){
+                        AbstractDungeon.bossKey = "MonsterRinha";
+                        if (DungeonMap.boss != null && DungeonMap.bossOutline != null) {
+                            DungeonMap.boss.dispose();
+                            DungeonMap.bossOutline.dispose();
+                        }
+                        DungeonMap.boss = ImageMaster.loadImage("gkmasModResource/img/monsters/Rinha/icon.png");
+                        DungeonMap.bossOutline = ImageMaster.loadImage("gkmasModResource/img/monsters/Rinha/icon.png");
+                        return SpireReturn.Return(null);
+                    }
+                }
+                else if (key!=null&&key.equals("The Heart")){
                     AbstractDungeon.bossKey = "MisuzuBoss";
                     if (DungeonMap.boss != null && DungeonMap.bossOutline != null) {
                         DungeonMap.boss.dispose();
@@ -157,6 +194,51 @@ public class AbstractDungeonPatch {
                 }
             }
             if(AbstractDungeon.id.equals(IdolRoad.ID)){
+                ArrayList<AbstractMonster> bossList = new ArrayList<>();
+                bossList.add(new IdolBoss_amao());
+                bossList.add(new IdolBoss_fktn());
+                bossList.add(new IdolBoss_hrnm());
+                bossList.add(new IdolBoss_hski());
+                bossList.add(new IdolBoss_hume());
+                bossList.add(new IdolBoss_shro());
+                bossList.add(new IdolBoss_kcna());
+                bossList.add(new IdolBoss_kllj());
+                bossList.add(new IdolBoss_ssmk());
+                bossList.add(new IdolBoss_ttmr());
+                bossList.add(new IdolBoss_jsna());
+
+
+                String curIdolName = "";
+                if(AbstractDungeon.player instanceof IdolCharacter){
+                    curIdolName = SkinSelectScreen.Inst.idolName;
+                    curIdolName = String.format("IdolBoss_%s",curIdolName);
+                }
+                if(!curIdolName.equals("")){
+                    for(int i=0;i<bossList.size();i++){
+                        if(bossList.get(i).id.equals(curIdolName)){
+                            bossList.remove(i);
+                            break;
+                        }
+                    }
+                }
+
+                //使用Setting.seed作为随机数，打乱bosslist的顺序
+                java.util.Random rng = new java.util.Random(Settings.seed);
+                Collections.shuffle(bossList, rng);
+
+                // 8进4的3位胜者
+                int battle1_1 = rng.nextInt(2);
+                int battle1_2 = rng.nextInt(2)+2;
+                int battle1_3 = rng.nextInt(2)+5;
+
+                // 4进2的1位胜者
+                int battle2_1 = rng.nextInt(2);
+                if(battle2_1 == 0){
+                    battle2_1 = battle1_1;
+                }else{
+                    battle2_1 = battle1_2;
+                }
+                AbstractDungeon.bossKey = bossList.get(battle2_1).id;
                 if (DungeonMap.boss != null && DungeonMap.bossOutline != null) {
                     DungeonMap.boss.dispose();
                     DungeonMap.bossOutline.dispose();
@@ -188,6 +270,11 @@ public class AbstractDungeonPatch {
                 MonsterGroup customGroup = new MonsterGroup(customBoss);
                 return SpireReturn.Return(customGroup);
             }
+            if (key!=null&&key.equals("MonsterRinha")) {
+                AbstractMonster customBoss = new MonsterRinha(-50.0F, 15.0F);
+                MonsterGroup customGroup = new MonsterGroup(customBoss);
+                return SpireReturn.Return(customGroup);
+            }
             if(AbstractDungeon.id.equals(IdolRoad.ID)){
                 ArrayList<AbstractMonster> bossList = new ArrayList<>();
                 bossList.add(new IdolBoss_amao());
@@ -200,6 +287,7 @@ public class AbstractDungeonPatch {
                 bossList.add(new IdolBoss_kllj());
                 bossList.add(new IdolBoss_ssmk());
                 bossList.add(new IdolBoss_ttmr());
+                bossList.add(new IdolBoss_jsna());
 
 
                 String curIdolName = "";
@@ -245,7 +333,9 @@ public class AbstractDungeonPatch {
         @SpirePrefixPatch
         public static SpireReturn<Void> Prefix() {
             if(AbstractDungeon.player.hasRelic(PocketBook.ID)){
-                if(GkmasMod.screenIndex==1)
+//                System.out.println(AbstractDungeon.previousScreen);
+//                System.out.println(AbstractDungeon.screen);
+                if(GkmasMod.screenIndex==1&&AbstractDungeon.screen!= AbstractDungeon.CurrentScreen.CARD_REWARD)
                     AbstractDungeon.previousScreen = AnotherShopScreen.Enum.AnotherShop_Screen;
                 else if(GkmasMod.screenIndex==2)
                     AbstractDungeon.previousScreen = SpecialTeachScreen.Enum.SpecialTeach_Screen;
@@ -269,7 +359,7 @@ public class AbstractDungeonPatch {
                 //从cards中随机选取numCards张卡牌,需要考虑不足numCards张的情况
                 ArrayList<String> cardList = new ArrayList<>();
 
-                java.util.Random random = new java.util.Random(Settings.seed);
+                java.util.Random random = new java.util.Random(Settings.seed+AbstractDungeon.floorNum);
                 numCards = 5;
                 for (int i = 0; i < numCards; i++) {
                     if (cards.size() > 0) {
@@ -298,7 +388,7 @@ public class AbstractDungeonPatch {
                 //从cards中随机选取numCards张卡牌,需要考虑不足numCards张的情况
                 ArrayList<String> cardList = new ArrayList<>();
 
-                java.util.Random random = new java.util.Random(Settings.seed);
+                java.util.Random random = new java.util.Random(Settings.seed+AbstractDungeon.floorNum);
                 numCards = 5;
                 for (int i = 0; i < numCards; i++) {
                     if (cards.size() > 0) {
@@ -337,21 +427,28 @@ public class AbstractDungeonPatch {
                 defaults.setProperty("cardRate", String.valueOf(PlayerHelper.getCardRate()));
                 defaults.setProperty("beat_hmsz", "0");
                 defaults.setProperty("ReChallenge", "1");
-                SpireConfig config = null;
-                try {
-                    config = new SpireConfig("GkmasMod", "config", defaults);
-                    int tmp = config.getInt("ReChallenge");
-                    if(tmp>0){
-                        AbstractDungeon.monsterHpRng = new Random(Long.valueOf(Settings.seed.longValue() + AbstractDungeon.floorNum+tmp*100));
-                        AbstractDungeon.aiRng = new Random(Long.valueOf(Settings.seed.longValue() + AbstractDungeon.floorNum+tmp*100));
-                        AbstractDungeon.shuffleRng = new Random(Long.valueOf(Settings.seed.longValue() + AbstractDungeon.floorNum+tmp*100));
-                        AbstractDungeon.cardRandomRng = new Random(Long.valueOf(Settings.seed.longValue() + AbstractDungeon.floorNum+tmp*100));
-                        AbstractDungeon.miscRng = new Random(Long.valueOf(Settings.seed.longValue() + AbstractDungeon.floorNum+tmp*100));
-                    }
-                } catch (IOException e) {
-                    e.printStackTrace();
+                int tmp = GkmasMod.config.getInt("ReChallenge");
+                if(tmp>0){
+                    AbstractDungeon.monsterHpRng = new Random(Long.valueOf(Settings.seed.longValue() + AbstractDungeon.floorNum+tmp*100));
+                    AbstractDungeon.aiRng = new Random(Long.valueOf(Settings.seed.longValue() + AbstractDungeon.floorNum+tmp*100));
+                    AbstractDungeon.shuffleRng = new Random(Long.valueOf(Settings.seed.longValue() + AbstractDungeon.floorNum+tmp*100));
+                    AbstractDungeon.cardRandomRng = new Random(Long.valueOf(Settings.seed.longValue() + AbstractDungeon.floorNum+tmp*100));
+                    AbstractDungeon.miscRng = new Random(Long.valueOf(Settings.seed.longValue() + AbstractDungeon.floorNum+tmp*100));
                 }
             }
+        }
+    }
+
+    @SpirePatch(clz = AbstractDungeon.class, method = "render")
+    public static class GetNextAction {
+        public static ExprEditor Instrument() {
+            return new ExprEditor() {
+                public void edit(MethodCall m) throws CannotCompileException {
+                    if (m.getClassName().equals("com.megacrit.cardcrawl.scenes.AbstractScene") && m
+                            .getMethodName().equals("renderCombatRoomFg"))
+                        m.replace("if (gkmasmod.modcore.GkmasMod.renderScene) {$_ = $proceed($$);}");
+                }
+            };
         }
     }
 

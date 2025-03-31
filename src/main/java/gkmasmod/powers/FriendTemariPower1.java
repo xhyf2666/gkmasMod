@@ -29,8 +29,8 @@ public class FriendTemariPower1 extends AbstractPower {
 
     private static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
 
-    String path128 = String.format("gkmasModResource/img/powers/%s_84.png",CLASSNAME);
-    String path48 = String.format("gkmasModResource/img/powers/%s_32.png",CLASSNAME);
+    String path128 = String.format("gkmasModResource/img/powers/%s_84.png","CareCardSPPower");
+    String path48 = String.format("gkmasModResource/img/powers/%s_32.png","CareCardSPPower");
 
 
     private static final int healthRequire = 3;
@@ -43,10 +43,9 @@ public class FriendTemariPower1 extends AbstractPower {
         this.ID = POWER_ID;
         this.owner = owner;
         this.type = PowerType.BUFF;
-        loadRegion("beat");
 
-//        this.region128 = new TextureAtlas.AtlasRegion(ImageMaster.loadImage(path128), 0, 0, 84, 84);
-//        this.region48 = new TextureAtlas.AtlasRegion(ImageMaster.loadImage(path48), 0, 0, 32, 32);
+        this.region128 = new TextureAtlas.AtlasRegion(ImageMaster.loadImage(path128), 0, 0, 84, 84);
+        this.region48 = new TextureAtlas.AtlasRegion(ImageMaster.loadImage(path48), 0, 0, 32, 32);
 
         this.updateDescription();
     }
@@ -63,7 +62,7 @@ public class FriendTemariPower1 extends AbstractPower {
             this.flash();
             AbstractCreature target = action.target;
             addToBot(new DamageAction(this.owner, new DamageInfo(this.owner, healthReduce)));
-            if(target.isDeadOrEscaped()){
+            if(target==null||target.isDeadOrEscaped()){
                 target = AbstractDungeon.getMonsters().getRandomMonster(null, true, AbstractDungeon.cardRandomRng);
             }
             addToBot(new ModifyDamageAction(target, new DamageInfo(this.owner, baseDamage, action.damageType), AbstractGameAction.AttackEffect.SLASH_VERTICAL));

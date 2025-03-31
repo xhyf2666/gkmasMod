@@ -25,7 +25,7 @@ public class OrreryPatch
     public static class OrreryInsertPatch_onEquip{
         @SpireInsertPatch(rloc = 0)
         public static void Insert(Orrery __instance) {
-            if(AbstractDungeon.player.hasRelic(PocketBook.ID)){
+            if(AbstractDungeon.player!=null&&AbstractDungeon.player.hasRelic(PocketBook.ID)){
                 if(GkmasMod.screenIndex==1)
                     AbstractDungeon.getCurrRoom().addCardToRewards();
             }

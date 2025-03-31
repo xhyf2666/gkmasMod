@@ -1,5 +1,8 @@
 package gkmasmod.actions;
 
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.StrengthPower;
+import gkmasmod.characters.MisuzuCharacter;
 import gkmasmod.downfall.charbosses.actions.common.EnemyGainEnergyAction;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
@@ -7,10 +10,8 @@ import com.megacrit.cardcrawl.actions.common.GainEnergyAction;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import gkmasmod.characters.IdolCharacter;
-import gkmasmod.powers.TimeLoopPower;
-import gkmasmod.powers.TrainRoundAnomalyPower;
-import gkmasmod.powers.TrainRoundLogicPower;
-import gkmasmod.powers.TrainRoundSensePower;
+import gkmasmod.patches.AbstractMonsterPatch;
+import gkmasmod.powers.*;
 import gkmasmod.relics.*;
 import gkmasmod.screen.SkinSelectScreen;
 import gkmasmod.utils.CommonEnum;
@@ -33,9 +34,6 @@ public class GainTrainRoundPowerAction extends AbstractGameAction {
         this.startDuration = 0.25F;
         this.withEnergy = withEnergy;
     }
-
-
-
 
     public void update() {
         if (this.withEnergy) {
@@ -131,6 +129,9 @@ public class GainTrainRoundPowerAction extends AbstractGameAction {
                 }
 
             }
+            else if(this.target instanceof MisuzuCharacter){
+                addToTop(new ApplyPowerAction(this.target,this.target,new TrainRoundMisuzuPower(AbstractDungeon.player,this.amount),this.amount));
+            }
             else{
                 CommonEnum.IdolType type = IdolData.getIdol(SkinSelectScreen.Inst.idolIndex).getType(SkinSelectScreen.Inst.skinIndex);
                 if(type==CommonEnum.IdolType.SENSE){
@@ -143,8 +144,11 @@ public class GainTrainRoundPowerAction extends AbstractGameAction {
                     addToBot(new ApplyPowerAction(this.target, this.target, new TrainRoundAnomalyPower(AbstractDungeon.player,  this.amount), this.amount));
                 }
             }
-
-
+            for(AbstractMonster mo: AbstractDungeon.getMonsters().monsters){
+                if(!mo.isDeadOrEscaped()&& mo.hasPower(SenaMoreActionPower.POWER_ID)){
+                    mo.getPower(SenaMoreActionPower.POWER_ID).onSpecificTrigger();
+                }
+            }
         }
 
         this.isDone = true;

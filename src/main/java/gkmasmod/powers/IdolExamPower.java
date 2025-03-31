@@ -1,6 +1,7 @@
 package gkmasmod.powers;
 
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.megacrit.cardcrawl.actions.common.HealAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -8,7 +9,9 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.powers.ConstrictedPower;
 import gkmasmod.actions.FullPowerValueAction;
+import gkmasmod.downfall.bosses.AbstractIdolBoss;
 import gkmasmod.relics.PlasticUmbrellaThatDay;
 import gkmasmod.utils.NameHelper;
 
@@ -27,6 +30,8 @@ public class IdolExamPower extends AbstractPower {
     String path48 = String.format("gkmasModResource/img/powers/%s_32.png",CLASSNAME);
 
     private int maxAmt;
+
+    private int lastAmt=0;
 
     private int threshold1 = 0;
     private int threshold2 = 0;
@@ -51,6 +56,17 @@ public class IdolExamPower extends AbstractPower {
     }
 
     public int onAttackedToChangeDamage(DamageInfo info, int damageAmount) {
+        if(this.owner.hasPower(SteelSoul.POWER_ID)){
+            return damageAmount;
+        }
+        int currentHP = this.owner.currentHealth;
+        if(this.amount==0){
+            if(damageAmount>=currentHP){
+                damageAmount = currentHP-1;
+            }
+            addToTop(new HealAction(this.owner,this.owner,damageAmount));
+            return damageAmount;
+        }
         if (damageAmount > this.amount)
             damageAmount = this.amount;
         this.amount -= damageAmount;
@@ -61,9 +77,9 @@ public class IdolExamPower extends AbstractPower {
     }
 
     public float getRate(){
-        if(this.maxAmt-this.amount > this.threshold2)
+        if(this.maxAmt-this.lastAmt > this.threshold2)
             return 0.2F;
-        if(this.maxAmt-this.amount > this.threshold1)
+        if(this.maxAmt-this.lastAmt > this.threshold1)
             return 0.5F;
         return 1.0F;
     }
@@ -77,15 +93,19 @@ public class IdolExamPower extends AbstractPower {
         return damage;
     }
 
-    public void atStartOfTurn() {
+    public void atEndOfTurn(boolean isPlayer)  {
+        if(AbstractIdolBoss.skipTurn>0){
+            AbstractIdolBoss.skipTurn--;
+            return;
+        }
+        this.lastAmt = this.amount;
         this.amount = this.maxAmt;
         updateDescription();
     }
 
     // 能力在更新时如何修改描述
     public void updateDescription() {
-        this.description = String.format(DESCRIPTIONS[0],this.maxAmt,this.maxAmt-this.amount,this.threshold1,this.threshold2);
+        this.description = String.format(DESCRIPTIONS[0],this.maxAmt,this.maxAmt,this.maxAmt-this.amount,this.threshold1,this.threshold2);
     }
-
 
 }

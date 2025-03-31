@@ -8,12 +8,16 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.DexterityPower;
+import gkmasmod.cardCustomEffect.*;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.screen.SkinSelectScreen;
+import gkmasmod.utils.CustomHelper;
 import gkmasmod.utils.ImageHelper;
 import gkmasmod.utils.NameHelper;
+
+import java.util.ArrayList;
 
 public class OverflowMemory extends GkmasCard {
     private static final String CLASSNAME = OverflowMemory.class.getSimpleName();
@@ -44,6 +48,11 @@ public class OverflowMemory extends GkmasCard {
         this.baseBlock = BLOCK_AMT;
         this.block = this.baseBlock;
         this.tags.add(GkmasCardTag.YARUKI_TAG);
+        this.customLimit = 1;
+        this.customEffectList = new ArrayList<>();
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(BlockCustom.growID, new int[]{4}, new int[]{60}, CustomHelper.CustomEffectType.BLOCK_ADD));
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(DexterityRateAttackCustom.growID, new int[]{100}, new int[]{100}, CustomHelper.CustomEffectType.DEXTERITY_RATE_ATTACK));
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(DrawCardCustom.growID,new int[]{1},new int[]{70},CustomHelper.CustomEffectType.DRAW_CARD_ADD));
     }
 
 

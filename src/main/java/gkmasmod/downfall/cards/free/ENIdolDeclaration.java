@@ -1,5 +1,10 @@
 package gkmasmod.downfall.cards.free;
 
+import gkmasmod.actions.CBR_MyPartAction;
+import gkmasmod.downfall.bosses.IdolBoss_amao;
+import gkmasmod.downfall.bosses.IdolBoss_jsna;
+import gkmasmod.downfall.cards.anomaly.ENEyesOfTheScenery;
+import gkmasmod.downfall.charbosses.actions.common.EnemyMakeTempCardInHandAction;
 import gkmasmod.downfall.charbosses.bosses.AbstractCharBoss;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.LoseHPAction;
@@ -13,6 +18,7 @@ import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.downfall.cards.GkmasBossCard;
 import gkmasmod.powers.HalfDamageReceive;
+import gkmasmod.powers.TempSavePower;
 import gkmasmod.utils.ImageHelper;
 import gkmasmod.utils.NameHelper;
 
@@ -51,6 +57,7 @@ public class ENIdolDeclaration extends GkmasBossCard {
         this.HPMagicNumber = this.baseHPMagicNumber;
         this.exhaust = true;
         this.tags.add(GkmasCardTag.MORE_ACTION_TAG);
+        this.energyGeneratedIfPlayed = 1;
     }
 
 
@@ -63,7 +70,16 @@ public class ENIdolDeclaration extends GkmasBossCard {
         else{
             addToBot(new LoseHPAction(m, m, this.HPMagicNumber));
         }
-//        addToBot(new DrawCardAction(m, this.magicNumber));
+        if(m instanceof IdolBoss_amao){
+            addToBot(new CBR_MyPartAction(false));
+        }
+
+        if(m instanceof IdolBoss_jsna){
+            AbstractCard card = new ENEyesOfTheScenery();
+            card.upgrade();
+            addToBot(new EnemyMakeTempCardInHandAction(card));
+        }
+
         addToBot(new GainTrainRoundPowerAction(m,1));
     }
 

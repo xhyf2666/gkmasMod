@@ -24,11 +24,9 @@ public class FirstStarNotebook extends CustomRelic {
 
     private static final RelicTier RARITY = RelicTier.SPECIAL;
 
-    private static final int magicNumber = 2;
+    private static final int magicNumber = 1;
 
-    private static final int REQUIRE = 4;
-
-    private static final  int playTimes = 1;
+    private static final int REQUIRE = 3;
 
     public FirstStarNotebook() {
         super(ID, ImageMaster.loadImage(IMG), ImageMaster.loadImage(IMG_OTL), RARITY, LandingSound.CLINK);
@@ -36,13 +34,8 @@ public class FirstStarNotebook extends CustomRelic {
 
 
     @Override
-    public void onVictory() {
-        this.counter = playTimes;
-    }
-
-    @Override
     public String getUpdatedDescription() {
-        return String.format(this.DESCRIPTIONS[0],REQUIRE,magicNumber,playTimes);
+        return String.format(this.DESCRIPTIONS[0],REQUIRE,magicNumber);
     }
 
     @Override
@@ -54,31 +47,13 @@ public class FirstStarNotebook extends CustomRelic {
     public void onEquip() {}
 
     public void atTurnStart() {
-        if (this.counter > 0) {
-            int count = PlayerHelper.getPowerAmount(AbstractDungeon.player, StrengthPower.POWER_ID);
-            if(count>REQUIRE){
-                addToBot(new RelicAboveCreatureAction(AbstractDungeon.player, this));
-                this.flash();
-                addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new StrengthPower(AbstractDungeon.player, magicNumber), magicNumber));
-                addToBot(new GainTrainRoundPowerAction(AbstractDungeon.player,1));
-                this.counter--;
-                if (this.counter == 0) {
-                    this.grayscale = true;
-                }
-            }
+        int count = PlayerHelper.getPowerAmount(AbstractDungeon.player, StrengthPower.POWER_ID);
+        if(count>REQUIRE){
+            addToBot(new RelicAboveCreatureAction(AbstractDungeon.player, this));
+            this.flash();
+            addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new StrengthPower(AbstractDungeon.player, magicNumber), magicNumber));
+            addToBot(new GainTrainRoundPowerAction(AbstractDungeon.player,1));
         }
-
-    }
-
-    public void atBattleStart() {
-        this.counter = playTimes;
-    }
-
-    public  void  onPlayerEndTurn(){
-    }
-
-    public void justEnteredRoom(AbstractRoom room) {
-        this.grayscale = false;
     }
 
     public void loadLargeImg() {

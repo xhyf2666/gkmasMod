@@ -53,9 +53,9 @@ public class ENNationalIdol extends GkmasBossCard {
         this.baseBlock = BLOCK_AMT;
         this.exhaust = true;
         this.intent = AbstractMonster.Intent.MAGIC;
-        this.tags.add(GkmasCardTag.GOOD_TUNE_TAG);
+        this.tags.add(GkmasCardTag.COST_POWER_TAG);
         this.tags.add(GkmasCardTag.MORE_ACTION_TAG);
-
+        this.energyGeneratedIfPlayed = 1;
     }
 
 
@@ -72,7 +72,7 @@ public class ENNationalIdol extends GkmasBossCard {
     public boolean canUse(AbstractPlayer p, AbstractMonster m) {
         int count = PlayerHelper.getPowerAmount(m,GoodTune.POWER_ID);
         if (count >= magicNumber)
-            return true;
+            return super.canUse(p, m);
         this.cantUseMessage = CardCrawlGame.languagePack.getUIString("gkmasMod:NotEnoughGoodTune").TEXT[0];
         return false;
     }

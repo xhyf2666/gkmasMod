@@ -1,5 +1,6 @@
 package gkmasmod.downfall.bosses;
 
+import com.megacrit.cardcrawl.powers.StrengthPower;
 import gkmasmod.downfall.charbosses.bosses.AbstractBossDeckArchetype;
 import gkmasmod.downfall.charbosses.bosses.AbstractCharBoss;
 import gkmasmod.downfall.charbosses.cards.curses.EnNormality;
@@ -12,6 +13,8 @@ import com.megacrit.cardcrawl.powers.BarricadePower;
 import gkmasmod.downfall.cards.free.*;
 import gkmasmod.downfall.cards.sense.*;
 import gkmasmod.downfall.relics.CBR_SparklingInTheBottle;
+import gkmasmod.downfall.relics.CBR_TheDreamSawSomeday;
+import gkmasmod.powers.*;
 
 import java.util.ArrayList;
 
@@ -35,7 +38,16 @@ public class BossConfig_kllj2 extends AbstractBossDeckArchetype {
         addRelic(new CBR_VelvetChoker());
         addRelic(new CBR_IceCream());
         addRelic(new CBR_PenNib());
+        addRelic(new CBR_TheDreamSawSomeday());
         addRelic(new CBR_SparklingInTheBottle());
+        AbstractCreature p = AbstractCharBoss.boss;
+        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new NegativeNotPower(p, 2), 2));
+        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new StrengthPower(p, 3), 3));
+        if(AbstractDungeon.ascensionLevel >= 10)
+            AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new InnocencePower(p, 1), 1));
+        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new TheScenerySawSomedayPower(p, 5), 5));
+        if(AbstractDungeon.ascensionLevel >= 15)
+            AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new TopEntertainmentPlusPower(p, 1), 1));
     }
 
     @Override
@@ -45,31 +57,20 @@ public class BossConfig_kllj2 extends AbstractBossDeckArchetype {
         if (!looped) {
             switch (turn) {
                 case 0:
-                    addToList(cardsList,new ENSteadyWill(),extraUpgrades);
-                    addToList(cardsList, new ENInnocence(),extraUpgrades);
-                    addToList(cardsList, new ENGrowthProcess(),extraUpgrades);
-                    addToList(cardsList, new ENBaseAppeal());
+                    addToList(cardsList, new ENGrowthProcess(),true);
+                    addToList(cardsList, new ENWarmUp(),true);
+                    addToList(cardsList, new ENAwakening(),extraUpgrades);
+                    addToList(cardsList, new ENGoWithTheFlow(),extraUpgrades);
+                    addToList(cardsList, new ENStartSignal(),extraUpgrades);
+                    addToList(cardsList, new ENStartDash(),extraUpgrades);
                     turn++;
                     break;
                 case 1:
-                    addToList(cardsList, new ENTopEntertainment(), extraUpgrades);
-                    addToList(cardsList, new ENEndlessApplause());
-                    addToList(cardsList, new ENStartSignal());
-                    addToList(cardsList, new EnNormality());
-                    turn++;
-                    break;
-                case 2:
-                    addToList(cardsList, new ENJustOneMore(),extraUpgrades);
-                    addToList(cardsList, new ENStartSignal(),extraUpgrades);
-                    addToList(cardsList, new ENCharmPerformance(),true);
-                    addToList(cardsList, new ENBaseAppeal());
-                    turn++;
-                    break;
-                case 3:
-                    addToList(cardsList, new ENFirstRamune(),extraUpgrades);
+                    addToList(cardsList, new ENIdolDeclaration());
                     addToList(cardsList, new ENAlternatives());
-                    addToList(cardsList, new ENPopPhrase());
+                    addToList(cardsList, new ENTheScenerySawSomeday(),true);
                     addToList(cardsList, new EnNormality());
+                    addToList(cardsList, new ENWarmUp(),extraUpgrades);
                     turn = 0;
                     looped = true;
                     break;
@@ -79,16 +80,19 @@ public class BossConfig_kllj2 extends AbstractBossDeckArchetype {
                 case 0:
                     addToList(cardsList, new ENEncoreCall(),extraUpgrades);
                     addToList(cardsList, new ENWarmCare());
+                    addToList(cardsList, new ENWarmUp(),extraUpgrades);
                     addToList(cardsList, new ENPopPhrase());
                     addToList(cardsList, new ENTryError());
-                    addToList(cardsList, new ENBaseAppeal());
+                    addToList(cardsList, new ENStartDash(),extraUpgrades);
                     turn++;
                     break;
                 case 1:
                     addToList(cardsList, new ENBasePose(), extraUpgrades);
                     addToList(cardsList, new ENHighFive(),extraUpgrades);
+                    addToList(cardsList, new ENWarmUp(),extraUpgrades);
                     addToList(cardsList, new ENBaseAppeal());
                     addToList(cardsList, new ENPopPhrase());
+                    addToList(cardsList, new ENStartDash(),extraUpgrades);
                     turn = 0;
                     break;
             }

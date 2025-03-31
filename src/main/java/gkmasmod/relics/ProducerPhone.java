@@ -4,16 +4,21 @@ import basemod.abstracts.CustomRelic;
 import com.badlogic.gdx.Gdx;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.GainEnergyAction;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.helpers.controller.CInputActionSet;
 import com.megacrit.cardcrawl.helpers.input.InputHelper;
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.watcher.ForesightPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
+import com.megacrit.cardcrawl.vfx.SpeechBubble;
 import gkmasmod.actions.GainTrainRoundPowerAction;
+import gkmasmod.characters.IdolCharacter;
 import gkmasmod.powers.CallMeAnyTimePower;
 import gkmasmod.powers.HalfDamageReceive;
+import gkmasmod.powers.NoPhoneInClassPower;
 import gkmasmod.screen.PocketBookViewScreen;
 import gkmasmod.screen.SkinSelectScreen;
 import gkmasmod.utils.IdolData;
@@ -63,6 +68,16 @@ public class ProducerPhone extends CustomRelic {
             if(AbstractDungeon.getCurrRoom().phase != AbstractRoom.RoomPhase.COMBAT)
                 return;
             if (this.hb.hovered) {
+                for(AbstractMonster mo:AbstractDungeon.getCurrRoom().monsters.monsters){
+                    if(!mo.isDeadOrEscaped()&&mo.hasPower(NoPhoneInClassPower.POWER_ID)){
+                        if(AbstractDungeon.player instanceof IdolCharacter){
+                            if(SkinSelectScreen.Inst.idolName.equals(IdolData.ttmr)){
+                                AbstractDungeon.effectList.add(new SpeechBubble(mo.hb.cX + mo.dialogX - 50, mo.hb.cY + mo.dialogY + 50, 3.0F, String.format(CardCrawlGame.languagePack.getMonsterStrings("gkmasMod:MonsterAsari").DIALOG[3],CardCrawlGame.playerName), false));
+                            }
+                        }
+                        return;
+                    }
+                }
                 this.counter++;
                 if(!this.thisBattle){
                     float amount = 1.0F * AbstractDungeon.player.currentHealth / AbstractDungeon.player.maxHealth;

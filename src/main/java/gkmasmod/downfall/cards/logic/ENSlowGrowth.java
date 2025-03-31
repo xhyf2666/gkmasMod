@@ -33,7 +33,7 @@ public class ENSlowGrowth extends GkmasBossCard {
     private static final int BASE_MAGIC = 20;
     private static final int UPGRADE_PLUS_MAGIC = 10;
 
-    private static final int BASE_HP = 4;
+    private static final int BASE_HP = 5;
 
     private int playCount;
 

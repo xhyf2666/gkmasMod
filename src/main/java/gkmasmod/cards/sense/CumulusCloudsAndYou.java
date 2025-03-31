@@ -6,6 +6,10 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import gkmasmod.cardCustomEffect.DamageCustom;
+import gkmasmod.cardCustomEffect.ExhaustRemoveCustom;
+import gkmasmod.cardCustomEffect.GoodTuneCustom;
+import gkmasmod.cardCustomEffect.MoreActionCustom;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
@@ -13,9 +17,12 @@ import gkmasmod.powers.BurstAttackPower;
 import gkmasmod.powers.BurstAttackTwoRoundPower;
 import gkmasmod.powers.GoodTune;
 import gkmasmod.powers.HalfDamageReceive;
+import gkmasmod.utils.CustomHelper;
 import gkmasmod.utils.IdolData;
 import gkmasmod.utils.NameHelper;
 import gkmasmod.utils.SoundHelper;
+
+import java.util.ArrayList;
 
 public class CumulusCloudsAndYou extends GkmasCard {
     private static final String CLASSNAME = CumulusCloudsAndYou.class.getSimpleName();
@@ -48,6 +55,10 @@ public class CumulusCloudsAndYou extends GkmasCard {
         this.tags.add(GkmasCardTag.IDOL_CARD_TAG);
         this.backGroundColor = IdolData.hrnm;
         updateBackgroundImg();
+        this.customLimit = 1;
+        this.customEffectList = new ArrayList<>();
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(MoreActionCustom.growID, new int[]{1}, new int[]{80}, CustomHelper.CustomEffectType.MORE_ACTION_ADD));
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(ExhaustRemoveCustom.growID,new int[]{0},new int[]{80},CustomHelper.CustomEffectType.EXHAUST_REMOVE));
     }
 
 

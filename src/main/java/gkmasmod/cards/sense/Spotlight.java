@@ -8,13 +8,17 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import gkmasmod.cardCustomEffect.*;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.powers.GoodTune;
 import gkmasmod.screen.SkinSelectScreen;
+import gkmasmod.utils.CustomHelper;
 import gkmasmod.utils.ImageHelper;
 import gkmasmod.utils.NameHelper;
+
+import java.util.ArrayList;
 
 public class Spotlight extends GkmasCard {
     private static final String CLASSNAME = Spotlight.class.getSimpleName();
@@ -32,7 +36,7 @@ public class Spotlight extends GkmasCard {
     private static final int BLOCK_AMT = 8;
     private static final int UPGRADE_PLUS_BLOCK = 2;
 
-    private static final int BASE_HP = 3;
+    private static final int BASE_HP = 2;
 
 
     private static final CardType TYPE = CardType.SKILL;
@@ -51,6 +55,11 @@ public class Spotlight extends GkmasCard {
         this.baseBlock = BLOCK_AMT;
         this.block = this.baseBlock;
         this.tags.add(GkmasCardTag.GOOD_TUNE_TAG);
+        this.customLimit = 2;
+        this.customEffectList = new ArrayList<>();
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(BlockCustom.growID,new int[]{2,2},new int[]{40,40},CustomHelper.CustomEffectType.BLOCK_ADD));
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(MagicCustom.growID,new int[]{1,1},new int[]{50,50},CustomHelper.CustomEffectType.GOOD_TUNE_ADD));
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(HPMagicCustom.growID,new int[]{-1},new int[]{50},CustomHelper.CustomEffectType.HP_REDUCE));
     }
 
 

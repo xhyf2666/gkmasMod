@@ -19,7 +19,7 @@ public class TheGuardianPatch
     public static class TheGuardianPostPatch_constructor {
         @SpirePostfixPatch
         public static void Post(TheGuardian __instance,@ByRef int[] ___dmgThreshold, @ByRef int[] ___dmgThresholdIncrease, @ByRef int[] ___blockAmount,@ByRef int[] ___DEFENSIVE_BLOCK) {
-            if(AbstractDungeon.player.hasRelic(PocketBook.ID)){
+            if(AbstractDungeon.player!=null&&AbstractDungeon.player.hasRelic(PocketBook.ID)){
                 int rate = ThreeSizeHelper.getHealthRate(1);
                 ___dmgThreshold[0] = ___dmgThreshold[0] * rate;
                 ___dmgThresholdIncrease[0] = ___dmgThresholdIncrease[0] * rate;

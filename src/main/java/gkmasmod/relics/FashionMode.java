@@ -54,7 +54,9 @@ public class FashionMode extends CustomRelic {
     }
 
 
-    public void onEquip() {}
+    public void onEquip() {
+        this.counter = playTimes;
+    }
 
     public void atTurnStart() {
         if (this.counter > 0) {

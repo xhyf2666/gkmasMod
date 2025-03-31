@@ -12,6 +12,7 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.combat.LightningEffect;
+import gkmasmod.patches.AbstractMonsterPatch;
 
 import java.util.HashMap;
 
@@ -41,7 +42,7 @@ public class NotLeftAnyoneAction extends AbstractGameAction {
             return;
         }
         for(AbstractMonster m : AbstractDungeon.getMonsters().monsters){
-            if(!m.isDeadOrEscaped()){
+            if(!m.isDeadOrEscaped()&& AbstractMonsterPatch.friendlyField.friendly.get(m)==false){
                 count++;
             }
         }

@@ -1,6 +1,7 @@
 package gkmasmod.downfall.cards.logic;
 
 import com.megacrit.cardcrawl.actions.common.DrawCardAction;
+import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -45,15 +46,15 @@ public class ENHardStretching extends GkmasBossCard {
         this.baseSecondMagicNumber = BASE_MAGIC2;
         this.secondMagicNumber = this.baseSecondMagicNumber;
         this.baseBlock = BASE_BLOCK;
-        this.intent = AbstractMonster.Intent.MAGIC;
+        this.intent = AbstractMonster.Intent.DEFEND;
         this.tags.add(GkmasCardTag.MORE_ACTION_TAG);
-
+        this.energyGeneratedIfPlayed = 1;
     }
 
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-//        addToBot(new DrawCardAction(1, new HardStretchingAction(p,this.block)));
+        addToBot(new GainBlockAction(m,this.block));
         addToBot(new GainTrainRoundPowerAction(m, this.magicNumber));
         if(this.secondMagicNumber > 1){
             upgradeSecondMagicNumber(-1);

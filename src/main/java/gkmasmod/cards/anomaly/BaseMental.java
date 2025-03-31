@@ -41,7 +41,6 @@ public class BaseMental extends GkmasCard {
         this.magicNumber = this.baseMagicNumber;
         this.baseBlock = BLOCK_AMT;
         this.tags.add(GkmasCardTag.FULL_POWER_TAG);
-        this.tags.add(CardTags.STARTER_DEFEND);
     }
 
 

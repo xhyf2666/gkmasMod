@@ -10,12 +10,19 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import gkmasmod.actions.GrowAction;
 import gkmasmod.actions.PotentialAbilityAction;
+import gkmasmod.cardCustomEffect.*;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
+import gkmasmod.growEffect.DamageGrow;
 import gkmasmod.stances.ConcentrationStance;
+import gkmasmod.utils.CustomHelper;
+import gkmasmod.utils.GrowHelper;
 import gkmasmod.utils.NameHelper;
+
+import java.util.ArrayList;
 
 public class OneStep extends GkmasCard {
     private static final String CLASSNAME = OneStep.class.getSimpleName();
@@ -29,8 +36,10 @@ public class OneStep extends GkmasCard {
     private static final int COST = 1;
 
     private static final int BASE_DAMAGE = 6;
-
     private static final int UPGRADE_DMG_PLUS = 3;
+    private static final int BASE_MAGIC = 1;
+    private static final int BASE_MAGIC2 = 1;
+    private static final int BASE_MAGIC3 = 0;
 
 
     private static final CardType TYPE = CardType.ATTACK;
@@ -41,13 +50,28 @@ public class OneStep extends GkmasCard {
     public OneStep() {
         super(ID, NAME, IMG_PATH, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.baseDamage = BASE_DAMAGE;
+        this.baseMagicNumber = BASE_MAGIC;
+        this.magicNumber = this.baseMagicNumber;
+        this.baseSecondMagicNumber = BASE_MAGIC2;
+        this.secondMagicNumber = this.baseSecondMagicNumber;
+        this.baseThirdMagicNumber = BASE_MAGIC3;
+        this.thirdMagicNumber = this.baseThirdMagicNumber;
+        this.customLimit = 3;
+        this.customEffectList = new ArrayList<>();
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(DamageCustom.growID,new int[]{2,2,2},new int[]{50,50,50},CustomHelper.CustomEffectType.DAMAGE_ADD));
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(FullPowerValueCustom.growID, new int[]{1,1,1}, new int[]{50,50,50}, CustomHelper.CustomEffectType.FULL_POWER_VALUE_ADD));
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(ThirdMagicCustom.growID, new int[]{1,2}, new int[]{60,80}, CustomHelper.CustomEffectType.EFFECT_ADD));
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
         addToBot(new DamageAction(m, new DamageInfo(p, this.damage, DamageInfo.DamageType.NORMAL), AbstractGameAction.AttackEffect.SLASH_VERTICAL));
-        addToBot(new DrawCardAction(1));
-        addToBot(new PotentialAbilityAction(1));
+        addToBot(new DrawCardAction(this.magicNumber));
+        addToBot(new PotentialAbilityAction(this.secondMagicNumber));
+        if(this.thirdMagicNumber > 0){
+            addToBot(new GrowAction(DamageGrow.growID, GrowAction.GrowType.all,this.thirdMagicNumber));
+            GrowHelper.grow(this, DamageGrow.growID, this.thirdMagicNumber);
+        }
     }
 
     @Override

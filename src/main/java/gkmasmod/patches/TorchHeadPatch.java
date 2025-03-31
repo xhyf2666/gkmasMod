@@ -21,7 +21,7 @@ public class TorchHeadPatch
     public static class TorchHeadPostPatch_constructor {
         @SpirePostfixPatch
         public static void Post(TorchHead __instance,float x, float y) {
-            if(AbstractDungeon.player.hasRelic(PocketBook.ID)){
+            if(AbstractDungeon.player!=null&&AbstractDungeon.player.hasRelic(PocketBook.ID)){
                 __instance.maxHealth = ThreeSizeHelper.getHealthRate(2)*__instance.maxHealth;
                 __instance.currentHealth = ThreeSizeHelper.getHealthRate(2)*__instance.currentHealth;
             }

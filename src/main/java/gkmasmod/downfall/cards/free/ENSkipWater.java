@@ -34,7 +34,7 @@ public class ENSkipWater extends GkmasBossCard {
 
     private static final CardType TYPE = CardType.SKILL;
     private static final CardColor COLOR = PlayerColorEnum.gkmasModColor;
-    private static final CardRarity RARITY = CardRarity.UNCOMMON;
+    private static final CardRarity RARITY = CardRarity.COMMON;
     private static final CardTarget TARGET = CardTarget.SELF;
 
     public ENSkipWater() {
@@ -43,7 +43,7 @@ public class ENSkipWater extends GkmasBossCard {
         this.HPMagicNumber = this.baseHPMagicNumber;
         this.baseBlock = BLOCK_AMT;
         this.tags.add(GkmasCardTag.MORE_ACTION_TAG);
-
+        this.energyGeneratedIfPlayed = 1;
     }
 
 

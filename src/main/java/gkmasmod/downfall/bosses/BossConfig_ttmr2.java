@@ -1,5 +1,7 @@
 package gkmasmod.downfall.bosses;
 
+import gkmasmod.downfall.cards.free.ENEatFruit;
+import gkmasmod.downfall.charbosses.actions.common.EnemyGainEnergyAction;
 import gkmasmod.downfall.charbosses.bosses.AbstractBossDeckArchetype;
 import gkmasmod.downfall.charbosses.bosses.AbstractCharBoss;
 import gkmasmod.downfall.charbosses.relics.*;
@@ -12,6 +14,7 @@ import gkmasmod.downfall.cards.free.ENCallMeAnyTime;
 import gkmasmod.downfall.cards.logic.*;
 import gkmasmod.downfall.relics.CBR_ProducerPhone;
 import gkmasmod.downfall.relics.CBR_ThisIsMe;
+import gkmasmod.powers.*;
 
 import java.util.ArrayList;
 
@@ -41,6 +44,16 @@ public class BossConfig_ttmr2 extends AbstractBossDeckArchetype {
         addRelic(new CBR_BronzeScales());
         addRelic(new CBR_ThisIsMe());
         addRelic(new CBR_ProducerPhone());
+        AbstractCreature p = AbstractCharBoss.boss;
+        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new NegativeNotPower(p, 2), 2));
+        if(AbstractDungeon.ascensionLevel >= 15){
+            AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new GoodImpression(p,20),20));
+        }
+        else
+            AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new GoodImpression(p,10),10));
+        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new RainbowDreamerPower(p,2),2));
+        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new IsENotAPower(p,7),7));
+        AbstractDungeon.actionManager.addToBottom(new EnemyGainEnergyAction(1));
     }
 
     @Override
@@ -50,24 +63,20 @@ public class BossConfig_ttmr2 extends AbstractBossDeckArchetype {
         if (!looped) {
             switch (turn) {
                 case 0:
-                    addToList(cardsList,new ENBeforeThePerformance(),extraUpgrades);
-                    addToList(cardsList, new ENHappyCurse(),extraUpgrades);
+                    addToList(cardsList, new ENEatFruit(),true);
+                    addToList(cardsList, new ENForShiningYou(), true);
                     addToList(cardsList, new ENTangledFeelings(),extraUpgrades);
-                    addToList(cardsList, new ENCallMeAnyTime(),extraUpgrades);
+                    addToList(cardsList, new ENHappyCurse(),extraUpgrades);
+                    addToList(cardsList, new ENCallMeAnyTime(),true);
+                    addToList(cardsList, new ENFirstPlace(),extraUpgrades);
                     turn++;
                     break;
                 case 1:
-                    addToList(cardsList, new ENForShiningYou(), extraUpgrades);
-                    addToList(cardsList, new ENFirstPlace(),extraUpgrades);
-                    addToList(cardsList, new ENNotebookDetermination());
+                    addToList(cardsList, new ENEatFruit(),true);
                     addToList(cardsList, new ENIamBigStar(),extraUpgrades);
-                    addToList(cardsList, new ENSmile());
-                    turn++;
-                    break;
-                case 2:
-                    addToList(cardsList, new ENFantasyCharm(), extraUpgrades);
-                    addToList(cardsList, new ENHappyTime(),extraUpgrades);
+                    addToList(cardsList, new ENNotebookDetermination());
                     addToList(cardsList, new ENWakeUp(),extraUpgrades);
+                    addToList(cardsList, new ENBaseVision());
                     turn = 0;
                     looped = true;
                     break;
@@ -75,6 +84,7 @@ public class BossConfig_ttmr2 extends AbstractBossDeckArchetype {
         } else {
             switch (turn) {
                 case 0:
+                    addToList(cardsList, new ENEatFruit(),true);
                     addToList(cardsList, new ENGirlHeart(),extraUpgrades);
                     addToList(cardsList, new ENHappyTime(),true);
                     addToList(cardsList, new ENBaseVision());

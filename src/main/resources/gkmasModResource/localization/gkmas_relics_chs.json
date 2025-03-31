@@ -24,35 +24,35 @@
     "NAME": "前往未知的世界",
     "FLAVOR": "唔姆。",
     "DESCRIPTIONS": [
-      "回合开始时，如果体力不高于 #b%d %%，则获得 #b%d 点 #y力量 ， #y受伤减少 #b%d ，同时 #y升级 所有手牌。 NL (每场战斗可触发 #b%d 次)。"
+      "回合开始时，如果体力不高于 #b%d %%，则获得 #b%d 点 #y力量 ， #y受伤减少 #b%d ，同时 #y强化 所有手牌。 NL (每场战斗可触发 #b%d 次)。"
     ]
   },
   "GreenUniformBracelet": {
     "NAME": "统一的绿色手环",
     "FLAVOR": "这个手环是绿色的。",
     "DESCRIPTIONS": [
-      "获得 #y好印象 时，额外获得 #b%d 层 #y好印象 。 NL (每场战斗可触发 #b%d 次)。"
+      "获得 #ygkmasmod:好印象 时，额外获得 #b%d 层 #ygkmasmod:好印象 。 NL (每场战斗可触发 #b%d 次)。"
     ]
   },
   "MemoryBot": {
     "NAME": "记忆中的高达",
     "FLAVOR": "为什么高达会出现在这里？",
     "DESCRIPTIONS": [
-      "回合结束时，如果体力不低于 #b%d %%，则获得 #b%d 层 #y好印象 。"
+      "回合结束时，如果体力不低于 #b%d %%，则获得 #b%d 层 #ygkmasmod:好印象 。"
     ]
   },
   "DreamLifeLog": {
     "NAME": "通往梦想的日志",
     "FLAVOR": "记录着某人为了实现梦想而不断努力的生活和经历。",
     "DESCRIPTIONS": [
-      "回合结束时，如果 #y格挡 大于 #b%d ，则对随机敌人造成 #y好印象 层数 #b%d %%的伤害， #y好印象 层数增加 #b%d %%。 NL (每场战斗可触发 #b%d 次)。"
+      "回合结束时，如果 #y格挡 大于 #b%d ，则对随机敌人造成 #ygkmasmod:好印象 层数 #b%d %%的伤害， #ygkmasmod:好印象 层数增加 #b%d %%。 NL (每场战斗可触发 #b%d 次)。"
     ]
   },
   "SparklingInTheBottle": {
     "NAME": "瓶中星光",
     "FLAVOR": "这个瓶子里装着星光。",
     "DESCRIPTIONS": [
-      "回合结束时，如果 #y好调 大于 #b%d ，则获得 #b%d 层 #y好调 。 NL (每场战斗可触发 #b%d 次)。"
+      "回合结束时，如果 #ygkmasmod:好调 大于 #b%d ，则获得 #b%d 层 #ygkmasmod:好调 。 NL (每场战斗可触发 #b%d 次)。"
     ]
   },
   "WishFulfillmentAmulet": {
@@ -101,49 +101,49 @@
     "NAME": "源源不断的活力之源",
     "FLAVOR": "是佑芽最喜欢的东西。",
     "DESCRIPTIONS": [
-      "使用 #y技能牌 后，如果 #y敏捷 大于 #b%d ，则获得 #b%d 点 #y敏捷 ， #y再动 。 NL (每场战斗可触发 #b%d 次)。"
+      "使用 #y技能牌 后，如果 #y敏捷 大于 #b%d ，则获得 #b%d 点 #y敏捷 ， #ygkmasmod:再动 。 NL (每场战斗可触发 #b%d 次)。"
     ]
   },
   "RoaringLion": {
     "NAME": "狮子挂坠",
     "FLAVOR": "这只狮子在咆哮。",
     "DESCRIPTIONS": [
-      "回合开始时，如果拥有 #y好调 ，则对随机敌人造成 #b%d 点伤害。 NL (每场战斗可触发 #b%d 次)。"
+      "回合开始时，如果拥有 #ygkmasmod:好调 ，则对随机敌人造成 #b%d 点伤害。"
     ]
   },
   "FirstVoiceProofSaki": {
     "NAME": "初声之证·咲季",
     "FLAVOR": "咲季的初声之证。",
     "DESCRIPTIONS": [
-      "体力下降时，获得 #b%d 层 #y好印象 。 NL (每场战斗可触发 #b%d 次)。"
+      "失去体力时，获得 #b%d 层 #ygkmasmod:好印象 。 NL (每场战斗可触发 #b%d 次)。"
     ]
   },
   "SakiCompleteMealRecipe": {
     "NAME": "咲季的完整食谱",
     "FLAVOR": "记录着咲季研究的美味料理。",
     "DESCRIPTIONS": [
-      "回合开始时，如果拥有 #y好调 ，则获得 #b%d 点 #y格挡 。 NL (每场战斗可触发 #b%d 次)。"
+      "回合开始时，如果拥有 #ygkmasmod:好调 ，则获得 #b%d 点 #y格挡 。"
     ]
   },
   "TogetherInBattleTowel": {
     "NAME": "并肩作战的毛巾",
     "FLAVOR": "这块毛巾是用来战斗的。",
     "DESCRIPTIONS": [
-      "使用 #y攻击牌 后，获得 #b%d 层 #y好调 ， #y再动 。 NL (每场战斗可触发 #b%d 次)。"
+      "使用 #y攻击牌 后，获得 #b%d 层 #ygkmasmod:好调 ， #ygkmasmod:再动 。 NL (每场战斗可触发 #b%d 次)。"
     ]
   },
   "WinningDetermination": {
     "NAME": "胜利的决心",
     "FLAVOR": "会赢的。",
     "DESCRIPTIONS": [
-      "体力下降时，获得 #b%d 层 #y好印象 。"
+      "失去体力时，获得 #b%d 层 #ygkmasmod:好印象 。"
     ]
   },
   "UndefeatedPoi": {
     "NAME": "不曾失败的鱼网",
     "FLAVOR": "Poi。",
     "DESCRIPTIONS": [
-      "回合开始时，如果 #y好印象 大于 #b%d ，则回复 #b%d 点体力。 NL (每场战斗可触发 #b%d 次)。"
+      "回合开始时，如果 #ygkmasmod:好印象 大于 #b%d ，则回复 #b%d 点体力。 NL (每场战斗可触发 #b%d 次)。"
     ]
   },
   "RegularMakeupPouch": {
@@ -171,70 +171,70 @@
     "NAME": "与你分享的夏天",
     "FLAVOR": "这是与你分享的夏天。",
     "DESCRIPTIONS": [
-      "回合开始时，如果拥有 #y受伤减半 ，则获得 #b%d 层 #y绝好调 。 NL (每场战斗可触发 #b%d 次)。"
+      "回合开始时，如果拥有 #ygkmasmod:受伤锐减 ，则获得 #b%d 层 #ygkmasmod:绝好调 。 NL (每场战斗可触发 #b%d 次)。"
     ]
   },
   "HandmadeMedal": {
     "NAME": "手工勋章",
     "FLAVOR": "这是手工勋章。",
     "DESCRIPTIONS": [
-      "回合结束时，如果 #y好印象 大于 #b%d ，则获得 #b%d 层 #y好印象 。 NL (每场战斗可触发 #b%d 次)。"
+      "回合结束时，如果 #ygkmasmod:好印象 大于 #b%d ，则获得 #b%d 层 #ygkmasmod:好印象 。"
     ]
   },
   "FirstVoiceProofKotone": {
     "NAME": "初声之证·琴音",
     "FLAVOR": "琴音的初声之证。",
     "DESCRIPTIONS": [
-      "使用 #y初次奖励 后，获得 #b%d 层 #y好调 。"
+      "使用 #y初次奖励 后，获得 #b%d 层 #ygkmasmod:好调 。"
     ]
   },
   "FavoriteSneakers": {
     "NAME": "最喜欢的运动鞋",
     "FLAVOR": "这是最喜欢的运动鞋。",
     "DESCRIPTIONS": [
-      "回合结束时，如果 #y格挡 大于 #b%d ，则获得 #b%d 层 #y好印象 。 NL (每场战斗可触发 #b%d 次)。"
+      "回合结束时，如果 #y格挡 大于 #b%d ，则获得 #b%d 层 #ygkmasmod:好印象 。"
     ]
   },
   "PigDreamPiggyBank": {
     "NAME": "猪梦存钱罐",
     "FLAVOR": "这是猪梦存钱罐。",
     "DESCRIPTIONS": [
-      "出牌后，如果 #y好印象 大于 #b%d ，则获得 #b%d 层 #y好印象 ， #y再动 。 NL (每场战斗可触发 #b%d 次)。"
+      "出牌后，如果 #ygkmasmod:好印象 大于 #b%d ，则获得 #b%d 层 #ygkmasmod:好印象 ， #ygkmasmod:再动 。 NL (每场战斗可触发 #b%d 次)。"
     ]
   },
   "UltimateSourceOfHappiness": {
     "NAME": "终极幸福源泉",
     "FLAVOR": "这是终极幸福源泉。",
     "DESCRIPTIONS": [
-      "使用 #y肾上腺素全开 后，获得 #b%d 层 #y好调 和 #b%d 点 #y格挡 。"
+      "使用 #y肾上腺素全开 后，获得 #b%d 层 #ygkmasmod:好调 和 #b%d 点 #y格挡 。"
     ]
   },
   "CracklingSparkler": {
     "NAME": "噼啪作响的烟火",
     "FLAVOR": "这是噼啪作响的烟火。",
     "DESCRIPTIONS": [
-      "每 #b%d 回合，如果 #y好印象 大于 #b%d ，则失去 #y%d 点体力，获得等于 #y好印象 层数的 #y格挡 以及 #b%d 点 #y敏捷 。"
+      "每 #b%d 回合，如果 #ygkmasmod:好印象 大于 #b%d ，则失去 #y%d 点体力，获得等于 #ygkmasmod:好印象 层数的 #y格挡 以及 #b%d 点 #y敏捷 。"
     ]
   },
   "GentlemanHandkerchief": {
     "NAME": "绅士手帕",
     "FLAVOR": "这是绅士手帕。",
     "DESCRIPTIONS": [
-      "回合开始时，如果拥有 #y好调 ，则获得 #b%d 点 #y力量 。 NL (每场战斗可触发 #b%d 次)。"
+      "回合开始时，如果拥有 #ygkmasmod:好调 ，则获得 #b%d 点 #y力量 。 NL (每场战斗可触发 #b%d 次)。"
     ]
   },
   "DearLittlePrince": {
     "NAME": "亲爱的小王子",
     "FLAVOR": "这是亲爱的小王子。",
     "DESCRIPTIONS": [
-      "获得 #y好调 时，额外获得 #y%d 层 #y好调 。 NL (每场战斗可触发 #b%d 次)。"
+      "获得 #ygkmasmod:好调 时，额外获得 #y%d 层 #ygkmasmod:好调 。 NL (每场战斗可触发 #b%d 次)。"
     ]
   },
   "InnerLightEarrings": {
     "NAME": "内光耳环",
     "FLAVOR": "这是内光耳环。",
     "DESCRIPTIONS": [
-      "回合结束时，如果拥有 #y好调 ，则获得 #b%d 点 #y力量 和 #b%d 点 #y格挡 。 NL (每场战斗可触发 #b%d 次)。"
+      "回合结束时，如果拥有 #ygkmasmod:好调 ，则获得 #b%d 点 #y力量 和 #b%d 点 #y格挡 。 NL (每场战斗可触发 #b%d 次)。"
     ]
   },
   "LastSummerMemory": {
@@ -283,7 +283,7 @@
     "NAME": "初声之证·手毬",
     "FLAVOR": "手毬的初声之证。",
     "DESCRIPTIONS": [
-      "回合结束时，如果 #y好印象 大于 #b%d ，则对随机敌人造成等于 #y好印象 层数的伤害。 NL (每场战斗可触发 #b%d 次)。"
+      "回合结束时，如果 #ygkmasmod:好印象 大于 #b%d ，则对随机敌人造成等于 #ygkmasmod:好印象 层数的伤害。 NL (每场战斗可触发 #b%d 次)。"
     ]
   },
   "MyFirstSheetMusic": {
@@ -297,28 +297,28 @@
     "NAME": "防护耳机",
     "FLAVOR": "这是防护耳机。",
     "DESCRIPTIONS": [
-      "出牌后，如果 #y力量 大于 #b%d ，则获得 #b%d 点 #y力量 ， #y再动 。 NL (每场战斗可触发 #b%d 次)。"
+      "出牌后，如果 #y力量 大于 #b%d ，则获得 #b%d 点 #y力量 ， #ygkmasmod:再动 。 NL (每场战斗可触发 #b%d 次)。"
     ]
   },
   "ThisIsMe": {
     "NAME": "这就是我",
     "FLAVOR": "这就是我。",
     "DESCRIPTIONS": [
-      "回合结束时，如果 #y好印象 大于 #b%d ，则对随机敌人造成等于 #y好印象 层数的伤害，获得 #b%d 点 #y格挡 。 NL (每场战斗可触发 #b%d 次)。"
+      "回合结束时，如果 #ygkmasmod:好印象 大于 #b%d ，则对随机敌人造成等于 #ygkmasmod:好印象 层数的伤害，获得 #b%d 点 #y格挡 。 NL (每场战斗可触发 #b%d 次)。"
     ]
   },
   "PocketBook": {
     "NAME": "制作人的手账",
     "FLAVOR": "饱含制作人心意的训练计划。",
     "DESCRIPTIONS": [
-      "右键查看训练计划和面板。"
+      "拥有此遗物时， #y格挡 上限提升为 #b99999 ，可触发各种训练效果和事件。 NL 右键可查看训练计划和面板。"
     ]
   },
   "MorningHelp": {
     "NAME": "早晨的帮助",
     "FLAVOR": "这是早晨的帮助。",
     "DESCRIPTIONS": [
-      "卡牌 #y升级 时，如果vo大于 #b%d ，则获得 #b%d 点金币。"
+      "卡牌 #y强化 时，如果vo大于 #b%d ，则获得 #b%d 点金币。"
     ]
   },
   "ClapClapFan": {
@@ -332,7 +332,7 @@
     "NAME": "温泉后的享受",
     "FLAVOR": "这是温泉后的享受。",
     "DESCRIPTIONS": [
-      "每打出 #b%d 张牌， #y力量 增加 #b%d %%，获得 #b%d 点 #y固定格挡 。 NL (每场战斗可触发 #b%d 次)。"
+      "每打出 #b%d 张牌， #y力量 层数增加 #b%d %%，获得 #b%d 点 #ygkmasmod:固定格挡 。 NL (每场战斗可触发 #b%d 次)。"
     ]
   },
   "FirstHeartProofRinami": {
@@ -353,7 +353,7 @@
     "NAME": "初心之证·莉莉娅",
     "FLAVOR": "莉莉娅的初心之证。",
     "DESCRIPTIONS": [
-      "回合结束时，如果 #y好调 大于 #b%d ，则失去 #b%d 点体力，获得 #b%d 层 #y好调 。 NL (每场战斗可触发 #b%d 次)。"
+      "回合结束时，如果 #ygkmasmod:好调 大于 #b%d ，则失去 #b%d 点体力，获得 #b%d 层 #ygkmasmod:好调 。 NL (每场战斗可触发 #b%d 次)。"
     ]
   },
   "BalanceLogicAndSense": {
@@ -367,14 +367,14 @@
     "NAME": "时尚模式",
     "FLAVOR": "时尚的穿搭。",
     "DESCRIPTIONS": [
-      "回合开始时，如果 #y敏捷 大于 #b%d ，则失去 #b%d 点 #y敏捷 ，获得 #b%d 层 #y好印象 。 NL (每场战斗可触发 #b%d 次)。"
+      "回合开始时，如果 #y敏捷 大于 #b%d ，则失去 #b%d 点 #y敏捷 ，获得 #b%d 层 #ygkmasmod:好印象 。 NL (每场战斗可触发 #b%d 次)。"
     ]
   },
   "FirstStarBracelet": {
     "NAME": "初星手镯",
     "FLAVOR": "初星手镯，但是只拥有一半神力。",
     "DESCRIPTIONS": [
-      "SP战斗结束后，失去 #b%d 点体力， #y升级 一张牌。 NL (本局游戏可触发 #b%d 次)。"
+      "SP战斗结束后，失去 #b%d 点体力， #y强化 一张牌。 NL (本局游戏可触发 #b%d 次)。"
     ]
   },
   "MysteriousObject":{
@@ -402,77 +402,77 @@
     "NAME": "誓言之花",
     "FLAVOR": "誓言之花。",
     "DESCRIPTIONS": [
-      "在战斗外  #y升级 卡牌时，获得 #b%d 点Vo， #b%d 点Da， #b%d 点Vi。"
+      "在战斗外  #y强化 卡牌时，获得 #b%d 点Vo， #b%d 点Da， #b%d 点Vi。"
     ]
   },
   "AmakawaRamenTour": {
     "NAME": "天川拉面巡游",
     "FLAVOR": "天川拉面巡游。",
     "DESCRIPTIONS": [
-      "SP战斗开始时， #y再动 。"
+      "SP战斗开始时， #ygkmasmod:再动 。"
     ]
   },
   "UnofficialMascot": {
     "NAME": "吉祥物(非公认)",
     "FLAVOR": "吉祥物(非公认)。",
     "DESCRIPTIONS": [
-      "回合开始时，如果 #y敏捷 大于 #b%d ，则获得 #b%d 点 #y敏捷 ， #y再动 。 NL (每场战斗可触发 #b%d 次)。"
+      "每回合开始时，如果 #y敏捷 大于 #b%d ，则获得 #b%d 点 #y敏捷 ， #ygkmasmod:再动 。"
     ]
   },
   "FirstStarKeychain": {
     "NAME": "初星钥匙扣",
     "FLAVOR": "初星钥匙扣。",
     "DESCRIPTIONS": [
-      "回合开始时，如果 #y好印象 大于 #b%d ，则获得 #b%d 层 #y好印象 ， #y再动 。 NL (每场战斗可触发 #b%d 次)。"
+      "每回合开始时，如果 #ygkmasmod:好印象 大于 #b%d ，则获得 #b%d 层 #ygkmasmod:好印象 ， #ygkmasmod:再动 。"
     ]
   },
   "FirstStarNotebook": {
     "NAME": "初星笔记本",
     "FLAVOR": "初星笔记本。",
     "DESCRIPTIONS": [
-      "回合开始时，如果 #y力量 大于 #b%d ，则获得 #b%d 点 #y力量 ， #y再动 。 NL (每场战斗可触发 #b%d 次)。"
+      "每回合开始时，如果 #y力量 大于 #b%d ，则获得 #b%d 点 #y力量 ， #ygkmasmod:再动 。"
     ]
   },
   "FirstStarTshirt": {
     "NAME": "初星T恤",
     "FLAVOR": "初星T恤。",
     "DESCRIPTIONS": [
-      "回合开始时，如果 #y好调 大于 #b%d ，则获得 #b%d 层 #y好调 ， #y再动 。 NL (每场战斗可触发 #b%d 次)。"
+      "每回合开始时，如果 #ygkmasmod:好调 大于 #b%d ，则获得 #b%d 层 #ygkmasmod:好调 ， #ygkmasmod:再动 。"
     ]
   },
   "ClumsyBat": {
     "NAME": "笨拙的蝙蝠",
     "FLAVOR": "笨拙的蝙蝠。",
     "DESCRIPTIONS": [
-      "每 #b%d 回合，在回合结束时，如果 #y好印象 大于 #b%d ，则对随机敌人造成 #y格挡 层数 #b%d %%、 #y敏捷 层数 #b%d %%的伤害， #y好印象 层数减少 #b%d 。"
+      "每 #b%d 回合，在回合结束时，如果 #ygkmasmod:好印象 大于 #b%d ，则对随机敌人造成 #y格挡 层数 #b%d %%、 #y敏捷 层数 #b%d %%的伤害， #ygkmasmod:好印象 层数减少 #b%d 。"
     ]
   },
   "CursedSpirit": {
     "NAME": "呜~啦~咪~嘻~呀~",
     "FLAVOR": "呜~啦~咪~嘻~呀~",
     "DESCRIPTIONS": [
-      "使用 #y攻击牌 后，获得 #b%d 点 #y固定格挡 。"
+      "使用 #y攻击牌 后，获得 #b%d 点 #ygkmasmod:固定格挡 。"
     ]
   },
   "NaughtyPuppet": {
     "NAME": "淘气木偶",
     "FLAVOR": "淘气木偶。",
     "DESCRIPTIONS": [
-      "使用 #y攻击牌 后，如果体力 不高于 #b%d %% ，则对敌人额外造成本场战斗中 #y累计损失体力 #b%d %%的伤害，回复 #b%d 点体力， #b%d 回合内无法获得 格挡 。 NL (每场战斗可触发 #b%d 次)。"
+      "使用 #y攻击牌 后，如果体力 不高于 #b%d %% ，则对敌人额外造成本场战斗中 #y累计损失体力 #b%d %%的伤害，回复 #b%d 点体力， #b%d 回合内无法获得 #y格挡 。 NL (每场战斗可触发 #b%d 次)。"
     ]
   },
   "FirstLoveProofHiro": {
     "NAME": "初恋之证·广",
     "FLAVOR": "初恋之证·广",
     "DESCRIPTIONS": [
-      "回合开始时，如果体力不高于 #b%d %%，则获得 #b%d 点 #y力量 ， #y受伤减少 #b%d ，同时 #y升级 所有手牌。 NL (每场战斗可触发 #b%d 次)。"
+      "回合开始时，如果体力不高于 #b%d %%，则获得 #b%d 点 #y力量 ， #ygkmasmod:受伤减少 #b%d ，同时 #y强化 所有手牌。 NL (每场战斗可触发 #b%d 次)。"
     ]
   },
   "FirstLoveProofMao": {
     "NAME": "初恋之证·麻央",
     "FLAVOR": "初恋之证·麻央",
     "DESCRIPTIONS": [
-      "回合开始时，如果 #y敏捷 大于 #b%d ，则失去 #b%d 点 #y敏捷 ，获得 #b%d 层 #y好印象 。 NL (每场战斗可触发 #b%d 次)。"
+      "回合开始时，如果 #y敏捷 大于 #b%d ，则失去 #b%d 点 #y敏捷 ，获得 #b%d 层 #ygkmasmod:好印象 。 NL (每场战斗可触发 #b%d 次)。"
     ]
   },
   "FirstLoveProofSumika": {
@@ -486,7 +486,7 @@
     "NAME": "这样就完美了",
     "FLAVOR": "这样就完美了。",
     "DESCRIPTIONS": [
-      "使用具有 #y体力回复 效果的牌后，失去所有 #y格挡 和 #b%d 点体力， NL 获得失去 #y格挡 层数 #b%d %%的 #y好印象 ，对随机目标造成 #y好印象 层数 #b%d %%的伤害。 NL (每场战斗可触发 #b%d 次)。"
+      "使用具有 #y体力回复 效果的牌后，失去所有 #y格挡 和 #b%d 点体力， NL 获得失去 #y格挡 层数 #b%d %%的 #ygkmasmod:好印象 ，对随机目标造成 #ygkmasmod:好印象 层数 #b%d %%的伤害。 NL (每场战斗可触发 #b%d 次)。"
     ]
   },
   "CrackedCoreNew": {
@@ -521,71 +521,71 @@
     "NAME": "增强型束带",
     "FLAVOR": "增强型束带。",
     "DESCRIPTIONS": [
-      "每次进入特殊商店时，回复 #b%d 点体力， NL 特殊商店涨价 #b%d %%，敌人血量提高 #b%d %%。 NL 获得属性提高 #b%d 。"
+      "每次进入特殊商店时，回复 #b%d 点体力， NL 特殊商店涨价 #b%d %%，敌人血量提高 #b%d %%。 NL 获得三维提高 #b%d 。"
     ]
   },
   "MasterHighHeels": {
     "NAME": "增强型高跟鞋",
     "FLAVOR": "增强型高跟鞋。",
     "DESCRIPTIONS": [
-      "战斗开始时，获得 #b%d 点 #y格挡 。 NL 获得 #y%s 牌时，失去 #b%d 点金币，敌方血量提高 #b%d %%。 NL (本局游戏可触发 #b%d 次)。 NL 获得属性提高 #b%d 。"
+      "战斗开始时，获得 #b%d 点 #y格挡 。 NL 获得 #y%s 牌时，失去 #b%d 点金币，敌方血量提高 #b%d %%。 NL (本局游戏可触发 #b%d 次)。 NL 获得三维提高 #b%d 。"
     ]
   },
   "MasterVest": {
     "NAME": "增强型背心",
     "FLAVOR": "真得删卡！",
     "DESCRIPTIONS": [
-      "随机删除 #b%d 张 #y初始卡 。 NL 敌人血量提高 #b%d %%。 NL 获得属性提高 #b%d 。"
+      "随机删除 #b%d 张 #y初始卡 。 NL 敌人血量提高 #b%d %%。 NL 获得三维提高 #b%d 。"
     ]
   },
   "MasterSupportFrame": {
     "NAME": "增强型支撑架",
     "FLAVOR": "增强型支撑架。",
     "DESCRIPTIONS": [
-      "战斗开始时，获得 #b%d 点 #y格挡 和 #b%d %s #y%s 。 NL Boss战中，特殊回合减少 #b%d 。 NL 敌人血量提高 #b%d %%。 NL 获得属性提高 #b%d 。",
-      "战斗开始时，获得 #b%d 点 #y全力值 ，进入 #y温存 。 NL Boss战中，特殊回合减少 #b%d 。 NL 敌人血量提高 #b%d %%。 NL 获得属性提高 #b%d 。",
-      "战斗开始时，所有牌获得 #y伤害追加 #b%d ，进入 #y温存 。 NL Boss战中，特殊回合减少 #b%d 。 NL 敌人血量提高 #b%d %%。 NL 获得属性提高 #b%d 。"
+      "战斗开始时，获得 #b%d 点 #y格挡 和 #b%d %s #y%s 。 NL Boss战中，特殊回合减少 #b%d 。 NL 敌人血量提高 #b%d %%。 NL 获得三维提高 #b%d 。",
+      "战斗开始时，获得 #b%d 点 #ygkmasmod:全力值 ，进入 #ygkmasmod:温存 。 NL Boss战中，特殊回合减少 #b%d 。 NL 敌人血量提高 #b%d %%。 NL 获得三维提高 #b%d 。",
+      "战斗开始时，所有牌获得 #ygkmasmod:伤害追加 #b%d ，进入 #ygkmasmod:温存 。 NL Boss战中，特殊回合减少 #b%d 。 NL 敌人血量提高 #b%d %%。 NL 获得三维提高 #b%d 。"
     ]
   },
   "MasterRoller": {
     "NAME": "增强型滚轮",
     "FLAVOR": "增强型滚轮。",
     "DESCRIPTIONS": [
-      "战斗开始时，获得 #b%d 点 #y格挡 和 #b%d %s #y%s 。 NL SP战斗开始时，首回合造成伤害减少 #b%d %%。 NL 获得属性提高 #b%d 。",
-      "战斗开始时，获得 #b%d 点 #y格挡 和 #b%d 点 #y全力值 ，进入 #y温存 。 NL SP战斗开始时，失去 [E] 。 NL 获得属性提高 #b%d 。",
-      "战斗开始时，获得 #b%d 点 #y格挡 ，进入 #y温存2段 。 NL SP战斗开始时，首回合造成伤害减少 #b%d %%。 NL 获得属性提高 #b%d 。"
+      "战斗开始时，获得 #b%d 点 #y格挡 和 #b%d %s #y%s 。 NL SP战斗开始时，首回合造成伤害减少 #b%d %%。 NL 获得三维提高 #b%d 。",
+      "战斗开始时，获得 #b%d 点 #y格挡 和 #b%d 点 #ygkmasmod:全力值 ，进入 #ygkmasmod:温存 。 NL SP战斗开始时，失去 [E] 。 NL 获得三维提高 #b%d 。",
+      "战斗开始时，获得 #b%d 点 #y格挡 ，进入 #ygkmasmod:温存2段 。 NL SP战斗开始时，首回合造成伤害减少 #b%d %%。 NL 获得三维提高 #b%d 。"
     ]
   },
   "MasterBall": {
     "NAME": "增强型球",
     "FLAVOR": "增强型球。",
     "DESCRIPTIONS": [
-      "获得 #b%d 点金币。 NL 敌人血量提高 #b%d %%。 NL 获得属性提高 #b%d 。"
+      "获得 #b%d 点金币。 NL 敌人血量提高 #b%d %%。 NL 获得三维提高 #b%d 。"
     ]
   },
   "MasterTreadmill": {
     "NAME": "增强型跑步机",
     "FLAVOR": "增强型跑步机。",
     "DESCRIPTIONS": [
-      "SP战斗开始时，获得 #b%d 点 #y格挡 和 #b%d %s #y%s ，造成伤害减少 #b%d %%。 NL 敌人血量提高 #b%d %%。 NL 获得属性提高 #b%d 。",
-      "SP战斗开始时，进入 #y温存 ，获得 #b%d 点 #y全力值 ，造成伤害减少 #b%d %%。 NL 敌人血量提高 #b%d %%。 NL 获得属性提高 #b%d 。",
-      "SP战斗开始时，进入 #y温存 ，所有牌获得 #y伤害追加 #b%d ，造成伤害减少 #b%d %%。 NL 敌人血量提高 #b%d %%。 NL 获得属性提高 #b%d 。"
+      "SP战斗开始时，获得 #b%d 点 #y格挡 和 #b%d %s #y%s ，造成伤害减少 #b%d %%。 NL 敌人血量提高 #b%d %%。 NL 获得三维提高 #b%d 。",
+      "SP战斗开始时，进入 #ygkmasmod:温存 ，获得 #b%d 点 #ygkmasmod:全力值 ，造成伤害减少 #b%d %%。 NL 敌人血量提高 #b%d %%。 NL 获得三维提高 #b%d 。",
+      "SP战斗开始时，进入 #ygkmasmod:温存 ，所有牌获得 #ygkmasmod:伤害追加 #b%d ，造成伤害减少 #b%d %%。 NL 敌人血量提高 #b%d %%。 NL 获得三维提高 #b%d 。"
     ]
   },
   "MasterDumbbell": {
     "NAME": "增强型哑铃",
     "FLAVOR": "增强型哑铃。",
     "DESCRIPTIONS": [
-      "回合开始时，抽 #b%d 张牌。 NL 回合结束时，失去 #b%d %s #y%s 。 NL 敌人血量提高 #b%d %%。 NL 获得属性提高 #b%d 。",
-      "回合开始时，抽 #b%d 张牌，退出当前 #y姿态 。 NL 敌人血量提高 #b%d %%。 NL 获得属性提高 #b%d 。",
-      "回合开始时，抽 #b%d 张牌，所有牌获得 #y伤害减少 #b%d 。 NL 敌人血量提高 #b%d %%。 NL 获得属性提高 #b%d 。"
+      "回合开始时，抽 #b%d 张牌。 NL 回合结束时，失去 #b%d %s #y%s 。 NL 敌人血量提高 #b%d %%。 NL 获得三维提高 #b%d 。",
+      "回合开始时，抽 #b%d 张牌，退出当前 #y姿态 。 NL 敌人血量提高 #b%d %%。 NL 获得三维提高 #b%d 。",
+      "回合开始时，抽 #b%d 张牌，所有牌获得 #ygkmasmod:伤害减少 #b%d 。 NL 敌人血量提高 #b%d %%。 NL 获得三维提高 #b%d 。"
     ]
   },
   "AnimateEquipment": {
     "NAME": "Animate装备",
     "FLAVOR": "Animate联动装备。",
     "DESCRIPTIONS": [
-      "每 #b%d 回合，如果拥有 #y好调 ，则获得 #y好调 层数 #b%d %%的 #y力量 ，获得 #b%d 点 #y力量 和 #b%d 点 #y格挡 。 NL (每场战斗可触发 #b%d 次)。"
+      "每 #b%d 回合，如果拥有 #ygkmasmod:好调 ，则获得 #ygkmasmod:好调 层数 #b%d %%的 #y力量 ，获得 #b%d 点 #y力量 和 #b%d 点 #y格挡 。 NL (每场战斗可触发 #b%d 次)。"
     ]
   },
   "ReChallenge": {
@@ -620,39 +620,39 @@
     "NAME": "初星时钟",
     "FLAVOR": "初星时钟。",
     "DESCRIPTIONS": [
-      "回合开始时，如果 #y全力值 大于 #b%d ，则获得 #b%d 点 #y全力值 ， #y再动 。 NL (每场战斗可触发 #b%d 次)。"
+      "回合开始时，获得 #b%d 点 #ygkmasmod:全力值 ， #ygkmasmod:再动 。"
     ]
   },
   "FirstStarModel": {
     "NAME": "初星模型",
     "FLAVOR": "初星模型。",
     "DESCRIPTIONS": [
-      "回合开始时，如果处于 #y强气 ，则进入 #y温存2段 ， #y再动 。 NL (每场战斗可触发 #b%d 次)。"
+      "回合开始时，如果处于 #ygkmasmod:强气 ，则进入 #ygkmasmod:温存2段 ， #ygkmasmod:再动 。"
     ]
   },
   "TeaCaddy": {
     "NAME": "茶叶罐",
     "FLAVOR": "茶叶罐。",
     "DESCRIPTIONS": [
-      "使用 #y攻击牌 后，如果处于 #y强气 ，则对随机敌人造成 #b%d 点伤害，回复 #b%d 点体力。 NL (每场战斗可触发 #b%d 次)。"
+      "使用 #y攻击牌 后，如果处于 #ygkmasmod:强气 ，则对随机敌人造成 #b%d 点伤害，回复 #b%d 点体力。 NL (每场战斗可触发 #b%d 次)。"
     ]
   },
   "EveryoneDream": {
     "NAME": "大家的憧憬",
     "FLAVOR": "大家的憧憬。",
     "DESCRIPTIONS": [
-      "出牌时，如果处于 #y全力 ，则对随机敌人造成 #b%d 点伤害，获得 #b%d #y格挡 。 NL (每场战斗可触发 #b%d 次)。"
+      "出牌时，如果处于 #ygkmasmod:全力 ，则对随机敌人造成 #b%d 点伤害，获得 #b%d #y格挡 。 NL (每场战斗可触发 #b%d 次)。"
     ]
   },
   "AbsoluteNewSelf": {
     "NAME": "全新的我",
     "FLAVOR": "全新的我。",
     "DESCRIPTIONS": [
-      "使用 #y攻击牌 后，如果处于 #y强气 ，则对随机敌人造成 #b%d 点伤害，回复 #b%d 点体力。 NL (每场战斗可触发 #b%d 次)。"
+      "使用 #y攻击牌 后，如果处于 #ygkmasmod:强气 ，则对随机敌人造成 #b%d 点伤害，回复 #b%d 点体力。 NL (每场战斗可触发 #b%d 次)。"
     ]
   },
   "FreeLoveMax": {
-    "NAME": "费用零元 爱情MAX",
+    "NAME": "费用零元爱情MAX",
     "FLAVOR": "费用零元 爱情MAX。",
     "DESCRIPTIONS": [
       "回合开始时，如果 敏捷 大于 #b%d ，则获得 #b%d 点 #y格挡 。 NL (每场战斗可触发 #b%d 次)。"
@@ -662,7 +662,7 @@
     "NAME": "圣诞狮子",
     "FLAVOR": "圣诞狮子。",
     "DESCRIPTIONS": [
-      "训练时间剩余 #b1 层时和结束时，对随机敌人造成 #y好调 层数 #b%d %%的伤害。 NL (每场战斗可触发 #b%d 次)。"
+      "训练时间剩余 #b1 层时和结束时，对随机敌人造成 #ygkmasmod:好调 层数 #b%d %%的伤害。 NL (每场战斗可触发 #b%d 次)。"
     ]
   },
   "BeyondTheSea": {
@@ -676,14 +676,273 @@
     "NAME": "昔日幻影",
     "FLAVOR": "已经无法回到的过去。",
     "DESCRIPTIONS": [
-      "战斗开始时，召唤过去的 #y月村手毬 和 #y贺阳燐羽 。"
+      "战斗开始时，召唤 #y月村手毬 和 #y贺阳燐羽 。"
+    ]
+  },
+  "SyngUpRelicBroken": {
+    "NAME": "破碎的昔日幻影",
+    "FLAVOR": "已经无法回到的过去。",
+    "DESCRIPTIONS": [
+      "战斗开始时，召唤过去的 #y月村手毬 。"
+    ]
+  },
+  "FriendChinaRelic": {
+    "NAME": "仓本千奈的支援",
+    "FLAVOR": "美铃桑，我来帮你了哇",
+    "DESCRIPTIONS": [
+      "战斗开始时，召唤 #y仓本千奈 。"
+    ]
+  },
+  "FriendHiroRelic": {
+    "NAME": "篠泽广的支援",
+    "FLAVOR": "唔嗯，如果是美铃的话",
+    "DESCRIPTIONS": [
+      "战斗开始时，召唤 #y篠泽广 。"
+    ]
+  },
+  "FriendUmeRelic": {
+    "NAME": "花海佑芽的支援",
+    "FLAVOR": "我发现了，偷懒的美铃酱！",
+    "DESCRIPTIONS": [
+      "战斗开始时，召唤 #y花海佑芽 。"
+    ]
+  },
+  "FriendSenaRelic": {
+    "NAME": "十王星南的支援",
+    "FLAVOR": "和我一起，成为至高的偶像吧",
+    "DESCRIPTIONS": [
+      "战斗开始时，召唤 #y十王星南 。"
+    ]
+  },
+  "FriendKotoneRelic": {
+    "NAME": "藤田琴音的支援",
+    "FLAVOR": "诶？好麻烦",
+    "DESCRIPTIONS": [
+      "战斗开始时，召唤 #y藤田琴音 。"
     ]
   },
   "PlasticUmbrellaThatDay": {
     "NAME": "那一天的塑料伞",
     "FLAVOR": "那一天的塑料伞。",
     "DESCRIPTIONS": [
-      "回合开始时，如果本场战斗中累计获得的 #y全力值 大于 #b%d ，则获得 #b%d 点 #y全力值 ，将 #y道口的前方 暂存 。 NL (每场战斗可触发 #b%d 次)。"
+      "回合开始时，如果本场战斗中累计获得的 #ygkmasmod:全力值 大于 #b%d ，则获得 #b%d 点 #ygkmasmod:全力值 ，将 #y道口的前方 暂存 。 NL (每场战斗可触发 #b%d 次)。"
+    ]
+  },
+  "FaceTheAwakening": {
+    "NAME": "直面的觉悟",
+    "FLAVOR": "直面的觉悟。",
+    "DESCRIPTIONS": [
+      "使用 #y轻快舞步 后，失去 #b%d 点体力，获得 #b%d 层 #ygkmasmod:好调 ， #ygkmasmod:再动 。 NL (每场战斗可触发 #b%d 次)。"
+    ]
+  },
+  "SongToTheSun": {
+    "NAME": "传达到太阳的歌声",
+    "FLAVOR": "传达到太阳的歌声。",
+    "DESCRIPTIONS": [
+      "使用 #y顺势而为 后，失去 #b%d 点体力，获得 #b%d 点 #y力量 ， #ygkmasmod:再动 。 NL (每场战斗可触发 #b%d 次)。"
+    ]
+  },
+  "OnlyMyFirstStar": {
+    "NAME": "独属于我的一番星",
+    "FLAVOR": "独属于我的一番星。",
+    "DESCRIPTIONS": [
+      "使用 #y莞尔一笑 后，失去 #b%d 点体力，获得 #b%d 层 #ygkmasmod:好印象 ， #ygkmasmod:再动 。 NL (每场战斗可触发 #b%d 次)。"
+    ]
+  },
+  "MyPart": {
+    "NAME": "我的一部分",
+    "FLAVOR": "我的一部分。",
+    "DESCRIPTIONS": [
+      "使用 #y星光 时，如果处于 #ygkmasmod:温存 姿态，则失去 #b%d 点体力，抽 #b%d 张牌，获得 #b%d 层 #ygkmasmod:受伤锐减 ，并使所有 #y星光 获得 #ygkmasmod:伤害追加 #b%d 。 NL (每场战斗可触发 #b%d 次)。"
+    ]
+  },
+  "PastLittleStar": {
+    "NAME": "曾几何时的小小星光",
+    "FLAVOR": "曾几何时的小小星光。",
+    "DESCRIPTIONS": [
+      "使用 #y服务精神 后，失去 #b%d 点体力，获得 #b%d 层 #ygkmasmod:绝好调 ，获得 #b%d 个 #y额外回合 。 NL (每场战斗可触发 #b%d 次)。"
+    ]
+  },
+  "YouFindMe": {
+    "NAME": "你所发现的我",
+    "FLAVOR": "你所发现的我。",
+    "DESCRIPTIONS": [
+      "使用 #y惊喜的误算 后，失去 #b%d 点体力，获得 #b%d 点 #ygkmasmod:全力值 ， #b%d 回合内造成伤害增加 #b%d %%。 NL (每场战斗可触发 #b%d 次)。"
+    ]
+  },
+  "DreamOfTheDescription": {
+    "NAME": "迈向描述的梦想",
+    "FLAVOR": "迈向描述的梦想。",
+    "DESCRIPTIONS": [
+      "使用 #y茶会闲话 后，获得 #b%d 个 #y额外回合 ， #y格挡 增加 #b%d %%。 NL (每场战斗可触发 #b%d 次)。"
+    ]
+  },
+  "SelectedPassion": {
+    "NAME": "选定的热情",
+    "FLAVOR": "选定的热情。",
+    "DESCRIPTIONS": [
+      "使用 #y耶耶耶 时，如果体力不低于 #b50 %%，则失去 #y最大体力 #b%d %%的体力，获得 #b%d 点 #y敏捷 ， #ygkmasmod:再动 。 NL (每场战斗可触发 #b%d 次)。"
+    ]
+  },
+  "AchieveDreamAwakening":{
+    "NAME": "实现梦想的觉悟",
+    "FLAVOR": "实现梦想的觉悟。",
+    "DESCRIPTIONS": [
+      "使用 #y恰当的展示 后，如果 #ygkmasmod:暂存 区卡牌数不低于 #b%d ，则进入 #ygkmasmod:温存2段 ，获得 #b%d 点 #ygkmasmod:全力值 ，使 #ygkmasmod:暂存 区所有卡牌获得 #ygkmasmod:连击 #b%d 和 #ygkmasmod:耗能追加 #b%d 。 NL (每场战斗可触发 #b%d 次)。"
+    ]
+  },
+  "TheDreamSawSomeday": {
+    "NAME": "曾经做过的梦",
+    "FLAVOR": "曾经做过的梦。",
+    "DESCRIPTIONS": [
+      "使用 #y热身运动 后，失去 #b%d 点体力，获得 #b%d 点 #y力量 ，下回合开始时，获得 #b%d 点 #y力量 。 NL (每场战斗可触发 #b%d 次)。"
+    ]
+  },
+  "TheWing": {
+    "NAME": "翼",
+    "FLAVOR": "翼。",
+    "DESCRIPTIONS": [
+      "使用 #yRestart 后，如果 #y格挡 大于 #b%d ，则使 #ygkmasmod:好印象 层数增加 #b%d %%，下回合开始时，将 #y消耗 的 #y再一次，飞翔 加入手牌。 NL (每场战斗可触发 #b%d 次)。"
+    ]
+  },
+  "TheMarkOfPractice": {
+    "NAME": "练习的记号",
+    "FLAVOR": "练习的记号。",
+    "DESCRIPTIONS": [
+      "使用 #ygkmasmod:全力 牌 后，获得 #b%d 点 #y格挡 。"
+    ]
+  },
+  "SweetTaste": {
+    "NAME": "甜蜜的口感",
+    "FLAVOR": "甜蜜的口感。",
+    "DESCRIPTIONS": [
+      "回合结束时，如果处于 #ygkmasmod:强气 ，则进入 #ygkmasmod:温存 ，获得 #b%d 点 #y格挡 。"
+    ]
+  },
+  "DeepLoveForYou": {
+    "NAME": "对你的深爱",
+    "FLAVOR": "对你的深爱。",
+    "DESCRIPTIONS": [
+      "使用 #y给你 或 #y攻击牌 时，如果 #y敏捷 大于 #b%d ，则获得 #b%d 点 #y格挡 NL ( #y敏捷 发挥 #b%d %% 的效果)。 NL (每场战斗可触发 #b%d 次)。"
+    ]
+  },
+  "FoodIris": {
+    "NAME": "鸾尾花",
+    "FLAVOR": "“手毬酱，这个不能吃啊。” ……次回「误食鸢尾花的毛球，毛球の死」",
+    "DESCRIPTIONS": [
+      "拾起时，获得 #b%d 层 #y中毒 。"
+    ]
+  },
+  "FoodGinger": {
+    "NAME": "生姜",
+    "FLAVOR": "“我和你对食物的概念，绝对不一样！”",
+    "DESCRIPTIONS": [
+      "拾起时，进入 #ygkmasmod:强气 。"
+    ]
+  },
+  "FoodTonkatsu": {
+    "NAME": "炸猪排",
+    "FLAVOR": "“作为减肥成功的庆祝，就给你做最喜欢的炸猪排吧”",
+    "DESCRIPTIONS": [
+      "拾起时，获得 #b%d 层 #ygkmasmod:好调 和 #b%d 层 #ygkmasmod:绝好调 。"
+    ]
+  },
+  "FoodTonkatsuSP": {
+    "NAME": "炸猪排·去衣",
+    "FLAVOR": "“我要退出「Re;IRIS」！”",
+    "DESCRIPTIONS": [
+      "拾起时，进入 #ygkmasmod:全力 。"
+    ]
+  },
+  "FoodCarrot": {
+    "NAME": "胡萝卜",
+    "FLAVOR": "“制作人的性格真是恶劣呢。作为人真是最低级的，利用别人的弱点来督促自己的偶像什么的。”",
+    "DESCRIPTIONS": [
+      "拾起时，获得 #b%d 层 #ygkmasmod:不调 。"
+    ]
+  },
+  "FoodOddMushroom": {
+    "NAME": "奇怪蘑菇",
+    "FLAVOR": "“你觉得，这是可以被允许的吗？！”",
+    "DESCRIPTIONS": [
+      "拾起时，获得 #b%d 层 #y易伤 。"
+    ]
+  },
+  "FoodHuhu": {
+    "NAME": "糊糊",
+    "FLAVOR": "“我们不是机械，是人类啊！”",
+    "DESCRIPTIONS": [
+      "拾起时，进入 #ygkmasmod:强气2段 。"
+    ]
+  },
+  "CardOfVictory": {
+    "NAME": "决胜的那张牌",
+    "FLAVOR": "决胜的那张牌。",
+    "DESCRIPTIONS": [
+      "回合开始时，如果处于 #ygkmasmod:强气 ，则获得 #b%d 点 #y格挡 。"
+    ]
+  },
+  "SpringIsComing": {
+    "NAME": "春天来了",
+    "FLAVOR": "春天来了。",
+    "DESCRIPTIONS": [
+      "通过卡牌消耗 #y强化状态 时，如果 #ygkmasmod:好印象 层数大于 #b%d ，则获得 #b%d 层 #ygkmasmod:好印象 和 #b%d 点 #y敏捷 。 NL (每场战斗可触发 #b%d 次)。"
+    ]
+  },
+  "RoundSpring": {
+    "NAME": "圆润的春色",
+    "FLAVOR": "圆润的春色。",
+    "DESCRIPTIONS": [
+      "进入 #ygkmasmod:全力 时，如果本场战斗进入 #ygkmasmod:强气 的次数大于 #b%d ，则使所有 #ygkmasmod:全力 效果的攻击卡获得 #ygkmasmod:伤害追加 #b%d ，回合结束时，进入 #ygkmasmod:温存2段 。 NL (每场战斗可触发 #b%d 次)。"
+    ]
+  },
+  "MisuzuNatureRelic": {
+    "NAME": "刺猬热水袋(7800円)",
+    "FLAVOR": "如果睡觉也能变强，那为什么不睡觉呢？",
+    "DESCRIPTIONS": [
+      "每当你在火堆选择 #y休息 时，获得 #b%d 点 #y力量 (累积 #b3 点后，改为获得 #y敏捷 )，该效果最多可触发 #b5 次。 NL #y休息 后的下一场战斗，战斗开始时进入 #ygkmasmod:清醒 。"
+    ]
+  },
+  "GiftForYou": {
+    "NAME": "献给你的礼物",
+    "FLAVOR": "献给你的礼物。",
+    "DESCRIPTIONS": [
+      "获得 #y力量 时，获得 #b%d 点 #y格挡 。"
+    ]
+  },
+  "ProofOfFriendship": {
+    "NAME": "友情的证明",
+    "FLAVOR": "友情的证明。",
+    "DESCRIPTIONS": [
+      "每回合首次获得 #y格挡 后，失去 #b%d 点体力，获得 #y格挡 层数 #b%d %%的 #ygkmasmod:好印象 。 NL (每场战斗可触发 #b%d 次)。"
+    ]
+  },
+  "SmallGalaxy": {
+    "NAME": "小小的银河",
+    "FLAVOR": "小小的银河。",
+    "DESCRIPTIONS": [
+      "使用 #y技能牌 时，如果处于 #ygkmasmod:强气2段 ，则失去 #b%d 点体力，使所有 #y技能牌 获得 #ygkmasmod:格挡追加 #b%d 。 NL (每场战斗可触发 #b%d 次)。"
+    ]
+  },
+  "NIABadge": {
+    "NAME": "NIA徽章",
+    "FLAVOR": "去把她带回来吧。",
+    "DESCRIPTIONS": [
+      "最终Boss替换为 #y贺阳燐羽 。"
+    ]
+  },
+  "ContinuousEffort": {
+    "NAME": "不断积累的努力",
+    "FLAVOR": "不断积累的努力。",
+    "DESCRIPTIONS": [
+      "回合开始时，如果本场战斗累计获得的 #ygkmasmod:全力值 大于 #b%d ，则获得 #b%d 点 #y格挡 。"
+    ]
+  },
+  "TheP": {
+    "NAME": "P亲",
+    "FLAVOR": "P亲。",
+    "DESCRIPTIONS": [
+      "#y力量 大于 #b%d 时，每打出 #b%d 张卡，失去 #b%d 点 #y力量 ，获得 #b%d 层 #ygkmasmod:好调 。"
     ]
   }
 }

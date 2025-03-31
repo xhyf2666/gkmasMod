@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.DamageRandomEnemyAction;
 import com.megacrit.cardcrawl.actions.common.ReducePowerAction;
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -16,6 +17,8 @@ import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.DoubleDamagePower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
+import gkmasmod.cards.sense.UntilNowAndFromNow;
+import gkmasmod.downfall.cards.sense.ENUntilNowAndFromNow;
 import gkmasmod.relics.GreenUniformBracelet;
 import gkmasmod.utils.NameHelper;
 import org.lwjgl.Sys;
@@ -77,10 +80,10 @@ public class GoodTune extends AbstractPower {
         this.amount += stackAmount;
         if (this.amount == 0)
             addToTop(new RemoveSpecificPowerAction(this.owner, this.owner, this.ID));
-        if(this.amount>9999)
-            this.amount = 9999;
-        if(this.amount<-9999)
-            this.amount = -9999;
+        if(this.amount>99999)
+            this.amount = 99999;
+        if(this.amount<-99999)
+            this.amount = -99999;
         updateDescription();
     }
 
@@ -93,15 +96,48 @@ public class GoodTune extends AbstractPower {
             addToBot(new ReducePowerAction(this.owner, this.owner, POWER_ID, 1));
     }
 
+    @Override
+    public float atDamageFinalGive(float damage, DamageInfo.DamageType type, AbstractCard card) {
+        if(card instanceof UntilNowAndFromNow||card instanceof ENUntilNowAndFromNow){
+            return atDamageFinalGiveSpecial(damage,type,3.0F);
+        }
+        return atDamageFinalGive(damage,type);
+    }
 
     public float atDamageFinalGive(float damage, DamageInfo.DamageType type) {
+        float goodTuneEffectRate = 1.0F;
         if(this.amount>0){
             if (type == DamageInfo.DamageType.NORMAL) {
                 int count = this.owner.getPower(GreatGoodTune.POWER_ID)==null?0:this.owner.getPower(GreatGoodTune.POWER_ID).amount;
                 if(count > 0)
-                    return damage * (1.5F+amount*0.1F);
+                    return damage * (1+(0.5F+amount*0.1F)*goodTuneEffectRate);
                 else
-                    return damage * 1.5F;
+                    return damage * (1+(0.5F*goodTuneEffectRate));
+            }
+        }
+        else if(this.amount<0){
+            if (type == DamageInfo.DamageType.NORMAL) {
+                int count = this.owner.getPower(GreatGoodTune.POWER_ID)==null?0:this.owner.getPower(GreatGoodTune.POWER_ID).amount;
+                if(count > 0){
+                    int dmg = (int) (damage * (0.667F+amount*0.1F));
+                    return dmg>0?dmg:0;
+                }
+                else
+                    return damage * 0.667F;
+            }
+        }
+        return damage;
+    }
+
+    public float atDamageFinalGiveSpecial(float damage, DamageInfo.DamageType type,float rate) {
+        float goodTuneEffectRate = rate;
+        if(this.amount>0){
+            if (type == DamageInfo.DamageType.NORMAL) {
+                int count = this.owner.getPower(GreatGoodTune.POWER_ID)==null?0:this.owner.getPower(GreatGoodTune.POWER_ID).amount;
+                if(count > 0)
+                    return damage * (1+(0.5F+amount*0.1F)*goodTuneEffectRate);
+                else
+                    return damage * (1+(0.5F*goodTuneEffectRate));
             }
         }
         else if(this.amount<0){

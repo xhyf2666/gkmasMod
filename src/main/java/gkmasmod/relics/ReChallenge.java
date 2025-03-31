@@ -2,10 +2,6 @@ package gkmasmod.relics;
 import basemod.abstracts.CustomRelic;
 import basemod.abstracts.CustomSavable;
 import com.badlogic.gdx.Gdx;
-import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
-import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.helpers.controller.CInputActionSet;
@@ -70,14 +66,13 @@ public class ReChallenge extends CustomRelic implements CustomSavable<Integer>{
                 return;
             if (this.hb.hovered) {
                 if(this.counter>0){
-                    SpireConfig config = null;
+                    GkmasMod.cardRate = PlayerHelper.getCardRate();
+                    GkmasMod.config.setFloat("cardRate", GkmasMod.cardRate);
+                    GkmasMod.config.setInt("beat_hmsz", GkmasMod.beat_hmsz);
+                    GkmasMod.config.setBool("onlyModBoss", GkmasMod.onlyModBoss);
+                    GkmasMod.config.setInt("ReChallenge",this.counter);
                     try {
-                        config = new SpireConfig("GkmasMod", "config");
-                        // 读取配置
-                        config.setFloat("cardRate", PlayerHelper.getCardRate());
-                        config.setInt("beat_hmsz",GkmasMod.beat_hmsz);
-                        config.setInt("ReChallenge",this.counter);
-                        config.save();
+                        GkmasMod.config.save();
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -105,14 +100,13 @@ public class ReChallenge extends CustomRelic implements CustomSavable<Integer>{
 
     public void onEquip() {
         this.counter = 1;
-        SpireConfig config = null;
+        GkmasMod.cardRate = PlayerHelper.getCardRate();
+        GkmasMod.config.setFloat("cardRate", GkmasMod.cardRate);
+        GkmasMod.config.setInt("beat_hmsz", GkmasMod.beat_hmsz);
+        GkmasMod.config.setBool("onlyModBoss", GkmasMod.onlyModBoss);
+        GkmasMod.config.setInt("ReChallenge",this.counter);
         try {
-            config = new SpireConfig("GkmasMod", "config");
-            // 读取配置
-            config.setFloat("cardRate", PlayerHelper.getCardRate());
-            config.setInt("beat_hmsz",GkmasMod.beat_hmsz);
-            config.setInt("ReChallenge",this.counter);
-            config.save();
+            GkmasMod.config.save();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -133,14 +127,12 @@ public class ReChallenge extends CustomRelic implements CustomSavable<Integer>{
 
     @Override
     public void onVictory() {
-        SpireConfig config = null;
         try {
-            config = new SpireConfig("GkmasMod", "config");
-            // 读取配置
-            config.setFloat("cardRate", PlayerHelper.getCardRate());
-            config.setInt("beat_hmsz",GkmasMod.beat_hmsz);
-            config.setInt("ReChallenge",0);
-            config.save();
+            GkmasMod.config.setFloat("cardRate", PlayerHelper.getCardRate());
+            GkmasMod.config.setInt("beat_hmsz",GkmasMod.beat_hmsz);
+            GkmasMod.config.setInt("ReChallenge",0);
+            GkmasMod.config.setBool("onlyModBoss", GkmasMod.onlyModBoss);
+            GkmasMod.config.save();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -159,14 +151,10 @@ public class ReChallenge extends CustomRelic implements CustomSavable<Integer>{
         defaults.setProperty("cardRate", String.valueOf(PlayerHelper.getCardRate()));
         defaults.setProperty("beat_hmsz", "0");
         defaults.setProperty("ReChallenge", "1");
-        SpireConfig config = null;
-        try {
-            config = new SpireConfig("GkmasMod", "config", defaults);
-            int tmp = config.getInt("ReChallenge");
-            if(tmp>0)
-                this.counter = config.getInt("ReChallenge")-1;
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+
+        int tmp = GkmasMod.config.getInt("ReChallenge");
+        if(tmp>0)
+            this.counter = GkmasMod.config.getInt("ReChallenge")-1;
+
     }
 }

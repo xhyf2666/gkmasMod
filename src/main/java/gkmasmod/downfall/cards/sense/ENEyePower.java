@@ -28,7 +28,6 @@ public class ENEyePower extends GkmasBossCard {
 
     private static final int COST = 1;
     private static final int BASE_MAGIC = 1;
-    private static final int UPGRADE_PLUS_MAGIC = 1;
     private static final int BASE_MAGIC2 = 50;
 
 
@@ -53,7 +52,9 @@ public class ENEyePower extends GkmasBossCard {
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-       addToBot(new ApplyPowerAction(m,m,new StrengthPower(m,this.magicNumber),this.magicNumber));
+        if(this.upgraded){
+            addToBot(new ApplyPowerAction(m,m,new StrengthPower(m,this.magicNumber),this.magicNumber));
+        }
        addToBot(new ApplyPowerAction(m,m,new EyePowerPower(m,1),1));
     }
 
@@ -66,7 +67,6 @@ public class ENEyePower extends GkmasBossCard {
     public void upgrade() {
         if (!this.upgraded) {
             upgradeName();
-            upgradeMagicNumber(UPGRADE_PLUS_MAGIC);
             if (CARD_STRINGS.UPGRADE_DESCRIPTION != null)
                 this.rawDescription = CARD_STRINGS.UPGRADE_DESCRIPTION;
             this.initializeDescription();

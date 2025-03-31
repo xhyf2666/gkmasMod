@@ -10,8 +10,10 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.powers.BarricadePower;
 import gkmasmod.downfall.cards.free.ENIdolDeclaration;
 import gkmasmod.downfall.cards.logic.*;
+import gkmasmod.downfall.relics.CBR_BeyondTheSea;
 import gkmasmod.downfall.relics.CBR_DreamLifeLog;
 import gkmasmod.downfall.relics.CBR_MemoryBot;
+import gkmasmod.powers.*;
 
 import java.util.ArrayList;
 
@@ -26,8 +28,6 @@ public class BossConfig_kllj3 extends AbstractBossDeckArchetype {
     @Override
     public void addedPreBattle() {
         super.addedPreBattle();
-        AbstractCreature p = AbstractCharBoss.boss;
-        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new BarricadePower(p)));
     }
 
     public void initialize() {
@@ -36,6 +36,19 @@ public class BossConfig_kllj3 extends AbstractBossDeckArchetype {
         addRelic(new CBR_LetterOpener());
         addRelic(new CBR_MemoryBot());
         addRelic(new CBR_DreamLifeLog());
+        addRelic(new CBR_BeyondTheSea());
+        AbstractCreature p = AbstractCharBoss.boss;
+        if(AbstractDungeon.ascensionLevel >= 15){
+            AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new GoodImpression(p,30),30));
+            AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new SSDSecretPower(p,1),1));
+        }
+        else
+            AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new GoodImpression(p,10),10));
+        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new NegativeNotPower(p, 3), 3));
+        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new NotAfraidAnymorePower(p,3),3));
+        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new RainbowDreamerPower(p,2),2));
+        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new IsENotAPower(p,7),7));
+        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new TheScenerySawSomedayPower(p, 5), 5));
     }
 
     @Override
@@ -45,25 +58,17 @@ public class BossConfig_kllj3 extends AbstractBossDeckArchetype {
         if (!looped) {
             switch (turn) {
                 case 0:
-                    addToList(cardsList,new ENIdolDeclaration(),extraUpgrades);
-                    addToList(cardsList,new ENBeforeThePerformance(),extraUpgrades);
+                    addToList(cardsList, new ENIdolDeclaration(),extraUpgrades);
+                    addToList(cardsList, new ENBeforeThePerformance(),extraUpgrades);
+                    addToList(cardsList, new ENIamBigStar(),extraUpgrades);
                     addToList(cardsList, new ENUnstoppableThoughts(),extraUpgrades);
-                    addToList(cardsList, new ENRainbowDreamer(),extraUpgrades);
                     addToList(cardsList, new ENYoungDream(),true);
-                    addToList(cardsList, new ENHeartbeat(),extraUpgrades);
+                    addToList(cardsList, new ENHappyCurse(), extraUpgrades);
                     turn++;
                     break;
                 case 1:
-                    addToList(cardsList, new ENBaseVision(), extraUpgrades);
                     addToList(cardsList, new ENStarDust(),extraUpgrades);
-                    addToList(cardsList, new ENEnergyIsFull());
-                    addToList(cardsList, new ENIamBigStar(),extraUpgrades);
-                    addToList(cardsList, new ENNotAfraidAnymore(),extraUpgrades);
-                    turn++;
-                    break;
-                case 2:
                     addToList(cardsList, new ENFutureTrajectory());
-                    addToList(cardsList, new ENHappyCurse(), extraUpgrades);
                     addToList(cardsList, new ENWakeUp(),extraUpgrades);
                     addToList(cardsList, new ENWakeUp(),true);
                     addToList(cardsList, new ENPureWhiteFairy(),extraUpgrades);
@@ -76,8 +81,9 @@ public class BossConfig_kllj3 extends AbstractBossDeckArchetype {
                 case 0:
                     addToList(cardsList, new ENFlowerBouquet(),extraUpgrades);
                     addToList(cardsList, new ENLikeEveryone());
-                    addToList(cardsList, new ENBaseVision(),extraUpgrades);
-                    addToList(cardsList, new ENBaseVision(),extraUpgrades);
+                    addToList(cardsList, new ENWithLove(),true);
+                    addToList(cardsList, new ENSparklingConfetti(),true);
+                    addToList(cardsList, new ENRestart(),true);
                     addToList(cardsList, new ENSweetWink(),extraUpgrades);
                     break;
             }

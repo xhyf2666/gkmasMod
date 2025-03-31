@@ -1,5 +1,6 @@
 package gkmasmod.powers;
 
+import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import gkmasmod.downfall.charbosses.bosses.AbstractCharBoss;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
@@ -55,7 +56,11 @@ public class VeryEasyPower extends AbstractPower {
     }
 
     public void atEndOfTurn(boolean isPlayer) {
-        addToBot(new ReducePowerAction(this.owner, this.owner, this.ID, 1));
+        if(this.amount > 0){
+            addToBot(new ReducePowerAction(this.owner, this.owner, ID, 1));
+        }
+        else
+            addToBot(new RemoveSpecificPowerAction(this.owner, this.owner, ID));
         if(this.owner.isPlayer)
             addToBot(new ModifyDamageRandomEnemyAction(new DamageInfo(this.owner, DAMAGE, DamageInfo.DamageType.NORMAL), AbstractGameAction.AttackEffect.SLASH_VERTICAL));
         else if(this.owner instanceof AbstractCharBoss){

@@ -4,6 +4,7 @@ import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.DrawCardAction;
 import com.megacrit.cardcrawl.actions.common.GainBlockAction;
+import com.megacrit.cardcrawl.actions.common.LoseHPAction;
 import com.megacrit.cardcrawl.actions.watcher.ChangeStanceAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -11,20 +12,21 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import gkmasmod.actions.GainTrainRoundPowerAction;
-import gkmasmod.cardCustomEffect.MoreActionCustom;
+import gkmasmod.actions.SelectCardGrowAction;
+import gkmasmod.cardCustomEffect.*;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.growEffect.AttackTimeGrow;
+import gkmasmod.growEffect.BaseBlockGrow;
 import gkmasmod.powers.FullPowerValue;
 import gkmasmod.powers.HeartAndSoulPower;
 import gkmasmod.screen.SkinSelectScreen;
 import gkmasmod.stances.ConcentrationStance;
 import gkmasmod.stances.PreservationStance;
-import gkmasmod.utils.GrowHelper;
-import gkmasmod.utils.ImageHelper;
-import gkmasmod.utils.NameHelper;
-import gkmasmod.utils.PlayerHelper;
+import gkmasmod.utils.*;
+
+import java.util.ArrayList;
 
 public class BecomeIdol extends GkmasCard {
     private static final String CLASSNAME = BecomeIdol.class.getSimpleName();
@@ -51,8 +53,7 @@ public class BecomeIdol extends GkmasCard {
         super(ID, NAME, ImageHelper.idolImgPath(SkinSelectScreen.Inst.idolName, CLASSNAME), COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         IMG_PATH = ImageHelper.idolImgPath(SkinSelectScreen.Inst.idolName, CLASSNAME);
         this.updateShowImg = true;
-        this.tags.add(GkmasCardTag.PRESERVATION_TAG);
-        this.tags.add(GkmasCardTag.FULL_POWER_TAG);
+        this.tags.add(GkmasCardTag.COST_POWER_TAG);
         this.tags.add(GkmasCardTag.OUTSIDE_TAG);
         this.tags.add(GkmasCardTag.MORE_ACTION_TAG);
         this.baseBlock = BASE_BLOCK;
@@ -62,13 +63,24 @@ public class BecomeIdol extends GkmasCard {
         this.secondMagicNumber = this.baseSecondMagicNumber;
         this.exhaust = true;
         CardModifierManager.addModifier(this,new MoreActionCustom(1));
+        this.customLimit = 1;
+        this.customEffectList = new ArrayList<>();
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(MagicCustom.growID,new int[]{-1},new int[]{50},CustomHelper.CustomEffectType.FULL_POWER_VALUE_ADD));
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(BlockCustom.growID,new int[]{4},new int[]{70},CustomHelper.CustomEffectType.BLOCK_ADD));
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(EffectChangeCustom.growID, new int[]{0}, new int[]{100}, CustomHelper.CustomEffectType.EFFECT_CHANGE));
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        addToBot(new ApplyPowerAction(p,p,new FullPowerValue(p,-this.magicNumber),-this.magicNumber));
-//        addToBot(new GainTrainRoundPowerAction(p,1));
-        GrowHelper.growAllHand(AttackTimeGrow.growID,this.secondMagicNumber);
+        if(this.magicNumber>0)
+            addToBot(new ApplyPowerAction(p,p,new FullPowerValue(p,-this.magicNumber),-this.magicNumber));
+        if(CustomHelper.hasCustom(this, EffectChangeCustom.growID)){
+            addToBot(new SelectCardGrowAction(this.secondMagicNumber, AttackTimeGrow.growID));
+        }
+        else{
+            GrowHelper.growAllHand(AttackTimeGrow.growID,this.secondMagicNumber);
+        }
+
         if(this.upgraded){
             addToBot(new GainBlockAction(p,p,this.block));
             addToBot(new ChangeStanceAction(PreservationStance.STANCE_ID));
@@ -92,6 +104,7 @@ public class BecomeIdol extends GkmasCard {
     public void upgrade() {
         if (!this.upgraded) {
             upgradeName();
+            this.tags.add(GkmasCardTag.PRESERVATION_TAG);
             if (CARD_STRINGS.UPGRADE_DESCRIPTION != null)
                 this.rawDescription = CARD_STRINGS.UPGRADE_DESCRIPTION;
             this.initializeDescription();

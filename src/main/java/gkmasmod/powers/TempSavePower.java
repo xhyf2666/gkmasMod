@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.actions.common.MakeTempCardInDiscardAction;
 import com.megacrit.cardcrawl.actions.common.MakeTempCardInHandAction;
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
@@ -13,8 +14,13 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
+import gkmasmod.actions.GrowAction;
 import gkmasmod.actions.ShowCardToDiscardEffect;
 import gkmasmod.cards.GkmasCard;
+import gkmasmod.downfall.cards.GkmasBossCard;
+import gkmasmod.downfall.charbosses.actions.common.EnemyMakeTempCardInHandAction;
+import gkmasmod.downfall.charbosses.bosses.AbstractCharBoss;
+import gkmasmod.growEffect.BlockGrow;
 import gkmasmod.growEffect.DamageGrow;
 import gkmasmod.utils.GrowHelper;
 import gkmasmod.utils.NameHelper;
@@ -47,16 +53,14 @@ public class TempSavePower extends AbstractPower {
         this.ID = POWER_ID;
         this.owner = owner;
         this.type = PowerType.BUFF;
+        this.amount = 0;
 
-        // 添加一大一小两张能力图
         this.region128 = new TextureAtlas.AtlasRegion(ImageMaster.loadImage(path128), 0, 0, 84, 84);
         this.region48 = new TextureAtlas.AtlasRegion(ImageMaster.loadImage(path48), 0, 0, 32, 32);
 
-        // 首次添加能力更新描述
         this.updateDescription();
     }
 
-    // 能力在更新时如何修改描述
     public void updateDescription() {
         String tmp="";
         for(AbstractCard c:cards){
@@ -77,21 +81,40 @@ public class TempSavePower extends AbstractPower {
             AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p,p,power));
         }
         power.cards.offer(card);
-        AbstractDungeon.player.discardPile.removeCard(card);
-        AbstractDungeon.player.drawPile.removeCard(card);
-        AbstractDungeon.player.hand.removeCard(card);
+        if(p instanceof AbstractPlayer){
+            AbstractDungeon.player.discardPile.removeCard(card);
+            AbstractDungeon.player.drawPile.removeCard(card);
+            AbstractDungeon.player.hand.removeCard(card);
+        }
         if(power.cards.size() > power.CARD_LIMIT){
             AbstractCard c = power.cards.poll();
             AbstractDungeon.effectList.add(new ShowCardToDiscardEffect(c));
-            AbstractDungeon.player.discardPile.addToTop(c);
+            if(p instanceof AbstractPlayer){
+                AbstractDungeon.player.discardPile.addToTop(c);
+            }
             if(c instanceof GkmasCard){
                 ((GkmasCard) c).customTrigger();
             }
+            if(c instanceof GkmasBossCard){
+                ((GkmasBossCard) c).customTrigger();
+            }
         }
         int count = PlayerHelper.getPowerAmount(p,LikeStarsPower.POWER_ID);
-        if(count>0)
-            GrowHelper.growAllTempSave(DamageGrow.growID,count);
+        if(count>0){
+            AbstractDungeon.actionManager.addToBottom(new GrowAction(DamageGrow.growID, GrowAction.GrowType.allHand,count,p instanceof AbstractCharBoss));
+            AbstractDungeon.actionManager.addToBottom(new GrowAction(BlockGrow.growID, GrowAction.GrowType.allHand,count,p instanceof AbstractCharBoss));
+        }
+
+        count = PlayerHelper.getPowerAmount(p,LikeStarsSPPower.POWER_ID);
+        if(count>0){
+            AbstractDungeon.actionManager.addToBottom(new GrowAction(DamageGrow.growID, GrowAction.GrowType.allHand,count,p instanceof AbstractCharBoss));
+            AbstractDungeon.actionManager.addToBottom(new GrowAction(BlockGrow.growID, GrowAction.GrowType.allHand,count,p instanceof AbstractCharBoss));
+            AbstractDungeon.actionManager.addToBottom(new GrowAction(DamageGrow.growID, GrowAction.GrowType.allTempSave,count,p instanceof AbstractCharBoss));
+            AbstractDungeon.actionManager.addToBottom(new GrowAction(BlockGrow.growID, GrowAction.GrowType.allTempSave,count,p instanceof AbstractCharBoss));
+        }
+
         power.updateDescription();
+        power.amount= power.cards.size();
     }
 
     public static void addCard(AbstractCreature p,ArrayList<AbstractCard> cards){
@@ -102,34 +125,49 @@ public class TempSavePower extends AbstractPower {
         }
         for(AbstractCard card:cards){
             power.cards.offer(card);
-            AbstractDungeon.player.discardPile.removeCard(card);
-            AbstractDungeon.player.drawPile.removeCard(card);
-            AbstractDungeon.player.hand.removeCard(card);
+            if(p instanceof AbstractPlayer){
+                AbstractDungeon.player.discardPile.removeCard(card);
+                AbstractDungeon.player.drawPile.removeCard(card);
+                AbstractDungeon.player.hand.removeCard(card);
+            }
         }
         int diff = power.cards.size() - power.CARD_LIMIT;
         int i =0;
 
         while (power.cards.size() > power.CARD_LIMIT){
             AbstractCard c = power.cards.poll();
-//            AbstractDungeon.actionManager.addToBottom(new MakeTempCardInDiscardAction(c,true));
             if(diff == 2){
                 AbstractDungeon.effectList.add(new ShowCardToDiscardEffect(c, Settings.WIDTH /2.0F*(0.8F+i*0.4F),Settings.HEIGHT/2.0F));
             }
             else{
                 AbstractDungeon.effectList.add(new ShowCardToDiscardEffect(c));
             }
-            AbstractDungeon.player.discardPile.addToTop(c);
-
-//            AbstractDungeon.player.discardPile.addToTop(c);
+            if(p instanceof AbstractPlayer){
+                AbstractDungeon.player.discardPile.addToTop(c);
+            }
             if(c instanceof GkmasCard){
                 ((GkmasCard) c).customTrigger();
             }
+            if(c instanceof GkmasBossCard){
+                ((GkmasBossCard) c).customTrigger();
+            }
+
             i++;
         }
         int count = PlayerHelper.getPowerAmount(p,LikeStarsPower.POWER_ID);
-        if(count>0)
-            GrowHelper.growAllTempSave(DamageGrow.growID,count);
+        if(count>0){
+            AbstractDungeon.actionManager.addToBottom(new GrowAction(DamageGrow.growID, GrowAction.GrowType.allHand,count));
+            AbstractDungeon.actionManager.addToBottom(new GrowAction(BlockGrow.growID, GrowAction.GrowType.allHand,count));
+        }
+        count = PlayerHelper.getPowerAmount(p,LikeStarsSPPower.POWER_ID);
+        if(count>0){
+            AbstractDungeon.actionManager.addToBottom(new GrowAction(DamageGrow.growID, GrowAction.GrowType.allHand,count));
+            AbstractDungeon.actionManager.addToBottom(new GrowAction(BlockGrow.growID, GrowAction.GrowType.allHand,count));
+            AbstractDungeon.actionManager.addToBottom(new GrowAction(DamageGrow.growID, GrowAction.GrowType.allTempSave,count));
+            AbstractDungeon.actionManager.addToBottom(new GrowAction(BlockGrow.growID, GrowAction.GrowType.allTempSave,count));
+        }
         power.updateDescription();
+        power.amount= power.cards.size();
     }
 
     public static void changeLimit(AbstractCreature p,int change){
@@ -139,6 +177,19 @@ public class TempSavePower extends AbstractPower {
             AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p,p,power));
         }
         power.CARD_LIMIT += change;
+        while(power.cards.size()>power.CARD_LIMIT){
+            AbstractCard c = power.cards.poll();
+            AbstractDungeon.effectList.add(new ShowCardToDiscardEffect(c));
+            if(p instanceof AbstractPlayer){
+                AbstractDungeon.player.discardPile.addToTop(c);
+            }
+            if(c instanceof GkmasCard){
+                ((GkmasCard) c).customTrigger();
+            }
+            if(c instanceof GkmasBossCard){
+                ((GkmasBossCard) c).customTrigger();
+            }
+        }
         power.updateDescription();
     }
 
@@ -147,16 +198,22 @@ public class TempSavePower extends AbstractPower {
     }
 
     public void getInHand(){
-//        ArrayList<AbstractCard> tmp = new ArrayList<>();
         while(!cards.isEmpty()){
             AbstractCard c = cards.poll();
-//            tmp.add(c);
-            addToTop(new MakeTempCardInHandAction(c));
+            if(this.owner instanceof AbstractPlayer){
+                addToTop(new MakeTempCardInHandAction(c));
+            }
+            else if(this.owner instanceof AbstractCharBoss&&AbstractCharBoss.boss!=null){
+                addToTop(new EnemyMakeTempCardInHandAction(c));
+            }
             if(c instanceof GkmasCard){
                 ((GkmasCard) c).customTrigger();
             }
-//            AbstractDungeon.player.hand.addToTop(c);
+            if(c instanceof GkmasBossCard){
+                ((GkmasBossCard) c).customTrigger();
+            }
         }
+        this.amount= this.cards.size();
         updateDescription();
     }
 }

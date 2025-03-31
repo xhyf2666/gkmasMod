@@ -9,12 +9,19 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.events.AbstractImageEvent;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.localization.EventStrings;
+import com.megacrit.cardcrawl.potions.FairyPotion;
+import com.megacrit.cardcrawl.potions.GhostInAJar;
+import com.megacrit.cardcrawl.potions.PotionSlot;
+import com.megacrit.cardcrawl.potions.SwiftPotion;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.relics.Circlet;
+import com.megacrit.cardcrawl.relics.PotionBelt;
 import com.megacrit.cardcrawl.vfx.RainingGoldEffect;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndObtainEffect;
 import gkmasmod.cards.anomaly.BecomeIdol;
 import gkmasmod.cards.anomaly.StepOnStage;
+import gkmasmod.cards.free.ProduceCompetitor;
+import gkmasmod.characters.MisuzuCharacter;
 import gkmasmod.modcore.GkmasMod;
 import gkmasmod.potion.FirstStarSoup;
 import gkmasmod.potion.FirstStarWater;
@@ -38,7 +45,7 @@ public class FirstStarHotSpring extends AbstractImageEvent {
 
     private int currentSelect = -1;
 
-    private int HP_LOSS = 4;
+    private int HP_LOSS = 6;
 
     private ArrayList<Integer> selectList = new ArrayList<>();
 
@@ -61,7 +68,7 @@ public class FirstStarHotSpring extends AbstractImageEvent {
         this.imageEventText.setDialogOption(OPTIONS[4]);
         this.imageEventText.setDialogOption(OPTIONS[5],true);
         this.lostRelic = generateLostRelic();
-        HP_LOSS = AbstractDungeon.player.maxHealth/8;
+        HP_LOSS = AbstractDungeon.player.maxHealth/14;
         this.specialCards = new ArrayList<>();
         generateSpecialCards();
     }
@@ -108,6 +115,9 @@ public class FirstStarHotSpring extends AbstractImageEvent {
             else if(currentSelect==4){
                 this.imageEventText.setDialogOption(String.format(OPTIONS[10],specialCards.get(0).name),specialCards.get(0));
                 this.imageEventText.setDialogOption(String.format(OPTIONS[10],specialCards.get(1).name),specialCards.get(1));
+                if(specialCards.size()>=3){
+                    this.imageEventText.setDialogOption(String.format(OPTIONS[10],specialCards.get(2).name),specialCards.get(2));
+                }
                 return;
             }
         }
@@ -136,13 +146,31 @@ public class FirstStarHotSpring extends AbstractImageEvent {
 //                keepStage++;
 //                return;
 //            }
+            if(keepStage==2){
+                keepStage=0;
+                keepStep=0;
+                reStart();
+                return;
+            }
             if(keepStage==1){
-                if(keepStep >1){
+                if(keepStep >4){
+                    AbstractDungeon.player.potionSlots += 2;
+                    AbstractDungeon.player.potions.add(new PotionSlot(AbstractDungeon.player.potionSlots - 2));
+                    AbstractDungeon.player.potions.add(new PotionSlot(AbstractDungeon.player.potionSlots - 1));
+                    AbstractDungeon.player.obtainPotion(new FirstStarSoup());
+                    AbstractDungeon.player.obtainPotion(new FairyPotion());
+                    AbstractDungeon.player.obtainPotion(new SwiftPotion());
+                    AbstractDungeon.player.obtainPotion(new FirstStarSoup());
+                }
+                else if(keepStep>2){
                     AbstractDungeon.player.obtainPotion(new FirstStarSoup());
                     AbstractDungeon.player.obtainPotion(new FirstStarSoup());
                 }
-                else{
+                else if(keepStep>1){
                     AbstractDungeon.player.obtainPotion(new FirstStarSoup());
+                }
+                else {
+                    AbstractDungeon.player.obtainPotion(new FirstStarWater());
                 }
                 keepStage=0;
                 keepStep=0;
@@ -150,36 +178,61 @@ public class FirstStarHotSpring extends AbstractImageEvent {
                 return;
             }
             if(i==0){
-                if(keepStep==0){
-                    AbstractDungeon.player.damage(new DamageInfo(null, HP_LOSS));
-                    this.imageEventText.updateBodyText(DESCRIPTIONS[6]);
+                if(HP_LOSS>=AbstractDungeon.player.currentHealth){
+                    keepStage = 2;
+                    AbstractDungeon.player.currentHealth = 1;
+                    this.imageEventText.updateBodyText(DESCRIPTIONS[11]);
                     this.imageEventText.clearAllDialogs();
-                    this.imageEventText.setDialogOption(String.format(OPTIONS[11],HP_LOSS));
-                    this.imageEventText.setDialogOption(OPTIONS[12]);
-                    keepStep++;
+                    this.imageEventText.setDialogOption(OPTIONS[13]);
                     return;
                 }
-                else if (keepStep==1){
-                    AbstractDungeon.player.damage(new DamageInfo(null, HP_LOSS));
-                    this.imageEventText.updateBodyText(DESCRIPTIONS[6]);
-                    this.imageEventText.clearAllDialogs();
-                    this.imageEventText.setDialogOption(String.format(OPTIONS[11],HP_LOSS));
-                    this.imageEventText.setDialogOption(OPTIONS[12]);
-                    keepStep++;
-                    return;
-                }
+                AbstractDungeon.player.damage(new DamageInfo(null, HP_LOSS));
+                this.imageEventText.updateBodyText(DESCRIPTIONS[6]);
+                this.imageEventText.clearAllDialogs();
+                this.imageEventText.setDialogOption(String.format(OPTIONS[11],HP_LOSS));
+                this.imageEventText.setDialogOption(OPTIONS[12]);
+                keepStep++;
+                return;
+//                if(keepStep==0){
+//                    AbstractDungeon.player.damage(new DamageInfo(null, HP_LOSS));
+//                    this.imageEventText.updateBodyText(DESCRIPTIONS[6]);
+//                    this.imageEventText.clearAllDialogs();
+//                    this.imageEventText.setDialogOption(String.format(OPTIONS[11],HP_LOSS));
+//                    this.imageEventText.setDialogOption(OPTIONS[12]);
+//                    keepStep++;
+//                    return;
+//                }
+//                else if (keepStep==1){
+//                    AbstractDungeon.player.damage(new DamageInfo(null, HP_LOSS));
+//                    this.imageEventText.updateBodyText(DESCRIPTIONS[6]);
+//                    this.imageEventText.clearAllDialogs();
+//                    this.imageEventText.setDialogOption(String.format(OPTIONS[11],HP_LOSS));
+//                    this.imageEventText.setDialogOption(OPTIONS[12]);
+//                    keepStep++;
+//                    return;
+//                }
             }
             else if(i==1){
                 keepStage = 1;
-                if(keepStep >1){
+                if(keepStep >4){
                     this.imageEventText.updateBodyText(DESCRIPTIONS[8]);
+                    this.imageEventText.clearAllDialogs();
+                    this.imageEventText.setDialogOption(OPTIONS[16]);
+                }
+                else if(keepStep>2){
+                    this.imageEventText.updateBodyText(DESCRIPTIONS[7]);
                     this.imageEventText.clearAllDialogs();
                     this.imageEventText.setDialogOption(String.format(OPTIONS[8],2));
                 }
-                else{
-                    this.imageEventText.updateBodyText(DESCRIPTIONS[7]);
+                else if(keepStep>1){
+                    this.imageEventText.updateBodyText(DESCRIPTIONS[12]);
                     this.imageEventText.clearAllDialogs();
                     this.imageEventText.setDialogOption(String.format(OPTIONS[8],1));
+                }
+                else {
+                    this.imageEventText.updateBodyText(DESCRIPTIONS[10]);
+                    this.imageEventText.clearAllDialogs();
+                    this.imageEventText.setDialogOption(String.format(OPTIONS[15],1));
                 }
                 return;
             }
@@ -263,23 +316,44 @@ public class FirstStarHotSpring extends AbstractImageEvent {
     }
 
     public void generateSpecialCards(){
-        if(SkinSelectScreen.Inst.idolName.equals(IdolData.jsna)){
-            AbstractCard card1 = new BecomeIdol();
-            AbstractCard card2 = new StepOnStage();
-            card1.upgrade();
-            card2.upgrade();
-            specialCards.add(card1);
-            specialCards.add(card2);
-        }
-        else{
-            String s1 = IdolData.getIdol(SkinSelectScreen.Inst.idolName).getBossReward(0);
-            String s2 = IdolData.getIdol(SkinSelectScreen.Inst.idolName).getBossReward(1);
+        if(AbstractDungeon.player instanceof MisuzuCharacter){
+            String s1 = IdolData.hmszData.getBossReward(0);
+            String s2 = IdolData.hmszData.getBossReward(1);
             AbstractCard card1 = CardLibrary.getCard(s1);
             AbstractCard card2 = CardLibrary.getCard(s2);
             card1.upgrade();
             card2.upgrade();
             specialCards.add(card1);
             specialCards.add(card2);
+        }
+        else{
+            if(SkinSelectScreen.Inst.idolName.equals(IdolData.jsna)){
+                AbstractCard card1 = new BecomeIdol();
+                AbstractCard card2 = new StepOnStage();
+                AbstractCard card3 = new ProduceCompetitor();
+                card1.upgrade();
+                card2.upgrade();
+                card3.upgrade();
+                specialCards.add(card1);
+                specialCards.add(card2);
+                specialCards.add(card3);
+            }
+            else{
+                String s1 = IdolData.getIdol(SkinSelectScreen.Inst.idolName).getBossReward(0);
+                String s2 = IdolData.getIdol(SkinSelectScreen.Inst.idolName).getBossReward(1);
+                AbstractCard card1 = CardLibrary.getCard(s1);
+                AbstractCard card2 = CardLibrary.getCard(s2);
+                card1.upgrade();
+                card2.upgrade();
+                specialCards.add(card1);
+                specialCards.add(card2);
+                if(SkinSelectScreen.Inst.idolName.equals(IdolData.hume)||SkinSelectScreen.Inst.idolName.equals(IdolData.ttmr)){
+                    String s3 = IdolData.getIdol(SkinSelectScreen.Inst.idolName).getBossReward(2);
+                    AbstractCard card3 = CardLibrary.getCard(s3);
+                    card3.upgrade();
+                    specialCards.add(card3);
+                }
+            }
         }
     }
 

@@ -81,7 +81,7 @@ public class ProudStudentAction extends AbstractGameAction {
 
                     while(var1.hasNext()) {
                         c = (AbstractCard)var1.next();
-                        System.out.println(c.name);
+//                        System.out.println(c.name);
                         c.selfRetain = true;
                         c.rawDescription = c.rawDescription + " NL " + RetainString;
                         c.superFlash();

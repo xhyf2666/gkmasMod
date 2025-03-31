@@ -11,6 +11,7 @@ import com.megacrit.cardcrawl.powers.BarricadePower;
 import gkmasmod.downfall.cards.free.ENBaseAppeal;
 import gkmasmod.downfall.cards.logic.*;
 import gkmasmod.downfall.relics.*;
+import gkmasmod.powers.*;
 
 import java.util.ArrayList;
 
@@ -35,6 +36,14 @@ public class BossConfig_hrnm3 extends AbstractBossDeckArchetype {
         addRelic(new CBR_FusionHammer());
         addRelic(new CBR_ItsPerfect());
         addRelic(new CBR_ClapClapFan());
+        AbstractCreature p = AbstractCharBoss.boss;
+        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new NegativeNotPower(p, 3), 3));
+        if(AbstractDungeon.ascensionLevel >= 15){
+            AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new GoodImpression(p,20),20));
+        }
+        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new WakuWakuPower(p,2),2));
+        if(AbstractDungeon.ascensionLevel >= 10)
+            AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new IsENotAPower(p,6),6));
     }
 
     @Override
@@ -44,26 +53,20 @@ public class BossConfig_hrnm3 extends AbstractBossDeckArchetype {
         if (!looped) {
             switch (turn) {
                 case 0:
-                    addToList(cardsList,new ENBeforeThePerformance(),extraUpgrades);
                     addToList(cardsList, new ENUnstoppableThoughts(),extraUpgrades);
                     addToList(cardsList, new ENIamBigStar(),extraUpgrades);
-                    addToList(cardsList, new ENWakuWaku());
-                    turn++;
-                    break;
-                case 1:
-                    addToList(cardsList, new ENIsENotA(),extraUpgrades);
                     addToList(cardsList, new ENFlowerBouquet());
                     addToList(cardsList, new ENRefreshingBreak(),extraUpgrades);
-                    addToList(cardsList, new ENYeah(),extraUpgrades);
-                    addToList(cardsList, new ENStarDust(),extraUpgrades);
+                    addToList(cardsList, new ENHandwrittenLetter(),extraUpgrades);
                     addToList(cardsList, new ENEnjoySummer(),extraUpgrades);
                     turn++;
                     break;
-                case 2:
-                    addToList(cardsList, new ENPromiseThatTime(),extraUpgrades);
+                case 1:
+                    addToList(cardsList, new ENRefreshingBreak(),extraUpgrades);
                     addToList(cardsList, new ENSeeYouTomorrow(),true);
+                    addToList(cardsList, new ENPromiseThatTime(),extraUpgrades);
                     addToList(cardsList, new ENWakeUp(),true);
-                    addToList(cardsList, new ENBaseAppeal());
+                    addToList(cardsList, new ENRestart(),extraUpgrades);
                     turn = 0;
                     looped = true;
                     break;

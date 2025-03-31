@@ -18,16 +18,17 @@ public class GoodTuneDamageAction extends AbstractGameAction {
 
     private float rate;
 
+    private boolean countTime = false;
 
     private boolean damageAll;
 
     private AbstractCard card;
 
     public GoodTuneDamageAction(float rate, int goodTuneAdd, AbstractCreature p, AbstractCreature m, AbstractCard card) {
-        this(rate, goodTuneAdd, p, m,card, false);
+        this(rate, goodTuneAdd, p, m,card, false,false);
     }
 
-    public GoodTuneDamageAction(float rate, int goodTuneAdd, AbstractCreature p, AbstractCreature m, AbstractCard card, boolean damageAll) {
+    public GoodTuneDamageAction(float rate, int goodTuneAdd, AbstractCreature p, AbstractCreature m, AbstractCard card, boolean damageAll,boolean countTime){
         this.m = m;
         this.p = p;
         this.goodTuneAdd = goodTuneAdd;
@@ -47,7 +48,7 @@ public class GoodTuneDamageAction extends AbstractGameAction {
             addToTop(new ModifyDamageAllEnemyAction(damage, AttackEffect.SLASH_HORIZONTAL,this.card));
         }
         else{
-            addToTop(new ModifyDamageAction(m, new DamageInfo(p, damage , DamageInfo.DamageType.NORMAL), AttackEffect.SLASH_HORIZONTAL,this.card));
+            addToTop(new ModifyDamageAction(m, new DamageInfo(p, damage , DamageInfo.DamageType.NORMAL), AttackEffect.SLASH_HORIZONTAL,this.card,countTime));
         }
         this.isDone = true;
     }

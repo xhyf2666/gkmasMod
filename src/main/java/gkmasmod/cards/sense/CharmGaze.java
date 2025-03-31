@@ -10,6 +10,9 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import gkmasmod.actions.GainTrainRoundPowerAction;
+import gkmasmod.cardCustomEffect.BlockCustom;
+import gkmasmod.cardCustomEffect.DamageCustom;
+import gkmasmod.cardCustomEffect.MagicCustom;
 import gkmasmod.cardCustomEffect.MoreActionCustom;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.cards.GkmasCardTag;
@@ -17,9 +20,12 @@ import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.powers.GreatGoodTune;
 import gkmasmod.powers.HalfDamageReceive;
 import gkmasmod.screen.SkinSelectScreen;
+import gkmasmod.utils.CustomHelper;
 import gkmasmod.utils.ImageHelper;
 import gkmasmod.utils.NameHelper;
 import gkmasmod.utils.PlayerHelper;
+
+import java.util.ArrayList;
 
 public class CharmGaze extends GkmasCard {
     private static final String CLASSNAME = CharmGaze.class.getSimpleName();
@@ -33,7 +39,7 @@ public class CharmGaze extends GkmasCard {
     private static final int COST = 2;
 
     private static final int BASE_MAGIC = 2;
-    private static final int BASE_MAGIC2 = 2;
+    private static final int BASE_MAGIC2 = 3;
     private static final int UPGRADE_PLUS_MAGIC2 = 1;
     private static final int BASE_MAGIC3 = 2;
     private static final int UPGRADE_PLUS_MAGIC3 = 1;
@@ -55,10 +61,13 @@ public class CharmGaze extends GkmasCard {
         this.baseThirdMagicNumber = BASE_MAGIC3;
         this.thirdMagicNumber = this.baseThirdMagicNumber;
         this.exhaust = true;
-        this.tags.add(GkmasCardTag.GOOD_TUNE_TAG);
-        this.tags.add(GkmasCardTag.FOCUS_TAG);
+        this.tags.add(GkmasCardTag.COST_POWER_TAG);
         this.tags.add(GkmasCardTag.MORE_ACTION_TAG);
         CardModifierManager.addModifier(this,new MoreActionCustom(1));
+        this.customLimit = 1;
+        this.customEffectList = new ArrayList<>();
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(MagicCustom.growID,new int[]{-1},new int[]{60},CustomHelper.CustomEffectType.STRENGTH_ADD));
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(BlockCustom.growID,new int[]{6},new int[]{60},CustomHelper.CustomEffectType.BLOCK_ADD));
     }
 
 

@@ -62,12 +62,15 @@ public class SteelSoul extends AbstractPower {
         }
 
         if(littleGundams.size()>0){
-            //随机选择一个小敌人
+            //随机选择一个高达
             LittleGundam littleGundam = littleGundams.get(AbstractDungeon.cardRandomRng.random(littleGundams.size()-1));
             littleGundam.damage(new DamageInfo(info.owner, damageAmount, DamageInfo.DamageType.NORMAL));
             return 0;
         }
-        return damageAmount;
+        else{
+            addToTop(new RemoveSpecificPowerAction(this.owner, this.owner, this));
+            return damageAmount;
+        }
     }
 
     public void onAddBlock(float blockAmount) {

@@ -13,10 +13,12 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.DexterityPower;
 import gkmasmod.cardCustomEffect.DamageCustom;
 import gkmasmod.cardCustomEffect.EffectAddCustom;
+import gkmasmod.cardCustomEffect.EffectChangeCustom;
 import gkmasmod.cardCustomEffect.MagicCustom;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
+import gkmasmod.powers.AnotherTurnPower;
 import gkmasmod.utils.CustomHelper;
 import gkmasmod.utils.NameHelper;
 
@@ -34,8 +36,10 @@ public class WaitALittleLonger extends GkmasCard {
     private static final int COST = 1;
     private static final int BASE_MAGIC = 1;
     private static final int UPGRADE_PLUS_MAGIC = 1;
-    private static final int ATTACK_DMG = 3;
-    private static final int UPGRADE_PLUS_DMG = 2;
+    private static final int ATTACK_DMG = 5;
+    private static final int UPGRADE_PLUS_DMG = 1;
+
+    private static final int BASE_MAGIC2 = 25;
 
     private static final CardType TYPE = CardType.ATTACK;
     private static final CardColor COLOR = PlayerColorEnum.gkmasModColorLogic;
@@ -47,20 +51,28 @@ public class WaitALittleLonger extends GkmasCard {
         this.baseDamage = ATTACK_DMG;
         this.baseMagicNumber = BASE_MAGIC;
         this.magicNumber = this.baseMagicNumber;
+        this.baseSecondMagicNumber = BASE_MAGIC2;
+        this.secondMagicNumber = this.baseSecondMagicNumber;
         this.exhaust = true;
         this.tags.add(GkmasCardTag.YARUKI_TAG);
         this.customLimit = 3;
         this.customEffectList = new ArrayList<>();
-        this.customEffectList.add(CustomHelper.generateCustomEffectList(MagicCustom.growID,new int[]{1,1,2},new int[]{50,50,80},CustomHelper.CustomEffectType.DEXTERITY_ADD));
-        this.customEffectList.add(CustomHelper.generateCustomEffectList(DamageCustom.growID,new int[]{2,2},new int[]{50,50},CustomHelper.CustomEffectType.DAMAGE_ADD));
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(MagicCustom.growID,new int[]{1},new int[]{60},CustomHelper.CustomEffectType.DEXTERITY_ADD));
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(DamageCustom.growID,new int[]{2,2,4},new int[]{50,50,80},CustomHelper.CustomEffectType.DAMAGE_ADD));
         this.customEffectList.add(CustomHelper.generateCustomEffectList(EffectAddCustom.growID,new int[]{0},new int[]{80},CustomHelper.CustomEffectType.EFFECT_ADD));
     }
 
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        addToBot( new DamageAction( m, new DamageInfo( p, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
+        addToBot(new DamageAction(m, new DamageInfo(p, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
         addToBot(new ApplyPowerAction(p, p, new DexterityPower(p, this.magicNumber), this.magicNumber));
+        if(CustomHelper.hasCustom(this, EffectAddCustom.growID)){
+            float chance = AbstractDungeon.cardRng.random();
+            if(chance<this.secondMagicNumber*1.0F/100){
+                addToBot(new ApplyPowerAction(p, p, new AnotherTurnPower(p, 1), 1));
+            }
+        }
     }
 
     @Override

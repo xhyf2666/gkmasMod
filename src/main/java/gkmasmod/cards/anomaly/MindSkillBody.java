@@ -11,6 +11,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import gkmasmod.actions.ModifyDamageAction;
+import gkmasmod.cardCustomEffect.*;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
@@ -20,9 +21,12 @@ import gkmasmod.powers.HalfDamageReceive;
 import gkmasmod.screen.SkinSelectScreen;
 import gkmasmod.stances.ConcentrationStance;
 import gkmasmod.stances.FullPowerStance;
+import gkmasmod.utils.CustomHelper;
 import gkmasmod.utils.GrowHelper;
 import gkmasmod.utils.ImageHelper;
 import gkmasmod.utils.NameHelper;
+
+import java.util.ArrayList;
 
 public class MindSkillBody extends GkmasCard {
     private static final String CLASSNAME = MindSkillBody.class.getSimpleName();
@@ -41,7 +45,7 @@ public class MindSkillBody extends GkmasCard {
     private static final int BASE_MAGIC = 3;
     private static final int UPGRADE_MAGIC_PLUS = 1;
     private static final int BASE_MAGIC2 = 2;
-    private static final int UPGRADE_MAGIC2_PLUS = 2;
+    private static final int UPGRADE_MAGIC2_PLUS = 1;
 
 
 
@@ -61,7 +65,12 @@ public class MindSkillBody extends GkmasCard {
         this.magicNumber = this.baseMagicNumber;
         this.baseSecondMagicNumber = BASE_MAGIC2;
         this.secondMagicNumber = this.baseSecondMagicNumber;
-
+        this.exhaust = true;
+        this.customLimit = 1;
+        this.customEffectList = new ArrayList<>();
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(DamageCustom.growID,new int[]{4},new int[]{60},CustomHelper.CustomEffectType.DAMAGE_ADD));
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(MagicCustom.growID, new int[]{2}, new int[]{70}, CustomHelper.CustomEffectType.FULL_POWER_VALUE_ADD));
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(SecondMagicCustom.growID, new int[]{1}, new int[]{60}, CustomHelper.CustomEffectType.HALF_DAMAGE_RECEIVE_ADD));
     }
 
     @Override

@@ -27,8 +27,8 @@ public class ENChallenge extends GkmasBossCard {
     private static final String DESCRIPTION = CARD_STRINGS.DESCRIPTION;
     private static final String IMG_PATH = String.format("gkmasModResource/img/cards/common/%s.png", CLASSNAME2);
 
-    private static final int COST = 2;
-    private static final int ATTACK_DMG = 14;
+    private static final int COST = 1;
+    private static final int ATTACK_DMG = 10;
     private static final int UPGRADE_PLUS_DMG = 4;
 
     private static final int BASE_MAGIC = 2;
@@ -68,7 +68,7 @@ public class ENChallenge extends GkmasBossCard {
     @Override
     public boolean canUse(AbstractPlayer p, AbstractMonster m) {
         if (m.hasPower(GoodTune.POWER_ID)) {
-            return true;
+            return super.canUse(p, m);
         }
         this.cantUseMessage = CardCrawlGame.languagePack.getUIString("gkmasMod:NotEnoughGoodTune").TEXT[0];
         return false;

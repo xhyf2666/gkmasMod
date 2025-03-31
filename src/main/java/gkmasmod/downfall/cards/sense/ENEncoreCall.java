@@ -1,5 +1,8 @@
 package gkmasmod.downfall.cards.sense;
 
+import gkmasmod.actions.CBR_MyPartAction;
+import gkmasmod.downfall.bosses.IdolBoss_amao;
+import gkmasmod.downfall.bosses.IdolBoss_jsna;
 import gkmasmod.downfall.charbosses.bosses.AbstractCharBoss;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
@@ -16,6 +19,7 @@ import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.downfall.cards.GkmasBossCard;
 import gkmasmod.powers.GoodTune;
+import gkmasmod.powers.NotGoodTune;
 import gkmasmod.utils.ImageHelper;
 import gkmasmod.utils.NameHelper;
 import gkmasmod.utils.PlayerHelper;
@@ -37,6 +41,7 @@ public class ENEncoreCall extends GkmasBossCard {
     private static final int BASE_MAGIC = 2;
     private static final int BASE_MAGIC2 = 2;
     private static final int UPGRADE_PLUS_MAGIC2 = 1;
+    private static final int BASE_MAGIC3 = 1;
 
     private static final CardType TYPE = CardType.ATTACK;
     private static final CardColor COLOR = PlayerColorEnum.gkmasModColorSense;
@@ -53,11 +58,13 @@ public class ENEncoreCall extends GkmasBossCard {
         this.magicNumber = this.baseMagicNumber;
         this.baseSecondMagicNumber = BASE_MAGIC2;
         this.secondMagicNumber = this.baseSecondMagicNumber;
+        this.baseThirdMagicNumber = BASE_MAGIC3;
+        this.thirdMagicNumber = this.baseThirdMagicNumber;
         this.intent = AbstractMonster.Intent.ATTACK_BUFF;
         this.tags.add(GkmasCardTag.GOOD_TUNE_TAG);
-        this.tags.add(GkmasCardTag.FOCUS_TAG);
         this.tags.add(GkmasCardTag.MORE_ACTION_TAG);
-
+        this.tags.add(GkmasCardTag.COST_POWER_TAG);
+        this.energyGeneratedIfPlayed = 1;
     }
 
 
@@ -66,14 +73,18 @@ public class ENEncoreCall extends GkmasBossCard {
         addToBot(new DamageAction(p, new DamageInfo(m, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
         addToBot(new ApplyPowerAction(m, m, new StrengthPower(m, -this.magicNumber), -this.magicNumber));
         addToBot(new ApplyPowerAction(m, m, new GoodTune(m, this.secondMagicNumber), this.secondMagicNumber));
+        addToBot(new ApplyPowerAction(p, p, new NotGoodTune(p, this.thirdMagicNumber), this.thirdMagicNumber));
         addToBot(new GainTrainRoundPowerAction(m,1));
+        if(m instanceof IdolBoss_jsna){
+            AbstractCharBoss.boss.drawPile.addToBottom(this);
+        }
     }
 
     @Override
     public boolean canUse(AbstractPlayer p, AbstractMonster m) {
         int count = PlayerHelper.getPowerAmount(m,StrengthPower.POWER_ID);
         if (count >= this.magicNumber)
-            return true;
+            return super.canUse(p, m);
         this.cantUseMessage = CardCrawlGame.languagePack.getUIString("gkmasMod:NotEnoughStrengthPower").TEXT[0];
         return false;
     }

@@ -10,6 +10,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.powers.BarricadePower;
 import gkmasmod.downfall.cards.logic.*;
 import gkmasmod.downfall.relics.CBR_FashionMode;
+import gkmasmod.powers.*;
 
 import java.util.ArrayList;
 
@@ -34,6 +35,17 @@ public class BossConfig_amao3 extends AbstractBossDeckArchetype {
         addRelic(new CBR_OddlySmoothStone());
         addRelic(new CBR_FashionMode());
         addRelic(new CBR_IncenseBurner(3));
+        AbstractCreature p = AbstractCharBoss.boss;
+        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new NegativeNotPower(p, 3), 3));
+        if(AbstractDungeon.ascensionLevel >= 15){
+            AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new GoodImpression(p,30),30));
+            AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new SSDSecretPower(p,1),1));
+        }
+        else
+            AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new GoodImpression(p,10),10));
+        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new NegativeNotPower(p, 3), 3));
+        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new RainbowDreamerPower(p,2),2));
+        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new IsENotAPower(p,7),7));
     }
 
     @Override
@@ -47,22 +59,23 @@ public class BossConfig_amao3 extends AbstractBossDeckArchetype {
                     addToList(cardsList, new ENForShiningYou(),extraUpgrades);
                     addToList(cardsList, new ENUnstoppableThoughts(),extraUpgrades);
                     addToList(cardsList, new ENIamBigStar(),extraUpgrades);
-                    addToList(cardsList, new ENRainbowDreamer());
+                    addToList(cardsList, new ENHappyCurse(), extraUpgrades);
                     turn++;
                     break;
                 case 1:
-                    addToList(cardsList, new ENHappyCurse(), extraUpgrades);
                     addToList(cardsList, new ENHeartbeat(), extraUpgrades);
+                    addToList(cardsList, new ENMiracleMagic());
                     addToList(cardsList, new ENSSDSecret(),extraUpgrades);
                     addToList(cardsList, new ENStarDust());
                     addToList(cardsList, new ENWakeUp(),extraUpgrades);
                     turn++;
                     break;
                 case 2:
-                    addToList(cardsList, new ENMiracleMagic());
-                    addToList(cardsList, new ENCreateYourStyle(), extraUpgrades);
+                    addToList(cardsList, new ENCreateYourStyle(), true);
                     addToList(cardsList, new ENHappyTime(),extraUpgrades);
                     addToList(cardsList, new ENBaseVision());
+                    addToList(cardsList, new ENGirlHeart(),extraUpgrades);
+                    addToList(cardsList, new ENSmile200(),true);
                     turn = 0;
                     looped = true;
                     break;

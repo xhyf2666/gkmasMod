@@ -20,7 +20,7 @@ public class DecaPatch
     public static class DecaPrePatch_RenderCard{
         @SpirePrefixPatch
         public static void Prefix(Deca __instance) {
-            if(AbstractDungeon.player.hasRelic(PocketBook.ID)){
+            if(AbstractDungeon.player!=null&&AbstractDungeon.player.hasRelic(PocketBook.ID)){
                 if(__instance.nextMove ==2){
                     int change = ThreeSizeHelper.getHealthRate(2) -1;
                     for (AbstractMonster m : (AbstractDungeon.getMonsters()).monsters) {

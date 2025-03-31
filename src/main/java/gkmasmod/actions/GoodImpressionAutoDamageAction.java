@@ -10,9 +10,6 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.AbstractPower;
-import com.megacrit.cardcrawl.relics.AbstractRelic;
-import gkmasmod.characters.IdolCharacter;
 import gkmasmod.patches.AbstractPlayerPatch;
 import gkmasmod.powers.*;
 import gkmasmod.utils.PlayerHelper;
@@ -27,8 +24,8 @@ public class GoodImpressionAutoDamageAction extends AbstractGameAction {
         this.p = player;
     }
 
-
     public void update() {
+        System.out.println("GoodImpressionAutoDamageAction");
         int amount = this.p.getPower(GoodImpression.POWER_ID)==null?0:this.p.getPower(GoodImpression.POWER_ID).amount;
         int count = this.p.getPower(SSDSecretPower.POWER_ID)==null?0:this.p.getPower(SSDSecretPower.POWER_ID).amount;
         count++;
@@ -53,27 +50,31 @@ public class GoodImpressionAutoDamageAction extends AbstractGameAction {
         if(p.hasPower(GreatNotGoodTune.POWER_ID))
             countGreatNotGoodTune = p.getPower(GreatNotGoodTune.POWER_ID).amount;
         if(countNotGoodTune>0){
-            rate *= (0.667f-countNotGoodTune*0.1f*(countGreatNotGoodTune>0?1:0));
+            rate *= (0.667f-countNotGoodTune*0.05f*(countGreatNotGoodTune>0?1:0));
         }
         if (rate<0)
             rate = 0;
 
         for (int i = 0; i < count; i++) {
             damage = (int)(1.0f*amount * rate);
-            if(amount>0){
+            if(damage>0){
                 if(p.isPlayer){
                     if(p.hasPower(OccupyTheWorldPower.POWER_ID)){
-                        addToBot(new DamageAllEnemiesAction(p, DamageInfo.createDamageMatrix(damage, true), DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.POISON));
+                        addToTop(new DamageAllEnemiesAction(p, DamageInfo.createDamageMatrix(damage, true), DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.POISON));
                     }
                     else{
-                        addToBot(new DamageRandomEnemyAction(new DamageInfo(p, damage, DamageInfo.DamageType.THORNS), AbstractGameAction.AttackEffect.POISON));
+                        int tmp = damage;
+                        AbstractCreature target = AbstractDungeon.getMonsters().getRandomMonster(null, true, AbstractDungeon.cardRandomRng);
+                        if(target!=null){
+                            int tmp2 = PlayerHelper.getPowerAmount(target,StarNature.POWER_ID);
+                            tmp *= 1.0F*(100-tmp2)/100;
+                            addToTop(new DamageAction(target,new DamageInfo(p, tmp, DamageInfo.DamageType.THORNS), AbstractGameAction.AttackEffect.POISON));
+                        }
                     }
                 }
                 else{
-                    addToBot(new DamageAction(AbstractDungeon.player, new DamageInfo(p, damage, DamageInfo.DamageType.THORNS), AbstractGameAction.AttackEffect.POISON));
-
+                    addToTop(new DamageAction(AbstractDungeon.player, new DamageInfo(p, damage, DamageInfo.DamageType.THORNS), AbstractGameAction.AttackEffect.POISON));
                 }
-
             }
             else if(amount<0){
                 if(p.isPlayer){
@@ -92,12 +93,16 @@ public class GoodImpressionAutoDamageAction extends AbstractGameAction {
                 else{
                     addToBot(new HealAction(AbstractDungeon.player, p, -damage));
                 }
-
             }
             amount--;
         }
         addToBot(new ApplyPowerAction(p,p,new GoodImpression(p,-count),-count));
-
+        if(p.hasPower(IsENotAPower.POWER_ID)){
+            int IsENotAPowerAmount = p.getPower(IsENotAPower.POWER_ID).amount;
+            for (int i = 0; i < count-1; i++) {
+                addToBot(new GainBlockWithPowerAction(p, p, IsENotAPowerAmount));
+            }
+        }
         this.isDone = true;
     }
 

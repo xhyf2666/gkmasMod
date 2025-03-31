@@ -9,13 +9,17 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import gkmasmod.actions.BattlePracticeAction;
 import gkmasmod.actions.DiggingTalentAction;
 import gkmasmod.actions.GainTrainRoundPowerAction;
+import gkmasmod.cardCustomEffect.*;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.powers.FullPowerValue;
 import gkmasmod.powers.StanceLock;
 import gkmasmod.screen.SkinSelectScreen;
+import gkmasmod.utils.CustomHelper;
 import gkmasmod.utils.NameHelper;
+
+import java.util.ArrayList;
 
 public class DiggingTalent extends GkmasCard {
     private static final String CLASSNAME = DiggingTalent.class.getSimpleName();
@@ -29,17 +33,19 @@ public class DiggingTalent extends GkmasCard {
     private static final int COST = 1;
     private static final int UPGRADE_COST = 0;
 
-
-
     private static final CardType TYPE = CardType.SKILL;
     private static final CardColor COLOR = PlayerColorEnum.gkmasModColorAnomaly;
-    private static final CardRarity RARITY = CardRarity.RARE;
+    private static final CardRarity RARITY = CardRarity.UNCOMMON;
     private static final CardTarget TARGET = CardTarget.SELF;
 
     public DiggingTalent() {
         super(ID, NAME, IMG_PATH, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.exhaust = true;
         this.tags.add(GkmasCardTag.OUTSIDE_TAG);
+        this.customLimit = 1;
+        this.customEffectList = new ArrayList<>();
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(SelfRetainCustom.growID, new int[]{0}, new int[]{70}, CustomHelper.CustomEffectType.SELF_RETAIN_ADD));
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(BlockCustom.growID, new int[]{4}, new int[]{60}, CustomHelper.CustomEffectType.BLOCK_ADD));
     }
 
     @Override

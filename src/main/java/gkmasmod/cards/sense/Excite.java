@@ -11,12 +11,19 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.StrengthPower;
+import gkmasmod.cardCustomEffect.DamageCustom;
+import gkmasmod.cardCustomEffect.GoodTuneCustom;
+import gkmasmod.cardCustomEffect.GreatGoodTuneCustom;
+import gkmasmod.cardCustomEffect.MagicCustom;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.powers.GoodTune;
 import gkmasmod.powers.GreatGoodTune;
+import gkmasmod.utils.CustomHelper;
 import gkmasmod.utils.NameHelper;
+
+import java.util.ArrayList;
 
 public class Excite extends GkmasCard {
     private static final String CLASSNAME = Excite.class.getSimpleName();
@@ -28,7 +35,7 @@ public class Excite extends GkmasCard {
     private static final String IMG_PATH = String.format("gkmasModResource/img/cards/common/%s.png", CLASSNAME);
 
     private static final int COST = 1;
-    private static final int ATTACK_DMG = 3;
+    private static final int ATTACK_DMG = 5;
     private static final int UPGRADE_PLUS_DMG = 1;
 
     private static final int BASE_MAGIC = 2;
@@ -47,6 +54,11 @@ public class Excite extends GkmasCard {
         this.magicNumber = this.baseMagicNumber;
         this.tags.add(GkmasCardTag.GOOD_TUNE_TAG);
         this.exhaust = true;
+        this.customLimit = 3;
+        this.customEffectList = new ArrayList<>();
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(DamageCustom.growID,new int[]{2,2,2},new int[]{50,50,50},CustomHelper.CustomEffectType.DAMAGE_ADD));
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(GoodTuneCustom.growID,new int[]{1,1},new int[]{50,50},CustomHelper.CustomEffectType.GOOD_TUNE_ADD));
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(MagicCustom.growID,new int[]{1,1},new int[]{60,60},CustomHelper.CustomEffectType.GREAT_GOOD_TUNE_ADD));
     }
 
 

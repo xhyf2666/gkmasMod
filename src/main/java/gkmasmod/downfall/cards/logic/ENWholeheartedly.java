@@ -29,10 +29,10 @@ public class ENWholeheartedly extends GkmasBossCard {
 
     private static final int COST = 2;
 
-    private static final int BASE_MAGIC = 3;
+    private static final int BASE_MAGIC = 2;
     private static final int UPGRADE_PLUS_MAGIC = 1;
 
-    private static final int BASE_BLOCK = 1;
+    private static final int BASE_BLOCK = 4;
     private static final int UPGRADE_PLUS_BLOCK = 3;
 
     private static final CardType TYPE = CardType.SKILL;

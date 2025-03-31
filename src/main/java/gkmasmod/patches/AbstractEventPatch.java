@@ -17,11 +17,11 @@ import com.megacrit.cardcrawl.map.MapRoomNode;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.MonsterGroup;
 import com.megacrit.cardcrawl.random.Random;
+import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.rooms.MonsterRoom;
 import com.megacrit.cardcrawl.saveAndContinue.SaveFile;
 import gkmasmod.characters.IdolCharacter;
 import gkmasmod.modcore.GkmasMod;
-import gkmasmod.monster.ending.MisuzuBoss;
 import gkmasmod.relics.PocketBook;
 import gkmasmod.relics.StruggleRecord;
 import gkmasmod.room.shop.AnotherShopScreen;
@@ -37,7 +37,7 @@ public class AbstractEventPatch {
     public static class PrePatchAbstractEvent_openMap {
         @SpirePrefixPatch
         public static SpireReturn<Void> Prefix(AbstractEvent __instance) {
-            if(AbstractDungeon.player.hasRelic(PocketBook.ID)){
+            if(AbstractDungeon.player!=null&&AbstractDungeon.player.hasRelic(PocketBook.ID)){
                 int masterEventCount=0;
                 PocketBook book = (PocketBook)AbstractDungeon.player.getRelic(PocketBook.ID);
                 if(AbstractDungeon.player.hasRelic(PocketBook.ID)){
@@ -53,15 +53,12 @@ public class AbstractEventPatch {
                         return SpireReturn.Continue();
                     }
 
-                    AbstractEvent event =  EventUtils.getEvent(eventID);
-                    if(event!=null){
-                        AbstractDungeon.eventList.add(0, eventID);
+                    if(true){
                         RoomEventDialog.optionList.clear();
                         MapRoomNode cur = AbstractDungeon.currMapNode;
                         MapRoomNode mapRoomNode2 = new MapRoomNode(cur.x, cur.y);
                         CustomEventRoom cer = new CustomEventRoom();
                         mapRoomNode2.room = cer;
-                        cer.event = event;
                         ArrayList<MapEdge> curEdges = cur.getEdges();
                         for (MapEdge edge : curEdges)
                             mapRoomNode2.addEdge(edge);
@@ -83,10 +80,21 @@ public class AbstractEventPatch {
 
                         try {
                             AbstractDungeon.overlayMenu.proceedButton.hide();
-                            GkmasMod.node = mapRoomNode2;
+                            (AbstractDungeon.getCurrRoom()).phase = AbstractRoom.RoomPhase.COMPLETE;
+//                            AbstractDungeon.eventList.add(0, eventID);
+                            AbstractEvent event =  EventUtils.getEvent(eventID);
+                            cer.event = event;
                             event.onEnterRoom();
                             return SpireReturn.Return(null);
                         } catch (Exception e) {
+                        }
+                        AbstractDungeon.scene.nextRoom(mapRoomNode2.room);
+                        if (mapRoomNode2.room instanceof com.megacrit.cardcrawl.rooms.EventRoom) {
+                            AbstractDungeon.rs = (mapRoomNode2.room.event instanceof com.megacrit.cardcrawl.events.AbstractImageEvent) ? AbstractDungeon.RenderScene.EVENT : AbstractDungeon.RenderScene.NORMAL;
+                        } else if (mapRoomNode2.room instanceof com.megacrit.cardcrawl.rooms.RestRoom) {
+                            AbstractDungeon.rs = AbstractDungeon.RenderScene.CAMPFIRE;
+                        } else {
+                            AbstractDungeon.rs = AbstractDungeon.RenderScene.NORMAL;
                         }
                     }
                 }

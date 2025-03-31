@@ -5,43 +5,36 @@ import basemod.abstracts.AbstractCardModifier;
 import basemod.helpers.CardModifierManager;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.AbstractCard.CardColor;
 import com.megacrit.cardcrawl.cards.DamageInfo;
-import com.megacrit.cardcrawl.cards.curses.Pride;
-import com.megacrit.cardcrawl.cards.status.Slimed;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
+import com.megacrit.cardcrawl.screens.SingleCardViewPopup;
+import gkmasmod.cardCustomEffect.HPMagicCustom;
 import gkmasmod.cardCustomEffect.SecondMagicCustom;
 import gkmasmod.cardCustomEffect.ThirdMagicCustom;
 import gkmasmod.cards.GkmasCard;
-import gkmasmod.characters.IdolCharacter;
+import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.downfall.cards.GkmasBossCard;
 import gkmasmod.modcore.GkmasMod;
+import gkmasmod.powers.CanNotPlayCardPower;
 import gkmasmod.relics.PledgePetal;
 import gkmasmod.relics.PocketBook;
-import gkmasmod.screen.SkinSelectScreen;
 import gkmasmod.stances.SleepStance;
+import gkmasmod.stances.WakeStance;
 import gkmasmod.utils.ImageHelper;
-import javassist.CannotCompileException;
-import javassist.CtBehavior;
-import javassist.expr.ExprEditor;
-import javassist.expr.MethodCall;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.util.ArrayList;
 
 
 public class AbstractCardPatch
@@ -61,10 +54,12 @@ public class AbstractCardPatch
                         card.secondMagicNumber = card.baseSecondMagicNumber+(((SecondMagicCustom)mod).amount);
                     }
                     if(mod instanceof AbstractCardModifier && mod instanceof ThirdMagicCustom) {
-                        card.secondMagicNumber = card.baseThirdMagicNumber+(((ThirdMagicCustom)mod).amount);
+                        card.thirdMagicNumber = card.baseThirdMagicNumber+(((ThirdMagicCustom)mod).amount);
+                    }
+                    if(mod instanceof AbstractCardModifier && mod instanceof HPMagicCustom){
+                        card.HPMagicNumber = card.baseHPMagicNumber+(((HPMagicCustom)mod).amount);
                     }
                 }
-
             }
         }
     }
@@ -73,9 +68,39 @@ public class AbstractCardPatch
     public static class PrePatchAbstractCard_hasEnoughEnergy {
         @SpirePrefixPatch
         public static SpireReturn<Boolean> Prefix(AbstractCard __instance) {
-            if(AbstractDungeon.player.stance.ID.equals(SleepStance.STANCE_ID)&&!isDreamField.isDream.get(__instance)){
+            if(AbstractDungeon.player.stance.ID.equals(SleepStance.STANCE_ID)&&!__instance.hasTag(GkmasCardTag.SLEEP_TAG)){
                 return SpireReturn.Return(false);
             }
+            if(AbstractDungeon.player.hasPower(CanNotPlayCardPower.POWER_ID))
+            {
+                return SpireReturn.Return(false);
+            }
+            return SpireReturn.Continue();
+        }
+    }
+
+    @SpirePatch(clz = AbstractCard.class,method = "canUse")
+    public static class PrePatchAbstractCard_canUse {
+        @SpirePrefixPatch
+        public static SpireReturn<Boolean> Prefix(AbstractCard __instance, AbstractPlayer p, AbstractMonster m) {
+            if (__instance.type == AbstractCard.CardType.CURSE&&AbstractDungeon.player.stance.ID.equals(WakeStance.STANCE_ID)){
+                if (__instance.cardPlayable(m) && __instance.hasEnoughEnergy())
+                    return SpireReturn.Return(true);
+            }
+            return SpireReturn.Continue();
+        }
+    }
+
+    @SpirePatch(clz = AbstractCard.class,method = "cardPlayable")
+    public static class PrePatchAbstractCard_cardPlayable {
+        @SpirePrefixPatch
+        public static SpireReturn<Boolean> Prefix(AbstractCard __instance, AbstractMonster m) {
+//            if(__instance.target==GkmasCardTag.SELF_OR_FRIEND){
+//                if(m!=null&&AbstractMonsterPatch.friendlyField.friendly.get(m)){
+//                    return SpireReturn.Return(true);
+//                }
+//
+//            }
             return SpireReturn.Continue();
         }
     }
@@ -85,10 +110,10 @@ public class AbstractCardPatch
         public static SpireField<Integer> threeSizeTag = new SpireField<>(() -> -1);
     }
 
-    @SpirePatch(clz = AbstractCard.class,method = SpirePatch.CLASS)
-    public static class isDreamField {
-        public static SpireField<Boolean> isDream = new SpireField<>(() -> false);
-    }
+//    @SpirePatch(clz = AbstractCard.class,method = SpirePatch.CLASS)
+//    public static class isDreamField {
+//        public static SpireField<Boolean> isDream = new SpireField<>(() -> false);
+//    }
 
     @SpirePatch(clz = AbstractCard.class,method = "upgradeName")
     public static class CardUpgradePostPatch {
@@ -123,7 +148,7 @@ public class AbstractCardPatch
         @SpirePostfixPatch
         public static void Postfix(AbstractCard __instance, String id, String name, String imgUrl, int cost, String rawDescription, AbstractCard.CardType type, AbstractCard.CardColor color, AbstractCard.CardRarity rarity, AbstractCard.CardTarget target, DamageInfo.DamageType dType) {
             if(CardCrawlGame.isInARun() && AbstractDungeon.isPlayerInDungeon() && type!= AbstractCard.CardType.CURSE && type!= AbstractCard.CardType.STATUS){
-                if(AbstractDungeon.currMapNode!=null && AbstractDungeon.getCurrRoom().phase!=AbstractRoom.RoomPhase.COMBAT &&AbstractDungeon.player.hasRelic(PocketBook.ID)){
+                if(AbstractDungeon.currMapNode!=null && AbstractDungeon.getCurrRoom().phase!=AbstractRoom.RoomPhase.COMBAT &&AbstractDungeon.player.hasRelic(PocketBook.ID)&&!SingleCardViewPopup.isViewingUpgrade){
                     int tag = GkmasMod.threeSizeTagRng.random(0, 2);
                     ThreeSizeTagField.threeSizeTag.set(__instance, tag);
                 }
@@ -189,6 +214,138 @@ public class AbstractCardPatch
 
     @SpirePatch(
             clz=AbstractCard.class,
+            method="renderAttackPortrait"
+    )
+    public static class AbstractCard_prePatch_renderAttackPortrait
+    {
+        public static SpireReturn<?> Prefix(AbstractCard __instance, SpriteBatch sb, float x, float y, Color ___renderColor)
+        {
+            if (!(__instance instanceof GkmasCard)) {
+                return SpireReturn.Continue();
+            }
+
+            GkmasCard card = (GkmasCard) __instance;
+            String color = card.bannerColor;
+            if(color.equals("")){
+                if(card.rarity== AbstractCard.CardRarity.COMMON){
+                    color = "blue";
+                }else if(card.rarity== AbstractCard.CardRarity.UNCOMMON){
+                    color = "yellow";
+                }
+                else if(card.rarity== AbstractCard.CardRarity.RARE){
+                    color = "color";
+                }
+                else{
+                    return SpireReturn.Continue();
+                }
+            }
+            if(color.equals("blue")) {
+                renderHelper(card, sb, ___renderColor, ImageMaster.CARD_FRAME_ATTACK_UNCOMMON, x, y);
+            }
+            else if(color.equals("yellow")){
+                renderHelper(card, sb, ___renderColor, ImageMaster.CARD_FRAME_ATTACK_RARE, x, y);
+            }
+            else if(color.equals("color")){
+                renderHelper(card, sb, ___renderColor, ImageHelper.ATTACK_COLOR_REGION, x, y);
+            }
+            return SpireReturn.Return(null);
+        }
+    }
+
+    @SpirePatch(
+            clz=AbstractCard.class,
+            method="renderSkillPortrait"
+    )
+    public static class AbstractCard_prePatch_renderSkillPortrait
+    {
+        public static SpireReturn<?> Prefix(AbstractCard __instance, SpriteBatch sb, float x, float y, Color ___renderColor)
+        {
+            if (!(__instance instanceof GkmasCard)) {
+                return SpireReturn.Continue();
+            }
+
+            GkmasCard card = (GkmasCard) __instance;
+            String color = card.bannerColor;
+            if(color.equals("")){
+                if(card.rarity== AbstractCard.CardRarity.COMMON){
+                    color = "blue";
+                }else if(card.rarity== AbstractCard.CardRarity.UNCOMMON){
+                    color = "yellow";
+                }
+                else if(card.rarity== AbstractCard.CardRarity.RARE){
+                    color = "color";
+                }
+                else{
+                    return SpireReturn.Continue();
+                }
+            }
+            if(color.equals("blue")) {
+                renderHelper(card, sb, ___renderColor, ImageMaster.CARD_FRAME_SKILL_UNCOMMON, x, y);
+            }
+            else if(color.equals("yellow")){
+                renderHelper(card, sb, ___renderColor, ImageMaster.CARD_FRAME_SKILL_RARE, x, y);
+            }
+            else if(color.equals("color")){
+                renderHelper(card, sb, ___renderColor, ImageHelper.SKILL_COLOR_REGION, x, y);
+            }
+            return SpireReturn.Return(null);
+        }
+    }
+
+    @SpirePatch(
+            clz=AbstractCard.class,
+            method="renderPowerPortrait"
+    )
+    public static class AbstractCard_prePatch_renderPowerPortrait
+    {
+        public static SpireReturn<?> Prefix(AbstractCard __instance, SpriteBatch sb, float x, float y, Color ___renderColor)
+        {
+            if (!(__instance instanceof GkmasCard)) {
+                return SpireReturn.Continue();
+            }
+
+            GkmasCard card = (GkmasCard) __instance;
+            String color = card.bannerColor;
+            if(color.equals("")){
+                if(card.rarity== AbstractCard.CardRarity.COMMON){
+                    color = "blue";
+                }else if(card.rarity== AbstractCard.CardRarity.UNCOMMON){
+                    color = "yellow";
+                }
+                else if(card.rarity== AbstractCard.CardRarity.RARE){
+                    color = "color";
+                }
+                else{
+                    return SpireReturn.Continue();
+                }
+            }
+            if(color.equals("blue")) {
+                renderHelper(card, sb, ___renderColor, ImageMaster.CARD_FRAME_POWER_UNCOMMON, x, y);
+            }
+            else if(color.equals("yellow")){
+                renderHelper(card, sb, ___renderColor, ImageMaster.CARD_FRAME_POWER_RARE, x, y);
+            }
+            else if(color.equals("color")){
+                renderHelper(card, sb, ___renderColor, ImageHelper.POWER_COLOR_REGION, x, y);
+            }
+            return SpireReturn.Return(null);
+        }
+    }
+
+//    @SpirePatch(clz = AbstractCard.class,method = "initializeDescriptionCN")
+//    public static class AbstractCard_prePatch_initializeDescriptionCN{
+//        @SpireInsertPatch(rloc = 11,localvars = {"card"})
+//        public static SpireReturn<Void> Insert(AbstractCard __instance, AbstractCard card) {
+//            if (!(__instance instanceof GkmasCard)||Settings.BIG_TEXT_MODE) {
+//                return SpireReturn.Continue();
+//            }
+//            float w = 300.0F * Settings.scale  * 0.92F;
+//            return SpireReturn.Return(null);
+//        }
+//    }
+
+    @SpirePatch(
+            clz=AbstractCard.class,
             method="renderCardBg"
     )
     public static class RenderBgSwitch
@@ -209,8 +366,6 @@ public class AbstractCardPatch
             }
             else
             {
-                System.out.println("getBackgroundSmallTexture is null in patch");
-
                 switch (card.type) {
                     case POWER:
                         if (BaseMod.getPowerBgTexture(color) == null) {

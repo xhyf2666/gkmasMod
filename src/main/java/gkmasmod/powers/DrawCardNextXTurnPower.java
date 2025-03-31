@@ -40,6 +40,19 @@ public class DrawCardNextXTurnPower extends AbstractPower {
         this.priority = 20;
     }
 
+    public DrawCardNextXTurnPower(AbstractCreature owner, int Amount, int drawNum) {
+        this.name = NAME;
+        this.ID = POWER_ID;
+        this.owner = owner;
+        this.type = PowerType.BUFF;
+        this.amount = Amount;
+        this.drawNum = drawNum;
+
+        this.loadRegion("carddraw");
+        this.updateDescription();
+        this.priority = 20;
+    }
+
     public void stackPower(int stackAmount) {
         super.stackPower(stackAmount);
         if (this.amount == 0)

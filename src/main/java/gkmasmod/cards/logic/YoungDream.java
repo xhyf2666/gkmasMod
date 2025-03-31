@@ -53,7 +53,6 @@ public class YoungDream extends GkmasCard {
             addToBot(new SpawnMonsterAction(new LittleGundam(p.hb_x+200, p.hb_y+250,p), false));
         addToBot(new MakeTempCardInHandAction(new FutureTrajectory()));
         addToBot(new ApplyPowerAction(p,p,new SteelSoul(p)));
-        // TODO 召唤
     }
 
     @Override

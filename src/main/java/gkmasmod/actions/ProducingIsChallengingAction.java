@@ -83,24 +83,11 @@ public class ProducingIsChallengingAction extends AbstractGameAction {
                             }
                         }
 
-//                        List<AbstractCardModifier> modifiersC2 = CardModifierManager.modifiers(c2);
-//                        if (modifiersC2 != null) {
-//                            Iterator<AbstractCardModifier> iteratorC2 = modifiersC2.iterator();
-//                            while (iteratorC2.hasNext()) {
-//                                AbstractCardModifier mod = iteratorC2.next();
-//                                if (mod instanceof AbstractGrowEffect) {
-//                                    iteratorC2.remove();  // 同样的方式安全地移除元素
-//                                }
-//                            }
-//                        }
                         for(AbstractCardModifier mod : c1mods){
                             AbstractGrowEffect effect = (AbstractGrowEffect)mod;
                             GrowHelper.grow(c2,effect.growEffectID,effect.amount);
                         }
                         CardModifierManager.addModifier(c1,new CanNotPlayGrow());
-//                        for(AbstractCardModifier mod : c2mods){
-//                            CardModifierManager.addModifier(c1,mod);
-//                        }
                         AbstractDungeon.player.hand.addToTop(c1);
                         AbstractDungeon.player.hand.addToTop(c2);
                     }

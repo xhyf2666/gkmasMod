@@ -18,7 +18,7 @@ public class TheCollectorPatch
     public static class ChampPostPatch_constructor {
         @SpirePostfixPatch
         public static void Post(TheCollector __instance, @ByRef int[] ___blockAmt) {
-            if(AbstractDungeon.player.hasRelic(PocketBook.ID)){
+            if(AbstractDungeon.player!=null&&AbstractDungeon.player.hasRelic(PocketBook.ID)){
                 int rate = ThreeSizeHelper.getHealthRate(2);
                 if (AbstractDungeon.ascensionLevel >= 19) {
                     ___blockAmt[0] = (___blockAmt[0]+5) * rate-5;

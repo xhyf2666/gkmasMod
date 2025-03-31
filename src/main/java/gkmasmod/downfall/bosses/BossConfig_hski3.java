@@ -1,5 +1,6 @@
 package gkmasmod.downfall.bosses;
 
+import com.megacrit.cardcrawl.powers.StrengthPower;
 import gkmasmod.downfall.charbosses.bosses.AbstractBossDeckArchetype;
 import gkmasmod.downfall.charbosses.bosses.AbstractCharBoss;
 import gkmasmod.downfall.charbosses.relics.*;
@@ -11,7 +12,9 @@ import com.megacrit.cardcrawl.powers.BarricadePower;
 import gkmasmod.downfall.cards.free.*;
 import gkmasmod.downfall.cards.sense.*;
 import gkmasmod.downfall.relics.CBR_AnimateEquipment;
+import gkmasmod.downfall.relics.CBR_FaceTheAwakening;
 import gkmasmod.downfall.relics.CBR_RoaringLion;
+import gkmasmod.powers.*;
 
 import java.util.ArrayList;
 
@@ -36,6 +39,17 @@ public class BossConfig_hski3 extends AbstractBossDeckArchetype {
         addRelic(new CBR_FusionHammer());
         addRelic(new CBR_AnimateEquipment());
         addRelic(new CBR_RoaringLion());
+        addRelic(new CBR_FaceTheAwakening());
+        AbstractCreature p = AbstractCharBoss.boss;
+        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new NegativeNotPower(p, 3), 3));
+        if(AbstractDungeon.ascensionLevel >= 5)
+            AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new TrueLateBloomerPower(p, 2).setMagic2(1), 2));
+        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new StrengthPower(p, 4), 4));
+        if(AbstractDungeon.ascensionLevel >= 10)
+            AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new InnocencePower(p, 1), 1));
+        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new EyePowerPower(p, 2), 2));
+        if(AbstractDungeon.ascensionLevel >= 15)
+            AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new TopEntertainmentPlusPower(p, 1), 1));
     }
 
     @Override
@@ -45,30 +59,10 @@ public class BossConfig_hski3 extends AbstractBossDeckArchetype {
         if (!looped) {
             switch (turn) {
                 case 0:
-                    addToList(cardsList,new ENSteadyWill(),extraUpgrades);
-                    addToList(cardsList, new ENBaseExpression(),extraUpgrades);
-                    addToList(cardsList, new ENBaseExpression(),extraUpgrades);
-                    addToList(cardsList, new ENEyePower(),extraUpgrades);
-                    turn++;
-                    break;
-                case 1:
-                    addToList(cardsList, new ENInnocence(), extraUpgrades);
-                    addToList(cardsList, new ENSleepLate(),extraUpgrades);
-                    addToList(cardsList, new ENTopEntertainment());
-                    addToList(cardsList, new ENTrueLateBloomer());
-                    turn++;
-                    break;
-                case 2:
-                    addToList(cardsList, new ENCharmGaze(),extraUpgrades);
+                    addToList(cardsList, new ENLightGait(),true);
                     addToList(cardsList, new ENNationalIdol(),extraUpgrades);
                     addToList(cardsList, new ENVeryEasy(),true);
-                    addToList(cardsList, new ENDisposition());
-                    turn++;
-                    break;
-                case 3:
-                    addToList(cardsList, new ENImprovise(), extraUpgrades);
-                    addToList(cardsList, new ENLeap(),extraUpgrades);
-                    addToList(cardsList, new ENBaseAppeal());
+                    addToList(cardsList, new ENUntilNowAndFromNow(),true);
                     turn = 0;
                     looped = true;
                     break;
@@ -78,7 +72,8 @@ public class BossConfig_hski3 extends AbstractBossDeckArchetype {
                 case 0:
                     addToList(cardsList, new ENExistence(), extraUpgrades);
                     addToList(cardsList, new ENImprovise());
-                    addToList(cardsList, new ENTryError());
+                    addToList(cardsList, new ENUntilNowAndFromNow(),true);
+                    addToList(cardsList, new ENLightGait(),true);
                     addToList(cardsList, new ENBaseAppeal());
                     break;
             }

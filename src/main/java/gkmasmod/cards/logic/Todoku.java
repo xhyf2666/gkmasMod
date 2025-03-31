@@ -1,6 +1,7 @@
 package gkmasmod.cards.logic;
 
 import com.evacipated.cardcrawl.mod.stslib.patches.FlavorText;
+import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.LoseHPAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -10,11 +11,17 @@ import com.megacrit.cardcrawl.helpers.CardHelper;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import gkmasmod.actions.BlockDamageAction;
+import gkmasmod.cardCustomEffect.*;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.characters.PlayerColorEnum;
+import gkmasmod.powers.AnotherTurnPower;
+import gkmasmod.powers.TodokuPower;
 import gkmasmod.screen.SkinSelectScreen;
+import gkmasmod.utils.CustomHelper;
 import gkmasmod.utils.ImageHelper;
 import gkmasmod.utils.NameHelper;
+
+import java.util.ArrayList;
 
 public class Todoku extends GkmasCard {
     private static final String CLASSNAME = Todoku.class.getSimpleName();
@@ -53,11 +60,21 @@ public class Todoku extends GkmasCard {
         FlavorText.AbstractCardFlavorFields.boxColor.set(this, CardHelper.getColor(73, 224, 254));
         flavor = FlavorText.CardStringsFlavorField.flavor.get(CARD_STRINGS);
         //TODO 届卡名的动态显示
+        this.customLimit = 1;
+        this.customEffectList = new ArrayList<>();
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(EffectChangeCustom.growID,new int[]{0},new int[]{80},CustomHelper.CustomEffectType.EFFECT_CHANGE));
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(MagicCustom.growID,new int[]{60},new int[]{70},CustomHelper.CustomEffectType.RATE_ADD));
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
         addToBot(new LoseHPAction(p, p, this.HPMagicNumber));
-        addToBot(new BlockDamageAction(1.0F * this.magicNumber / 100, 0, p, m,this,false,BLOCK_REDUCE_RATE));
+        if(CustomHelper.hasCustom(this, EffectChangeCustom.growID)){
+            addToBot(new BlockDamageAction(1.0F * this.magicNumber / 100, 0, p, m,this));
+            addToBot(new ApplyPowerAction(p,p,new TodokuPower(p)));
+        }
+        else{
+            addToBot(new BlockDamageAction(1.0F * this.magicNumber / 100, 0, p, m,this,false,BLOCK_REDUCE_RATE));
+        }
     }
 
     public void applyPowersToBlock() {

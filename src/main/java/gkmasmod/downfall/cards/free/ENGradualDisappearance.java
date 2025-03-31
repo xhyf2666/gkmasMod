@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import gkmasmod.actions.GainTrainRoundPowerAction;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.downfall.cards.GkmasBossCard;
@@ -26,33 +27,27 @@ public class ENGradualDisappearance extends GkmasBossCard {
     private static final String IMG_PATH = String.format("gkmasModResource/img/cards/common/%s.png", CLASSNAME2);
 
     private static final int COST = 1;
+    private static final int UPGRADE_COST = 0;
     private static final int BASE_MAGIC = 2;
-    private static final int BASE_MAGIC2 = 2;
-
-    private static final int BLOCK_AMT = 6;
-    private static final int BLOCK_PLUS = 3;
 
 
     private static final CardType TYPE = CardType.SKILL;
     private static final CardColor COLOR = PlayerColorEnum.gkmasModColor;
-    private static final CardRarity RARITY = CardRarity.UNCOMMON;
+    private static final CardRarity RARITY = CardRarity.COMMON;
     private static final CardTarget TARGET = CardTarget.SELF;
 
     public ENGradualDisappearance() {
         super(ID, NAME, IMG_PATH, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.baseMagicNumber = BASE_MAGIC;
         this.magicNumber = this.baseMagicNumber;
-        this.baseSecondMagicNumber = BASE_MAGIC2;
-        this.secondMagicNumber = this.baseSecondMagicNumber;
-        this.baseBlock = BLOCK_AMT;
         this.exhaust = true;
+        this.energyGeneratedIfPlayed = this.magicNumber;
     }
 
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        addToBot(new GainBlockAction(m, m, this.block));
-        addToBot(new ApplyPowerAction(m, m, new DrawCardNextXTurnPower(m, this.magicNumber), this.magicNumber));
+        addToBot(new GainTrainRoundPowerAction(m,this.magicNumber));
     }
 
     @Override
@@ -64,7 +59,7 @@ public class ENGradualDisappearance extends GkmasBossCard {
     public void upgrade() {
         if (!this.upgraded) {
             upgradeName();
-            upgradeBlock(BLOCK_PLUS);
+            upgradeBaseCost(UPGRADE_COST);
             if (CARD_STRINGS.UPGRADE_DESCRIPTION != null)
                 this.rawDescription = CARD_STRINGS.UPGRADE_DESCRIPTION;
             this.initializeDescription();

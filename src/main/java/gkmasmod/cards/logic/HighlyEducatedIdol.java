@@ -7,13 +7,14 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.DexterityPower;
+import gkmasmod.cardCustomEffect.BlockCustom;
+import gkmasmod.cardCustomEffect.ExhaustRemoveCustom;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
-import gkmasmod.utils.IdolData;
-import gkmasmod.utils.NameHelper;
-import gkmasmod.utils.PlayerHelper;
-import gkmasmod.utils.SoundHelper;
+import gkmasmod.utils.*;
+
+import java.util.ArrayList;
 
 public class HighlyEducatedIdol extends GkmasCard {
     private static final String CLASSNAME = HighlyEducatedIdol.class.getSimpleName();
@@ -49,6 +50,10 @@ public class HighlyEducatedIdol extends GkmasCard {
         this.tags.add(GkmasCardTag.IDOL_CARD_TAG);
         this.backGroundColor = IdolData.shro;
         updateBackgroundImg();
+        this.customLimit = 3;
+        this.customEffectList = new ArrayList<>();
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(BlockCustom.growID, new int[]{3,3,3}, new int[]{50,50,50}, CustomHelper.CustomEffectType.BLOCK_ADD));
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(ExhaustRemoveCustom.growID,new int[]{0},new int[]{80},CustomHelper.CustomEffectType.EXHAUST_REMOVE));
     }
 
 

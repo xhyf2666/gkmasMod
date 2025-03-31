@@ -1,7 +1,9 @@
 package gkmasmod.downfall.bosses;
 
+import gkmasmod.downfall.cards.anomaly.*;
 import gkmasmod.downfall.charbosses.bosses.AbstractBossDeckArchetype;
 import gkmasmod.downfall.charbosses.bosses.AbstractCharBoss;
+import gkmasmod.downfall.charbosses.cards.AbstractBossCard;
 import gkmasmod.downfall.charbosses.relics.*;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -12,8 +14,10 @@ import gkmasmod.downfall.cards.free.*;
 import gkmasmod.downfall.cards.logic.*;
 import gkmasmod.downfall.cards.sense.*;
 import gkmasmod.downfall.relics.*;
+import gkmasmod.powers.*;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class BossConfig_hume2 extends AbstractBossDeckArchetype {
 
@@ -36,6 +40,18 @@ public class BossConfig_hume2 extends AbstractBossDeckArchetype {
         addRelic(new CBR_PhilosopherStone());
         addRelic(new CBR_RollingSourceOfEnergy());
         addRelic(new CBR_ChristmasLion());
+        addRelic(new CBR_AchieveDreamAwakening());
+        AbstractCreature p = AbstractCharBoss.boss;
+        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new NegativeNotPower(p, 2), 2));
+        if(AbstractDungeon.ascensionLevel >= 5)
+            AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new TopWisdomPlusPower(p, 1), 1));
+        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new EyePowerPower(p, 2), 2));
+        if(AbstractDungeon.ascensionLevel >= 10)
+            AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new TrueLateBloomerPower(p, 2).setMagic2(2), 2));
+        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new ShareSomethingWithYouPower(p, 2), 2));
+        if(AbstractDungeon.ascensionLevel >= 15){
+            AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new FullPowerValue(p, 10), 10));
+        }
     }
 
     @Override
@@ -45,29 +61,21 @@ public class BossConfig_hume2 extends AbstractBossDeckArchetype {
         if (!looped) {
             switch (turn) {
                 case 0:
-                    addToList(cardsList, new ENBeforeThePerformance(),extraUpgrades);
-                    addToList(cardsList, new ENSteadyWill(),extraUpgrades);
-                    addToList(cardsList, new ENTopWisdom(),extraUpgrades);
+                    addToList(cardsList, new ENTrainingResult(),extraUpgrades);
+                    addToList(cardsList, new ENGradualDisappearance(),true);
+                    addToList(cardsList, new ENBecomeIdol());
+                    addToList(cardsList, new ENShineBright(), true);
+                    addToList(cardsList, new ENNewStage(),true);
+                    addToList(cardsList, new ENJustAppeal(),true);
+                    addToList(cardsList, new ENPotentialAbility());
                     turn++;
                     break;
                 case 1:
-                    addToList(cardsList, new ENUnstoppableThoughts(), extraUpgrades);
-                    addToList(cardsList, new ENInnocence(),extraUpgrades);
-                    addToList(cardsList, new ENEyePower());
-                    turn++;
-                    break;
-                case 2:
                     addToList(cardsList, new ENIamBigStar(),extraUpgrades);
-                    addToList(cardsList, new ENWarmUp(),extraUpgrades);
+                    addToList(cardsList, new ENNewStage(),extraUpgrades);
+                    addToList(cardsList, new ENPotentialAbility());
                     addToList(cardsList, new ENSisterHelp());
-                    addToList(cardsList, new ENShareSomethingWithYou(),true);
-                    turn++;
-                    break;
-                case 3:
-                    addToList(cardsList, new ENJustOneMore(),extraUpgrades);
-                    addToList(cardsList, new ENStartSignal(),extraUpgrades);
-                    addToList(cardsList, new ENCharmGaze(),true);
-                    addToList(cardsList, new ENBaseExpression(),true);
+//                    addToList(cardsList, new ENBaseMental(),true);
                     turn = 0;
                     looped = true;
                     break;
@@ -75,10 +83,10 @@ public class BossConfig_hume2 extends AbstractBossDeckArchetype {
         } else {
             switch (turn) {
                 case 0:
-                    addToList(cardsList, new ENEncoreCall(), extraUpgrades);
-                    addToList(cardsList, new ENPushingTooHardAgain(), extraUpgrades);
-                    addToList(cardsList, new ENOverwhelmingNumbers(),extraUpgrades);
-                    addToList(cardsList, new ENThankYou(),extraUpgrades);
+                    addToList(cardsList, new ENNewStage(),extraUpgrades);
+                    addToList(cardsList, new ENPotentialAbility());
+//                    addToList(cardsList, new ENBaseMental(),true);
+                    addToList(cardsList, new ENTriggerRelic());
                     turn = 0;
                     break;
             }

@@ -2,6 +2,7 @@ package gkmasmod.cards.free;
 
 import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
+import com.megacrit.cardcrawl.actions.common.BetterDrawPileToHandAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -10,11 +11,14 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.EquilibriumPower;
 import gkmasmod.actions.GainTrainRoundPowerAction;
 import gkmasmod.actions.WhatDoesSheDoAction;
-import gkmasmod.cardCustomEffect.MoreActionCustom;
+import gkmasmod.cardCustomEffect.*;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
+import gkmasmod.utils.CustomHelper;
 import gkmasmod.utils.NameHelper;
+
+import java.util.ArrayList;
 
 public class WhatDoesSheDo extends GkmasCard {
     private static final String CLASSNAME = WhatDoesSheDo.class.getSimpleName();
@@ -31,7 +35,7 @@ public class WhatDoesSheDo extends GkmasCard {
 
     private static final CardType TYPE = CardType.SKILL;
     private static final CardColor COLOR = PlayerColorEnum.gkmasModColor;
-    private static final CardRarity RARITY = CardRarity.RARE;
+    private static final CardRarity RARITY = CardRarity.UNCOMMON;
     private static final CardTarget TARGET = CardTarget.SELF;
 
     public WhatDoesSheDo() {
@@ -40,14 +44,23 @@ public class WhatDoesSheDo extends GkmasCard {
         this.magicNumber = this.baseMagicNumber;
         this.exhaust = true;
         this.tags.add(GkmasCardTag.MORE_ACTION_TAG);
-        CardModifierManager.addModifier(this,new MoreActionCustom(1));
+        CardModifierManager.addModifier(this,new MoreActionCustom(2));
+        this.customLimit = 1;
+        this.customEffectList = new ArrayList<>();
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(MagicCustom.growID,new int[]{1},new int[]{60},CustomHelper.CustomEffectType.EFFECT_ADD));
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(EffectChangeCustom.growID,new int[]{0},new int[]{80},CustomHelper.CustomEffectType.EFFECT_CHANGE));
     }
 
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        addToBot(new WhatDoesSheDoAction(this.magicNumber));
-//        addToBot(new GainTrainRoundPowerAction(p,1));
+
+        if(CustomHelper.hasCustom(this, EffectChangeCustom.growID)){
+            addToBot(new BetterDrawPileToHandAction(this.magicNumber));
+        }
+        else{
+            addToBot(new WhatDoesSheDoAction(this.magicNumber));
+        }
     }
 
     @Override

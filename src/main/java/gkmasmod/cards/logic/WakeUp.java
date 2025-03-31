@@ -6,12 +6,18 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import gkmasmod.cardCustomEffect.BlockCustom;
+import gkmasmod.cardCustomEffect.MagicCustom;
+import gkmasmod.cardCustomEffect.SelfRetainCustom;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.powers.GoodImpression;
+import gkmasmod.utils.CustomHelper;
 import gkmasmod.utils.NameHelper;
 import gkmasmod.utils.PlayerHelper;
+
+import java.util.ArrayList;
 
 public class WakeUp extends GkmasCard {
     private static final String CLASSNAME = WakeUp.class.getSimpleName();
@@ -40,6 +46,10 @@ public class WakeUp extends GkmasCard {
         this.cardHeader = CardCrawlGame.languagePack.getUIString("gkmasMod:WakeUpHeader").TEXT[0];
         this.tags.add(GkmasCardTag.GOOD_IMPRESSION_TAG);
         this.tags.add(GkmasCardTag.OUTSIDE_TAG);
+        this.customLimit = 2;
+        this.customEffectList = new ArrayList<>();
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(MagicCustom.growID,new int[]{25,25},new int[]{100,100},CustomHelper.CustomEffectType.RATE_ADD));
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(SelfRetainCustom.growID, new int[]{0}, new int[]{70}, CustomHelper.CustomEffectType.SELF_RETAIN_ADD));
     }
 
 

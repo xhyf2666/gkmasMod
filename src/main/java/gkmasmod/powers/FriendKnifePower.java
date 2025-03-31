@@ -60,6 +60,8 @@ public class FriendKnifePower extends AbstractPower {
             this.flash();
             AbstractCreature target = action.target;
             addToBot(new DamageAction(this.owner, new DamageInfo(this.owner, healthReduce)));
+            if(target==null)
+                return;
             if(target.isDeadOrEscaped()){
                 target = AbstractDungeon.getMonsters().getRandomMonster(null, true, AbstractDungeon.cardRandomRng);
             }

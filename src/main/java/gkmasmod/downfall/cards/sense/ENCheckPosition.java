@@ -16,6 +16,8 @@ import com.megacrit.cardcrawl.powers.StrengthPower;
 import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.downfall.cards.GkmasBossCard;
+import gkmasmod.powers.GreatNotGoodTune;
+import gkmasmod.powers.NotGoodTune;
 import gkmasmod.utils.ImageHelper;
 import gkmasmod.utils.NameHelper;
 import gkmasmod.utils.PlayerHelper;
@@ -31,13 +33,13 @@ public class ENCheckPosition extends GkmasBossCard {
     private static final String DESCRIPTION = CARD_STRINGS.DESCRIPTION;
     private static String IMG_PATH = ImageHelper.idolImgPath(AbstractCharBoss.theIdolName, CLASSNAME2);
 
-    private static final int COST = 1;
+    private static final int COST = 0;
 
     private static final int ATTACK_DMG = 7;
-    private static final int UPGRADE_PLUS_DMG = 8;
-    private static final int BASE_MAGIC = 2;
-    private static final int BASE_MAGIC2 = 2;
-    private static final int BLOCK_AMT = 10;
+    private static final int BASE_MAGIC = 1;
+    private static final int BASE_MAGIC2 = 4;
+    private static final int UPGRADE_MAGIC_PLUS2 = 2;
+    private static final int BASE_MAGIC3 = 2;
 
 
     private static final CardType TYPE = CardType.ATTACK;
@@ -55,11 +57,11 @@ public class ENCheckPosition extends GkmasBossCard {
         this.magicNumber = this.baseMagicNumber;
         this.baseSecondMagicNumber = BASE_MAGIC2;
         this.secondMagicNumber = this.baseSecondMagicNumber;
-        this.baseBlock = BLOCK_AMT;
-        this.block = this.baseBlock;
+        this.baseThirdMagicNumber = BASE_MAGIC3;
+        this.thirdMagicNumber = this.baseThirdMagicNumber;
         this.intent = AbstractMonster.Intent.MAGIC;
         this.exhaust = true;
-        this.tags.add(GkmasCardTag.GOOD_TUNE_TAG);
+        this.tags.add(GkmasCardTag.COST_POWER_TAG);
     }
 
 
@@ -67,15 +69,16 @@ public class ENCheckPosition extends GkmasBossCard {
     public void use(AbstractPlayer p, AbstractMonster m) {
         addToBot(new ApplyPowerAction(m, m, new StrengthPower(m, -this.magicNumber), -this.magicNumber));
         addToBot(new GainBlockAction(m, m, this.block));
-        addToBot(new DamageAction(m, new DamageInfo(m, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
-        addToBot(new ApplyPowerAction(m, m, new NoBlockPower(m, this.secondMagicNumber,false), this.secondMagicNumber));
+        addToBot(new DamageAction(p, new DamageInfo(p, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
+        addToBot(new ApplyPowerAction(p,p,new NotGoodTune(p,this.secondMagicNumber),this.secondMagicNumber));
+        addToBot(new ApplyPowerAction(p,p,new GreatNotGoodTune(p,this.thirdMagicNumber),this.thirdMagicNumber));
     }
 
     @Override
     public boolean canUse(AbstractPlayer p, AbstractMonster m) {
         int count = PlayerHelper.getPowerAmount(m, StrengthPower.POWER_ID);
         if (count >= this.magicNumber)
-            return true;
+            return super.canUse(p, m);
         this.cantUseMessage = CardCrawlGame.languagePack.getUIString("gkmasMod:NotEnoughStrengthPower").TEXT[0];
         return false;
     }
@@ -89,7 +92,7 @@ public class ENCheckPosition extends GkmasBossCard {
     public void upgrade() {
         if (!this.upgraded) {
             upgradeName();
-            upgradeDamage(UPGRADE_PLUS_DMG);
+            upgradeDamage(UPGRADE_MAGIC_PLUS2);
             if (CARD_STRINGS.UPGRADE_DESCRIPTION != null)
                 this.rawDescription = CARD_STRINGS.UPGRADE_DESCRIPTION;
             this.initializeDescription();

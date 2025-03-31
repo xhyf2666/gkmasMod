@@ -14,6 +14,7 @@ import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.downfall.cards.GkmasBossCard;
 import gkmasmod.powers.GoodTune;
+import gkmasmod.powers.NotGoodTune;
 import gkmasmod.utils.ImageHelper;
 import gkmasmod.utils.NameHelper;
 
@@ -33,6 +34,8 @@ public class ENImprovise extends GkmasBossCard {
     private static final int UPGRADE_PLUS_DMG = 3;
 
     private static final int BASE_MAGIC = 3;
+    private static final int BASE_MAGIC2 = 1;
+    private static final int UPGRADE_MAGIC_PLUS2 = 1;
 
 
     private static final CardType TYPE = CardType.ATTACK;
@@ -48,6 +51,8 @@ public class ENImprovise extends GkmasBossCard {
         this.baseDamage = ATTACK_DMG;
         this.baseMagicNumber = BASE_MAGIC;
         this.magicNumber = this.baseMagicNumber;
+        this.baseSecondMagicNumber = BASE_MAGIC2;
+        this.secondMagicNumber = this.baseSecondMagicNumber;
         this.intent = AbstractMonster.Intent.ATTACK_BUFF;
         this.tags.add(GkmasCardTag.GOOD_TUNE_TAG);
     }
@@ -57,6 +62,7 @@ public class ENImprovise extends GkmasBossCard {
     public void use(AbstractPlayer p, AbstractMonster m) {
         addToBot( new DamageAction( p, new DamageInfo( m, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
         addToBot( new ApplyPowerAction( m,  m,  new GoodTune(m, this.magicNumber), this.magicNumber));
+        addToBot(new ApplyPowerAction(p,p,new NotGoodTune(p,this.secondMagicNumber),this.secondMagicNumber));
     }
 
     @Override
@@ -69,6 +75,7 @@ public class ENImprovise extends GkmasBossCard {
         if (!this.upgraded) {
             upgradeName();
             upgradeDamage(UPGRADE_PLUS_DMG);
+            upgradeMagicNumber(UPGRADE_MAGIC_PLUS2);
             if (CARD_STRINGS.UPGRADE_DESCRIPTION != null)
                 this.rawDescription = CARD_STRINGS.UPGRADE_DESCRIPTION;
             this.initializeDescription();

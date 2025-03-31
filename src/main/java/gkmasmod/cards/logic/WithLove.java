@@ -15,14 +15,14 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.DexterityPower;
 import gkmasmod.actions.BlockDamageAction;
 import gkmasmod.actions.DexterityPowerDamageAction;
+import gkmasmod.cardCustomEffect.*;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.powers.ReduceDamageReceive;
-import gkmasmod.utils.IdolData;
-import gkmasmod.utils.NameHelper;
-import gkmasmod.utils.PlayerHelper;
-import gkmasmod.utils.SoundHelper;
+import gkmasmod.utils.*;
+
+import java.util.ArrayList;
 
 public class WithLove extends GkmasCard {
     private static final String CLASSNAME = WithLove.class.getSimpleName();
@@ -61,6 +61,11 @@ public class WithLove extends GkmasCard {
         flavor = FlavorText.CardStringsFlavorField.flavor.get(CARD_STRINGS);
         this.backGroundColor = IdolData.kllj;
         updateBackgroundImg();
+        this.customLimit = 1;
+        this.customEffectList = new ArrayList<>();
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(BlockCustom.growID, new int[]{3}, new int[]{60}, CustomHelper.CustomEffectType.BLOCK_ADD));
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(CostCustom.growID, new int[]{-1}, new int[]{80}, CustomHelper.CustomEffectType.ENERGY_COST_REDUCE));
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(ExhaustRemoveCustom.growID,new int[]{0},new int[]{80},CustomHelper.CustomEffectType.EXHAUST_REMOVE));
     }
 
 

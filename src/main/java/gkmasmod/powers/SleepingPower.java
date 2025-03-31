@@ -66,6 +66,9 @@ public class SleepingPower extends AbstractPower {
         } else {
             AbstractDungeon.actionManager.addToBottom(new ReducePowerAction(this.owner, this.owner, this, 1));
         }
+        if(this.owner.hasPower(IdolExamPower.POWER_ID)){
+            this.owner.getPower(IdolExamPower.POWER_ID).atEndOfTurn(false);
+        }
     }
 
     public void onInitialApplication() {

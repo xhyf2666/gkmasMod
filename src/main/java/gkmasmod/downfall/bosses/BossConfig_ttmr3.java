@@ -1,5 +1,7 @@
 package gkmasmod.downfall.bosses;
 
+import gkmasmod.downfall.cards.free.ENEatFruit;
+import gkmasmod.downfall.cards.free.ENReallyNotBad;
 import gkmasmod.downfall.charbosses.bosses.AbstractBossDeckArchetype;
 import gkmasmod.downfall.charbosses.bosses.AbstractCharBoss;
 import gkmasmod.downfall.charbosses.relics.CBR_Mango;
@@ -14,6 +16,7 @@ import gkmasmod.downfall.cards.logic.*;
 import gkmasmod.downfall.relics.CBR_ClumsyBat;
 import gkmasmod.downfall.relics.CBR_ProducerPhone;
 import gkmasmod.downfall.relics.CBR_ThisIsMe;
+import gkmasmod.powers.*;
 
 import java.util.ArrayList;
 
@@ -43,6 +46,12 @@ public class BossConfig_ttmr3 extends AbstractBossDeckArchetype {
         addRelic(new CBR_ClumsyBat());
         addRelic(new CBR_ThisIsMe());
         addRelic(new CBR_ProducerPhone());
+        AbstractCreature p = AbstractCharBoss.boss;
+        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new NegativeNotPower(p, 3), 3));
+        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new WakuWakuPower(p,2),2));
+        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new IsENotAPower(p,5),5));
+        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new RainbowDreamerPower(p,2),2));
+        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new CallMeAnyTimePower(p,1),1));
     }
 
     @Override
@@ -52,27 +61,20 @@ public class BossConfig_ttmr3 extends AbstractBossDeckArchetype {
         if (!looped) {
             switch (turn) {
                 case 0:
-                    addToList(cardsList,new ENBeforeThePerformance(),extraUpgrades);
-                    addToList(cardsList, new ENUnstoppableThoughts(),extraUpgrades);
+                    addToList(cardsList, new ENEatFruit(),true);
+                    addToList(cardsList, new ENUnstoppableThoughts(),true);
                     addToList(cardsList, new ENStruggleHandmade(),extraUpgrades);
-                    addToList(cardsList, new ENWakuWaku(),extraUpgrades);
-                    addToList(cardsList, new ENCallMeAnyTime(),extraUpgrades);
-                    addToList(cardsList, new ENIsENotA(), extraUpgrades);
+                    addToList(cardsList, new ENFlowerBouquet(),extraUpgrades);
+                    addToList(cardsList, new ENIamBigStar(),extraUpgrades);
+                    addToList(cardsList, new ENHardStretching(), true);
                     turn++;
                     break;
                 case 1:
-                    addToList(cardsList, new ENImaginaryTraining(), true);
-                    addToList(cardsList, new ENFlowerBouquet(),extraUpgrades);
-                    addToList(cardsList, new ENHardStretching(), true);
-                    addToList(cardsList, new ENRainbowDreamer(), true);
-                    addToList(cardsList, new ENIamBigStar(),extraUpgrades);
-                    addToList(cardsList, new ENBaseAwareness(),extraUpgrades);
-                    turn++;
-                    break;
-                case 2:
-                    addToList(cardsList, new ENSparklingConfetti(),extraUpgrades);
+                    addToList(cardsList, new ENReallyNotBad(),true);
+                    addToList(cardsList, new ENBaseAwareness(),true);
                     addToList(cardsList, new ENFlowerBouquet(), extraUpgrades);
                     addToList(cardsList, new ENHandwrittenLetter(),extraUpgrades);
+                    addToList(cardsList, new ENSparklingConfetti(),extraUpgrades);
                     addToList(cardsList, new ENPromiseThatTime());
                     turn = 0;
                     looped = true;
@@ -81,8 +83,10 @@ public class BossConfig_ttmr3 extends AbstractBossDeckArchetype {
         } else {
             switch (turn) {
                 case 0:
+                    addToList(cardsList, new ENEatFruit(),true);
                     addToList(cardsList, new ENSparklingConfetti(),extraUpgrades);
                     addToList(cardsList, new ENFlowerBouquet(),extraUpgrades);
+                    addToList(cardsList, new ENHandwrittenLetter(),extraUpgrades);
                     addToList(cardsList, new ENGirlHeart());
                     addToList(cardsList, new ENPromiseThatTime());
                     break;

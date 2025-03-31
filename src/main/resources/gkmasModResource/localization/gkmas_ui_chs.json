@@ -12,7 +12,7 @@
     "TEXT": ["IDOL:非凡"]
   },
   "gkmasMod:misuzu": {
-    "TEXT": ["秦谷美玲"]
+    "TEXT": ["秦谷美铃"]
   },
   "gkmasMod:moon": {
     "TEXT": ["极月"]
@@ -34,6 +34,18 @@
   },
   "typeHint:anomaly": {
     "TEXT": ["卡池为非凡卡和通用卡，在 #y温存 、 #y强气 和 #y全力 三态间灵活切换。"]
+  },
+  "gkmasMod:Name:update": {
+    "TEXT": ["慎选"]
+  },
+  "gkmasMod:Hint:update": {
+    "TEXT": ["初始拥有遗物 #y感理之衡 。 NL 卡池中将同时出现 #y理性 、 #y感性 和 #y非凡 卡。"]
+  },
+  "gkmasMod:Name:hide": {
+    "TEXT": ["换皮折叠"]
+  },
+  "gkmasMod:Hint:hide": {
+    "TEXT": ["合并所有技能组相同的换皮。"]
   },
   "styleHintName:goodTune": {
     "TEXT": ["好调"]
@@ -72,7 +84,7 @@
     "TEXT": ["在 #y强气 和 #y温存 间灵活切换，叠加 #y成长 。"]
   },
   "gkmasMod:PocketBookUI": {
-    "TEXT": ["姓名","班级","生日","年龄","身高","体重","三维","兴趣","朋友","特长","关闭","下一页","考核标准","满足考核标准可以使担当偶像更容易通过最终考核。","育成课题","完成育成课题后，可以获得对应奖励。 NL 育成课题需要按顺序完成。"]
+    "TEXT": ["姓名","班级","生日","年龄","身高","体重","三维","兴趣","对手","特长","关闭","下一页","考核标准","满足考核标准可以使担当偶像更容易通过最终考核。","育成课题","完成育成课题后，可以获得对应奖励。 NL 育成课题需要按顺序完成。"]
   },
   "gkmasMod:PlanReward1": {
     "TEXT": ["获得 #b50 金币。 选择特殊遗物。"]
@@ -98,6 +110,12 @@
   "gkmasMod:NotEnoughGoodTune": {
     "TEXT": ["好调还不够"]
   },
+  "gkmasMod:NotEnoughMoney": {
+    "TEXT": ["金币还不够"]
+  },
+  "gkmasMod:NotEnoughBlock": {
+    "TEXT": ["格挡还不够"]
+  },
   "gkmasMod:NotStance": {
     "TEXT": ["未进入姿态"]
   },
@@ -112,6 +130,15 @@
   },
   "gkmasMod:NotEnoughFullPowerValue": {
     "TEXT": ["全力值还不够"]
+  },
+  "gkmasMod:NotEnoughPreservationStanceTime": {
+    "TEXT": ["进入温存次数还不够"]
+  },
+  "gkmasMod:NotEnoughConcentrationStanceTime": {
+    "TEXT": ["进入强气次数还不够"]
+  },
+  "gkmasMod:NotEnoughFullPowerStanceTime": {
+    "TEXT": ["进入全力次数还不够"]
   },
   "gkmasMod:ProudStudentAction": {
     "TEXT": ["选择一张卡保留"]
@@ -131,11 +158,14 @@
   "gkmasMod:AlternativesAction": {
     "TEXT": ["，第一张牌转化为第二张牌"]
   },
+  "gkmasMod:AssimilationAction": {
+    "TEXT": ["，选择一张手牌转化为眠气"]
+  },
   "gkmasMod:ProducingIsChallengingAction": {
     "TEXT": ["转移成长效果"]
   },
   "gkmasMod:TurnBackAction": {
-    "TEXT": ["选择一张手牌","选择一张消耗卡"]
+    "TEXT": ["选择一张手牌","选择一张卡"]
   },
   "gkmasMod:Retain": {
     "TEXT": ["保留 。"]
@@ -146,17 +176,44 @@
   "gkmasMod:WakeUpHeader": {
     "TEXT": ["并非"]
   },
+  "gkmasMod:DoNotGoHeader": {
+    "TEXT": ["(ノДＴ)"]
+  },
+  "gkmasMod:LunaSayHeader": {
+    "TEXT": ["「LUNA」"]
+  },
+  "gkmasMod:FirstWantToRunHeader": {
+    "TEXT": ["「MOON」"]
+  },
+  "gkmasMod:SleepyHeader": {
+    "TEXT": ["「怠惰」"]
+  },
+  "gkmasMod:EatEmptyYourRefrigeratorHeader": {
+    "TEXT": ["「暴食」"]
+  },
+  "gkmasMod:RumorHeader": {
+    "TEXT": ["「嫉妒」"]
+  },
+  "gkmasMod:ResultWillNotChangeHeader": {
+    "TEXT": ["「傲慢」"]
+  },
+  "gkmasMod:KissHeader": {
+    "TEXT": ["「色欲」"]
+  },
+  "gkmasMod:WorkFighterHeader": {
+    "TEXT": ["「贪婪」"]
+  },
   "gkmasMod:GachaAgainHeader": {
     "TEXT": ["万代凯子"]
   },
   "gkmasMod:FutureTrajectory": {
-    "TEXT": ["白线"]
+    "TEXT": ["「白线」"]
   },
   "gkmasMod:CallMeAnyTimeHeader": {
     "TEXT": ["没事也可以打电话"]
   },
   "gkmasMod:ListenToMyTrueHeartHeader": {
-    "TEXT": ["あのね"]
+    "TEXT": ["「あのね」"]
   },
   "gkmasMod:MotherAIHeader": {
     "TEXT": ["MOTHER"]
@@ -170,8 +227,22 @@
   },
   "gkmasMod:SpecialTeachOption": {
     "TEXT": [
-      "特别指导(自由行动)",
+      "特别指导",
       "进行卡牌定制。",
+      "已经进入过了。"
+    ]
+  },
+  "gkmasMod:SupplyOption": {
+    "TEXT": [
+      "支给",
+      "获得金币和特殊卡牌。",
+      "已经进入过了。"
+    ]
+  },
+  "gkmasMod:SelectBossOption": {
+    "TEXT": [
+      "决定前路(自由行动)",
+      "选择最终Boss。",
       "已经进入过了。"
     ]
   },
@@ -180,6 +251,12 @@
   },
   "gkmasMod:BattlePracticeAction": {
     "TEXT": ["选择%s张卡暂存。"]
+  },
+  "gkmasMod:GetAnswerSelectAction": {
+    "TEXT": ["选择%s张星光加入手牌。"]
+  },
+  "gkmasMod:SelectCardFromDiscardAndDrawAction": {
+    "TEXT": ["选择%s张牌加入手牌。"]
   },
   "gkmasMod:FirstHeartProofChinaTip": {
     "TEXT": ["当前可造成%d伤害"]
@@ -203,7 +280,7 @@
     "TEXT": ["卡牌解锁率超过 #b70 %。 NL 随机 #b2 张 初始卡牌升级。"]
   },
   "gkmasMod:Hint:achievement2": {
-    "TEXT": ["战胜过美玲。 NL #y专属卡 升级。"]
+    "TEXT": ["战胜过美铃。 NL #y专属卡 升级。"]
   },
   "gkmasMod:UnitName:One": {
     "TEXT": ["点"]
@@ -233,27 +310,32 @@
   },
   "growEffect:DamageGrow": {
     "TEXT": [
-      "伤害追加 %d"
+      "gkmasmod:伤害追加 %d"
     ]
   },
   "growEffect:AttackTimeGrow": {
     "TEXT": [
-      "连击 %d"
+      "gkmasmod:连击 %d"
+    ]
+  },
+  "growEffect:BlockTimeGrow": {
+    "TEXT": [
+      "gkmasmod:连盾 %d"
     ]
   },
   "growEffect:DrawCardGrow": {
     "TEXT": [
-      "抽牌追加 %d"
+      "gkmasmod:抽牌追加 %d"
     ]
   },
   "growEffect:EnergyGrow": {
     "TEXT": [
-      "耗能追加 %d"
+      "gkmasmod:耗能追加 %d"
     ]
   },
   "growEffect:EnergyReduceGrow": {
     "TEXT": [
-      "耗能减少 %d"
+      "gkmasmod:耗能减少 %d"
     ]
   },
   "growEffect:BlockGrow": {
@@ -276,19 +358,31 @@
       "不能被打出"
     ]
   },
+  "growEffect:SleepyGrow": {
+    "TEXT": [
+      "gkmasmod:梦游"
+    ]
+  },
   "customEffect:MoreActionCustom": {
     "TEXT": [
-      "再动"
+      "gkmasmod:再动"
+    ]
+  },
+  "customEffect:TempMoreActionCustom": {
+    "TEXT": [
+      "gkmasmod:临时再动"
     ]
   },
   "customEffect:AttackTimeCustom": {
     "TEXT": [
-      "连击 %d"
+      "造成 !D! 点伤害。",
+      "造成 !D! 点伤害 %d次。"
     ]
   },
   "customEffect:BlockTimeCustom": {
     "TEXT": [
-      "连盾 %d"
+      "获得 !B! 点 格挡 。",
+      "获得 !B! 点 格挡 %d次。"
     ]
   },
   "customEffect:VigorCustom": {
@@ -309,7 +403,7 @@
   "customEffect:ExhaustRemoveCustom": {
     "TEXT": [
       " 消耗 。",
-      " 除外 。"
+      " gkmasmod:除外 。"
     ]
   },
   "customEffect:InnateCustom": {
@@ -324,32 +418,57 @@
   },
   "customEffect:StrengthCustom": {
     "TEXT": [
-      "获得%d层 力量 。"
+      "获得%d点 力量 。"
     ]
   },
   "customEffect:DexterityCustom": {
     "TEXT": [
-      "获得%d层 敏捷 。"
+      "获得%d点 敏捷 。"
     ]
   },
   "customEffect:GoodImpressionCustom": {
     "TEXT": [
-      "获得%d层 好印象 。"
+      "获得%d层 gkmasmod:好印象 。"
     ]
   },
   "customEffect:GoodTuneCustom": {
     "TEXT": [
-      "获得%d层 好调 。"
+      "获得%d层 gkmasmod:好调 。"
+    ]
+  },
+  "customEffect:EnthusiasticCustom": {
+    "TEXT": [
+      "获得%d层 gkmasmod:热意 。"
+    ]
+  },
+  "customEffect:TopSkyCustom": {
+    "TEXT": [
+      "获得%d层 gkmasmod:上浮 。"
     ]
   },
   "customEffect:GreatGoodTuneCustom": {
     "TEXT": [
-      "获得%d层 绝好调 。"
+      "获得%d层 gkmasmod:绝好调 。"
+    ]
+  },
+  "customEffect:FullPowerValueCustom": {
+    "TEXT": [
+      "获得%d点 gkmasmod:全力值 。"
     ]
   },
   "customEffect:SlowCustom": {
     "TEXT": [
       "使目标获得%d层 缓慢 。"
+    ]
+  },
+  "customEffect:NotGoodTuneCustom": {
+    "TEXT": [
+      "使目标获得%d层 gkmasmod:不调 。"
+    ]
+  },
+  "customEffect:NotGreatGoodTuneCustom": {
+    "TEXT": [
+      "使目标获得%d层 gkmasmod:绝不调 。"
     ]
   },
   "customEffect:DexterityRateAttackCustom": {
@@ -359,7 +478,7 @@
   },
   "customEffect:GoodImpressionRateAttackCustom": {
     "TEXT": [
-      "造成 好印象 层数 %d %% 的伤害。"
+      "造成 gkmasmod:好印象 层数 %d %% 的伤害。"
     ]
   },
   "customEffect:BlockRateAttackCustom": {
@@ -369,12 +488,12 @@
   },
   "customEffect:GoodTuneRateAttackCustom": {
     "TEXT": [
-      "造成 好调 层数 %d %% 的伤害。"
+      "造成 gkmasmod:好调 层数 %d %% 的伤害。"
     ]
   },
   "customEffect:GreatGoodTuneRateAttackCustom": {
     "TEXT": [
-      "造成 绝好调 层数 %d %% 的伤害。"
+      "造成 gkmasmod:绝好调 层数 %d %% 的伤害。"
     ]
   },
   "customEffect:DrawCardCustom": {
@@ -382,64 +501,134 @@
       "抽 %d 张牌。"
     ]
   },
-  "customEffect:BlockAdd": {
+  "customEffect:UpgradeAllHandCustom": {
     "TEXT": [
-      "格挡增加 %d"
-    ]
-  },
-  "customEffect:DamageAdd": {
-    "TEXT": [
-      "伤害增加 %d"
-    ]
-  },
-  "customEffect:AttackTimeAdd": {
-    "TEXT": [
-      "伤害次数增加 %d"
-    ]
-  },
-  "customEffect:DrawCardAdd": {
-    "TEXT": [
-      "抽牌增加 %d"
-    ]
-  },
-  "customEffect:EnergyCostReduce": {
-    "TEXT": [
-      "耗能减少 %d"
-    ]
-  },
-  "customEffect:GoodTuneAdd": {
-    "TEXT": [
-      "好调增加 %d"
-    ]
-  },
-  "customEffect:GreatGoodTuneAdd": {
-    "TEXT": [
-      "绝好调增加 %d"
-    ]
-  },
-  "customEffect:StrengthAdd": {
-    "TEXT": [
-      "力量增加 %d"
-    ]
-  },
-  "customEffect:DexterityAdd": {
-    "TEXT": [
-      "敏捷增加 %d"
-    ]
-  },
-  "customEffect:GoodImpressionAdd": {
-    "TEXT": [
-      "好印象增加 %d"
+      "强化所有手牌。"
     ]
   },
   "customEffect:HalfDamageReceiveCustom": {
     "TEXT": [
-      "受伤锐减增加 %d"
+      "获得 %d 层 gkmasmod:受伤锐减 。"
+    ]
+  },
+  "customEffect:BlockAdd": {
+    "TEXT": [
+      "格挡%+d"
+    ]
+  },
+  "customEffect:DamageAdd": {
+    "TEXT": [
+      "伤害%+d"
+    ]
+  },
+  "customEffect:AttackTimeAdd": {
+    "TEXT": [
+      "伤害次数%+d"
+    ]
+  },
+  "customEffect:BlockTimeAdd": {
+    "TEXT": [
+      "格挡次数%+d"
+    ]
+  },
+  "customEffect:UseTimeAdd": {
+    "TEXT": [
+      "使用次数%+d"
+    ]
+  },
+  "customEffect:DrawCardAdd": {
+    "TEXT": [
+      "抽牌%+d"
+    ]
+  },
+  "customEffect:EnergyCostReduce": {
+    "TEXT": [
+      "耗能%+d"
+    ]
+  },
+  "customEffect:GoodTuneAdd": {
+    "TEXT": [
+      "好调%+d"
+    ]
+  },
+  "customEffect:GreatGoodTuneAdd": {
+    "TEXT": [
+      "绝好调%+d"
+    ]
+  },
+  "customEffect:NotGoodTuneAdd": {
+    "TEXT": [
+      "不调%+d"
+    ]
+  },
+  "customEffect:NotGreatGoodTuneAdd": {
+    "TEXT": [
+      "绝不调%+d"
+    ]
+  },
+  "customEffect:StrengthAdd": {
+    "TEXT": [
+      "力量%+d"
+    ]
+  },
+  "customEffect:SlowAdd": {
+    "TEXT": [
+      "缓慢%+d"
+    ]
+  },
+  "customEffect:DexterityAdd": {
+    "TEXT": [
+      "敏捷%+d"
+    ]
+  },
+  "customEffect:GoodImpressionAdd": {
+    "TEXT": [
+      "好印象%+d"
+    ]
+  },
+  "customEffect:EnthusiasticAdd": {
+    "TEXT": [
+      "热意%+d"
+    ]
+  },
+  "customEffect:TopSkyAdd": {
+    "TEXT": [
+      "上浮%+d"
+    ]
+  },
+  "customEffect:FullPowerValueAdd": {
+    "TEXT": [
+      "全力值%+d"
+    ]
+  },
+  "customEffect:ConcentrationAdd": {
+    "TEXT": [
+      "强气%+d"
+    ]
+  },
+  "customEffect:PreservationAdd": {
+    "TEXT": [
+      "温存%+d"
+    ]
+  },
+  "customEffect:NextTurnPreservation": {
+    "TEXT": [
+      "下回合温存"
+    ]
+  },
+  "customEffect:EndTurnPreservation": {
+    "TEXT": [
+      "回合结束温存"
+    ]
+  },
+  "customEffect:TempSaveAdd": {
+    "TEXT": [
+      "暂存%+d"
     ]
   },
   "customEffect:RateAdd": {
     "TEXT": [
-      "倍率增加 %d %%"
+      "倍率%+d%%"
     ]
   },
   "customEffect:EffectAdd": {
@@ -457,49 +646,64 @@
       "效果削除"
     ]
   },
+  "customEffect:GrowEffectAdd": {
+    "TEXT": [
+      "成长效果追加"
+    ]
+  },
+  "customEffect:GrowEffectChange": {
+    "TEXT": [
+      "成长效果变更"
+    ]
+  },
+  "customEffect:GrowEffectReduce": {
+    "TEXT": [
+      "成长效果削除"
+    ]
+  },
   "customEffect:DexterityRateAttack": {
     "TEXT": [
-      "追加敏捷倍率伤害 %d %%"
+      "敏捷倍率伤害%+d%%"
     ]
   },
   "customEffect:BlockRateAttack": {
     "TEXT": [
-      "追加格挡倍率伤害 %d %%"
+      "格挡倍率伤害%+d%%"
     ]
   },
   "customEffect:GoodImpressionRateAttack": {
     "TEXT": [
-      "追加好印象倍率伤害 %d %%"
+      "好印象倍率伤害%+d%%"
     ]
   },
   "customEffect:GoodTuneRateAttack": {
     "TEXT": [
-      "追加好调倍率伤害 %d %%"
+      "好调倍率伤害%+d%%"
     ]
   },
   "customEffect:GreatGoodTuneRateAttack": {
     "TEXT": [
-      "追加绝好调倍率伤害 %d %%"
+      "绝好调倍率伤害%+d%%"
     ]
   },
   "customEffect:VigorAdd": {
     "TEXT": [
-      "活力增加 %d"
+      "活力%+d"
     ]
   },
   "customEffect:HpReduce": {
     "TEXT": [
-      "体力减少 %d"
+      "体力%+d"
     ]
   },
   "customEffect:HalfDamageReceiveAdd": {
     "TEXT": [
-      "受伤锐减效果延长 %d"
+      "受伤锐减%+d"
     ]
   },
-  "customEffect:HalfDamageReceiveReduce": {
+  "customEffect:DoubleDamageAddReduce": {
     "TEXT": [
-      "受伤剧增效果缩短 %d"
+      "受伤剧增%+d"
     ]
   },
   "customEffect:ExhaustRemove": {
@@ -512,7 +716,7 @@
       "固有"
     ]
   },
-  "customEffect:SelfRetain": {
+  "customEffect:SelfRetainAdd": {
     "TEXT": [
       "保留"
     ]
@@ -522,9 +726,34 @@
       "临时再动 %d "
     ]
   },
-  "customEffect:MoreActionReduce": {
+  "customEffect:MoreActionAdd": {
     "TEXT": [
       "再动 "
+    ]
+  },
+  "customEffect:UpgradeAllHand": {
+    "TEXT": [
+      "强化所有手牌"
+    ]
+  },
+  "gkmasMod:SpecialTeachScreen": {
+    "TEXT": [
+      "确认",
+      "返回",
+      "确认你的选择",
+      "离开",
+      "(剩余%d次)",
+      "当前还可指导%d次",
+      "累计可指导%d次"
+    ]
+  },
+  "gkmasMod:EatFruit": {
+    "TEXT": [
+      "好吃好吃好吃",
+      "吃这个，应该不会长胖吧？",
+      "再来一个",
+      "谢谢你，美铃",
+      "……这个……有毒……不能吃"
     ]
   }
 }

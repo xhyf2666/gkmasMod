@@ -40,10 +40,12 @@ public class WantToSleep extends AbstractPower {
         this.region48 = new TextureAtlas.AtlasRegion(ImageMaster.loadImage(path48), 0, 0, 32, 32);
 
         if (this.amount >= 10) {
-            this.addToTop(new ChangeStanceAction(SleepStance.STANCE_ID));
+            if(this.owner.hasPower(StanceLock.POWER_ID))
+                return;
+            this.addToBot(new ChangeStanceAction(SleepStance.STANCE_ID));
             this.amount -= 10;
             if (this.amount <= 0) {
-                this.addToTop(new RemoveSpecificPowerAction(this.owner, this.owner, this.ID));
+                this.addToBot(new RemoveSpecificPowerAction(this.owner, this.owner, this.ID));
             }
         }
 
@@ -54,12 +56,15 @@ public class WantToSleep extends AbstractPower {
     public void stackPower(int stackAmount) {
         super.stackPower(stackAmount);
         if (this.amount >= 10) {
-            this.addToTop(new ChangeStanceAction(SleepStance.STANCE_ID));
+            if(this.owner.hasPower(StanceLock.POWER_ID))
+                return;
+            this.addToBot(new ChangeStanceAction(SleepStance.STANCE_ID));
             this.amount -= 10;
             if (this.amount <= 0) {
-                this.addToTop(new RemoveSpecificPowerAction(this.owner, this.owner, this.ID));
+                this.addToBot(new RemoveSpecificPowerAction(this.owner, this.owner, this.ID));
             }
         }
+        updateDescription();
     }
 
     // 能力在更新时如何修改描述

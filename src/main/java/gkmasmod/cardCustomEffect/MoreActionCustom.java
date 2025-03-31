@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import gkmasmod.actions.GainTrainRoundPowerAction;
 import gkmasmod.cards.GkmasCardTag;
+import gkmasmod.cards.anomaly.GetAnswer;
 
 public class MoreActionCustom extends AbstractCardCustomEffect {
 

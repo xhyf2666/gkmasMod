@@ -16,9 +16,12 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon.CurrentScreen;
 import com.megacrit.cardcrawl.helpers.*;
 import com.megacrit.cardcrawl.helpers.controller.CInputActionSet;
 import com.megacrit.cardcrawl.helpers.input.InputHelper;
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import gkmasmod.characters.IdolCharacter;
+import gkmasmod.characters.MisuzuCharacter;
+import gkmasmod.downfall.bosses.*;
 import gkmasmod.relics.ChristmasLion;
 import gkmasmod.relics.PocketBook;
 import gkmasmod.utils.IdolData;
@@ -28,6 +31,8 @@ import gkmasmod.utils.ThreeSizeHelper;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public class PocketBookViewScreen extends CustomScreen {
     public static final String[] TEXT = CardCrawlGame.languagePack.getUIString("gkmasMod:PocketBookUI").TEXT;
@@ -117,6 +122,9 @@ public class PocketBookViewScreen extends CustomScreen {
     private String planReward2;
     private String planReward3;
     private static String[] type2String = new String[]{"VO", "DA", "VI"};
+    private Texture friendImg1;
+    private Texture friendImg2;
+    private Texture friendImg3;
     
     private float proceedX =1760.0F * Settings.xScale;
     private float proceedY = 200.0F * Settings.scale;
@@ -200,6 +208,57 @@ public class PocketBookViewScreen extends CustomScreen {
                 this.vi_require = String.valueOf(IdolData.getIdol(idolName).getAnotherThreeSizeRequire(2));
                 this.idolBarImg = ImageMaster.loadImage(String.format("gkmasModResource/img/report/bar/%s_bar_2.png", idolName));
             }
+            this.idolTextImg = ImageMaster.loadImage(String.format("gkmasModResource/img/report/text/jp/%s_00%s.png", idolName,IdolData.getIdol(idolName).getText(step)));
+            this.idolEmojiImg1 = ImageMaster.loadImage(String.format("gkmasModResource/img/report/emoji/%s_01.png", idolName));
+            this.idolEmojiImg2 = ImageMaster.loadImage(String.format("gkmasModResource/img/report/emoji/%s_02.png", idolName));
+            this.idolEmojiImg3 = ImageMaster.loadImage(String.format("gkmasModResource/img/report/emoji/%s_03.png", idolName));
+            this.idolDisplayImg1 = ImageMaster.loadImage(String.format("gkmasModResource/img/report/display/%s_001.png", idolName));
+            this.idolDisplayImg2 = ImageMaster.loadImage(String.format("gkmasModResource/img/report/display/%s_002.png", idolName));
+            this.idolDisplayImg3 = ImageMaster.loadImage(String.format("gkmasModResource/img/report/display/%s_003.png", idolName));
+            this.idolDisplayImg4 = ImageMaster.loadImage(String.format("gkmasModResource/img/report/display/%s_004.png", idolName));
+            this.idolDisplayImg5 = ImageMaster.loadImage(String.format("gkmasModResource/img/report/display/%s_005.png", idolName));
+        }
+        else if(AbstractDungeon.player instanceof MisuzuCharacter){
+            String tmpIdolName = IdolData.hmsz;
+            this.idolHeaderImg = ImageMaster.loadImage(String.format("gkmasModResource/img/report/header/%s_001.png", tmpIdolName));
+            this.idolGraphImg = ImageMaster.loadImage(String.format("gkmasModResource/img/report/growth/cn/%s_00%d.png", tmpIdolName,1));
+            this.idolDisplayName = AbstractDungeon.player.title;
+            this.idolClass = CardCrawlGame.languagePack.getCharacterString(NameHelper.addSplitWords("IdolClass",tmpIdolName)).TEXT[0];
+            this.idolBirthday = CardCrawlGame.languagePack.getCharacterString(NameHelper.addSplitWords("IdolBirthday",tmpIdolName)).TEXT[0];
+            this.idolAge = CardCrawlGame.languagePack.getCharacterString(NameHelper.addSplitWords("IdolAge",tmpIdolName)).TEXT[0];
+            this.idolHeight = CardCrawlGame.languagePack.getCharacterString(NameHelper.addSplitWords("IdolHeight",tmpIdolName)).TEXT[0];
+            this.idolWeight = CardCrawlGame.languagePack.getCharacterString(NameHelper.addSplitWords("IdolWeight",tmpIdolName)).TEXT[0];
+            this.idolThreeSize = "??";
+            this.idolInterest = CardCrawlGame.languagePack.getCharacterString(NameHelper.addSplitWords("IdolInterest",tmpIdolName)).TEXT[0];
+            this.idolSkill = CardCrawlGame.languagePack.getCharacterString(NameHelper.addSplitWords("IdolSkill",tmpIdolName)).TEXT[0];
+            this.planRequire1 = "??";
+            this.planRequire2 = "??";
+            this.planRequire3 = "??";
+            this.planReward1 = "??";
+            this.planReward2 = "??";
+            this.planReward3 = "??";
+            this.idolPlan1 = "??";
+            this.idolPlan2 = "??";
+            this.idolPlan3 = "??";
+            this.idolRequire = "??";
+            this.planTypes = IdolData.hmszData.getPlanTypes();
+            this.planRequires = IdolData.hmszData.getPlanRequires();
+            this.splitInterest = this.idolInterest.indexOf(" NL ") > 0;
+            this.splitSkill = this.idolSkill.indexOf(" NL ") > 0;
+            this.idolComments = new String[0];
+            this.idolBarImg = ImageMaster.loadImage(String.format("gkmasModResource/img/report/bar/%s_bar.png", "amao"));
+            this.vo_require = String.valueOf(IdolData.hmszData.getThreeSizeRequire(0));
+            this.da_require = String.valueOf(IdolData.hmszData.getThreeSizeRequire(1));
+            this.vi_require = String.valueOf(IdolData.hmszData.getThreeSizeRequire(2));
+            this.idolTextImg = ImageMaster.loadImage(String.format("gkmasModResource/img/report/text/jp/%s_00%d.png", tmpIdolName,1));
+            this.idolEmojiImg1 = ImageMaster.loadImage(String.format("gkmasModResource/img/report/emoji/%s_01.png", tmpIdolName));
+            this.idolEmojiImg2 = ImageMaster.loadImage(String.format("gkmasModResource/img/report/emoji/%s_02.png", tmpIdolName));
+            this.idolEmojiImg3 = ImageMaster.loadImage(String.format("gkmasModResource/img/report/emoji/%s_03.png", tmpIdolName));
+            this.idolDisplayImg1 = ImageMaster.loadImage(String.format("gkmasModResource/img/report/display/%s_001.png", tmpIdolName));
+            this.idolDisplayImg2 = ImageMaster.loadImage(String.format("gkmasModResource/img/report/display/%s_002.png", tmpIdolName));
+            this.idolDisplayImg3 = ImageMaster.loadImage(String.format("gkmasModResource/img/report/display/%s_003.png", tmpIdolName));
+            this.idolDisplayImg4 = ImageMaster.loadImage(String.format("gkmasModResource/img/report/display/%s_004.png", tmpIdolName));
+            this.idolDisplayImg5 = ImageMaster.loadImage(String.format("gkmasModResource/img/report/display/%s_005.png", tmpIdolName));
         }
         else{
             this.idolHeaderImg = ImageMaster.loadImage(String.format("gkmasModResource/img/report/header/%s_001.png", idolName));
@@ -233,6 +292,15 @@ public class PocketBookViewScreen extends CustomScreen {
             this.vo_require = String.valueOf(1000);
             this.da_require = String.valueOf(1000);
             this.vi_require = String.valueOf(1000);
+            this.idolTextImg = ImageMaster.loadImage(String.format("gkmasModResource/img/report/text/jp/%s_00%s.png", idolName,IdolData.getIdol(idolName).getText(step)));
+            this.idolEmojiImg1 = ImageMaster.loadImage(String.format("gkmasModResource/img/report/emoji/%s_01.png", idolName));
+            this.idolEmojiImg2 = ImageMaster.loadImage(String.format("gkmasModResource/img/report/emoji/%s_02.png", idolName));
+            this.idolEmojiImg3 = ImageMaster.loadImage(String.format("gkmasModResource/img/report/emoji/%s_03.png", idolName));
+            this.idolDisplayImg1 = ImageMaster.loadImage(String.format("gkmasModResource/img/report/display/%s_001.png", idolName));
+            this.idolDisplayImg2 = ImageMaster.loadImage(String.format("gkmasModResource/img/report/display/%s_002.png", idolName));
+            this.idolDisplayImg3 = ImageMaster.loadImage(String.format("gkmasModResource/img/report/display/%s_003.png", idolName));
+            this.idolDisplayImg4 = ImageMaster.loadImage(String.format("gkmasModResource/img/report/display/%s_004.png", idolName));
+            this.idolDisplayImg5 = ImageMaster.loadImage(String.format("gkmasModResource/img/report/display/%s_005.png", idolName));
         }
         this.reopen();
         this.vo = ThreeSizeHelper.getVo();
@@ -268,19 +336,12 @@ public class PocketBookViewScreen extends CustomScreen {
         this.voIconImg = ImageMaster.loadImage("gkmasModResource/img/UI/ThreeSize/vo.png");
         this.daIconImg = ImageMaster.loadImage("gkmasModResource/img/UI/ThreeSize/da.png");
         this.viIconImg = ImageMaster.loadImage("gkmasModResource/img/UI/ThreeSize/vi.png");
-        this.idolEmojiImg1 = ImageMaster.loadImage(String.format("gkmasModResource/img/report/emoji/%s_01.png", idolName));
-        this.idolEmojiImg2 = ImageMaster.loadImage(String.format("gkmasModResource/img/report/emoji/%s_02.png", idolName));
-        this.idolEmojiImg3 = ImageMaster.loadImage(String.format("gkmasModResource/img/report/emoji/%s_03.png", idolName));
         this.idolCommentImg = new ArrayList<>();
         for (int i = 0; i < this.idolComments.length; i++) {
             this.idolCommentImg.add(ImageMaster.loadImage(String.format("gkmasModResource/img/report/comment/jp/%s_00%s.png", idolName, idolComments[i])));
         }
-        this.idolTextImg = ImageMaster.loadImage(String.format("gkmasModResource/img/report/text/jp/%s_00%s.png", idolName,IdolData.getIdol(idolName).getText(step)));
-        this.idolDisplayImg1 = ImageMaster.loadImage(String.format("gkmasModResource/img/report/display/%s_001.png", idolName));
-        this.idolDisplayImg2 = ImageMaster.loadImage(String.format("gkmasModResource/img/report/display/%s_002.png", idolName));
-        this.idolDisplayImg3 = ImageMaster.loadImage(String.format("gkmasModResource/img/report/display/%s_003.png", idolName));
-        this.idolDisplayImg4 = ImageMaster.loadImage(String.format("gkmasModResource/img/report/display/%s_004.png", idolName));
-        this.idolDisplayImg5 = ImageMaster.loadImage(String.format("gkmasModResource/img/report/display/%s_005.png", idolName));
+
+        generateBoss();
     }
 
 
@@ -324,6 +385,7 @@ public class PocketBookViewScreen extends CustomScreen {
             this.renderLine(sb);
             this.renderGrowth(sb);
             this.renderValue(sb);
+//            this.renderFriend(sb);
         }
         if(this.stage==1){
             this.renderBar(sb);
@@ -396,7 +458,9 @@ public class PocketBookViewScreen extends CustomScreen {
 
         FontHelper.renderSmartText(sb, FontHelper.topPanelInfoFont, TEXT[8], x_offset+825.0F*Settings.xScale, y_offset+725.0F*Settings.yScale, 10000.0F, 30.0F * Settings.scale, Settings.CREAM_COLOR);
         sb.draw(this.lineShortImg, x_offset + 815.0F*Settings.xScale, y_offset + 684.0F*Settings.yScale, 128, 8, 256, 16, Settings.scale, Settings.scale, 0.0F, 0, 0, 256, 16, false, false);
-
+        sb.draw(this.friendImg1, x_offset + 880.0F*Settings.xScale, y_offset + 684.0F*Settings.yScale, 64*Settings.xScale,64*Settings.yScale);
+        sb.draw(this.friendImg2, x_offset + 930.0F*Settings.xScale, y_offset + 684.0F*Settings.yScale, 64*Settings.xScale,64*Settings.yScale);
+        sb.draw(this.friendImg3, x_offset + 980.0F*Settings.xScale, y_offset + 684.0F*Settings.yScale, 64*Settings.xScale,64*Settings.yScale);
         if(splitSkill)
             FontHelper.renderSmartText(sb, FontHelper.cardTitleFont, idolSkill, x_offset+1125.0F*Settings.xScale, y_offset+745.0F*Settings.yScale, 10000.0F, 25.0F * Settings.scale, Settings.BLUE_RELIC_COLOR,0.7F);
         else
@@ -507,11 +571,11 @@ public class PocketBookViewScreen extends CustomScreen {
         sb.setColor(Color.WHITE);
 
         if(this.planStep>0)
-            sb.draw(this.clearImg, x_offset + 580.0F*Settings.xScale, y_offset+460.0F*Settings.yScale+75.0F, 128*Settings.xScale,128*Settings.yScale);
+            sb.draw(this.clearImg, x_offset + 580.0F*Settings.xScale, y_offset+500.0F*Settings.yScale+35.0F, 128*Settings.xScale,128*Settings.yScale);
         if(this.planStep>1)
-            sb.draw(this.clearImg, x_offset + 580.0F*Settings.xScale, y_offset+260.0F*Settings.yScale+75.0F, 128*Settings.xScale,128*Settings.yScale);
+            sb.draw(this.clearImg, x_offset + 580.0F*Settings.xScale, y_offset+300.0F*Settings.yScale+35.0F, 128*Settings.xScale,128*Settings.yScale);
         if(this.planStep>2)
-            sb.draw(this.clearImg, x_offset + 580.0F*Settings.xScale, y_offset+60.0F*Settings.yScale+75.0F, 128*Settings.xScale,128*Settings.yScale);
+            sb.draw(this.clearImg, x_offset + 580.0F*Settings.xScale, y_offset+100.0F*Settings.yScale+35.0F, 128*Settings.xScale,128*Settings.yScale);
 
 
         sb.draw(this.idolPlanImg, x_offset + 200.0F*Settings.xScale, y_offset + 70.0F*Settings.scale, 540*Settings.xScale,600*Settings.yScale);
@@ -566,6 +630,63 @@ public class PocketBookViewScreen extends CustomScreen {
                     MathUtils.cos(this.wavyTimer) / 50.0F, 0.0F, 0, 0, 512, 512, false, false);
             sb.setBlendFunction(770, 771);
         }
+    }
+
+    public void generateBoss(){
+        ArrayList<AbstractMonster> bossList = new ArrayList<>();
+        bossList.add(new IdolBoss_amao());
+        bossList.add(new IdolBoss_fktn());
+        bossList.add(new IdolBoss_hrnm());
+        bossList.add(new IdolBoss_hski());
+        bossList.add(new IdolBoss_hume());
+        bossList.add(new IdolBoss_shro());
+        bossList.add(new IdolBoss_kcna());
+        bossList.add(new IdolBoss_kllj());
+        bossList.add(new IdolBoss_ssmk());
+        bossList.add(new IdolBoss_ttmr());
+        bossList.add(new IdolBoss_jsna());
+
+        String curIdolName = "";
+        if(AbstractDungeon.player instanceof IdolCharacter){
+            curIdolName = SkinSelectScreen.Inst.idolName;
+            curIdolName = String.format("IdolBoss_%s",curIdolName);
+        }
+        if(!curIdolName.equals("")){
+            for(int i=0;i<bossList.size();i++){
+                if(bossList.get(i).id.equals(curIdolName)){
+                    bossList.remove(i);
+                    break;
+                }
+            }
+        }
+
+        //使用Setting.seed作为随机数，打乱bosslist的顺序
+        java.util.Random rng = new java.util.Random(Settings.seed);
+        Collections.shuffle(bossList, rng);
+
+        int battle0_1 = 4;
+
+        // 8进4的3位胜者
+        int battle1_1 = rng.nextInt(2);
+        int battle1_2 = rng.nextInt(2)+2;
+        int battle1_3 = rng.nextInt(2)+5;
+
+        // 4进2的1位胜者
+        int battle2_1 = rng.nextInt(2);
+        if(battle2_1 == 0){
+            battle2_1 = battle1_1;
+        }else{
+            battle2_1 = battle1_2;
+        }
+
+        List<String> res = new ArrayList<>();
+        res.add(bossList.get(battle0_1).id.replace("IdolBoss_",""));
+        res.add(bossList.get(battle1_3).id.replace("IdolBoss_",""));
+        res.add(bossList.get(battle2_1).id.replace("IdolBoss_",""));
+
+        this.friendImg1 = ImageMaster.loadImage(String.format("gkmasModResource/img/report/emoji/%s_01.png", res.get(0)));
+        this.friendImg2 = ImageMaster.loadImage(String.format("gkmasModResource/img/report/emoji/%s_01.png", res.get(1)));
+        this.friendImg3 = ImageMaster.loadImage(String.format("gkmasModResource/img/report/emoji/%s_01.png", res.get(2)));
     }
 
 }

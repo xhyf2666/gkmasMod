@@ -18,6 +18,7 @@ import com.megacrit.cardcrawl.vfx.stance.StanceAuraEffect;
 import com.megacrit.cardcrawl.vfx.stance.StanceChangeParticleGenerator;
 import gkmasmod.actions.GainTrainRoundPowerAction;
 import gkmasmod.cards.free.Sleepy;
+import gkmasmod.characters.MisuzuCharacter;
 import gkmasmod.powers.TempSavePower;
 import gkmasmod.powers.WantToSleep;
 import gkmasmod.powers.WhereDreamsArePower;
@@ -59,16 +60,6 @@ public class SleepyStance extends GkmasModStance {
     }
 
     @Override
-    public float atDamageGive(float damage, DamageInfo.DamageType type) {
-        return damage * 0.75F;
-    }
-
-    @Override
-    public float atDamageReceive(float damage, DamageInfo.DamageType damageType) {
-        return damage * 0.75F;
-    }
-
-    @Override
     public void onPlayCard(AbstractCard card) {
         AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(AbstractDungeon.player,AbstractDungeon.player,new WantToSleep(AbstractDungeon.player,1)));
     }
@@ -81,6 +72,9 @@ public class SleepyStance extends GkmasModStance {
     @Override
     public void onEnterStance() {
         AbstractDungeon.actionManager.addToBottom(new MakeTempCardInHandAction(new Sleepy()));
+        if(AbstractDungeon.player instanceof MisuzuCharacter){
+            ((MisuzuCharacter) AbstractDungeon.player).refreshSkin(0);
+        }
     }
 
     @Override
@@ -88,7 +82,6 @@ public class SleepyStance extends GkmasModStance {
 
         this.name = stanceString.NAME;
         this.description = stanceString.DESCRIPTION[0];
-
     }
 
     public void stopIdleSfx() {

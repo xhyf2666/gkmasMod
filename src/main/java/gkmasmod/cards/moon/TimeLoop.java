@@ -46,13 +46,8 @@ public class TimeLoop extends GkmasCard {
         super(ID, NAME, IMG_PATH, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.baseMagicNumber = BASE_MAGIC;
         this.magicNumber = this.baseMagicNumber;
+        this.tags.add(GkmasCardTag.ONLY_ONE_TAG);
         this.exhaust = true;
-        this.tags.add(GkmasCardTag.FULL_POWER_TAG);
-        this.tags.add(GkmasCardTag.FOCUS_TAG);
-        this.tags.add(GkmasCardTag.GOOD_IMPRESSION_TAG);
-        this.tags.add(GkmasCardTag.GOOD_TUNE_TAG);
-        this.tags.add(GkmasCardTag.YARUKI_TAG);
-        this.tags.add(GkmasCardTag.PRESERVATION_TAG);
     }
 
     @Override

@@ -45,9 +45,12 @@ public class EnthusiasticPower extends AbstractPower {
     @Override
     public void stackPower(int stackAmount) {
         super.stackPower(stackAmount);
-        if(this.amount<=0){
-            addToBot(new RemoveSpecificPowerAction(this.owner,this.owner,this));
-        }
+        this.amount += stackAmount;
+        if (this.amount <= 0)
+            addToTop(new RemoveSpecificPowerAction(this.owner, this.owner, this.ID));
+        if(this.amount>999)
+            this.amount = 999;
+        updateDescription();
     }
 
     // 能力在更新时如何修改描述
@@ -61,17 +64,14 @@ public class EnthusiasticPower extends AbstractPower {
     }
 
     public void atEndOfTurn(boolean isPlayer) {
-        if (isPlayer){
-            if(AbstractDungeon.player.hasPower(MayRainPower.POWER_ID)){
-                int amount = PlayerHelper.getPowerAmount(AbstractDungeon.player,EnthusiasticPower.POWER_ID);
-                int reduce = (int) (1.0f * amount / 2);
-                if (reduce>0){
-                    addToBot(new ApplyPowerAction(this.owner, this.owner, new EnthusiasticPower(this.owner, -reduce), -reduce));
-                }
-            }
-            else{
-                addToBot(new RemoveSpecificPowerAction(this.owner, this.owner, POWER_ID));
-            }
+        if(this.owner.hasPower(MayRainPower.POWER_ID)){
+            int amount = PlayerHelper.getPowerAmount(this.owner,EnthusiasticPower.POWER_ID);
+            int reduce = (int) (1.0f * amount / 2);
+            this.amount = reduce;
+            updateDescription();
+        }
+        else{
+            addToBot(new RemoveSpecificPowerAction(this.owner, this.owner, POWER_ID));
         }
 
     }

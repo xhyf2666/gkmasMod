@@ -23,7 +23,6 @@ public class TrueLateBloomerPower extends AbstractPower {
     String path128 = String.format("gkmasModResource/img/powers/%s_84.png",CLASSNAME);
     String path48 = String.format("gkmasModResource/img/powers/%s_32.png",CLASSNAME);
 
-    private static int GOOD_TUNE = 2;
     private static int GREAT_GOOD_TUNE = 1;
 
     private int magic2;
@@ -47,26 +46,40 @@ public class TrueLateBloomerPower extends AbstractPower {
     public TrueLateBloomerPower setMagic2(int magic2){
         if(magic2<this.magic2)
             this.magic2 = magic2;
+        this.updateDescription();
         return this;
     }
 
     // 能力在更新时如何修改描述
     public void updateDescription() {
         if(this.magic2>0)
-            this.description = String.format(DESCRIPTIONS[0],GOOD_TUNE,this.magic2,GREAT_GOOD_TUNE);
+            this.description = String.format(DESCRIPTIONS[0],this.amount,this.magic2,GREAT_GOOD_TUNE);
         else{
-            this.description = String.format(DESCRIPTIONS[1],GOOD_TUNE,GREAT_GOOD_TUNE);
+            this.description = String.format(DESCRIPTIONS[1],this.amount,GREAT_GOOD_TUNE);
         }
     }
 
     @Override
     public void atStartOfTurnPostDraw() {
-        addToBot(new ApplyPowerAction(owner, owner, new GoodTune(owner, GOOD_TUNE), GOOD_TUNE));
+        addToBot(new ApplyPowerAction(owner, owner, new GoodTune(owner, this.amount), this.amount));
         if(this.magic2<=0){
             addToBot(new ApplyPowerAction(owner, owner, new GreatGoodTune(owner, GREAT_GOOD_TUNE), GREAT_GOOD_TUNE));
         }
         else{
             this.magic2--;
+            this.updateDescription();
+        }
+    }
+
+    @Override
+    public void onSpecificTrigger() {
+        addToBot(new ApplyPowerAction(owner, owner, new GoodTune(owner, this.amount), this.amount));
+        if(this.magic2<=0){
+            addToBot(new ApplyPowerAction(owner, owner, new GreatGoodTune(owner, GREAT_GOOD_TUNE), GREAT_GOOD_TUNE));
+        }
+        else{
+            this.magic2--;
+            this.updateDescription();
         }
     }
 

@@ -30,7 +30,7 @@ public class ENTopEntertainment extends GkmasBossCard {
 
     private static final int COST = 2;
 
-    private static final int BASE_MAGIC = 3;
+    private static final int BASE_MAGIC = 2;
     private static final int UPGRADE_PLUS_MAGIC = -1;
     private static final int BASE_MAGIC2 = 4;
     private static final int UPGRADE_PLUS_MAGIC2 = 1;
@@ -55,7 +55,7 @@ public class ENTopEntertainment extends GkmasBossCard {
         this.thirdMagicNumber = this.baseThirdMagicNumber;
         this.intent = AbstractMonster.Intent.BUFF;
         this.exhaust = true;
-        this.tags.add(GkmasCardTag.FOCUS_TAG);
+        this.tags.add(GkmasCardTag.COST_POWER_TAG);
     }
 
 
@@ -76,7 +76,7 @@ public class ENTopEntertainment extends GkmasBossCard {
     public boolean canUse(AbstractPlayer p, AbstractMonster m) {
         int count = PlayerHelper.getPowerAmount(m,StrengthPower.POWER_ID);
         if (count >= magicNumber)
-            return true;
+            return super.canUse(p, m);
         this.cantUseMessage = CardCrawlGame.languagePack.getUIString("gkmasMod:NotEnoughStrengthPower").TEXT[0];
         return false;
     }

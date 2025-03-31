@@ -25,9 +25,10 @@ public class ENHappyTime extends GkmasBossCard {
     private static final String DESCRIPTION = CARD_STRINGS.DESCRIPTION;
     private static String IMG_PATH = ImageHelper.idolImgPath(AbstractCharBoss.theIdolName, CLASSNAME2);
 
-    private static final int COST = 2;
-    private static final int BASE_MAGIC = 8;
-    private static final int UPGRADE_PLUS_MAGIC = 4;
+    private static final int COST = 1;
+    private static final int BASE_MAGIC = 4;
+    private static final int UPGRADE_PLUS_MAGIC = 2;
+    private static final int BASE_MAGIC2 = 2;
 
 
     private static final CardType TYPE = CardType.SKILL;
@@ -41,6 +42,8 @@ public class ENHappyTime extends GkmasBossCard {
         this.updateShowImg = true;
         this.baseMagicNumber = BASE_MAGIC;
         this.magicNumber = this.baseMagicNumber;
+        this.baseSecondMagicNumber = BASE_MAGIC2;
+        this.secondMagicNumber = this.baseSecondMagicNumber;
         this.intent = AbstractMonster.Intent.BUFF;
         this.tags.add(GkmasCardTag.GOOD_IMPRESSION_TAG);
     }

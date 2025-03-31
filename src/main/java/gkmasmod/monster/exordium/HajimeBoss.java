@@ -3,7 +3,6 @@ package gkmasmod.monster.exordium;
 import basemod.abstracts.CustomMonster;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
-import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.ClearCardQueueAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
@@ -288,17 +287,6 @@ public class HajimeBoss extends CustomMonster {
             onFinalBossVictoryLogic();
             AbstractDungeon.effectList.add(new SpeechBubble(this.hb.cX + this.dialogX - 50, this.hb.cY + this.dialogY + 50, 5.0F, DIALOG[1], false));
             CardCrawlGame.stopClock = true;
-            GkmasMod.beat_hmsz++;
-            SpireConfig config = null;
-            try {
-                config = new SpireConfig("GkmasMod", "config");
-                // 读取配置
-                config.setFloat("cardRate",PlayerHelper.getCardRate());
-                config.setInt("beat_hmsz",GkmasMod.beat_hmsz);
-                config.save();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
         }
     }
 

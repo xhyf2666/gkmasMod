@@ -12,10 +12,16 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.NextTurnBlockPower;
 import gkmasmod.actions.SpecialBlockDamageAction;
+import gkmasmod.cardCustomEffect.HPMagicCustom;
+import gkmasmod.cardCustomEffect.MagicCustom;
+import gkmasmod.cardCustomEffect.SecondMagicCustom;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.patches.AbstractPlayerPatch;
+import gkmasmod.utils.CustomHelper;
 import gkmasmod.utils.NameHelper;
+
+import java.util.ArrayList;
 
 public class EnjoySummer extends GkmasCard {
     private static final String CLASSNAME = EnjoySummer.class.getSimpleName();
@@ -29,7 +35,7 @@ public class EnjoySummer extends GkmasCard {
     private static final int COST = 1;
 
     private static final int BASE_MAGIC = 80;
-    private static final int BASE_MAGIC2 = 160;
+    private static final int BASE_MAGIC2 = 200;
 
 
     private static final CardType TYPE = CardType.SKILL;
@@ -47,6 +53,11 @@ public class EnjoySummer extends GkmasCard {
         this.secondMagicNumber = this.baseSecondMagicNumber;
         FlavorText.AbstractCardFlavorFields.boxColor.set(this, CardHelper.getColor(73, 224, 254));
         flavor = FlavorText.CardStringsFlavorField.flavor.get(CARD_STRINGS);
+        this.customLimit = 1;
+        this.customEffectList = new ArrayList<>();
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(SecondMagicCustom.growID, new int[]{50}, new int[]{100}, CustomHelper.CustomEffectType.RATE_ADD));
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(MagicCustom.growID, new int[]{-30}, new int[]{100}, CustomHelper.CustomEffectType.RATE_ADD));
+
     }
 
 

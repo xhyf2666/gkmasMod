@@ -13,13 +13,16 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import gkmasmod.actions.GainTrainRoundPowerAction;
 import gkmasmod.actions.GoodImpressionDamageAction;
 import gkmasmod.actions.HardStretchingAction;
-import gkmasmod.cardCustomEffect.MoreActionCustom;
+import gkmasmod.cardCustomEffect.*;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.powers.GoodImpression;
+import gkmasmod.utils.CustomHelper;
 import gkmasmod.utils.NameHelper;
 import gkmasmod.utils.PlayerHelper;
+
+import java.util.ArrayList;
 
 public class HardStretching extends GkmasCard {
     private static final String CLASSNAME = HardStretching.class.getSimpleName();
@@ -52,6 +55,12 @@ public class HardStretching extends GkmasCard {
         this.baseBlock = BASE_BLOCK;
         this.tags.add(GkmasCardTag.MORE_ACTION_TAG);
         CardModifierManager.addModifier(this,new MoreActionCustom(1));
+        this.customLimit = 1;
+        this.customEffectList = new ArrayList<>();
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(BlockCustom.growID,new int[]{2},new int[]{40},CustomHelper.CustomEffectType.BLOCK_ADD));
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(EffectChangeCustom.growID,new int[]{0},new int[]{70},CustomHelper.CustomEffectType.EFFECT_CHANGE));
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(SecondMagicCustom.growID,new int[]{2},new int[]{80},CustomHelper.CustomEffectType.USE_TIME_ADD));
+
     }
 
 
@@ -59,13 +68,16 @@ public class HardStretching extends GkmasCard {
     public void use(AbstractPlayer p, AbstractMonster m) {
         addToBot(new DrawCardAction(1, new HardStretchingAction(p,this.block)));
 //        addToBot(new GainTrainRoundPowerAction(p, this.magicNumber));
-        if(this.secondMagicNumber > 1){
-            upgradeSecondMagicNumber(-1);
-            this.initializeDescription();
+        if(!CustomHelper.hasCustom(this,EffectChangeCustom.growID)){
+            if(this.secondMagicNumber > 1){
+                upgradeSecondMagicNumber(-1);
+                this.initializeDescription();
+            }
+            else{
+                this.exhaust = true;
+            }
         }
-        else{
-            this.exhaust = true;
-        }
+
     }
 
 

@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import gkmasmod.cards.GkmasCard;
+import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.patches.AbstractCardPatch;
 import gkmasmod.stances.SleepStance;
@@ -22,22 +23,21 @@ public class SleepyReflex extends GkmasCard {
     private static final String DESCRIPTION = CARD_STRINGS.DESCRIPTION;
     private static final String IMG_PATH = String.format("gkmasModResource/img/cards/common/%s.png", CLASSNAME);
 
-    private static final int COST = 1;
+    private static final int COST = 0;
     private static final int BASE_BLOCK = 4;
     private static final int UPGRADE_PLUS_BLOCK = 2;
     private static final int BASE_BLOCK2 = 7;
 
-
     private static final CardType TYPE = CardType.SKILL;
     private static final CardColor COLOR = PlayerColorEnum.gkmasModColorMisuzu;
     private static final CardRarity RARITY = CardRarity.COMMON;
-    private static final CardTarget TARGET = CardTarget.ENEMY;
+    private static final CardTarget TARGET = CardTarget.SELF;
 
     public SleepyReflex() {
         super(ID, NAME, ImageHelper.getCardImgPath(CLASSNAME,TYPE), COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.baseBlock = BASE_BLOCK;
         this.baseSecondBlock = BASE_BLOCK2;
-        AbstractCardPatch.isDreamField.isDream.set(this, true);
+        this.tags.add(GkmasCardTag.SLEEP_TAG);
     }
 
 

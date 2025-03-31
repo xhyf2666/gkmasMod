@@ -1,5 +1,6 @@
 package gkmasmod.downfall.bosses;
 
+import gkmasmod.downfall.cards.free.ENTriggerRelic;
 import gkmasmod.downfall.charbosses.bosses.AbstractBossDeckArchetype;
 import gkmasmod.downfall.charbosses.bosses.AbstractCharBoss;
 import gkmasmod.downfall.charbosses.relics.CBR_Ectoplasm;
@@ -13,6 +14,7 @@ import gkmasmod.downfall.cards.free.ENFullOfPower;
 import gkmasmod.downfall.cards.free.ENSkipWater;
 import gkmasmod.downfall.cards.logic.*;
 import gkmasmod.downfall.relics.*;
+import gkmasmod.powers.*;
 
 import java.util.ArrayList;
 
@@ -37,6 +39,20 @@ public class BossConfig_fktn3 extends AbstractBossDeckArchetype {
         addRelic(new CBR_FavoriteSneakers());
         addRelic(new CBR_PigDreamPiggyBank());
         addRelic(new CBR_CracklingSparkler());
+        addRelic(new CBR_OnlyMyFirstStar());
+
+        AbstractCreature p = AbstractCharBoss.boss;
+        if(AbstractDungeon.ascensionLevel >= 15){
+            AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new KawaiiPower(p,2),2));
+            AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new GoodImpression(p,20),20));
+        }
+        else
+            AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new KawaiiPower(p,1),1));
+        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new NegativeNotPower(p, 3), 3));
+        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new MyPrideBigSisterPower(p,180)));
+        if(AbstractDungeon.ascensionLevel >= 10)
+            AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new HappyChristmasPower(p,2),2));
+        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new IsENotAPower(p,6),6));
     }
 
     @Override
@@ -46,19 +62,22 @@ public class BossConfig_fktn3 extends AbstractBossDeckArchetype {
         if (!looped) {
             switch (turn) {
                 case 0:
-                    addToList(cardsList, new ENHappyChristmas(),true);
-                    addToList(cardsList,new ENBeforeThePerformance(),extraUpgrades);
-                    addToList(cardsList, new ENUnstoppableThoughts(),extraUpgrades);
                     addToList(cardsList, new ENSummerEveningSparklers(),true);
+                    addToList(cardsList, new ENUnstoppableThoughts(),extraUpgrades);
+                    addToList(cardsList, new ENSmile(),true);
+                    addToList(cardsList, new ENHandwrittenLetter(),extraUpgrades);
                     addToList(cardsList, new ENWorldFirstCute(),true);
+                    addToList(cardsList, new ENPromiseThatTime(),true);
+                    addToList(cardsList, new ENTriggerRelic());
                     turn++;
                     break;
                 case 1:
-                    addToList(cardsList, new ENIsENotA(), extraUpgrades);
                     addToList(cardsList, new ENHardStretching(), extraUpgrades);
                     addToList(cardsList, new ENFlowerBouquet(),extraUpgrades);
-                    addToList(cardsList, new ENSmile200());
                     addToList(cardsList, new ENFullOfPower(),extraUpgrades);
+                    addToList(cardsList, new ENHandwrittenLetter(),extraUpgrades);
+                    addToList(cardsList, new ENPromiseThatTime(),true);
+                    addToList(cardsList, new ENTriggerRelic());
                     turn++;
                     break;
                 case 2:
@@ -66,8 +85,9 @@ public class BossConfig_fktn3 extends AbstractBossDeckArchetype {
                     addToList(cardsList, new ENHardStretching(), extraUpgrades);
                     addToList(cardsList, new ENSkipWater(), extraUpgrades);
                     addToList(cardsList, new ENRestart(),extraUpgrades);
-                    addToList(cardsList, new ENPromiseThatTime());
+                    addToList(cardsList, new ENPromiseThatTime(),true);
                     addToList(cardsList, new ENLikeEveryone());
+                    addToList(cardsList, new ENTriggerRelic());
                     turn = 0;
                     looped = true;
                     break;

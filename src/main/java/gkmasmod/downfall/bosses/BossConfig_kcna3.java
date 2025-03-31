@@ -14,6 +14,10 @@ import gkmasmod.downfall.cards.free.ENIdolSoul;
 import gkmasmod.downfall.cards.sense.*;
 import gkmasmod.downfall.relics.CBR_EnjoyAfterHotSpring;
 import gkmasmod.downfall.relics.CBR_OldCoin;
+import gkmasmod.powers.AngelAndDemonPlusPower;
+import gkmasmod.powers.ForShiningYouPlusSpPower;
+import gkmasmod.powers.InnocencePower;
+import gkmasmod.powers.NegativeNotPower;
 
 import java.util.ArrayList;
 
@@ -37,8 +41,15 @@ public class BossConfig_kcna3 extends AbstractBossDeckArchetype {
         addRelic(new CBR_OldCoin());
         addRelic(new CBR_OldCoin());
         addRelic(new CBR_CoffeeDripper());
-        addRelic(new CBR_Girya(5));
+        addRelic(new CBR_Girya(10));
         addRelic(new CBR_EnjoyAfterHotSpring());
+        AbstractCreature p = AbstractCharBoss.boss;
+        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new NegativeNotPower(p, 3), 3));
+        if(AbstractDungeon.ascensionLevel >= 5)
+            AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new InnocencePower(p, 1), 1));
+        if(AbstractDungeon.ascensionLevel >= 10)
+            AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new AngelAndDemonPlusPower(p)));
+        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new ForShiningYouPlusSpPower(p,1),1));
     }
 
     @Override
@@ -48,30 +59,20 @@ public class BossConfig_kcna3 extends AbstractBossDeckArchetype {
         if (!looped) {
             switch (turn) {
                 case 0:
-                    addToList(cardsList, new ENSteadyWill(),extraUpgrades);
                     addToList(cardsList, new ENAQuickSip(),extraUpgrades);
-                    addToList(cardsList, new ENDeepBreath(),extraUpgrades);
-                    addToList(cardsList, new ENWarmUp());
-                    turn++;
-                    break;
-                case 1:
                     addToList(cardsList, new ENIdolSoul(),extraUpgrades);
                     addToList(cardsList, new ENNationalIdol());
                     addToList(cardsList, new ENJustOneMore(),extraUpgrades);
                     addToList(cardsList, new ENBalance(),extraUpgrades);
+                    addToList(cardsList, new ENSpecialTreasure(),true);
                     turn++;
                     break;
-                case 2:
+                case 1:
+                    addToList(cardsList, new ENCharmPerformance(),extraUpgrades);
                     addToList(cardsList, new ENWelcomeToTeaParty(),extraUpgrades);
                     addToList(cardsList, new ENEncoreCall(),extraUpgrades);
-                    addToList(cardsList, new ENEyePower());
-                    addToList(cardsList, new ENBaseAppeal());
-                    turn++;
-                    break;
-                case 3:
-                    addToList(cardsList, new ENCharmPerformance(),extraUpgrades);
-                    addToList(cardsList, new ENStartSignal());
                     addToList(cardsList, new ENGonnaTrickYou(),extraUpgrades);
+                    addToList(cardsList, new ENStartSignal());
                     turn = 0;
                     looped = true;
                     break;
@@ -82,7 +83,7 @@ public class BossConfig_kcna3 extends AbstractBossDeckArchetype {
                     addToList(cardsList, new ENExistence(),extraUpgrades);
                     addToList(cardsList, new ENEncoreCall());
                     addToList(cardsList, new ENAwakening());
-                    addToList(cardsList, new ENSpecialTreasure());
+                    addToList(cardsList, new ENSpecialTreasure(),true);
                     addToList(cardsList, new ENBaseAppeal());
                     break;
             }

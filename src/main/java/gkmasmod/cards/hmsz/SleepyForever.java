@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import gkmasmod.cards.GkmasCard;
+import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.powers.WantToSleepEnemy;
 import gkmasmod.utils.ImageHelper;
@@ -26,7 +27,6 @@ public class SleepyForever extends GkmasCard {
     private static final int COST = 1;
     private static final int BASE_MAGIC = 100;
 
-
     private static final CardType TYPE = CardType.SKILL;
     private static final CardColor COLOR = PlayerColorEnum.gkmasModColorMisuzu;
     private static final CardRarity RARITY = CardRarity.UNCOMMON;
@@ -37,6 +37,7 @@ public class SleepyForever extends GkmasCard {
         this.baseMagicNumber = BASE_MAGIC;
         this.magicNumber = this.baseMagicNumber;
         this.exhaust = true;
+        this.tags.add(GkmasCardTag.SLEEP_TAG);
     }
 
 
@@ -57,6 +58,7 @@ public class SleepyForever extends GkmasCard {
     public void upgrade() {
         if (!this.upgraded) {
             upgradeName();
+            this.exhaust = false;
             if (CARD_STRINGS.UPGRADE_DESCRIPTION != null)
                 this.rawDescription = CARD_STRINGS.UPGRADE_DESCRIPTION;
             this.initializeDescription();

@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.actions.watcher.ChangeStanceAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
+import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -14,6 +15,7 @@ import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.watcher.MantraPower;
 import gkmasmod.actions.FullPowerValueAction;
+import gkmasmod.downfall.charbosses.bosses.AbstractCharBoss;
 import gkmasmod.relics.PlasticUmbrellaThatDay;
 import gkmasmod.stances.FullPowerStance;
 import gkmasmod.utils.NameHelper;
@@ -48,26 +50,40 @@ public class FullPowerValue extends AbstractPower {
         this.updateDescription();
     }
 
-    @Override
     public void stackPower(int stackAmount) {
-        super.stackPower(stackAmount);
-//        if(this.amount<=0){
-//            addToBot(new RemoveSpecificPowerAction(this.owner,this.owner,this));
-//        }
+        this.amount += stackAmount;
+        if (this.amount <= 0)
+            addToTop(new RemoveSpecificPowerAction(this.owner, this.owner, this.ID));
+        if(this.amount>999)
+            this.amount = 999;
+        updateDescription();
     }
 
     @Override
-    public void atStartOfTurnPostDraw() {
-        addToBot(new FullPowerValueAction());
-        if(AbstractDungeon.player.hasRelic(PlasticUmbrellaThatDay.ID)){
-            AbstractDungeon.player.getRelic(PlasticUmbrellaThatDay.ID).onTrigger();
+    public void atStartOfTurn() {
+        if(this.owner instanceof AbstractPlayer){
+            addToBot(new FullPowerValueAction(this.owner));
+            if(AbstractDungeon.player.hasRelic(PlasticUmbrellaThatDay.ID)){
+                AbstractDungeon.player.getRelic(PlasticUmbrellaThatDay.ID).onTrigger();
+            }
         }
+    }
+
+    @Override
+    public void onSpecificTrigger() {
+        if(this.owner instanceof AbstractCharBoss){
+            addToBot(new FullPowerValueAction(this.owner));
+        }
+    }
+
+    @Override
+    public void atEndOfTurn(boolean isPlayer) {
+
     }
 
     // 能力在更新时如何修改描述
     public void updateDescription() {
-        this.description = String.format(DESCRIPTIONS[0]);
+        this.description = String.format(DESCRIPTIONS[0],this.amount);
     }
-
 
 }

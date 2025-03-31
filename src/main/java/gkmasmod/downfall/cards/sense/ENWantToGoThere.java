@@ -28,7 +28,7 @@ public class ENWantToGoThere extends GkmasBossCard {
     private static final String IMG_PATH = String.format("gkmasModResource/img/cards/common/%s.png", CLASSNAME2);
 
     private static final int COST = 1;
-    private static final int BASE_MAGIC = 1;
+    private static final int BASE_MAGIC = 2;
     private static final int BASE_MAGIC2 = 1;
     private static final int UPGRADE_PLUS_MAGIC2 = 1;
 
@@ -49,7 +49,7 @@ public class ENWantToGoThere extends GkmasBossCard {
         this.tags.add(GkmasCardTag.GOOD_TUNE_TAG);
         this.tags.add(GkmasCardTag.OUTSIDE_TAG);
         this.tags.add(GkmasCardTag.MORE_ACTION_TAG);
-
+        this.energyGeneratedIfPlayed = 1;
     }
 
 

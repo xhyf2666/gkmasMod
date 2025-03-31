@@ -35,8 +35,8 @@ public class PreservationStance extends GkmasModStance {
     private static long sfxId = -1L;
 
     private static int BLOCK = 5;
-    private static int ENTHUSIASTIC1 = 3;
-    private static int ENTHUSIASTIC2 = 5;
+    private static int ENTHUSIASTIC1 = 2;
+    private static int ENTHUSIASTIC2 = 3;
 
     public PreservationStance() {
         this(0);
@@ -102,7 +102,7 @@ public class PreservationStance extends GkmasModStance {
     public void onExitStance() {
         if(stage==1){
             AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new EnthusiasticPower(AbstractDungeon.player, ENTHUSIASTIC2), ENTHUSIASTIC2));
-            AbstractDungeon.actionManager.addToTop(new GainBlockWithPowerAction(AbstractDungeon.player, AbstractDungeon.player, BLOCK));
+            AbstractDungeon.actionManager.addToTop(new GainBlockAction(AbstractDungeon.player, AbstractDungeon.player, BLOCK));
             AbstractDungeon.actionManager.addToTop(new GainEnergyAction(1));
         }
         else{

@@ -10,6 +10,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.powers.BarricadePower;
 import gkmasmod.downfall.cards.free.ENBasePerform;
 import gkmasmod.downfall.cards.logic.*;
+import gkmasmod.downfall.charbosses.relics.CBR_Sozu;
 import gkmasmod.downfall.relics.*;
 
 import java.util.ArrayList;
@@ -37,6 +38,9 @@ public class BossConfig_kcna1 extends AbstractBossDeckArchetype {
         addRelic(new CBR_Anchor());
         addRelic(new CBR_SecretTrainingCardigan());
         addRelic(new CBR_CheerfulHandkerchief());
+        addRelic(new CBR_DreamOfTheDescription());
+        if(AbstractDungeon.ascensionLevel >= 10)
+            addRelic(new CBR_Sozu());
     }
 
     @Override
@@ -46,7 +50,7 @@ public class BossConfig_kcna1 extends AbstractBossDeckArchetype {
         if (!looped) {
             switch (turn) {
                 case 0:
-                    addToList(cardsList,new ENBeforeThePerformance(),extraUpgrades);
+                    addToList(cardsList, new ENBeforeThePerformance(),extraUpgrades);
                     addToList(cardsList, new ENUnstoppableThoughts(),extraUpgrades);
                     addToList(cardsList, new ENWholeheartedly(),extraUpgrades);
                     addToList(cardsList, new ENBasePerform());
@@ -56,17 +60,9 @@ public class BossConfig_kcna1 extends AbstractBossDeckArchetype {
                     addToList(cardsList, new ENFlowering(), extraUpgrades);
                     addToList(cardsList, new ENSunbathing(),extraUpgrades);
                     addToList(cardsList, new ENHardStretching(),extraUpgrades);
+                    addToList(cardsList, new ENTeaChat(),true);
                     addToList(cardsList, new ENOverflowMemory());
-                    addToList(cardsList, new ENBasePerform());
-                    turn++;
-                    break;
-                case 2:
-                    addToList(cardsList, new ENEnergyIsFull(), extraUpgrades);
-                    addToList(cardsList, new ENYeah(),extraUpgrades);
-                    addToList(cardsList, new ENHardStretching(),extraUpgrades);
-                    addToList(cardsList, new ENContact());
-                    addToList(cardsList, new ENDebutStageForTheLady());
-                    addToList(cardsList, new ENBasePerform());
+                    addToList(cardsList, new ENDebutStageForTheLady(),true);
                     turn = 0;
                     looped = true;
                     break;
@@ -74,9 +70,9 @@ public class BossConfig_kcna1 extends AbstractBossDeckArchetype {
         } else {
             switch (turn) {
                 case 0:
-                    addToList(cardsList, new ENBasePerform(),extraUpgrades);
-                    addToList(cardsList, new ENBasePerform());
-                    addToList(cardsList, new ENSlowGrowth(slowGrowth),extraUpgrades);
+                    addToList(cardsList, new ENHardStretching(),extraUpgrades);
+                    addToList(cardsList, new ENOverflowMemory());
+                    addToList(cardsList, new ENSlowGrowth(slowGrowth),true);
                     addToList(cardsList, new ENBasePerform());
                     if(slowGrowth <3)
                         slowGrowth++;

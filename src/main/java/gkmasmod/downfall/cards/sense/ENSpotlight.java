@@ -34,7 +34,7 @@ public class ENSpotlight extends GkmasBossCard {
     private static final int BLOCK_AMT = 8;
     private static final int UPGRADE_PLUS_BLOCK = 2;
 
-    private static final int BASE_HP = 3;
+    private static final int BASE_HP = 2;
 
 
     private static final CardType TYPE = CardType.SKILL;

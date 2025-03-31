@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
 import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.IdolCharacter;
+import gkmasmod.characters.MisuzuCharacter;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.utils.CommonEnum;
 
@@ -43,14 +44,17 @@ public class AojiruAction extends AbstractGameAction {
                 getRandomCard(PlayerColorEnum.gkmasModColorAnomaly,tmpPool);
             }
         }
+        else if(p instanceof MisuzuCharacter){
+            getRandomCard(PlayerColorEnum.gkmasModColorMisuzu,tmpPool);
+        }
         else{
             getRandomCard(PlayerColorEnum.gkmasModColorLogic,tmpPool);
             getRandomCard(PlayerColorEnum.gkmasModColorSense,tmpPool);
             getRandomCard(PlayerColorEnum.gkmasModColorAnomaly,tmpPool);
         }
-        for (int i = 0; i < tmpPool.size(); i++) {
-            System.out.println(tmpPool.get(i).name);
-        }
+//        for (int i = 0; i < tmpPool.size(); i++) {
+//            System.out.println(tmpPool.get(i).name);
+//        }
         AbstractCard card = tmpPool.get(AbstractDungeon.cardRandomRng.random(0,tmpPool.size()-1));
         if(isUpgraded)
             card.upgrade();

@@ -38,6 +38,7 @@ public class ENSleepy extends GkmasBossCard {
         this.magicNumber = this.baseMagicNumber;
         this.exhaust = true;
         this.isEthereal = true;
+        this.cardHeader = CardCrawlGame.languagePack.getUIString("gkmasMod:SleepyHeader").TEXT[0];
     }
 
 

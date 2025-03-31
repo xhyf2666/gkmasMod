@@ -8,6 +8,10 @@ public class AbstractCardCustomEffect extends AbstractCardModifier {
         return null;
     }
 
+    AbstractCardCustomEffect() {
+        this.priority = 5;
+    }
+
     public String growEffectID = "";
 
     public String title = "";

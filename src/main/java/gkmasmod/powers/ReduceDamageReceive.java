@@ -45,8 +45,7 @@ public class ReduceDamageReceive extends AbstractPower {
         this.description = String.format(DESCRIPTIONS[0], this.amount);
     }
 
-
-    public float atDamageReceive(float damage, DamageInfo.DamageType type) {
+    public float atDamageFinalReceive(float damage, DamageInfo.DamageType type) {
         return damage - this.amount < 0.0F ? 0.0F : damage - this.amount;
     }
 

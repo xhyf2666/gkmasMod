@@ -10,6 +10,10 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.stances.NeutralStance;
+import gkmasmod.cardCustomEffect.DamageCustom;
+import gkmasmod.cardCustomEffect.EffectChangeCustom;
+import gkmasmod.cardCustomEffect.ExhaustRemoveCustom;
+import gkmasmod.cardCustomEffect.SecondMagicCustom;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
@@ -17,8 +21,11 @@ import gkmasmod.powers.FullPowerValue;
 import gkmasmod.powers.TrainingResultPlusPower;
 import gkmasmod.powers.TrainingResultPower;
 import gkmasmod.screen.SkinSelectScreen;
+import gkmasmod.utils.CustomHelper;
 import gkmasmod.utils.ImageHelper;
 import gkmasmod.utils.NameHelper;
+
+import java.util.ArrayList;
 
 public class TrainingResult extends GkmasCard {
     private static final String CLASSNAME = TrainingResult.class.getSimpleName();
@@ -51,6 +58,11 @@ public class TrainingResult extends GkmasCard {
         this.magicNumber = this.baseMagicNumber;
         this.tags.add(GkmasCardTag.PRESERVATION_TAG);
         this.exhaust = true;
+        this.customLimit = 2;
+        this.customEffectList = new ArrayList<>();
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(DamageCustom.growID,new int[]{2,2},new int[]{50,50},CustomHelper.CustomEffectType.DAMAGE_ADD));
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(SecondMagicCustom.growID, new int[]{1,1}, new int[]{50,50}, CustomHelper.CustomEffectType.FULL_POWER_VALUE_ADD));
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(ExhaustRemoveCustom.growID, new int[]{0}, new int[]{80}, CustomHelper.CustomEffectType.EXHAUST_REMOVE));
     }
 
     @Override

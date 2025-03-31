@@ -6,12 +6,21 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import gkmasmod.actions.GrowAction;
+import gkmasmod.cardCustomEffect.EffectAddCustom;
+import gkmasmod.cardCustomEffect.EffectChangeCustom;
+import gkmasmod.cardCustomEffect.FullPowerValueCustom;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
+import gkmasmod.growEffect.DamageGrow;
 import gkmasmod.powers.LikeStarsPower;
+import gkmasmod.powers.LikeStarsSPPower;
 import gkmasmod.powers.StepOnStagePower;
+import gkmasmod.utils.CustomHelper;
 import gkmasmod.utils.NameHelper;
+
+import java.util.ArrayList;
 
 public class LikeStars extends GkmasCard {
     private static final String CLASSNAME = LikeStars.class.getSimpleName();
@@ -22,10 +31,12 @@ public class LikeStars extends GkmasCard {
     private static final String DESCRIPTION = CARD_STRINGS.DESCRIPTION;
     private static final String IMG_PATH = String.format("gkmasModResource/img/cards/common/%s.png", CLASSNAME);
 
-    private static final int COST = 2;
+    private static final int COST = 1;
 
-    private static final int BASE_MAGIC = 4;
+    private static final int BASE_MAGIC = 2;
     private static final int UPGRADE_MAGIC_PLUS = 2;
+    private static final int BASE_MAGIC2 = 3;
+    private static final int BASE_MAGIC3 = 3;
 
     private static final CardType TYPE = CardType.POWER;
     private static final CardColor COLOR = PlayerColorEnum.gkmasModColorAnomaly;
@@ -36,14 +47,27 @@ public class LikeStars extends GkmasCard {
         super(ID, NAME, IMG_PATH, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.baseMagicNumber = BASE_MAGIC;
         this.magicNumber = this.baseMagicNumber;
+        this.baseSecondMagicNumber = BASE_MAGIC2;
+        this.secondMagicNumber = this.baseSecondMagicNumber;
+        this.baseThirdMagicNumber = BASE_MAGIC3;
+        this.thirdMagicNumber = this.baseThirdMagicNumber;
         this.tags.add(GkmasCardTag.CONCENTRATION_TAG);
         this.tags.add(GkmasCardTag.PRESERVATION_TAG);
+        this.customLimit = 1;
+        this.customEffectList = new ArrayList<>();
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(FullPowerValueCustom.growID, new int[]{2}, new int[]{70}, CustomHelper.CustomEffectType.FULL_POWER_VALUE_ADD));
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(EffectChangeCustom.growID, new int[]{1}, new int[]{80}, CustomHelper.CustomEffectType.EFFECT_CHANGE));
     }
 
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        addToBot(new ApplyPowerAction(p,p,new LikeStarsPower(p,this.magicNumber),this.magicNumber));
+        if(CustomHelper.hasCustom(this, EffectChangeCustom.growID)){
+            addToBot(new ApplyPowerAction(p,p,new LikeStarsSPPower(p,this.magicNumber),this.magicNumber));
+        }
+        else {
+            addToBot(new ApplyPowerAction(p,p,new LikeStarsPower(p,this.magicNumber),this.magicNumber));
+        }
     }
 
     @Override

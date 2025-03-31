@@ -33,6 +33,8 @@ public class ENSmile200 extends GkmasBossCard {
     private static final int BASE_MAGIC2 = 150;
     private static final int UPGRADE_PLUS_MAGIC2 = 50;
 
+    private static final int BASE_MAGIC3 = 2;
+
     private static final CardType TYPE = CardType.ATTACK;
     private static final CardColor COLOR = PlayerColorEnum.gkmasModColorLogic;
     private static final CardRarity RARITY = CardRarity.RARE;
@@ -48,6 +50,8 @@ public class ENSmile200 extends GkmasBossCard {
         this.magicNumber = this.baseMagicNumber;
         this.baseSecondMagicNumber = BASE_MAGIC2;
         this.secondMagicNumber = this.baseSecondMagicNumber;
+        this.baseThirdMagicNumber = BASE_MAGIC3;
+        this.thirdMagicNumber = this.baseThirdMagicNumber;
         this.intent = AbstractMonster.Intent.ATTACK_BUFF;
         FlavorText.AbstractCardFlavorFields.boxColor.set(this, CardHelper.getColor(73, 224, 254));
         flavor = FlavorText.CardStringsFlavorField.flavor.get(CARD_STRINGS);

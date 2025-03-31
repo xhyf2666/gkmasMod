@@ -1,5 +1,7 @@
 package gkmasmod.powers;
 
+import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import gkmasmod.downfall.charbosses.actions.util.CharbossDoCardQueueAction;
 import gkmasmod.downfall.charbosses.bosses.AbstractCharBoss;
 import gkmasmod.downfall.charbosses.cards.AbstractBossCard;
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
@@ -44,13 +46,14 @@ public class BurstAttackPower extends AbstractPower {
             return;
         if(this.owner instanceof AbstractCharBoss&&(!(card instanceof AbstractBossCard)))
             return;
-        if (!card.purgeOnUse && card.type == AbstractCard.CardType.ATTACK && this.amount > 0) {
+        if (!card.purgeOnUse && (card.type == AbstractCard.CardType.ATTACK||card.type == AbstractCard.CardType.POWER) && this.amount > 0) {
             flash();
             AbstractMonster m = null;
             if (action.target != null)
                 m = (AbstractMonster)action.target;
             AbstractCard tmp = card.makeSameInstanceOf();
-            AbstractDungeon.player.limbo.addToBottom(tmp);
+            if(this.owner instanceof AbstractPlayer)
+                AbstractDungeon.player.limbo.addToBottom(tmp);
             tmp.current_x = card.current_x;
             tmp.current_y = card.current_y;
             tmp.target_x = Settings.WIDTH / 2.0F - 300.0F * Settings.scale;
@@ -58,8 +61,11 @@ public class BurstAttackPower extends AbstractPower {
             if (m != null)
                 tmp.calculateCardDamage(m);
             tmp.purgeOnUse = true;
-            AbstractDungeon.actionManager.addCardQueueItem(new CardQueueItem(tmp, m, card.energyOnUse, true, true), true);
-            this.amount--;
+            if(this.owner instanceof AbstractCharBoss)
+                AbstractDungeon.actionManager.addToTop(new CharbossDoCardQueueAction(tmp));
+            else{
+                AbstractDungeon.actionManager.addCardQueueItem(new CardQueueItem(tmp, m, card.energyOnUse, true, true), true);
+            }            this.amount--;
             if (this.amount == 0)
                 addToTop(new RemoveSpecificPowerAction(this.owner, this.owner, POWER_ID));
         }

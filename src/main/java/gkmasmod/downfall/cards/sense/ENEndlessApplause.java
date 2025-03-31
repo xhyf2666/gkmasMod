@@ -29,12 +29,11 @@ public class ENEndlessApplause extends GkmasBossCard {
 
     private static final int COST = 2;
 
-    private static final int BASE_MAGIC = 4;
+    private static final int BASE_MAGIC = 3;
     private static final int UPGRADE_PLUS_MAGIC = 1;
     private static final int BASE_MAGIC2 = 2;
     private static final int UPGRADE_PLUS_MAGIC2 = 1;
     private static final int BASE_MAGIC3 = 2;
-    private static final int UPGRADE_PLUS_MAGIC3 = 1;
 
 
     private static final CardType TYPE = CardType.SKILL;
@@ -78,7 +77,6 @@ public class ENEndlessApplause extends GkmasBossCard {
             upgradeName();
             upgradeMagicNumber(UPGRADE_PLUS_MAGIC);
             upgradeSecondMagicNumber(UPGRADE_PLUS_MAGIC2);
-            upgradeThirdMagicNumber(UPGRADE_PLUS_MAGIC3);
             if (CARD_STRINGS.UPGRADE_DESCRIPTION != null)
                 this.rawDescription = CARD_STRINGS.UPGRADE_DESCRIPTION;
             this.initializeDescription();

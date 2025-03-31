@@ -8,14 +8,19 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import gkmasmod.cardCustomEffect.MagicCustom;
+import gkmasmod.cardCustomEffect.SelfRetainCustom;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.powers.FullPowerValue;
 import gkmasmod.screen.SkinSelectScreen;
 import gkmasmod.stances.PreservationStance;
+import gkmasmod.utils.CustomHelper;
 import gkmasmod.utils.NameHelper;
 import gkmasmod.utils.PlayerHelper;
+
+import java.util.ArrayList;
 
 public class EyesOfTheScenery extends GkmasCard {
     private static final String CLASSNAME = EyesOfTheScenery.class.getSimpleName();
@@ -28,11 +33,8 @@ public class EyesOfTheScenery extends GkmasCard {
 
     private static final int COST = 1;
 
-    private static final int BASE_MAGIC = 150;
-    private static final int BASE_MAGIC2 = 2;
-    private static final int UPGRADE_MAGIC2_PLUS = 1;
-
-
+    private static final int BASE_MAGIC = 30;
+    private static final int UPGRADE_MAGIC_PLUS = 20;
 
     private static final CardType TYPE = CardType.SKILL;
     private static final CardColor COLOR = PlayerColorEnum.gkmasModColorAnomaly;
@@ -43,9 +45,11 @@ public class EyesOfTheScenery extends GkmasCard {
         super(ID, NAME, IMG_PATH, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.baseMagicNumber = BASE_MAGIC;
         this.magicNumber = this.baseMagicNumber;
-        this.baseSecondMagicNumber = BASE_MAGIC2;
-        this.secondMagicNumber = this.baseSecondMagicNumber;
         this.tags.add(GkmasCardTag.FULL_POWER_TAG);
+        this.customLimit = 2;
+        this.customEffectList = new ArrayList<>();
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(MagicCustom.growID,new int[]{10,10},new int[]{80,80},CustomHelper.CustomEffectType.RATE_ADD));
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(SelfRetainCustom.growID, new int[]{0}, new int[]{70}, CustomHelper.CustomEffectType.SELF_RETAIN_ADD));
     }
 
     @Override
@@ -54,13 +58,6 @@ public class EyesOfTheScenery extends GkmasCard {
         int add = (int) (1.0F* amount * this.magicNumber / 100);
         if(add > 0){
             addToBot(new ApplyPowerAction(p, p, new FullPowerValue(p, add), add));
-        }
-        if(this.secondMagicNumber > 1){
-            upgradeSecondMagicNumber(-1);
-            this.initializeDescription();
-        }
-        else{
-            this.exhaust = true;
         }
     }
 
@@ -73,7 +70,7 @@ public class EyesOfTheScenery extends GkmasCard {
     public void upgrade() {
         if (!this.upgraded) {
             upgradeName();
-            upgradeSecondMagicNumber(UPGRADE_MAGIC2_PLUS);
+            upgradeMagicNumber(UPGRADE_MAGIC_PLUS);
             if (CARD_STRINGS.UPGRADE_DESCRIPTION != null)
                 this.rawDescription = CARD_STRINGS.UPGRADE_DESCRIPTION;
             this.initializeDescription();

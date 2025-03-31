@@ -8,6 +8,7 @@ import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.cards.anomaly.BeyondTheCrossing;
 import gkmasmod.powers.TempSavePower;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 
 
@@ -17,21 +18,31 @@ public class PlasticUmbrellaThatDayAction extends AbstractGameAction {
     }
 
     public void update() {
-        for(AbstractCard c:AbstractDungeon.player.hand.group){
-            if(c.cardID.equals(BeyondTheCrossing.ID)){
-                TempSavePower.addCard(AbstractDungeon.player,c);
-                addToBot(new DrawCardAction(1));
+        Iterator<AbstractCard> iterator;
+        iterator = AbstractDungeon.player.hand.group.iterator();
+        ArrayList<AbstractCard> cards = new ArrayList<>();
+        while (iterator.hasNext()) {
+            AbstractCard c = iterator.next();
+            if (c.cardID.equals(BeyondTheCrossing.ID)) {
+                cards.add(c);
             }
         }
-        for(AbstractCard c:AbstractDungeon.player.drawPile.group){
-            if(c.cardID.equals(BeyondTheCrossing.ID)){
-                TempSavePower.addCard(AbstractDungeon.player,c);
+        iterator = AbstractDungeon.player.drawPile.group.iterator();
+        while (iterator.hasNext()) {
+            AbstractCard c = iterator.next();
+            if (c.cardID.equals(BeyondTheCrossing.ID)) {
+                cards.add(c);
             }
         }
-        for(AbstractCard c:AbstractDungeon.player.discardPile.group){
-            if(c.cardID.equals(BeyondTheCrossing.ID)){
-                TempSavePower.addCard(AbstractDungeon.player,c);
+        iterator = AbstractDungeon.player.discardPile.group.iterator();
+        while (iterator.hasNext()) {
+            AbstractCard c = iterator.next();
+            if (c.cardID.equals(BeyondTheCrossing.ID)) {
+                cards.add(c);
             }
+        }
+        for (AbstractCard c : cards) {
+            TempSavePower.addCard(AbstractDungeon.player, c);
         }
         this.isDone = true;
     }

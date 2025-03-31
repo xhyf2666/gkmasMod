@@ -2,6 +2,7 @@ package gkmasmod.cards.hmsz;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
+import com.megacrit.cardcrawl.actions.common.DrawCardAction;
 import com.megacrit.cardcrawl.actions.common.LoseHPAction;
 import com.megacrit.cardcrawl.actions.watcher.ChangeStanceAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -11,12 +12,14 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import gkmasmod.actions.GainTrainRoundPowerAction;
+import gkmasmod.cardCustomEffect.MoreActionCustom;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.patches.AbstractCardPatch;
 import gkmasmod.stances.SleepStance;
 import gkmasmod.stances.WakeStance;
+import gkmasmod.utils.CustomHelper;
 import gkmasmod.utils.ImageHelper;
 import gkmasmod.utils.NameHelper;
 
@@ -31,18 +34,21 @@ public class ShockWakeUp extends GkmasCard {
 
     private static final int COST = 0;
     private static final int BASE_HP = 3;
+    private static final int BASE_MAGIC = 2;
 
 
     private static final CardType TYPE = CardType.SKILL;
     private static final CardColor COLOR = PlayerColorEnum.gkmasModColorMisuzu;
-    private static final CardRarity RARITY = CardRarity.UNCOMMON;
+    private static final CardRarity RARITY = CardRarity.RARE;
     private static final CardTarget TARGET = CardTarget.SELF;
 
     public ShockWakeUp() {
         super(ID, NAME, ImageHelper.getCardImgPath(CLASSNAME,TYPE), COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.baseHPMagicNumber = BASE_HP;
         this.HPMagicNumber = this.baseHPMagicNumber;
-        AbstractCardPatch.isDreamField.isDream.set(this, true);
+        this.baseMagicNumber = BASE_MAGIC;
+        this.magicNumber = this.baseMagicNumber;
+        this.tags.add(GkmasCardTag.SLEEP_TAG);
         this.exhaust = true;
     }
 
@@ -50,8 +56,7 @@ public class ShockWakeUp extends GkmasCard {
     public void use(AbstractPlayer p, AbstractMonster m) {
         addToBot(new LoseHPAction(p, p, this.HPMagicNumber));
         addToBot(new ChangeStanceAction(WakeStance.STANCE_ID));
-        if(this.upgraded)
-            addToBot(new GainTrainRoundPowerAction(p, 1));
+        addToBot(new DrawCardAction(p, this.magicNumber));
     }
 
     @Override
@@ -64,6 +69,7 @@ public class ShockWakeUp extends GkmasCard {
         if (!this.upgraded) {
             upgradeName();
             this.tags.add(GkmasCardTag.MORE_ACTION_TAG);
+            CustomHelper.custom(this, MoreActionCustom.growID,1);
             if (CARD_STRINGS.UPGRADE_DESCRIPTION != null)
                 this.rawDescription = CARD_STRINGS.UPGRADE_DESCRIPTION;
             this.initializeDescription();

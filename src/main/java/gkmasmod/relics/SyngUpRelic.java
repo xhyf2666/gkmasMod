@@ -36,10 +36,8 @@ public class SyngUpRelic extends CustomRelic {
 
 
     public void atBattleStart() {
-        addToBot(new SpawnMonsterAction(new FriendTemari(AbstractDungeon.player.hb_x+100, AbstractDungeon.player.hb_y,1),false));
-        addToBot(new SpawnMonsterAction(new FriendRinha(AbstractDungeon.player.hb_x+100, AbstractDungeon.player.hb_y,1),false));
-        addToBot(new SpawnMonsterAction(new FriendBlackHole(AbstractDungeon.player.hb_x, AbstractDungeon.player.hb_y),false));
-        addToBot(new SpawnMonsterAction(new FriendKnife(AbstractDungeon.player.hb_x, AbstractDungeon.player.hb_y),false));
+        addToBot(new SpawnMonsterAction(new FriendTemari(AbstractDungeon.player.hb_x+100, AbstractDungeon.player.hb_y+10,1),false));
+        addToBot(new SpawnMonsterAction(new FriendRinha(AbstractDungeon.player.hb_x+100, AbstractDungeon.player.hb_y+10,1),false));
     }
 
     public  void  onPlayerEndTurn(){

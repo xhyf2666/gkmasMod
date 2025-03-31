@@ -7,11 +7,16 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import gkmasmod.actions.PotentialAbilityAction;
+import gkmasmod.cardCustomEffect.MagicCustom;
+import gkmasmod.cardCustomEffect.SecondMagicCustom;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.growEffect.DamageGrow;
+import gkmasmod.utils.CustomHelper;
 import gkmasmod.utils.GrowHelper;
 import gkmasmod.utils.NameHelper;
+
+import java.util.ArrayList;
 
 public class EverythingIsReady extends GkmasCard {
     private static final String CLASSNAME = EverythingIsReady.class.getSimpleName();
@@ -26,6 +31,7 @@ public class EverythingIsReady extends GkmasCard {
 
     private static final int BASE_MAGIC = 3;
     private static final int UPGRADE_PLUS_MAGIC = 1;
+    private static final int BASE_MAGIC2 = 1;
 
     private static final CardType TYPE = CardType.SKILL;
     private static final CardColor COLOR = PlayerColorEnum.gkmasModColorAnomaly;
@@ -36,13 +42,19 @@ public class EverythingIsReady extends GkmasCard {
         super(ID, NAME, IMG_PATH, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.baseMagicNumber = BASE_MAGIC;
         this.magicNumber = this.baseMagicNumber;
+        this.baseSecondMagicNumber = BASE_MAGIC2;
+        this.secondMagicNumber = this.baseSecondMagicNumber;
+        this.customLimit = 1;
+        this.customEffectList = new ArrayList<>();
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(MagicCustom.growID,new int[]{1},new int[]{70},CustomHelper.CustomEffectType.DRAW_CARD_ADD));
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(SecondMagicCustom.growID, new int[]{1}, new int[]{80}, CustomHelper.CustomEffectType.TEMP_SAVE_ADD));
     }
 
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
         addToBot(new DrawCardAction(this.magicNumber));
-        addToBot(new PotentialAbilityAction(1));
+        addToBot(new PotentialAbilityAction(this.secondMagicNumber));
     }
 
     @Override

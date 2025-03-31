@@ -31,7 +31,7 @@ public class ENWorldFirstCute extends GkmasBossCard {
     private static final int MAGIC = 1;
     private static final int MAGIC2 = 400;
     private static final int UPGRADE_PLUS_MAGIC2 = -100;
-    private static final int MAGIC3 = 7;
+    private static final int MAGIC3 = 5;
 
 
     private static final CardType TYPE = CardType.SKILL;

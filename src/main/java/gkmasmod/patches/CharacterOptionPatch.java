@@ -40,9 +40,11 @@ public class CharacterOptionPatch {
         @SpireInsertPatch(rloc = 46)
         public static void Insert(CharacterOption __instance)
         {
-            if(__instance.c instanceof MisuzuCharacter){
-                CardCrawlGame.mainMenuScreen.charSelectScreen.confirmButton.hide();
-            }
+//            if(__instance.c instanceof MisuzuCharacter){
+//                if(SkinSelectScreen.Inst.idolName==IdolData.ttmr&&IdolData.getIdol(SkinSelectScreen.Inst.idolName).getSkinImg(SkinSelectScreen.Inst.skinIndex).equals("skin21")&&SkinSelectScreen.Inst.hideSameIdol&&SkinSelectScreen.Inst.updateIndex==1)
+//                    return;
+//                CardCrawlGame.mainMenuScreen.charSelectScreen.confirmButton.hide();
+//            }
         }
     }
 

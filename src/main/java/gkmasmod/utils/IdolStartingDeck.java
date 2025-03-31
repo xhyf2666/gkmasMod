@@ -177,6 +177,7 @@ public class IdolStartingDeck {
         IdolType type = IdolData.getIdol(idolIndex).getType(skinIndex);
         IdolStyle style = IdolData.getIdol(idolIndex).getStyle(skinIndex);
         String specialCard = getSpecailCard(idolIndex, skinIndex);
+        String replaceCard = IdolData.getIdol(idolIndex).getReplaceCard(skinIndex);
 
         // 创建一个变长数组
         ArrayList<String> startingDeck = new ArrayList<>();
@@ -204,6 +205,16 @@ public class IdolStartingDeck {
                 break;
         }
         startingDeck.add(specialCard);
+        if(!replaceCard.equals("")){
+            switch (style){
+                case YARUKI:
+                case GOOD_IMPRESSION:
+                    startingDeck.set(0, replaceCard);
+                    break;
+                default:
+                    startingDeck.set(3,replaceCard);
+            }
+        }
 
         return startingDeck;
 

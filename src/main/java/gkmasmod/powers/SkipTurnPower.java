@@ -10,6 +10,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
+import gkmasmod.downfall.bosses.AbstractIdolBoss;
 import gkmasmod.stances.FullPowerStance;
 import gkmasmod.utils.NameHelper;
 
@@ -38,6 +39,7 @@ public class SkipTurnPower extends AbstractPower {
         this.region128 = new TextureAtlas.AtlasRegion(ImageMaster.loadImage(path128), 0, 0, 84, 84);
         this.region48 = new TextureAtlas.AtlasRegion(ImageMaster.loadImage(path48), 0, 0, 32, 32);
 
+        AbstractIdolBoss.skipTurn+=1;
         // 首次添加能力更新描述
         this.updateDescription();
     }

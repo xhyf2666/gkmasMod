@@ -19,7 +19,7 @@ public class SoundHelper {
         try{
             if(!map.containsKey(filename))
                 map.put(filename,new Sfx(filename, false));
-            map.get(filename).play(Settings.MUSIC_VOLUME * Settings.MASTER_VOLUME*1.1F);
+            map.get(filename).play(Settings.MUSIC_VOLUME * Settings.MASTER_VOLUME*1.3F);
         }
         catch (Exception e) {
             System.out.println("Error playing sound: " + filename);

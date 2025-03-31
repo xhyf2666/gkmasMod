@@ -59,10 +59,10 @@ public class Inspire extends GkmasCard {
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
         int count = PlayerHelper.getPowerAmount(p, DexterityPower.POWER_ID);
-        if (count > secondMagicNumber) {
-            addToBot(new ApplyPowerAction(p, p, new GoodImpression(p, thirdMagicNumber), thirdMagicNumber));
+        if (count > this.secondMagicNumber) {
+            addToBot(new ApplyPowerAction(p, p, new GoodImpression(p, this.thirdMagicNumber), this.thirdMagicNumber));
         }
-        addToBot(new ApplyPowerAction(p, p, new DexterityPower(p, magicNumber), magicNumber));
+        addToBot(new ApplyPowerAction(p, p, new DexterityPower(p, this.magicNumber), this.magicNumber));
 }
 
     @Override

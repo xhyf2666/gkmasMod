@@ -1,5 +1,6 @@
 package gkmasmod.downfall.cards.free;
 
+import gkmasmod.downfall.cards.anomaly.ENBaseImage;
 import gkmasmod.downfall.charbosses.actions.common.EnemyMakeTempCardInHandAction;
 import gkmasmod.downfall.charbosses.bosses.AbstractCharBoss;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
@@ -47,6 +48,9 @@ public class ENLoveMyselfCool extends GkmasBossCard {
     public void use(AbstractPlayer p, AbstractMonster m) {
         addToBot(new ApplyPowerAction(m,m,new CoolModePower(m)));
         addToBot(new EnemyMakeTempCardInHandAction(new ENFightSkills()));
+        AbstractCard tmp = new ENBaseImage();
+        tmp.upgrade();
+        AbstractCharBoss.boss.drawPile.addToBottom(tmp);
     }
 
     @Override

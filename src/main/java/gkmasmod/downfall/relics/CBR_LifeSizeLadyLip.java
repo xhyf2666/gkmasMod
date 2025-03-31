@@ -34,8 +34,6 @@ public class CBR_LifeSizeLadyLip extends AbstractCharbossRelic {
     public CBR_LifeSizeLadyLip() {
         super(new LifeSizeLadyLip(),IMG);    }
 
-
-
     @Override
     public String getUpdatedDescription() {
         return String.format(this.DESCRIPTIONS[0],magicNumber,playTimes);

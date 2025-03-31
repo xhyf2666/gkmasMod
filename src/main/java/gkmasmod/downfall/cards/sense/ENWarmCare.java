@@ -43,6 +43,7 @@ public class ENWarmCare extends GkmasBossCard {
         this.baseMagicNumber = BASE_MAGIC;
         this.magicNumber = this.baseMagicNumber;
         this.intent = AbstractMonster.Intent.ATTACK_BUFF;
+        this.energyGeneratedIfPlayed = 1;
     }
 
 

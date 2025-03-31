@@ -10,6 +10,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import gkmasmod.cardCustomEffect.*;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
@@ -18,9 +19,12 @@ import gkmasmod.powers.FullPowerValue;
 import gkmasmod.stances.ConcentrationStance;
 import gkmasmod.stances.FullPowerStance;
 import gkmasmod.stances.PreservationStance;
+import gkmasmod.utils.CustomHelper;
 import gkmasmod.utils.GrowHelper;
 import gkmasmod.utils.NameHelper;
 import gkmasmod.utils.PlayerHelper;
+
+import java.util.ArrayList;
 
 public class TearfulMemories extends GkmasCard {
     private static final String CLASSNAME = TearfulMemories.class.getSimpleName();
@@ -33,9 +37,11 @@ public class TearfulMemories extends GkmasCard {
 
     private static final int COST = 0;
 
+    private static final int BASE_BLOCK = 3;
+
     private static final int BASE_MAGIC = 1;
 
-    private static final int BASE_MAGIC2 = 1;
+    private static final int BASE_MAGIC2 = 2;
 
     private static final int BASE_MAGIC3 = 1;
 
@@ -49,6 +55,7 @@ public class TearfulMemories extends GkmasCard {
 
     public TearfulMemories() {
         super(ID, NAME, IMG_PATH, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
+        this.baseBlock = BASE_BLOCK;
         this.baseMagicNumber = BASE_MAGIC;
         this.magicNumber = this.baseMagicNumber;
         this.baseSecondMagicNumber = BASE_MAGIC2;
@@ -57,13 +64,25 @@ public class TearfulMemories extends GkmasCard {
         this.thirdMagicNumber = this.baseThirdMagicNumber;
         this.baseGrowMagicNumber = BASE_GROW;
         this.growMagicNumber = this.baseGrowMagicNumber;
-        this.tags.add(GkmasCardTag.FULL_POWER_TAG);
+        this.customLimit = 1;
+        this.customEffectList = new ArrayList<>();
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(SecondMagicCustom.growID, new int[]{-1}, new int[]{50,50}, CustomHelper.CustomEffectType.FULL_POWER_VALUE_ADD));
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(EffectAddCustom.growID, new int[]{0}, new int[]{80}, CustomHelper.CustomEffectType.EFFECT_ADD));
     }
 
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        addToBot(new DrawCardAction(this.magicNumber));
+        addToBot(new GainBlockAction(p, this.block));
+        int amount = PlayerHelper.getPowerAmount(p, FullPowerValue.POWER_ID);
+        if(amount > this.secondMagicNumber){
+            addToBot(new DrawCardAction(this.magicNumber));
+        }
+        if(CustomHelper.hasCustom(this, EffectAddCustom.growID)){
+            if(p.stance.equals(ConcentrationStance.STANCE_ID)){
+                addToBot(new ChangeStanceAction(PreservationStance.STANCE_ID));
+            }
+        }
     }
 
     @Override

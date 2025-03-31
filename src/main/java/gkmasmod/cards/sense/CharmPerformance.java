@@ -6,16 +6,24 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import gkmasmod.cardCustomEffect.BlockCustom;
+import gkmasmod.cardCustomEffect.ExhaustRemoveCustom;
+import gkmasmod.cardCustomEffect.MagicCustom;
+import gkmasmod.cardCustomEffect.NotGreatGoodTuneCustom;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.powers.CharmPerformancePower;
 import gkmasmod.powers.GoodTune;
 import gkmasmod.powers.GreatGoodTune;
+import gkmasmod.powers.GreatNotGoodTune;
 import gkmasmod.screen.SkinSelectScreen;
+import gkmasmod.utils.CustomHelper;
 import gkmasmod.utils.ImageHelper;
 import gkmasmod.utils.NameHelper;
 import gkmasmod.utils.PlayerHelper;
+
+import java.util.ArrayList;
 
 public class CharmPerformance extends GkmasCard {
     private static final String CLASSNAME = CharmPerformance.class.getSimpleName();
@@ -32,6 +40,7 @@ public class CharmPerformance extends GkmasCard {
     private static final int UPGRADE_PLUS_DMG = 4;
     private static final int BASE_MAGIC = 2;
     private static final int UPGRADE_PLUS_MAGIC = 2;
+    private static final int BASE_MAGIC2 = 2;
 
 
     private static final CardType TYPE = CardType.ATTACK;
@@ -46,8 +55,15 @@ public class CharmPerformance extends GkmasCard {
         this.baseDamage = ATTACK_DMG;
         this.baseMagicNumber = BASE_MAGIC;
         this.magicNumber = this.baseMagicNumber;
+        this.baseSecondMagicNumber = BASE_MAGIC2;
+        this.secondMagicNumber = this.baseSecondMagicNumber;
         this.exhaust = true;
         this.tags.add(GkmasCardTag.GOOD_TUNE_TAG);
+        this.customLimit = 1;
+        this.customEffectList = new ArrayList<>();
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(MagicCustom.growID,new int[]{1},new int[]{70},CustomHelper.CustomEffectType.GREAT_GOOD_TUNE_ADD));
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(ExhaustRemoveCustom.growID,new int[]{0},new int[]{80},CustomHelper.CustomEffectType.EXHAUST_REMOVE));
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(NotGreatGoodTuneCustom.growID,new int[]{2},new int[]{80},CustomHelper.CustomEffectType.NOT_GREAT_GOOD_TUNE_ADD));
     }
 
 
@@ -55,6 +71,7 @@ public class CharmPerformance extends GkmasCard {
     public void use(AbstractPlayer p, AbstractMonster m) {
         addToBot(new ApplyPowerAction(p,p,new GreatGoodTune(p,this.magicNumber),this.magicNumber));
         addToBot(new ApplyPowerAction(p,p,new CharmPerformancePower(p,this.baseDamage,m),this.baseDamage));
+        addToBot(new ApplyPowerAction(m,m,new GreatNotGoodTune(m,this.secondMagicNumber),this.secondMagicNumber));
     }
 
     @Override

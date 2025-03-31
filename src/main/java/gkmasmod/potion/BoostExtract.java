@@ -76,9 +76,11 @@ public class BoostExtract extends CustomPotion {
 
     public void initializeData() {
         if (AbstractDungeon.player != null && AbstractDungeon.player.hasRelic("SacredBark")) {
-            this.description = String.format(potionStrings.DESCRIPTIONS[0], HP_LOST*2, MAGIC*2, MAGIC2,30*2,2);
+            this.description = String.format(potionStrings.DESCRIPTIONS[0], HP_LOST*2, MAGIC*2, MAGIC2,30*2);
         }
-        this.description = String.format(potionStrings.DESCRIPTIONS[0], HP_LOST, MAGIC, MAGIC2,30,1);
+        else{
+            this.description = String.format(potionStrings.DESCRIPTIONS[0], HP_LOST, MAGIC, MAGIC2,30);
+        }
         this.tips.clear();
         this.tips.add(new PowerTip(this.name, this.description));
     }

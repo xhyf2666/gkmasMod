@@ -63,5 +63,4 @@ public class ParalysisPower extends AbstractPower {
         addToBot(new ReducePowerAction(this.owner,this.owner,this,1));
     }
 
-
 }

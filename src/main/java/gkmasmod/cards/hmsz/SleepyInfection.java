@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.patches.AbstractCardPatch;
+import gkmasmod.powers.SleepyInfectionPower;
 import gkmasmod.powers.WantToSleep;
 import gkmasmod.powers.WantToSleepEnemy;
 import gkmasmod.utils.ImageHelper;
@@ -26,11 +27,12 @@ public class SleepyInfection extends GkmasCard {
 
     private static final int COST = 1;
     private static final int BASE_MAGIC = 2;
+    private static final int UPGRADE_PLUS_MAGIC = 2;
 
 
     private static final CardType TYPE = CardType.SKILL;
     private static final CardColor COLOR = PlayerColorEnum.gkmasModColorMisuzu;
-    private static final CardRarity RARITY = CardRarity.COMMON;
+    private static final CardRarity RARITY = CardRarity.UNCOMMON;
     private static final CardTarget TARGET = CardTarget.ENEMY;
 
     public SleepyInfection() {
@@ -41,10 +43,8 @@ public class SleepyInfection extends GkmasCard {
 
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        int amount = PlayerHelper.getPowerAmount(p, WantToSleep.POWER_ID);
-        if(this.upgraded)
-            amount+=this.magicNumber;
-        addToBot(new ApplyPowerAction(m,m,new WantToSleepEnemy(m,amount),amount));
+        addToBot(new ApplyPowerAction(m,m,new WantToSleepEnemy(m,this.magicNumber),this.magicNumber));
+        addToBot(new ApplyPowerAction(m,m,new SleepyInfectionPower(m)));
     }
 
     @Override
@@ -56,6 +56,7 @@ public class SleepyInfection extends GkmasCard {
     public void upgrade() {
         if (!this.upgraded) {
             upgradeName();
+            upgradeMagicNumber(UPGRADE_PLUS_MAGIC);
             if (CARD_STRINGS.UPGRADE_DESCRIPTION != null)
                 this.rawDescription = CARD_STRINGS.UPGRADE_DESCRIPTION;
             this.initializeDescription();

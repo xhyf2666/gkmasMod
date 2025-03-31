@@ -36,6 +36,7 @@ public class Sleepy extends GkmasCard {
         this.magicNumber = this.baseMagicNumber;
         this.exhaust = true;
         this.isEthereal = true;
+        this.cardHeader = CardCrawlGame.languagePack.getUIString("gkmasMod:SleepyHeader").TEXT[0];
     }
 
 
@@ -50,7 +51,6 @@ public class Sleepy extends GkmasCard {
         if (this.isEthereal) {
             this.addToTop(new ExhaustSpecificCardAction(this, AbstractDungeon.player.hand));
         }
-
     }
 
 
@@ -60,17 +60,6 @@ public class Sleepy extends GkmasCard {
     }
 
     @Override
-    public boolean isStrike() {
-        return true;
-    }
-
-    @Override
     public void upgrade() {
-        if (!this.upgraded) {
-            upgradeName();
-            if (CARD_STRINGS.UPGRADE_DESCRIPTION != null)
-                this.rawDescription = CARD_STRINGS.UPGRADE_DESCRIPTION;
-            this.initializeDescription();
-        }
     }
 }

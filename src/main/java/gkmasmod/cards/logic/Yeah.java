@@ -27,7 +27,7 @@ public class Yeah extends GkmasCard {
     private static final int COST = 1;
     private static final int BASE_MAGIC = 1;
 
-    private static final int BLOCK_AMT = 4;
+    private static final int BLOCK_AMT = 6;
     private static final int UPGRADE_PLUS_BLOCK = 2;
 
     private static final CardType TYPE = CardType.SKILL;
@@ -40,11 +40,12 @@ public class Yeah extends GkmasCard {
         this.baseMagicNumber = BASE_MAGIC;
         this.magicNumber = this.baseMagicNumber;
         this.baseBlock = BLOCK_AMT;
+        this.cardHeader = "A. A. O.";
         this.customLimit = 3;
         this.customEffectList = new ArrayList<>();
         this.customEffectList.add(CustomHelper.generateCustomEffectList(BlockCustom.growID,new int[]{2,2,4},new int[]{40,40,70},CustomHelper.CustomEffectType.BLOCK_ADD));
         this.customEffectList.add(CustomHelper.generateCustomEffectList(MagicCustom.growID,new int[]{1},new int[]{70},CustomHelper.CustomEffectType.DRAW_CARD_ADD));
-        this.customEffectList.add(CustomHelper.generateCustomEffectList(TempMoreActionCustom.growID,new int[]{1,1},new int[]{70,70},CustomHelper.CustomEffectType.TEMP_MORE_ACTION_ADD));
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(TempMoreActionCustom.growID,new int[]{1},new int[]{50},CustomHelper.CustomEffectType.TEMP_MORE_ACTION_ADD));
     }
 
 

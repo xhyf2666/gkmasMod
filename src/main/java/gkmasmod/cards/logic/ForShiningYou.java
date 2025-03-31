@@ -10,16 +10,20 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.DexterityPower;
 import gkmasmod.actions.GainTrainRoundPowerAction;
-import gkmasmod.cardCustomEffect.MoreActionCustom;
+import gkmasmod.cardCustomEffect.*;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.powers.ForShiningYouPlusPower;
+import gkmasmod.powers.ForShiningYouPlusSpPower;
 import gkmasmod.powers.ForShiningYouPower;
 import gkmasmod.screen.SkinSelectScreen;
+import gkmasmod.utils.CustomHelper;
 import gkmasmod.utils.ImageHelper;
 import gkmasmod.utils.NameHelper;
 import gkmasmod.utils.PlayerHelper;
+
+import java.util.ArrayList;
 
 public class ForShiningYou extends GkmasCard {
     private static final String CLASSNAME = ForShiningYou.class.getSimpleName();
@@ -34,6 +38,7 @@ public class ForShiningYou extends GkmasCard {
     private static final int BASE_MAGIC = 2;
     private static final int BASE_MAGIC2 = 30;
     private static final int UPGRADE_PLUS_MAGIC2 = 20;
+    private static final int BASE_MAGIC3 = 1;
 
 
     private static final CardType TYPE = CardType.POWER;
@@ -50,22 +55,31 @@ public class ForShiningYou extends GkmasCard {
         this.magicNumber = this.baseMagicNumber;
         this.baseSecondMagicNumber = BASE_MAGIC2;
         this.secondMagicNumber = this.baseSecondMagicNumber;
-        this.tags.add(GkmasCardTag.YARUKI_TAG);
-        this.tags.add(GkmasCardTag.GOOD_IMPRESSION_TAG);
+        this.baseThirdMagicNumber = BASE_MAGIC3;
+        this.thirdMagicNumber = this.baseThirdMagicNumber;
+        this.tags.add(GkmasCardTag.COST_POWER_TAG);
         this.tags.add(GkmasCardTag.MORE_ACTION_TAG);
         CardModifierManager.addModifier(this,new MoreActionCustom(1));
+        this.customLimit = 1;
+        this.customEffectList = new ArrayList<>();
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(MagicCustom.growID,new int[]{-1},new int[]{60},CustomHelper.CustomEffectType.DEXTERITY_ADD));
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(EffectAddCustom.growID, new int[]{0}, new int[]{100}, CustomHelper.CustomEffectType.EFFECT_ADD));
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
         addToBot(new ApplyPowerAction(p, p, new DexterityPower(p, -this.magicNumber), -this.magicNumber));
-        if(this.upgraded){
-            addToBot(new ApplyPowerAction(p, p, new ForShiningYouPlusPower(p, 1), 1));
+        if(CustomHelper.hasCustom(this, EffectAddCustom.growID)){
+            addToBot(new ApplyPowerAction(p, p, new ForShiningYouPlusSpPower(p, 1), 1));
         }
         else{
-            addToBot(new ApplyPowerAction(p, p, new ForShiningYouPower(p, 1), 1));
+            if(this.upgraded){
+                addToBot(new ApplyPowerAction(p, p, new ForShiningYouPlusPower(p, 1), 1));
+            }
+            else{
+                addToBot(new ApplyPowerAction(p, p, new ForShiningYouPower(p, 1), 1));
+            }
         }
-//        addToBot(new GainTrainRoundPowerAction(p,1));
     }
 
     @Override

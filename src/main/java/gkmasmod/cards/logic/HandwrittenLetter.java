@@ -7,14 +7,23 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import gkmasmod.actions.HandwrittenLetterAction;
+import gkmasmod.actions.HardStretchingAction;
+import gkmasmod.cardCustomEffect.EffectChangeCustom;
+import gkmasmod.cardCustomEffect.MagicCustom;
+import gkmasmod.cardCustomEffect.MoreActionCustom;
+import gkmasmod.cardCustomEffect.SecondMagicCustom;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.powers.GoodImpression;
 import gkmasmod.screen.SkinSelectScreen;
+import gkmasmod.utils.CustomHelper;
 import gkmasmod.utils.ImageHelper;
 import gkmasmod.utils.NameHelper;
 import gkmasmod.utils.PlayerHelper;
+
+import java.util.ArrayList;
 
 public class HandwrittenLetter extends GkmasCard {
     private static final String CLASSNAME = HandwrittenLetter.class.getSimpleName();
@@ -48,15 +57,27 @@ public class HandwrittenLetter extends GkmasCard {
         this.secondMagicNumber = this.baseSecondMagicNumber;
         this.baseBlock = BLOCK_AMT;
         this.block = this.baseBlock;
-        this.tags.add(GkmasCardTag.GOOD_IMPRESSION_TAG);
+        this.tags.add(GkmasCardTag.COST_POWER_TAG);
+        this.customLimit = 1;
+        this.customEffectList = new ArrayList<>();
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(MagicCustom.growID,new int[]{-1},new int[]{50},CustomHelper.CustomEffectType.GOOD_IMPRESSION_ADD));
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(EffectChangeCustom.growID,new int[]{0},new int[]{100},CustomHelper.CustomEffectType.EFFECT_CHANGE));
     }
+
 
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        addToBot(new ApplyPowerAction(p, p, new GoodImpression(p, -this.magicNumber), -this.magicNumber));
-        addToBot(new GainBlockAction(p, p, this.block));
-        addToBot(new GainBlockAction(p, p, this.block));
+        if(this.magicNumber>0)
+            addToBot(new ApplyPowerAction(p, p, new GoodImpression(p, -this.magicNumber), -this.magicNumber));
+        if(CustomHelper.hasCustom(this,EffectChangeCustom.growID)){
+            addToBot(new HandwrittenLetterAction(p,this.block,this.freeToPlayOnce, this.energyOnUse+1));
+        }
+        else{
+            addToBot(new GainBlockAction(p, p, this.block));
+            addToBot(new GainBlockAction(p, p, this.block));
+        }
+
     }
 
     @Override

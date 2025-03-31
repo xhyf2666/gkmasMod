@@ -31,7 +31,8 @@ public class CBR_FirstVoiceProofKotone extends AbstractCharbossRelic {
 
 
     public CBR_FirstVoiceProofKotone() {
-        super(new FirstVoiceProofKotone(),IMG);    }
+        super(new FirstVoiceProofKotone(),IMG);
+    }
 
 
 

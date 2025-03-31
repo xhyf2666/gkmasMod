@@ -26,7 +26,7 @@ public class CBR_FavoriteSneakers extends AbstractCharbossRelic {
     private static final RelicTier RARITY = RelicTier.STARTER;
 
     private static final int magicNumber = 4;
-    private static final int playTimes = 1;
+//    private static final int playTimes = 1;
 
     private static final int BLOCK = 6;
 
@@ -34,14 +34,14 @@ public class CBR_FavoriteSneakers extends AbstractCharbossRelic {
         super(new FavoriteSneakers(),IMG);    }
 
 
-    @Override
-    public void onVictory() {
-        this.counter = playTimes;
-    }
+//    @Override
+//    public void onVictory() {
+//        this.counter = playTimes;
+//    }
 
     @Override
     public String getUpdatedDescription() {
-        return String.format(this.DESCRIPTIONS[0],BLOCK,magicNumber,playTimes);
+        return String.format(this.DESCRIPTIONS[0],BLOCK,magicNumber);
     }
 
     @Override
@@ -53,24 +53,31 @@ public class CBR_FavoriteSneakers extends AbstractCharbossRelic {
     public void onEquip() {}
 
     public void onPlayerEndTurn() {
+//        if (this.counter > 0) {
+//            int amount = AbstractCharBoss.boss.currentBlock;
+//            if(amount>BLOCK){
+//                addToBot(new RelicAboveCreatureAction(AbstractCharBoss.boss, this));
+//                this.flash();
+//                addToBot(new ApplyPowerAction(AbstractCharBoss.boss, AbstractCharBoss.boss, new GoodImpression(AbstractCharBoss.boss, magicNumber), magicNumber));
+//                this.counter--;
+//                if (this.counter == 0) {
+//                    this.grayscale = true;
+//                }
+//            }
+//        }
         if (this.counter > 0) {
             int amount = AbstractCharBoss.boss.currentBlock;
             if(amount>BLOCK){
                 addToBot(new RelicAboveCreatureAction(AbstractCharBoss.boss, this));
                 this.flash();
                 addToBot(new ApplyPowerAction(AbstractCharBoss.boss, AbstractCharBoss.boss, new GoodImpression(AbstractCharBoss.boss, magicNumber), magicNumber));
-                this.counter--;
-                if (this.counter == 0) {
-                    this.grayscale = true;
-                }
             }
         }
-
     }
 
-    public void atBattleStart() {
-        this.counter = playTimes;
-    }
+//    public void atBattleStart() {
+//        this.counter = playTimes;
+//    }
 
 
     public void justEnteredRoom(AbstractRoom room) {

@@ -31,11 +31,6 @@ public class FixedMonsterRoom extends MonsterRoom {
         this.monsters = BaseMod.getMonster(this.encounterID);
         this.monsters.init();
 
-//        System.out.println(AbstractDungeon.loading_post_combat);
-//        if(!AbstractDungeon.loading_post_combat) {
-//
-//        }
-
         waitTimer = 0.1F;
     }
 

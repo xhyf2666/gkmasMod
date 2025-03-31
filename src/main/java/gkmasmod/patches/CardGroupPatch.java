@@ -17,9 +17,10 @@ import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.cards.anomaly.FinalSpurt;
 import gkmasmod.cards.anomaly.StepByStep;
 import gkmasmod.cards.free.Sleepy;
-import gkmasmod.characters.IdolCharacter;
+import gkmasmod.powers.MisuzuDreamPower;
 import gkmasmod.powers.SleepPower;
 import gkmasmod.powers.SleepPower2;
+import gkmasmod.powers.SleepyCardPowerPower;
 import gkmasmod.stances.PreservationStance;
 import gkmasmod.vfx.effect.ThreeSizeChangeEffect;
 
@@ -37,6 +38,15 @@ public class CardGroupPatch {
                             monster.getPower(SleepPower.POWER_ID).onExhaust(c);
                         if(monster.hasPower(SleepPower2.POWER_ID))
                             monster.getPower(SleepPower2.POWER_ID).onExhaust(c);
+                        if(monster.hasPower(MisuzuDreamPower.POWER_ID))
+                            monster.getPower(MisuzuDreamPower.POWER_ID).onExhaust(c);
+                    }
+                }
+            }
+            for (AbstractMonster monster : AbstractDungeon.getMonsters().monsters) {
+                if (!monster.isDeadOrEscaped()) {
+                    if(monster.hasPower(SleepyCardPowerPower.POWER_ID)){
+                        monster.getPower(SleepyCardPowerPower.POWER_ID).onExhaust(c);
                     }
                 }
             }

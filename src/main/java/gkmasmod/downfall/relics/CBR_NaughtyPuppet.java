@@ -16,7 +16,9 @@ import com.megacrit.cardcrawl.powers.NoBlockPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import gkmasmod.actions.ModifyDamageAction;
+import gkmasmod.powers.IdolExamPower;
 import gkmasmod.relics.NaughtyPuppet;
+import gkmasmod.utils.PlayerHelper;
 
 public class CBR_NaughtyPuppet extends AbstractCharbossRelic {
 
@@ -83,7 +85,16 @@ public class CBR_NaughtyPuppet extends AbstractCharbossRelic {
 
     @Override
     public int onLoseHpLast(int damageAmount) {
-        this.hp_lost += damageAmount;
+        if(AbstractCharBoss.boss!=null)
+        {
+            int count = PlayerHelper.getPowerAmount(AbstractCharBoss.boss,IdolExamPower.POWER_ID);
+            if(count==0)
+                return damageAmount;
+        }
+        int tmp = damageAmount;
+        if(tmp>AbstractCharBoss.boss.currentHealth)
+            tmp = AbstractCharBoss.boss.currentHealth;
+        this.hp_lost += tmp;
         return damageAmount;
     }
 

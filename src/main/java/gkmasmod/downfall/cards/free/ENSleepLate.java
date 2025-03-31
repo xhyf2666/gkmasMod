@@ -28,7 +28,7 @@ public class ENSleepLate extends GkmasBossCard {
 
     private static final CardType TYPE = CardType.SKILL;
     private static final CardColor COLOR = PlayerColorEnum.gkmasModColor;
-    private static final CardRarity RARITY = CardRarity.UNCOMMON;
+    private static final CardRarity RARITY = CardRarity.COMMON;
     private static final CardTarget TARGET = CardTarget.SELF;
 
     public ENSleepLate() {
@@ -37,6 +37,7 @@ public class ENSleepLate extends GkmasBossCard {
         this.magicNumber = this.baseMagicNumber;
         this.cardsToPreview = new ENSleepy();
         this.selfRetain = true;
+        this.energyGeneratedIfPlayed = this.magicNumber;
     }
 
 
@@ -56,6 +57,7 @@ public class ENSleepLate extends GkmasBossCard {
         if (!this.upgraded) {
             upgradeName();
             upgradeMagicNumber(UPGRADE_PLUS_MAGIC);
+            this.energyGeneratedIfPlayed = this.magicNumber;
             if (CARD_STRINGS.UPGRADE_DESCRIPTION != null)
                 this.rawDescription = CARD_STRINGS.UPGRADE_DESCRIPTION;
             this.initializeDescription();

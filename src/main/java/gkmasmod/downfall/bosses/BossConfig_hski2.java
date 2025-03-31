@@ -12,6 +12,10 @@ import gkmasmod.downfall.cards.free.*;
 import gkmasmod.downfall.cards.logic.*;
 import gkmasmod.downfall.relics.CBR_UndefeatedPoi;
 import gkmasmod.downfall.relics.CBR_WinningDetermination;
+import gkmasmod.powers.FantasyCharmPower;
+import gkmasmod.powers.GoodImpression;
+import gkmasmod.powers.MotherAIPower;
+import gkmasmod.powers.NegativeNotPower;
 
 import java.util.ArrayList;
 
@@ -36,6 +40,13 @@ public class BossConfig_hski2 extends AbstractBossDeckArchetype {
         addRelic(new CBR_TungstenRod());
         addRelic(new CBR_WinningDetermination());
         addRelic(new CBR_UndefeatedPoi());
+        AbstractCreature p = AbstractCharBoss.boss;
+        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new NegativeNotPower(p, 2), 2));
+        if(AbstractDungeon.ascensionLevel >= 15){
+            AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new MotherAIPower(p)));
+        }
+        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new FantasyCharmPower(p, 2), 2));
+        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new GoodImpression(p, 10), 10));
     }
 
     @Override
@@ -45,32 +56,23 @@ public class BossConfig_hski2 extends AbstractBossDeckArchetype {
         if (!looped) {
             switch (turn) {
                 case 0:
-                    addToList(cardsList,new ENBeforeThePerformance(),extraUpgrades);
-                    addToList(cardsList, new ENUnstoppableThoughts(),extraUpgrades);
                     addToList(cardsList, new ENForShiningYou(),extraUpgrades);
-                    addToList(cardsList, new ENIamBigStar(),extraUpgrades);
-                    addToList(cardsList, new ENMotherAI(),extraUpgrades);
+                    addToList(cardsList, new ENIamBigStar(),true);
+                    if(AbstractDungeon.ascensionLevel >= 15){
+                        addToList(cardsList, new ENSSDSecret(),true);
+                    }
+                    else{
+                        addToList(cardsList, new ENMotherAI(),true);
+                    }
                     turn++;
                     break;
                 case 1:
                     addToList(cardsList, new ENIdolDeclaration());
-                    addToList(cardsList, new ENFantasyCharm(), extraUpgrades);
                     addToList(cardsList, new ENHeartbeat(),extraUpgrades);
                     addToList(cardsList, new ENEnergyIsFull());
-                    turn++;
-                    break;
-                case 2:
-                    addToList(cardsList, new ENBaseVision(),extraUpgrades);
-                    addToList(cardsList, new ENHappyCurse(),extraUpgrades);
                     addToList(cardsList, new ENStarDust());
                     addToList(cardsList, new ENBaseVision());
-                    turn++;
-                    break;
-                case 3:
-                    addToList(cardsList, new ENKawaiiGesture(),extraUpgrades);
                     addToList(cardsList, new ENPow(),extraUpgrades);
-                    addToList(cardsList, new ENFirstFuture());
-                    addToList(cardsList, new ENIsENotA());
                     turn = 0;
                     looped = true;
                     break;
@@ -78,18 +80,11 @@ public class BossConfig_hski2 extends AbstractBossDeckArchetype {
         } else {
             switch (turn) {
                 case 0:
-                    addToList(cardsList, new ENBaseVision(),extraUpgrades);
-                    addToList(cardsList, new ENBaseVision());
-                    addToList(cardsList, new ENSweetWink());
-                    addToList(cardsList, new ENSmile());
-                    turn++;
-                    break;
-                case 1:
-                    addToList(cardsList, new ENBaseVision(), extraUpgrades);
-                    addToList(cardsList, new ENBaseVision(),extraUpgrades);
                     addToList(cardsList, new ENGirlHeart(),extraUpgrades);
                     addToList(cardsList, new ENFlowerBouquet(),extraUpgrades);
-                    turn = 0;
+                    addToList(cardsList, new ENSweetWink());
+                    addToList(cardsList, new ENBaseVision(), extraUpgrades);
+                    addToList(cardsList, new ENBaseVision(), extraUpgrades);
                     break;
             }
         }

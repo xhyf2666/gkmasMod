@@ -10,11 +10,15 @@ import com.megacrit.cardcrawl.helpers.CardHelper;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import gkmasmod.actions.BlockDamageAction;
+import gkmasmod.cardCustomEffect.*;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.screen.SkinSelectScreen;
+import gkmasmod.utils.CustomHelper;
 import gkmasmod.utils.ImageHelper;
 import gkmasmod.utils.NameHelper;
+
+import java.util.ArrayList;
 
 public class FingerHeart extends GkmasCard {
     private static final String CLASSNAME = FingerHeart.class.getSimpleName();
@@ -30,8 +34,6 @@ public class FingerHeart extends GkmasCard {
     private static final int BASE_MAGIC = 50;
     private static final int BASE_MAGIC2 = 170;
     private static final int UPGRADE_PLUS_MAGIC2 = 50;
-
-    private static final float BLOCK_REDUCE_RATE = 0.5F;
 
     private static final int BASE_HP = 3;
 
@@ -55,11 +57,16 @@ public class FingerHeart extends GkmasCard {
         this.exhaust = true;
         FlavorText.AbstractCardFlavorFields.boxColor.set(this, CardHelper.getColor(73, 224, 254));
         flavor = FlavorText.CardStringsFlavorField.flavor.get(CARD_STRINGS);
+        this.customLimit = 2;
+        this.customEffectList = new ArrayList<>();
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(SecondMagicCustom.growID,new int[]{30,30},new int[]{50,60},CustomHelper.CustomEffectType.RATE_ADD));
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(MagicCustom.growID,new int[]{-50},new int[]{60},CustomHelper.CustomEffectType.EFFECT_REDUCE));
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(HPMagicCustom.growID,new int[]{-1},new int[]{40},CustomHelper.CustomEffectType.HP_REDUCE));
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
         addToBot(new LoseHPAction(p, p, this.HPMagicNumber));
-        addToBot(new BlockDamageAction(1.0F * this.secondMagicNumber / 100, 0, p, m,this,false,BLOCK_REDUCE_RATE));
+        addToBot(new BlockDamageAction(1.0F * this.secondMagicNumber / 100, 0, p, m,this,false,1.0F * this.magicNumber / 100));
     }
 
     public void applyPowersToBlock() {

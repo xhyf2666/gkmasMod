@@ -26,21 +26,14 @@ public class FirstStarModel extends CustomRelic {
 
     private static final RelicTier RARITY = RelicTier.SPECIAL;
 
-    private static final  int playTimes = 1;
-
     public FirstStarModel() {
         super(ID, ImageMaster.loadImage(IMG), ImageMaster.loadImage(IMG_OTL), RARITY, LandingSound.CLINK);
     }
 
 
     @Override
-    public void onVictory() {
-        this.counter = playTimes;
-    }
-
-    @Override
     public String getUpdatedDescription() {
-        return String.format(this.DESCRIPTIONS[0],playTimes);
+        return String.format(this.DESCRIPTIONS[0]);
     }
 
     @Override
@@ -52,30 +45,12 @@ public class FirstStarModel extends CustomRelic {
     public void onEquip() {}
 
     public void atTurnStart() {
-        if (this.counter > 0) {
-            if(AbstractDungeon.player.stance.ID.equals(ConcentrationStance.STANCE_ID)){
-                addToBot(new RelicAboveCreatureAction(AbstractDungeon.player, this));
-                this.flash();
-                addToBot(new ChangeStanceAction(PreservationStance.STANCE_ID2));
-                addToBot(new GainTrainRoundPowerAction(AbstractDungeon.player,1));
-                this.counter--;
-                if (this.counter == 0) {
-                    this.grayscale = true;
-                }
-            }
+        if(AbstractDungeon.player.stance.ID.equals(ConcentrationStance.STANCE_ID)){
+            addToBot(new RelicAboveCreatureAction(AbstractDungeon.player, this));
+            this.flash();
+            addToBot(new ChangeStanceAction(PreservationStance.STANCE_ID2));
+            addToBot(new GainTrainRoundPowerAction(AbstractDungeon.player,1));
         }
-
-    }
-
-    public void atBattleStart() {
-        this.counter = playTimes;
-    }
-
-    public  void  onPlayerEndTurn(){
-    }
-
-    public void justEnteredRoom(AbstractRoom room) {
-        this.grayscale = false;
     }
 
     public void loadLargeImg() {

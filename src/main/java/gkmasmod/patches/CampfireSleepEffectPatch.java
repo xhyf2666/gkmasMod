@@ -16,10 +16,11 @@ import com.megacrit.cardcrawl.monsters.MonsterGroup;
 import com.megacrit.cardcrawl.random.Random;
 import com.megacrit.cardcrawl.rooms.MonsterRoom;
 import com.megacrit.cardcrawl.saveAndContinue.SaveFile;
+import com.megacrit.cardcrawl.ui.campfire.RestOption;
 import com.megacrit.cardcrawl.vfx.campfire.CampfireSleepEffect;
 import gkmasmod.characters.IdolCharacter;
 import gkmasmod.modcore.GkmasMod;
-import gkmasmod.monster.ending.MisuzuBoss;
+import gkmasmod.relics.MisuzuNatureRelic;
 import gkmasmod.relics.MysteriousObject;
 import gkmasmod.screen.SkinSelectScreen;
 import gkmasmod.utils.IdolData;
@@ -34,8 +35,10 @@ public class CampfireSleepEffectPatch {
             if(AbstractDungeon.player.hasRelic(MysteriousObject.ID)){
                 ((MysteriousObject)AbstractDungeon.player.getRelic(MysteriousObject.ID)).onSleep();
             }
+            if(AbstractDungeon.player!=null&&AbstractDungeon.player.hasRelic(MisuzuNatureRelic.ID)){
+                AbstractDungeon.player.getRelic(MisuzuNatureRelic.ID).onTrigger();
+            }
         }
     }
-
-
+    
 }

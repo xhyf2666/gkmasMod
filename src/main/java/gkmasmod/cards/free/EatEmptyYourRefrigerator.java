@@ -32,6 +32,7 @@ public class EatEmptyYourRefrigerator extends GkmasCard {
     public EatEmptyYourRefrigerator() {
         super(ID, NAME, IMG_PATH, -2, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.isEthereal = true;
+        this.cardHeader = CardCrawlGame.languagePack.getUIString("gkmasMod:EatEmptyYourRefrigeratorHeader").TEXT[0];
     }
 
 

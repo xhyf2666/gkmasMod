@@ -1,5 +1,6 @@
 package gkmasmod.downfall.bosses;
 
+import com.megacrit.cardcrawl.powers.MetallicizePower;
 import gkmasmod.downfall.charbosses.bosses.AbstractBossDeckArchetype;
 import gkmasmod.downfall.charbosses.bosses.AbstractCharBoss;
 import gkmasmod.downfall.charbosses.relics.*;
@@ -12,6 +13,9 @@ import gkmasmod.downfall.cards.free.*;
 import gkmasmod.downfall.cards.logic.*;
 import gkmasmod.downfall.relics.CBR_RollingSourceOfEnergy;
 import gkmasmod.downfall.relics.CBR_ShibaInuPochette;
+import gkmasmod.powers.AngelAndDemonPlusPower;
+import gkmasmod.powers.NotAfraidAnymorePower;
+import gkmasmod.powers.WakuWakuPower;
 
 import java.util.ArrayList;
 
@@ -28,6 +32,10 @@ public class BossConfig_hume1 extends AbstractBossDeckArchetype {
         super.addedPreBattle();
         AbstractCreature p = AbstractCharBoss.boss;
         AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new BarricadePower(p)));
+        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new WakuWakuPower(p,2),2));
+        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new AngelAndDemonPlusPower(p)));
+        if(AbstractDungeon.ascensionLevel >= 15)
+            AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new MetallicizePower(p,10),10));
     }
 
     public void initialize() {
@@ -36,6 +44,8 @@ public class BossConfig_hume1 extends AbstractBossDeckArchetype {
         addRelic(new CBR_OddlySmoothStone());
         addRelic(new CBR_ShibaInuPochette());
         addRelic(new CBR_RollingSourceOfEnergy());
+        if(AbstractDungeon.ascensionLevel >= 10)
+            addRelic(new CBR_Sozu());
     }
 
     @Override
@@ -45,23 +55,20 @@ public class BossConfig_hume1 extends AbstractBossDeckArchetype {
         if (!looped) {
             switch (turn) {
                 case 0:
-                    addToList(cardsList,new ENBeforeThePerformance(),extraUpgrades);
-                    addToList(cardsList,new ENUnstoppableThoughts(),extraUpgrades);
-                    addToList(cardsList,new ENWakuWaku(), extraUpgrades);
-                    addToList(cardsList, new ENAngelAndDemon(),extraUpgrades);
-
-                    turn++;
-                    break;
-                case 1:
+                    addToList(cardsList, new ENBeforeThePerformance(),extraUpgrades);
+                    addToList(cardsList, new ENUnstoppableThoughts(),extraUpgrades);
                     addToList(cardsList, new ENFlowerBouquet(),extraUpgrades);
                     addToList(cardsList, new ENOverflowMemory(),extraUpgrades);
                     addToList(cardsList, new ENFlowering());
+                    addToList(cardsList, new ENBasePose(),extraUpgrades);
                     turn++;
                     break;
-                case 2:
+                case 1:
                     addToList(cardsList, new ENImaginaryTraining(), extraUpgrades);
                     addToList(cardsList, new ENUntappedPotential(),true);
                     addToList(cardsList, new ENDefeatBigSister());
+                    addToList(cardsList, new ENOverflowMemory(), extraUpgrades);
+                    addToList(cardsList, new ENBasePose(),extraUpgrades);
                     turn = 0;
                     looped = true;
                     break;
@@ -72,6 +79,7 @@ public class BossConfig_hume1 extends AbstractBossDeckArchetype {
                     addToList(cardsList, new ENOverflowMemory(), extraUpgrades);
                     addToList(cardsList, new ENBasePose(),extraUpgrades);
                     addToList(cardsList, new ENThankYou(),extraUpgrades);
+                    addToList(cardsList, new ENOverflowMemory(), extraUpgrades);
                     turn = 0;
                     break;
             }

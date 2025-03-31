@@ -56,7 +56,6 @@ public class HalfDamageReceive extends AbstractPower {
 
     public void atEndOfRound(){
         flash();
-
         if(this.amount > 0){
                 addToBot(new ReducePowerAction(this.owner, this.owner, POWER_ID, 1));
         }

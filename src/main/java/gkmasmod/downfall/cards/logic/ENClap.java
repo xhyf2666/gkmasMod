@@ -31,6 +31,7 @@ public class ENClap extends GkmasBossCard {
     private static final int COST = 1;
     private static final int BASE_MAGIC = 150;
     private static final int UPGRADE_PLUS_MAGIC = 50;
+    private static final int BASE_MAGIC2 = 1;
 
 
     private static final CardType TYPE = CardType.ATTACK;
@@ -44,6 +45,8 @@ public class ENClap extends GkmasBossCard {
         super(ID, NAME, IMG_PATH, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.baseMagicNumber = BASE_MAGIC;
         this.magicNumber = this.baseMagicNumber;
+        this.baseSecondMagicNumber = BASE_MAGIC2;
+        this.secondMagicNumber = this.baseSecondMagicNumber;
         this.intent = AbstractMonster.Intent.ATTACK;
         FlavorText.AbstractCardFlavorFields.boxColor.set(this, CardHelper.getColor(73, 224, 254));
         flavor = FlavorText.CardStringsFlavorField.flavor.get(CARD_STRINGS);

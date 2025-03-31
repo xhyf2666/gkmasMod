@@ -34,7 +34,6 @@ public class DreamLifeLog extends CustomRelic {
 
     private static final int playTimes = 1;
 
-
     public DreamLifeLog() {
         super(ID, ImageMaster.loadImage(IMG), ImageMaster.loadImage(IMG_OTL), RARITY, LandingSound.CLINK);
         magicNumber = 1.0F*BASE_MAGIC /100;
@@ -67,7 +66,6 @@ public class DreamLifeLog extends CustomRelic {
 
         if (this.counter > 0) {
             int amount = AbstractDungeon.player.currentBlock;
-            System.out.println("Amount: " + amount);
             if(amount> BLOCK){
                 int damage = (int) (1.0F*amount*magicNumber2);
                 int goodImpressionAmount = AbstractDungeon.player.getPower(GoodImpression.POWER_ID) ==null?0:AbstractDungeon.player.getPower(GoodImpression.POWER_ID).amount;

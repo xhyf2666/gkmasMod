@@ -29,7 +29,7 @@ public class ENKawaiiKawaiiKawaii extends GkmasBossCard {
 
     private static final CardType TYPE = CardType.SKILL;
     private static final CardColor COLOR = PlayerColorEnum.gkmasModColor;
-    private static final CardRarity RARITY = CardRarity.RARE;
+    private static final CardRarity RARITY = CardRarity.UNCOMMON;
     private static final CardTarget TARGET = CardTarget.SELF;
 
     public ENKawaiiKawaiiKawaii() {
@@ -40,7 +40,7 @@ public class ENKawaiiKawaiiKawaii extends GkmasBossCard {
         this.secondMagicNumber = this.baseSecondMagicNumber;
         this.exhaust = true;
         this.tags.add(GkmasCardTag.MORE_ACTION_TAG);
-
+        this.energyGeneratedIfPlayed = 1;
     }
 
 

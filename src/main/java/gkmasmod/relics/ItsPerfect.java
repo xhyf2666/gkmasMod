@@ -31,7 +31,6 @@ public class ItsPerfect extends CustomRelic {
         super(ID, ImageMaster.loadImage(IMG), ImageMaster.loadImage(IMG_OTL), RARITY, LandingSound.CLINK);
     }
 
-
     @Override
     public void onVictory() {
         this.counter = playTimes;

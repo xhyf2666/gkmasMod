@@ -27,7 +27,7 @@ public class ENWishPower extends GkmasBossCard {
     private static String IMG_PATH = ImageHelper.idolImgPath(AbstractCharBoss.theIdolName, CLASSNAME2);
 
     private static final int COST = 1;
-    private static final int BASE_MAGIC = 2;
+    private static final int BASE_MAGIC = 1;
     private static final int BASE_MAGIC2 = 1;
 
 

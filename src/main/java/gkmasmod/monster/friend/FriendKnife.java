@@ -18,7 +18,7 @@ public class FriendKnife extends CustomMonster {
 
     public static final String NAME = monsterStrings.NAME;
 
-    private static int MAX_HEALTH = 5;
+    private static int MAX_HEALTH = 4;
 
     public FriendKnife() {
         this(000.0F, 0.0F);
@@ -45,7 +45,10 @@ public class FriendKnife extends CustomMonster {
 
     @Override
     public void damage(DamageInfo info) {
-        if(info.owner.isPlayer){
+        if(info.owner!=null&&info.owner.isPlayer&&AbstractMonsterPatch.friendlyField.friendly.get(this)){
+            return;
+        }
+        if(info.owner==null){
             return;
         }
         super.damage(info);

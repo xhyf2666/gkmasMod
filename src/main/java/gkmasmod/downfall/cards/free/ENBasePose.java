@@ -14,6 +14,7 @@ import gkmasmod.cards.GkmasCard;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.downfall.cards.GkmasBossCard;
 import gkmasmod.downfall.cards.sense.ENNeverLose;
+import gkmasmod.downfall.charbosses.bosses.AbstractCharBoss;
 import gkmasmod.utils.NameHelper;
 
 public class ENBasePose extends GkmasBossCard {
@@ -29,8 +30,8 @@ public class ENBasePose extends GkmasBossCard {
 
     private static final int COST = 1;
     private static final int ATTACK_DMG = 4;
-    private static final int UPGRADE_PLUS_DMG = 1;
-    private static final int BLOCK_AMT = 2;
+    private static final int UPGRADE_PLUS_DMG = 2;
+    private static final int BLOCK_AMT = 4;
     private static final int UPGRADE_PLUS_BLOCK = 2;
 
     private static final CardType TYPE = CardType.ATTACK;
@@ -49,6 +50,7 @@ public class ENBasePose extends GkmasBossCard {
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
+        AbstractCharBoss.boss.drawPile.addToBottom(this);
         addToBot((new GainBlockAction(m, m, this.block)));
         addToBot(new DamageAction(p, new DamageInfo(m, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
     }

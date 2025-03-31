@@ -48,13 +48,15 @@ public class TopWisdomPower extends AbstractPower {
     }
 
     public void onGainedBlock(float blockAmount) {
-        int count = this.owner.currentBlock;
+        int count = this.owner.currentBlock + (int)blockAmount;
         int damage_ = (int) (1.0F*count * rate);
         for(int i = 0; i < this.amount; i++) {
+            DamageInfo damageInfo = new DamageInfo(this.owner, damage_, DamageInfo.DamageType.NORMAL);
+            damageInfo.name = this.ID;
             if(this.owner.isPlayer)
-                addToBot(new ModifyDamageRandomEnemyAction(new DamageInfo(this.owner, damage_, DamageInfo.DamageType.NORMAL), AbstractGameAction.AttackEffect.SLASH_VERTICAL));
+                addToBot(new ModifyDamageRandomEnemyAction(damageInfo, AbstractGameAction.AttackEffect.SLASH_VERTICAL));
             else if(this.owner instanceof AbstractCharBoss)
-                addToBot(new ModifyDamageAction(AbstractDungeon.player,new DamageInfo(this.owner, damage_, DamageInfo.DamageType.NORMAL), AbstractGameAction.AttackEffect.SLASH_VERTICAL));
+                addToBot(new ModifyDamageAction(AbstractDungeon.player,damageInfo, AbstractGameAction.AttackEffect.SLASH_VERTICAL));
         }
     }
 }

@@ -18,6 +18,7 @@ import gkmasmod.downfall.bosses.AbstractIdolBoss;
 import gkmasmod.downfall.charbosses.bosses.AbstractCharBoss;
 import gkmasmod.patches.AbstractMonsterPatch;
 import gkmasmod.powers.FriendRinhaPower1;
+import gkmasmod.powers.FriendRinhaPower2;
 import gkmasmod.powers.FriendTemariPower1;
 
 public class FriendRinha extends CustomMonster {
@@ -43,9 +44,11 @@ public class FriendRinha extends CustomMonster {
     public FriendRinha(float x, float y, int stage) {
         super(NAME, ID, MAX_HEALTH, -8.0F, 0.0F, 120.0F, 120.0F, null, x, y);
         this.stage = stage;
-        this.drawX = (float) Settings.WIDTH * 0.3F+ x;
+        this.drawX = (float) Settings.WIDTH * 0.30F+ x;
+        this.drawY = (float)Settings.HEIGHT * 0.35F + y;
         AbstractMonsterPatch.friendlyField.friendly.set(this,true);
         addToBot(new ApplyPowerAction(this,this,new FriendRinhaPower1(this)));
+        addToBot(new ApplyPowerAction(this,this,new FriendRinhaPower2(this)));
         this.img = new Texture(String.format("gkmasModResource/img/monsters/other/FriendRinha%s.png",stage));
     }
 
@@ -61,7 +64,10 @@ public class FriendRinha extends CustomMonster {
 
     @Override
     public void damage(DamageInfo info) {
-        if(info.owner.isPlayer){
+        if(info.owner!=null&&info.owner.isPlayer&&AbstractMonsterPatch.friendlyField.friendly.get(this)){
+            return;
+        }
+        if(info.owner==null){
             return;
         }
         super.damage(info);

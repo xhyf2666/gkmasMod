@@ -1,5 +1,7 @@
 package gkmasmod.powers;
 
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
 import gkmasmod.downfall.charbosses.actions.common.EnemyGainEnergyAction;
 import gkmasmod.downfall.charbosses.bosses.AbstractCharBoss;
 import gkmasmod.downfall.charbosses.cards.AbstractBossCard;
@@ -62,8 +64,12 @@ public class HeartAndSoulPower extends AbstractPower {
             return;
         flash();
         addToTop(new ApplyPowerAction(owner,owner,new HeartAndSoulPower(owner,-1),-1));
-        if(this.owner.isPlayer)
-            addToBot(new GainEnergyAction(card.costForTurn));
+        if(this.owner.isPlayer){
+            if (card.costForTurn>0)
+                addToBot(new GainEnergyAction(card.costForTurn));
+            else if(card.costForTurn==-1)
+                addToBot(new GainEnergyAction(EnergyPanel.totalCount));
+        }
         else
             addToBot(new EnemyGainEnergyAction(card.costForTurn));
     }

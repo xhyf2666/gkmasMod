@@ -7,6 +7,10 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import gkmasmod.actions.GainTrainRoundPowerAction;
+import gkmasmod.cardCustomEffect.BlockCustom;
+import gkmasmod.cardCustomEffect.CostCustom;
+import gkmasmod.cardCustomEffect.DamageCustom;
+import gkmasmod.cardCustomEffect.EffectReduceCustom;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
@@ -15,10 +19,9 @@ import gkmasmod.growEffect.DamageGrow;
 import gkmasmod.powers.FullPowerValue;
 import gkmasmod.powers.ToTheTopPower;
 import gkmasmod.screen.SkinSelectScreen;
-import gkmasmod.utils.GrowHelper;
-import gkmasmod.utils.ImageHelper;
-import gkmasmod.utils.NameHelper;
-import gkmasmod.utils.PlayerHelper;
+import gkmasmod.utils.*;
+
+import java.util.ArrayList;
 
 public class ToTheTop extends GkmasCard {
     private static final String CLASSNAME = ToTheTop.class.getSimpleName();
@@ -31,8 +34,8 @@ public class ToTheTop extends GkmasCard {
 
     private static final int COST = 2;
 
-    private static final int BASE_MAGIC = 5;
-    private static final int BASE_MAGIC2 = 4;
+    private static final int BASE_MAGIC = 4;
+    private static final int BASE_MAGIC2 = 3;
 
     private static final CardType TYPE = CardType.POWER;
     private static final CardColor COLOR = PlayerColorEnum.gkmasModColorAnomaly;
@@ -47,11 +50,15 @@ public class ToTheTop extends GkmasCard {
         this.magicNumber = this.baseMagicNumber;
         this.baseSecondMagicNumber = BASE_MAGIC2;
         this.secondMagicNumber = this.baseSecondMagicNumber;
+        this.customLimit = 1;
+        this.customEffectList = new ArrayList<>();
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(DamageCustom.growID, new int[]{4}, new int[]{60}, CustomHelper.CustomEffectType.DAMAGE_ADD));
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(BlockCustom.growID,new int[]{4},new int[]{60},CustomHelper.CustomEffectType.BLOCK_ADD));
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        addToBot(new ApplyPowerAction(p,p,new ToTheTopPower(p,1),1));
+        addToBot(new ApplyPowerAction(p,p,new ToTheTopPower(p,this.magicNumber),this.magicNumber));
         if(this.upgraded){
             GrowHelper.growAll(DamageGrow.growID,this.secondMagicNumber);
         }

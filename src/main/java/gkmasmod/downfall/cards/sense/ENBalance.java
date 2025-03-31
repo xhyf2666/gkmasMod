@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.StrengthPower;
+import gkmasmod.actions.BalanceAction;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
@@ -46,21 +47,7 @@ public class ENBalance extends GkmasBossCard {
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        int count_goodTune = PlayerHelper.getPowerAmount(m, GoodTune.POWER_ID);
-        int count_strength = PlayerHelper.getPowerAmount(m, StrengthPower.POWER_ID);
-        int count = (count_goodTune + count_strength+1)/2;
-        if(count<=0)
-            return;
-        if(m.hasPower(GoodTune.POWER_ID))
-            addToBot(new ApplyPowerAction(m, m, new GoodTune(m, count-count_goodTune), count-count_goodTune));
-        else{
-            addToBot(new ApplyPowerAction(m, m, new GoodTune(m, count), count));
-        }
-        if(m.hasPower(StrengthPower.POWER_ID))
-            addToBot(new ApplyPowerAction(m, m, new StrengthPower(m, count-count_strength), count-count_strength));
-        else{
-            addToBot(new ApplyPowerAction(m, m, new StrengthPower(m, count), count));
-        }
+        addToBot(new BalanceAction(m));
     }
 
     @Override

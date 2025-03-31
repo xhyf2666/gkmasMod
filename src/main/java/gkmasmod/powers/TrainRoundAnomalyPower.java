@@ -18,6 +18,7 @@ import gkmasmod.growEffect.BlockGrow;
 import gkmasmod.growEffect.DamageGrow;
 import gkmasmod.relics.*;
 import gkmasmod.utils.NameHelper;
+import gkmasmod.utils.PlayerHelper;
 import gkmasmod.utils.ThreeSizeHelper;
 
 public class TrainRoundAnomalyPower extends AbstractPower {
@@ -33,23 +34,17 @@ public class TrainRoundAnomalyPower extends AbstractPower {
 
     private boolean isDone = true;
 
+    private boolean flag = true;
+
+    private int MAGIC = 2;
+    private int MAGIC2 = 2;
+
 
     String path128 = String.format("gkmasModResource/img/powers/%s_84.png",CLASSNAME);;
     String path48 = String.format("gkmasModResource/img/powers/%s_32.png",CLASSNAME);;
 
     public TrainRoundAnomalyPower(AbstractCreature owner, int Amount) {
-        this.name = NAME;
-        this.ID = POWER_ID;
-        this.owner = owner;
-        this.type = PowerType.BUFF;
-
-        this.isPostActionPower = true;
-        this.isDone = true;
-        this.amount = Amount;
-
-        this.region128 = new TextureAtlas.AtlasRegion(ImageMaster.loadImage(path128), 0, 0, 84, 84);
-        this.region48 = new TextureAtlas.AtlasRegion(ImageMaster.loadImage(path48), 0, 0, 32, 32);
-        this.updateDescription();
+        this(owner, Amount, true);
     }
 
     public TrainRoundAnomalyPower(AbstractCreature owner, int Amount, boolean isDone) {
@@ -63,6 +58,23 @@ public class TrainRoundAnomalyPower extends AbstractPower {
 
         this.amount = Amount;
         this.priority = 99;
+
+        if(AbstractDungeon.actNum==1){
+            MAGIC = 1;
+            MAGIC2 = 1;
+        }
+        else if(AbstractDungeon.actNum==2){
+            MAGIC = 1;
+            MAGIC2 = 1;
+        }
+        else if(AbstractDungeon.actNum==3){
+            MAGIC = 2;
+            MAGIC2 = 2;
+        }
+        else{
+            MAGIC = 2;
+            MAGIC2 = 2;
+        }
 
         this.region128 = new TextureAtlas.AtlasRegion(ImageMaster.loadImage(path128), 0, 0, 84, 84);
         this.region48 = new TextureAtlas.AtlasRegion(ImageMaster.loadImage(path48), 0, 0, 32, 32);
@@ -89,10 +101,9 @@ public class TrainRoundAnomalyPower extends AbstractPower {
     }
 
     public void atStartOfTurnPostDraw() {
-        addToBot(new DrawCardAction(1));
-        addToBot(new GrowAction(DamageGrow.growID, GrowAction.GrowType.allHand,2));
-        addToBot(new GrowAction(BlockGrow.growID, GrowAction.GrowType.allHand,2));
-        addToBot(new PotentialAbilityAction(1));
+        addToBot(new GrowAction(DamageGrow.growID, GrowAction.GrowType.allHand,this.MAGIC));
+        addToBot(new GrowAction(BlockGrow.growID, GrowAction.GrowType.allHand,this.MAGIC2));
+        flag=true;
     }
 
     public void stackPower(int stackAmount) {
@@ -103,20 +114,28 @@ public class TrainRoundAnomalyPower extends AbstractPower {
     }
 
     public void updateDescription() {
-        this.description = String.format(DESCRIPTIONS[0], this.amount);
+        this.description = String.format(DESCRIPTIONS[0], this.amount,this.MAGIC,this.MAGIC2,1,1);
     }
 
     public void atEndOfTurnPreEndTurnCards(boolean isPlayer) {
         flash();
-        if(EnergyPanel.totalCount > 0){
-            addToTop(new HealAction(this.owner, this.owner, 1));
-        }
+//        if(EnergyPanel.totalCount > 0){
+//            addToTop(new HealAction(this.owner, this.owner, 1));
+//        }
     }
 
     public void atEndOfTurn(boolean isPlayer) {
         flash();
         if(this.amount > 0){
             addToBot(new ReducePowerAction(this.owner, this.owner, POWER_ID, 1));
+            if(this.amount<4){
+                for(AbstractPower power:AbstractDungeon.player.powers){
+                    if(power instanceof MyPrideBigSisterPower){
+                        power.flash();
+                        power.onSpecificTrigger();
+                    }
+                }
+            }
         }
         else
             addToBot(new RemoveSpecificPowerAction(this.owner, this.owner, POWER_ID));
@@ -132,12 +151,22 @@ public class TrainRoundAnomalyPower extends AbstractPower {
     }
 
     public void onVictory() {
-        AbstractDungeon.player.heal((int) (1.0f*this.amount*2/3));
+//        AbstractDungeon.player.heal((int) (1.0f*this.amount*2/3));
         if(!this.isDone){
             ThreeSizeHelper.addThreeSize(false);
             this.isDone = true;
         }
     }
+
+    @Override
+    public void onSpecificTrigger() {
+        if (flag) {
+            addToBot(new GrowAction(DamageGrow.growID, GrowAction.GrowType.all, 1));
+            addToBot(new GrowAction(BlockGrow.growID, GrowAction.GrowType.all, 1));
+            flag = false;
+        }
+    }
+
 
     public void onRemove() {
         if(AbstractDungeon.player.hasRelic(SidewalkResearchNotes.ID)){
@@ -157,6 +186,16 @@ public class TrainRoundAnomalyPower extends AbstractPower {
         }
         if(AbstractDungeon.player.hasRelic(ChristmasLion.ID)){
             ((ChristmasLion)AbstractDungeon.player.getRelic(ChristmasLion.ID)).onTrainRoundRemove();
+        }
+        for(AbstractPower power:AbstractDungeon.player.powers){
+            if(power instanceof SayGoodbyeToDislikeMyselfPower){
+                power.flash();
+                power.onSpecificTrigger();
+            }
+            if(power instanceof ContinuousExpandWorldPower){
+                power.flash();
+                power.onSpecificTrigger();
+            }
         }
         if(!this.isDone){
             ThreeSizeHelper.addThreeSize(true);

@@ -50,7 +50,7 @@ public class StanceLock extends AbstractPower {
     public void atEndOfRound(){
         flash();
         if(this.amount > 0){
-                addToTop(new ReducePowerAction(this.owner, this.owner, POWER_ID, 1));
+            addToTop(new ReducePowerAction(this.owner, this.owner, POWER_ID, 1));
         }
         else
             addToTop(new RemoveSpecificPowerAction(this.owner, this.owner, POWER_ID));

@@ -10,12 +10,20 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import gkmasmod.actions.GrowAction;
+import gkmasmod.cardCustomEffect.DamageCustom;
+import gkmasmod.cardCustomEffect.MagicCustom;
+import gkmasmod.cardCustomEffect.SecondMagicCustom;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
+import gkmasmod.growEffect.DamageGrow;
 import gkmasmod.powers.FullPowerValue;
 import gkmasmod.stances.ConcentrationStance;
+import gkmasmod.utils.CustomHelper;
 import gkmasmod.utils.NameHelper;
+
+import java.util.ArrayList;
 
 public class JustAppeal extends GkmasCard {
     private static final String CLASSNAME = JustAppeal.class.getSimpleName();
@@ -32,6 +40,7 @@ public class JustAppeal extends GkmasCard {
 
     private static final int BASE_MAGIC = 3;
     private static final int UPGRADE_MAGIC_PLUS = 1;
+    private static final int BASE_MAGIC2 = 0;
 
 
     private static final CardType TYPE = CardType.ATTACK;
@@ -45,14 +54,23 @@ public class JustAppeal extends GkmasCard {
         this.baseDamage = BASE_DAMAGE;
         this.baseMagicNumber = BASE_MAGIC;
         this.magicNumber = this.baseMagicNumber;
+        this.baseSecondMagicNumber = BASE_MAGIC2;
+        this.secondMagicNumber = this.baseSecondMagicNumber;
         this.exhaust = true;
-
+        this.customLimit = 3;
+        this.customEffectList = new ArrayList<>();
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(DamageCustom.growID,new int[]{2,2,2},new int[]{50,50,50},CustomHelper.CustomEffectType.DAMAGE_ADD));
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(MagicCustom.growID, new int[]{1,1,1}, new int[]{50,50,50}, CustomHelper.CustomEffectType.FULL_POWER_VALUE_ADD));
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(SecondMagicCustom.growID, new int[]{3,3}, new int[]{60,60}, CustomHelper.CustomEffectType.EFFECT_ADD));
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
         addToBot(new DamageAction(m, new DamageInfo(p, this.damage, DamageInfo.DamageType.NORMAL), AbstractGameAction.AttackEffect.SLASH_VERTICAL));
         addToBot(new ApplyPowerAction(p,p,new FullPowerValue(p,this.magicNumber),this.magicNumber));
+        if(this.secondMagicNumber > 0){
+            addToBot(new GrowAction(DamageGrow.growID, GrowAction.GrowType.allTempSave, this.secondMagicNumber));
+        }
     }
 
     @Override

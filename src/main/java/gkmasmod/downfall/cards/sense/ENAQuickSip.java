@@ -51,6 +51,7 @@ public class ENAQuickSip extends GkmasBossCard {
         this.tags.add(GkmasCardTag.FOCUS_TAG);
         this.tags.add(GkmasCardTag.IDOL_CARD_TAG);
         this.tags.add(GkmasCardTag.MORE_ACTION_TAG);
+        this.energyGeneratedIfPlayed = 1;
     }
 
 

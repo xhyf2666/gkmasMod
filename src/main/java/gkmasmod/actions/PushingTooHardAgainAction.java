@@ -35,11 +35,8 @@ public class PushingTooHardAgainAction extends AbstractGameAction {
                 this.target.damage(this.info);
                 if (this.target.lastDamageTaken > 0) {
                     int count = this.target.lastDamageTaken;
-                    if(this.source instanceof IdolCharacter){
-                        IdolCharacter idol = (IdolCharacter) AbstractDungeon.player;
-                        if(AbstractPlayerPatch.FinalCircleRoundField.finalCircleRound.get(AbstractDungeon.player).size()>0){
-                            count = (int) (1.0f*count / (AbstractPlayerPatch.FinalDamageRateField.finalDamageRate.get(AbstractDungeon.player)*1.0f));
-                        }
+                    if(AbstractPlayerPatch.FinalCircleRoundField.finalCircleRound.get(AbstractDungeon.player).size()>0){
+                        count = (int) (1.0f*count / (AbstractPlayerPatch.FinalDamageRateField.finalDamageRate.get(AbstractDungeon.player)*1.0f));
                     }
                     this.addToTop(new GainBlockAction(this.source, count));
                     if (this.target.hb != null) {

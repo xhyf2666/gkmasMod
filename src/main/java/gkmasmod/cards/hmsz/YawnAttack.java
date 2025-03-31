@@ -10,8 +10,10 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import gkmasmod.cards.GkmasCard;
+import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.powers.GoodImpression;
+import gkmasmod.powers.WantToSleep;
 import gkmasmod.powers.WantToSleepEnemy;
 import gkmasmod.utils.ImageHelper;
 import gkmasmod.utils.NameHelper;
@@ -27,14 +29,13 @@ public class YawnAttack extends GkmasCard {
 
     private static final int COST = 1;
     private static final int ATTACK_DMG = 5;
-    private static final int UPGRADE_PLUS_DMG = 2;
-    private static final int BASE_MAGIC = 2;
-    private static final int UPGRADE_PLUS_MAGIC = 1;
+    private static final int UPGRADE_PLUS_DMG = 3;
+    private static final int BASE_MAGIC = 3;
 
 
     private static final CardType TYPE = CardType.ATTACK;
     private static final CardColor COLOR = PlayerColorEnum.gkmasModColorMisuzu;
-    private static final CardRarity RARITY = CardRarity.COMMON;
+    private static final CardRarity RARITY = CardRarity.BASIC;
     private static final CardTarget TARGET = CardTarget.ENEMY;
 
     public YawnAttack() {
@@ -43,6 +44,9 @@ public class YawnAttack extends GkmasCard {
         this.damage = this.baseDamage;
         this.baseMagicNumber = BASE_MAGIC;
         this.magicNumber = this.baseMagicNumber;
+        this.tags.add(AbstractCard.CardTags.STRIKE);
+        this.tags.add(CardTags.STARTER_STRIKE);
+        this.tags.add(GkmasCardTag.SLEEP_TAG);
     }
 
 
@@ -61,7 +65,6 @@ public class YawnAttack extends GkmasCard {
         if (!this.upgraded) {
             upgradeName();
             upgradeDamage(UPGRADE_PLUS_DMG);
-            upgradeMagicNumber(UPGRADE_PLUS_MAGIC);
             if (CARD_STRINGS.UPGRADE_DESCRIPTION != null)
                 this.rawDescription = CARD_STRINGS.UPGRADE_DESCRIPTION;
             this.initializeDescription();

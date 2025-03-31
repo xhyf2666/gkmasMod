@@ -13,12 +13,17 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
+import gkmasmod.cardCustomEffect.*;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
+import gkmasmod.powers.BalancePower;
 import gkmasmod.powers.GoodTune;
 import gkmasmod.powers.NotGoodTune;
+import gkmasmod.utils.CustomHelper;
 import gkmasmod.utils.NameHelper;
+
+import java.util.ArrayList;
 
 public class JustOneMore extends GkmasCard {
     private static final String CLASSNAME = JustOneMore.class.getSimpleName();
@@ -46,6 +51,11 @@ public class JustOneMore extends GkmasCard {
         this.magicNumber = this.baseMagicNumber;
         this.tags.add(GkmasCardTag.GOOD_TUNE_TAG);
         this.tags.add(GkmasCardTag.FOCUS_TAG);
+        this.customLimit = 1;
+        this.customEffectList = new ArrayList<>();
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(SelfRetainCustom.growID,new int[]{0},new int[]{70},CustomHelper.CustomEffectType.SELF_RETAIN_ADD));
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(BlockCustom.growID, new int[]{5}, new int[]{60}, CustomHelper.CustomEffectType.BLOCK_ADD));
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(EffectReduceCustom.growID,new int[]{0},new int[]{90},CustomHelper.CustomEffectType.EFFECT_REDUCE));
     }
 
 
@@ -54,12 +64,12 @@ public class JustOneMore extends GkmasCard {
         int count = AbstractDungeon.player.getPower(GoodTune.POWER_ID) == null ? 0 : AbstractDungeon.player.getPower(GoodTune.POWER_ID).amount;
         if (count > 0) {
             addToBot(new RemoveSpecificPowerAction(p, p, GoodTune.POWER_ID));
-            addToTop(new ApplyPowerAction(p, p, new StrengthPower(p, count), count));
-        } else {
-            addToBot(new ApplyPowerAction(p,  p,  new NotGoodTune( p, this.magicNumber), this.magicNumber));
-
+            addToBot(new ApplyPowerAction(p, p, new StrengthPower(p, count), count));
+        } else if(!CustomHelper.hasCustom(this, EffectReduceCustom.growID)){
+            addToBot(new ApplyPowerAction(p,  p,  new NotGoodTune(p, this.magicNumber), this.magicNumber));
         }
         addToBot( new LimitBreakAction());
+
     }
 
     @Override

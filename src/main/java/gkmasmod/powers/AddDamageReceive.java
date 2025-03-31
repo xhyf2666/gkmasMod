@@ -40,8 +40,8 @@ public class AddDamageReceive extends AbstractPower {
         this.description = String.format(DESCRIPTIONS[0], this.amount);
     }
 
-
-    public float atDamageReceive(float damage, DamageInfo.DamageType type) {
+    @Override
+    public float atDamageFinalReceive(float damage, DamageInfo.DamageType type) {
         return damage + this.amount;
     }
 

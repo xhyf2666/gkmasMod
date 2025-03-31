@@ -2,6 +2,7 @@ package gkmasmod.cards.anomaly;
 
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.GainBlockAction;
+import com.megacrit.cardcrawl.actions.common.LoseHPAction;
 import com.megacrit.cardcrawl.actions.watcher.ChangeStanceAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -9,15 +10,20 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import gkmasmod.actions.PotentialAbilityAction;
+import gkmasmod.cardCustomEffect.*;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.powers.FullPowerValue;
 import gkmasmod.powers.TrainingResultPower;
 import gkmasmod.screen.SkinSelectScreen;
+import gkmasmod.stances.FullPowerStance;
 import gkmasmod.stances.PreservationStance;
+import gkmasmod.utils.CustomHelper;
 import gkmasmod.utils.ImageHelper;
 import gkmasmod.utils.NameHelper;
+
+import java.util.ArrayList;
 
 public class Countdown extends GkmasCard {
     private static final String CLASSNAME = Countdown.class.getSimpleName();
@@ -45,13 +51,22 @@ public class Countdown extends GkmasCard {
         this.updateShowImg = true;
         this.baseBlock = BASE_BLOCK;
         this.tags.add(GkmasCardTag.PRESERVATION_TAG);
+        this.customLimit = 2;
+        this.customEffectList = new ArrayList<>();
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(BlockCustom.growID,new int[]{2,2},new int[]{40,40},CustomHelper.CustomEffectType.BLOCK_ADD));
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(EffectAddCustom.growID, new int[]{0}, new int[]{60}, CustomHelper.CustomEffectType.NEXT_TURN_PRESERVATION));
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
         addToBot(new GainBlockAction(p,p,this.block));
         addToBot(new ChangeStanceAction(PreservationStance.STANCE_ID2));
-//        addToBot(new ApplyPowerAction(p,p,new TrainingResultPower(p,1),1));
+        if(CustomHelper.hasCustom(this, EffectAddCustom.growID)){
+            addToBot(new ApplyPowerAction(p,p,new TrainingResultPower(p,1),1));
+        }
+        if(p.stance.ID.equals(FullPowerStance.STANCE_ID)){
+            addToBot(new GainBlockAction(p,p,this.block));
+        }
     }
 
     @Override

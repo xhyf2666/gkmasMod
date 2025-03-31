@@ -11,11 +11,13 @@ import com.megacrit.cardcrawl.powers.DexterityPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import gkmasmod.cards.GkmasCardTag;
+import gkmasmod.characters.MisuzuCharacter;
 import gkmasmod.powers.GoodImpression;
 import gkmasmod.powers.GoodTune;
 import gkmasmod.screen.SkinSelectScreen;
 import gkmasmod.utils.CommonEnum;
 import gkmasmod.utils.IdolData;
+import org.lwjgl.Sys;
 
 public class MasterHighHeels extends MasterRelic {
 
@@ -52,7 +54,13 @@ public class MasterHighHeels extends MasterRelic {
     public MasterHighHeels() {
         super(ID, getTextureName(), magic1, magic2);
         this.counter = 0;
-        style = IdolData.getIdol(SkinSelectScreen.Inst.idolIndex).getStyle(SkinSelectScreen.Inst.skinIndex);
+        if(AbstractDungeon.player instanceof MisuzuCharacter){
+            style = CommonEnum.IdolStyle.FOCUS;
+        }
+        else{
+            style = IdolData.getIdol(SkinSelectScreen.Inst.idolIndex).getStyle(SkinSelectScreen.Inst.skinIndex);
+        }
+
     }
 
     @Override
@@ -189,7 +197,12 @@ public class MasterHighHeels extends MasterRelic {
     }
 
     static public String getTextureName() {
-        style = IdolData.getIdol(SkinSelectScreen.Inst.idolIndex).getStyle(SkinSelectScreen.Inst.skinIndex);
+        if(AbstractDungeon.player instanceof MisuzuCharacter){
+            style = CommonEnum.IdolStyle.FOCUS;
+        }
+        else{
+            style = IdolData.getIdol(SkinSelectScreen.Inst.idolIndex).getStyle(SkinSelectScreen.Inst.skinIndex);
+        }
         if(style == CommonEnum.IdolStyle.GOOD_TUNE)
             return String.format(IMG, CLASSNAME, "Purple");
         else if(style == CommonEnum.IdolStyle.FOCUS)
@@ -207,7 +220,12 @@ public class MasterHighHeels extends MasterRelic {
     }
 
     static public String getLargeTextureName() {
-        style = IdolData.getIdol(SkinSelectScreen.Inst.idolIndex).getStyle(SkinSelectScreen.Inst.skinIndex);
+        if(AbstractDungeon.player instanceof MisuzuCharacter){
+            style = CommonEnum.IdolStyle.FOCUS;
+        }
+        else{
+            style = IdolData.getIdol(SkinSelectScreen.Inst.idolIndex).getStyle(SkinSelectScreen.Inst.skinIndex);
+        }
         if(style == CommonEnum.IdolStyle.GOOD_TUNE)
             return String.format(IMG_LARGE, CLASSNAME, "Purple");
         else if(style == CommonEnum.IdolStyle.FOCUS)

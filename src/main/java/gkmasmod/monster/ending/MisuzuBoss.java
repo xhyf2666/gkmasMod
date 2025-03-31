@@ -5,7 +5,6 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
-import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.ClearCardQueueAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
@@ -68,7 +67,6 @@ public class MisuzuBoss extends CustomMonster {
     public static final String[] MOVES = monsterStrings.MOVES;
 
     public static final String[] DIALOG = monsterStrings.DIALOG;
-
 
     private static int MAX_HEALTH = 350000;
 
@@ -158,11 +156,10 @@ public class MisuzuBoss extends CustomMonster {
         AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(this, this, new MisuzuNature(this,350,450)));
         AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(this, this, new SleepPower(this)));
         helloVoice();
-
         if(AbstractDungeon.player instanceof IdolCharacter){
             IdolCharacter idol = (IdolCharacter) AbstractDungeon.player;
             if(idol.idolData.idolName.equals(IdolData.fktn)){
-                AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(AbstractDungeon.player, this, new GoodImpression(this, -5), -5));
+                AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(AbstractDungeon.player, this, new GoodImpression(AbstractDungeon.player, -5), -5));
             }
         }
     }
@@ -342,13 +339,12 @@ public class MisuzuBoss extends CustomMonster {
             AbstractDungeon.effectList.add(new SpeechBubble(this.hb.cX + this.dialogX - 50, this.hb.cY + this.dialogY + 50, 5.0F, DIALOG[1], false));
             CardCrawlGame.stopClock = true;
             GkmasMod.beat_hmsz++;
-            SpireConfig config = null;
             try {
-                config = new SpireConfig("GkmasMod", "config");
                 // 读取配置
-                config.setFloat("cardRate",PlayerHelper.getCardRate());
-                config.setInt("beat_hmsz",GkmasMod.beat_hmsz);
-                config.save();
+                GkmasMod.config.setFloat("cardRate",PlayerHelper.getCardRate());
+                GkmasMod.config.setInt("beat_hmsz",GkmasMod.beat_hmsz);
+                GkmasMod.config.setBool("onlyModBoss", GkmasMod.onlyModBoss);
+                GkmasMod.config.save();
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -373,12 +369,7 @@ public class MisuzuBoss extends CustomMonster {
                 }
                 if (ModHelper.isModEnabled("MonsterHunter"))
                     this.currentHealth = (int)(this.currentHealth * 1.5F);
-//                this.effect2 = new ChangeSceneEffectLeft(ImageMaster.loadImage("img/boss/bg/AnonSidebg00948.png"));
-//
-//                AbstractDungeon.effectList.add(new LatterEffect(() -> {
-//                    AbstractDungeon.effectsQueue.add(this.effect2);
-//                }));
-                AbstractGameEffect effect = new ChangeScene(ImageMaster.loadImage("gkmasModResource/img/bg/bg2.png"));
+                AbstractGameEffect effect = new ChangeScene(ImageMaster.loadImage("gkmasModResource/img/bg/bg6.png"));
                 AbstractDungeon.effectList.add(new LatterEffect(() -> {
                     AbstractDungeon.effectsQueue.add(effect);
                 }));
@@ -423,12 +414,10 @@ public class MisuzuBoss extends CustomMonster {
             CardCrawlGame.music.dispose();
             String song = String.format("gkmasModResource/audio/song/%s_00%s.ogg",SkinSelectScreen.Inst.idolName,
                     IdolData.getIdol(SkinSelectScreen.Inst.idolIndex).getSong(SkinSelectScreen.Inst.skinIndex));
-            if(Gdx.files.internal(song).exists())
-                CardCrawlGame.music.playTempBgmInstantly(song, true);
-            else{
+            if(!Gdx.files.internal(song).exists()){
                 song = String.format("gkmasModResource/audio/song/%s_00%s.ogg",SkinSelectScreen.Inst.idolName,2);
-                CardCrawlGame.music.playTempBgmInstantly(song, true);
             }
+            CardCrawlGame.music.playTempBgmInstantly(song, true);
             this.img = new Texture("gkmasModResource/img/monsters/Misuzu/Misuzu.png");
 
             if(AbstractDungeon.player instanceof IdolCharacter){

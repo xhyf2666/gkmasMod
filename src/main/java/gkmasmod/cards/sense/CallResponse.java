@@ -2,6 +2,7 @@ package gkmasmod.cards.sense;
 
 import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
@@ -13,10 +14,11 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
-import gkmasmod.cardCustomEffect.SecondDamageCustom;
+import gkmasmod.cardCustomEffect.*;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
+import gkmasmod.powers.NotGoodTune;
 import gkmasmod.screen.SkinSelectScreen;
 import gkmasmod.utils.CustomHelper;
 import gkmasmod.utils.ImageHelper;
@@ -42,6 +44,7 @@ public class CallResponse extends GkmasCard {
     private static final int UPGRADE_PLUS_DMG2 = 5;
     private static final int BASE_MAGIC = 2;
     private static final int BASE_MAGIC2 = 150;
+    private static final int BASE_MAGIC3 = 4;
 
 
     private static final CardType TYPE = CardType.ATTACK;
@@ -59,9 +62,14 @@ public class CallResponse extends GkmasCard {
         this.magicNumber = this.baseMagicNumber;
         this.baseSecondMagicNumber = BASE_MAGIC2;
         this.secondMagicNumber = this.baseSecondMagicNumber;
+        this.baseThirdMagicNumber = BASE_MAGIC3;
+        this.thirdMagicNumber = this.baseThirdMagicNumber;
         this.exhaust = true;
         this.tags.add(GkmasCardTag.FOCUS_TAG);
-//        CustomHelper.custom(this, SecondDamageCustom.growID,100);
+        this.customLimit = 1;
+        this.customEffectList = new ArrayList<>();
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(DamageCustom.growID,new int[]{5},new int[]{80},CustomHelper.CustomEffectType.DAMAGE_ADD));
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(ExhaustRemoveCustom.growID,new int[]{0},new int[]{80},CustomHelper.CustomEffectType.EXHAUST_REMOVE));
     }
 
 
@@ -72,6 +80,7 @@ public class CallResponse extends GkmasCard {
         if(count > this.magicNumber){
             addToBot( new DamageAction( m, new DamageInfo( p, this.secondDamage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
         }
+        addToBot(new ApplyPowerAction(m,m,new NotGoodTune(m,this.thirdMagicNumber),this.thirdMagicNumber));
     }
 
     public void applyPowers() {

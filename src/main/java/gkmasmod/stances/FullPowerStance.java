@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.actions.common.LoseHPAction;
+import com.megacrit.cardcrawl.actions.common.MakeTempCardInHandAction;
 import com.megacrit.cardcrawl.actions.watcher.ChangeStanceAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
@@ -17,6 +18,7 @@ import com.megacrit.cardcrawl.vfx.stance.StanceAuraEffect;
 import com.megacrit.cardcrawl.vfx.stance.StanceChangeParticleGenerator;
 import com.megacrit.cardcrawl.vfx.stance.WrathParticleEffect;
 import gkmasmod.actions.GainTrainRoundPowerAction;
+import gkmasmod.cards.anomaly.HoldBack;
 import gkmasmod.powers.TempSavePower;
 import gkmasmod.powers.WhereDreamsArePower;
 
@@ -63,7 +65,7 @@ public class FullPowerStance extends GkmasModStance {
 
     @Override
     public float atDamageGive(float damage, DamageInfo.DamageType type) {
-        return damage * 3.0F;
+        return damage * 2.5F;
     }
 
 
@@ -76,15 +78,15 @@ public class FullPowerStance extends GkmasModStance {
         AbstractDungeon.effectsQueue.add(new BorderFlashEffect(Color.PINK, true));
         AbstractDungeon.effectsQueue.add(new StanceChangeParticleGenerator(AbstractDungeon.player.hb.cX, AbstractDungeon.player.hb.cY, "Divinity"));
         AbstractDungeon.actionManager.addToBottom(new GainTrainRoundPowerAction(AbstractDungeon.player, 1));
-        //TODO 暂存加入手牌
-        if(AbstractDungeon.player.hasPower(TempSavePower.POWER_ID)){
-            TempSavePower power = (TempSavePower) AbstractDungeon.player.getPower(TempSavePower.POWER_ID);
-            power.getInHand();
-        }
-        if(AbstractDungeon.player.hasPower(WhereDreamsArePower.POWER_ID)){
-            WhereDreamsArePower power = (WhereDreamsArePower) AbstractDungeon.player.getPower(WhereDreamsArePower.POWER_ID);
-            power.onSpecificTrigger();
-        }
+//        if(AbstractDungeon.player.hasPower(TempSavePower.POWER_ID)){
+//            TempSavePower power = (TempSavePower) AbstractDungeon.player.getPower(TempSavePower.POWER_ID);
+//            power.getInHand();
+//        }
+        AbstractDungeon.actionManager.addToTop(new MakeTempCardInHandAction(new HoldBack()));
+//        if(AbstractDungeon.player.hasPower(WhereDreamsArePower.POWER_ID)){
+//            WhereDreamsArePower power = (WhereDreamsArePower) AbstractDungeon.player.getPower(WhereDreamsArePower.POWER_ID);
+//            power.onSpecificTrigger();
+//        }
     }
 
     public void onExitStance() {
@@ -93,10 +95,8 @@ public class FullPowerStance extends GkmasModStance {
 
     @Override
     public void updateDescription() {
-
         this.name = stanceString.NAME;
         this.description = stanceString.DESCRIPTION[0];
-
     }
 
     public void stopIdleSfx() {

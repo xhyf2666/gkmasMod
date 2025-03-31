@@ -7,7 +7,9 @@ import com.megacrit.cardcrawl.random.Random;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.vfx.cardManip.PurgeCardEffect;
 import gkmasmod.cards.GkmasCardTag;
+import gkmasmod.cards.anomaly.FinalSpurt;
 import gkmasmod.cards.anomaly.Intensely;
+import gkmasmod.cards.hmsz.Stress;
 import gkmasmod.cards.logic.BaseAwareness;
 import gkmasmod.cards.logic.BaseVision;
 import gkmasmod.cards.logic.ChangeMood;
@@ -33,7 +35,6 @@ public class MasterVest extends MasterRelic {
     private static final int magic2 = 5;
 
     private static final int magic3 = 2;
-
 
     private static final int playTimes = 2;
 
@@ -62,7 +63,7 @@ public class MasterVest extends MasterRelic {
 
             for(AbstractCard card:group.group){
                 if(card.rarity == AbstractCard.CardRarity.BASIC&&!card.tags.contains(GkmasCardTag.IDOL_CARD_TAG)){
-                    if(card.cardID.equals(Challenge.ID)||card.cardID.equals(TryError.ID)||card.cardID.equals(KawaiiGesture.ID)||card.cardID.equals(ChangeMood.ID)||card.cardID.equals(Intensely.ID)){
+                    if(card.cardID.equals(Challenge.ID)||card.cardID.equals(TryError.ID)||card.cardID.equals(KawaiiGesture.ID)||card.cardID.equals(ChangeMood.ID)||card.cardID.equals(Intensely.ID)||card.cardID.equals(FinalSpurt.ID)||card.cardID.equals(Stress.ID)){
                         continue;
                     }
                     cards.add(card);

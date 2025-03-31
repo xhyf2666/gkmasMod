@@ -12,13 +12,16 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.FontHelper;
+import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.DexterityPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.screens.SingleCardViewPopup;
 import gkmasmod.Listener.CardImgUpdateListener;
+import gkmasmod.characters.MisuzuCharacter;
 import gkmasmod.characters.PlayerColorEnum;
+import gkmasmod.patches.SingleCardViewPopupPatch;
 import gkmasmod.screen.SkinSelectScreen;
 import gkmasmod.utils.IdolData;
 
@@ -421,10 +424,18 @@ public abstract class GkmasCard extends CustomCard  implements CardImgUpdateList
             return;
         String idolName;
         idolName = SkinSelectScreen.Inst.idolName;
+        if(AbstractDungeon.player !=null && AbstractDungeon.player instanceof MisuzuCharacter){
+            idolName = IdolData.hmsz;
+        }
         Color color = Settings.RED_TEXT_COLOR.cpy();
         Color textColor = Settings.PURPLE_RELIC_COLOR.cpy();
         if(backGroundColor!="")
             idolName = backGroundColor;
+        if(idolName.equals(IdolData.empty)){
+            setPortraitTextures("gkmasModResource/img/cards/background/empty.png", "gkmasModResource/img/cards/background/empty.png");
+            setBannerTexture("gkmasModResource/img/cards/background/empty.png", "gkmasModResource/img/cards/background/empty.png");
+        }
+
         if(idolName.equals(IdolData.fktn)){
             basemod.ReflectionHacks.setPrivate(this, AbstractCard.class, "textColor", textColor);
             basemod.ReflectionHacks.setPrivate(this, AbstractCard.class, "goldColor", color);
@@ -440,7 +451,6 @@ public abstract class GkmasCard extends CustomCard  implements CardImgUpdateList
             textColor = Settings.CREAM_COLOR.cpy();
             basemod.ReflectionHacks.setPrivate(this, AbstractCard.class, "textColor", textColor);
             basemod.ReflectionHacks.setPrivate(this, AbstractCard.class, "goldColor", color);
-
             this.initializeDescription();
         }
 
@@ -549,6 +559,39 @@ public abstract class GkmasCard extends CustomCard  implements CardImgUpdateList
             renderCardHeader(sb);
     }
 
+    public void renderCardCustom(SpriteBatch sb, float xPos, float yPos, float yOffsetBase, float scale) {
+        if (this.customEffectList.size()>0) {
+            if (this.isFlipped || this.isLocked || this.transparency <= 0.0F) {
+                return;
+            }
+            float offsetY = yOffsetBase * Settings.scale * scale / 2.0F;
+            BitmapFont.BitmapFontData fontData = FontHelper.cardTitleFont.getData();
+            float originalScale = fontData.scaleX;
+            float scaleMultiplier = 1.2F;
+
+            fontData.setScale(scaleMultiplier * scale);
+            Color color = Settings.CREAM_COLOR.cpy();
+            color.a = this.transparency;
+            for (int i = 0; i < SingleCardViewPopupPatch.customEffectLength; i++) {
+                FontHelper.renderRotatedText(sb, FontHelper.cardTitleFont, SingleCardViewPopupPatch.customDescription.get(i), xPos, yPos, 0.0F, offsetY+50.F*i*Settings.scale, this.angle, true, color);
+                sb.draw(ImageMaster.UI_GOLD, xPos +105.0F * Settings.scale, yPos-30*Settings.scale+offsetY+50.F*i*Settings.scale, ImageMaster.UI_GOLD.getWidth() * Settings.scale, ImageMaster.UI_GOLD.getWidth() * Settings.scale);
+                FontHelper.renderRotatedText(sb, FontHelper.cardTitleFont, String.valueOf(SingleCardViewPopupPatch.customPrice.get(i)), xPos+155.0F*Settings.scale, yPos, 0.0F, offsetY+50.F*i*Settings.scale, this.angle, true, Color.GOLD);
+                FontHelper.renderRotatedText(sb, FontHelper.cardTitleFont, String.format("(%d)",SingleCardViewPopupPatch.customLimit.get(i)), xPos+195.0F*Settings.scale, yPos, 0.0F, offsetY+50.F*i*Settings.scale, this.angle, true, Color.GREEN);
+            }
+            FontHelper.renderRotatedText(sb, FontHelper.cardTitleFont, String.format(SingleCardViewPopupPatch.customTip,this.customLimit), xPos+40*Settings.scale, yPos, 0.0F, offsetY-80F*Settings.scale, this.angle, true,color);
+            fontData.setScale(originalScale);
+            renderCardCustomPreviewInSingleView(sb);
+        }
+    }
+
+    public void renderCardCustomPreviewInSingleView(SpriteBatch sb) {
+        SingleCardViewPopupPatch.customCard.current_x = 435.0F * Settings.scale;
+        SingleCardViewPopupPatch.customCard.current_y = 305.0F * Settings.scale;
+        SingleCardViewPopupPatch.customCard.drawScale = 0.8F;
+        SingleCardViewPopupPatch.customCard.render(sb);
+    }
+
+
     public void renderCardHeader(SpriteBatch sb, float xPos, float yPos, float yOffsetBase, float scale) {
         if (this.cardHeader != "") {
             if (this.isFlipped || this.isLocked || this.transparency <= 0.0F) {
@@ -571,6 +614,10 @@ public abstract class GkmasCard extends CustomCard  implements CardImgUpdateList
     public void customTrigger(){
 
     }
+
+    public void renderCardCustom(SpriteBatch sb) {
+        renderCardCustom(sb, Settings.WIDTH / 2f + 400.0f * Settings.scale, Settings.HEIGHT / 2f + 160f * Settings.yScale, 400.0F, this.drawScale); }
+
 
     public void renderCardHeader(SpriteBatch sb) {
         renderCardHeader(sb, this.current_x, this.current_y, 400.0F, this.drawScale); }

@@ -8,14 +8,17 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import gkmasmod.actions.GainTrainRoundPowerAction;
-import gkmasmod.cardCustomEffect.MoreActionCustom;
+import gkmasmod.cardCustomEffect.*;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
-import gkmasmod.powers.HalfDamageReceive;
+import gkmasmod.powers.*;
 import gkmasmod.screen.SkinSelectScreen;
+import gkmasmod.utils.CustomHelper;
 import gkmasmod.utils.ImageHelper;
 import gkmasmod.utils.NameHelper;
+
+import java.util.ArrayList;
 
 public class IdolDeclaration extends GkmasCard {
     private static final String CLASSNAME = IdolDeclaration.class.getSimpleName();
@@ -29,6 +32,7 @@ public class IdolDeclaration extends GkmasCard {
     private static final int COST = 0;
     private static final int BASE_MAGIC = 2;
     private static final int BASE_MAGIC2 = 1;
+    private static final int BASE_MAGIC3 = 1;
 
     private static final int BASE_HP = 2;
 
@@ -45,25 +49,43 @@ public class IdolDeclaration extends GkmasCard {
         this.magicNumber = this.baseMagicNumber;
         this.baseSecondMagicNumber = BASE_MAGIC2;
         this.secondMagicNumber = this.baseSecondMagicNumber;
+        this.baseThirdMagicNumber = BASE_MAGIC3;
+        this.thirdMagicNumber = this.baseThirdMagicNumber;
         this.baseHPMagicNumber = BASE_HP;
         this.HPMagicNumber = this.baseHPMagicNumber;
         this.exhaust = true;
         this.tags.add(GkmasCardTag.MORE_ACTION_TAG);
         CardModifierManager.addModifier(this,new MoreActionCustom(1));
+        this.customLimit = 1;
+        this.customEffectList = new ArrayList<>();
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(SecondMagicCustom.growID,new int[]{1},new int[]{60},CustomHelper.CustomEffectType.HALF_DAMAGE_RECEIVE_ADD));
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(ThirdMagicCustom.growID,new int[]{1},new int[]{80},CustomHelper.CustomEffectType.USE_TIME_ADD));
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(EffectChangeCustom.growID,new int[]{0},new int[]{80},CustomHelper.CustomEffectType.EFFECT_CHANGE));
     }
 
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-
-        if(this.upgraded){
-            addToBot(new ApplyPowerAction(p, p, new HalfDamageReceive(p, this.secondMagicNumber), this.secondMagicNumber));
-        }
-        else{
+        if(CustomHelper.hasCustom(this, EffectChangeCustom.growID)){
             addToBot(new LoseHPAction(p, p, this.HPMagicNumber));
         }
+        else{
+            if(this.upgraded){
+                addToBot(new ApplyPowerAction(p, p, new HalfDamageReceive(p, this.secondMagicNumber), this.secondMagicNumber));
+            }
+            else{
+                addToBot(new LoseHPAction(p, p, this.HPMagicNumber));
+            }
+            if(this.thirdMagicNumber > 1){
+                upgradeThirdMagicNumber(-1);
+                this.initializeDescription();
+            }
+            else{
+                this.exhaust = true;
+            }
+        }
+
         addToBot(new DrawCardAction(p, this.magicNumber));
-//        addToBot(new GainTrainRoundPowerAction(p,1));
     }
 
     @Override

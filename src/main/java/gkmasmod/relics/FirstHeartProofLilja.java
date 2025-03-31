@@ -25,7 +25,7 @@ public class FirstHeartProofLilja extends CustomRelic {
 
     private static final int magicNumber = 2;
 
-    private static final int GOOD_TUNE = 5;
+    private static final int GOOD_TUNE = 2;
 
     private static final int HP_LOST = 1;
 

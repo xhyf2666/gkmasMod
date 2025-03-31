@@ -44,7 +44,7 @@ public class ENNewStudentCouncil extends GkmasBossCard {
         this.exhaust = true;
         this.isInnate = true;
         this.tags.add(GkmasCardTag.MORE_ACTION_TAG);
-
+        this.energyGeneratedIfPlayed = 1;
     }
 
 

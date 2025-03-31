@@ -1,5 +1,7 @@
 package gkmasmod.powers;
 
+import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import gkmasmod.downfall.charbosses.actions.util.CharbossDoCardQueueAction;
 import gkmasmod.downfall.charbosses.bosses.AbstractCharBoss;
 import gkmasmod.downfall.charbosses.cards.AbstractBossCard;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
@@ -59,7 +61,8 @@ public class NationalIdolPower extends AbstractPower {
             if (action.target != null)
                 m = (AbstractMonster)action.target;
             AbstractCard tmp = card.makeSameInstanceOf();
-            AbstractDungeon.player.limbo.addToBottom(tmp);
+            if(this.owner instanceof AbstractPlayer)
+                AbstractDungeon.player.limbo.addToBottom(tmp);
             tmp.current_x = card.current_x;
             tmp.current_y = card.current_y;
             tmp.target_x = Settings.WIDTH / 2.0F - 300.0F * Settings.scale;
@@ -67,7 +70,11 @@ public class NationalIdolPower extends AbstractPower {
             if (m != null)
                 tmp.calculateCardDamage(m);
             tmp.purgeOnUse = true;
-            AbstractDungeon.actionManager.addCardQueueItem(new CardQueueItem(tmp, m, card.energyOnUse, true, true), true);
+            if(this.owner instanceof AbstractCharBoss)
+                AbstractDungeon.actionManager.addToTop(new CharbossDoCardQueueAction(tmp));
+            else{
+                AbstractDungeon.actionManager.addCardQueueItem(new CardQueueItem(tmp, m, card.energyOnUse, true, true), true);
+            }
             this.amount--;
             if (this.amount == 0)
                 addToTop(new RemoveSpecificPowerAction(this.owner, this.owner, this.ID));

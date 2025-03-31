@@ -25,8 +25,10 @@ public class NotGoodTune extends AbstractPower {
     private static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
 
 
-    String path128 = String.format("gkmasModResource/img/powers/%s_84.png",CLASSNAME);;
-    String path48 = String.format("gkmasModResource/img/powers/%s_32.png",CLASSNAME);;
+    String path128 = String.format("gkmasModResource/img/powers/%s_84.png",CLASSNAME);
+    String path48 = String.format("gkmasModResource/img/powers/%s_32.png",CLASSNAME);
+
+    private static int limit = 9;
 
     public NotGoodTune(AbstractCreature owner, int Amount) {
         this.name = NAME;
@@ -34,6 +36,8 @@ public class NotGoodTune extends AbstractPower {
         this.owner = owner;
         this.type = PowerType.DEBUFF;
         this.amount = Amount;
+        if(this.amount>limit)
+            this.amount = limit;
 
         // 添加一大一小两张能力图
         this.region128 = new TextureAtlas.AtlasRegion(ImageMaster.loadImage(path128), 0, 0, 84, 84);
@@ -43,9 +47,16 @@ public class NotGoodTune extends AbstractPower {
         this.updateDescription();
     }
 
+    @Override
+    public void stackPower(int stackAmount) {
+        super.stackPower(stackAmount);
+        if(this.amount>limit)
+            this.amount = limit;
+    }
+
     // 能力在更新时如何修改描述
     public void updateDescription() {
-        this.description = String.format(DESCRIPTIONS[0], this.amount);
+        this.description = String.format(DESCRIPTIONS[0], this.amount,limit);
     }
 
     public void atEndOfTurnPreEndTurnCards(boolean isPlayer){
@@ -62,9 +73,9 @@ public class NotGoodTune extends AbstractPower {
     public float atDamageGive(float damage, DamageInfo.DamageType type) {
         float tmp = damage;
         if (type == DamageInfo.DamageType.NORMAL) {
-            int count = AbstractDungeon.player.getPower(GreatNotGoodTune.POWER_ID)==null?0:AbstractDungeon.player.getPower(GreatNotGoodTune.POWER_ID).amount;
+            int count = this.owner.getPower(GreatNotGoodTune.POWER_ID)==null?0:this.owner.getPower(GreatNotGoodTune.POWER_ID).amount;
             if(count>0)
-                tmp = tmp * (2F/3F-0.1F*this.amount);
+                tmp = tmp * (2F/3F-0.05F*this.amount);
             else
                 tmp = tmp * 2F/3F;
             if(tmp<0)

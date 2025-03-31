@@ -51,7 +51,7 @@ public class ENCallMeAnyTime extends GkmasBossCard {
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        addToBot(new ApplyPowerAction(m,m,new CallMeAnyTimePower(m)));
+        addToBot(new ApplyPowerAction(m,m,new CallMeAnyTimePower(m,this.magicNumber)));
     }
 
     @Override

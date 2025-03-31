@@ -24,8 +24,6 @@ public class AutumnOfAppetitePower extends AbstractPower {
     // 能力的描述
     private static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
 
-    private int count = 0;
-
     private static final int NUM = 3;
 
 
@@ -37,6 +35,7 @@ public class AutumnOfAppetitePower extends AbstractPower {
         this.ID = POWER_ID;
         this.owner = owner;
         this.type = PowerType.BUFF;
+        this.amount = 0;
 
         this.isPostActionPower = true;
         this.region128 = new TextureAtlas.AtlasRegion(ImageMaster.loadImage(path128), 0, 0, 84, 84);
@@ -52,14 +51,14 @@ public class AutumnOfAppetitePower extends AbstractPower {
 
     public void atEndOfTurnPreEndTurnCards(boolean isPlayer) {
         if(AbstractDungeon.player.hasPower(TrainRoundLogicPower.POWER_ID)||AbstractDungeon.player.hasPower(TrainRoundSensePower.POWER_ID)||AbstractDungeon.player.hasPower(TrainRoundAnomalyPower.POWER_ID)){
-            count++;
+            this.amount++;
         }
     }
 
     @Override
     public void atEndOfRound() {
-        if(count==NUM){
-            count=0;
+        if(this.amount>=NUM){
+            this.amount-=NUM;
             this.flash();
             AbstractDungeon.actionManager.addToBottom(new DrawCardAction(1));
         }
@@ -69,9 +68,9 @@ public class AutumnOfAppetitePower extends AbstractPower {
         if(card instanceof AbstractBossCard)
             return;
         if(AbstractDungeon.player.hasPower(TrainRoundLogicPower.POWER_ID)||AbstractDungeon.player.hasPower(TrainRoundSensePower.POWER_ID)||AbstractDungeon.player.hasPower(TrainRoundAnomalyPower.POWER_ID)){
-            count++;
-            if(count==NUM){
-                count=0;
+            this.amount++;
+            if(this.amount>=NUM){
+                this.amount-=NUM;
                 this.flash();
                 AbstractDungeon.actionManager.addToBottom(new DrawCardAction(1));
             }

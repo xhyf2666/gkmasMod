@@ -41,7 +41,7 @@ public class PerformancePlanPower extends AbstractPower {
     }
 
     public void updateDescription() {
-        this.description = String.format(DESCRIPTIONS[0], this.amount*2);
+        this.description = String.format(DESCRIPTIONS[0], this.amount);
     }
 
     public void onUseCard(AbstractCard card, UseCardAction action) {
@@ -49,8 +49,8 @@ public class PerformancePlanPower extends AbstractPower {
             return;
         if(this.owner instanceof AbstractCharBoss&&(!(card instanceof AbstractBossCard)))
             return;
-        if(card.type == AbstractCard.CardType.ATTACK) {
-            addToTop(new GainBlockAction(this.owner, this.owner, amount*2));
+        if(card.type == AbstractCard.CardType.ATTACK||card.type == AbstractCard.CardType.POWER) {
+            addToTop(new GainBlockAction(this.owner, this.owner, amount));
         }
     }
 }

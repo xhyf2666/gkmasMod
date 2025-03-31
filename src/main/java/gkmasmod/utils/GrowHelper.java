@@ -4,8 +4,10 @@ import basemod.abstracts.AbstractCardModifier;
 import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import gkmasmod.cardCustomEffect.AbstractCardCustomEffect;
 import gkmasmod.cards.anomaly.ComprehensiveArt;
 import gkmasmod.cards.anomaly.IdealTempo;
+import gkmasmod.downfall.charbosses.bosses.AbstractCharBoss;
 import gkmasmod.growEffect.*;
 import gkmasmod.powers.TempSavePower;
 
@@ -16,6 +18,9 @@ public class GrowHelper {
                 AbstractGrowEffect growEffect = (AbstractGrowEffect) modifier;
                 if(growEffect.growEffectID.equals(effect)){
                     growEffect.changeAmount(amount);
+                    if(growEffect instanceof EnergyGrow){
+                        ((EnergyGrow) growEffect).reApply(card);
+                    }
                     card.initializeDescription();
                     return;
                 }
@@ -35,6 +40,10 @@ public class GrowHelper {
             CardModifierManager.addModifier(card,new BaseBlockGrow(amount));
         else if(effect.equals(DrawCardGrow.growID))
             CardModifierManager.addModifier(card,new DrawCardGrow(amount));
+        else if(effect.equals(SleepyGrow.growID))
+            CardModifierManager.addModifier(card,new SleepyGrow(amount));
+        else if(effect.equals(BlockTimeGrow.growID))
+            CardModifierManager.addModifier(card,new BlockTimeGrow(amount));
     }
 
     public static void growAll(String effect, int amount){
@@ -76,5 +85,45 @@ public class GrowHelper {
                 grow(c, effect, amount);
             }
         }
+    }
+
+    public static void growAllHandEN(String effect, int amount){
+        for (AbstractCard c : AbstractCharBoss.boss.hand.group) {
+            grow(c, effect, amount);
+        }
+    }
+
+    public static void growAllTempSaveEN(String effect, int amount){
+        if(AbstractCharBoss.boss.hasPower(TempSavePower.POWER_ID)){
+            TempSavePower tempSavePower = (TempSavePower) AbstractCharBoss.boss.getPower(TempSavePower.POWER_ID);
+            for(AbstractCard c:tempSavePower.getCards()){
+                grow(c, effect, amount);
+            }
+        }
+    }
+
+    public static void growAllDiscardEN(String effect, int amount){
+        for (AbstractCard c : AbstractCharBoss.boss.cardInBattle.values()) {
+            if(c != null && !AbstractCharBoss.boss.hand.contains(c))
+                grow(c, effect, amount);
+        }
+    }
+
+    public static void growAllEN(String effect, int amount){
+        for (AbstractCard c : AbstractCharBoss.boss.cardInBattle.values()) {
+            grow(c, effect, amount);
+        }
+    }
+
+    public static boolean hasGrow(AbstractCard card, String effect) {
+        for(AbstractCardModifier modifier:CardModifierManager.modifiers(card)){
+            if(modifier instanceof AbstractGrowEffect){
+                AbstractGrowEffect growEffect = (AbstractGrowEffect) modifier;
+                if(growEffect.growEffectID.equals(effect)){
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 }

@@ -18,7 +18,6 @@ import com.megacrit.cardcrawl.saveAndContinue.SaveFile;
 import com.megacrit.cardcrawl.scenes.AbstractScene;
 import com.megacrit.cardcrawl.scenes.TheEndingScene;
 import gkmasmod.event.FirstStarHotSpring;
-import gkmasmod.monster.ending.MisuzuBoss;
 import gkmasmod.room.EventMonsterRoom;
 import gkmasmod.room.FixedMonsterRoom;
 import gkmasmod.room.GkmasBossRoom;
@@ -69,7 +68,7 @@ public class IdolRoad extends CustomDungeon {
     }
 
     public String getOptionText() {
-        return "前往更广阔的舞台";
+        return "前往更广阔的舞台(难度较高)";
     }
 
     @Override
@@ -86,7 +85,7 @@ public class IdolRoad extends CustomDungeon {
         tmpBossList.add(new MonsterRoomCreator("gkmasModResource/img/map/kllj_BossIcon.png", IdolBoss_kllj.ID));
         tmpBossList.add(new MonsterRoomCreator("gkmasModResource/img/map/ssmk_BossIcon.png", IdolBoss_ssmk.ID));
         tmpBossList.add(new MonsterRoomCreator("gkmasModResource/img/map/ttmr_BossIcon.png", IdolBoss_ttmr.ID));
-
+        tmpBossList.add(new MonsterRoomCreator("gkmasModResource/img/map/jsna_BossIcon.png", IdolBoss_jsna.ID));
 
         String curIdolName = "";
         if(AbstractDungeon.player instanceof IdolCharacter){
@@ -120,8 +119,12 @@ public class IdolRoad extends CustomDungeon {
         }
 
 
-        MapRoomNode eventNode = new MapRoomNode(4, 2);
+        MapRoomNode eventNode = new MapRoomNode(4, 1);
         eventNode.room = new GkmasEventRoom(FirstStarHotSpring.ID);
+
+        MapRoomNode restNode = new MapRoomNode(4, 2);
+        restNode.room = new RestRoom();
+
         MapRoomNode battleRoom2 = new MapRoomNode(4, 3);
 
         MapRoomNode finalBattleRoom = new MapRoomNode(3, 4);
@@ -182,7 +185,8 @@ public class IdolRoad extends CustomDungeon {
         connectNode(nine,eleven);
         connectNode(ten,battleRoom2);
         connectNode(eleven,finalBattleRoom);
-        connectNode(eventNode,battleRoom2);
+        connectNode(eventNode,restNode);
+        connectNode(restNode,battleRoom2);
         connectNode(battleRoom2,finalBattleRoom);
 //        connectNode(finalBattleRoom,victoryNode);
 //        eventNode.addEdge(new MapEdge(eventNode.x, eventNode.y, eventNode.offsetX, eventNode.offsetY, bossNode.x, bossNode.y, bossNode.offsetX, bossNode.offsetY, false));
@@ -200,7 +204,7 @@ public class IdolRoad extends CustomDungeon {
         row2.add(two);
         row2.add(three);
         row2.add(four);
-        row2.add(new MapRoomNode(4, 1));
+        row2.add(eventNode);
         row2.add(six);
         row2.add(seven);
 
@@ -209,7 +213,7 @@ public class IdolRoad extends CustomDungeon {
         row3.add(eight);
         row3.add(nine);
         row3.add(new MapRoomNode(3, 2));
-        row3.add(eventNode);
+        row3.add(restNode);
         row3.add(ten);
         row3.add(new MapRoomNode(6, 2));
 
@@ -300,7 +304,7 @@ public class IdolRoad extends CustomDungeon {
         tmpBossList.add(new MonsterRoomCreator("gkmasModResource/img/map/kllj_BossIcon.png", IdolBoss_kllj.ID));
         tmpBossList.add(new MonsterRoomCreator("gkmasModResource/img/map/ssmk_BossIcon.png", IdolBoss_ssmk.ID));
         tmpBossList.add(new MonsterRoomCreator("gkmasModResource/img/map/ttmr_BossIcon.png", IdolBoss_ttmr.ID));
-
+        tmpBossList.add(new MonsterRoomCreator("gkmasModResource/img/map/jsna_BossIcon.png", IdolBoss_jsna.ID));
         String curIdolName = "";
         if(AbstractDungeon.player instanceof IdolCharacter){
             curIdolName = SkinSelectScreen.Inst.idolName;

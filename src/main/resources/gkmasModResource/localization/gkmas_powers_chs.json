@@ -14,7 +14,7 @@
   "BadImpression": {
     "NAME": "好印象",
     "DESCRIPTIONS": [
-      "当前有 #b%d 层。 NL 回合结束时，使随机敌人回复 #b%d 点体力，然后层数减 #b1 。"
+      "(坏印象) NL 当前有 #b%d 层。 NL 回合结束时，使随机敌人回复 #b%d 点体力，然后层数减 #b1 。"
     ]
   },
   "GoodTune": {
@@ -38,7 +38,7 @@
   "GreatNotGoodTune": {
     "NAME": "绝不调",
     "DESCRIPTIONS": [
-      "当前有 #b%d 层。 NL 每层 #y不调 额外减伤 #b10 %%。 NL 回合结束时层数减 #b1 。"
+      "当前有 #b%d 层。 NL 每层 #y不调 额外减伤 #b5 %%。 NL 回合结束时层数减 #b1 。"
     ]
   },
   "RemainBuff": {
@@ -50,7 +50,7 @@
   "NotGoodTune": {
     "NAME": "不调",
     "DESCRIPTIONS": [
-      "当前有 #b%d 层。 NL 造成的伤害减少33%%。 NL 回合结束时层数减 #b1 。"
+      "当前有 #b%d 层。(最多拥有 #b%d 层) NL 造成的伤害减少 #b33 %%。 NL 回合结束时层数减 #b1 。"
     ]
   },
   "InnocencePower": {
@@ -96,9 +96,9 @@
     ]
   },
   "BurstAttackPower": {
-    "NAME": "爆发·攻击",
+    "NAME": "爆发·攻击&能力",
     "DESCRIPTIONS": [
-      "在这个回合，你的下 #b%d 张攻击牌会打出2次。"
+      "在这个回合，你的下 #b%d 张攻击牌或能力牌会打出2次。"
     ]
   },
   "NationalIdolPower": {
@@ -122,29 +122,35 @@
   "PerformancePlanPower": {
     "NAME": "演出计划",
     "DESCRIPTIONS": [
-      "每次使用攻击牌时，获得 #b%d 点 #y固定格挡 。"
+      "每次打出攻击牌和能力牌时，获得 #b%d 点 #y固定格挡 。"
     ]
   },
   "FantasyCharmPower": {
     "NAME": "幻想魅力",
     "DESCRIPTIONS": [
-      "每次使用技能牌和能力牌时，获得 #b%d 层 #y好印象 。"
+      "每次打出技能牌和能力牌时，获得 #b%d 层 #y好印象 。"
     ]
   },
   "WakuWakuPower": {
     "NAME": "WakuWaku",
     "DESCRIPTIONS": [
-      "每次使用技能牌和能力牌时，获得 #b%d 点 #y敏捷 。"
+      "每次打出技能牌和能力牌时，获得 #b%d 点 #y敏捷 。"
     ]
   },
   "WishPowerPower": {
-    "NAME": "愿望之力",
+    "NAME": "愿望的力量",
     "DESCRIPTIONS": [
-      "每次使用攻击牌时，获得 #b%d 点 #y力量 。"
+      "每次打出攻击牌时，获得 #b%d 点 #y力量 。"
+    ]
+  },
+  "WishPowerGoodTunePower": {
+    "NAME": "愿望的好调",
+    "DESCRIPTIONS": [
+      "每次打出攻击牌时，获得 #b%d 点 #y好调 。"
     ]
   },
   "AchievementPower": {
-    "NAME": "成就",
+    "NAME": "下回合伤害",
     "DESCRIPTIONS": [
       "下回合开始时，造成 #b%d 点伤害。"
     ]
@@ -158,13 +164,13 @@
   "TopEntertainmentPower": {
     "NAME": "至高娱乐",
     "DESCRIPTIONS": [
-      "每次使用攻击牌时，对目标额外造成 #b%d 点伤害 #b%d 次。"
+      "每次打出攻击牌和能力牌时，对目标额外造成 #b%d 点伤害 #b%d 次。"
     ]
   },
   "TopEntertainmentPlusPower": {
     "NAME": "至高娱乐+",
     "DESCRIPTIONS": [
-      "每次使用攻击牌时，对目标额外造成 #b%d 点伤害 #b%d 次。"
+      "每次打出攻击牌和能力牌时，对目标额外造成 #b%d 点伤害 #b%d 次。"
     ]
   },
   "RainbowDreamerPower": {
@@ -185,34 +191,46 @@
       "每次出牌时，对随机敌人造成好印象层数 #b50 %%的伤害 #b%d 次。"
     ]
   },
+  "ForShiningYouPlusSpPower": {
+    "NAME": "致闪耀的你Sp+",
+    "DESCRIPTIONS": [
+      "每次出牌时，对随机敌人造成好印象层数 #b50 %%的伤害 #b%d 次，并获得 #b%d 层 #y好印象 。"
+    ]
+  },
   "MoonlitRunwayPower": {
     "NAME": "月夜的T台",
     "DESCRIPTIONS": [
-      "每次使用好印象牌时，对随机敌人造成好印象层数 #b30 %%的伤害 #b%d 次。"
+      "每次打出好印象牌时，对随机敌人造成好印象层数 #b30 %%的伤害 #b%d 次。"
     ]
   },
   "MoonlitRunwayPlusPower": {
     "NAME": "月夜的T台+",
     "DESCRIPTIONS": [
-      "每次使用好印象牌时，对随机敌人造成好印象层数 #b30 %%的伤害 #b%d 次。"
+      "每次打出好印象牌时，对随机敌人造成好印象层数 #b30 %%的伤害 #b%d 次。"
     ]
   },
   "TrainRoundLogicPower": {
     "NAME": "训练时间·理性",
     "DESCRIPTIONS": [
-      "当前有 #b%d 层。 NL 进入战斗时，给随机敌人施加 #y溢出伤害传递 。 NL 格挡在回合结束时不会消失。 NL 每次出牌或结束回合时减少 #b1 层。 NL 战斗胜利或该Buff首次移除时，基于敌人的损失HP百分比获得 #y三维 。 NL 三维分配比例由卡组中卡牌的TAG数决定。 NL 回合结束时若能量大于 #b0 ，则回复 #b1 点体力。 NL 战斗胜利时，每剩余 #b3 层回复 #b2 点体力。"
+      "当前有 #b%d 层。 NL 进入战斗时，给随机敌人施加 #y溢出伤害传递 。 NL 回合结束时，保留 #b%d %%的 #y格挡 ，保留倍率每回合下降 #b%d %%，直到等于 #b%d %%。 NL 每次出牌或结束回合时减少 #b1 层。 NL 战斗胜利或该Buff首次移除时，基于敌人的 #y损失体力 百分比获得 #y三维 。 NL 三维分配比例由卡组中卡牌的TAG数决定。 NL (在不同地图中效果将略有不同)"
     ]
   },
   "TrainRoundAnomalyPower": {
     "NAME": "训练时间·非凡",
     "DESCRIPTIONS": [
-      "当前有 #b%d 层。 NL 回合开始时，抽 #b1 张牌， #y暂存 1张手牌，所有手牌获得 #y伤害追加 #b2 和 #y格挡追加 #b2 。 NL 每次出牌或结束回合时减少 #b1 层。 NL 战斗胜利或该Buff首次移除时，基于敌人的损失HP百分比获得 #y三维 。 NL 三维分配比例由卡组中卡牌的TAG数决定。 NL 回合结束时若能量大于 #b0 ，则回复 #b1 点体力。 NL 战斗胜利时，每剩余 #b3 层回复 #b2 点体力。"
+      "当前有 #b%d 层。 NL 回合开始时，所有手牌获得 #y伤害追加 #b%d 和 #y格挡追加 #b%d 。 NL 每回合首次获得 #y全力值 时，使所有牌获得 #y伤害追加 #b%d 和 #y格挡追加 #b%d 。 NL 每次出牌或结束回合时减少 #b1 层。 NL 战斗胜利或该Buff首次移除时，基于敌人的 #y损失体力 百分比获得 #y三维 。 NL 三维分配比例由卡组中卡牌的TAG数决定。 NL (在不同地图中效果将略有不同)"
     ]
   },
   "TrainRoundSensePower": {
     "NAME": "训练时间·感性",
     "DESCRIPTIONS": [
-      "当前有 #b%d 层。 NL 对敌方造成伤害时，获得造成伤害 #b%d %%的格挡。 NL 回合结束时，吸甲倍率减少 #b%d %%，直到等于 #b%d %%。 NL 每次出牌或结束回合时减少 #b1 层。 NL 战斗胜利或该Buff首次移除时，基于敌人的损失HP百分比获得 #y三维 。 NL 三维分配比例由卡组中卡牌的TAG数决定。 NL 回合结束时若能量大于 #b0 ，则回复 #b1 点体力。 NL 战斗胜利时，每剩余 #b3 层回复 #b2 点体力。"
+      "当前有 #b%d 层。 NL 对敌方造成伤害时，获得造成伤害 #b%d %%的 #y固定格挡 。 NL 回合结束时，吸甲倍率减少 #b%d %%，直到等于 #b%d %%。 NL 每次出牌或结束回合时减少 #b1 层。 NL 战斗胜利或该Buff首次移除时，基于敌人的 #y损失体力 百分比获得 #y三维 。 NL 三维分配比例由卡组中卡牌的TAG数决定。 NL (在不同地图中效果将略有不同)"
+    ]
+  },
+  "TrainRoundMisuzuPower": {
+    "NAME": "训练时间·美铃",
+    "DESCRIPTIONS": [
+      "当前有 #b%d 层。 NL 每回合打出的前3张 #y状态 或 #y诅咒 牌不会消耗训练时间。 NL 消耗特定牌时，触发对应效果： NL · #y「怠惰」 ：获得 #b%d 点 #y力量 。 NL · #y「傲慢」 ：获得 #b%d 点 #y敏捷 。 NL · #y「暴食」 ：获得 #b%d 层 #y再生 。 NL · #y「贪婪」 ：获得 #b%d 点 #y金币 。 NL · #y「色欲」 ：获得 #b%d 张 #y彩色感性初始卡 。 NL · #y「嫉妒」 ：获得 #b%d 层 #y好调 。 NL 每次出牌或结束回合时减少 #b1 层。 NL 战斗胜利或该Buff首次移除时，基于敌人的 #y损失体力 百分比获得 #y三维 。 NL 三维分配比例由卡组中卡牌的TAG数决定。"
     ]
   },
   "OccupyTheWorldPower": {
@@ -242,7 +260,7 @@
   "FullPowerValue": {
     "NAME": "全力值",
     "DESCRIPTIONS": [
-      "回合开始时，如果 #y全力值 不低于 #b10 ，则失去 #b10 点 #y全力值 ，进入 #y全力 。 NL 进入 #y全力 时，按照以下顺序依次消耗剩余的 #y全力值 ，获得额外效果，直到无法继续触发： NL #y· 消耗2点：获得 #b5 层 #y热意 。 NL #y· 消耗3点：获得 #b16 点 #y格挡 。 NL #y· 消耗5点： #y再动 。"
+      "当前有 #b%d 层。 NL 回合开始时，如果 #y全力值 不低于 #b10 ，则失去 #b10 点 #y全力值 ，进入 #y全力 。 NL 进入 #y全力 时，按照以下顺序依次消耗剩余的 #y全力值 ，获得额外效果，直到无法继续触发： NL #y· 消耗2点：获得 #b2 层 #y热意 。 NL #y· 消耗3点：获得 #b7 点 #y固定格挡 。 NL #y· 消耗2点：获得 #b2 点 #y临时敏捷 。 NL #y· 消耗3点： 获得 [E] 。"
     ]
   },
   "FullPowerValueMisuzu": {
@@ -252,7 +270,7 @@
     ]
   },
   "MisuzuNature": {
-    "NAME": "秦谷美玲的本质",
+    "NAME": "秦谷美铃的本质",
     "DESCRIPTIONS": [
       "本回合受到的伤害大于 #b%d 时，进入 #y强气 ，否则进入 #y温存 。 NL 本回合受到的伤害大于 #b%d 时，额外获得 #b2 点全力值。"
     ]
@@ -260,31 +278,31 @@
   "SleepPower": {
     "NAME": "瞌睡之力",
     "DESCRIPTIONS": [
-      "每当你消耗 #y眠气 时，秦谷美玲获得 #b1 点全力值。"
+      "每当你消耗 #y眠气 时，秦谷美铃获得 #b1 点全力值。"
     ]
   },
   "SleepPower2": {
     "NAME": "瞌睡之力·强化",
     "DESCRIPTIONS": [
-      "每当你消耗 #y眠气 时，秦谷美玲获得 #b2 点力量。"
+      "每当你消耗 #y眠气 时，秦谷美铃获得 #b2 点力量。"
     ]
   },
   "VoSpPower": {
     "NAME": "Vo SP",
     "DESCRIPTIONS": [
-      "死亡时，使你获得Vo加成。"
+      "死亡时，使你回复 #b4 点体力，获得Vo加成。"
     ]
   },
   "DaSpPower": {
     "NAME": "Da SP",
     "DESCRIPTIONS": [
-      "死亡时，使你获得Da加成。"
+      "死亡时，使你回复 #b4 点体力，获得Da加成。"
     ]
   },
   "ViSpPower": {
     "NAME": "Vi SP",
     "DESCRIPTIONS": [
-      "死亡时，使你获得Vi加成。"
+      "死亡时，使你回复 #b4 点体力，获得Vi加成。"
     ]
   },
   "SleepyAttackPower": {
@@ -335,10 +353,16 @@
       " #b%d 回合内伤害增加 #b%d %%。"
     ]
   },
-  "BurstAttackTwoRoundPower": {
-    "NAME": "爆发攻击·两回合",
+  "SenburiSodaPower": {
+    "NAME": "千振苏打",
     "DESCRIPTIONS": [
-      "接下来的两回合，你的下 #b%d 张卡会额外打出1次。"
+      " #b%d 回合内伤害增加 #b%d %%。"
+    ]
+  },
+  "BurstAttackTwoRoundPower": {
+    "NAME": "爆发·攻击&能力·两回合",
+    "DESCRIPTIONS": [
+      "接下来的两回合，你的下 #b%d 张攻击牌或能力牌会额外打出1次。"
     ]
   },
   "WhatDoesSheDoPower": {
@@ -350,7 +374,7 @@
   "MadeOneForYouPower": {
     "NAME": "给你也做了一份",
     "DESCRIPTIONS": [
-      "每次使用能量消耗大于 #b1 的卡牌时，获得 [E] 。"
+      "每次打出能量消耗大于 #b1 的卡牌时，获得 [E] 。"
     ]
   },
   "AngelAndDemonPower": {
@@ -368,13 +392,13 @@
   "TopWisdomPower": {
     "NAME": "无上智慧",
     "DESCRIPTIONS": [
-      "每次获得格挡时，对随机敌人造成格挡层数 #b15 %%的伤害 #b%d 次。"
+      "每次获得格挡后，对随机敌人造成格挡层数 #b15 %%的伤害 #b%d 次。 NL (该伤害无法触发吸甲)"
     ]
   },
   "TopWisdomPlusPower": {
     "NAME": "无上智慧+",
     "DESCRIPTIONS": [
-      "每次获得格挡时，对随机敌人造成格挡层数 #b25 %%的伤害 #b%d 次。"
+      "每次获得格挡后，对随机敌人造成格挡层数 #b25 %%的伤害 #b%d 次。 NL (该伤害无法触发吸甲)"
     ]
   },
   "OverDamageTransfer": {
@@ -411,6 +435,12 @@
     "NAME": "钱包一直空空的+",
     "DESCRIPTIONS": [
       "每回合开始时，获得 #b%d 张 #y钱包空空的+ 。"
+    ]
+  },
+  "GachaAgainSPPower": {
+    "NAME": "钱包一直空空的·SP",
+    "DESCRIPTIONS": [
+      "每回合开始时，获得 #b%d 瓶 #y初星特制青汁·SP 。"
     ]
   },
   "EnthusiasticPower": {
@@ -452,7 +482,7 @@
   "TheTwelfth": {
     "NAME": "第十二人",
     "DESCRIPTIONS": [
-      "打出 #b%d 张牌后，结束你的回合，并使你获得 #b1 层 #y绝不调 。 NL (每回合打出的前 #b2 张 #y再动 牌不计数)。"
+      "每当你累计打出 #b%d 张牌后，结束你的回合，并使你获得 #b1 层 #y绝不调 。 NL (每回合打出的前 #b2 张 #y再动 牌不计数)。"
     ]
   },
   "DrawCardNextXTurnPower": {
@@ -567,13 +597,13 @@
   "TrainingResultPower": {
     "NAME": "下回合温存",
     "DESCRIPTIONS": [
-      "回合开始时，进入 #y温存 #b%d 次。"
+      "下回合开始时，进入 #y温存 #b%d 次。"
     ]
   },
   "TrainingResultPlusPower": {
     "NAME": "下回合温存2段",
     "DESCRIPTIONS": [
-      "回合开始时，进入 #y温存2段 #b%d 次。"
+      "下回合开始时，进入 #y温存2段 #b%d 次。"
     ]
   },
   "StanceLock": {
@@ -585,13 +615,13 @@
   "HeartAndSoulPower": {
     "NAME": "全身全霊",
     "DESCRIPTIONS": [
-      "接下来使用的 #b%d 张卡，能量消耗变为 #b0 。"
+      "接下来打出 #b%d 张牌时，获得消耗的能量。"
     ]
   },
   "ToTheTopPower": {
     "NAME": "向着顶点",
     "DESCRIPTIONS": [
-      "回合开始时，如果拥有 #y姿态 则使你的所有牌获得 #y伤害追加 #b%d 。"
+      "每回合开始时，如果拥有 #y姿态 ，则使你的所有牌获得 #y伤害追加 #b%d 。"
     ]
   },
   "MayRainPower": {
@@ -606,6 +636,12 @@
       "回合结束时和转化 #y姿态 时，获得 #b%d 点 #y全力值 。"
     ]
   },
+  "ThunderWillStopSPPower": {
+    "NAME": "雷鸣将歇SP",
+    "DESCRIPTIONS": [
+      "获得 #y全力值 时，使所有手牌和 #y暂存 区卡牌获得 #y伤害追加 #b%d 和 #y格挡追加 #b%d 。"
+    ]
+  },
   "StepOnStagePower": {
     "NAME": "登上舞台",
     "DESCRIPTIONS": [
@@ -615,7 +651,13 @@
   "LikeStarsPower": {
     "NAME": "如繁星一般",
     "DESCRIPTIONS": [
-      "每次 #y暂存 卡牌时，使所有 #y暂存 区卡牌获得 #y伤害追加 #b%d 。"
+      "每次 #y暂存 卡牌时，使所有手牌获得 #y伤害追加 #b%d 和 #y格挡追加 #b%d 。"
+    ]
+  },
+  "LikeStarsSPPower": {
+    "NAME": "如繁星一般SP",
+    "DESCRIPTIONS": [
+      "每次 #y暂存 卡牌时，使所有手牌和 #y暂存 区卡牌获得 #y伤害追加 #b%d 和 #y格挡追加 #b%d 。"
     ]
   },
   "WhereDreamsArePower": {
@@ -672,16 +714,94 @@
       "每次退出 #y温存2段 时，获得 [E] * #b%d 。"
     ]
   },
-  "FriendTemariPower1": {
-    "NAME": "月村手毬的呼唤",
+  "LikeUsualSPPower": {
+    "NAME": "像往常一样SP",
     "DESCRIPTIONS": [
-      "体力不低于 #b%d 时，在 #y秦谷美玲 使用 #y攻击牌 后，失去 #b%d 点体力，对目标造成伤害为 #b%d 的协同攻击。 NL 体力低于 #b%d 时， #y休息 ，下回合开始时回复 #b%d %%的体力。"
+      "每次退出 #y温存2段 时， 再动 #b%d 。"
+    ]
+  },
+  "FriendTemariPower1": {
+    "NAME": "月村手毬的陪伴",
+    "DESCRIPTIONS": [
+      "体力不低于 #b%d 时，在 #y秦谷美铃 打出 #y攻击牌 后，失去 #b%d 点体力，对目标造成伤害为 #b%d 的协同攻击。 NL 体力低于 #b%d 时， #y休息 ，下回合开始时回复 #b%d %%的体力。"
+    ]
+  },
+  "FriendTemariPower2": {
+    "NAME": "月村手毬的本源",
+    "DESCRIPTIONS": [
+      "回合结束时，食用 #y秦谷美铃 的 #y剩余能量 和 #y剩余卡牌 ，每食用 #b1 点 #y能量 获得 #b%d 点 体力上限，每食用 #b1 张 #y卡牌 回复 #b%d 点 体力。 NL 通过此方式使体力超过体力上限时，将一张 #y「暴食」 加入手牌。"
     ]
   },
   "FriendRinhaPower1": {
     "NAME": "贺阳燐羽的陪伴",
     "DESCRIPTIONS": [
       "回合结束时，对所有敌人造成 #b%d 点伤害。"
+    ]
+  },
+  "FriendRinhaPower2": {
+    "NAME": "贺阳燐羽的？？",
+    "DESCRIPTIONS": [
+      "回合结束时，如果敌方存在 #y攻击 意图，则将一张 #y「色欲」 加入手牌。 NL (每场战斗可触发 #b%d 次)"
+    ]
+  },
+  "FriendHiroPower1": {
+    "NAME": "篠泽广的发现",
+    "DESCRIPTIONS": [
+      "回合结束时，获得 #b%d 瓶 随机饮料。 NL (每场战斗可触发 #b%d 次)"
+    ]
+  },
+  "FriendHiroPower2": {
+    "NAME": "篠泽广的智慧",
+    "DESCRIPTIONS": [
+      "#y秦谷美铃 获得 #y格挡 时，对随机敌人造成 #b%d 点伤害。"
+    ]
+  },
+  "FriendChinaPower1": {
+    "NAME": "仓本千奈的乖巧",
+    "DESCRIPTIONS": [
+      "#y秦谷美铃 打出技能牌后，获得 #b%d 点 #y敏捷 。"
+    ]
+  },
+  "FriendChinaPower2": {
+    "NAME": "仓本千奈的可爱",
+    "DESCRIPTIONS": [
+      "每回合结束时，基于自身 #y敏捷 ，使 #y秦谷美铃 获得 #b%d 点 #y格挡 。"
+    ]
+  },
+  "FriendKotonePower1": {
+    "NAME": "藤田琴音的努力",
+    "DESCRIPTIONS": [
+      "每回合开始和结束时，使 #y秦谷美铃 获得 #b%d 点 #y金币 。"
+    ]
+  },
+  "FriendKotonePower2": {
+    "NAME": "藤田琴音的奋斗",
+    "DESCRIPTIONS": [
+      "#y秦谷美铃 的 #y金币 数变化时，对随机敌人造成 #b%d 点伤害。"
+    ]
+  },
+  "FriendSenaPower1": {
+    "NAME": "十王星南的兴趣",
+    "DESCRIPTIONS": [
+      "#y秦谷美铃 打出能力牌后，获得 #b%d 点 #y力量 。"
+    ]
+  },
+  "FriendSenaPower2": {
+    "NAME": "十王星南的执念",
+    "DESCRIPTIONS": [
+      "每回合结束时，对随机敌人造成 #b%d 点伤害 #b%d 次。"
+    ]
+  },
+  "FriendUmePower1": {
+    "NAME": "花海佑芽锻炼法",
+    "DESCRIPTIONS": [
+      "每 #b%d 回合，使 #y秦谷美铃 获得 #b%d 层 #y残影 。战斗胜利时，使 #y秦谷美铃 的体力上限增加 #b%d 。"
+    ]
+  },
+  "FriendUmePower2": {
+    "NAME": "花海佑芽的寻觅",
+    "DESCRIPTIONS": [
+      "每回合结束时，对随机敌人造成 #y秦谷美铃 体力上限 #b%d %%的伤害。"
     ]
   },
   "WantToSleep": {
@@ -693,7 +813,7 @@
   "WantToSleepEnemy": {
     "NAME": "困意",
     "DESCRIPTIONS": [
-      "当前有 #b%d 层。 NL 回合开始时， 如果 #y困意 层数不低于 #b%d ，则失去 #b%d 层 #y困意 ，进入 #y睡眠 。"
+      "当前有 #b%d 层。 NL 回合开始时， 如果 #y困意 层数不低于 #b%d ，且上一回合未进入过 #y睡眠 ，则失去 #b%d 层 #y困意 ，进入 #y睡眠 。"
     ]
   },
   "FatPower":  {
@@ -715,15 +835,618 @@
     ]
   },
   "FriendKnifePower": {
-    "NAME": "刀锋",
+    "NAME": "小刀的锋芒",
     "DESCRIPTIONS": [
-      "每次使用 #y攻击牌 时，失去 #b%d 点耐久，对目标造成 #b%d 点伤害，施加 #b%d 层 #y易伤 。"
+      "每次打出 #y攻击牌 时，失去 #b%d 点体力，对目标造成 #b%d 点伤害，施加 #b%d 层 #y易伤 。"
     ]
   },
   "IdolExamPower": {
     "NAME": "偶像考核",
     "DESCRIPTIONS": [
-      "本回合最多受到 #b%d 点伤害，当前已受到 #b%d 点伤害。 NL 本回合累计受到伤害超过 #b%d 点时，造成伤害减少 #b50 %%。 NL 累计受到伤害超过 #b%d 点时，造成伤害额外减少  #b30 %%。"
+      "本回合最多受到 #b%d 点伤害，本回合累计受伤达到 #b%d 后，受到伤害时回复等量体力。 NL 当前已受到 #b%d 点伤害。 NL 本回合累计受到伤害超过 #b%d 点时，造成伤害减少 #b50 %%。 NL 累计受到伤害超过 #b%d 点时，造成伤害额外减少  #b30 %%。"
+    ]
+  },
+  "BalancePower": {
+    "NAME": "平衡感",
+    "DESCRIPTIONS": [
+      "回合结束时，平均你的 #y好调 和 #y力量 层数， NL 使较低的一方增加，较高的一方减少。"
+    ]
+  },
+  "SayGoodbyeToDislikeMyselfPower": {
+    "NAME": "和讨厌的自己说拜拜",
+    "DESCRIPTIONS": [
+      "#y训练时间 结束时，对随机敌人造成 #b%d 点伤害 NL ( #y力量 发挥 #b%d %%的效果)。"
+    ]
+  },
+  "MyPrideBigSisterPower": {
+    "NAME": "我令人骄傲的姐姐",
+    "DESCRIPTIONS": [
+      "回合结束时，如果 #y训练时间 小于 #b%d ，则对随机敌人造成 #y好印象 层数 #b%d %%的伤害。"
+    ]
+  },
+  "ContinuousExpandWorldPower": {
+    "NAME": "持续增广的世界",
+    "DESCRIPTIONS": [
+      "#y训练时间 结束时，对随机敌人造成 #y格挡 层数 #b%d %%的伤害。"
+    ]
+  },
+  "EurekaPower": {
+    "NAME": "我找到了!",
+    "DESCRIPTIONS": [
+      "回合开始时，如果体力不高于 #b50 %%，则对随机敌人造成 格挡 层数 #b%d %%的伤害，并回复最大体力 #b%d %%的体力。"
+    ]
+  },
+  "EurekaPlusPower": {
+    "NAME": "我找到了!",
+    "DESCRIPTIONS": [
+      "回合开始时，如果体力不高于 #b50 %%，则对随机敌人造成 格挡 层数 #b%d %%的伤害，并回复最大体力 #b%d %%的体力。"
+    ]
+  },
+  "TheScenerySawSomedayPower": {
+    "NAME": "曾经见过的景色",
+    "DESCRIPTIONS": [
+      "回合开始时，对随机 #b%d 个敌人造成 #b%d 点伤害。"
+    ]
+  },
+  "TheDreamSawSomedayPower": {
+    "NAME": "曾经做过的梦",
+    "DESCRIPTIONS": [
+      "下回合开始时，获得 #b%d 点 #y力量 。"
+    ]
+  },
+  "TheWingPower": {
+    "NAME": "翼",
+    "DESCRIPTIONS": [
+      "下回合开始时，将 #y消耗 堆中的 #y再一次，飞翔 加入手牌。"
+    ]
+  },
+  "StarNature": {
+    "NAME": "星质",
+    "DESCRIPTIONS": [
+      "受到伤害减少 #b%d %%。"
+    ]
+  },
+  "MoneyPower": {
+    "NAME": "蓝井家的财力",
+    "DESCRIPTIONS": [
+      "当前有 #b%d 金币。"
+    ]
+  },
+  "TauntPower": {
+    "NAME": "杂鱼杂鱼~~",
+    "DESCRIPTIONS": [
+      "受到伤害增加 #b%d %%。每回合首次受到攻击时，获得 #b%d 点 #y力量 ，之后每次受到攻击时，失去 #b%d 点 #y力量 。"
+    ]
+  },
+  "GoodsMonopolyPower": {
+    "NAME": "周边の垄断",
+    "DESCRIPTIONS": [
+      "每当场上的 #y努努 数量减少时，花费 #b%d 金币，购买 #b%d 个 #y努努 ，重复此行为直到数量等于 #b%d 。"
+    ]
+  },
+  "PinkGirlPower": {
+    "NAME": "粉毛の大手",
+    "DESCRIPTIONS": [
+      "每次购买 #y努努 时，获得 #b%d 层 #y无实体 。 NL 场上不存在 #y努努 时，移除所有 #y无实体 。"
+    ]
+  },
+  "FearPinkGirlPower": {
+    "NAME": "威慑",
+    "DESCRIPTIONS": [
+      "造成伤害减少 #b%d %%，不再购买 #y努努 。"
+    ]
+  },
+  "ShionMethod": {
+    "NAME": "白草四音の手段",
+    "DESCRIPTIONS": [
+      "每回合首次受到 #y攻击 时，在你的手牌中加入 #b1 张 #y谣言 。"
+    ]
+  },
+  "ShionWord": {
+    "NAME": "白草四音の暴言",
+    "DESCRIPTIONS": [
+      "每次攻击时，使你获得 #b%d 层 #y脆弱 和 #b%d 层 #y易伤 。"
+    ]
+  },
+  "FantasyKiller": {
+    "NAME": "幻想粉碎者",
+    "DESCRIPTIONS": [
+      "每回合结束时，获得等于你 #y负面效果 层数总和 #b%d %%的 #y力量 。"
+    ]
+  },
+  "CrisisTime": {
+    "NAME": "鱼死网破之时",
+    "DESCRIPTIONS": [
+      "体力首次低于 #b%d %%和 #b%d %%时， #y攻击次数 +1，使你获得 #b%d 层 #y不调 和 #b%d 层 #y绝不调 。"
+    ]
+  },
+  "ShionShadow": {
+    "NAME": "白草四音の阴影",
+    "DESCRIPTIONS": [
+      "对 #y姐姐 系角色造成伤害增加 #b%d %%。"
+    ]
+  },
+  "InformationMasterPower": {
+    "NAME": "不要小看我的情报网",
+    "DESCRIPTIONS": [
+      "每次打出攻击牌时，消耗抽牌堆中的所有 #y谣言 。 NL 每次打出技能牌时，将手牌中的所有 #y谣言 转移至抽牌堆。 NL 每次打出能力牌时，移除所有 #y不调 。"
+    ]
+  },
+  "GekkaOldWound": {
+    "NAME": "白草月花の旧伤",
+    "DESCRIPTIONS": [
+      "每回合累计受到攻击次数大于 #b%d 后，该回合造成伤害减少 #b%d %%。"
+    ]
+  },
+  "TopIdolPower": {
+    "NAME": "Top Idol",
+    "DESCRIPTIONS": [
+      "造成伤害增加 #b%d %%。"
+    ]
+  },
+  "GekkaInterest": {
+    "NAME": "白草月花の兴趣",
+    "DESCRIPTIONS": [
+      "本场战斗中，每失去 #b%d %%的体力，获得 #b%d 点 #y战意值 ，使你失去 [E] ，并向你的抽牌堆中加入 #b1 张 #y战意 。"
+    ]
+  },
+  "GekkaWill": {
+    "NAME": "战意值",
+    "DESCRIPTIONS": [
+      "基于累计的战意值，获得额外效果。 NL 1· 获得 #b%d 点 #y格挡 。 NL 2· 使你所有的 #y正面效果 层数减少 #b%d (不会变为0)。 NL 3· 获得 #b%d 层 #y柔韧 。 NL 4· 获得 #b%d 层 #y再生 。 NL 5· 使你该回合无法继续出牌。 NL 6· 获得 #b%d 层 #y绝好调 。 NL 7· 获得 #y白草月花の追击 。 NL 8· 使你靠左的层数大于 #b%d 的 #b%d 个 #y正面效果 层数减少 #b%d %%。 NL 9· 使你该回合无法继续出牌。 NL 10及10以上· 获得 #b%d 层 #y缓冲 。"
+    ]
+  },
+  "StageDeviceFlow": {
+    "NAME": "舞台装置の流转",
+    "DESCRIPTIONS": [
+      "每当你累计打出 #b%d 张牌后，使你丢弃所有手牌，抽相同数量张牌。"
+    ]
+  },
+  "GekkaChase": {
+    "NAME": "白草月花の追击",
+    "DESCRIPTIONS": [
+      "每当你累计打出 #b%d 张牌后，对你造成基础伤害 #b%d 的攻击。"
+    ]
+  },
+  "OneTimeFlash": {
+    "NAME": "一生一次的闪现",
+    "DESCRIPTIONS": [
+      "受到致命伤害时移除，回复 #b%d 点体力，该回合不会再受到任何伤害。"
+    ]
+  },
+  "OnigiriGift": {
+    "NAME": "饭团的馈赠",
+    "DESCRIPTIONS": [
+      "受到攻击时，使攻击者获得造成伤害 #b%d %%的 #y格挡 。"
+    ]
+  },
+  "WorkHardPower": {
+    "NAME": "努力了哟",
+    "DESCRIPTIONS": [
+      "回合开始时，如果处于 #y全力 ，则使所有牌获得 #y伤害追加 #b%d 。"
+    ]
+  },
+  "WorkHardSPPower": {
+    "NAME": "努力了哟·SP",
+    "DESCRIPTIONS": [
+      "回合开始时，如果处于 #y全力 ，则使所有牌获得 #y伤害追加 #b%d 和 #y格挡追加 #b%d 。"
+    ]
+  },
+  "CanYouAcceptPower": {
+    "NAME": "能接受吗？",
+    "DESCRIPTIONS": [
+      "每次打出 #y强气 牌后，使所有 #y强气 牌获得 #y伤害追加 #b%d 。"
+    ]
+  },
+  "CanYouAcceptSPPower": {
+    "NAME": "能接受吗？·SP",
+    "DESCRIPTIONS": [
+      "每次打出 #y强气 牌后，使所有 #y强气 牌获得 #y伤害追加 #b%d ，所有手牌获得 #y格挡追加 #b%d 。"
+    ]
+  },
+  "TodokuPower": {
+    "NAME": "届",
+    "DESCRIPTIONS": [
+      "敌人回合结束时，失去所有 #y格挡 。"
+    ]
+  },
+  "PracticeAgainPower": {
+    "NAME": "练习再开",
+    "DESCRIPTIONS": [
+      "每次洗牌时，获得 #b%d 层 #y好调 。"
+    ]
+  },
+  "SleepyEnchantmentPower": {
+    "NAME": "眠气附魔",
+    "DESCRIPTIONS": [
+      "每次打出 #y攻击牌 时，使目标获得 #b%d 层 #y困意 和 #y不调 。"
+    ]
+  },
+  "SleepySongPower": {
+    "NAME": "安眠曲",
+    "DESCRIPTIONS": [
+      "每次打出 #y技能牌 时，在 #y抽牌堆 中加入 #b%d 张 #y眠气 。"
+    ]
+  },
+  "SleeplessNightPower": {
+    "NAME": "今夜无眠",
+    "DESCRIPTIONS": [
+      "本回合不会再获得 #y困意 。"
+    ]
+  },
+  "DarknessForeverPower": {
+    "NAME": "极夜",
+    "DESCRIPTIONS": [
+      "每回合开始时，使所有敌人获得 #b%d 层 #y困意 和 #y不调 。"
+    ]
+  },
+  "SleepyCardPowerPower": {
+    "NAME": "眠气的力量",
+    "DESCRIPTIONS": [
+      "每次消耗 #y眠气 时，获得 #b%d 点 #y力量 。"
+    ]
+  },
+  "SpringSleepyPower": {
+    "NAME": "春困",
+    "DESCRIPTIONS": [
+      "每次打出 #y眠气 时， #y再动 #b%d 。"
+    ]
+  },
+  "SummerSleepyPower": {
+    "NAME": "夏倦",
+    "DESCRIPTIONS": [
+      "每次打出 #y眠气 时， 抽 #b%d 张牌。"
+    ]
+  },
+  "AutumnSleepyPower": {
+    "NAME": "秋乏",
+    "DESCRIPTIONS": [
+      "每次打出 #y眠气 时，获得 #b%d 点 #y格挡 。"
+    ]
+  },
+  "WinterSleepyPower": {
+    "NAME": "冬眠",
+    "DESCRIPTIONS": [
+      "每次打出 #y眠气 时，对随机敌人造成 #b5 点伤害 #b%d 次。"
+    ]
+  },
+  "CanNotPlayCardPower": {
+    "NAME": "无法出牌",
+    "DESCRIPTIONS": [
+      " #b%d 回合内无法出牌。 NL 回合结束时层数减 #b1 。"
+    ]
+  },
+  "NegativeNotPower": {
+    "NAME": "负面无效",
+    "DESCRIPTIONS": [
+      "免疫 #b%d 次 #y负面效果 。 NL (对 #y力量 、 #y敏捷 、 #y好印象 、 #y好调 、 #y全力值 下降效果不生效)"
+    ]
+  },
+  "YouFindMePower": {
+    "NAME": "你所发现的我",
+    "DESCRIPTIONS": [
+      " #b%d 回合内伤害增加 #b%d %%。"
+    ]
+  },
+  "GiveYouPower": {
+    "NAME": "给你",
+    "DESCRIPTIONS": [
+      " #b%d 回合内，回合结束时对随机敌人造成 #y格挡 层数 #b%d %% 的伤害。"
+    ]
+  },
+  "GiveYouSPPower": {
+    "NAME": "给你·SP",
+    "DESCRIPTIONS": [
+      "回合结束时对随机敌人造成 #y格挡 层数 #b%d %% 的伤害。"
+    ]
+  },
+  "CareCardPower": {
+    "NAME": "小心碰牌",
+    "DESCRIPTIONS": [
+      "#b%d 回合内，回合开始时，进入 #y强气 。"
+    ]
+  },
+  "CareCardSPPower": {
+    "NAME": "小心碰牌·SP",
+    "DESCRIPTIONS": [
+      "#b%d 回合内，回合开始时，进入 #y强气2段 。"
+    ]
+  },
+  "FateCommunityPower": {
+    "NAME": "命运共同体",
+    "DESCRIPTIONS": [
+      "每次获得 #y力量 时，使所有友方获得相同层数的 #y力量 。"
+    ]
+  },
+  "FateCommunityPower2": {
+    "NAME": "命运共同体",
+    "DESCRIPTIONS": [
+      "每当你获得 #y力量 时，贺阳燐羽获得对应层数 #b50 %%的 #y力量 。 NL 每当你玩家获得 #y格挡 时，贺阳燐羽获得对应层数 #b50 %%的 #y格挡 。"
+    ]
+  },
+  "ThunderControlPower": {
+    "NAME": "雷鸣掌控者",
+    "DESCRIPTIONS": [
+      "每次受到攻击时，使你获得 #b%d 层 #y麻痹 。"
+    ]
+  },
+  "OurSunPower": {
+    "NAME": "我们的太阳",
+    "DESCRIPTIONS": [
+      "每回合结束时，获得 #b%d 点 #y力量 和 #b%d 层 #y负面无效 。"
+    ]
+  },
+  "BornImitatorPower": {
+    "NAME": "天生模仿者",
+    "DESCRIPTIONS": [
+      "每当你洗牌 #b%d 次后，向你的抽牌堆中加入 #b%d 张随机偶像专属初始卡(蓝色)。"
+    ]
+  },
+  "RinhaEndPower": {
+    "NAME": "贺阳燐羽的终幕",
+    "DESCRIPTIONS": [
+      "每当你累计打出 #b%d 张牌，获得 #b%d 层 #y好调 。"
+    ]
+  },
+  "RinhaCarePower": {
+    "NAME": "贺阳燐羽的温柔",
+    "DESCRIPTIONS": [
+      "失去体力时，使你获得伤害 #b%d %% 的 #y格挡 。"
+    ]
+  },
+  "WakeUpMisuzuPower": {
+    "NAME": "美铃，快醒醒",
+    "DESCRIPTIONS": [
+      "#y秦谷美铃 每回合首次进入 #y睡眠 时，使其进入 #y清醒 。"
+    ]
+  },
+  "EvilSourcePower": {
+    "NAME": "万恶同源",
+    "DESCRIPTIONS": [
+      "本场战斗中，你消耗的所有 #y诅咒 牌都视为 #y眠气 。"
+    ]
+  },
+  "CoolIdolPower": {
+    "NAME": "Cool系偶像",
+    "DESCRIPTIONS": [
+      "每回合开始时，失去 #b%d 点 #y力量 。"
+    ]
+  },
+  "SleepyInfectionPower": {
+    "NAME": "瞌睡传染",
+    "DESCRIPTIONS": [
+      "死亡时，使所有敌人获得相同层数的 #y困意 。"
+    ]
+  },
+  "KiraKiraPrismPower": {
+    "NAME": "闪耀的棱镜",
+    "DESCRIPTIONS": [
+      "每次打出 #y技能牌 时，如果处于 #y强气2段 ，则使所有 #y强气攻击牌 获得 #y伤害追加 #b%d 。"
+    ]
+  },
+  "DayDreamPower": {
+    "NAME": "白日梦",
+    "DESCRIPTIONS": [
+      " #b%d 回合内，敌人回合结束时，对所有敌人造成自身剩余 #y格挡 层数 #b%d %% 的伤害。"
+    ]
+  },
+  "DreamColorLipstickPower":
+  {
+    "NAME": "梦色口红",
+    "DESCRIPTIONS": [
+      " #b%d 回合内，回合开始时， #y好印象 增加 #b%d %%。"
+    ]
+  },
+  "DreamColorLipstickSPPower":
+  {
+    "NAME": "梦色口红·SP",
+    "DESCRIPTIONS": [
+      "每回合开始时， #y好印象 增加 #b%d %%。"
+    ]
+  },
+  "DamageIncreasePower": {
+    "NAME": "伤害增加",
+    "DESCRIPTIONS": [
+      "伤害增加 #b%d %%。"
+    ]
+  },
+  "LifeNotStop": {
+    "NAME": "生生不息",
+    "DESCRIPTIONS": [
+      "每当你出牌后，回复 #b%d 点体力，然后使回复量增加 #b%d 。 NL 每回合开始时，回复量重置为 #b%d 。"
+    ]
+  },
+  "NoPhoneInClassPower": {
+    "NAME": "上课不许玩手机",
+    "DESCRIPTIONS": [
+      "你无法触发 #y制作人的电话 效果。"
+    ]
+  },
+  "AsariChocolatePower": {
+    "NAME": "来得正好",
+    "DESCRIPTIONS": [
+      "当你首次出牌后，向你的抽牌堆中加入 #b%d 张 #y给制作人的巧克力 ，使你获得 #b%d 层 #y不安 。"
+    ]
+  },
+  "AsariBentoPower": {
+    "NAME": "交换便当",
+    "DESCRIPTIONS": [
+      "每回合开始时，向你的手牌中加入 #b%d 张 #y给制作人的便当 。"
+    ]
+  },
+  "AnxietyPower": {
+    "NAME": "不安です",
+    "DESCRIPTIONS": [
+      "当前有 #b%d 层。 NL 获得的 #y格挡 减少 #b50 %%。 NL 回合结束时，层数减少 #b1 。"
+    ]
+  },
+  "AsariCarePower": {
+    "NAME": "亚纱里老师的守望",
+    "DESCRIPTIONS": [
+      "当你出牌时，如果你的 #y负面效果 层数 之和大于 #b%d ，则联系制作人，移除你的所有 #y负面效果 ，结束你的回合。"
+    ]
+  },
+  "KotoneCharmPower": {
+    "NAME": "藤田琴音的魅力",
+    "DESCRIPTIONS": [
+      "当你打出 #b%d 张牌，获得 #b%d 层 #y好印象 。"
+    ]
+  },
+  "KotoneWorkPower": {
+    "NAME": "作为偶像的工作",
+    "DESCRIPTIONS": [
+      "每回合结束时，使所有友方获得 #b%d 层 #y好印象 。"
+    ]
+  },
+  "KotoneEncallPower": {
+    "NAME": "藤田琴音的应援",
+    "DESCRIPTIONS": [
+      "死亡时，结束你的回合，使所有友方获得相同层数的 #y好印象 。"
+    ]
+  },
+  "TemariInnocentPower": {
+    "NAME": "月村手毬的天真",
+    "DESCRIPTIONS": [
+      "每回合结束时，使所有友方获得 #b%d 点 #y力量 。"
+    ]
+  },
+  "TemariEatPower": {
+    "NAME": "给我也来一口",
+    "DESCRIPTIONS": [
+      "每回合首次回复体力时，向你的手牌中加入 #b1 张 #y「暴食」 。"
+    ]
+  },
+  "TemariSongPower": {
+    "NAME": "我真正的心意",
+    "DESCRIPTIONS": [
+      "体力下降时，获得 #b%d 点 #y力量 。"
+    ]
+  },
+  "TemariEncallPower": {
+    "NAME": "月村手毬的应援",
+    "DESCRIPTIONS": [
+      "死亡时，移除你的 #y格挡 ，使所有友方获得相同层数的 #y力量 。"
+    ]
+  },
+  "SakiCarePower": {
+    "NAME": "超专业营养师",
+    "DESCRIPTIONS": [
+      "每回合结束时，使所有友方回复 #b%d %%的体力。"
+    ]
+  },
+  "SakiPracticePower": {
+    "NAME": "花海咲季的练习",
+    "DESCRIPTIONS": [
+      "你每次洗牌时，获得 #b%d 层 #y好调 。"
+    ]
+  },
+  "SakiGoodTunePower": {
+    "NAME": "花海咲季的余裕",
+    "DESCRIPTIONS": [
+      "每回合结束时，使所有友方获得 #b%d 层 #y好调 。"
+    ]
+  },
+  "SakiRebirthPower": {
+    "NAME": "花海咲季，堂堂复活",
+    "DESCRIPTIONS": [
+      "死亡时，使所有友方获得相同层数的 #y好调 。 NL 下回合开始时复活，获得 #b%d 层 #y绝好调 ，使自身 #y力量 和 #y好调 增加 #b100 %%。"
+    ]
+  },
+  "MisuzuSleepPower": {
+    "NAME": "一起睡觉",
+    "DESCRIPTIONS": [
+      "每次受到攻击时，使你获得 #b%d 层 #y困意 。"
+    ]
+  },
+  "MisuzuDreamPower": {
+    "NAME": "共同的梦想",
+    "DESCRIPTIONS": [
+      "每当你消耗 #y眠气 时，使所有友方获得 #b%d 点 #y力量 。"
+    ]
+  },
+  "MisuzuEncallPower": {
+    "NAME": "秦谷美铃的应援",
+    "DESCRIPTIONS": [
+      "死亡时，使所有友方 #y力量 增加 #b50 %%，使你进入 #y睡眠 。"
+    ]
+  },
+  "MisuzuNightPower": {
+    "NAME": "那个夜晚",
+    "DESCRIPTIONS": [
+      "每当你转化 #b%d 次 #y姿态 时，向你的抽牌堆中加入 #b1 张 #y眠气 。"
+    ]
+  },
+  "SenaMoreActionPower": {
+    "NAME": "我有多动症",
+    "DESCRIPTIONS": [
+      "每当你触发 #y再动 时，使所有友方获得 #b%d 层 #y好调 。"
+    ]
+  },
+  "SenaEncallPower": {
+    "NAME": "十王星南的应援",
+    "DESCRIPTIONS": [
+      "死亡时，使所有友方 #y好调 增加 #b50 %%，使你所有的手牌获得 #y耗能追加 #b1 。"
+    ]
+  },
+  "SenaTopPower": {
+    "NAME": "向着那个顶点",
+    "DESCRIPTIONS": [
+      "每当你打出能力牌时，使所有友方获得 #y伤害增加 #b%d %%和 #y受伤减少 #b%d %%。 NL ( #y受伤减少 最多叠加至 #b80 %%)"
+    ]
+  },
+  "SenaTeachPower": {
+    "NAME": "十王星南的指导",
+    "DESCRIPTIONS": [
+      "每回合结束时，使所有友方的 #y力量 和 #y好调 层数增加 #b%d %%。"
+    ]
+  },
+  "UmeGreatGoodTunePower": {
+    "NAME": "咕努努努努",
+    "DESCRIPTIONS": [
+      "每回合结束时，使所有友方获得 #b%d 层 #y绝好调 。"
+    ]
+  },
+  "UmeBecomeIdolPower": {
+    "NAME": "想要成为偶像",
+    "DESCRIPTIONS": [
+      "每 #b2 回合，使所有友方 #y攻击次数 增加 #b1 。"
+    ]
+  },
+  "UmeEncallPower": {
+    "NAME": "花海佑芽的应援",
+    "DESCRIPTIONS": [
+      "死亡时，使所有人获得 #b1 层 #y无实体 。"
+    ]
+  },
+  "UmeStancePower": {
+    "NAME": "切换自如",
+    "DESCRIPTIONS": [
+      "每当你打出 #b%d 张牌，使你进入 #y温存 。 NL 如果处于 #y温存 ，则进入 #y强气 。"
+    ]
+  },
+  "AttackTimePower": {
+    "NAME": "攻击次数增加",
+    "DESCRIPTIONS": [
+      "攻击次数增加 #b%d 。"
+    ]
+  },
+  "NextXTurnMoreActionPower": {
+    "NAME": "X回合后再动",
+    "DESCRIPTIONS": [
+      "#b%d 回合后， #y再动 。",
+      "#b%d 回合后， #y再动 #b%d 。"
+    ]
+  },
+  "PromiseInMoonPower": {
+    "NAME": "月光下的契约",
+    "DESCRIPTIONS": [
+      "每回合结束时，失去 #b%d 点体力，抽 #b%d 张牌。"
+    ]
+  },
+  "NewFriendsPower": {
+    "NAME": "新的相遇",
+    "DESCRIPTIONS": [
+      "每回合结束时，获得你所有的 #y格挡 。 NL 下回合开始时，使你获得 #y格挡 层数 #b%d %%的 #y格挡 。"
     ]
   }
 }

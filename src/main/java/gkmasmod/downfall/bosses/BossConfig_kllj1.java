@@ -1,5 +1,6 @@
 package gkmasmod.downfall.bosses;
 
+import gkmasmod.downfall.charbosses.actions.unique.EnemyChangeStanceAction;
 import gkmasmod.downfall.charbosses.bosses.AbstractBossDeckArchetype;
 import gkmasmod.downfall.charbosses.bosses.AbstractCharBoss;
 import gkmasmod.downfall.charbosses.relics.*;
@@ -10,8 +11,11 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.powers.BarricadePower;
 import gkmasmod.downfall.cards.free.ENBasePerform;
 import gkmasmod.downfall.cards.logic.*;
+import gkmasmod.downfall.charbosses.stances.ENPreservationStance;
 import gkmasmod.downfall.relics.CBR_DreamLifeLog;
 import gkmasmod.downfall.relics.CBR_MemoryBot;
+import gkmasmod.powers.GoodImpression;
+import gkmasmod.powers.NotAfraidAnymorePower;
 
 import java.util.ArrayList;
 
@@ -28,6 +32,9 @@ public class BossConfig_kllj1 extends AbstractBossDeckArchetype {
         super.addedPreBattle();
         AbstractCreature p = AbstractCharBoss.boss;
         AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new BarricadePower(p)));
+        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new NotAfraidAnymorePower(p,3),3));
+        if(AbstractDungeon.ascensionLevel >= 15)
+            AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new GoodImpression(p,15),15));
     }
 
     public void initialize() {
@@ -36,6 +43,9 @@ public class BossConfig_kllj1 extends AbstractBossDeckArchetype {
         addRelic(new CBR_Lantern());
         addRelic(new CBR_MemoryBot());
         addRelic(new CBR_DreamLifeLog());
+        boolean extraUpgrades = AbstractDungeon.ascensionLevel >= 10;
+        if(extraUpgrades)
+            addRelic(new CBR_Sozu());
     }
 
     @Override
@@ -47,7 +57,7 @@ public class BossConfig_kllj1 extends AbstractBossDeckArchetype {
                 case 0:
                     addToList(cardsList, new ENBeforeThePerformance(),extraUpgrades);
                     addToList(cardsList, new ENUnstoppableThoughts(),extraUpgrades);
-                    addToList(cardsList, new ENYoungDream(),extraUpgrades);
+                    addToList(cardsList, new ENYoungDream(),true);
                     addToList(cardsList, new ENHeartbeat(),extraUpgrades);
                     addToList(cardsList, new ENBasePerform());
                     turn++;
@@ -64,7 +74,7 @@ public class BossConfig_kllj1 extends AbstractBossDeckArchetype {
                     addToList(cardsList, new ENHappyCurse(), extraUpgrades);
                     addToList(cardsList, new ENHappyTime(),extraUpgrades);
                     addToList(cardsList, new ENFutureTrajectory());
-                    addToList(cardsList, new ENBasePerform());
+                    addToList(cardsList, new ENBaseVision(),true);
                     addToList(cardsList, new ENBasePerform());
                     turn = 0;
                     looped = true;
@@ -77,6 +87,7 @@ public class BossConfig_kllj1 extends AbstractBossDeckArchetype {
                     addToList(cardsList, new ENLikeEveryone(),true);
                     addToList(cardsList, new ENBaseVision(),extraUpgrades);
                     addToList(cardsList, new ENBaseVision(),extraUpgrades);
+                    addToList(cardsList, new ENSweetWink(),extraUpgrades);
                     addToList(cardsList, new ENSweetWink(),extraUpgrades);
                     break;
             }

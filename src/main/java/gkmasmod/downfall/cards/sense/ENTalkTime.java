@@ -1,5 +1,6 @@
 package gkmasmod.downfall.cards.sense;
 
+import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import gkmasmod.downfall.charbosses.bosses.AbstractCharBoss;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
@@ -12,6 +13,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.downfall.cards.GkmasBossCard;
 import gkmasmod.powers.GoodTune;
+import gkmasmod.powers.NotGoodTune;
 import gkmasmod.utils.NameHelper;
 
 public class ENTalkTime extends GkmasBossCard {
@@ -26,8 +28,9 @@ public class ENTalkTime extends GkmasBossCard {
     private static final String IMG_PATH = String.format("gkmasModResource/img/cards/common/%s.png", CLASSNAME2);
 
     private static final int COST = 1;
-    private static final int ATTACK_DMG = 10;
+    private static final int ATTACK_DMG = 6;
     private static final int UPGRADE_PLUS_DMG = 3;
+    private static final int BASE_MAGIC = 2;
 
     private static final CardType TYPE = CardType.ATTACK;
     private static final CardColor COLOR = PlayerColorEnum.gkmasModColorSense;
@@ -37,13 +40,16 @@ public class ENTalkTime extends GkmasBossCard {
     public ENTalkTime() {
         super(ID, NAME, IMG_PATH, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.baseDamage = ATTACK_DMG;
+        this.baseMagicNumber = BASE_MAGIC;
+        this.magicNumber = this.baseMagicNumber;
         this.intent = AbstractMonster.Intent.ATTACK;
     }
 
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        addToBot( new DamageAction(p, new DamageInfo(m, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
+        addToBot(new DamageAction(p, new DamageInfo(m, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
+        addToBot(new ApplyPowerAction(p,p,new NotGoodTune(p,this.magicNumber),this.magicNumber));
     }
 
     @Override
@@ -54,7 +60,7 @@ public class ENTalkTime extends GkmasBossCard {
     @Override
     public boolean canUse(AbstractPlayer p, AbstractMonster m) {
         if (AbstractCharBoss.boss.hasPower(GoodTune.POWER_ID)) {
-            return true;
+            return super.canUse(p, m);
         }
         this.cantUseMessage = CardCrawlGame.languagePack.getUIString("gkmasMod:NotEnoughGoodTune").TEXT[0];
         return false;

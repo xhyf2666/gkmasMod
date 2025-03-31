@@ -1,5 +1,6 @@
 package gkmasmod.downfall.cards.sense;
 
+import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import gkmasmod.downfall.charbosses.bosses.AbstractCharBoss;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
@@ -13,6 +14,7 @@ import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.downfall.cards.GkmasBossCard;
 import gkmasmod.powers.GoodTune;
+import gkmasmod.powers.GreatNotGoodTune;
 import gkmasmod.utils.ImageHelper;
 import gkmasmod.utils.NameHelper;
 import gkmasmod.utils.PlayerHelper;
@@ -32,6 +34,7 @@ public class ENPopPhrase extends GkmasBossCard {
 
     private static final int ATTACK_DMG = 34;
     private static final int UPGRADE_PLUS_DMG = 11;
+    private static final int BASE_MAGIC = 2;
 
 
     private static final CardType TYPE = CardType.ATTACK;
@@ -44,7 +47,9 @@ public class ENPopPhrase extends GkmasBossCard {
         IMG_PATH = ImageHelper.idolImgPath(AbstractCharBoss.theIdolName, CLASSNAME2);
         this.updateShowImg = true;
         this.baseDamage = ATTACK_DMG;
-        this.intent = AbstractMonster.Intent.ATTACK;
+        this.baseMagicNumber = BASE_MAGIC;
+        this.magicNumber = this.baseMagicNumber;
+        this.intent = AbstractMonster.Intent.ATTACK_DEBUFF;
         this.tags.add(GkmasCardTag.GOOD_TUNE_TAG);
     }
 
@@ -52,13 +57,14 @@ public class ENPopPhrase extends GkmasBossCard {
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
         addToBot(new DamageAction(p, new DamageInfo(m, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
+        addToBot(new ApplyPowerAction(p,p,new GreatNotGoodTune(p,this.magicNumber),this.magicNumber));
     }
 
     @Override
     public boolean canUse(AbstractPlayer p, AbstractMonster m) {
         int count = PlayerHelper.getPowerAmount(m,GoodTune.POWER_ID);
         if (count > 0)
-            return true;
+            return super.canUse(p, m);
         this.cantUseMessage = CardCrawlGame.languagePack.getUIString("gkmasMod:NotEnoughGoodTune").TEXT[0];
         return false;
     }

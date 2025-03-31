@@ -10,9 +10,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.AbstractPower;
-import com.megacrit.cardcrawl.powers.RitualPower;
-import com.megacrit.cardcrawl.powers.StrengthPower;
+import com.megacrit.cardcrawl.powers.*;
 import gkmasmod.characters.IdolCharacter;
 import gkmasmod.relics.PocketBook;
 import gkmasmod.utils.NameHelper;
@@ -46,8 +44,16 @@ public class VoSpPower extends AbstractPower {
         this.region128 = new TextureAtlas.AtlasRegion(ImageMaster.loadImage(path128), 0, 0, 84, 84);
         this.region48 = new TextureAtlas.AtlasRegion(ImageMaster.loadImage(path48), 0, 0, 32, 32);
 
-        addToBot(new ApplyPowerAction(owner, owner, new StrengthPower(owner,1), 1));
-        addToBot(new ApplyPowerAction(owner, owner, new RitualPower(owner,1,false), 1));
+        if(AbstractDungeon.actNum==3){
+            addToBot(new ApplyPowerAction(owner, owner, new StrengthPower(owner,3), 3));
+            addToBot(new ApplyPowerAction(owner, owner, new InnocencePower(owner,1), 1));
+            addToBot(new ApplyPowerAction(owner, owner, new GoodTune(owner,2), 2));
+            addToBot(new ApplyPowerAction(owner, owner, new StarNature(owner,25), 25));
+        }
+        else{
+            addToBot(new ApplyPowerAction(owner, owner, new StrengthPower(owner,1), 1));
+            addToBot(new ApplyPowerAction(owner, owner, new RitualPower(owner,1,false), 1));
+        }
 
         // 首次添加能力更新描述
         this.updateDescription();
@@ -76,5 +82,6 @@ public class VoSpPower extends AbstractPower {
                 SoundHelper.playSound(String.format("gkmasModResource/audio/voice/sp/%s_produce_lesson_vo_%02d.ogg",idol.idolData.idolName,index));
             }
         }
+        AbstractDungeon.player.heal(4);
     }
 }

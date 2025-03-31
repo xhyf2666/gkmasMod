@@ -46,7 +46,7 @@ public class SummerEveningSparklersPower extends AbstractPower {
             return;
         if(this.owner instanceof AbstractCharBoss&&(!(card instanceof AbstractBossCard)))
             return;
-        if(card.block > 0) {
+        if(card.baseBlock > 0&&card.block > 0) {
             addToBot(new ApplyPowerAction(this.owner,this.owner,new GoodImpression(this.owner,this.amount),this.amount));
         }
     }

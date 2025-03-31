@@ -31,50 +31,55 @@ public class SakiCompleteMealRecipe extends CustomRelic {
 
     private static final int GOOD_TUNE = 0;
 
-    private static final  int playTimes = 2;
+//    private static final  int playTimes = 2;
 
     public SakiCompleteMealRecipe() {
         super(ID, ImageMaster.loadImage(IMG), ImageMaster.loadImage(IMG_OTL), RARITY, LandingSound.CLINK);
     }
 
 
-    @Override
-    public void onVictory() {
-        this.counter = playTimes;
-    }
+//    @Override
+//    public void onVictory() {
+//        this.counter = playTimes;
+//    }
 
     @Override
     public String getUpdatedDescription() {
-        return String.format(this.DESCRIPTIONS[0],magicNumber,playTimes);
+        return String.format(this.DESCRIPTIONS[0],magicNumber);
     }
 
     @Override
     public AbstractRelic makeCopy() {
-        return (AbstractRelic)new SakiCompleteMealRecipe();
+        return new SakiCompleteMealRecipe();
     }
 
 
     public void onEquip() {}
 
     public void atTurnStart() {
-        if (this.counter > 0) {
-            int count = AbstractDungeon.player.getPower(GoodTune.POWER_ID)==null?0:AbstractDungeon.player.getPower(GoodTune.POWER_ID).amount;
-            if(count>GOOD_TUNE){
-                addToBot(new RelicAboveCreatureAction(AbstractDungeon.player, this));
-                this.flash();
-                addToBot(new GainBlockWithPowerAction(AbstractDungeon.player, AbstractDungeon.player, magicNumber));
-                this.counter--;
-                if (this.counter == 0) {
-                    this.grayscale = true;
-                }
-            }
+//        if (this.counter > 0) {
+//            int count = AbstractDungeon.player.getPower(GoodTune.POWER_ID)==null?0:AbstractDungeon.player.getPower(GoodTune.POWER_ID).amount;
+//            if(count>GOOD_TUNE){
+//                addToBot(new RelicAboveCreatureAction(AbstractDungeon.player, this));
+//                this.flash();
+//                addToBot(new GainBlockWithPowerAction(AbstractDungeon.player, AbstractDungeon.player, magicNumber));
+//                this.counter--;
+//                if (this.counter == 0) {
+//                    this.grayscale = true;
+//                }
+//            }
+//        }
+        int count = AbstractDungeon.player.getPower(GoodTune.POWER_ID)==null?0:AbstractDungeon.player.getPower(GoodTune.POWER_ID).amount;
+        if(count>GOOD_TUNE){
+            addToBot(new RelicAboveCreatureAction(AbstractDungeon.player, this));
+            this.flash();
+            addToBot(new GainBlockWithPowerAction(AbstractDungeon.player, AbstractDungeon.player, magicNumber));
         }
-
     }
 
-    public void atBattleStart() {
-        this.counter = playTimes;
-    }
+//    public void atBattleStart() {
+//        this.counter = playTimes;
+//    }
 
     public  void  onPlayerEndTurn(){
     }

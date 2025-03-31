@@ -6,10 +6,14 @@ import basemod.abstracts.CustomSavable;
 import basemod.eventUtil.EventUtils;
 import basemod.interfaces.ISubscriber;
 import com.badlogic.gdx.Gdx;
+import com.megacrit.cardcrawl.actions.animations.TalkAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
+import com.megacrit.cardcrawl.actions.common.MakeTempCardInHandAction;
+import com.megacrit.cardcrawl.actions.common.RelicAboveCreatureAction;
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.events.AbstractEvent;
@@ -27,15 +31,28 @@ import com.megacrit.cardcrawl.powers.MinionPower;
 import com.megacrit.cardcrawl.powers.ModeShiftPower;
 import com.megacrit.cardcrawl.random.Random;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
+import com.megacrit.cardcrawl.relics.Circlet;
+import com.megacrit.cardcrawl.relics.MealTicket;
 import com.megacrit.cardcrawl.rewards.RewardItem;
 import com.megacrit.cardcrawl.rooms.*;
 import com.megacrit.cardcrawl.ui.campfire.AbstractCampfireOption;
 import gkmasmod.actions.GainTrainRoundPowerAction;
 import gkmasmod.actions.TrainRoundAnomalyFirstAction;
+import gkmasmod.cards.free.GakuenLinkMaster;
+import gkmasmod.cards.free.ProducerTrumpCard;
+import gkmasmod.cards.special.DoNotGo;
+import gkmasmod.cards.special.InformationMaster;
 import gkmasmod.characters.IdolCharacter;
+import gkmasmod.characters.MisuzuCharacter;
+import gkmasmod.downfall.bosses.AbstractIdolBoss;
+import gkmasmod.downfall.charbosses.bosses.AbstractCharBoss;
 import gkmasmod.dungeons.IdolRoad;
 import gkmasmod.modcore.GkmasMod;
+import gkmasmod.monster.beyond.MonsterSena2;
 import gkmasmod.monster.ending.MisuzuBoss;
+import gkmasmod.monster.exordium.MonsterNadeshiko;
+import gkmasmod.monster.exordium.MonsterShion;
+import gkmasmod.monster.friend.FriendNunu;
 import gkmasmod.patches.AbstractCardPatch;
 import gkmasmod.patches.AbstractPlayerPatch;
 import gkmasmod.patches.MapRoomNodePatch;
@@ -43,15 +60,19 @@ import gkmasmod.powers.*;
 import gkmasmod.room.EventMonsterRoom;
 import gkmasmod.room.FixedMonsterRoom;
 import gkmasmod.room.GkmasBossRoom;
+import gkmasmod.room.selectBoss.SelectBossOption;
 import gkmasmod.room.shop.AnotherShopOption;
 import gkmasmod.room.shop.AnotherShopScreen;
 import gkmasmod.room.specialTeach.SpecialTeachOption;
+import gkmasmod.room.supply.SupplyOption;
 import gkmasmod.screen.PocketBookViewScreen;
 import gkmasmod.screen.SkinSelectScreen;
 import gkmasmod.utils.*;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.UUID;
 
 public class PocketBook extends CustomRelic  implements ISubscriber, CustomSavable<PocketBook.PocketBookSaveData> {
@@ -72,17 +93,22 @@ public class PocketBook extends CustomRelic  implements ISubscriber, CustomSavab
 
     private boolean RclickStart = false;
 
-    public int maxRound = 8;
+    public int maxRound = 10;
 
-    private int currentRound = 8;
+    private int currentRound = 10;
 
     public boolean startFinalCircle = false;
 
     public boolean merchant = true;
 
+    public int rinhaLast = -1;
+
+    private boolean hasNewYear = false;
+
     private int planStep = 0;
 
     private boolean hajime = false;
+    private boolean nia = false;
 
     private int turnCount = 0;
 
@@ -137,8 +163,12 @@ public class PocketBook extends CustomRelic  implements ISubscriber, CustomSavab
     public void onVictory() {
         AbstractPlayerPatch.IsRenderFinalCircleField.IsRenderFinalCircle.set(AbstractDungeon.player, false);
 //        player.IsRenderFinalCircle = false;
+        GkmasMod.renderScene = true;
         isAttacked = false;
         startFinalCircle = false;
+        if(MapRoomNodePatch.SPField.isSP.get(AbstractDungeon.getCurrMapNode())){
+            AbstractDungeon.player.heal((int) (4));
+        }
         AbstractPlayerPatch.FinalDamageRateField.finalDamageRate.set(AbstractDungeon.player, 1.0);
 //        player.finalDamageRate = 1.0f;
         if(AbstractDungeon.player instanceof IdolCharacter){
@@ -146,7 +176,6 @@ public class PocketBook extends CustomRelic  implements ISubscriber, CustomSavab
             int index = random.nextInt(9)+1;
             SoundHelper.playSound(String.format("gkmasModResource/audio/voice/victory/%s_produce_result_%02d.ogg",SkinSelectScreen.Inst.idolName,index));
         }
-
     }
 
     public void onUsePotion() {
@@ -188,6 +217,10 @@ public class PocketBook extends CustomRelic  implements ISubscriber, CustomSavab
             threeSize = player.idolData.getBaseThreeSize();
             threeSizeRate = player.idolData.getThreeSizeRate();
         }
+        else if(AbstractDungeon.player instanceof MisuzuCharacter){
+            threeSize = IdolData.hmszData.getBaseThreeSize();
+            threeSizeRate = IdolData.hmszData.getThreeSizeRate();
+        }
         else{
             threeSize = new int[]{70,70,70};
             threeSizeRate = new float[]{0.15f,0.15f,0.15f};
@@ -222,9 +255,21 @@ public class PocketBook extends CustomRelic  implements ISubscriber, CustomSavab
     }
 
     public void addCampfireOption(ArrayList<AbstractCampfireOption> options) {
+        if(AbstractDungeon.actNum==4){
+            if(AbstractDungeon.id.equals(IdolRoad.ID)){
+                options.add(new AnotherShopOption(true));
+            }
+            else{
+                options.add(new SelectBossOption(true));
+            }
+            options.add(new SpecialTeachOption(true));
+        }
         if(AbstractDungeon.floorNum==15||AbstractDungeon.floorNum==32||AbstractDungeon.floorNum==49) {
             options.add(new AnotherShopOption(true));
             options.add(new SpecialTeachOption(true));
+        }
+        else{
+            options.add(new SupplyOption(true));
         }
     }
 
@@ -237,6 +282,22 @@ public class PocketBook extends CustomRelic  implements ISubscriber, CustomSavab
                 SoundHelper.playSound(String.format("gkmasModResource/audio/voice/turnStart/%s_produce_schedule_%02d.ogg",SkinSelectScreen.Inst.idolName,index));
             }
 
+        }
+        if(this.turnCount==3){
+            for (AbstractMonster monster : AbstractDungeon.getMonsters().monsters) {
+                if(monster instanceof MonsterNadeshiko){
+                    addToBot(new MakeTempCardInHandAction(new GakuenLinkMaster()));
+                }
+                if(monster instanceof MonsterShion){
+                    addToBot(new MakeTempCardInHandAction(new InformationMaster()));
+                }
+            }
+        }
+        if(rinhaLast>-1){
+            rinhaLast--;
+            if(rinhaLast==-1){
+                addToBot(new MakeTempCardInHandAction(new DoNotGo()));
+            }
         }
 
         if(startFinalCircle){
@@ -283,19 +344,36 @@ public class PocketBook extends CustomRelic  implements ISubscriber, CustomSavab
     }
 
     public void atBattleStart() {
+        rinhaLast = -1;
         isAttacked = false;
         this.counter = RankHelper.getStep();
         this.turnCount = 0;
-        int trainRoundNum = (int) (RankHelper.getStep()*1.5f+16);
+        int trainRoundNum = (int) (RankHelper.getStep()*1.5f+15);
         if(AbstractDungeon.getCurrRoom() instanceof MonsterRoomElite){
-            trainRoundNum += 5;
+            trainRoundNum += 10;
         }
         if(AbstractDungeon.getCurrRoom() instanceof MonsterRoomBoss){
-            trainRoundNum += 10;
+            trainRoundNum += 30;
+        }
+        if(AbstractDungeon.actNum==1)
+            trainRoundNum += 6;
+        if(AbstractDungeon.actNum==2)
+            trainRoundNum += 8;
+        if(AbstractDungeon.actNum==3)
+            trainRoundNum += 12;
+        if(AbstractDungeon.id.equals(IdolRoad.ID)){
+            addToBot(new ApplyPowerAction(AbstractDungeon.player,AbstractDungeon.player,new OneTimeFlash(AbstractDungeon.player,12),12));
+            trainRoundNum += 60;
         }
         for (AbstractMonster monster : AbstractDungeon.getMonsters().monsters) {
             if(monster.id.equals(MisuzuBoss.ID)){
-                trainRoundNum += 20;
+                trainRoundNum += 30;
+            }
+            if(monster instanceof MonsterNadeshiko){
+                if(SkinSelectScreen.Inst.idolName.equals(IdolData.kcna)){
+                    addToBot(new MakeTempCardInHandAction(new ProducerTrumpCard()));
+                }
+                break;
             }
         }
 
@@ -305,19 +383,24 @@ public class PocketBook extends CustomRelic  implements ISubscriber, CustomSavab
             SoundHelper.playSound(String.format("gkmasModResource/audio/voice/battleStart/%s_produce_lesson_cmmn_%02d.ogg",SkinSelectScreen.Inst.idolName,index));
         }
 
-        //TODO 这里要支持其他人物
-        if(type==CommonEnum.IdolType.SENSE){
-            addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new TrainRoundSensePower(AbstractDungeon.player, trainRoundNum,false), trainRoundNum));
+        if(AbstractDungeon.player instanceof MisuzuCharacter){
+            addToBot(new ApplyPowerAction(AbstractDungeon.player,AbstractDungeon.player,new TrainRoundMisuzuPower(AbstractDungeon.player,trainRoundNum,false),trainRoundNum));
         }
-        else if (type==CommonEnum.IdolType.LOGIC){
-            AbstractCreature target = AbstractDungeon.getMonsters().getRandomMonster(null, true, AbstractDungeon.cardRandomRng);
-            addToBot(new ApplyPowerAction(target,AbstractDungeon.player,new OverDamageTransfer(target)));
-            addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new TrainRoundLogicPower(AbstractDungeon.player, trainRoundNum,false), trainRoundNum));
+        else{
+            if(type==CommonEnum.IdolType.SENSE){
+                addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new TrainRoundSensePower(AbstractDungeon.player, trainRoundNum,false), trainRoundNum));
+            }
+            else if (type==CommonEnum.IdolType.LOGIC){
+                AbstractCreature target = AbstractDungeon.getMonsters().getRandomMonster(null, true, AbstractDungeon.cardRandomRng);
+                addToBot(new ApplyPowerAction(target,AbstractDungeon.player,new OverDamageTransfer(target)));
+                addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new TrainRoundLogicPower(AbstractDungeon.player, trainRoundNum,false), trainRoundNum));
+            }
+            else if(type==CommonEnum.IdolType.ANOMALY){
+                addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new TrainRoundAnomalyPower(AbstractDungeon.player, trainRoundNum,false), trainRoundNum));
+                addToBot(new TrainRoundAnomalyFirstAction());
+            }
         }
-        else if(type==CommonEnum.IdolType.ANOMALY){
-            addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new TrainRoundAnomalyPower(AbstractDungeon.player, trainRoundNum,false), trainRoundNum));
-            addToBot(new TrainRoundAnomalyFirstAction());
-        }
+
 
         if(this.healthRate>1.0f){
             for (AbstractMonster monster : AbstractDungeon.getMonsters().monsters){
@@ -325,7 +408,12 @@ public class PocketBook extends CustomRelic  implements ISubscriber, CustomSavab
                 monster.currentHealth = monster.maxHealth;
             }
         }
-
+        for (AbstractMonster monster : AbstractDungeon.getMonsters().monsters){
+            if(monster instanceof AbstractIdolBoss){
+                int idolExamPowerCount = (int) (monster.maxHealth / 2.9F);
+                addToBot(new ApplyPowerAction(monster, monster, new IdolExamPower(monster, idolExamPowerCount), idolExamPowerCount));
+            }
+        }
         if(AbstractDungeon.getCurrRoom() instanceof MonsterRoomBoss && !AbstractDungeon.id.equals(IdolRoad.ID)){
             int act = AbstractDungeon.actNum;
             if(act>3){
@@ -344,7 +432,6 @@ public class PocketBook extends CustomRelic  implements ISubscriber, CustomSavab
             addToBot(new ApplyPowerAction(AbstractDungeon.player,AbstractDungeon.player,new AllEffort(AbstractDungeon.player)));
             buffBoss();
         }
-
         if(MapRoomNodePatch.SPField.isSP.get(AbstractDungeon.getCurrMapNode())){
             Random spRng = new Random(Settings.seed, AbstractDungeon.floorNum*20);
             for (AbstractMonster monster : AbstractDungeon.getMonsters().monsters) {
@@ -382,6 +469,8 @@ public class PocketBook extends CustomRelic  implements ISubscriber, CustomSavab
             AbstractMonster.EnemyType type_ = monster.type;
             int currentHP = monster.currentHealth;
             int maxHP = monster.maxHealth;
+            if(monster instanceof FriendNunu)
+                continue;
             if(monsterID.equals(TimeEater.ID)){
                 monster.maxHealth = monster.maxHealth*(rate-3);
                 monster.currentHealth = monster.currentHealth*(rate-3);
@@ -454,12 +543,49 @@ public class PocketBook extends CustomRelic  implements ISubscriber, CustomSavab
                 planStep++;
             }
         }
+        else if(AbstractDungeon.player instanceof MisuzuCharacter){
+            if(planStep==0&&AbstractDungeon.actNum==2||planStep==1&&AbstractDungeon.actNum>=2&&AbstractDungeon.floorNum>25){
+                String eventID = String.format("SyngUpEvent%d",planStep+1);
+                AbstractEvent event =  EventUtils.getEvent(eventID);
+                if(event!=null){
+                    AbstractDungeon.eventList.add(0, eventID);
+                    RoomEventDialog.optionList.clear();
+                    MapRoomNode cur = AbstractDungeon.currMapNode;
+                    MapRoomNode mapRoomNode2 = new MapRoomNode(cur.x, cur.y);
+                    CustomEventRoom cer = new CustomEventRoom();
+                    mapRoomNode2.room = cer;
+                    AbstractDungeon.player.releaseCard();
+                    AbstractDungeon.overlayMenu.hideCombatPanels();
+                    AbstractDungeon.previousScreen = null;
+                    AbstractDungeon.dynamicBanner.hide();
+                    AbstractDungeon.dungeonMapScreen.closeInstantly();
+                    AbstractDungeon.closeCurrentScreen();
+                    AbstractDungeon.topPanel.unhoverHitboxes();
+                    AbstractDungeon.fadeIn();
+                    AbstractDungeon.effectList.clear();
+                    AbstractDungeon.topLevelEffects.clear();
+                    AbstractDungeon.topLevelEffectsQueue.clear();
+                    AbstractDungeon.effectsQueue.clear();
+                    AbstractDungeon.dungeonMapScreen.dismissable = true;
+                    //AbstractDungeon.nextRoom = mapRoomNode2;
+                    AbstractDungeon.setCurrMapNode(mapRoomNode2);
+
+                    try {
+                        AbstractDungeon.overlayMenu.proceedButton.hide();
+                        GkmasMod.node = cur;
+                        //event.onEnterRoom();
+                    } catch (Exception e) {
+                    }
+                }
+                planStep++;
+            }
+        }
     }
 
     private void getHajimeReward(){
         if(this.hajime == true)
             return;
-        if(AbstractDungeon.player instanceof IdolCharacter){
+        if(AbstractDungeon.player instanceof IdolCharacter||AbstractDungeon.player instanceof MisuzuCharacter){
                 String eventID = "HajimeReward";
                 AbstractEvent event =  EventUtils.getEvent(eventID);
                 if(event!=null){
@@ -493,6 +619,46 @@ public class PocketBook extends CustomRelic  implements ISubscriber, CustomSavab
                     } catch (Exception e) {
                     }
                 }
+        }
+    }
+
+    private void getNIAReward(){
+        if(this.nia)
+            return;
+        if(AbstractDungeon.player instanceof IdolCharacter||AbstractDungeon.player instanceof MisuzuCharacter){
+            String eventID = "NIAReward";
+            AbstractEvent event =  EventUtils.getEvent(eventID);
+            if(event!=null){
+                this.nia = true;
+                AbstractDungeon.eventList.add(0, eventID);
+                RoomEventDialog.optionList.clear();
+                MapRoomNode cur = AbstractDungeon.currMapNode;
+                MapRoomNode mapRoomNode2 = new MapRoomNode(cur.x, cur.y);
+                CustomEventRoom cer = new CustomEventRoom();
+                mapRoomNode2.room = cer;
+                AbstractDungeon.player.releaseCard();
+                AbstractDungeon.overlayMenu.hideCombatPanels();
+                AbstractDungeon.previousScreen = null;
+                AbstractDungeon.dynamicBanner.hide();
+                AbstractDungeon.dungeonMapScreen.closeInstantly();
+                AbstractDungeon.closeCurrentScreen();
+                AbstractDungeon.topPanel.unhoverHitboxes();
+                AbstractDungeon.fadeIn();
+                AbstractDungeon.effectList.clear();
+                AbstractDungeon.topLevelEffects.clear();
+                AbstractDungeon.topLevelEffectsQueue.clear();
+                AbstractDungeon.effectsQueue.clear();
+                AbstractDungeon.dungeonMapScreen.dismissable = true;
+                //AbstractDungeon.nextRoom = mapRoomNode2;
+                AbstractDungeon.setCurrMapNode(mapRoomNode2);
+
+                try {
+                    AbstractDungeon.overlayMenu.proceedButton.hide();
+                    GkmasMod.node = cur;
+                    event.onEnterRoom();
+                } catch (Exception e) {
+                }
+            }
         }
     }
 
@@ -540,32 +706,92 @@ public class PocketBook extends CustomRelic  implements ISubscriber, CustomSavab
         }
     }
 
+    private void getNewYear(){
+        if(!(AbstractDungeon.player instanceof IdolCharacter)){
+            return;
+        }
+        if(hasNewYear){
+            GkmasMod.hasNewYear = true;
+            try {
+                GkmasMod.config.setFloat("cardRate",PlayerHelper.getCardRate());
+                GkmasMod.config.setInt("beat_hmsz",GkmasMod.beat_hmsz);
+                GkmasMod.config.setBool("onlyModBoss", GkmasMod.onlyModBoss);
+                GkmasMod.config.setBool("hasNewYear", GkmasMod.hasNewYear);
+                GkmasMod.config.save();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return;
+        }
+        if(GkmasMod.hasNewYear)
+            return;
+        if(AbstractDungeon.player.hasRelic(PocketBook.ID)){
+            String eventID = "HappyNewYear";
+            AbstractEvent event =  EventUtils.getEvent(eventID);
+            if(event!=null){
+                AbstractDungeon.eventList.add(0, eventID);
+                RoomEventDialog.optionList.clear();
+                MapRoomNode cur = AbstractDungeon.currMapNode;
+                MapRoomNode mapRoomNode2 = new MapRoomNode(cur.x, cur.y);
+                CustomEventRoom cer = new CustomEventRoom();
+                mapRoomNode2.room = cer;
+                AbstractDungeon.player.releaseCard();
+                AbstractDungeon.overlayMenu.hideCombatPanels();
+                AbstractDungeon.previousScreen = null;
+                AbstractDungeon.dynamicBanner.hide();
+                AbstractDungeon.dungeonMapScreen.closeInstantly();
+                AbstractDungeon.closeCurrentScreen();
+                AbstractDungeon.topPanel.unhoverHitboxes();
+                AbstractDungeon.fadeIn();
+                AbstractDungeon.effectList.clear();
+                AbstractDungeon.topLevelEffects.clear();
+                AbstractDungeon.topLevelEffectsQueue.clear();
+                AbstractDungeon.effectsQueue.clear();
+                AbstractDungeon.dungeonMapScreen.dismissable = true;
+                AbstractDungeon.setCurrMapNode(mapRoomNode2);
+
+                try {
+                    hasNewYear = true;
+                    AbstractDungeon.overlayMenu.proceedButton.hide();
+                    GkmasMod.node = cur;
+//                    event.onEnterRoom();
+                } catch (Exception e) {
+                }
+            }
+        }
+    }
 
     public void justEnteredRoom(AbstractRoom room) {
         this.purgeTimes = AnotherShopScreen.purgeTimes;
         this.grayscale = false;
+        GkmasMod.screenIndex = 0;
 
-
-        if(room instanceof FixedMonsterRoom){
-            String tmp = ((FixedMonsterRoom) room).encounterID;
+        //设置 偶像之路Boss的遗物掉落
+        if(room instanceof FixedMonsterRoom||room instanceof EventMonsterRoom){
+            String tmp="";
+            if(room instanceof FixedMonsterRoom)
+                tmp = ((FixedMonsterRoom) room).encounterID;
+            else if(room instanceof EventMonsterRoom)
+                tmp = ((EventMonsterRoom) room).encounterID;
             if (tmp.startsWith("IdolBoss_")) {
                 tmp = tmp.substring(9);
             }
-            java.util.Random random = new java.util.Random(Settings.seed);
+            java.util.Random random = new java.util.Random(Settings.seed+AbstractDungeon.floorNum);
             ArrayList<String> relics = IdolData.getIdol(tmp).getRelicList();
-            AbstractRelic relic;
-            relic = RelicLibrary.getRelic(relics.get(random.nextInt(relics.size()))).makeCopy();
-            room.rewards.add(new RewardItem(relic));
-        }
-        if(room instanceof EventMonsterRoom){
-            String tmp = ((EventMonsterRoom) room).encounterID;
-            if (tmp.startsWith("IdolBoss_")) {
-                tmp = tmp.substring(9);
+            Iterator<String> iterator = relics.iterator();
+            while (iterator.hasNext()) {
+                String relicName = iterator.next();
+                if (AbstractDungeon.player.hasRelic(relicName)) {
+                    iterator.remove();
+                }
             }
-            java.util.Random random = new java.util.Random(Settings.seed);
-            ArrayList<String> relics = IdolData.getIdol(tmp).getRelicList();
             AbstractRelic relic;
-            relic = RelicLibrary.getRelic(relics.get(random.nextInt(relics.size()))).makeCopy();
+            if(relics.size()>0){
+                relic = RelicLibrary.getRelic(relics.get(random.nextInt(relics.size()))).makeCopy();
+            }
+            else{
+                relic = new Circlet();
+            }
             room.rewards.add(new RewardItem(relic));
         }
 
@@ -573,21 +799,50 @@ public class PocketBook extends CustomRelic  implements ISubscriber, CustomSavab
             return;
         }
 
-        if(AbstractDungeon.floorNum>=9&&masterEventCount==1){
+//        if(AbstractDungeon.floorNum<9&&masterEventCount==1){
+//            getNewYear();
+//            return;
+//        }
+
+        if(room instanceof ShopRoom&&masterEventCount<3){
+            int idx_i = 1,idx_j = 0;
+            int i=0;
+            for(AbstractRelic relic:AbstractDungeon.player.relics){
+                i++;
+                if(relic instanceof MealTicket){
+                    idx_i = i;
+                }
+                if(relic instanceof PocketBook){
+                    idx_j = i;
+                }
+            }
+
+            if(AbstractDungeon.player.hasRelic(MealTicket.ID)&&idx_j>idx_i){
+                flash();
+                addToTop(new RelicAboveCreatureAction(AbstractDungeon.player, AbstractDungeon.player.getRelic(MealTicket.ID)));
+                AbstractDungeon.player.heal(15);
+            }
+        }
+
+        if(AbstractDungeon.actNum!=4&&AbstractDungeon.floorNum>=9&&masterEventCount==1){
             getMaster();
             return;
         }
-        if(AbstractDungeon.floorNum>=20&&masterEventCount==2){
+        if(AbstractDungeon.actNum!=4&&AbstractDungeon.floorNum>=20&&masterEventCount==2){
             getMaster();
             return;
         }
-        if(AbstractDungeon.floorNum==17){
+        if(AbstractDungeon.actNum!=4&&AbstractDungeon.floorNum==17){
             getHajimeReward();
-
             return;
         }
-        checkPlan();
-
+        if(AbstractDungeon.actNum!=4&&AbstractDungeon.floorNum==34){
+            getNIAReward();
+            return;
+        }
+        if(AbstractDungeon.actNum!=4){
+            checkPlan();
+        }
     }
 
     public void loadLargeImg() {
@@ -611,6 +866,7 @@ public class PocketBook extends CustomRelic  implements ISubscriber, CustomSavab
                 AnotherShopScreen.purgeTimes = args.purgeTimes;
                 this.threeSizeIncrease = args.threeSizeIncrease;
                 this.healthRate = args.healthRate;
+//                System.out.println("healthRate:"+healthRate);
                 this.masterEventCount = args.masterEventCount;
             }
         }
@@ -649,7 +905,6 @@ public class PocketBook extends CustomRelic  implements ISubscriber, CustomSavab
     private void setMasterCardTags(ArrayList<Integer> tags){
         int index=0;
         for (AbstractCard card : AbstractDungeon.player.masterDeck.group) {
-            System.out.println(card.cardID);
             if(index < tags.size()){
                 AbstractCardPatch.ThreeSizeTagField.threeSizeTag.set(card,tags.get(index));
                 index++;

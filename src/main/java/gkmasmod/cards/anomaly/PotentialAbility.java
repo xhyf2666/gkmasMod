@@ -10,15 +10,21 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import gkmasmod.actions.GrowAction;
 import gkmasmod.actions.PotentialAbilityAction;
+import gkmasmod.cardCustomEffect.*;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
+import gkmasmod.growEffect.DamageGrow;
 import gkmasmod.powers.FullPowerValue;
 import gkmasmod.screen.SkinSelectScreen;
 import gkmasmod.stances.ConcentrationStance;
+import gkmasmod.utils.CustomHelper;
 import gkmasmod.utils.ImageHelper;
 import gkmasmod.utils.NameHelper;
+
+import java.util.ArrayList;
 
 public class PotentialAbility extends GkmasCard {
     private static final String CLASSNAME = PotentialAbility.class.getSimpleName();
@@ -32,9 +38,10 @@ public class PotentialAbility extends GkmasCard {
     private static final int COST = 1;
 
     private static final int BASE_BLOCK = 4;
-    private static final int BASE_MAGIC = 3;
+    private static final int BASE_MAGIC = 4;
     private static final int BASE_MAGIC2 = 1;
     private static final int UPGRADE_MAGIC2_PLUS = 1;
+    private static final int BASE_MAGIC3 = 0;
 
 
     private static final CardType TYPE = CardType.SKILL;
@@ -51,7 +58,14 @@ public class PotentialAbility extends GkmasCard {
         this.magicNumber = this.baseMagicNumber;
         this.baseSecondMagicNumber = BASE_MAGIC2;
         this.secondMagicNumber = this.baseSecondMagicNumber;
+        this.baseThirdMagicNumber = BASE_MAGIC3;
+        this.thirdMagicNumber = this.baseThirdMagicNumber;
         this.tags.add(GkmasCardTag.FULL_POWER_TAG);
+        this.customLimit = 2;
+        this.customEffectList = new ArrayList<>();
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(BlockCustom.growID,new int[]{2,2},new int[]{40,40},CustomHelper.CustomEffectType.BLOCK_ADD));
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(SecondMagicCustom.growID, new int[]{1}, new int[]{80}, CustomHelper.CustomEffectType.TEMP_SAVE_ADD));
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(ThirdMagicCustom.growID, new int[]{4}, new int[]{70}, CustomHelper.CustomEffectType.EFFECT_ADD));
     }
 
     @Override
@@ -59,6 +73,9 @@ public class PotentialAbility extends GkmasCard {
         addToBot(new GainBlockAction(p,p,this.block));
         addToBot(new ApplyPowerAction(p,p,new FullPowerValue(p,this.magicNumber),this.magicNumber));
         addToBot(new PotentialAbilityAction(this.secondMagicNumber));
+        if(this.thirdMagicNumber>0){
+            addToBot(new GrowAction(DamageGrow.growID, GrowAction.GrowType.allTempSave,this.thirdMagicNumber));
+        }
     }
 
     @Override

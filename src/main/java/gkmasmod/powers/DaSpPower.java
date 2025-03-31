@@ -8,9 +8,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.AbstractPower;
-import com.megacrit.cardcrawl.powers.MalleablePower;
-import com.megacrit.cardcrawl.powers.StrengthPower;
+import com.megacrit.cardcrawl.powers.*;
 import gkmasmod.characters.IdolCharacter;
 import gkmasmod.relics.PocketBook;
 import gkmasmod.utils.NameHelper;
@@ -32,8 +30,8 @@ public class DaSpPower extends AbstractPower {
 
     private static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
 
-    String path128 = String.format("gkmasModResource/img/powers/%s_84.png",CLASSNAME);;
-    String path48 = String.format("gkmasModResource/img/powers/%s_32.png",CLASSNAME);;
+    String path128 = String.format("gkmasModResource/img/powers/%s_84.png",CLASSNAME);
+    String path48 = String.format("gkmasModResource/img/powers/%s_32.png",CLASSNAME);
 
     public DaSpPower(AbstractCreature owner) {
         this.name = NAME;
@@ -45,8 +43,16 @@ public class DaSpPower extends AbstractPower {
         this.region128 = new TextureAtlas.AtlasRegion(ImageMaster.loadImage(path128), 0, 0, 84, 84);
         this.region48 = new TextureAtlas.AtlasRegion(ImageMaster.loadImage(path48), 0, 0, 32, 32);
 
-        addToBot(new ApplyPowerAction(owner, owner, new MalleablePower(owner,3), 3));
 
+        if(AbstractDungeon.actNum==3){
+            addToBot(new ApplyPowerAction(owner, owner, new MalleablePower(owner,6), 6));
+//            addToBot(new ApplyPowerAction(owner, owner, new ThornsPower(owner,2), 2));
+            addToBot(new ApplyPowerAction(owner, owner, new AngerPower(owner,2), 2));
+            addToBot(new ApplyPowerAction(owner, owner, new StarNature(owner,25), 25));
+        }
+        else{
+            addToBot(new ApplyPowerAction(owner, owner, new MalleablePower(owner,3), 3));
+        }
         // 首次添加能力更新描述
         this.updateDescription();
     }
@@ -68,6 +74,7 @@ public class DaSpPower extends AbstractPower {
                 SoundHelper.playSound(String.format("gkmasModResource/audio/voice/sp/%s_produce_lesson_da_%02d.ogg",idol.idolData.idolName,index));
             }
         }
+        AbstractDungeon.player.heal(4);
     }
 
     // 能力在更新时如何修改描述

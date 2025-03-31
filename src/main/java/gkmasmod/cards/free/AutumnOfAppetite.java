@@ -30,7 +30,7 @@ public class AutumnOfAppetite extends GkmasCard {
 
     private static final CardType TYPE = CardType.POWER;
     private static final CardColor COLOR = PlayerColorEnum.gkmasModColor;
-    private static final CardRarity RARITY = CardRarity.RARE;
+    private static final CardRarity RARITY = CardRarity.UNCOMMON;
     private static final CardTarget TARGET = CardTarget.SELF;
 
     public AutumnOfAppetite() {
@@ -39,6 +39,7 @@ public class AutumnOfAppetite extends GkmasCard {
         this.magicNumber = this.baseMagicNumber;
         this.baseSecondMagicNumber = BASE_MAGIC2;
         this.secondMagicNumber = this.baseSecondMagicNumber;
+        this.tags.add(GkmasCardTag.ONLY_ONE_TAG);
     }
 
 

@@ -10,12 +10,12 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import gkmasmod.cards.anomaly.*;
+import gkmasmod.stances.FullPowerStance;
 
 public class BaseBlockGrow extends AbstractGrowEffect {
 
     public static String growID = "BaseBlockGrow";
-
-    public AbstractCard.CardTarget originalTarget;
 
     private int originBaseBlock;
 
@@ -35,6 +35,10 @@ public class BaseBlockGrow extends AbstractGrowEffect {
 
     @Override
     public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
+        if(card instanceof AccelerateLand ||card instanceof CatchingDragonflies){
+            if(!AbstractDungeon.player.stance.ID.equals(FullPowerStance.STANCE_ID))
+                return;
+        }
         if(this.originBaseBlock <=0){
             AbstractCreature source = action.source;
             if(source == null){
@@ -46,7 +50,7 @@ public class BaseBlockGrow extends AbstractGrowEffect {
 
     @Override
     public void onRemove(AbstractCard card) {
-        card.target = this.originalTarget;
+        card.baseBlock = this.originBaseBlock;
     }
 
     @Override

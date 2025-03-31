@@ -6,12 +6,20 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import gkmasmod.actions.FullPowerValueAction;
+import gkmasmod.cardCustomEffect.EffectAddCustom;
+import gkmasmod.cardCustomEffect.EffectChangeCustom;
+import gkmasmod.cardCustomEffect.FullPowerValueCustom;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.powers.LikeUsualPower;
+import gkmasmod.powers.LikeUsualSPPower;
 import gkmasmod.powers.StepOnStagePower;
+import gkmasmod.utils.CustomHelper;
 import gkmasmod.utils.NameHelper;
+
+import java.util.ArrayList;
 
 public class LikeUsual extends GkmasCard {
     private static final String CLASSNAME = LikeUsual.class.getSimpleName();
@@ -38,12 +46,21 @@ public class LikeUsual extends GkmasCard {
         this.magicNumber = this.baseMagicNumber;
         this.tags.add(GkmasCardTag.CONCENTRATION_TAG);
         this.tags.add(GkmasCardTag.PRESERVATION_TAG);
+        this.customLimit = 1;
+        this.customEffectList = new ArrayList<>();
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(FullPowerValueCustom.growID,new int[]{1},new int[]{50},CustomHelper.CustomEffectType.FULL_POWER_VALUE_ADD));
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(EffectAddCustom.growID, new int[]{0}, new int[]{80}, CustomHelper.CustomEffectType.EFFECT_ADD));
     }
 
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        addToBot(new ApplyPowerAction(p,p,new LikeUsualPower(p,this.magicNumber),this.magicNumber));
+        if(CustomHelper.hasCustom(this, EffectAddCustom.growID)){
+            addToBot(new ApplyPowerAction(p,p,new LikeUsualSPPower(p,this.magicNumber),this.magicNumber));
+        }
+        else{
+            addToBot(new ApplyPowerAction(p,p,new LikeUsualPower(p,this.magicNumber),this.magicNumber));
+        }
     }
 
     @Override

@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.MinionPower;
 import com.megacrit.cardcrawl.random.Random;
 import gkmasmod.characters.IdolCharacter;
+import gkmasmod.characters.MisuzuCharacter;
 import gkmasmod.patches.AbstractCardPatch;
 import gkmasmod.patches.AbstractPlayerPatch;
 import gkmasmod.powers.DaSpPower;
@@ -71,8 +72,8 @@ public class ThreeSizeHelper {
         }
 
         int[] currentThreeSize = getThreeSize();
-        System.out.println(preThreeSize);
-        System.out.println(currentThreeSize);
+//        System.out.println(preThreeSize);
+//        System.out.println(currentThreeSize);
         if(drawInstantly){
             ThreeSizeChangeScreen.VoInst = null;
             ThreeSizeChangeScreen.DaInst = null;
@@ -109,12 +110,12 @@ public class ThreeSizeHelper {
             types.add(type_);
             SPs.add(sp);
 
-            System.out.println("Monster ID: " + monsterID);
-            System.out.println("Monster Name: " + monsterName);
-            System.out.println("Current HP: " + currentHP);
-            System.out.println("Max HP: " + maxHP);
-            System.out.println("type: " + type_);
-            System.out.println("SP: " + sp);
+//            System.out.println("Monster ID: " + monsterID);
+//            System.out.println("Monster Name: " + monsterName);
+//            System.out.println("Current HP: " + currentHP);
+//            System.out.println("Max HP: " + maxHP);
+//            System.out.println("type: " + type_);
+//            System.out.println("SP: " + sp);
         }
     }
 
@@ -148,7 +149,7 @@ public class ThreeSizeHelper {
     }
 
     public static int getHealthRate(int act){
-        if(AbstractDungeon.player instanceof IdolCharacter){
+        if(AbstractDungeon.player instanceof IdolCharacter||AbstractDungeon.player instanceof MisuzuCharacter){
             if(act==1)
                 return 4;
             else if(act==2)
@@ -203,6 +204,31 @@ public class ThreeSizeHelper {
                 require = idol.idolData.getAnotherThreeSizeRequire(currentThreeType);
             }
         }
+        else if(AbstractDungeon.player instanceof MisuzuCharacter){
+            if(roundNum > 0)
+                tmp.add(IdolData.hmszData.getFirstThreeType());
+            if(roundNum > 1)
+                tmp.add(IdolData.hmszData.getSecondThreeType());
+            if(roundNum > 2)
+                tmp.add(IdolData.hmszData.getThirdThreeType());
+            ArrayList<Integer> tmp2 = new ArrayList<>();
+//            com.megacrit.cardcrawl.random.Random spRng = new Random(Settings.seed, AbstractDungeon.floorNum*20);
+            for(int i = 0; i < roundNum - 3; i++){
+                if(i%3==0)
+                    tmp2.add(IdolData.hmszData.getFirstThreeType());
+                else if (i%3==1)
+                    tmp2.add(IdolData.hmszData.getSecondThreeType());
+                else
+                    tmp2.add(IdolData.hmszData.getThirdThreeType());
+            }
+            Collections.shuffle(tmp2, new java.util.Random(Settings.seed+AbstractDungeon.floorNum*20));
+            for(int i = 0; i < tmp2.size(); i++){
+                tmp.add(tmp2.get(i));
+            }
+            currentThreeType = tmp.get(tmp.size()-1);
+            baseDamageRate = IdolData.hmszData.getBaseDamageRate(currentThreeType);
+            require = IdolData.hmszData.getThreeSizeRequire(currentThreeType);
+        }
         else{
             if(roundNum > 0)
                 tmp.add(0);
@@ -246,6 +272,12 @@ public class ThreeSizeHelper {
                     require = idol.idolData.getAnotherThreeSizeRequire(i);
                 }
                 rates[i] = calculateDamageRate(idol.idolData.getBaseDamageRate(i),AbstractPlayerPatch.ThreeSizeField.threeSize.get(AbstractDungeon.player)[i],require);
+            }
+        }
+        else if(AbstractDungeon.player instanceof MisuzuCharacter){
+            for(int i = 0; i < 3; i++){
+                int require = IdolData.hmszData.getThreeSizeRequire(i);
+                rates[i] = calculateDamageRate(IdolData.hmszData.getBaseDamageRate(i),AbstractPlayerPatch.ThreeSizeField.threeSize.get(AbstractDungeon.player)[i],require);
             }
         }
         else{

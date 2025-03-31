@@ -163,18 +163,18 @@ public class AnotherShopScreen extends CustomScreen{
 
     @Override
     public void reopen() {
-        System.out.println("AnotherShopScreen reopen");
+//        System.out.println("AnotherShopScreen reopen");
         AbstractDungeon.screen = curScreen();
         AbstractDungeon.isScreenUp = true;
         AbstractDungeon.overlayMenu.proceedButton.hide();
         AbstractDungeon.overlayMenu.cancelButton.show(NAMES[12]);
-        System.out.println(AbstractDungeon.screen);
+//        System.out.println(AbstractDungeon.screen);
         GkmasMod.screenIndex = 1;
     }
 
     @Override
     public void close() {
-        System.out.println("AnotherShopScreen close");
+//        System.out.println("AnotherShopScreen close");
         RestRoom r = (RestRoom)AbstractDungeon.getCurrRoom();
         AbstractDungeon.isScreenUp = false;
         GkmasMod.screenIndex = 0;
@@ -283,17 +283,17 @@ public class AnotherShopScreen extends CustomScreen{
             int times = relic.counter;
             this.applyDiscount(1.0F + 0.05F * times, false);
         }
-        if(AbstractDungeon.player.hasRelic(ReChallenge.ID)){
-            ReChallenge reChallenge = (ReChallenge)AbstractDungeon.player.getRelic(ReChallenge.ID);
-            reChallenge.counter++;
-        }
-        else {
-            ReChallenge reChallenge = new ReChallenge();
-            AbstractDungeon.getCurrRoom().relics.add(reChallenge);
-            reChallenge.instantObtain(AbstractDungeon.player, AbstractDungeon.player.relics.size(), true);
-            reChallenge.flash();
-
-        }
+//        if(AbstractDungeon.player.hasRelic(ReChallenge.ID)){
+//            ReChallenge reChallenge = (ReChallenge)AbstractDungeon.player.getRelic(ReChallenge.ID);
+//            reChallenge.counter++;
+//        }
+//        else {
+//            ReChallenge reChallenge = new ReChallenge();
+//            AbstractDungeon.getCurrRoom().relics.add(reChallenge);
+//            reChallenge.instantObtain(AbstractDungeon.player, AbstractDungeon.player.relics.size(), true);
+//            reChallenge.flash();
+//
+//        }
 
         if (AbstractDungeon.player.hasRelic("The Courier")) {
             this.applyDiscount(0.8F, true);
@@ -1413,11 +1413,11 @@ public class AnotherShopScreen extends CustomScreen{
     public void render(SpriteBatch sb) {
         sb.setColor(Color.WHITE);
         sb.draw(rugImg, 0.0F, this.rugY, (float)Settings.WIDTH, (float)Settings.HEIGHT);
+        sb.draw(this.merchantImg, Settings.WIDTH/2-900*Settings.xScale, Settings.HEIGHT/2-400*Settings.yScale, 256.0F, 256.0F, 512.0F, 512.0F, Settings.scale, Settings.scale, 0.0F, 0, 0, 512, 512, false, false);
         this.renderCardsAndPrices(sb);
         this.renderRelics(sb);
         this.renderPotions(sb);
         this.renderPurge(sb);
-        sb.draw(this.merchantImg, Settings.WIDTH/2-850*Settings.xScale, Settings.HEIGHT/2-400*Settings.scale, 256.0F, 256.0F, 512.0F, 512.0F, Settings.scale, Settings.scale, 0.0F, 0, 0, 512, 512, false, false);
         sb.draw(handImg, this.handX + this.f_effect.x, this.handY + this.f_effect.y, HAND_W, HAND_H);
         if (this.speechBubble != null) {
             this.speechBubble.render(sb);

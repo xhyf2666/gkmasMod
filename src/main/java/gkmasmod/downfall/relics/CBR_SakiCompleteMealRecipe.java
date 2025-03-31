@@ -30,21 +30,21 @@ public class CBR_SakiCompleteMealRecipe extends AbstractCharbossRelic {
 
     private static final int GOOD_TUNE = 0;
 
-    private static final  int playTimes = 2;
+//    private static final  int playTimes = 2;
 
     public CBR_SakiCompleteMealRecipe() {
         super(new SakiCompleteMealRecipe(),IMG);
     }
 
-
-    @Override
-    public void onVictory() {
-        this.counter = playTimes;
-    }
+//
+//    @Override
+//    public void onVictory() {
+//        this.counter = playTimes;
+//    }
 
     @Override
     public String getUpdatedDescription() {
-        return String.format(this.DESCRIPTIONS[0],magicNumber,playTimes);
+        return String.format(this.DESCRIPTIONS[0],magicNumber);
     }
 
     @Override
@@ -56,24 +56,30 @@ public class CBR_SakiCompleteMealRecipe extends AbstractCharbossRelic {
     public void onEquip() {}
 
     public void atTurnStart() {
-        if (this.counter > 0) {
-            int count = PlayerHelper.getPowerAmount(AbstractCharBoss.boss, GoodTune.POWER_ID);
-            if(count>GOOD_TUNE){
-                addToBot(new RelicAboveCreatureAction(AbstractCharBoss.boss, this));
-                this.flash();
-                addToBot(new GainBlockWithPowerAction(AbstractCharBoss.boss, AbstractCharBoss.boss, magicNumber));
-                this.counter--;
-                if (this.counter == 0) {
-                    this.grayscale = true;
-                }
-            }
+//        if (this.counter > 0) {
+//            int count = PlayerHelper.getPowerAmount(AbstractCharBoss.boss, GoodTune.POWER_ID);
+//            if(count>GOOD_TUNE){
+//                addToBot(new RelicAboveCreatureAction(AbstractCharBoss.boss, this));
+//                this.flash();
+//                addToBot(new GainBlockWithPowerAction(AbstractCharBoss.boss, AbstractCharBoss.boss, magicNumber));
+//                this.counter--;
+//                if (this.counter == 0) {
+//                    this.grayscale = true;
+//                }
+//            }
+//        }
+        int count = PlayerHelper.getPowerAmount(AbstractCharBoss.boss, GoodTune.POWER_ID);
+        if(count>GOOD_TUNE){
+            addToBot(new RelicAboveCreatureAction(AbstractCharBoss.boss, this));
+            this.flash();
+            addToBot(new GainBlockWithPowerAction(AbstractCharBoss.boss, AbstractCharBoss.boss, magicNumber));
         }
 
     }
 
-    public void atBattleStart() {
-        this.counter = playTimes;
-    }
+//    public void atBattleStart() {
+//        this.counter = playTimes;
+//    }
 
     public  void  onPlayerEndTurn(){
     }

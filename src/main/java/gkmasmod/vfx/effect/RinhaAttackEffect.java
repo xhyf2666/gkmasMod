@@ -61,10 +61,6 @@ public class RinhaAttackEffect extends AbstractGameEffect {
         this.targetY = targetY;
         this.vX = MathUtils.random(START_VX - 50.0F * Settings.scale, START_VX_JITTER);
         this.rotationSpeed = MathUtils.random(1000.0F, 2000.0F);
-//        if (MathUtils.randomBoolean()) {
-//            this.vX = -this.vX;
-//            this.rotationSpeed = -this.rotationSpeed;
-//        }
 
         this.vY = MathUtils.random(START_VY, START_VY_JITTER);
         this.scale = Settings.scale;

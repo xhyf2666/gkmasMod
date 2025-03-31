@@ -1,5 +1,7 @@
 package gkmasmod.downfall.bosses;
 
+import com.megacrit.cardcrawl.powers.StrengthPower;
+import gkmasmod.downfall.cards.anomaly.ENClimax;
 import gkmasmod.downfall.charbosses.bosses.AbstractBossDeckArchetype;
 import gkmasmod.downfall.charbosses.bosses.AbstractCharBoss;
 import gkmasmod.downfall.charbosses.relics.*;
@@ -13,6 +15,8 @@ import gkmasmod.downfall.cards.sense.*;
 import gkmasmod.downfall.relics.CBR_AfterSchoolDoodles;
 import gkmasmod.downfall.relics.CBR_ArcadeLoot;
 import gkmasmod.downfall.relics.CBR_PinkUniformBracelet;
+import gkmasmod.downfall.relics.CBR_PlasticUmbrellaThatDay;
+import gkmasmod.powers.*;
 
 import java.util.ArrayList;
 
@@ -37,6 +41,16 @@ public class BossConfig_ssmk3 extends AbstractBossDeckArchetype {
         addRelic(new CBR_PinkUniformBracelet());
         addRelic(new CBR_AfterSchoolDoodles());
         addRelic(new CBR_ArcadeLoot());
+        addRelic(new CBR_PlasticUmbrellaThatDay());
+        AbstractCreature p = AbstractCharBoss.boss;
+        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new NegativeNotPower(p, 3), 3));
+        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new DanceWithYouPower(p, 10), 10));
+        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new StrengthPower(p, 4), 4));
+        if(AbstractDungeon.ascensionLevel >= 10)
+            AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new InnocencePower(p, 1), 1));
+        if(AbstractDungeon.ascensionLevel >= 15)
+            AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new TopEntertainmentPlusPower(p, 1), 1));
+        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new FullPowerValue(p, 10), 10));
     }
 
     @Override
@@ -46,26 +60,9 @@ public class BossConfig_ssmk3 extends AbstractBossDeckArchetype {
         if (!looped) {
             switch (turn) {
                 case 0:
-                    addToList(cardsList,new ENIdolDeclaration(),extraUpgrades);
-                    addToList(cardsList,new ENSteadyWill(),extraUpgrades);
-                    addToList(cardsList, new ENTopEntertainment(),extraUpgrades);
-                    addToList(cardsList, new ENInnocence(),extraUpgrades);
-                    addToList(cardsList, new ENWishPower(),true);
-                    turn++;
-                    break;
-                case 1:
-                    addToList(cardsList, new ENStartSignal());
-                    addToList(cardsList, new ENJustOneMore());
-                    addToList(cardsList, new ENBalance(),extraUpgrades);
-                    addToList(cardsList, new ENDanceWithYou());
-                    turn++;
-                    break;
-                case 2:
-                    addToList(cardsList, new ENCharmPerformance(),extraUpgrades);
+                    addToList(cardsList, new ENIdolDeclaration(),extraUpgrades);
                     addToList(cardsList, new ENOnePersonBallet(),true);
-                    addToList(cardsList, new ENNationalIdol(),extraUpgrades);
                     addToList(cardsList, new ENOneMoreStep(),true);
-                    addToList(cardsList, new ENBaseAppeal());
                     turn = 0;
                     looped = true;
                     break;
@@ -73,11 +70,10 @@ public class BossConfig_ssmk3 extends AbstractBossDeckArchetype {
         } else {
             switch (turn) {
                 case 0:
+                    addToList(cardsList, new ENClimax(),extraUpgrades);
                     addToList(cardsList, new ENEncoreCall(),extraUpgrades);
                     addToList(cardsList, new ENOnePersonBallet(),extraUpgrades);
                     addToList(cardsList, new ENGoWithTheFlow(),true);
-                    addToList(cardsList, new ENLightGait());
-                    addToList(cardsList, new ENBaseAppeal());
                     break;
             }
         }

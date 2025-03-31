@@ -7,12 +7,19 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import gkmasmod.cardCustomEffect.BlockCustom;
+import gkmasmod.cardCustomEffect.DamageCustom;
+import gkmasmod.cardCustomEffect.EffectAddCustom;
 import gkmasmod.cards.GkmasCard;
+import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.powers.MayRainPower;
 import gkmasmod.powers.TempSavePower;
 import gkmasmod.stances.PreservationStance;
+import gkmasmod.utils.CustomHelper;
 import gkmasmod.utils.NameHelper;
+
+import java.util.ArrayList;
 
 public class MayRain extends GkmasCard {
     private static final String CLASSNAME = MayRain.class.getSimpleName();
@@ -36,6 +43,12 @@ public class MayRain extends GkmasCard {
         super(ID, NAME, IMG_PATH, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.baseMagicNumber = BASE_MAGIC;
         this.magicNumber = this.baseMagicNumber;
+        this.tags.add(GkmasCardTag.ONLY_ONE_TAG);
+        this.customLimit = 2;
+        this.customEffectList = new ArrayList<>();
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(DamageCustom.growID,new int[]{2},new int[]{40},CustomHelper.CustomEffectType.DAMAGE_ADD));
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(BlockCustom.growID, new int[]{2}, new int[]{40}, CustomHelper.CustomEffectType.BLOCK_ADD));
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(EffectAddCustom.growID, new int[]{1}, new int[]{80}, CustomHelper.CustomEffectType.PRESERVATION_ADD));
     }
 
 
@@ -43,7 +56,12 @@ public class MayRain extends GkmasCard {
     public void use(AbstractPlayer p, AbstractMonster m) {
         addToBot(new ApplyPowerAction(p,p,new MayRainPower(p)));
         if(this.upgraded){
-            addToBot(new ChangeStanceAction(PreservationStance.STANCE_ID));
+            if(CustomHelper.hasCustom(this, EffectAddCustom.growID)){
+                addToBot(new ChangeStanceAction(PreservationStance.STANCE_ID2));
+            }
+            else{
+                addToBot(new ChangeStanceAction(PreservationStance.STANCE_ID));
+            }
         }
     }
 

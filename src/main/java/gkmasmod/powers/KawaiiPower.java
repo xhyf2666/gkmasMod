@@ -2,7 +2,9 @@ package gkmasmod.powers;
 
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
+import com.megacrit.cardcrawl.actions.common.HealAction;
 import com.megacrit.cardcrawl.actions.common.ReducePowerAction;
+import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -35,6 +37,7 @@ public class KawaiiPower extends AbstractPower {
         this.owner = owner;
         this.type = PowerType.BUFF;
         this.amount = Amount;
+        this.priority = 100;
 
         // 添加一大一小两张能力图
         this.region128 = new TextureAtlas.AtlasRegion(ImageMaster.loadImage(path128), 0, 0, 84, 84);
@@ -49,16 +52,30 @@ public class KawaiiPower extends AbstractPower {
         this.description = String.format(DESCRIPTIONS[0],this.amount,RATE);
     }
 
-
-    public int onAttacked(DamageInfo info, int damageAmount) {
+    public int onAttackedToChangeDamage(DamageInfo info, int damageAmount) {
         if (info.output > 0) {
             int count = (int) (info.output * RATE *1.0F / 100);
             if(count == 0)
                 count = 1;
             addToBot(new ApplyPowerAction(this.owner,this.owner,new GoodImpression(this.owner,count),count));
-            addToBot(new ReducePowerAction(this.owner, this.owner, POWER_ID, 1));
+            if(this.amount>1)
+                addToTop(new ReducePowerAction(this.owner, this.owner, POWER_ID, 1));
+            else
+                addToTop(new RemoveSpecificPowerAction(this.owner, this.owner, POWER_ID));
         }
 
         return damageAmount;
     }
+
+//    public int onAttacked(DamageInfo info, int damageAmount) {
+//        if (info.output > 0) {
+//            int count = (int) (info.output * RATE *1.0F / 100);
+//            if(count == 0)
+//                count = 1;
+//            addToBot(new ApplyPowerAction(this.owner,this.owner,new GoodImpression(this.owner,count),count));
+//            addToBot(new ReducePowerAction(this.owner, this.owner, POWER_ID, 1));
+//        }
+//
+//        return damageAmount;
+//    }
 }

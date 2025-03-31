@@ -21,7 +21,7 @@ public class TempMoreActionCustom extends AbstractCardCustomEffect {
     public String modifyDescription(String rawDescription, AbstractCard card) {
         if(card.tags.contains(GkmasCardTag.MORE_ACTION_TAG))
             return rawDescription;
-        return rawDescription + " " + String.format(CardCrawlGame.languagePack.getUIString("customEffect:TempMoreActionCustom").TEXT[0])+" "+this.amount;
+        return rawDescription + " NL " + CardCrawlGame.languagePack.getUIString("customEffect:TempMoreActionCustom").TEXT[0]+" "+this.amount;
     }
 
     @Override
@@ -32,7 +32,7 @@ public class TempMoreActionCustom extends AbstractCardCustomEffect {
 
     @Override
     public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
-        addToBot(new GainTrainRoundPowerAction(AbstractDungeon.player,this.amount));
+        addToBot(new GainTrainRoundPowerAction(AbstractDungeon.player,1));
     }
 
     @Override

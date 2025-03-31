@@ -20,7 +20,6 @@ import com.megacrit.cardcrawl.saveAndContinue.SaveFile;
 import com.megacrit.cardcrawl.screens.select.GridCardSelectScreen;
 import gkmasmod.characters.IdolCharacter;
 import gkmasmod.modcore.GkmasMod;
-import gkmasmod.monster.ending.MisuzuBoss;
 import gkmasmod.relics.PocketBook;
 import gkmasmod.room.shop.AnotherShopScreen;
 import gkmasmod.screen.SkinSelectScreen;
@@ -40,9 +39,7 @@ public class GridCardSelectScreenPatch {
                     AbstractDungeon.overlayMenu.cancelButton.show(AnotherShopScreen.NAMES[12]);
                 }
             }
-
         }
     }
-
 
 }

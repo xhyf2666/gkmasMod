@@ -11,15 +11,19 @@ import com.megacrit.cardcrawl.helpers.CardHelper;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import gkmasmod.actions.GoodImpressionDamageAction;
+import gkmasmod.cardCustomEffect.*;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.powers.DoubleDamageReceive;
 import gkmasmod.powers.GoodImpression;
 import gkmasmod.screen.SkinSelectScreen;
+import gkmasmod.utils.CustomHelper;
 import gkmasmod.utils.ImageHelper;
 import gkmasmod.utils.NameHelper;
 import gkmasmod.utils.PlayerHelper;
+
+import java.util.ArrayList;
 
 public class Shiny extends GkmasCard {
     private static final String CLASSNAME = Shiny.class.getSimpleName();
@@ -58,12 +62,20 @@ public class Shiny extends GkmasCard {
         FlavorText.AbstractCardFlavorFields.boxColor.set(this, CardHelper.getColor(73, 224, 254));
         flavor = FlavorText.CardStringsFlavorField.flavor.get(CARD_STRINGS);
         this.tags.add(GkmasCardTag.GOOD_IMPRESSION_TAG);
+        this.customLimit = 2;
+        this.customEffectList = new ArrayList<>();
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(BlockCustom.growID,new int[]{2,2},new int[]{40,40},CustomHelper.CustomEffectType.BLOCK_ADD));
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(MagicCustom.growID,new int[]{30,50},new int[]{60,100},CustomHelper.CustomEffectType.RATE_ADD));
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(SecondMagicCustom.growID,new int[]{-1},new int[]{60},CustomHelper.CustomEffectType.DOUBLE_DAMAGE_RECEIVE_REDUCE));
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
         addToBot(new GainBlockAction(p, p, this.block));
         addToBot(new GoodImpressionDamageAction(1.0F * magicNumber / 100, 0, p, m,this));
-        addToBot(new ApplyPowerAction(p, p, new DoubleDamageReceive(p, this.secondMagicNumber), this.secondMagicNumber));
+        if(this.secondMagicNumber > 0){
+            addToBot(new ApplyPowerAction(p, p, new DoubleDamageReceive(p, this.secondMagicNumber), this.secondMagicNumber));
+        }
+
     }
 
     public void applyPowers() {

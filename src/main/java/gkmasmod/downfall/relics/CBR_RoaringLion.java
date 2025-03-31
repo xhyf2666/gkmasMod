@@ -34,21 +34,21 @@ public class CBR_RoaringLion extends AbstractCharbossRelic {
 
     private static final int GOOD_TUNE = 0;
 
-    private static final  int playTimes = 1;
+//    private static final  int playTimes = 1;
 
     public CBR_RoaringLion() {
         super(new RoaringLion(),IMG);
     }
 
 
-    @Override
-    public void onVictory() {
-        this.counter = playTimes;
-    }
+//    @Override
+//    public void onVictory() {
+//        this.counter = playTimes;
+//    }
 
     @Override
     public String getUpdatedDescription() {
-        return String.format(this.DESCRIPTIONS[0],magicNumber,playTimes);
+        return String.format(this.DESCRIPTIONS[0],magicNumber);
     }
 
     @Override
@@ -60,24 +60,29 @@ public class CBR_RoaringLion extends AbstractCharbossRelic {
     public void onEquip() {}
 
     public void atTurnStart() {
-        if (this.counter > 0) {
-            int count = AbstractCharBoss.boss.getPower(GoodTune.POWER_ID)==null?0:AbstractCharBoss.boss.getPower(GoodTune.POWER_ID).amount;
-            if(count>GOOD_TUNE){
-                addToBot(new RelicAboveCreatureAction(AbstractCharBoss.boss, this));
-                this.flash();
-                addToBot(new ModifyDamageAction(AbstractDungeon.player,new DamageInfo(AbstractCharBoss.boss, damage, DamageInfo.DamageType.NORMAL), AbstractGameAction.AttackEffect.SLASH_VERTICAL));
-                this.counter--;
-                if (this.counter == 0) {
-                    this.grayscale = true;
-                }
-            }
+//        if (this.counter > 0) {
+//            int count = AbstractCharBoss.boss.getPower(GoodTune.POWER_ID)==null?0:AbstractCharBoss.boss.getPower(GoodTune.POWER_ID).amount;
+//            if(count>GOOD_TUNE){
+//                addToBot(new RelicAboveCreatureAction(AbstractCharBoss.boss, this));
+//                this.flash();
+//                addToBot(new ModifyDamageAction(AbstractDungeon.player,new DamageInfo(AbstractCharBoss.boss, damage, DamageInfo.DamageType.NORMAL), AbstractGameAction.AttackEffect.SLASH_VERTICAL));
+//                this.counter--;
+//                if (this.counter == 0) {
+//                    this.grayscale = true;
+//                }
+//            }
+//        }
+        int count = AbstractCharBoss.boss.getPower(GoodTune.POWER_ID)==null?0:AbstractCharBoss.boss.getPower(GoodTune.POWER_ID).amount;
+        if(count>GOOD_TUNE){
+            addToBot(new RelicAboveCreatureAction(AbstractCharBoss.boss, this));
+            this.flash();
+            addToBot(new ModifyDamageAction(AbstractDungeon.player,new DamageInfo(AbstractCharBoss.boss, damage, DamageInfo.DamageType.NORMAL), AbstractGameAction.AttackEffect.SLASH_VERTICAL));
         }
-
     }
 
-    public void atBattleStart() {
-        this.counter = playTimes;
-    }
+//    public void atBattleStart() {
+//        this.counter = playTimes;
+//    }
 
     public  void  onPlayerEndTurn(){
     }

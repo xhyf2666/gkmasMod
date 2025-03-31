@@ -30,7 +30,7 @@ public class ServiceSpirit extends GkmasCard {
     private static final String IMG_PATH = String.format("gkmasModResource/img/cards/common/%s.png", CLASSNAME);
 
     private static final int COST = 1;
-    private static final int ATTACK_DMG = 4;
+    private static final int ATTACK_DMG = 7;
     private static final int UPGRADE_PLUS_DMG = 2;
 
     private static final int BASE_MAGIC = 1;
@@ -50,7 +50,7 @@ public class ServiceSpirit extends GkmasCard {
         this.customLimit = 3;
         this.customEffectList = new ArrayList<>();
         this.customEffectList.add(CustomHelper.generateCustomEffectList(DamageCustom.growID,new int[]{2,2},new int[]{50,50},CustomHelper.CustomEffectType.DAMAGE_ADD));
-        this.customEffectList.add(CustomHelper.generateCustomEffectList(GoodTuneCustom.growID,new int[]{1},new int[]{50},CustomHelper.CustomEffectType.GOOD_TUNE_ADD));
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(GoodTuneCustom.growID,new int[]{1,1},new int[]{50,50},CustomHelper.CustomEffectType.GOOD_TUNE_ADD));
         this.customEffectList.add(CustomHelper.generateCustomEffectList(GreatGoodTuneCustom.growID,new int[]{1},new int[]{60},CustomHelper.CustomEffectType.GREAT_GOOD_TUNE_ADD));
     }
 

@@ -28,12 +28,12 @@ public class ENLeap extends GkmasBossCard {
     private static final String DESCRIPTION = CARD_STRINGS.DESCRIPTION;
     private static String IMG_PATH = ImageHelper.idolImgPath(AbstractCharBoss.theIdolName, CLASSNAME2);
 
-    private static final int COST = 2;
-    private static final int UPGRADED_COST = 1;
+    private static final int COST = 1;
     private static final int ATTACK_DMG = 9;
     private static final int ATTACK_DMG2 = 6;
 
     private static final int BASE_MAGIC = 5;
+    private static final int UPGRADED_PLUS_MAGIC = -2;
 
 
     private static final CardType TYPE = CardType.ATTACK;
@@ -72,7 +72,7 @@ public class ENLeap extends GkmasBossCard {
     public void upgrade() {
         if (!this.upgraded) {
             upgradeName();
-            upgradeBaseCost(UPGRADED_COST);
+            upgradeMagicNumber(UPGRADED_PLUS_MAGIC);
             if (CARD_STRINGS.UPGRADE_DESCRIPTION != null)
                 this.rawDescription = CARD_STRINGS.UPGRADE_DESCRIPTION;
             this.initializeDescription();

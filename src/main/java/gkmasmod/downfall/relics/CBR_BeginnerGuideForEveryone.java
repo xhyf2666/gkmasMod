@@ -31,7 +31,8 @@ public class CBR_BeginnerGuideForEveryone extends AbstractCharbossRelic {
     private static final int BLOCK = 6;
 
     public CBR_BeginnerGuideForEveryone() {
-        super(new BeginnerGuideForEveryone(),IMG);    }
+        super(new BeginnerGuideForEveryone(),IMG);
+    }
 
 
     @Override

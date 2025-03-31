@@ -10,8 +10,11 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.powers.BarricadePower;
 import gkmasmod.downfall.cards.free.*;
 import gkmasmod.downfall.cards.sense.*;
+import gkmasmod.downfall.relics.CBR_FaceTheAwakening;
 import gkmasmod.downfall.relics.CBR_SakiCompleteMealRecipe;
 import gkmasmod.downfall.relics.CBR_TogetherInBattleTowel;
+import gkmasmod.powers.InnocencePower;
+import gkmasmod.powers.TrueLateBloomerPower;
 
 import java.util.ArrayList;
 
@@ -28,6 +31,9 @@ public class BossConfig_hski1 extends AbstractBossDeckArchetype {
         super.addedPreBattle();
         AbstractCreature p = AbstractCharBoss.boss;
         AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new BarricadePower(p)));
+        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p,p,new InnocencePower(p,1),1));
+        if(AbstractDungeon.ascensionLevel >= 15)
+            AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new TrueLateBloomerPower(p,2),2));
     }
 
     public void initialize() {
@@ -36,6 +42,9 @@ public class BossConfig_hski1 extends AbstractBossDeckArchetype {
         addRelic(new CBR_Akabeko());
         addRelic(new CBR_SakiCompleteMealRecipe());
         addRelic(new CBR_TogetherInBattleTowel());
+        addRelic(new CBR_FaceTheAwakening());
+        if(AbstractDungeon.ascensionLevel >= 10)
+            addRelic(new CBR_Sozu());
     }
 
     @Override
@@ -45,15 +54,18 @@ public class BossConfig_hski1 extends AbstractBossDeckArchetype {
         if (!looped) {
             switch (turn) {
                 case 0:
-                    addToList(cardsList,new ENSteadyWill(),extraUpgrades);
+                    addToList(cardsList, new ENSteadyWill(),extraUpgrades);
                     addToList(cardsList, new ENIdolDeclaration(),extraUpgrades);
-                    addToList(cardsList, new ENNeverLose(),extraUpgrades);
+                    addToList(cardsList, new ENLightGait(),true);
+                    addToList(cardsList, new ENNeverLose(),true);
                     turn++;
                     break;
                 case 1:
+                    addToList(cardsList, new ENGradualDisappearance(),true);
                     addToList(cardsList, new ENEyePower(), extraUpgrades);
-                    addToList(cardsList, new ENInnocence(),extraUpgrades);
-                    addToList(cardsList, new ENBaseBehave());
+                    addToList(cardsList, new ENLightGait(),true);
+                    addToList(cardsList, new ENUntilNowAndFromNow(),true);
+                    addToList(cardsList, new ENBasePose(),extraUpgrades);
                     turn++;
                     break;
                 case 2:
@@ -61,7 +73,7 @@ public class BossConfig_hski1 extends AbstractBossDeckArchetype {
                     addToList(cardsList, new ENStartSignal());
                     addToList(cardsList, new ENCharmPerformance());
                     addToList(cardsList, new ENAchievement());
-                    addToList(cardsList, new ENNeverLose(),true);
+                    addToList(cardsList, new ENUntilNowAndFromNow(),true);
                     addToList(cardsList, new ENSleepy());
                     turn = 0;
                     looped = true;
@@ -72,8 +84,8 @@ public class BossConfig_hski1 extends AbstractBossDeckArchetype {
                 case 0:
                     addToList(cardsList, new ENExistence(), extraUpgrades);
                     addToList(cardsList, new ENEncoreCall(),extraUpgrades);
-                    addToList(cardsList, new ENGoWithTheFlow(),extraUpgrades);
-                    addToList(cardsList, new ENTryError(),extraUpgrades);
+                    addToList(cardsList, new ENLightGait(),extraUpgrades);
+                    addToList(cardsList, new ENUntilNowAndFromNow(),extraUpgrades);
                     break;
             }
         }

@@ -24,7 +24,7 @@ public class RollingSourceOfEnergyAction extends AbstractGameAction {
 
     public void update() {
         int count = PlayerHelper.getPowerAmount(p, DexterityPower.POWER_ID);
-        System.out.println("RollingSourceOfEnergyAction11: " + p.name + " has " + count + " Dexterity, require " + require + " Dexterity, reward " + reward);
+//        System.out.println("RollingSourceOfEnergyAction11: " + p.name + " has " + count + " Dexterity, require " + require + " Dexterity, reward " + reward);
         if(p.isPlayer){
             if(AbstractDungeon.player.getRelic(RollingSourceOfEnergy.ID).counter <= 0){
                 this.isDone = true;

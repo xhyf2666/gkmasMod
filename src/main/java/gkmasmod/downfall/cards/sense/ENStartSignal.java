@@ -27,7 +27,6 @@ public class ENStartSignal extends GkmasBossCard {
 
     private static final int COST = 1;
     private static final int BASE_MAGIC = 4;
-    private static final int BASE_MAGIC2 = 2;
     private static final int UPGRADE_PLUS_MAGIC = 2;
 
 
@@ -43,8 +42,7 @@ public class ENStartSignal extends GkmasBossCard {
         updateImg();
         this.baseMagicNumber = BASE_MAGIC;
         this.magicNumber = this.baseMagicNumber;
-        this.baseSecondMagicNumber = BASE_MAGIC2;
-        this.secondMagicNumber = this.baseSecondMagicNumber;
+        this.exhaust = true;
         this.intent = AbstractMonster.Intent.BUFF;
         this.tags.add(GkmasCardTag.GOOD_TUNE_TAG);
     }
@@ -53,13 +51,6 @@ public class ENStartSignal extends GkmasBossCard {
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
         addToBot(new ApplyPowerAction(m, m, new GoodTune(m, this.magicNumber), this.magicNumber));
-        if(this.secondMagicNumber > 1){
-            upgradeSecondMagicNumber(-1);
-            this.initializeDescription();
-        }
-        else{
-            this.exhaust = true;
-        }
     }
 
     @Override

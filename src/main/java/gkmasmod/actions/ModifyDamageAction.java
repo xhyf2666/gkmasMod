@@ -15,6 +15,10 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import gkmasmod.growEffect.AttackTimeGrow;
 import gkmasmod.growEffect.DamageGrow;
+import gkmasmod.patches.AbstractMonsterPatch;
+import gkmasmod.patches.AbstractPlayerPatch;
+import gkmasmod.powers.AllEffort;
+import org.lwjgl.Sys;
 
 import java.util.Iterator;
 
@@ -57,10 +61,15 @@ public class ModifyDamageAction extends AbstractGameAction {
 
             if(this.owner instanceof AbstractCharBoss)
                 damage = calculateDamage2(damage, this.target);
+            else if(!this.owner.isPlayer)
+                damage = calculateDamage3(damage, this.target);
             else
                 damage = calculateDamage(damage, this.target);
             for (int i = 0; i < attackTime; i++) {
-                addToBot(new DamageAction(this.target, new DamageInfo(this.info.owner, damage, this.info.type), this.attackEffect));
+                DamageInfo info = new DamageInfo(this.owner, damage, this.info.type);
+                if(this.info.name!=null)
+                    info.name = this.info.name;
+                addToBot(new DamageAction(this.target, info, this.attackEffect));
             }
         }
         this.isDone = true;
@@ -134,6 +143,46 @@ public class ModifyDamageAction extends AbstractGameAction {
 
             for(var9 = charBoss.powers.iterator(); var9.hasNext(); tmp = p.atDamageFinalGive(tmp, DamageInfo.DamageType.NORMAL)) {
                 p = (AbstractPower)var9.next();
+            }
+
+
+            for(var9 = m.powers.iterator(); var9.hasNext(); tmp = p.atDamageFinalReceive(tmp, DamageInfo.DamageType.NORMAL)) {
+                p = (AbstractPower)var9.next();
+            }
+
+            if (tmp < 0.0F) {
+                tmp = 0.0F;
+            }
+
+            return MathUtils.floor(tmp);
+        }
+        return baseDamage;
+    }
+
+    private int calculateDamage3(int baseDamage,AbstractCreature m) {
+        if (m != null) {
+            float tmp = (float)baseDamage;
+            Iterator var9;
+
+            AbstractPower p;
+            for(var9 = this.owner.powers.iterator(); var9.hasNext(); tmp = p.atDamageGive(tmp, DamageInfo.DamageType.NORMAL)) {
+                p = (AbstractPower)var9.next();
+            }
+
+            for(var9 = m.powers.iterator(); var9.hasNext(); tmp = p.atDamageReceive(tmp, DamageInfo.DamageType.NORMAL)) {
+                p = (AbstractPower)var9.next();
+            }
+
+            for(var9 = this.owner.powers.iterator(); var9.hasNext(); tmp = p.atDamageFinalGive(tmp, DamageInfo.DamageType.NORMAL)) {
+                p = (AbstractPower)var9.next();
+            }
+
+            if(AbstractMonsterPatch.friendlyField.friendly.get(this.owner)){
+                if(AbstractDungeon.player.hasPower(AllEffort.POWER_ID)){
+                    if(AbstractPlayerPatch.FinalCircleRoundField.finalCircleRound.get(AbstractDungeon.player).size()>0){
+                        tmp *= (float) (AbstractPlayerPatch.FinalDamageRateField.finalDamageRate.get(AbstractDungeon.player)*1.0f);
+                    }
+                }
             }
 
             for(var9 = m.powers.iterator(); var9.hasNext(); tmp = p.atDamageFinalReceive(tmp, DamageInfo.DamageType.NORMAL)) {

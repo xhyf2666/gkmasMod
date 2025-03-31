@@ -50,7 +50,7 @@ public class BrightFuture extends GkmasCard {
         this.baseBlock = BLOCK_AMT;
         this.customLimit = 2;
         this.customEffectList = new ArrayList<>();
-        this.customEffectList.add(CustomHelper.generateCustomEffectList(CostCustom.growID,new int[]{1},new int[]{70},CustomHelper.CustomEffectType.ENERGY_COST_REDUCE));
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(CostCustom.growID,new int[]{-1},new int[]{70},CustomHelper.CustomEffectType.ENERGY_COST_REDUCE));
         this.customEffectList.add(CustomHelper.generateCustomEffectList(AttackTimeCustom.growID,new int[]{1},new int[]{100},CustomHelper.CustomEffectType.ATTACK_TIME_ADD));
         this.customEffectList.add(CustomHelper.generateCustomEffectList(BlockTimeCustom.growID,new int[]{1},new int[]{100},CustomHelper.CustomEffectType.BLOCK_TIME_ADD));
     }

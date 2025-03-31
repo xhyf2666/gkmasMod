@@ -1,5 +1,7 @@
 package gkmasmod.downfall.bosses;
 
+import com.megacrit.cardcrawl.powers.StrengthPower;
+import gkmasmod.downfall.cards.free.ENIdolDeclaration;
 import gkmasmod.downfall.charbosses.bosses.AbstractBossDeckArchetype;
 import gkmasmod.downfall.charbosses.bosses.AbstractCharBoss;
 import gkmasmod.downfall.charbosses.relics.*;
@@ -15,6 +17,9 @@ import gkmasmod.downfall.cards.sense.*;
 import gkmasmod.downfall.relics.CBR_Courier;
 import gkmasmod.downfall.relics.CBR_MawBank;
 import gkmasmod.downfall.relics.CBR_UltimateSourceOfHappiness;
+import gkmasmod.powers.EyePowerPower;
+import gkmasmod.powers.InnocencePower;
+import gkmasmod.powers.NegativeNotPower;
 
 import java.util.ArrayList;
 
@@ -39,6 +44,12 @@ public class BossConfig_fktn2 extends AbstractBossDeckArchetype {
         addRelic(new CBR_Courier());
         addRelic(new CBR_Ectoplasm());
         addRelic(new CBR_UltimateSourceOfHappiness());
+        AbstractCreature p = AbstractCharBoss.boss;
+        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new NegativeNotPower(p, 2), 2));
+        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new StrengthPower(p, 3), 3));
+        if(AbstractDungeon.ascensionLevel >= 10)
+            AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new InnocencePower(p, 1), 1));
+        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new EyePowerPower(p, 2), 2));
     }
 
     @Override
@@ -48,25 +59,19 @@ public class BossConfig_fktn2 extends AbstractBossDeckArchetype {
         if (!looped) {
             switch (turn) {
                 case 0:
-                    addToList(cardsList,new ENSteadyWill(),extraUpgrades);
                     addToList(cardsList, new ENTopEntertainment(),extraUpgrades);
-                    addToList(cardsList, new ENTenThousandVolts(),extraUpgrades);
+                    addToList(cardsList, new ENTenThousandVolts(),true);
+                    addToList(cardsList, new ENImprovise());
                     addToList(cardsList, new ENBaseAppeal());
                     turn++;
                     break;
                 case 1:
-                    addToList(cardsList, new ENEndlessApplause());
-                    addToList(cardsList, new ENStartSignal(),true);
-                    addToList(cardsList, new ENExistence(),true);
-                    addToList(cardsList, new ENImprovise());
-                    turn++;
-                    break;
-                case 2:
-                    addToList(cardsList,new IdolDeclaration(),true);
+                    addToList(cardsList, new ENIdolDeclaration(),true);
                     addToList(cardsList, new ENFullAdrenaline(),extraUpgrades);
                     addToList(cardsList, new ENWarmUp(),extraUpgrades);
+                    addToList(cardsList, new ENExistence(),true);
                     addToList(cardsList, new ENAchievement());
-                    addToList(cardsList, new ENBaseAppeal());
+                    addToList(cardsList, new ENImprovise());
                     turn = 0;
                     looped = true;
                     break;
@@ -76,7 +81,7 @@ public class BossConfig_fktn2 extends AbstractBossDeckArchetype {
                 case 0:
                     addToList(cardsList, new ENExistence(),true);
                     addToList(cardsList, new ENEncoreCall(),extraUpgrades);
-                    addToList(cardsList, new ENTenThousandVolts(),extraUpgrades);
+                    addToList(cardsList, new ENTenThousandVolts(),true);
                     addToList(cardsList, new ENBaseAppeal());
                     addToList(cardsList, new ENBasePose());
                     break;

@@ -50,11 +50,18 @@ public class BlockDamageWallopAction extends AbstractGameAction {
         if(this.blockAdd > 0)
             p.addBlock(this.blockAdd);
         int damage = (int)(this.rate*p.currentBlock);
-        damage = calculateDamage(damage, this.m);
-        int count = damage;
-        if(AbstractDungeon.player.hasRelic(PocketBook.ID)){
-            if(AbstractPlayerPatch.FinalCircleRoundField.finalCircleRound.get(AbstractDungeon.player).size()>0){
-                count = (int) (1.0f*count / (AbstractPlayerPatch.FinalDamageRateField.finalDamageRate.get(AbstractDungeon.player)*1.0f));
+        int count;
+        if(this.p instanceof AbstractCharBoss) {
+            damage = calculateDamage2(damage, this.m);
+            count = damage;
+        }
+        else{
+            damage = calculateDamage(damage, this.m);
+            count = damage;
+            if(AbstractDungeon.player.hasRelic(PocketBook.ID)){
+                if(AbstractPlayerPatch.FinalCircleRoundField.finalCircleRound.get(AbstractDungeon.player).size()>0){
+                    count = (int) (1.0f*count / (AbstractPlayerPatch.FinalDamageRateField.finalDamageRate.get(AbstractDungeon.player)*1.0f));
+                }
             }
         }
         p.addBlock(count);
@@ -62,10 +69,6 @@ public class BlockDamageWallopAction extends AbstractGameAction {
             addToBot(new DamageAllEnemiesAction(p, DamageInfo.createDamageMatrix(damage, true), DamageInfo.DamageType.NORMAL, AttackEffect.SLASH_HORIZONTAL));
         }
         else{
-            if(this.p instanceof AbstractCharBoss)
-                damage = calculateDamage2(damage, this.m);
-            else
-                damage = calculateDamage(damage, this.m);
             AbstractDungeon.actionManager.addToBottom(new DamageAction(m, new DamageInfo(p, damage , DamageInfo.DamageType.NORMAL), AttackEffect.SLASH_HORIZONTAL));
         }
 

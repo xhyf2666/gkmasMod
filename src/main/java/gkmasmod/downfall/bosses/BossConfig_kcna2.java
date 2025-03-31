@@ -1,5 +1,6 @@
 package gkmasmod.downfall.bosses;
 
+import com.megacrit.cardcrawl.powers.StrengthPower;
 import gkmasmod.downfall.charbosses.bosses.AbstractBossDeckArchetype;
 import gkmasmod.downfall.charbosses.bosses.AbstractCharBoss;
 import gkmasmod.downfall.charbosses.relics.*;
@@ -12,6 +13,10 @@ import gkmasmod.downfall.cards.free.*;
 import gkmasmod.downfall.cards.sense.*;
 import gkmasmod.downfall.relics.CBR_HeartFlutteringCup;
 import gkmasmod.downfall.relics.CBR_OldCoin;
+import gkmasmod.powers.AngelAndDemonPlusPower;
+import gkmasmod.powers.InnocencePower;
+import gkmasmod.powers.NegativeNotPower;
+import gkmasmod.powers.TopEntertainmentPlusPower;
 
 import java.util.ArrayList;
 
@@ -37,6 +42,14 @@ public class BossConfig_kcna2 extends AbstractBossDeckArchetype {
         addRelic(new CBR_Sozu());
         addRelic(new CBR_ArtOfWar());
         addRelic(new CBR_HeartFlutteringCup());
+        AbstractCreature p = AbstractCharBoss.boss;
+        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new NegativeNotPower(p, 2), 2));
+        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new InnocencePower(p, 1), 1));
+        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new StrengthPower(p, 3), 3));
+        if(AbstractDungeon.ascensionLevel >= 10)
+            AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new AngelAndDemonPlusPower(p)));
+        if(AbstractDungeon.ascensionLevel >= 15)
+            AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new TopEntertainmentPlusPower(p,1),1));
     }
 
     @Override
@@ -46,30 +59,9 @@ public class BossConfig_kcna2 extends AbstractBossDeckArchetype {
         if (!looped) {
             switch (turn) {
                 case 0:
-                    addToList(cardsList, new ENSteadyWill(),extraUpgrades);
-                    addToList(cardsList, new ENInnocence(),extraUpgrades);
-                    addToList(cardsList, new ENAngelAndDemon(),extraUpgrades);
-                    addToList(cardsList, new ENBaseAppeal());
-                    turn++;
-                    break;
-                case 1:
-                    addToList(cardsList, new ENTopEntertainment());
-                    addToList(cardsList, new ENDisposition(), extraUpgrades);
-                    addToList(cardsList, new ENStartSignal());
-                    addToList(cardsList, new ENImprovise());
-
-                    turn++;
-                    break;
-                case 2:
                     addToList(cardsList, new ENWelcomeToTeaParty(),extraUpgrades);
-                    addToList(cardsList, new ENEncoreCall(),extraUpgrades);
-                    addToList(cardsList, new ENTryError());
-                    addToList(cardsList, new ENTriggerRelic());
-                    turn++;
-                    break;
-                case 3:
+                    addToList(cardsList, new ENImprovise());
                     addToList(cardsList, new ENWantToGoThere(),true);
-                    addToList(cardsList, new ENAchievement(),extraUpgrades);
                     addToList(cardsList, new ENEncoreCall(),extraUpgrades);
                     addToList(cardsList, new ENSpecialTreasure(),true);
                     addToList(cardsList, new ENTriggerRelic());

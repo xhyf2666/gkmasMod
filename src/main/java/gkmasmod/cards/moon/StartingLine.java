@@ -32,15 +32,13 @@ public class StartingLine extends GkmasCard {
     private static final String DESCRIPTION = CARD_STRINGS.DESCRIPTION;
     private static final String IMG_PATH = String.format("gkmasModResource/img/cards/common/%s.png", CLASSNAME);
 
-    private static final int COST = 2;
+    private static final int COST = 1;
 
-    private static final int BASE_HP = 10;
+    private static final int BASE_HP = 6;
 
     private static final int BASE_MAGIC = 2;
     private static final int BASE_MAGIC2 = 4;
     private static final int BASE_MAGIC3 = 3;
-
-
 
     private static final CardType TYPE = CardType.SKILL;
     private static final CardColor COLOR = PlayerColorEnum.gkmasModColorMoon;
@@ -76,9 +74,6 @@ public class StartingLine extends GkmasCard {
         addToBot(new ApplyPowerAction(p, p, new GoodImpression(p, this.secondMagicNumber), this.secondMagicNumber));
         addToBot(new ApplyPowerAction(p, p, new FullPowerValue(p, this.thirdMagicNumber), this.thirdMagicNumber));
         addToBot(new ChangeStanceAction(PreservationStance.STANCE_ID));
-        if(this.upgraded){
-            addToBot(new GainTrainRoundPowerAction(p,1));
-        }
     }
 
     @Override

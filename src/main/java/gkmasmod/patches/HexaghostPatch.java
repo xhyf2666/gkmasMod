@@ -18,7 +18,7 @@ public class HexaghostPatch
     public static class HexaghostPostPatch_constructor {
         @SpirePostfixPatch
         public static void Post(Hexaghost __instance, @ByRef int[] ___strengthenBlockAmt) {
-            if(AbstractDungeon.player.hasRelic(PocketBook.ID)){
+            if(AbstractDungeon.player!=null&&AbstractDungeon.player.hasRelic(PocketBook.ID)){
                 int rate = ThreeSizeHelper.getHealthRate(1);
                 ___strengthenBlockAmt[0] = ___strengthenBlockAmt[0] * rate;
             }

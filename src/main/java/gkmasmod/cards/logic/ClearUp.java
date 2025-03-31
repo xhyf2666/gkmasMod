@@ -13,11 +13,17 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import gkmasmod.actions.GainTrainRoundPowerAction;
 import gkmasmod.actions.HardStretchingAction;
 import gkmasmod.actions.SpecialBlockDamageAction;
+import gkmasmod.cardCustomEffect.BlockCustom;
+import gkmasmod.cardCustomEffect.HPMagicCustom;
+import gkmasmod.cardCustomEffect.MagicCustom;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.patches.AbstractCreaturePatch;
 import gkmasmod.patches.AbstractPlayerPatch;
+import gkmasmod.utils.CustomHelper;
 import gkmasmod.utils.NameHelper;
+
+import java.util.ArrayList;
 
 public class ClearUp extends GkmasCard {
     private static final String CLASSNAME = ClearUp.class.getSimpleName();
@@ -49,6 +55,10 @@ public class ClearUp extends GkmasCard {
         this.HPMagicNumber = this.baseHPMagicNumber;
         FlavorText.AbstractCardFlavorFields.boxColor.set(this, CardHelper.getColor(73, 224, 254));
         flavor = FlavorText.CardStringsFlavorField.flavor.get(CARD_STRINGS);
+        this.customLimit = 2;
+        this.customEffectList = new ArrayList<>();
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(HPMagicCustom.growID,new int[]{-1},new int[]{50},CustomHelper.CustomEffectType.HP_REDUCE));
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(MagicCustom.growID, new int[]{10,10}, new int[]{60,60}, CustomHelper.CustomEffectType.RATE_ADD));
     }
 
 

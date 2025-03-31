@@ -12,7 +12,10 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.stances.NeutralStance;
+import gkmasmod.cardCustomEffect.DamageCustom;
+import gkmasmod.cardCustomEffect.MagicCustom;
 import gkmasmod.cardCustomEffect.MoreActionCustom;
+import gkmasmod.cardCustomEffect.SecondMagicCustom;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
@@ -21,9 +24,12 @@ import gkmasmod.growEffect.DamageGrow;
 import gkmasmod.growEffect.DrawCardGrow;
 import gkmasmod.screen.SkinSelectScreen;
 import gkmasmod.stances.FullPowerStance;
+import gkmasmod.utils.CustomHelper;
 import gkmasmod.utils.GrowHelper;
 import gkmasmod.utils.ImageHelper;
 import gkmasmod.utils.NameHelper;
+
+import java.util.ArrayList;
 
 public class SweatAndGrowth extends GkmasCard {
     private static final String CLASSNAME = SweatAndGrowth.class.getSimpleName();
@@ -38,7 +44,7 @@ public class SweatAndGrowth extends GkmasCard {
 
     private static final int BASE_DAMAGE = 5;
 
-    private static final int BASE_MAGIC = 40;
+    private static final int BASE_MAGIC = 50;
 
 
     private static final CardType TYPE = CardType.ATTACK;
@@ -53,8 +59,11 @@ public class SweatAndGrowth extends GkmasCard {
         this.baseDamage = BASE_DAMAGE;
         this.baseMagicNumber = BASE_MAGIC;
         this.magicNumber = this.baseMagicNumber;
-        this.tags.add(GkmasCardTag.FULL_POWER_TAG);
         CardModifierManager.addModifier(this,new DamageGrow(6));
+        this.customLimit = 2;
+        this.customEffectList = new ArrayList<>();
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(DamageCustom.growID,new int[]{3,3},new int[]{70,70},CustomHelper.CustomEffectType.DAMAGE_ADD));
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(MagicCustom.growID, new int[]{20,20}, new int[]{80,80}, CustomHelper.CustomEffectType.RATE_ADD));
     }
 
     @Override

@@ -28,7 +28,7 @@ public class ENRoadToSuccess extends GkmasBossCard {
     private static final String DESCRIPTION = CARD_STRINGS.DESCRIPTION;
     private static String IMG_PATH = ImageHelper.idolImgPath(AbstractCharBoss.theIdolName, CLASSNAME2);
 
-    private static final int COST = 1;
+    private static final int COST = 0;
     private static final int BASE_MAGIC = 1;
     private static final int BASE_MAGIC2 = 3;
     private static final int UPGRADE_PLUS_MAGIC2 = 1;
@@ -53,7 +53,7 @@ public class ENRoadToSuccess extends GkmasBossCard {
         this.block = this.baseBlock;
         this.exhaust = true;
         this.intent = AbstractMonster.Intent.DEFEND_BUFF;
-        this.tags.add(GkmasCardTag.GOOD_TUNE_TAG);
+        this.tags.add(GkmasCardTag.COST_POWER_TAG);
         this.tags.add(GkmasCardTag.FOCUS_TAG);
         this.cardHeader = "Road To the Top";
     }
@@ -70,7 +70,7 @@ public class ENRoadToSuccess extends GkmasBossCard {
     public boolean canUse(AbstractPlayer p, AbstractMonster m) {
         int count = PlayerHelper.getPowerAmount(m,GoodTune.POWER_ID);
         if (count >= this.magicNumber)
-            return true;
+            return super.canUse(p, m);
         this.cantUseMessage = CardCrawlGame.languagePack.getUIString("gkmasMod:NotEnoughGoodTune").TEXT[0];
         return false;
     }

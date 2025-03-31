@@ -52,9 +52,14 @@ public class StruggleRecord extends CustomRelic {
         if(AbstractDungeon.player.hasRelic(PocketBook.ID)){
             GkmasMod.listeners.forEach(listener -> listener.onCardImgUpdate());
             Random spRng = new Random(Settings.seed, AbstractDungeon.actNum*100);
-            float chance = 0.15f;
-            chance += 0.1f;
+            float chance = 0.2f;
+            if(AbstractDungeon.player.hasRelic(StruggleRecord.ID))
+                chance += 0.1f;
             chance += AbstractDungeon.actNum * 0.1f;
+            if(AbstractDungeon.actNum==2)
+                chance += AbstractDungeon.ascensionLevel * 0.005f;
+            if(AbstractDungeon.actNum==3)
+                chance += AbstractDungeon.ascensionLevel * 0.01f;
             if(AbstractDungeon.floorNum %17 >7)
                 chance += 0.05f;
             int row_num = AbstractDungeon.map.size() - 1;
@@ -63,9 +68,6 @@ public class StruggleRecord extends CustomRelic {
                     if(n.room instanceof MonsterRoom){
                         if(spRng.randomBoolean(chance)){
                             MapRoomNodePatch.SPField.isSP.set(n, true);
-                        }
-                        else {
-                            MapRoomNodePatch.SPField.isSP.set(n, false);
                         }
                     }
                 }

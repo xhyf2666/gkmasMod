@@ -282,7 +282,7 @@ public abstract class GkmasBossCard extends AbstractBossCard {
         this.initializeDescription();
         if (this.intent != null) {
             if (!this.bossDarkened) {
-                createIntent();
+//                createIntent();
             }
             //destroyIntent();
         }
@@ -387,6 +387,8 @@ public abstract class GkmasBossCard extends AbstractBossCard {
     }
 
     private float calculateDamage(AbstractMonster mo, AbstractPlayer player, float tmp) {
+        if(this.baseSecondDamage<=0)
+            return tmp;
         for (final AbstractRelic r : this.owner.relics) {
             tmp = r.atDamageModify(tmp, this);
             if (this.baseSecondDamage != (int) tmp) {
@@ -442,7 +444,7 @@ public abstract class GkmasBossCard extends AbstractBossCard {
             this.owner = (AbstractCharBoss) mo;
         }
         if (mo != null) {
-            this.secondDamage = MathUtils.floor(calculateDamage(mo, player, this.baseDamage));
+            this.secondDamage = MathUtils.floor(calculateDamage(mo, player, this.baseSecondDamage));
             this.intentDmg += MathUtils.floor(manualCustomDamageModifierMult * calculateDamage(mo, player, this.baseSecondDamage + customIntentModifiedDamage() + manualCustomDamageModifier));
         }
         this.initializeDescription();
@@ -477,18 +479,25 @@ public abstract class GkmasBossCard extends AbstractBossCard {
     public void updateBackgroundImg(){
         String idolName;
         idolName = AbstractCharBoss.theIdolName;
-        if(idolName == IdolData.jsna)
-            idolName = IdolData.fktn;
         Color color = Settings.RED_TEXT_COLOR.cpy();
+        Color textColor = Settings.PURPLE_RELIC_COLOR.cpy();
         if(backGroundColor!=""){
             idolName = backGroundColor;
         }
-        if(AbstractCharBoss.theIdolName.equals(IdolData.fktn)){
+        if(idolName.equals(IdolData.fktn)){
+            basemod.ReflectionHacks.setPrivate(this, AbstractCard.class, "textColor", textColor);
+            basemod.ReflectionHacks.setPrivate(this, AbstractCard.class, "goldColor", color);
+            this.initializeDescription();
+        }
+        else if(idolName.equals(IdolData.jsna)){
+            basemod.ReflectionHacks.setPrivate(this, AbstractCard.class, "textColor", textColor);
             basemod.ReflectionHacks.setPrivate(this, AbstractCard.class, "goldColor", color);
             this.initializeDescription();
         }
         else{
             color = Settings.GOLD_COLOR.cpy();
+            textColor = Settings.CREAM_COLOR.cpy();
+            basemod.ReflectionHacks.setPrivate(this, AbstractCard.class, "textColor", textColor);
             basemod.ReflectionHacks.setPrivate(this, AbstractCard.class, "goldColor", color);
             this.initializeDescription();
         }
@@ -636,7 +645,7 @@ public abstract class GkmasBossCard extends AbstractBossCard {
 
     public Texture getBackgroundSmallTexture() {
         if (textureBackgroundSmallImg == null) {
-            System.out.println("getBackgroundSmallTexture is null");
+//            System.out.println("getBackgroundSmallTexture is null");
             switch (this.type) {
                 case ATTACK:
                     return BaseMod.getAttackBgTexture(this.color);
@@ -674,6 +683,10 @@ public abstract class GkmasBossCard extends AbstractBossCard {
         this.textureBackgroundLargeImg = backgroundLargeImg;
         loadTextureFromString(backgroundSmallImg);
         loadTextureFromString(backgroundLargeImg);
+    }
+
+    public void customTrigger(){
+
     }
 
 }

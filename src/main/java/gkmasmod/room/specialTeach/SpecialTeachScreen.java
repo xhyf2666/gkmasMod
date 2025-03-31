@@ -5,6 +5,7 @@ import basemod.abstracts.CustomScreen;
 import basemod.helpers.CardModifierManager;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.evacipated.cardcrawl.modthespire.lib.SpireEnum;
@@ -27,16 +28,16 @@ import com.megacrit.cardcrawl.ui.buttons.GridSelectConfirmButton;
 import com.megacrit.cardcrawl.ui.buttons.PeekButton;
 import com.megacrit.cardcrawl.vfx.FastCardObtainEffect;
 import gkmasmod.cardCustomEffect.CustomTimeCount;
-import gkmasmod.cardCustomEffect.DamageCustom;
 import gkmasmod.cards.CustomEffect;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.modcore.GkmasMod;
 import gkmasmod.utils.CustomHelper;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class SpecialTeachScreen extends CustomScreen implements ScrollBarListener {
-    private static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString("GridCardSelectScreen");
+    private static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString("gkmasMod:SpecialTeachScreen");
 
     public static final String[] TEXT = uiStrings.TEXT;
 
@@ -62,7 +63,7 @@ public class SpecialTeachScreen extends CustomScreen implements ScrollBarListene
 
     private AbstractCard hoveredCard = null;
 
-    public AbstractCard selectCard = null;
+    public AbstractCard showCard = null;
 
     private int numCards = 0;
 
@@ -98,25 +99,30 @@ public class SpecialTeachScreen extends CustomScreen implements ScrollBarListene
 
     private ScrollBar scrollBar;
 
+    private static Texture background = ImageMaster.loadImage("gkmasModResource/img/room/specialTeach/specialTeachBackground.png");
+
     private AbstractCard controllerCard = null;
 
     private static final int ARROW_W = 64;
 
     private float arrowScale1 = 1.0F, arrowScale2 = 1.0F, arrowScale3 = 1.0F, arrowTimer = 0.0F;
 
-    private ArrayList<Integer> customCount;
-    private ArrayList<Integer> customLimit;
+    private ArrayList<Integer> customCount; //每种特效的已指导次数
+    private ArrayList<Integer> customLimit; //每种特效的指导次数上限
     private ArrayList<ArrayList<Integer>> customPrice;
     private ArrayList<ArrayList<AbstractCardModifier>> customModifier;
-    private ArrayList<String> customDescription;
-    private int customEffectLength;
+    private ArrayList<ArrayList<String>> customDescription;
+    private int customEffectLength;//指导特效的个数
     private int currentEffectIndex;
+    private int customTotal;
 
     private Hitbox hb1;
     private Hitbox hb2;
     private Hitbox hb3;
 
-    private boolean usedCustomEffect = false;
+    public boolean usedCustomEffect = false;
+
+    private boolean[] isClick = new boolean[3];
 
     public SpecialTeachScreen() {
         drawStartX = Settings.WIDTH;
@@ -128,12 +134,12 @@ public class SpecialTeachScreen extends CustomScreen implements ScrollBarListene
         padY = AbstractCard.IMG_HEIGHT * 0.75F + Settings.CARD_VIEW_PAD_Y;
         this.scrollBar = new ScrollBar(this);
         this.scrollBar.move(0.0F, -30.0F * Settings.scale);
-        this.hb1 = new Hitbox(100.0F * Settings.scale, 70.0F * Settings.scale);
-        this.hb1.move(200.0F * Settings.scale, 100.0F * Settings.scale);
-        this.hb2 = new Hitbox(100.0F * Settings.scale, 70.0F * Settings.scale);
-        this.hb2.move(500.0F * Settings.scale, 100.0F * Settings.scale);
-        this.hb3 = new Hitbox(100.0F * Settings.scale, 70.0F * Settings.scale);
-        this.hb3.move(800.0F * Settings.scale, 100.0F * Settings.scale);
+        this.hb1 = new Hitbox(300.0F * Settings.scale, 150.0F * Settings.scale);
+        this.hb1.move(500.0F * Settings.scale, 200.0F * Settings.scale);
+        this.hb2 = new Hitbox(300.0F * Settings.scale, 150.0F * Settings.scale);
+        this.hb2.move(900.0F * Settings.scale, 200.0F * Settings.scale);
+        this.hb3 = new Hitbox(300.0F * Settings.scale, 150.0F * Settings.scale);
+        this.hb3.move(1300.0F * Settings.scale, 200.0F * Settings.scale);
     }
 
     public static class Enum
@@ -150,9 +156,12 @@ public class SpecialTeachScreen extends CustomScreen implements ScrollBarListene
     public void update() {
         updateControllerInput();
         updatePeekButton();
+        this.hb1.update();
+        this.hb2.update();
+        this.hb3.update();
         if (PeekButton.isPeeking)
             return;
-        if (Settings.isControllerMode && this.controllerCard != null && !CardCrawlGame.isPopupOpen && this.selectCard == null)
+        if (Settings.isControllerMode && this.controllerCard != null && !CardCrawlGame.isPopupOpen && this.showCard == null)
             if (Gdx.input.getY() > Settings.HEIGHT * 0.75F) {
                 this.currentDiffY += Settings.SCROLL_SPEED;
             } else if (Gdx.input.getY() < Settings.HEIGHT * 0.25F) {
@@ -199,42 +208,46 @@ public class SpecialTeachScreen extends CustomScreen implements ScrollBarListene
                     if (this.numCards == this.cardSelectAmount) {
                         this.hoveredCard.untip();
                         this.confirmScreenUp = true;
-                        this.selectCard = this.hoveredCard.makeStatEquivalentCopy();
-                        if(this.selectCard instanceof GkmasCard){
-                            GkmasCard card = (GkmasCard)this.selectCard;
+                        this.showCard = this.hoveredCard.makeStatEquivalentCopy();
+                        if(this.showCard instanceof GkmasCard){
+                            GkmasCard card = (GkmasCard)this.showCard;
                             this.customEffectLength=card.customEffectList.size();
                             ArrayList<Integer> count = new ArrayList<>();
                             ArrayList<Integer> limit = new ArrayList<>();
                             ArrayList<ArrayList<Integer>> price = new ArrayList<>();
                             ArrayList<ArrayList<AbstractCardModifier>> modifier = new ArrayList<>();
-                            ArrayList<String> description = new ArrayList<>();
+                            ArrayList<ArrayList<String>> description = new ArrayList<>();
                             for (ArrayList<CustomEffect> list : card.customEffectList) {
                                 ArrayList<Integer> tmpPrice = new ArrayList<>();
-                                ArrayList<String> desc = new ArrayList<>();
                                 ArrayList<AbstractCardModifier> tmpModifier = new ArrayList<>();
+                                ArrayList<String> tmpDesc = new ArrayList<>();
                                 for (CustomEffect effect : list) {
                                     tmpPrice.add(effect.getPrice());
-                                    desc.add(effect.getDescription());
                                     tmpModifier.add(CustomHelper.getCardModifierByID(effect.getType(),effect.getAmount()));
+                                    tmpDesc.add(effect.getDescription());
                                 }
                                 price.add(tmpPrice);
                                 limit.add(list.size());
-                                description.add(desc.get(0));
                                 modifier.add(tmpModifier);
+                                description.add(tmpDesc);
+                                count.add(0);
                             }
                             this.customCount = (ArrayList<Integer>) count.clone();
+                            this.customTotal = 0;
                             for(AbstractCardModifier mod: CardModifierManager.modifiers(card)){
                                 if (mod instanceof CustomTimeCount){
                                     CustomTimeCount tmp = (CustomTimeCount)mod;
                                     this.customCount = (ArrayList<Integer>) tmp.getCount().clone();
+                                    this.customTotal = tmp.getTotalCount();
+//                                    System.out.println("Total:"+this.customTotal);
                                 }
                             }
                             this.customLimit = (ArrayList<Integer>) limit.clone();
                             this.customPrice = (ArrayList<ArrayList<Integer>>) price.clone();
                             this.customModifier = (ArrayList<ArrayList<AbstractCardModifier>>) modifier.clone();
-                            this.customDescription = (ArrayList<String>) description.clone();
+                            this.customDescription = (ArrayList<ArrayList<String>>) description.clone();
                         }
-                        this.selectCard.drawScale = 0.875F;
+                        this.showCard.drawScale = 0.875F;
                         this.hoveredCard.stopGlowing();
                         this.selectedCards.clear();
                         AbstractDungeon.overlayMenu.cancelButton.show(TEXT[1]);
@@ -244,24 +257,7 @@ public class SpecialTeachScreen extends CustomScreen implements ScrollBarListene
                         this.lastTip = this.tipMsg;
                         this.tipMsg = TEXT[2];
                         return;
-//                        if (this.cardSelectAmount < this.targetGroup.size()) {
-//                            AbstractDungeon.closeCurrentScreen();
-//                            if (AbstractDungeon.screen != AbstractDungeon.CurrentScreen.SHOP) {
-//                                AbstractDungeon.overlayMenu.cancelButton.hide();
-//                            } else {
-//                                AbstractDungeon.overlayMenu.cancelButton.show(TEXT[3]);
-//                            }
-//                            for (AbstractCard c : this.selectedCards)
-//                                c.stopGlowing();
-//                            if (this.targetGroup.type == CardGroup.CardGroupType.DISCARD_PILE)
-//                                for (AbstractCard c : this.targetGroup.group) {
-//                                    c.drawScale = 0.12F;
-//                                    c.targetDrawScale = 0.12F;
-//                                    c.teleportToDiscardPile();
-//                                    c.lighten(true);
-//                                }
-//                        }
-                    }
+                }
                 } else if (this.selectedCards.contains(this.hoveredCard)) {
                     this.hoveredCard.stopGlowing();
                     this.selectedCards.remove(this.hoveredCard);
@@ -270,30 +266,107 @@ public class SpecialTeachScreen extends CustomScreen implements ScrollBarListene
                 return;
             }
         } else {
+            if (this.customEffectLength>0&&this.customCount.get(0)<this.customLimit.get(0)&&this.hb1.clicked) {
+                this.hb1.clicked = false;
+                CardCrawlGame.sound.play("UI_CLICK_1");
+                this.isClick[0] = true;
+                this.isClick[1] = false;
+                this.isClick[2] = false;
+                this.currentEffectIndex = 0;
+                CardModifierManager.removeAllModifiers(this.showCard,true);
+                this.showCard = this.hoveredCard.makeStatEquivalentCopy();
+                CustomHelper.custom(this.showCard,this.customModifier.get(0).get(this.customCount.get(0)));
+            }
+            if (this.customEffectLength>1&&this.customCount.get(1)<this.customLimit.get(1)&&this.hb2.clicked) {
+                this.hb2.clicked = false;
+                CardCrawlGame.sound.play("UI_CLICK_1");
+                this.isClick[0] = false;
+                this.isClick[1] = true;
+                this.isClick[2] = false;
+                this.currentEffectIndex = 1;
+                CardModifierManager.removeAllModifiers(this.showCard,true);
+                this.showCard = this.hoveredCard.makeStatEquivalentCopy();
+                CustomHelper.custom(this.showCard,this.customModifier.get(1).get(this.customCount.get(1)));
+            }
+            if (this.customEffectLength>2&&this.customCount.get(2)<this.customLimit.get(2)&&this.hb3.clicked) {
+                this.hb3.clicked = false;
+                CardCrawlGame.sound.play("UI_CLICK_1");
+                this.isClick[0] = false;
+                this.isClick[1] = false;
+                this.isClick[2] = true;
+                this.currentEffectIndex = 2;
+                CardModifierManager.removeAllModifiers(this.showCard,true);
+                this.showCard = this.hoveredCard.makeStatEquivalentCopy();
+                CustomHelper.custom(this.showCard,this.customModifier.get(2).get(this.customCount.get(2)));
+            }
 
             if (true)
-                this.selectCard.update();
+                this.showCard.update();
             if (true) {
-                this.selectCard.drawScale = 1.0F;
+                this.showCard.drawScale = 1.0F;
                 this.hoveredCard.update();
                 this.hoveredCard.drawScale = 1.0F;
             }
             if (this.confirmButton.hb.clicked || CInputActionSet.topPanel.isJustPressed()) {
                 CInputActionSet.select.unpress();
                 this.confirmButton.hb.clicked = false;
-                AbstractDungeon.overlayMenu.cancelButton.hide();
-                CustomHelper.custom(this.hoveredCard, DamageCustom.growID,20);
-                this.confirmScreenUp = false;
-                this.selectedCards.add(this.hoveredCard);
-                AbstractDungeon.closeCurrentScreen();
+                if(((GkmasCard)(this.hoveredCard)).customLimit-this.customTotal>0){
+                    if(this.customCount.get(this.currentEffectIndex)<this.customLimit.get(this.currentEffectIndex)){
+                        if(AbstractDungeon.player.gold>=this.customPrice.get(this.currentEffectIndex).get(this.customCount.get(this.currentEffectIndex))){
+                            this.usedCustomEffect = true;
+                            AbstractDungeon.player.loseGold(this.customPrice.get(this.currentEffectIndex).get(this.customCount.get(this.currentEffectIndex)));
+                            this.customCount.set(this.currentEffectIndex,this.customCount.get(this.currentEffectIndex)+1);
+                            this.customTotal++;
+                            CustomHelper.custom(this.hoveredCard,this.customModifier.get(this.currentEffectIndex).get(this.customCount.get(this.currentEffectIndex)-1));
+                            boolean hasCustomTimeCount = false;
+                            for(AbstractCardModifier mod: CardModifierManager.modifiers(this.hoveredCard)){
+                                if (mod instanceof CustomTimeCount){
+                                    CustomTimeCount tmp = (CustomTimeCount)mod;
+                                    tmp.increaseCount(this.currentEffectIndex);
+                                    hasCustomTimeCount = true;
+                                    System.out.println("Total:"+tmp.getTotalCount());
+                                    System.out.println(tmp.toString());
+                                }
+                            }
+                            if(!hasCustomTimeCount){
+                                CustomTimeCount tmp = new CustomTimeCount(0);
+                                tmp.increaseCount(this.currentEffectIndex);
+                                CardModifierManager.addModifier(this.hoveredCard,tmp);
+                                System.out.println("Total2:"+tmp.getTotalCount());
+                                System.out.println(tmp.toString());
+                            }
+
+                            if(this.customCount.get(this.currentEffectIndex)<this.customLimit.get(this.currentEffectIndex)){
+                                CardModifierManager.removeAllModifiers(this.showCard,true);
+                                this.showCard = this.hoveredCard.makeStatEquivalentCopy();
+                                CustomHelper.custom(this.showCard,this.customModifier.get(this.currentEffectIndex).get(this.customCount.get(this.currentEffectIndex)));
+                            }
+                        }
+                    }
+                }
+//                AbstractDungeon.overlayMenu.cancelButton.hide();
+//                this.confirmScreenUp = false;
+//                this.selectedCards.add(this.hoveredCard);
+//                AbstractDungeon.closeCurrentScreen();
             }
         }
         if (Settings.isControllerMode)
-            if (this.selectCard != null) {
-                CInputHelper.setCursor(this.selectCard.hb);
+            if (this.showCard != null) {
+                CInputHelper.setCursor(this.showCard.hb);
             } else if (this.controllerCard != null) {
                 CInputHelper.setCursor(this.controllerCard.hb);
             }
+        if (InputHelper.justClickedLeft) {
+            if (this.hb1.hovered) {
+                this.hb1.clickStarted = true;
+            }
+            if (this.hb2.hovered) {
+                this.hb2.clickStarted = true;
+            }
+            if (this.hb3.hovered) {
+                this.hb3.clickStarted = true;
+            }
+        }
     }
 
     private void updatePeekButton() {
@@ -301,7 +374,7 @@ public class SpecialTeachScreen extends CustomScreen implements ScrollBarListene
     }
 
     private void updateControllerInput() {
-        if (!Settings.isControllerMode || this.selectCard != null)
+        if (!Settings.isControllerMode || this.showCard != null)
             return;
         boolean anyHovered = false;
         int index = 0;
@@ -313,7 +386,7 @@ public class SpecialTeachScreen extends CustomScreen implements ScrollBarListene
             index++;
         }
         if (!anyHovered && this.controllerCard == null) {
-            CInputHelper.setCursor(((AbstractCard)this.targetGroup.group.get(0)).hb);
+            CInputHelper.setCursor((this.targetGroup.group.get(0)).hb);
             this.controllerCard = this.targetGroup.group.get(0);
         } else if ((CInputActionSet.up.isJustPressed() || CInputActionSet.altUp.isJustPressed()) && this.targetGroup
                 .size() > 5) {
@@ -326,7 +399,7 @@ public class SpecialTeachScreen extends CustomScreen implements ScrollBarListene
             } else {
                 index -= 5;
             }
-            CInputHelper.setCursor(((AbstractCard)this.targetGroup.group.get(index)).hb);
+            CInputHelper.setCursor((this.targetGroup.group.get(index)).hb);
             this.controllerCard = this.targetGroup.group.get(index);
         } else if ((CInputActionSet.down.isJustPressed() || CInputActionSet.altDown.isJustPressed()) && this.targetGroup
                 .size() > 5) {
@@ -335,7 +408,7 @@ public class SpecialTeachScreen extends CustomScreen implements ScrollBarListene
             } else {
                 index %= 5;
             }
-            CInputHelper.setCursor(((AbstractCard)this.targetGroup.group.get(index)).hb);
+            CInputHelper.setCursor((this.targetGroup.group.get(index)).hb);
             this.controllerCard = this.targetGroup.group.get(index);
         } else if (CInputActionSet.left.isJustPressed() || CInputActionSet.altLeft.isJustPressed()) {
             if (index % 5 > 0) {
@@ -345,7 +418,7 @@ public class SpecialTeachScreen extends CustomScreen implements ScrollBarListene
                 if (index > this.targetGroup.size() - 1)
                     index = this.targetGroup.size() - 1;
             }
-            CInputHelper.setCursor(((AbstractCard)this.targetGroup.group.get(index)).hb);
+            CInputHelper.setCursor((this.targetGroup.group.get(index)).hb);
             this.controllerCard = this.targetGroup.group.get(index);
         } else if (CInputActionSet.right.isJustPressed() || CInputActionSet.altRight.isJustPressed()) {
             if (index % 5 < 4) {
@@ -359,7 +432,7 @@ public class SpecialTeachScreen extends CustomScreen implements ScrollBarListene
             }
             if (index > this.targetGroup.group.size() - 1)
                 index = 0;
-            CInputHelper.setCursor(((AbstractCard)this.targetGroup.group.get(index)).hb);
+            CInputHelper.setCursor((this.targetGroup.group.get(index)).hb);
             this.controllerCard = this.targetGroup.group.get(index);
         }
     }
@@ -372,36 +445,36 @@ public class SpecialTeachScreen extends CustomScreen implements ScrollBarListene
                     (this.targetGroup.getBottomCard()).target_x = Settings.WIDTH / 2.0F;
                     break;
                 case 2:
-                    ((AbstractCard)this.targetGroup.group.get(0)).current_x = Settings.WIDTH / 2.0F - padX / 2.0F;
-                    ((AbstractCard)this.targetGroup.group.get(0)).target_x = Settings.WIDTH / 2.0F - padX / 2.0F;
-                    ((AbstractCard)this.targetGroup.group.get(1)).current_x = Settings.WIDTH / 2.0F + padX / 2.0F;
-                    ((AbstractCard)this.targetGroup.group.get(1)).target_x = Settings.WIDTH / 2.0F + padX / 2.0F;
+                    (this.targetGroup.group.get(0)).current_x = Settings.WIDTH / 2.0F - padX / 2.0F;
+                    (this.targetGroup.group.get(0)).target_x = Settings.WIDTH / 2.0F - padX / 2.0F;
+                    (this.targetGroup.group.get(1)).current_x = Settings.WIDTH / 2.0F + padX / 2.0F;
+                    (this.targetGroup.group.get(1)).target_x = Settings.WIDTH / 2.0F + padX / 2.0F;
                     break;
                 case 3:
-                    ((AbstractCard)this.targetGroup.group.get(0)).current_x = drawStartX + padX;
-                    ((AbstractCard)this.targetGroup.group.get(1)).current_x = drawStartX + padX * 2.0F;
-                    ((AbstractCard)this.targetGroup.group.get(2)).current_x = drawStartX + padX * 3.0F;
-                    ((AbstractCard)this.targetGroup.group.get(0)).target_x = drawStartX + padX;
-                    ((AbstractCard)this.targetGroup.group.get(1)).target_x = drawStartX + padX * 2.0F;
-                    ((AbstractCard)this.targetGroup.group.get(2)).target_x = drawStartX + padX * 3.0F;
+                    (this.targetGroup.group.get(0)).current_x = drawStartX + padX;
+                    (this.targetGroup.group.get(1)).current_x = drawStartX + padX * 2.0F;
+                    (this.targetGroup.group.get(2)).current_x = drawStartX + padX * 3.0F;
+                    (this.targetGroup.group.get(0)).target_x = drawStartX + padX;
+                    (this.targetGroup.group.get(1)).target_x = drawStartX + padX * 2.0F;
+                    (this.targetGroup.group.get(2)).target_x = drawStartX + padX * 3.0F;
                     break;
                 case 4:
-                    ((AbstractCard)this.targetGroup.group.get(0)).current_x = Settings.WIDTH / 2.0F - padX / 2.0F - padX;
-                    ((AbstractCard)this.targetGroup.group.get(0)).target_x = Settings.WIDTH / 2.0F - padX / 2.0F - padX;
-                    ((AbstractCard)this.targetGroup.group.get(1)).current_x = Settings.WIDTH / 2.0F - padX / 2.0F;
-                    ((AbstractCard)this.targetGroup.group.get(1)).target_x = Settings.WIDTH / 2.0F - padX / 2.0F;
-                    ((AbstractCard)this.targetGroup.group.get(2)).current_x = Settings.WIDTH / 2.0F + padX / 2.0F;
-                    ((AbstractCard)this.targetGroup.group.get(2)).target_x = Settings.WIDTH / 2.0F + padX / 2.0F;
-                    ((AbstractCard)this.targetGroup.group.get(3)).current_x = Settings.WIDTH / 2.0F + padX / 2.0F + padX;
-                    ((AbstractCard)this.targetGroup.group.get(3)).target_x = Settings.WIDTH / 2.0F + padX / 2.0F + padX;
+                    (this.targetGroup.group.get(0)).current_x = Settings.WIDTH / 2.0F - padX / 2.0F - padX;
+                    (this.targetGroup.group.get(0)).target_x = Settings.WIDTH / 2.0F - padX / 2.0F - padX;
+                    (this.targetGroup.group.get(1)).current_x = Settings.WIDTH / 2.0F - padX / 2.0F;
+                    (this.targetGroup.group.get(1)).target_x = Settings.WIDTH / 2.0F - padX / 2.0F;
+                    (this.targetGroup.group.get(2)).current_x = Settings.WIDTH / 2.0F + padX / 2.0F;
+                    (this.targetGroup.group.get(2)).target_x = Settings.WIDTH / 2.0F + padX / 2.0F;
+                    (this.targetGroup.group.get(3)).current_x = Settings.WIDTH / 2.0F + padX / 2.0F + padX;
+                    (this.targetGroup.group.get(3)).target_x = Settings.WIDTH / 2.0F + padX / 2.0F + padX;
                     break;
             }
             ArrayList<AbstractCard> c2 = this.targetGroup.group;
             for (int j = 0; j < c2.size(); j++) {
-                ((AbstractCard)c2.get(j)).target_y = drawStartY + this.currentDiffY;
-                ((AbstractCard)c2.get(j)).fadingOut = false;
-                ((AbstractCard)c2.get(j)).update();
-                ((AbstractCard)c2.get(j)).updateHoverLogic();
+                (c2.get(j)).target_y = drawStartY + this.currentDiffY;
+                (c2.get(j)).fadingOut = false;
+                (c2.get(j)).update();
+                (c2.get(j)).updateHoverLogic();
                 this.hoveredCard = null;
                 for (AbstractCard c : c2) {
                     if (c.hb.hovered)
@@ -416,11 +489,11 @@ public class SpecialTeachScreen extends CustomScreen implements ScrollBarListene
             int mod = i % 5;
             if (mod == 0 && i != 0)
                 lineNum++;
-            ((AbstractCard)cards.get(i)).target_x = drawStartX + mod * padX;
-            ((AbstractCard)cards.get(i)).target_y = drawStartY + this.currentDiffY - lineNum * padY;
-            ((AbstractCard)cards.get(i)).fadingOut = false;
-            ((AbstractCard)cards.get(i)).update();
-            ((AbstractCard)cards.get(i)).updateHoverLogic();
+            (cards.get(i)).target_x = drawStartX + mod * padX;
+            (cards.get(i)).target_y = drawStartY + this.currentDiffY - lineNum * padY;
+            (cards.get(i)).fadingOut = false;
+            (cards.get(i)).update();
+            (cards.get(i)).updateHoverLogic();
             this.hoveredCard = null;
             for (AbstractCard c : cards) {
                 if (c.hb.hovered)
@@ -464,11 +537,11 @@ public class SpecialTeachScreen extends CustomScreen implements ScrollBarListene
 
     @Override
     public void reopen() {
-        System.out.println("Reopen");
         if (Settings.isControllerMode) {
             Gdx.input.setCursorPosition(10, Settings.HEIGHT / 2);
             this.controllerCard = null;
         }
+        this.usedCustomEffect = false;
         this.confirmScreenUp = false;
         this.isJustForConfirming = false;
         AbstractDungeon.overlayMenu.proceedButton.hide();
@@ -513,7 +586,10 @@ public class SpecialTeachScreen extends CustomScreen implements ScrollBarListene
         AbstractDungeon.isScreenUp = false;
         GkmasMod.screenIndex = 0;
         AbstractDungeon.overlayMenu.hideBlackScreen();
-        r.campfireUI.reopen();
+        if(!this.usedCustomEffect) {
+            r.campfireUI.reopen();
+        }
+
         (AbstractDungeon.getCurrRoom()).phase = AbstractRoom.RoomPhase.COMPLETE;
     }
 
@@ -580,31 +656,41 @@ public class SpecialTeachScreen extends CustomScreen implements ScrollBarListene
         int lineNum = 0;
         ArrayList<AbstractCard> cards = this.targetGroup.group;
         for (int i = 0; i < cards.size(); i++) {
-            ((AbstractCard)cards.get(i)).setAngle(0.0F, true);
+            (cards.get(i)).setAngle(0.0F, true);
             int mod = i % 5;
             if (mod == 0 && i != 0)
                 lineNum++;
-            ((AbstractCard)cards.get(i)).lighten(true);
-            ((AbstractCard)cards.get(i)).current_x = drawStartX + mod * padX;
-            ((AbstractCard)cards.get(i)).current_y = drawStartY + this.currentDiffY - lineNum * padY - MathUtils.random(100.0F * Settings.scale, 200.0F * Settings.scale);
-            ((AbstractCard)cards.get(i)).targetDrawScale = 0.75F;
-            ((AbstractCard)cards.get(i)).drawScale = 0.75F;
+            (cards.get(i)).lighten(true);
+            (cards.get(i)).current_x = drawStartX + mod * padX;
+            (cards.get(i)).current_y = drawStartY + this.currentDiffY - lineNum * padY - MathUtils.random(100.0F * Settings.scale, 200.0F * Settings.scale);
+            (cards.get(i)).targetDrawScale = 0.75F;
+            (cards.get(i)).drawScale = 0.75F;
         }
     }
 
     public void cancelUpgrade() {
+        if(this.usedCustomEffect){
+//            AbstractDungeon.overlayMenu.cancelButton.hide();
+            this.confirmScreenUp = false;
+        }
         GkmasMod.screenIndex = 2;
         this.cardSelectAmount = 0;
         this.confirmScreenUp = false;
         this.confirmButton.hide();
         this.confirmButton.isDisabled = true;
         this.hoveredCard = null;
-        this.selectCard = null;
+        CardModifierManager.removeAllModifiers(this.showCard,true);
+        this.showCard = null;
+        this.isClick[0] = false;
+        this.isClick[1] = false;
+        this.isClick[2] = false;
         if (Settings.isControllerMode && this.controllerCard != null) {
             this.hoveredCard = this.controllerCard;
             CInputHelper.setCursor(this.hoveredCard.hb);
         }
-        AbstractDungeon.overlayMenu.cancelButton.show(TEXT[1]);
+        if(!this.usedCustomEffect){
+            AbstractDungeon.overlayMenu.cancelButton.show(TEXT[1]);
+        }
         int lineNum = 0;
         ArrayList<AbstractCard> cards = this.targetGroup.group;
         for (int i = 0; i < cards.size(); i++) {
@@ -618,13 +704,46 @@ public class SpecialTeachScreen extends CustomScreen implements ScrollBarListene
     }
 
     public void renderCustomOption(SpriteBatch sb){
-        sb.draw(ImageMaster.CHECKBOX, this.hb1.cX - 32.0F, this.hb1.cY - 32.0F, 32.0F, 32.0F, 64.0F, 64.0F, Settings.scale * 0.9F, Settings.scale * 0.9F, 0.0F, 0, 0, 64, 64, false, false);
-        sb.draw(ImageMaster.CHECKBOX, this.hb2.cX - 32.0F, this.hb2.cY - 32.0F, 32.0F, 32.0F, 64.0F, 64.0F, Settings.scale * 0.9F, Settings.scale * 0.9F, 0.0F, 0, 0, 64, 64, false, false);
-        sb.draw(ImageMaster.CHECKBOX, this.hb3.cX - 32.0F, this.hb3.cY - 32.0F, 32.0F, 32.0F, 64.0F, 64.0F, Settings.scale * 0.9F, Settings.scale * 0.9F, 0.0F, 0, 0, 64, 64, false, false);
+        FontHelper.renderFontCentered(sb, FontHelper.buttonLabelFont, String.format(TEXT[5],((GkmasCard)(this.hoveredCard)).customLimit-this.customTotal), Settings.WIDTH/2, Settings.HEIGHT/2+300*Settings.scale, Settings.GOLD_COLOR);
 
+        if(this.customEffectLength>0&&this.customCount.get(0)<this.customLimit.get(0)){
+            this.hb1.render(sb);
+            if(this.isClick[0])
+                sb.draw(ImageMaster.OPTION_TOGGLE_ON, this.hb1.cX - 32.0F, this.hb1.cY - 32.0F, 32.0F, 32.0F, 64.0F, 64.0F, Settings.scale * 0.9F, Settings.scale * 0.9F, 0.0F, 0, 0, 64, 64, false, false);
+            else
+                sb.draw(ImageMaster.OPTION_TOGGLE, this.hb1.cX - 32.0F, this.hb1.cY - 32.0F, 32.0F, 32.0F, 64.0F, 64.0F, Settings.scale * 0.9F, Settings.scale * 0.9F, 0.0F, 0, 0, 64, 64, false, false);
+            FontHelper.renderFontCentered(sb, FontHelper.blockInfoFont, String.format(TEXT[4],this.customLimit.get(0)-this.customCount.get(0)), this.hb1.cX+100 * Settings.scale, this.hb1.cY+50, Settings.CREAM_COLOR);
+            FontHelper.renderFontCentered(sb, FontHelper.buttonLabelFont, this.customDescription.get(0).get(this.customCount.get(0)), this.hb1.cX+100 * Settings.scale, this.hb1.cY, Settings.CREAM_COLOR);
+            sb.draw(ImageMaster.UI_GOLD, this.hb1.cX +40.0F * Settings.scale, this.hb1.cY - 80.0F * Settings.scale, ImageMaster.UI_GOLD.getWidth() * Settings.scale, ImageMaster.UI_GOLD.getWidth() * Settings.scale);
+            FontHelper.renderFontCentered(sb, FontHelper.buttonLabelFont, String.valueOf(this.customPrice.get(0).get(this.customCount.get(0))), this.hb1.cX+110.0F * Settings.scale, this.hb1.cY-50* Settings.scale, Settings.GOLD_COLOR);
+        }
+        if(this.customEffectLength>1&&this.customCount.get(1)<this.customLimit.get(1)){
+            this.hb2.render(sb);
+            if(this.isClick[1])
+                sb.draw(ImageMaster.OPTION_TOGGLE_ON, this.hb2.cX - 32.0F, this.hb2.cY - 32.0F, 32.0F, 32.0F, 64.0F, 64.0F, Settings.scale * 0.9F, Settings.scale * 0.9F, 0.0F, 0, 0, 64, 64, false, false);
+            else
+                sb.draw(ImageMaster.OPTION_TOGGLE, this.hb2.cX - 32.0F, this.hb2.cY - 32.0F, 32.0F, 32.0F, 64.0F, 64.0F, Settings.scale * 0.9F, Settings.scale * 0.9F, 0.0F, 0, 0, 64, 64, false, false);
+            FontHelper.renderFontCentered(sb, FontHelper.blockInfoFont, String.format(TEXT[4],this.customLimit.get(1)-this.customCount.get(1)), this.hb2.cX+100 * Settings.scale, this.hb2.cY+50, Settings.CREAM_COLOR);
+            FontHelper.renderFontCentered(sb, FontHelper.buttonLabelFont, this.customDescription.get(1).get(this.customCount.get(1)), this.hb2.cX+100 * Settings.scale, this.hb2.cY, Settings.CREAM_COLOR);
+            sb.draw(ImageMaster.UI_GOLD, this.hb2.cX +40.0F * Settings.scale, this.hb2.cY - 80.0F * Settings.scale, ImageMaster.UI_GOLD.getWidth() * Settings.scale, ImageMaster.UI_GOLD.getWidth() * Settings.scale);
+            FontHelper.renderFontCentered(sb, FontHelper.buttonLabelFont, String.valueOf(this.customPrice.get(1).get(this.customCount.get(1))), this.hb2.cX+110.0F * Settings.scale, this.hb2.cY-50* Settings.scale, Settings.GOLD_COLOR);
+        }
+        if(this.customEffectLength>2&&this.customCount.get(2)<this.customLimit.get(2)){
+            this.hb3.render(sb);
+            if(this.isClick[2])
+                sb.draw(ImageMaster.OPTION_TOGGLE_ON, this.hb3.cX - 32.0F, this.hb3.cY - 32.0F, 32.0F, 32.0F, 64.0F, 64.0F, Settings.scale * 0.9F, Settings.scale * 0.9F, 0.0F, 0, 0, 64, 64, false, false);
+            else
+                sb.draw(ImageMaster.OPTION_TOGGLE, this.hb3.cX - 32.0F, this.hb3.cY - 32.0F, 32.0F, 32.0F, 64.0F, 64.0F, Settings.scale * 0.9F, Settings.scale * 0.9F, 0.0F, 0, 0, 64, 64, false, false);
+            FontHelper.renderFontCentered(sb, FontHelper.blockInfoFont, String.format(TEXT[4],this.customLimit.get(2)-this.customCount.get(2)), this.hb3.cX+100 * Settings.scale, this.hb3.cY+50, Settings.CREAM_COLOR);
+            FontHelper.renderFontCentered(sb, FontHelper.buttonLabelFont, this.customDescription.get(2).get(this.customCount.get(2)), this.hb3.cX+100 * Settings.scale, this.hb3.cY, Settings.CREAM_COLOR);
+            sb.draw(ImageMaster.UI_GOLD, this.hb3.cX +40.0F * Settings.scale, this.hb3.cY - 80.0F * Settings.scale, ImageMaster.UI_GOLD.getWidth() * Settings.scale, ImageMaster.UI_GOLD.getWidth() * Settings.scale);
+            FontHelper.renderFontCentered(sb, FontHelper.buttonLabelFont, String.valueOf(this.customPrice.get(2).get(this.customCount.get(2))), this.hb3.cX+110.0F * Settings.scale, this.hb3.cY-50* Settings.scale, Settings.GOLD_COLOR);
+        }
     }
 
     public void render(SpriteBatch sb) {
+        sb.setColor(Color.WHITE);
+        sb.draw(this.background, 0.0F, 0.0F);
         if (shouldShowScrollBar())
             this.scrollBar.render(sb);
         if (!PeekButton.isPeeking)
@@ -678,8 +797,10 @@ public class SpecialTeachScreen extends CustomScreen implements ScrollBarListene
                 this.targetGroup.renderShowBottled(sb);
             }
         if (this.confirmScreenUp) {
-            sb.setColor(new Color(0.0F, 0.0F, 0.0F, 0.8F));
+            sb.setColor(new Color(0.0F, 0.0F, 0.0F, 0.6F));
+//            sb.draw(this.background, 0.0F, 0.0F);
             sb.draw(ImageMaster.WHITE_SQUARE_IMG, 0.0F, 0.0F, Settings.WIDTH, Settings.HEIGHT - 64.0F * Settings.scale);
+            sb.setColor(new Color(0.0F, 0.0F, 0.0F, 0.8F));
             renderArrows(sb);
             this.hoveredCard.current_x = Settings.WIDTH * 0.36F;
             this.hoveredCard.current_y = Settings.HEIGHT / 2.0F;
@@ -688,13 +809,13 @@ public class SpecialTeachScreen extends CustomScreen implements ScrollBarListene
             this.hoveredCard.render(sb);
             this.hoveredCard.updateHoverLogic();
             this.hoveredCard.renderCardTip(sb);
-            this.selectCard.current_x = Settings.WIDTH * 0.63F;
-            this.selectCard.current_y = Settings.HEIGHT / 2.0F;
-            this.selectCard.target_x = Settings.WIDTH * 0.63F;
-            this.selectCard.target_y = Settings.HEIGHT / 2.0F;
-            this.selectCard.render(sb);
-            this.selectCard.updateHoverLogic();
-            this.selectCard.renderCardTip(sb);
+            this.showCard.current_x = Settings.WIDTH * 0.63F;
+            this.showCard.current_y = Settings.HEIGHT / 2.0F;
+            this.showCard.target_x = Settings.WIDTH * 0.63F;
+            this.showCard.target_y = Settings.HEIGHT / 2.0F;
+            this.showCard.render(sb);
+            this.showCard.updateHoverLogic();
+            this.showCard.renderCardTip(sb);
             this.renderCustomOption(sb);
         }
         if (!PeekButton.isPeeking)

@@ -1,6 +1,7 @@
 package gkmasmod.cards.hmsz;
 
 import com.megacrit.cardcrawl.actions.common.GainBlockAction;
+import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -30,7 +31,7 @@ public class PillowBlock extends GkmasCard {
     private static final CardType TYPE = CardType.SKILL;
     private static final CardColor COLOR = PlayerColorEnum.gkmasModColorMisuzu;
     private static final CardRarity RARITY = CardRarity.COMMON;
-    private static final CardTarget TARGET = CardTarget.ENEMY;
+    private static final CardTarget TARGET = CardTarget.SELF;
 
     public PillowBlock() {
         super(ID, NAME, ImageHelper.getCardImgPath(CLASSNAME,TYPE), COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
@@ -40,6 +41,8 @@ public class PillowBlock extends GkmasCard {
 
     public void use(AbstractPlayer p, AbstractMonster m) {
         int amount = PlayerHelper.getPowerAmount(p, WantToSleep.POWER_ID);
+        amount/=1;
+        addToBot(new RemoveSpecificPowerAction(p, p, WantToSleep.POWER_ID));
         for (int i = 0; i < amount; i++) {
             addToBot(new GainBlockAction(p, p, this.block));
         }

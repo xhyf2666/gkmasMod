@@ -10,12 +10,18 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.BarricadePower;
 import com.megacrit.cardcrawl.powers.DexterityPower;
+import gkmasmod.cardCustomEffect.CostCustom;
+import gkmasmod.cardCustomEffect.MagicCustom;
+import gkmasmod.cardCustomEffect.SelfRetainCustom;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.powers.Uplifting;
+import gkmasmod.utils.CustomHelper;
 import gkmasmod.utils.NameHelper;
 import gkmasmod.utils.PlayerHelper;
+
+import java.util.ArrayList;
 
 public class WeAreSoStrong extends GkmasCard {
     private static final String CLASSNAME = WeAreSoStrong.class.getSimpleName();
@@ -41,14 +47,18 @@ public class WeAreSoStrong extends GkmasCard {
         super(ID, NAME, IMG_PATH, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.isEthereal = true;
         this.baseMagicNumber = this.magicNumber = MAGIC;
-        this.tags.add(GkmasCardTag.YARUKI_TAG);
+        this.tags.add(GkmasCardTag.COST_POWER_TAG);
+        this.customLimit = 1;
+        this.customEffectList = new ArrayList<>();
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(MagicCustom.growID,new int[]{50},new int[]{80},CustomHelper.CustomEffectType.RATE_ADD));
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(CostCustom.growID, new int[]{-1}, new int[]{70}, CustomHelper.CustomEffectType.ENERGY_COST_REDUCE));
     }
 
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
         int count = PlayerHelper.getPowerAmount(p, DexterityPower.POWER_ID);
-        count = (int) (1.0f*MAGIC*count/100);
+        count = (int) (1.0f*this.magicNumber*count/100);
         addToBot(new RemoveSpecificPowerAction(p, p, DexterityPower.POWER_ID));
         if(count > 0) {
             addToBot(new ApplyPowerAction(p,p,new Uplifting(p,count)));
@@ -71,6 +81,4 @@ public class WeAreSoStrong extends GkmasCard {
             this.initializeDescription();
         }
     }
-
-
 }

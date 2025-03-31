@@ -26,7 +26,7 @@ public class SpecialTeachOption extends AbstractCampfireOption {
     public void useOption() {
         if (this.usable) {
             AbstractDungeon.effectList.add(new SpecialTeachEffect());
-            this.usable = false;
+//            this.usable = false;
         }
     }
 }

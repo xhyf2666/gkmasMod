@@ -11,7 +11,9 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.powers.BarricadePower;
 import gkmasmod.patches.AbstractMonsterPatch;
+import gkmasmod.powers.FriendRinhaPower1;
 import gkmasmod.powers.FriendTemariPower1;
+import gkmasmod.powers.FriendTemariPower2;
 
 public class FriendTemari extends CustomMonster {
 
@@ -36,9 +38,11 @@ public class FriendTemari extends CustomMonster {
     public FriendTemari(float x, float y, int stage) {
         super(NAME, ID, MAX_HEALTH, -8.0F, 0.0F, 120.0F, 120.0F, null, x, y);
         this.stage = stage;
-        this.drawX = (float) Settings.WIDTH * 0.1F+ x;
+        this.drawX = (float) Settings.WIDTH * 0.10F+ x;
+        this.drawY = (float)Settings.HEIGHT * 0.35F + y;
         AbstractMonsterPatch.friendlyField.friendly.set(this,true);
         addToBot(new ApplyPowerAction(this,this,new FriendTemariPower1(this)));
+        addToBot(new ApplyPowerAction(this,this,new FriendTemariPower2(this)));
         this.img = new Texture(String.format("gkmasModResource/img/monsters/other/FriendTemari%s.png",stage));
     }
 
@@ -54,7 +58,10 @@ public class FriendTemari extends CustomMonster {
 
     @Override
     public void damage(DamageInfo info) {
-        if(info.owner.isPlayer){
+        if(info.owner!=null&&info.owner.isPlayer&&AbstractMonsterPatch.friendlyField.friendly.get(this)){
+            return;
+        }
+        if(info.owner==null){
             return;
         }
         super.damage(info);

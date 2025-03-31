@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
+import gkmasmod.modcore.GkmasMod;
 import gkmasmod.utils.NameHelper;
 
 public class AnotherTurnPower extends AbstractPower {
@@ -52,6 +53,10 @@ public class AnotherTurnPower extends AbstractPower {
         flash();
         AbstractDungeon.getCurrRoom().skipMonsterTurn = true;
         addToBot(new ReducePowerAction(this.owner, this.owner, AnotherTurnPower.POWER_ID, 1));
+
+//        if(AbstractDungeon.player.hasPower(TrainRoundLogicPower.POWER_ID)){
+//            GkmasMod.loseBlock = true;
+//        }
     }
 
     // 能力在更新时如何修改描述

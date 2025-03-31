@@ -59,7 +59,6 @@ public class CBR_UltimateSourceOfHappiness extends AbstractCharbossRelic {
                 addToBot(new ApplyPowerAction(AbstractCharBoss.boss, AbstractCharBoss.boss, new GoodTune(AbstractCharBoss.boss, magicNumber), magicNumber));
                 addToBot(new GainBlockWithPowerAction(AbstractCharBoss.boss,AbstractCharBoss.boss,magicNumber2));
         }
-
     }
 
     public void atBattleStart() {

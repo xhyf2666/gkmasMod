@@ -30,7 +30,7 @@ public class JustAngel extends GkmasCard {
 
     private static final int COST = 1;
 
-    private static final int BLOCK_AMT = 5;
+    private static final int BLOCK_AMT = 3;
     private static final int UPGRADE_PLUS_BLOCK = 2;
 
     private static final CardType TYPE = CardType.SKILL;
@@ -51,7 +51,6 @@ public class JustAngel extends GkmasCard {
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
         addToBot(new GainBlockAction(p,p,this.block));
-//        addToBot(new GainTrainRoundPowerAction(p,1));
     }
 
     @Override

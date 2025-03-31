@@ -1,5 +1,8 @@
 package gkmasmod.powers;
 
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.vfx.SpeechBubble;
+import gkmasmod.characters.IdolCharacter;
 import gkmasmod.downfall.charbosses.actions.common.EnemyGainEnergyAction;
 import gkmasmod.downfall.charbosses.bosses.AbstractCharBoss;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
@@ -13,6 +16,8 @@ import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import gkmasmod.downfall.relics.CBR_ProducerPhone;
 import gkmasmod.relics.ProducerPhone;
+import gkmasmod.screen.SkinSelectScreen;
+import gkmasmod.utils.IdolData;
 import gkmasmod.utils.NameHelper;
 
 public class CallMeAnyTimePower extends AbstractPower {
@@ -29,11 +34,12 @@ public class CallMeAnyTimePower extends AbstractPower {
     String path128 = String.format("gkmasModResource/img/powers/%s_84.png",CLASSNAME);;
     String path48 = String.format("gkmasModResource/img/powers/%s_32.png",CLASSNAME);;
 
-    public CallMeAnyTimePower(AbstractCreature owner) {
+    public CallMeAnyTimePower(AbstractCreature owner,int amount) {
         this.name = NAME;
         this.ID = POWER_ID;
         this.owner = owner;
         this.type = PowerType.BUFF;
+        this.amount = amount;
 
         // 添加一大一小两张能力图
         this.region128 = new TextureAtlas.AtlasRegion(ImageMaster.loadImage(path128), 0, 0, 84, 84);
@@ -45,36 +51,45 @@ public class CallMeAnyTimePower extends AbstractPower {
 
     // 能力在更新时如何修改描述
     public void updateDescription() {
-        this.description = String.format(DESCRIPTIONS[0],1);
+        this.description = String.format(DESCRIPTIONS[0],this.amount);
     }
-
 
     @Override
     public void atStartOfTurnPostDraw() {
         if(this.owner.isPlayer){
+            for(AbstractMonster mo:AbstractDungeon.getCurrRoom().monsters.monsters){
+                if(!mo.isDeadOrEscaped()&&mo.hasPower(NoPhoneInClassPower.POWER_ID)){
+                    if(AbstractDungeon.player instanceof IdolCharacter){
+                        if(SkinSelectScreen.Inst.idolName.equals(IdolData.ttmr)){
+                            AbstractDungeon.effectList.add(new SpeechBubble(this.owner.hb.cX + this.owner.dialogX - 50, this.owner.hb.cY + this.owner.dialogY + 50, 3.0F, String.format(CardCrawlGame.languagePack.getMonsterStrings("gkmasMod:MonsterAsari").DIALOG[3],CardCrawlGame.playerName), false));
+                        }
+                    }
+                    return;
+                }
+            }
             float amount = 1.0F * this.owner.currentHealth /  this.owner.maxHealth;
             if(amount >=0.5f){
-                addToBot(new GainEnergyAction(1));
+                addToBot(new GainEnergyAction(this.amount));
             }
             else{
-                addToBot(new ApplyPowerAction(this.owner,this.owner,new HalfDamageReceive(this.owner,1),1));
+                addToBot(new ApplyPowerAction(this.owner,this.owner,new HalfDamageReceive(this.owner,this.amount),this.amount));
             }
             if(AbstractDungeon.player.hasRelic(ProducerPhone.ID)){
                 AbstractDungeon.player.getRelic(ProducerPhone.ID).flash();
-                AbstractDungeon.player.getRelic(ProducerPhone.ID).counter++;
+                AbstractDungeon.player.getRelic(ProducerPhone.ID).counter+=this.amount;
             }
         }
         else if(this.owner instanceof AbstractCharBoss){
             float amount = 1.0F * this.owner.currentHealth /  this.owner.maxHealth;
             if(amount >=0.5f){
-                addToBot(new EnemyGainEnergyAction(1));
+                addToBot(new EnemyGainEnergyAction(this.amount));
             }
             else{
-                addToBot(new ApplyPowerAction(this.owner,this.owner,new HalfDamageReceive(this.owner,1),1));
+                addToBot(new ApplyPowerAction(this.owner,this.owner,new HalfDamageReceive(this.owner,this.amount),this.amount));
             }
             if(AbstractCharBoss.boss.hasRelic(CBR_ProducerPhone.ID2)){
                 AbstractCharBoss.boss.getRelic(CBR_ProducerPhone.ID2).flash();
-                AbstractCharBoss.boss.getRelic(CBR_ProducerPhone.ID2).counter++;
+                AbstractCharBoss.boss.getRelic(CBR_ProducerPhone.ID2).counter+=this.amount;
             }
         }
     }

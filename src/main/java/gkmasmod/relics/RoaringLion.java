@@ -30,50 +30,43 @@ public class RoaringLion extends CustomRelic {
 
     private static final int GOOD_TUNE = 0;
 
-    private static final  int playTimes = 1;
+//    private static final  int playTimes = 1;
 
     public RoaringLion() {
         super(ID, ImageMaster.loadImage(IMG), ImageMaster.loadImage(IMG_OTL), RARITY, LandingSound.CLINK);
     }
 
 
-    @Override
-    public void onVictory() {
-        this.counter = playTimes;
-    }
+//    @Override
+//    public void onVictory() {
+//        this.counter = playTimes;
+//    }
 
     @Override
     public String getUpdatedDescription() {
-        return String.format(this.DESCRIPTIONS[0],magicNumber,playTimes);
+        return String.format(this.DESCRIPTIONS[0],magicNumber);
     }
 
     @Override
     public AbstractRelic makeCopy() {
-        return (AbstractRelic)new RoaringLion();
+        return new RoaringLion();
     }
 
 
     public void onEquip() {}
 
     public void atTurnStart() {
-        if (this.counter > 0) {
-            int count = AbstractDungeon.player.getPower(GoodTune.POWER_ID)==null?0:AbstractDungeon.player.getPower(GoodTune.POWER_ID).amount;
-            if(count>GOOD_TUNE){
-                addToBot(new RelicAboveCreatureAction(AbstractDungeon.player, this));
-                this.flash();
-                addToBot(new ModifyDamageRandomEnemyAction(new DamageInfo(AbstractDungeon.player, damage, DamageInfo.DamageType.NORMAL), AbstractGameAction.AttackEffect.SLASH_VERTICAL));
-                this.counter--;
-                if (this.counter == 0) {
-                    this.grayscale = true;
-                }
-            }
+        int count = AbstractDungeon.player.getPower(GoodTune.POWER_ID)==null?0:AbstractDungeon.player.getPower(GoodTune.POWER_ID).amount;
+        if(count>GOOD_TUNE){
+            addToBot(new RelicAboveCreatureAction(AbstractDungeon.player, this));
+            this.flash();
+            addToBot(new ModifyDamageRandomEnemyAction(new DamageInfo(AbstractDungeon.player, damage, DamageInfo.DamageType.NORMAL), AbstractGameAction.AttackEffect.SLASH_VERTICAL));
         }
-
     }
 
-    public void atBattleStart() {
-        this.counter = playTimes;
-    }
+//    public void atBattleStart() {
+//        this.counter = playTimes;
+//    }
 
     public  void  onPlayerEndTurn(){
     }

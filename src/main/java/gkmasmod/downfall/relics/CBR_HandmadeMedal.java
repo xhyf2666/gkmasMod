@@ -29,20 +29,20 @@ public class CBR_HandmadeMedal extends AbstractCharbossRelic {
 
     private static final int GOOD_IMPRESSION = 5;
 
-    private static final  int playTimes = 2;
+//    private static final  int playTimes = 2;
 
     public CBR_HandmadeMedal() {
         super(new HandmadeMedal(),IMG);    }
 
 
-    @Override
-    public void onVictory() {
-        this.counter = playTimes;
-    }
+//    @Override
+//    public void onVictory() {
+//        this.counter = playTimes;
+//    }
 
     @Override
     public String getUpdatedDescription() {
-        return String.format(this.DESCRIPTIONS[0],GOOD_IMPRESSION,magicNumber,playTimes);
+        return String.format(this.DESCRIPTIONS[0],GOOD_IMPRESSION,magicNumber);
     }
 
     @Override
@@ -54,24 +54,31 @@ public class CBR_HandmadeMedal extends AbstractCharbossRelic {
     public void onEquip() {}
 
     public void onPlayerEndTurn() {
+//        if (this.counter > 0) {
+//            int count = AbstractCharBoss.boss.getPower(GoodImpression.POWER_ID)==null?0:AbstractCharBoss.boss.getPower(GoodImpression.POWER_ID).amount;
+//            if(count>GOOD_IMPRESSION){
+//                addToBot(new RelicAboveCreatureAction(AbstractCharBoss.boss, this));
+//                this.flash();
+//                addToBot(new ApplyPowerAction(AbstractCharBoss.boss, AbstractCharBoss.boss, new GoodImpression(AbstractCharBoss.boss, magicNumber), magicNumber));
+//                this.counter--;
+//                if (this.counter == 0) {
+//                    this.grayscale = true;
+//                }
+//            }
+//        }
         if (this.counter > 0) {
             int count = AbstractCharBoss.boss.getPower(GoodImpression.POWER_ID)==null?0:AbstractCharBoss.boss.getPower(GoodImpression.POWER_ID).amount;
             if(count>GOOD_IMPRESSION){
                 addToBot(new RelicAboveCreatureAction(AbstractCharBoss.boss, this));
                 this.flash();
                 addToBot(new ApplyPowerAction(AbstractCharBoss.boss, AbstractCharBoss.boss, new GoodImpression(AbstractCharBoss.boss, magicNumber), magicNumber));
-                this.counter--;
-                if (this.counter == 0) {
-                    this.grayscale = true;
-                }
             }
         }
-
     }
 
-    public void atBattleStart() {
-        this.counter = playTimes;
-    }
+//    public void atBattleStart() {
+//        this.counter = playTimes;
+//    }
 
     public void justEnteredRoom(AbstractRoom room) {
         this.grayscale = false;

@@ -19,7 +19,7 @@ public class ChampPatch
     public static class ChampPostPatch_constructor {
         @SpirePostfixPatch
         public static void Post(Champ __instance, @ByRef int[] ___blockAmt, @ByRef int[] ___forgeAmt) {
-            if(AbstractDungeon.player.hasRelic(PocketBook.ID)){
+            if(AbstractDungeon.player!=null&&AbstractDungeon.player.hasRelic(PocketBook.ID)){
                 int rate = ThreeSizeHelper.getHealthRate(2);
                 ___blockAmt[0] = ___blockAmt[0] * rate;
                 ___forgeAmt[0] = ___forgeAmt[0] * rate;

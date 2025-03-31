@@ -11,12 +11,16 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import gkmasmod.actions.PassionateReturnAction;
+import gkmasmod.cardCustomEffect.*;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.screen.SkinSelectScreen;
+import gkmasmod.utils.CustomHelper;
 import gkmasmod.utils.ImageHelper;
 import gkmasmod.utils.NameHelper;
+
+import java.util.ArrayList;
 
 public class PassionateReturn extends GkmasCard {
     private static final String CLASSNAME = PassionateReturn.class.getSimpleName();
@@ -31,7 +35,8 @@ public class PassionateReturn extends GkmasCard {
     private static final int ATTACK_DMG = 11;
     private static final int UPGRADE_PLUS_DMG = 4;
 
-    private static final int BASE_MAGIC = 4;
+    private static final int BASE_MAGIC = 2;
+    private static final int BASE_MAGIC2 = 2;
 
 
     private static final CardType TYPE = CardType.ATTACK;
@@ -46,12 +51,19 @@ public class PassionateReturn extends GkmasCard {
         this.baseDamage = ATTACK_DMG;
         this.baseMagicNumber = BASE_MAGIC;
         this.magicNumber = this.baseMagicNumber;
+        this.baseSecondMagicNumber = BASE_MAGIC2;
+        this.secondMagicNumber = this.baseSecondMagicNumber;
+        this.customLimit = 2;
+        this.customEffectList = new ArrayList<>();
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(DamageCustom.growID,new int[]{2,2},new int[]{50,50},CustomHelper.CustomEffectType.DAMAGE_ADD));
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(SecondMagicCustom.growID,new int[]{1,1},new int[]{60,60},CustomHelper.CustomEffectType.MORE_ACTION_ADD));
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(AttackTimeCustom.growID,new int[]{1},new int[]{100},CustomHelper.CustomEffectType.ATTACK_TIME_ADD));
     }
 
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        addToBot(new PassionateReturnAction(m, new DamageInfo( p, this.damage, this.damageTypeForTurn), this.magicNumber));
+        addToBot(new PassionateReturnAction(m, new DamageInfo( p, this.damage, this.damageTypeForTurn),this.secondMagicNumber));
     }
 
     @Override

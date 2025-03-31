@@ -7,7 +7,6 @@ import basemod.interfaces.ISubscriber;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.video.VideoPlayer;
 import com.badlogic.gdx.video.VideoPlayerCreator;
-import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.helpers.*;
 import gkmasmod.cards.GkmasCard;
@@ -36,9 +35,12 @@ public class SkinSelectScreen implements ISubscriber, CustomSavable<int[]> {
     public static boolean isClick3 = false;
     public Hitbox leftHb;
     public Hitbox rightHb;
+    public Hitbox leftHb2;
+    public Hitbox rightHb2;
     public Hitbox upHb;
     public Hitbox downHb;
     public Hitbox updateHb;
+    public Hitbox hideHb;
     public Hitbox typeHb;
     public Hitbox styleHb;
     public Hitbox achievementHb1;
@@ -63,6 +65,7 @@ public class SkinSelectScreen implements ISubscriber, CustomSavable<int[]> {
     public AbstractCard specialCard;
     public boolean flag = false;
     public boolean hasVideo = false;
+    public boolean hideSameIdol = false;
 
     private static Texture achievementImg1 = ImageMaster.loadImage("gkmasModResource/img/UI/achievement1_1.png");
     private static Texture achievementImg2 = ImageMaster.loadImage("gkmasModResource/img/UI/achievement1_2.png");
@@ -74,13 +77,20 @@ public class SkinSelectScreen implements ISubscriber, CustomSavable<int[]> {
     private static String achievementHint1 = CardCrawlGame.languagePack.getUIString("gkmasMod:Hint:achievement1_1").TEXT[0];
     private static String achievementHint2 = CardCrawlGame.languagePack.getUIString("gkmasMod:Hint:achievement1_2").TEXT[0];
     private static String achievementHint3 = CardCrawlGame.languagePack.getUIString("gkmasMod:Hint:achievement2").TEXT[0];
+    private static String updateHint = CardCrawlGame.languagePack.getUIString("gkmasMod:Hint:update").TEXT[0];
+    private static String updateHintTitle = CardCrawlGame.languagePack.getUIString("gkmasMod:Name:update").TEXT[0];
+    private static String hideHint = CardCrawlGame.languagePack.getUIString("gkmasMod:Hint:hide").TEXT[0];
+    private static String hideHintTitle = CardCrawlGame.languagePack.getUIString("gkmasMod:Name:hide").TEXT[0];
     public SkinSelectScreen() {
         this.refresh();
         this.leftHb = new Hitbox(70.0F * Settings.scale, 70.0F * Settings.scale);
         this.rightHb = new Hitbox(70.0F * Settings.scale, 70.0F * Settings.scale);
+        this.leftHb2 = new Hitbox(70.0F * Settings.scale, 70.0F * Settings.scale);
+        this.rightHb2 = new Hitbox(70.0F * Settings.scale, 70.0F * Settings.scale);
         this.upHb = new Hitbox(70.0F * Settings.scale, 70.0F * Settings.scale);
         this.downHb = new Hitbox(70.0F * Settings.scale, 70.0F * Settings.scale);
         this.updateHb = new Hitbox(70.0F * Settings.scale, 70.0F * Settings.scale);
+        this.hideHb = new Hitbox(70.0F * Settings.scale, 70.0F * Settings.scale);
         this.typeHb = new Hitbox(70.0F * Settings.scale, 70.0F * Settings.scale);
         this.styleHb = new Hitbox(70.0F * Settings.scale, 70.0F * Settings.scale);
         this.achievementHb1 = new Hitbox(70.0F * Settings.scale, 70.0F * Settings.scale);
@@ -101,7 +111,6 @@ public class SkinSelectScreen implements ISubscriber, CustomSavable<int[]> {
         this.curName = CardCrawlGame.languagePack.getCharacterString(NameHelper.addSplitWords("IdolName",idolName)).TEXT[0];
 
         String skinName = IdolData.getIdol(idolName).getSkinImg(this.skinIndex);
-        // TODO 支持其他皮肤
         IdolCharacter.SELES_STAND = String.format("gkmasModResource/img/idol/%s/stand/stand_%s.png", idolName, skinName);
         this.usedImg = ImageMaster.loadImage(IdolCharacter.SELES_STAND);
         this.SpecialName = "";
@@ -110,7 +119,7 @@ public class SkinSelectScreen implements ISubscriber, CustomSavable<int[]> {
         this.idolStyle = IdolData.getIdol(idolName).getStyle(this.skinIndex);
         if(flag){
             this.specialCard = CardLibrary.getCard(gkmasMod_character, IdolData.getIdol(idolName).getCard(skinIndex)).makeCopy();
-            ((GkmasCard)this.specialCard).setIdolBackgroundTexture(idolName);
+//            ((GkmasCard)this.specialCard).setIdolBackgroundTexture(idolName);
             if(GkmasMod.beat_hmsz>0)
                 this.specialCard.upgrade();
         }
@@ -163,8 +172,6 @@ public class SkinSelectScreen implements ISubscriber, CustomSavable<int[]> {
                 this.styleHint = CardCrawlGame.languagePack.getUIString("styleHint:fullPower").TEXT[0];
                 break;
         }
-
-
         if (AbstractDungeon.player instanceof IdolCharacter) {
             IdolCharacter k = (IdolCharacter)AbstractDungeon.player;
             k.idolName = idolName;
@@ -182,11 +189,71 @@ public class SkinSelectScreen implements ISubscriber, CustomSavable<int[]> {
         return this.idolIndex + 1 > IdolData.idolNames.length - 1 ? 0 : this.idolIndex + 1;
     }
 
+    public int prevSameSkinIndex(){
+        int tmp = this.skinIndex;
+        String currentRelic = IdolData.getIdol(this.idolIndex).getRelic(tmp);
+        tmp = tmp - 1 < 0 ? IdolData.getIdol(this.idolIndex).getSkinNum() - 1 : tmp - 1;
+        while(!IdolData.getIdol(this.idolIndex).getRelic(tmp).equals(currentRelic)){
+            tmp = tmp - 1 < 0 ? IdolData.getIdol(this.idolIndex).getSkinNum() - 1 : tmp - 1;
+        }
+        return tmp;
+    }
+
+    public int nextSameSkinIndex(){
+        int tmp = this.skinIndex;
+        String currentRelic = IdolData.getIdol(this.idolIndex).getRelic(tmp);
+        tmp = tmp + 1 > IdolData.getIdol(this.idolIndex).getSkinNum() - 1 ? 0 : tmp + 1;
+        while(!IdolData.getIdol(this.idolIndex).getRelic(tmp).equals(currentRelic)){
+            tmp = tmp + 1 > IdolData.getIdol(this.idolIndex).getSkinNum() - 1 ? 0 : tmp + 1;
+        }
+        return tmp;
+    }
+
     public int prevSkinIndex() {
+        if(this.hideSameIdol){
+            int tmp = this.skinIndex;
+            String currentRelic = IdolData.getIdol(this.idolIndex).getRelic(tmp);
+            String tmpRelic;
+            while(true){
+                tmp = tmp - 1 < 0 ? IdolData.getIdol(this.idolIndex).getSkinNum() - 1 : tmp - 1;
+                tmpRelic = IdolData.getIdol(this.idolIndex).getRelic(tmp);
+                boolean flag = false;
+                for (int i = 0; i < tmp; i++) {
+                    if(IdolData.getIdol(this.idolIndex).getRelic(i).equals(tmpRelic)){
+                        flag = true;
+                        break;
+                    }
+                }
+                if(!flag&&!tmpRelic.equals(currentRelic)){
+                    break;
+                }
+            }
+            return tmp;
+        }
         return this.skinIndex - 1 < 0 ? IdolData.getIdol(this.idolIndex).getSkinNum() - 1 : this.skinIndex - 1;
     }
 
     public int nextSkinIndex() {
+        if(this.hideSameIdol){
+            int tmp = this.skinIndex;
+            String currentRelic = IdolData.getIdol(this.idolIndex).getRelic(tmp);
+            String tmpRelic;
+            while(true){
+                tmp = tmp + 1 > IdolData.getIdol(this.idolIndex).getSkinNum() - 1 ? 0 : tmp + 1;
+                tmpRelic = IdolData.getIdol(this.idolIndex).getRelic(tmp);
+                boolean flag = false;
+                for (int i = 0; i < tmp; i++) {
+                    if(IdolData.getIdol(this.idolIndex).getRelic(i).equals(tmpRelic)){
+                        flag = true;
+                        break;
+                    }
+                }
+                if(!flag&&!tmpRelic.equals(currentRelic)){
+                    break;
+                }
+            }
+            return tmp;
+        }
         return this.skinIndex + 1 > IdolData.getIdol(this.idolIndex).getSkinNum() - 1 ? 0 : this.skinIndex + 1;
     }
 
@@ -195,9 +262,12 @@ public class SkinSelectScreen implements ISubscriber, CustomSavable<int[]> {
         float centerY = (float)Settings.HEIGHT * 0.5F;
         this.leftHb.move(centerX - 180.0F * Settings.scale, centerY + 50.0F * Settings.scale);
         this.rightHb.move(centerX + 180.0F * Settings.scale, centerY + 50.0F * Settings.scale);
+        this.leftHb2.move(centerX - 180.0F * Settings.scale, centerY - 240.0F * Settings.scale);
+        this.rightHb2.move(centerX + 180.0F * Settings.scale, centerY - 240.0F * Settings.scale);
         this.upHb.move(centerX, centerY + 180.0F * Settings.scale + 50.0F * Settings.scale);
         this.downHb.move(centerX, centerY - 180.0F * Settings.scale + 50.0F * Settings.scale);
         this.updateHb.move(centerX - 120.0F *Settings.scale, centerY + 150.0F * Settings.scale + 50.0F * Settings.scale);
+        this.hideHb.move(centerX - 120.0F *Settings.scale, centerY - 150.0F * Settings.scale + 50.0F * Settings.scale);
         this.typeHb.move(centerX - 900.0F *Settings.scale, centerY  + 80.0F * Settings.scale);
         this.styleHb.move(centerX - 800.0F *Settings.scale + Settings.WIDTH*0.02F, centerY  + 80.0F * Settings.scale);
         this.achievementHb1.move(centerX - 900.0F *Settings.scale, centerY  + 150.0F * Settings.scale);
@@ -211,9 +281,12 @@ public class SkinSelectScreen implements ISubscriber, CustomSavable<int[]> {
         if (CardCrawlGame.chosenCharacter == gkmasMod_character) {
             this.leftHb.update();
             this.rightHb.update();
+            this.leftHb2.update();
+            this.rightHb2.update();
             this.upHb.update();
             this.downHb.update();
             this.updateHb.update();
+            this.hideHb.update();
             this.typeHb.update();
             this.styleHb.update();
             this.achievementHb1.update();
@@ -246,8 +319,29 @@ public class SkinSelectScreen implements ISubscriber, CustomSavable<int[]> {
                 this.isClick2 = true;
                 this.isClick3 = true;
                 this.hasVideo = false;
-
                 //GkmasMod.listeners.forEach(listener -> listener.onCardImgUpdate());
+            }
+
+            if (this.leftHb2.clicked&&this.hideSameIdol) {
+                this.leftHb2.clicked = false;
+                CardCrawlGame.sound.play("UI_CLICK_1");
+                this.skinIndex = this.prevSameSkinIndex();
+                this.refresh();
+                this.isClick = true;
+                this.isClick2 = true;
+                this.isClick3 = true;
+                this.hasVideo = false;
+            }
+
+            if (this.rightHb2.clicked&&this.hideSameIdol) {
+                this.rightHb2.clicked = false;
+                CardCrawlGame.sound.play("UI_CLICK_1");
+                this.skinIndex = this.nextSameSkinIndex();
+                this.refresh();
+                this.isClick = true;
+                this.isClick2 = true;
+                this.isClick3 = true;
+                this.hasVideo = false;
             }
 
             if (this.upHb.clicked) {
@@ -259,7 +353,6 @@ public class SkinSelectScreen implements ISubscriber, CustomSavable<int[]> {
                 this.isClick2 = true;
                 this.isClick3 = true;
                 this.hasVideo = false;
-
             }
 
             if (this.downHb.clicked) {
@@ -271,7 +364,6 @@ public class SkinSelectScreen implements ISubscriber, CustomSavable<int[]> {
                 this.isClick2 = true;
                 this.isClick3 = true;
                 this.hasVideo = false;
-
             }
 
             if (this.updateHb.clicked) {
@@ -282,16 +374,26 @@ public class SkinSelectScreen implements ISubscriber, CustomSavable<int[]> {
                 this.isClick = true;
                 this.isClick2 = true;
                 this.isClick3 = true;
+            }
 
+            if (this.hideHb.clicked) {
+                this.hideHb.clicked = false;
+                CardCrawlGame.sound.play("UI_CLICK_1");
+                this.hideSameIdol = !this.hideSameIdol;
             }
 
             if (InputHelper.justClickedLeft) {
                 if (this.leftHb.hovered) {
                     this.leftHb.clickStarted = true;
                 }
-
                 if (this.rightHb.hovered) {
                     this.rightHb.clickStarted = true;
+                }
+                if (this.leftHb2.hovered) {
+                    this.leftHb2.clickStarted = true;
+                }
+                if (this.rightHb2.hovered) {
+                    this.rightHb2.clickStarted = true;
                 }
                 if (this.upHb.hovered) {
                     this.upHb.clickStarted = true;
@@ -301,6 +403,9 @@ public class SkinSelectScreen implements ISubscriber, CustomSavable<int[]> {
                 }
                 if (this.updateHb.hovered) {
                     this.updateHb.clickStarted = true;
+                }
+                if (this.hideHb.hovered) {
+                    this.hideHb.clickStarted = true;
                 }
                 if (this.video_hb.hovered){
                     this.video_hb.clickStarted = true;
@@ -383,15 +488,29 @@ public class SkinSelectScreen implements ISubscriber, CustomSavable<int[]> {
         } else {
             sb.setColor(Color.WHITE);
         }
-
         sb.draw(ImageMaster.CF_LEFT_ARROW, this.leftHb.cX - 24.0F, this.leftHb.cY - 24.0F, 24.0F, 24.0F, 48.0F, 48.0F, Settings.scale, Settings.scale, 0.0F, 0, 0, 48, 48, false, false);
+
         if (this.rightHb.hovered) {
             sb.setColor(Color.LIGHT_GRAY);
         } else {
             sb.setColor(Color.WHITE);
         }
-
         sb.draw(ImageMaster.CF_RIGHT_ARROW, this.rightHb.cX - 24.0F, this.rightHb.cY - 24.0F, 24.0F, 24.0F, 48.0F, 48.0F, Settings.scale, Settings.scale, 0.0F, 0, 0, 48, 48, false, false);
+
+        if(this.hideSameIdol){
+            if(this.leftHb2.hovered){
+                sb.setColor(Color.LIGHT_GRAY);
+            }else{
+                sb.setColor(Color.WHITE);
+            }
+            sb.draw(ImageMaster.CF_LEFT_ARROW, this.leftHb2.cX - 24.0F, this.leftHb2.cY - 24.0F, 24.0F, 24.0F, 48.0F, 48.0F, Settings.scale, Settings.scale, 0.0F, 0, 0, 48, 48, false, false);
+            if(this.rightHb2.hovered){
+                sb.setColor(Color.LIGHT_GRAY);
+            }else{
+                sb.setColor(Color.WHITE);
+            }
+            sb.draw(ImageMaster.CF_RIGHT_ARROW, this.rightHb2.cX - 24.0F, this.rightHb2.cY - 24.0F, 24.0F, 24.0F, 48.0F, 48.0F, Settings.scale, Settings.scale, 0.0F, 0, 0, 48, 48, false, false);
+        }
 
         if (this.upHb.hovered) {
             sb.setColor(Color.LIGHT_GRAY);
@@ -411,12 +530,28 @@ public class SkinSelectScreen implements ISubscriber, CustomSavable<int[]> {
 
         if (this.updateHb.hovered) {
             sb.setColor(Color.LIGHT_GRAY);
+            TipHelper.renderGenericTip( this.updateHb.cX + 20.F,  this.updateHb.cY + 20.F, this.updateHintTitle, this.updateHint);
         } else {
             sb.setColor(Color.WHITE);
         }
 
-        if (this.updateIndex == 1)
+        if(this.hideHb.hovered){
+            sb.setColor(Color.LIGHT_GRAY);
+            TipHelper.renderGenericTip( this.hideHb.cX + 20.F,  this.hideHb.cY + 20.F, this.hideHintTitle, this.hideHint);
+        } else {
+            sb.setColor(Color.WHITE);
+        }
+        if(this.hideSameIdol){
+            sb.draw(ImageMaster.OPTION_TOGGLE,this.hideHb.cX - 24.0F, this.hideHb.cY - 24.0F, 24.0F, 24.0F, 48.0F, 48.0F, Settings.scale, Settings.scale, 0.0F, 0, 0, 48, 48, false, false);
+            sb.draw(ImageMaster.OPTION_TOGGLE_ON,this.hideHb.cX - 24.0F, this.hideHb.cY - 24.0F, 24.0F, 24.0F, 48.0F, 48.0F, Settings.scale, Settings.scale, 0.0F, 0, 0, 48, 48, false, false);
+        }
+        else
+            sb.draw(ImageMaster.OPTION_TOGGLE,this.hideHb.cX - 24.0F, this.hideHb.cY - 24.0F, 24.0F, 24.0F, 48.0F, 48.0F, Settings.scale, Settings.scale, 0.0F, 0, 0, 48, 48, false, false);
+
+        if (this.updateIndex == 1){
+            sb.draw(ImageMaster.OPTION_TOGGLE,this.updateHb.cX - 24.0F, this.updateHb.cY - 24.0F, 24.0F, 24.0F, 48.0F, 48.0F, Settings.scale, Settings.scale, 0.0F, 0, 0, 48, 48, false, false);
             sb.draw(ImageMaster.OPTION_TOGGLE_ON,this.updateHb.cX - 24.0F, this.updateHb.cY - 24.0F, 24.0F, 24.0F, 48.0F, 48.0F, Settings.scale, Settings.scale, 0.0F, 0, 0, 48, 48, false, false);
+        }
         else
             sb.draw(ImageMaster.OPTION_TOGGLE,this.updateHb.cX - 24.0F, this.updateHb.cY - 24.0F, 24.0F, 24.0F, 48.0F, 48.0F, Settings.scale, Settings.scale, 0.0F, 0, 0, 48, 48, false, false);
 
@@ -466,6 +601,7 @@ public class SkinSelectScreen implements ISubscriber, CustomSavable<int[]> {
         this.upHb.render(sb);
         this.downHb.render(sb);
         this.updateHb.render(sb);
+        this.hideHb.render(sb);
         this.typeHb.render(sb);
         this.styleHb.render(sb);
         if(GkmasMod.cardRate>0.4f)
@@ -511,11 +647,11 @@ public class SkinSelectScreen implements ISubscriber, CustomSavable<int[]> {
             refresh();
             GkmasMod.listeners.forEach(listener -> listener.onCardImgUpdate());
             try {
-                SpireConfig config = new SpireConfig("GkmasMod", "config");
                 GkmasMod.cardRate = PlayerHelper.getCardRate();
-                config.setFloat("cardRate", GkmasMod.cardRate);
-                config.setInt("beat_hmsz", GkmasMod.beat_hmsz);
-                config.save();
+                GkmasMod.config.setFloat("cardRate", GkmasMod.cardRate);
+                GkmasMod.config.setInt("beat_hmsz", GkmasMod.beat_hmsz);
+                GkmasMod.config.setBool("onlyModBoss", GkmasMod.onlyModBoss);
+                GkmasMod.config.save();
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -523,13 +659,13 @@ public class SkinSelectScreen implements ISubscriber, CustomSavable<int[]> {
 
    }
     public int[] onSave() {
-        SpireConfig config = null;
+
         try {
-            config = new SpireConfig("GkmasMod", "config");
             GkmasMod.cardRate = PlayerHelper.getCardRate();
-            config.setFloat("cardRate", GkmasMod.cardRate);
-            config.setInt("beat_hmsz", GkmasMod.beat_hmsz);
-            config.save();
+            GkmasMod.config.setFloat("cardRate", GkmasMod.cardRate);
+            GkmasMod.config.setInt("beat_hmsz", GkmasMod.beat_hmsz);
+            GkmasMod.config.setBool("onlyModBoss", GkmasMod.onlyModBoss);
+            GkmasMod.config.save();
         } catch (IOException e) {
             e.printStackTrace();
         }

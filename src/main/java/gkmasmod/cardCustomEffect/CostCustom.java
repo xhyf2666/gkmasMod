@@ -18,9 +18,11 @@ public class CostCustom extends AbstractCardCustomEffect {
 
     public void onInitialApplication(AbstractCard card) {
         this.originalCost = card.cost;
-        card.cost -= this.amount;
+        card.cost += this.amount;
+        card.costForTurn = card.cost;
         if(card.cost<0){
             card.cost = 0;
+            card.costForTurn = 0;
         }
     }
 

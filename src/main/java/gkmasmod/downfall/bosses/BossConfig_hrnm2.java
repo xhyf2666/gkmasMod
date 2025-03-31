@@ -1,5 +1,6 @@
 package gkmasmod.downfall.bosses;
 
+import com.megacrit.cardcrawl.powers.FocusPower;
 import gkmasmod.downfall.charbosses.bosses.AbstractBossDeckArchetype;
 import gkmasmod.downfall.charbosses.bosses.AbstractCharBoss;
 import gkmasmod.downfall.charbosses.cards.blue.*;
@@ -14,6 +15,7 @@ import gkmasmod.downfall.cards.free.ENBlueSenpaiHelp;
 import gkmasmod.downfall.cards.free.ENIdolSoul;
 import gkmasmod.downfall.relics.CBR_CrackedCoreNew;
 import gkmasmod.downfall.relics.CBR_ProducerPhone;
+import gkmasmod.powers.NegativeNotPower;
 
 import java.util.ArrayList;
 
@@ -30,6 +32,7 @@ public class BossConfig_hrnm2 extends AbstractBossDeckArchetype {
         super.addedPreBattle();
         AbstractCreature p = AbstractCharBoss.boss;
         AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new BarricadePower(p)));
+        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new FocusPower(p,10),10));
     }
 
     public void initialize() {
@@ -39,6 +42,8 @@ public class BossConfig_hrnm2 extends AbstractBossDeckArchetype {
         addRelic(new CBR_FusionHammer());
         addRelic(new CBR_ProducerPhone());
         addRelic(new CBR_CrackedCoreNew());
+        if(AbstractDungeon.ascensionLevel >= 10)
+            addRelic(new CBR_Sozu());
     }
 
     @Override
@@ -48,7 +53,7 @@ public class BossConfig_hrnm2 extends AbstractBossDeckArchetype {
         if (!looped) {
             switch (turn) {
                 case 0:
-                    addToList(cardsList,new ENIdolSoul(),extraUpgrades);
+                    addToList(cardsList, new ENIdolSoul(),extraUpgrades);
                     addToList(cardsList, new EnBiasedCognition(),extraUpgrades);
                     addToList(cardsList, new EnCapacitor());
                     addToList(cardsList, new EnRainbow(),extraUpgrades);
@@ -57,7 +62,7 @@ public class BossConfig_hrnm2 extends AbstractBossDeckArchetype {
                 case 1:
                     addToList(cardsList, new EnCoreSurge(), extraUpgrades);
                     addToList(cardsList, new EnBiasedCognition(),extraUpgrades);
-                    addToList(cardsList, new EnDefragment(),extraUpgrades);
+                    addToList(cardsList, new ENBlueSenpaiHelp(),true);
                     addToList(cardsList, new EnDarkness(),true);
                     turn++;
                     break;
@@ -73,7 +78,7 @@ public class BossConfig_hrnm2 extends AbstractBossDeckArchetype {
         } else {
             switch (turn) {
                 case 0:
-                    addToList(cardsList, new EnMulticast(),extraUpgrades);
+                    addToList(cardsList, new EnBallLightning(),extraUpgrades);
                     addToList(cardsList, new EnGlacier());
                     addToList(cardsList, new EnRainbow(),true);
                     break;

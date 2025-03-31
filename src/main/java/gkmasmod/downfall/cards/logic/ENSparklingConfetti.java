@@ -52,14 +52,14 @@ public class ENSparklingConfetti extends GkmasBossCard {
         this.baseThirdMagicNumber = BASE_MAGIC3;
         this.intent = AbstractMonster.Intent.ATTACK;
         this.thirdMagicNumber = this.baseThirdMagicNumber;
-        this.tags.add(GkmasCardTag.YARUKI_TAG);
+        this.tags.add(GkmasCardTag.COST_POWER_TAG);
     }
 
     @Override
     public boolean canUse(AbstractPlayer p, AbstractMonster m) {
         int count = PlayerHelper.getPowerAmount(m, DexterityPower.POWER_ID);
         if (count >= this.magicNumber)
-            return true;
+            return super.canUse(p, m);
         this.cantUseMessage = CardCrawlGame.languagePack.getUIString("gkmasMod:NotEnoughGoodImpression").TEXT[0];
         return false;
     }

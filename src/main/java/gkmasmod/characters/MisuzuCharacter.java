@@ -22,10 +22,10 @@ import com.megacrit.cardcrawl.relics.*;
 import com.megacrit.cardcrawl.screens.CharSelectInfo;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import gkmasmod.cards.anomaly.*;
-import gkmasmod.cards.free.BaseAppeal;
-import gkmasmod.cards.free.BasePerform;
-import gkmasmod.cards.free.BasePose;
-import gkmasmod.cards.free.GachaAgain;
+import gkmasmod.cards.free.*;
+import gkmasmod.cards.hmsz.BasePace;
+import gkmasmod.cards.hmsz.Stress;
+import gkmasmod.cards.hmsz.YawnAttack;
 import gkmasmod.cards.logic.BaseAwareness;
 import gkmasmod.cards.logic.BaseVision;
 import gkmasmod.cards.logic.ChangeMood;
@@ -34,6 +34,7 @@ import gkmasmod.cards.sense.BaseBehave;
 import gkmasmod.cards.sense.BaseExpression;
 import gkmasmod.cards.sense.Challenge;
 import gkmasmod.cards.sense.TryError;
+import gkmasmod.cards.special.ResultWillNotChange;
 import gkmasmod.modcore.GkmasMod;
 import gkmasmod.patches.AbstractCardPatch;
 import gkmasmod.relics.*;
@@ -69,7 +70,6 @@ public class MisuzuCharacter extends CustomPlayer {
     }
 
     public void initializeData(){
-        // 初始化你的人物，如果你的人物只有一张图，那么第一个参数填写你人物图片的路径。
         this.initializeClass(
                 null,
                 String.format("gkmasModResource/img/idol/%s/stand/fire.png",this.idolName),
@@ -77,9 +77,23 @@ public class MisuzuCharacter extends CustomPlayer {
                 String.format("gkmasModResource/img/idol/%s/stand/sleep_skin10.png",this.idolName),
                 this.getLoadout(),
                 0.0F, 0.0F,
-                200.0F, 220.0F, // 人物碰撞箱大小，越大的人物模型这个越大
-                new EnergyManager(3) // 初始每回合的能量
+                200.0F, 220.0F,
+                new EnergyManager(3)
         );
+    }
+
+    public void refreshSkin(int step){
+        int index=10;
+        if(step == 0){
+            index = 10;
+        }else if(step == 1){
+            index = 13;
+        }else if(step == 2){
+            index = 23;
+        }
+
+        String path = String.format("gkmasModResource/img/idol/%s/stand/stand_skin%d.scml",this.idolName,index);
+        this.animation = new SpriterAnimation(path);
     }
 
 
@@ -110,33 +124,83 @@ public class MisuzuCharacter extends CustomPlayer {
         addColorToCardPool(PlayerColorEnum.gkmasModColor, tmpPool);
         addColorToCardPool(PlayerColorEnum.gkmasModColorMoon, tmpPool);
         addColorToCardPool(PlayerColorEnum.gkmasModColorMisuzu, tmpPool);
-        addColorToCardPool(PlayerColorEnum.gkmasModColorSense, tmpPool);
+//        addColorToCardPool(PlayerColorEnum.gkmasModColorSense, tmpPool);
 
         return tmpPool;
     }
 
-    // 初始卡组的ID，可直接写或引用变量
     public ArrayList<String> getStartingDeck() {
         ArrayList<String> retVal = new ArrayList<>();
         retVal.add(BaseAppeal.ID);
+        retVal.add(YawnAttack.ID);
+        retVal.add(YawnAttack.ID);
+        retVal.add(YawnAttack.ID);
         retVal.add(BasePose.ID);
+        retVal.add(BasePace.ID);
+        retVal.add(BasePace.ID);
+        retVal.add(BasePace.ID);
         retVal.add(BasePerform.ID);
-        retVal.add(BaseAwareness.ID);
-        retVal.add(BaseVision.ID);
-        retVal.add(BaseBehave.ID);
-        retVal.add(BaseExpression.ID);
-        retVal.add(ChangeMood.ID);
-        retVal.add(KawaiiGesture.ID);
-        retVal.add(Challenge.ID);
-        retVal.add(TryError.ID);
+        retVal.add(Stress.ID);
+        retVal.add(ResultWillNotChange.ID);
         return retVal;
+    }
+
+    @Override
+    public void initializeStarterDeck() {
+        super.initializeStarterDeck();
+        ArrayList<AbstractCard> cards = new ArrayList<>();
+        int first = IdolData.hmszData.getFirstThreeType();
+        int second = IdolData.hmszData.getSecondThreeType();
+        int third = IdolData.hmszData.getThirdThreeType();
+        int index_attack =0;
+        int index_defend =0;
+
+        for (AbstractCard c : this.masterDeck.group){
+            if(c.rarity == AbstractCard.CardRarity.BASIC&&c.canUpgrade())
+                cards.add(c);
+            if(c.cardID.equals(YawnAttack.ID)){
+                if(index_attack==0)
+                    AbstractCardPatch.ThreeSizeTagField.threeSizeTag.set(c,third);
+                else if(index_attack==1)
+                    AbstractCardPatch.ThreeSizeTagField.threeSizeTag.set(c,second);
+                else if(index_attack==2)
+                    AbstractCardPatch.ThreeSizeTagField.threeSizeTag.set(c,first);
+                index_attack++;
+            }
+            else if(c.cardID.equals(BasePace.ID)){
+                if(index_defend==0)
+                    AbstractCardPatch.ThreeSizeTagField.threeSizeTag.set(c,third);
+                else if(index_defend==1)
+                    AbstractCardPatch.ThreeSizeTagField.threeSizeTag.set(c,second);
+                else if(index_defend==2)
+                    AbstractCardPatch.ThreeSizeTagField.threeSizeTag.set(c,first);
+                AbstractCardPatch.ThreeSizeTagField.threeSizeTag.set(c,index_defend);
+                index_defend++;
+            }
+            else if(c.cardID.equals(BaseAppeal.ID)){
+                AbstractCardPatch.ThreeSizeTagField.threeSizeTag.set(c,first);
+            }
+            else if(c.cardID.equals(BasePose.ID)){
+                AbstractCardPatch.ThreeSizeTagField.threeSizeTag.set(c,second);
+            }
+            else if(c.cardID.equals(BasePerform.ID)){
+                AbstractCardPatch.ThreeSizeTagField.threeSizeTag.set(c,third);
+            }
+            else if(c.cardID.equals(Stress.ID)){
+                AbstractCardPatch.ThreeSizeTagField.threeSizeTag.set(c,first);
+            }
+
+        }
+
     }
 
     @Override
     public ArrayList<String> getStartingRelics() {
         ArrayList<String> retVal = new ArrayList<>();
-//        retVal.add(PocketBook.ID);
         retVal.add(SyngUpRelic.ID);
+        retVal.add(PocketBook.ID);
+        retVal.add(MisuzuNatureRelic.ID);
+        retVal.add(DreamCatcher.ID);
         return retVal;
     }
 
@@ -154,24 +218,23 @@ public class MisuzuCharacter extends CustomPlayer {
 
     public CharSelectInfo getLoadout() {
         return new CharSelectInfo(
-                "秦谷美玲", // 人物名字
-                "悠闲自在、我行我素的女孩子，状态经常在 #y困倦 、 #y睡眠 和 #y清醒 之间波动。 NL 对自己和他人都温柔友善，喜欢制作 #y点心 、照顾和宠爱别人。 NL 能够召唤昔日的 #y好友 辅助战斗，或叠加 #y重力 召唤 #y黑洞 。", // 人物介绍
-                getHP(), // 当前血量
-                getHP(), // 最大血量
-                getMaxOrbs(), // 初始充能球栏位
-                getGold(), // 初始携带金币
-                5, // 每回合抽牌数量
-                this, // 别动
-                getStartingRelics(), // 初始遗物
-                getStartingDeck(), // 初始卡组
-                false // 别动
+                "秦谷美铃",
+                "悠闲自在、我行我素的女孩子，状态经常在 #y困倦 、 #y睡眠 和 #y清醒 之间波动。 NL 对自己和他人都温柔友善，喜欢制作点心、照顾和宠爱别人。 NL 能够召唤昔日的 #y好友 辅助战斗。",
+                getHP(),
+                getHP(),
+                getMaxOrbs(),
+                getGold(),
+                5,
+                this,
+                getStartingRelics(),
+                getStartingDeck(),
+                false
         );
     }
 
-    // 人物名字（出现在游戏左上角）
     @Override
     public String getTitle(PlayerClass playerClass) {
-        return "秦谷美玲";
+        return "秦谷美铃";
     }
 
     @Override
@@ -199,49 +262,41 @@ public class MisuzuCharacter extends CustomPlayer {
         return FontHelper.energyNumFontBlue;
     }
 
-    // 人物选择界面点击你的人物按钮时触发的方法，这里为屏幕轻微震动
     public void doCharSelectScreenSelectEffect() {
         SoundHelper.playSound("gkmasModResource/audio/voice/shro_click.ogg");
         CardCrawlGame.screenShake.shake(ScreenShake.ShakeIntensity.MED, ScreenShake.ShakeDur.SHORT, true);
     }
 
-    // 碎心图片
     @Override
     public ArrayList<CutscenePanel> getCutscenePanels() {
         ArrayList<CutscenePanel> panels = new ArrayList<>();
-        // 有两个参数的，第二个参数表示出现图片时播放的音效
-        panels.add(new CutscenePanel("gkmasModResource/img/UI/end/end1.png"));
         panels.add(new CutscenePanel(String.format("gkmasModResource/img/UI/end/end_%s_001_00.png", this.idolName)));
         panels.add(new CutscenePanel(String.format("gkmasModResource/img/UI/end/end_%s_001_01.png", this.idolName)));
-        panels.add(new CutscenePanel("gkmasModResource/img/UI/end/end4.png"));
+        panels.add(new CutscenePanel(String.format("gkmasModResource/img/UI/end/end_%s_001_02.png", this.idolName)));
+        panels.add(new CutscenePanel(String.format("gkmasModResource/img/UI/end/end_%s_001_03.png", this.idolName)));
         return panels;
     }
 
-    // 自定义模式选择你的人物时播放的音效
     @Override
     public String getCustomModeCharacterButtonSoundKey() {
         return String.format("%s_click", this.idolName);
     }
 
-    // 游戏中左上角显示在你的名字之后的人物名称
     @Override
     public String getLocalizedCharacterName() {
-        return "秦谷美玲";
+        return "秦谷美铃";
     }
 
-    // 创建人物实例，照抄
     @Override
     public AbstractPlayer newInstance() {
         return new MisuzuCharacter(this.name);
     }
 
-    // 第三章面对心脏说的话（例如战士是“你握紧了你的长刀……”之类的）
     @Override
     public String getSpireHeartText() {
-        return"诶，这个大家伙是什么东西";
+        return"到了……登上舞台的时候";
     }
 
-    // 打心脏的颜色，不是很明显
     @Override
     public Color getSlashAttackColor() {
         return GkmasMod.gkmasMod_color;
@@ -252,13 +307,11 @@ public class MisuzuCharacter extends CustomPlayer {
         return Vampires.DESCRIPTIONS[1];
     }
 
-    // 卡牌选择界面选择该牌的颜色
     @Override
     public Color getCardRenderColor() {
         return GkmasMod.gkmasMod_color;
     }
 
-    // 第三章面对心脏造成伤害时的特效
     @Override
     public AbstractGameAction.AttackEffect[] getSpireHeartSlashEffect() {
         return new AbstractGameAction.AttackEffect[]{AbstractGameAction.AttackEffect.SLASH_HEAVY, AbstractGameAction.AttackEffect.FIRE, AbstractGameAction.AttackEffect.SLASH_DIAGONAL, AbstractGameAction.AttackEffect.SLASH_HEAVY, AbstractGameAction.AttackEffect.FIRE, AbstractGameAction.AttackEffect.SLASH_DIAGONAL};

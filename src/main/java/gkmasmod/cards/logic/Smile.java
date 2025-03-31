@@ -52,18 +52,17 @@ public class Smile extends GkmasCard {
         this.customLimit = 3;
         this.customEffectList = new ArrayList<>();
         this.customEffectList.add(CustomHelper.generateCustomEffectList(MagicCustom.growID,new int[]{1,1,2},new int[]{50,50,80},CustomHelper.CustomEffectType.GOOD_IMPRESSION_ADD));
-        this.customEffectList.add(CustomHelper.generateCustomEffectList(ThirdMagicCustom.growID,new int[]{1,1,1},new int[]{60,60,90},CustomHelper.CustomEffectType.DEXTERITY_ADD));
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(ThirdMagicCustom.growID,new int[]{1,1},new int[]{60,60},CustomHelper.CustomEffectType.DEXTERITY_ADD));
         this.customEffectList.add(CustomHelper.generateCustomEffectList(GoodImpressionRateAttackCustom.growID,new int[]{50},new int[]{70},CustomHelper.CustomEffectType.GOOD_IMPRESSION_RATE_ATTACK));
     }
-
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
         int count = PlayerHelper.getPowerAmount(p, GoodImpression.POWER_ID);
-        if (count > secondMagicNumber) {
-            addToBot(new ApplyPowerAction(p, p, new DexterityPower(p, thirdMagicNumber), thirdMagicNumber));
+        if (count > this.secondMagicNumber) {
+            addToBot(new ApplyPowerAction(p, p, new DexterityPower(p, this.thirdMagicNumber), this.thirdMagicNumber));
         }
-        addToBot(new ApplyPowerAction(p, p, new GoodImpression(p, magicNumber), magicNumber));
+        addToBot(new ApplyPowerAction(p, p, new GoodImpression(p, this.magicNumber), this.magicNumber));
 }
 
     @Override

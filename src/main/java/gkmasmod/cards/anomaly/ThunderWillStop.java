@@ -7,13 +7,20 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import gkmasmod.actions.GrowAction;
+import gkmasmod.cardCustomEffect.*;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
+import gkmasmod.growEffect.DamageGrow;
 import gkmasmod.powers.MayRainPower;
 import gkmasmod.powers.ThunderWillStopPower;
+import gkmasmod.powers.ThunderWillStopSPPower;
 import gkmasmod.stances.PreservationStance;
+import gkmasmod.utils.CustomHelper;
 import gkmasmod.utils.NameHelper;
+
+import java.util.ArrayList;
 
 public class ThunderWillStop extends GkmasCard {
     private static final String CLASSNAME = ThunderWillStop.class.getSimpleName();
@@ -29,6 +36,9 @@ public class ThunderWillStop extends GkmasCard {
     private static final int BASE_MAGIC = 2;
     private static final int UPGRADE_MAGIC_PLUS = 1;
 
+    private static final int BASE_MAGIC2 = 2;
+    private static final int BASE_MAGIC3 = 3;
+
     private static final CardType TYPE = CardType.POWER;
     private static final CardColor COLOR = PlayerColorEnum.gkmasModColorAnomaly;
     private static final CardRarity RARITY = CardRarity.RARE;
@@ -38,13 +48,27 @@ public class ThunderWillStop extends GkmasCard {
         super(ID, NAME, IMG_PATH, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.baseMagicNumber = BASE_MAGIC;
         this.magicNumber = this.baseMagicNumber;
+        this.baseSecondMagicNumber = BASE_MAGIC2;
+        this.secondMagicNumber = this.baseSecondMagicNumber;
+        this.baseThirdMagicNumber = BASE_MAGIC3;
+        this.thirdMagicNumber = this.baseThirdMagicNumber;
         this.tags.add(GkmasCardTag.FULL_POWER_TAG);
+        this.customLimit = 1;
+        this.customEffectList = new ArrayList<>();
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(FullPowerValueCustom.growID, new int[]{2}, new int[]{70}, CustomHelper.CustomEffectType.FULL_POWER_VALUE_ADD));
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(EffectChangeCustom.growID, new int[]{1}, new int[]{100}, CustomHelper.CustomEffectType.EFFECT_CHANGE));
     }
 
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        addToBot(new ApplyPowerAction(p,p,new ThunderWillStopPower(p,this.magicNumber),this.magicNumber));
+
+        if(CustomHelper.hasCustom(this, EffectChangeCustom.growID)){
+            addToBot(new ApplyPowerAction(p,p,new ThunderWillStopSPPower(p,1),1));
+        }
+        else{
+            addToBot(new ApplyPowerAction(p,p,new ThunderWillStopPower(p,this.magicNumber),this.magicNumber));
+        }
     }
 
     @Override

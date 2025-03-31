@@ -23,11 +23,6 @@ public class ShareSomethingWithYouPower extends AbstractPower {
     String path128 = String.format("gkmasModResource/img/powers/%s_84.png",CLASSNAME);
     String path48 = String.format("gkmasModResource/img/powers/%s_32.png",CLASSNAME);
 
-    private static int GOOD_TUNE = 2;
-    private static int GREAT_GOOD_TUNE = 1;
-
-    private int magic2;
-
     public ShareSomethingWithYouPower(AbstractCreature owner, int amount) {
         this.name = NAME;
         this.ID = POWER_ID;
@@ -46,10 +41,10 @@ public class ShareSomethingWithYouPower extends AbstractPower {
 
     // 能力在更新时如何修改描述
     public void updateDescription() {
-        this.description = String.format(DESCRIPTIONS[0],GOOD_TUNE);
+        this.description = String.format(DESCRIPTIONS[0],this.amount);
     }
 
     public void atStartOfTurn() {
-        addToBot(new ApplyPowerAction(owner, owner, new GoodTune(owner, GOOD_TUNE), GOOD_TUNE));
+        addToBot(new ApplyPowerAction(owner, owner, new GoodTune(owner, this.amount), this.amount));
     }
 }

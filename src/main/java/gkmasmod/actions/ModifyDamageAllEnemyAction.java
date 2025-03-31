@@ -27,7 +27,7 @@ public class ModifyDamageAllEnemyAction extends AbstractGameAction {
 
     @Override
     public void update() {
-        damage = calculateDamage(damage);
+//        damage = calculateDamage(damage);
         addToBot(new DamageAllEnemiesAction(AbstractDungeon.player, damage, DamageInfo.DamageType.NORMAL, this.attackEffect));
 
         this.isDone = true;

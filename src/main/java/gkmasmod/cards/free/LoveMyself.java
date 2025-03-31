@@ -30,6 +30,7 @@ public class LoveMyself extends GkmasCard {
     private static final String IMG_PATH = String.format("gkmasModResource/img/cards/common/%s.png", CLASSNAME);
 
     private static final int COST = 1;
+    private static final int UPGRADE_COST = 0;
 
 
     private static final CardType TYPE = CardType.SKILL;
@@ -68,6 +69,7 @@ public class LoveMyself extends GkmasCard {
     public void upgrade() {
         if (!this.upgraded) {
             upgradeName();
+            upgradeBaseCost(UPGRADE_COST);
             if (CARD_STRINGS.UPGRADE_DESCRIPTION != null)
                 this.rawDescription = CARD_STRINGS.UPGRADE_DESCRIPTION;
             this.initializeDescription();

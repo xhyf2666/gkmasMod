@@ -24,8 +24,6 @@ public class ToTheTopPower extends AbstractPower {
     // 能力的描述
     private static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
 
-    private static int MAGIC = 2;
-
     String path128 = String.format("gkmasModResource/img/powers/%s_84.png",CLASSNAME);;
     String path48 = String.format("gkmasModResource/img/powers/%s_32.png",CLASSNAME);;
 
@@ -47,7 +45,7 @@ public class ToTheTopPower extends AbstractPower {
 
     // 能力在更新时如何修改描述
     public void updateDescription() {
-        this.description = String.format(DESCRIPTIONS[0],MAGIC*amount);
+        this.description = String.format(DESCRIPTIONS[0],amount);
 
     }
 
@@ -55,9 +53,12 @@ public class ToTheTopPower extends AbstractPower {
         if(this.owner.isPlayer){
             if(AbstractDungeon.player.stance.ID.equals(NeutralStance.STANCE_ID))
                 return;
-            addToBot(new GrowAction(DamageGrow.growID, GrowAction.GrowType.all,MAGIC*amount));
+            addToBot(new GrowAction(DamageGrow.growID, GrowAction.GrowType.all,amount));
         }
         else if(this.owner instanceof AbstractCharBoss){
+            if(AbstractCharBoss.boss.stance.ID.equals(NeutralStance.STANCE_ID))
+                return;
+            addToBot(new GrowAction(DamageGrow.growID, GrowAction.GrowType.all,amount,true));
         }
 
     }

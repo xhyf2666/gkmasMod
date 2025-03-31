@@ -13,14 +13,21 @@ import com.megacrit.cardcrawl.powers.DexterityPower;
 import com.megacrit.cardcrawl.powers.DrawCardNextTurnPower;
 import gkmasmod.actions.BlockDamageAction;
 import gkmasmod.actions.DexterityPowerDamageAction;
+import gkmasmod.cardCustomEffect.ExhaustRemoveCustom;
+import gkmasmod.cardCustomEffect.GoodImpressionCustom;
+import gkmasmod.cardCustomEffect.MagicCustom;
+import gkmasmod.cardCustomEffect.SecondMagicCustom;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.powers.GoodImpression;
 import gkmasmod.screen.SkinSelectScreen;
+import gkmasmod.utils.CustomHelper;
 import gkmasmod.utils.ImageHelper;
 import gkmasmod.utils.NameHelper;
 import gkmasmod.utils.PlayerHelper;
+
+import java.util.ArrayList;
 
 public class SparklingConfetti extends GkmasCard {
     private static final String CLASSNAME = SparklingConfetti.class.getSimpleName();
@@ -57,7 +64,12 @@ public class SparklingConfetti extends GkmasCard {
         this.thirdMagicNumber = this.baseThirdMagicNumber;
         FlavorText.AbstractCardFlavorFields.boxColor.set(this, CardHelper.getColor(73, 224, 254));
         flavor = FlavorText.CardStringsFlavorField.flavor.get(CARD_STRINGS);
-        this.tags.add(GkmasCardTag.YARUKI_TAG);
+        this.tags.add(GkmasCardTag.COST_POWER_TAG);
+        this.customLimit = 2;
+        this.customEffectList = new ArrayList<>();
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(SecondMagicCustom.growID,new int[]{30,30},new int[]{60,60},CustomHelper.CustomEffectType.RATE_ADD));
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(GoodImpressionCustom.growID, new int[]{2}, new int[]{60}, CustomHelper.CustomEffectType.GOOD_IMPRESSION_ADD));
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(MagicCustom.growID, new int[]{-1}, new int[]{60}, CustomHelper.CustomEffectType.DEXTERITY_ADD));
     }
 
     @Override
@@ -65,21 +77,22 @@ public class SparklingConfetti extends GkmasCard {
         int count = PlayerHelper.getPowerAmount(p, DexterityPower.POWER_ID);
         if (count >= this.magicNumber)
             return true;
-        this.cantUseMessage = CardCrawlGame.languagePack.getUIString("gkmasMod:NotEnoughGoodImpression").TEXT[0];
+        this.cantUseMessage = CardCrawlGame.languagePack.getUIString("gkmasMod:NotEnoughDexterityPower").TEXT[0];
         return false;
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        addToBot(new ApplyPowerAction(p, p, new DexterityPower(p, -this.magicNumber), -this.magicNumber));
-        addToBot(new BlockDamageAction(1.0F * secondMagicNumber / 100, this.block, p, m,this));
+        if(this.magicNumber>0)
+            addToBot(new ApplyPowerAction(p, p, new DexterityPower(p, -this.magicNumber), -this.magicNumber));
+        addToBot(new BlockDamageAction(1.0F * secondMagicNumber / 100, 0, p, m,this));
         addToBot(new ApplyPowerAction(p,p,new DrawCardNextTurnPower(p,this.thirdMagicNumber),this.thirdMagicNumber));
     }
 
 
     public void applyPowersToBlock() {
         super.applyPowersToBlock();
-        int count1 = AbstractDungeon.player.currentBlock + block;
+        int count1 = AbstractDungeon.player.currentBlock;
         int damage1_ = (int) (1.0F * count1 * this.secondMagicNumber / 100);
         FlavorText.AbstractCardFlavorFields.flavor.set(this, String.format(flavor, calculateDamage(damage1_)));
     }

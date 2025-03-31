@@ -7,6 +7,8 @@ import com.megacrit.cardcrawl.actions.common.HealAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import gkmasmod.downfall.charbosses.stances.ENConcentrationStance;
+import gkmasmod.downfall.relics.CBR_AbsoluteNewSelf;
 import gkmasmod.relics.AbsoluteNewSelf;
 import gkmasmod.stances.ConcentrationStance;
 
@@ -35,10 +37,14 @@ public class AbsoluteNewSelfAction extends AbstractGameAction {
             }
         }
         else if(p instanceof AbstractCharBoss){
-//            if(AbstractCharBoss.boss.getRelic(CBR_FrogFan.ID2).counter <= 0){
-//                this.isDone = true;
-//                return;
-//            }
+            if(AbstractCharBoss.boss.getRelic(CBR_AbsoluteNewSelf.ID2).counter <= 0){
+                this.isDone = true;
+                return;
+            }
+            if(!AbstractCharBoss.boss.stance.ID.equals(ENConcentrationStance.STANCE_ID)){
+                this.isDone = true;
+                return;
+            }
         }
         addToBot(new HealAction(this.p, this.p, HP));
         addToBot(new ModifyDamageAction(this.m, new DamageInfo(this.p, damage, DamageInfo.DamageType.NORMAL), AttackEffect.SLASH_VERTICAL));
@@ -50,12 +56,11 @@ public class AbsoluteNewSelfAction extends AbstractGameAction {
             }
         }
         else if (p instanceof AbstractCharBoss){
-//            AbstractCharBoss.boss.getRelic(CBR_FrogFan.ID2).counter--;
-//            if(AbstractCharBoss.boss.getRelic(CBR_FrogFan.ID2).counter == 0){
-//                AbstractCharBoss.boss.getRelic(CBR_FrogFan.ID2).grayscale = true;
-//            }
+            AbstractCharBoss.boss.getRelic(CBR_AbsoluteNewSelf.ID2).counter--;
+            if(AbstractCharBoss.boss.getRelic(CBR_AbsoluteNewSelf.ID2).counter == 0){
+                AbstractCharBoss.boss.getRelic(CBR_AbsoluteNewSelf.ID2).grayscale = true;
+            }
         }
-
         this.isDone = true;
     }
 

@@ -29,9 +29,8 @@ public class ENDisposition extends GkmasBossCard {
     private static final int COST = 1;
     private static final int BASE_MAGIC = 2;
     private static final int UPGRADE_PLUS_MAGIC = 1;
-    private static final int BASE_MAGIC2 = 3;
     private static final int BLOCK_AMT = 6;
-    private static final int UPGRADE_PLUS_BLOCK = 2;
+    private static final int UPGRADE_PLUS_BLOCK = 4;
 
 
     private static final CardType TYPE = CardType.SKILL;
@@ -46,8 +45,7 @@ public class ENDisposition extends GkmasBossCard {
         updateImg();
         this.baseMagicNumber = BASE_MAGIC;
         this.magicNumber = this.baseMagicNumber;
-        this.baseSecondMagicNumber = BASE_MAGIC2;
-        this.secondMagicNumber = this.baseSecondMagicNumber;
+        this.exhaust = true;
         this.baseBlock = BLOCK_AMT;
         this.block = this.baseBlock;
         this.intent = AbstractMonster.Intent.DEFEND_BUFF;
@@ -59,13 +57,6 @@ public class ENDisposition extends GkmasBossCard {
     public void use(AbstractPlayer p, AbstractMonster m) {
         addToBot(new ApplyPowerAction(m, m, new StrengthPower(m, this.magicNumber), this.magicNumber));
         addToBot(new GainBlockAction(m, m, this.block));
-        if(this.secondMagicNumber > 1){
-            upgradeSecondMagicNumber(-1);
-            this.initializeDescription();
-        }
-        else{
-            this.exhaust = true;
-        }
     }
 
     @Override

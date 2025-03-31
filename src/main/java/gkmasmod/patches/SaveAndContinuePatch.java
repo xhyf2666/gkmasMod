@@ -19,7 +19,7 @@ public class SaveAndContinuePatch {
             if(modSaves!=null){
                 Gson saveFileGson = new Gson();
                 int[] data = saveFileGson.fromJson(modSaves.get("gkmasMod:skin"), int[].class);
-                System.out.println("LoadPlayerSavesPatch: " + data);
+//                System.out.println("LoadPlayerSavesPatch: " + data);
                 if(data != null && data.length == 3){
                     SkinSelectScreen.Inst.idolIndex = data[0];
                     SkinSelectScreen.Inst.skinIndex = data[1];

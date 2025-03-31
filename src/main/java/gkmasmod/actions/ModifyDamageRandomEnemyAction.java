@@ -30,8 +30,7 @@ public class ModifyDamageRandomEnemyAction extends AbstractGameAction {
     public void update() {
         this.target = AbstractDungeon.getMonsters().getRandomMonster(null, true, AbstractDungeon.cardRandomRng);
         if (this.target != null) {
-            int damage = this.info.base;
-            addToTop(new ModifyDamageAction(this.target, new DamageInfo(this.info.owner, damage, this.info.type), this.attackEffect,this.card));
+            addToTop(new ModifyDamageAction(this.target, this.info, this.attackEffect,this.card));
         }
         this.isDone = true;
     }

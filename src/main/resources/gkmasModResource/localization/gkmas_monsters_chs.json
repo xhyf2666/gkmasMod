@@ -1,6 +1,6 @@
 {
   "gkmasMod:Misuzu": {
-    "NAME": "美玲",
+    "NAME": "美铃",
     "DIALOG": ["偶像之间的战斗，果然还是应该在那个地方。","我最好的朋友， NL 打破鸟笼飞走了。","这是来自谁的帮助呢？"],
     "MOVES": ["想睡觉了"]
   },
@@ -9,18 +9,113 @@
     "DIALOG": [],
     "MOVES": ["想睡觉了"]
   },
+  "gkmasMod:MonsterNadeshiko": {
+    "NAME": "蓝井抚子",
+    "DIALOG": ["咕奴奴奴奴","咕奴奴奴奴","仓本会长的……孙女？","嚯——哈？ NL 诶？","咕啊啊啊！！ NL 居然真的来了，十王星南","我买下了初星学园的 NL 所有周边。"],
+    "MOVES": ["杂鱼杂鱼"]
+  },
+  "gkmasMod:MonsterShion": {
+    "NAME": "白草四音",
+    "DIALOG": ["怎么可能","本小姐居然……","%s… NL 这个名字，我记住了","年龄更小的姐姐什么的， NL 其存在就是一种矛盾！","啊……真是令人不快","明明是白费力气， NL 明明没有意义， NL 却还在丑陋地挣扎"],
+    "MOVES": ["愚蠢"]
+  },
+  "gkmasMod:MonsterGekka": {
+    "NAME": "白草月花",
+    "DIALOG": ["怎么可能","%s吗，我记住你了。 NL 下次有机会再较量吧。"],
+    "MOVES": ["愚蠢"]
+  },
+  "gkmasMod:MonsterRinha": {
+    "NAME": "贺阳燐羽",
+    "DIALOG": ["哼哼~你们也成长了呢","我已经，厌倦这个偶像游戏了。","你……难道要？！","我想起了……当时组建SyngUp的理由","这就是我的……谢幕演出"],
+    "MOVES": ["愚蠢"]
+  },
+  "gkmasMod:MonsterAsari": {
+    "NAME": "亚纱里老师",
+    "DIALOG": ["来得正好，帮我把这个带给%s吧~","老师已经，没什么可以教你的了。","%s，你家的孩子好像有些不对劲。","制作科1年1班的%s同学，请马上来办公室"],
+    "MOVES": ["愚蠢"]
+  },
+  "gkmasMod:MonsterKotone1": {
+    "NAME": "藤田琴音",
+    "DIALOG": ["剩下的，就给你们了","我们输了。","%s，你家的孩子好像有些不对劲。","制作科1年1班的%s同学，请马上来办公室"],
+    "MOVES": ["愚蠢"]
+  },
+  "gkmasMod:MonsterSaki1": {
+    "NAME": "花海咲季",
+    "DIALOG": ["唯独不想输给你","是你赢了。","即使失败，也不会一蹶不振。全新的花海咲季参上！"],
+    "MOVES": ["愚蠢"]
+  },
+  "gkmasMod:MonsterTemari1": {
+    "NAME": "月村手毬",
+    "DIALOG": ["我还不想输……","我不甘心。","%s，你家的孩子好像有些不对劲。","制作科1年1班的%s同学，请马上来办公室"],
+    "MOVES": ["愚蠢"]
+  },
+  "gkmasMod:MonsterSena1": {
+    "NAME": "十王星南",
+    "DIALOG": ["没能到达顶点……","下次，再来较量吧。","%s，你家的孩子好像有些不对劲。","制作科1年1班的%s同学，请马上来办公室"],
+    "MOVES": ["愚蠢"]
+  },
+  "gkmasMod:MonsterSena2": {
+    "NAME": "十王星南·精英",
+    "DIALOG": ["VO%d，DA%d，VI%d。真是惊人的数值","下次，再来较量吧。","会长，请不要……再唱ChooChooChoo了"],
+    "MOVES": ["愚蠢"]
+  },
+  "gkmasMod:MonsterUme1": {
+    "NAME": "花海佑芽",
+    "DIALOG": ["咕努努……又输了","下一次我一定会赢。","%s，你家的孩子好像有些不对劲。","制作科1年1班的%s同学，请马上来办公室"],
+    "MOVES": ["愚蠢"]
+  },
+  "gkmasMod:MonsterMisuzu1": {
+    "NAME": "秦谷美铃",
+    "DIALOG": ["还没实现和她的约定……","没有偷懒的余裕了。","%s，你家的孩子好像有些不对劲。","制作科1年1班的%s同学，请马上来办公室"],
+    "MOVES": ["愚蠢"]
+  },
+  "gkmasMod:FriendNunu": {
+    "NAME": "努努",
+    "DIALOG": [],
+    "MOVES": ["自爆"]
+  },
   "gkmasMod:LittleGundam": {
     "NAME": "小高达",
     "DIALOG": [],
     "MOVES": ["biu"]
   },
+  "gkmasMod:FriendOnigiri": {
+    "NAME": "饭团",
+    "DIALOG": [],
+    "MOVES": ["biu"]
+  },
   "gkmasMod:FriendTemari": {
-    "NAME": "月村手毬的幻影",
+    "NAME": "月村手毬",
     "DIALOG": [],
     "MOVES": ["biu"]
   },
   "gkmasMod:FriendRinha": {
-    "NAME": "贺阳燐羽的幻影",
+    "NAME": "贺阳燐羽",
+    "DIALOG": [],
+    "MOVES": ["biu"]
+  },
+  "gkmasMod:FriendChina": {
+    "NAME": "仓本千奈",
+    "DIALOG": [],
+    "MOVES": ["biu"]
+  },
+  "gkmasMod:FriendKotone": {
+    "NAME": "藤田琴音",
+    "DIALOG": [],
+    "MOVES": ["biu"]
+  },
+  "gkmasMod:FriendHiro": {
+    "NAME": "篠泽广",
+    "DIALOG": [],
+    "MOVES": ["biu"]
+  },
+  "gkmasMod:FriendSena": {
+    "NAME": "十王星南",
+    "DIALOG": ["真是奇遇呢，ことね"],
+    "MOVES": ["biu"]
+  },
+  "gkmasMod:FriendUme": {
+    "NAME": "花海佑芽",
     "DIALOG": [],
     "MOVES": ["biu"]
   },
@@ -30,7 +125,62 @@
     "MOVES": ["biu"]
   },
   "gkmasMod:FriendKnife": {
-    "NAME": "秦谷美玲的小刀",
+    "NAME": "秦谷美铃的小刀",
+    "DIALOG": [],
+    "MOVES": ["biu"]
+  },
+  "IdolBoss_fktn": {
+    "NAME": "藤田琴音",
+    "DIALOG": [],
+    "MOVES": ["biu"]
+  },
+  "IdolBoss_amao": {
+    "NAME": "有村麻央",
+    "DIALOG": [],
+    "MOVES": ["biu"]
+  },
+  "IdolBoss_ssmk": {
+    "NAME": "紫云清夏",
+    "DIALOG": [],
+    "MOVES": ["biu"]
+  },
+  "IdolBoss_ttmr": {
+    "NAME": "月村手毬",
+    "DIALOG": [],
+    "MOVES": ["biu"]
+  },
+  "IdolBoss_hume": {
+    "NAME": "花海佑芽",
+    "DIALOG": [],
+    "MOVES": ["biu"]
+  },
+  "IdolBoss_hski": {
+    "NAME": "花海咲季",
+    "DIALOG": [],
+    "MOVES": ["biu"]
+  },
+  "IdolBoss_hrnm": {
+    "NAME": "姬崎莉波",
+    "DIALOG": [],
+    "MOVES": ["biu"]
+  },
+  "IdolBoss_kcna": {
+    "NAME": "仓本千奈",
+    "DIALOG": [],
+    "MOVES": ["biu"]
+  },
+  "IdolBoss_kllj": {
+    "NAME": "葛城莉莉娅",
+    "DIALOG": [],
+    "MOVES": ["biu"]
+  },
+  "IdolBoss_shro": {
+    "NAME": "篠泽广",
+    "DIALOG": [],
+    "MOVES": ["biu"]
+  },
+  "IdolBoss_jsna": {
+    "NAME": "十王星南",
     "DIALOG": [],
     "MOVES": ["biu"]
   }

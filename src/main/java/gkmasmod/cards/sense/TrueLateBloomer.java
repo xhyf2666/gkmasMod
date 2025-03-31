@@ -58,7 +58,7 @@ public class TrueLateBloomer extends GkmasCard {
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        addToBot(new ApplyPowerAction(p,p,new TrueLateBloomerPower(p,1).setMagic2(this.secondMagicNumber),1));
+        addToBot(new ApplyPowerAction(p,p,new TrueLateBloomerPower(p,this.magicNumber).setMagic2(this.secondMagicNumber),this.magicNumber));
     }
 
     @Override
@@ -71,7 +71,6 @@ public class TrueLateBloomer extends GkmasCard {
         if (!this.upgraded) {
             upgradeName();
             upgradeSecondMagicNumber(UPDATE_PLUS_MAGIC2);
-            this.exhaust = false;
             if (CARD_STRINGS.UPGRADE_DESCRIPTION != null)
                 this.rawDescription = CARD_STRINGS.UPGRADE_DESCRIPTION;
             this.initializeDescription();

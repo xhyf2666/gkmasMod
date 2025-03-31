@@ -3,22 +3,23 @@ package gkmasmod.powers;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.common.DamageAllEnemiesAction;
-import com.megacrit.cardcrawl.actions.common.DamageRandomEnemyAction;
-import com.megacrit.cardcrawl.actions.common.ReducePowerAction;
-import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
+import com.megacrit.cardcrawl.actions.common.*;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.localization.PowerStrings;
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import gkmasmod.actions.GainBlockWithPowerAction;
 import gkmasmod.actions.GoodImpressionAutoDamageAction;
 import gkmasmod.characters.IdolCharacter;
+import gkmasmod.modcore.GkmasMod;
+import gkmasmod.patches.AbstractPlayerPatch;
 import gkmasmod.relics.GreenUniformBracelet;
 import gkmasmod.utils.NameHelper;
+import gkmasmod.utils.PlayerHelper;
 import org.lwjgl.Sys;
 
 public class GoodImpression extends AbstractPower {
@@ -59,17 +60,17 @@ public class GoodImpression extends AbstractPower {
     public void stackPower(int stackAmount) {
         this.amount += stackAmount;
         if(stackAmount<0){
-            if(AbstractDungeon.player.hasPower(IsENotAPower.POWER_ID)){
-                int count = AbstractDungeon.player.getPower(IsENotAPower.POWER_ID).amount;
+            if(this.owner.hasPower(IsENotAPower.POWER_ID)){
+                int count = this.owner.getPower(IsENotAPower.POWER_ID).amount;
                 addToBot(new GainBlockWithPowerAction(this.owner, this.owner, count));
             }
         }
         if (this.amount == 0)
             addToTop(new RemoveSpecificPowerAction(this.owner, this.owner, this.ID));
-        if(this.amount>9999)
-            this.amount = 9999;
-        if(this.amount<-9999)
-            this.amount = -9999;
+        if(this.amount>99999)
+            this.amount = 99999;
+        if(this.amount<-99999)
+            this.amount = -99999;
         updateDescription();
     }
 
@@ -90,8 +91,57 @@ public class GoodImpression extends AbstractPower {
 
     public void atEndOfTurnPreEndTurnCards(boolean isPlayer) {
         flash();
-        addToBot(new GoodImpressionAutoDamageAction(this.owner));
+        if(isPlayer){
+            addToTop(new GoodImpressionAutoDamageAction(this.owner));
+        }
+        else{
+            goodImpressionDamage();
+        }
     }
 
+    private void goodImpressionDamage(){
+        int count = this.owner.getPower(SSDSecretPower.POWER_ID)==null?0:this.owner.getPower(SSDSecretPower.POWER_ID).amount;
+        count++;
+        int damage;
+        float rate = 1.0f;
+        if(this.owner.hasPower(IdolExamPower.POWER_ID)){
+            rate *= ((IdolExamPower)this.owner.getPower(IdolExamPower.POWER_ID)).getRate();
+        }
+        int countNotGoodTune = 0;
+        int countGreatNotGoodTune = 0;
+        if(this.owner.hasPower(NotGoodTune.POWER_ID))
+            countNotGoodTune = this.owner.getPower(NotGoodTune.POWER_ID).amount;
+        if(this.owner.hasPower(GreatNotGoodTune.POWER_ID))
+            countGreatNotGoodTune = this.owner.getPower(GreatNotGoodTune.POWER_ID).amount;
+        if(countNotGoodTune>0){
+            rate *= (0.667f-countNotGoodTune*0.05f*(countGreatNotGoodTune>0?1:0));
+        }
+        if (rate<0)
+            rate = 0;
 
+        for (int i = 0; i < count; i++) {
+            damage = (int)(1.0f*amount * rate);
+            if(damage>0){
+                AbstractDungeon.player.damage(new DamageInfo(this.owner, damage, DamageInfo.DamageType.THORNS));
+            }
+            else if(amount<0){
+                addToBot(new HealAction(AbstractDungeon.player, this.owner, -damage));
+            }
+            amount--;
+        }
+        addToBot(new ApplyPowerAction(this.owner,this.owner,new GoodImpression(this.owner,-count),-count));
+        if(this.owner.hasPower(IsENotAPower.POWER_ID)){
+            int IsENotAPowerAmount = this.owner.getPower(IsENotAPower.POWER_ID).amount;
+            for (int i = 0; i < count-1; i++) {
+                addToBot(new GainBlockWithPowerAction(this.owner, this.owner, IsENotAPowerAmount));
+            }
+        }
+    }
+
+    @Override
+    public void atStartOfTurn() {
+//        if(!this.owner.isPlayer){
+//            addToTop(new GoodImpressionAutoDamageAction(this.owner));
+//        }
+    }
 }

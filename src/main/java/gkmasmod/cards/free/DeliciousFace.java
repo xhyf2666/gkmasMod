@@ -8,9 +8,15 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.DrawCardNextTurnPower;
+import gkmasmod.cardCustomEffect.BlockCustom;
+import gkmasmod.cardCustomEffect.DamageCustom;
+import gkmasmod.cardCustomEffect.TempMoreActionCustom;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.characters.PlayerColorEnum;
+import gkmasmod.utils.CustomHelper;
 import gkmasmod.utils.NameHelper;
+
+import java.util.ArrayList;
 
 public class DeliciousFace extends GkmasCard {
     private static final String CLASSNAME = DeliciousFace.class.getSimpleName();
@@ -35,6 +41,10 @@ public class DeliciousFace extends GkmasCard {
         this.baseMagicNumber = this.magicNumber = BASE_MAGIC;
         this.baseSecondMagicNumber = this.secondMagicNumber = BASE_MAGIC2;
         this.selfRetain = true;
+        this.customLimit = 2;
+        this.customEffectList = new ArrayList<>();
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(BlockCustom.growID, new int[]{2,2}, new int[]{40,40}, CustomHelper.CustomEffectType.BLOCK_ADD));
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(TempMoreActionCustom.growID, new int[]{1,1}, new int[]{50,50}, CustomHelper.CustomEffectType.TEMP_MORE_ACTION_ADD));
     }
 
 

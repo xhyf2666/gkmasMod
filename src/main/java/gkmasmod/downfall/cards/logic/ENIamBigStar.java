@@ -1,5 +1,7 @@
 package gkmasmod.downfall.cards.logic;
 
+import com.megacrit.cardcrawl.powers.BlurPower;
+import gkmasmod.downfall.bosses.AbstractIdolBoss;
 import gkmasmod.downfall.charbosses.bosses.AbstractCharBoss;
 import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
@@ -56,10 +58,10 @@ public class ENIamBigStar extends GkmasBossCard {
         this.thirdMagicNumber = this.baseThirdMagicNumber;
         this.exhaust = true;
         this.intent = AbstractMonster.Intent.MAGIC;
-        this.tags.add(GkmasCardTag.GOOD_IMPRESSION_TAG);
+        this.tags.add(GkmasCardTag.COST_POWER_TAG);
         this.tags.add(GkmasCardTag.OUTSIDE_TAG);
         this.tags.add(GkmasCardTag.MORE_ACTION_TAG);
-
+        this.energyGeneratedIfPlayed = 1;
     }
 
 
@@ -69,6 +71,7 @@ public class ENIamBigStar extends GkmasBossCard {
         addToBot(new VFXAction(new WhirlwindEffect(new Color(1.0F, 0.9F, 0.4F, 1.0F), true)));
 //        addToBot(new SkipEnemiesTurnAction());
         addToBot(new ApplyPowerAction(p,p,new SkipTurnPower(p,1),1));
+        addToTop(new ApplyPowerAction(p,p,new BlurPower(p, 1)));
         addToBot(new GainTrainRoundPowerAction(m,1));
 //        if(this.upgraded)
 //            addToBot(new DrawCardAction(1));
@@ -78,7 +81,7 @@ public class ENIamBigStar extends GkmasBossCard {
     public boolean canUse(AbstractPlayer p, AbstractMonster m) {
         int count = PlayerHelper.getPowerAmount(m, GoodImpression.POWER_ID);
         if (count >= this.magicNumber)
-            return true;
+            return super.canUse(p, m);
         this.cantUseMessage = CardCrawlGame.languagePack.getUIString("gkmasMod:NotEnoughGoodImpression").TEXT[0];
         return false;
     }

@@ -10,6 +10,8 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import gkmasmod.actions.GainBlockWithPowerAction;
 import gkmasmod.actions.ModifyDamageAction;
+import gkmasmod.cards.logic.DreamColorLipstick;
+import gkmasmod.cards.logic.HardStretching;
 
 public class BlockTimeCustom extends AbstractCardCustomEffect {
 
@@ -21,7 +23,12 @@ public class BlockTimeCustom extends AbstractCardCustomEffect {
     }
 
     public String modifyDescription(String rawDescription, AbstractCard card) {
-        return rawDescription + " " + String.format(CardCrawlGame.languagePack.getUIString("customEffect:BlockTimeCustom").TEXT[0],this.amount);
+        if(card instanceof DreamColorLipstick){
+            return CardCrawlGame.languagePack.getCardStrings("gkmasMod:DreamColorLipstick_Effect0").DESCRIPTION;
+        }
+        if(this.amount>1)
+            return rawDescription + " NL " + String.format(CardCrawlGame.languagePack.getUIString("customEffect:BlockTimeCustom").TEXT[1],this.amount);
+        return rawDescription + " NL " + CardCrawlGame.languagePack.getUIString("customEffect:BlockTimeCustom").TEXT[0];
     }
 
     public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {

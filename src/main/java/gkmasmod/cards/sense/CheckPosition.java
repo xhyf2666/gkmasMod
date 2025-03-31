@@ -12,13 +12,21 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.NoBlockPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
+import gkmasmod.cardCustomEffect.DamageCustom;
+import gkmasmod.cardCustomEffect.MagicCustom;
+import gkmasmod.cardCustomEffect.SecondMagicCustom;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
+import gkmasmod.powers.GreatNotGoodTune;
+import gkmasmod.powers.NotGoodTune;
 import gkmasmod.screen.SkinSelectScreen;
+import gkmasmod.utils.CustomHelper;
 import gkmasmod.utils.ImageHelper;
 import gkmasmod.utils.NameHelper;
 import gkmasmod.utils.PlayerHelper;
+
+import java.util.ArrayList;
 
 public class CheckPosition extends GkmasCard {
     private static final String CLASSNAME = CheckPosition.class.getSimpleName();
@@ -29,13 +37,13 @@ public class CheckPosition extends GkmasCard {
     private static final String DESCRIPTION = CARD_STRINGS.DESCRIPTION;
     private static String IMG_PATH = ImageHelper.idolImgPath(SkinSelectScreen.Inst.idolName, CLASSNAME);
 
-    private static final int COST = 1;
+    private static final int COST = 0;
 
     private static final int ATTACK_DMG = 7;
-    private static final int UPGRADE_PLUS_DMG = 8;
-    private static final int BASE_MAGIC = 2;
-    private static final int BASE_MAGIC2 = 2;
-    private static final int BLOCK_AMT = 10;
+    private static final int BASE_MAGIC = 1;
+    private static final int BASE_MAGIC2 = 4;
+    private static final int UPGRADE_MAGIC_PLUS2 = 2;
+    private static final int BASE_MAGIC3 = 2;
 
 
     private static final CardType TYPE = CardType.ATTACK;
@@ -52,19 +60,25 @@ public class CheckPosition extends GkmasCard {
         this.magicNumber = this.baseMagicNumber;
         this.baseSecondMagicNumber = BASE_MAGIC2;
         this.secondMagicNumber = this.baseSecondMagicNumber;
-        this.baseBlock = BLOCK_AMT;
-        this.block = this.baseBlock;
+        this.baseThirdMagicNumber = BASE_MAGIC3;
+        this.thirdMagicNumber = this.baseThirdMagicNumber;
+        this.tags.add(GkmasCardTag.COST_POWER_TAG);
         this.exhaust = true;
-        this.tags.add(GkmasCardTag.GOOD_TUNE_TAG);
+        this.customLimit = 2;
+        this.customEffectList = new ArrayList<>();
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(DamageCustom.growID,new int[]{2,2},new int[]{50,50},CustomHelper.CustomEffectType.DAMAGE_ADD));
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(MagicCustom.growID, new int[]{-1}, new int[]{60}, CustomHelper.CustomEffectType.STRENGTH_ADD));
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(SecondMagicCustom.growID, new int[]{1,1}, new int[]{50,50}, CustomHelper.CustomEffectType.NOT_GOOD_TUNE_ADD));
     }
 
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        addToBot(new ApplyPowerAction(p, p, new StrengthPower(p, -this.magicNumber), -this.magicNumber));
-        addToBot(new GainBlockAction(p, p, this.block));
+        if(this.magicNumber>0)
+            addToBot(new ApplyPowerAction(p, p, new StrengthPower(p, -this.magicNumber), -this.magicNumber));
         addToBot(new DamageAction( m, new DamageInfo( p, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
-        addToBot(new ApplyPowerAction(p, p, new NoBlockPower(p, this.secondMagicNumber,false), this.secondMagicNumber));
+        addToBot(new ApplyPowerAction(m,m,new NotGoodTune(m,this.secondMagicNumber),this.secondMagicNumber));
+        addToBot(new ApplyPowerAction(m,m,new GreatNotGoodTune(m,this.thirdMagicNumber),this.thirdMagicNumber));
     }
 
     @Override
@@ -85,7 +99,7 @@ public class CheckPosition extends GkmasCard {
     public void upgrade() {
         if (!this.upgraded) {
             upgradeName();
-            upgradeDamage(UPGRADE_PLUS_DMG);
+            upgradeDamage(UPGRADE_MAGIC_PLUS2);
             if (CARD_STRINGS.UPGRADE_DESCRIPTION != null)
                 this.rawDescription = CARD_STRINGS.UPGRADE_DESCRIPTION;
             this.initializeDescription();

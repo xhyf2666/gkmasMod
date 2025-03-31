@@ -14,4 +14,9 @@ public class GkmasCardTag {
     @SpireEnum public static AbstractCard.CardTags CONCENTRATION_TAG;
     @SpireEnum public static AbstractCard.CardTags PRESERVATION_TAG;
     @SpireEnum public static AbstractCard.CardTags FULL_POWER_TAG;
+    @SpireEnum public static AbstractCard.CardTags SPECIAL_TAG;
+    @SpireEnum public static AbstractCard.CardTags SLEEP_TAG;
+    @SpireEnum public static AbstractCard.CardTags COST_POWER_TAG;
+    @SpireEnum public static AbstractCard.CardTags ONLY_ONE_TAG;
+    @SpireEnum public static AbstractCard.CardTarget SELF_OR_FRIEND;
 }

@@ -61,7 +61,7 @@ public class BoostExtractPower extends AbstractPower {
     public float atDamageFinalGive(float damage, DamageInfo.DamageType type) {
         if (type == DamageInfo.DamageType.NORMAL) {
             int count =0;
-            for (AbstractPower p : AbstractDungeon.player.powers) {
+            for (AbstractPower p : this.owner.powers) {
                 if (p instanceof BoostExtractPower) {
                     count++;
                 }

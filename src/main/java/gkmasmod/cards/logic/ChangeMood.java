@@ -28,7 +28,7 @@ public class ChangeMood extends GkmasCard {
     private static final int BASE_MAGIC = 100;
     private static final int UPGRADE_PLUS_MAGIC = 10;
 
-    private static final int BASE_MAGIC2 = 2;
+    private static final int BASE_MAGIC2 = 3;
 
     private static final int BASE_HP = 5;
     private static final int UPGRADE_PLUS_HP = -2;

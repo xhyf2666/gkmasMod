@@ -12,6 +12,7 @@ import com.megacrit.cardcrawl.helpers.PotionHelper;
 import com.megacrit.cardcrawl.potions.AbstractPotion;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import gkmasmod.characters.IdolCharacter;
+import gkmasmod.characters.MisuzuCharacter;
 import gkmasmod.modcore.GkmasMod;
 import gkmasmod.potion.*;
 import gkmasmod.relics.PledgePetal;
@@ -32,15 +33,19 @@ public class PotionHelperPatch
         @SpireInsertPatch(rloc = 2,localvars = {"retVal"})
         public static void Insert(AbstractPlayer.PlayerClass c, boolean getAll,@ByRef ArrayList<String>[] retVal) {
             ArrayList<String> tmp =new ArrayList<>();
-            if(AbstractDungeon.player instanceof IdolCharacter){
+            if(AbstractDungeon.player instanceof IdolCharacter||AbstractDungeon.player instanceof MisuzuCharacter){
                 if(!getAll){
                     CommonEnum.IdolType type  = IdolData.getIdol(SkinSelectScreen.Inst.idolIndex).getType(SkinSelectScreen.Inst.skinIndex);
+                    if(AbstractDungeon.player instanceof MisuzuCharacter){
+                        type = CommonEnum.IdolType.SENSE;
+                    }
                     if(type==CommonEnum.IdolType.SENSE){
                         tmp.add(VitaminDrink.ID);
                         tmp.add(IcedCoffee.ID);
                         tmp.add(StaminaExplosionDrink.ID);
                         tmp.add(SelectFirstStarMacchiato.ID);
                         tmp.add(FirstStarBoostEnergy.ID);
+                        tmp.add(FirstStarBlackVinegar.ID);
                     }
                     else if(type==CommonEnum.IdolType.LOGIC){
                         tmp.add(RooibosTea.ID);
@@ -68,6 +73,7 @@ public class PotionHelperPatch
                 tmp.add(StaminaExplosionDrink.ID);
                 tmp.add(SelectFirstStarMacchiato.ID);
                 tmp.add(FirstStarBoostEnergy.ID);
+                tmp.add(FirstStarBlackVinegar.ID);
                 tmp.add(RooibosTea.ID);
                 tmp.add(HotCoffee.ID);
                 tmp.add(StylishHerbalTea.ID);
@@ -106,6 +112,9 @@ public class PotionHelperPatch
             }
             if (name.equals(FirstStarBoostEnergy.ID)) {
                 return SpireReturn.Return(new FirstStarBoostEnergy());
+            }
+            if (name.equals(FirstStarBlackVinegar.ID)){
+                return SpireReturn.Return(new FirstStarBlackVinegar());
             }
             if (name.equals(RooibosTea.ID)) {
                 return SpireReturn.Return(new RooibosTea());

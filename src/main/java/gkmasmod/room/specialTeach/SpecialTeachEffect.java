@@ -30,7 +30,7 @@ public class SpecialTeachEffect extends AbstractGameEffect {
     private Color screenColor = AbstractDungeon.fadeColor.cpy();
 
     public SpecialTeachEffect() {
-        this.duration = 1.5F;
+        this.duration = 0.5F;
         this.screenColor.a = 0.0F;
         this.isFinished = false;
     }
@@ -40,25 +40,16 @@ public class SpecialTeachEffect extends AbstractGameEffect {
             this.duration -= Gdx.graphics.getDeltaTime();
             updateBlackScreenColor();
         }
-//        if (!AbstractDungeon.isScreenUp && !AbstractDungeon.gridSelectScreen.selectedCards.isEmpty() && AbstractDungeon.gridSelectScreen.forUpgrade) {
-//            for (AbstractCard c : AbstractDungeon.gridSelectScreen.selectedCards) {
-//                AbstractDungeon.player.bottledCardUpgradeCheck(c);
-//                AbstractDungeon.effectsQueue.add(new ShowCardBrieflyEffect(c.makeStatEquivalentCopy()));
-//            }
-//            AbstractDungeon.gridSelectScreen.selectedCards.clear();
-//            ((RestRoom)AbstractDungeon.getCurrRoom()).fadeIn();
-//        }
         if (this.duration < 1.0F && !this.openedScreen) {
             this.openedScreen = true;
-            BaseMod.openCustomScreen(SpecialTeachScreen.Enum.SpecialTeach_Screen,AbstractDungeon.player.masterDeck
-                    .getUpgradableCards(), 1,"选择一张卡进行效果修改");
+            BaseMod.openCustomScreen(SpecialTeachScreen.Enum.SpecialTeach_Screen,getCustomCards(), 1,"选择一张卡进行效果修改");
         }
         if (this.duration < 0.0F) {
             this.isDone = true;
         }
     }
 
-    public CardGroup getUpgradableCards() {
+    public CardGroup getCustomCards() {
         CardGroup retVal = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
         Iterator var2 = AbstractDungeon.player.masterDeck.group.iterator();
 
@@ -66,7 +57,7 @@ public class SpecialTeachEffect extends AbstractGameEffect {
             AbstractCard c = (AbstractCard)var2.next();
             if (c instanceof GkmasCard) {
                 GkmasCard gkmasCard = (GkmasCard) c;
-                if(gkmasCard.customEffectList.size()>0){
+                if(gkmasCard.upgraded&&gkmasCard.customEffectList!=null&&gkmasCard.customEffectList.size()>0){
                     retVal.group.add(c);
                 }
             }
@@ -79,7 +70,7 @@ public class SpecialTeachEffect extends AbstractGameEffect {
         if (this.duration > 1.0F) {
             this.screenColor.a = Interpolation.fade.apply(1.0F, 0.0F, (this.duration - 1.0F) * 2.0F);
         } else {
-            this.screenColor.a = Interpolation.fade.apply(0.0F, 1.0F, this.duration / 1.5F);
+            this.screenColor.a = Interpolation.fade.apply(0.0F, 0.5F, this.duration / 1.5F);
         }
     }
 

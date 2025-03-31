@@ -1,9 +1,11 @@
 package gkmasmod.downfall.cards.sense;
 
+import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.unique.SkewerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import gkmasmod.actions.EnemySkewerAction;
@@ -11,6 +13,7 @@ import gkmasmod.cards.GkmasCard;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.downfall.cards.GkmasBossCard;
 import gkmasmod.downfall.cards.free.ENSleepLate;
+import gkmasmod.powers.GreatNotGoodTune;
 import gkmasmod.utils.NameHelper;
 
 public class ENTemporaryTruce extends GkmasBossCard {
@@ -26,6 +29,7 @@ public class ENTemporaryTruce extends GkmasBossCard {
 
     private static final int COST = -1;
     private static final int ATTACK_DMG = 7;
+    private static final int BASE_MAGIC = 1;
 
 
     private static final CardType TYPE = CardType.ATTACK;
@@ -36,6 +40,8 @@ public class ENTemporaryTruce extends GkmasBossCard {
     public ENTemporaryTruce() {
         super(ID, NAME, IMG_PATH, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.baseDamage = ATTACK_DMG;
+        this.baseMagicNumber = BASE_MAGIC;
+        this.magicNumber = this.baseMagicNumber;
         this.intent = AbstractMonster.Intent.ATTACK;
     }
 
@@ -47,6 +53,12 @@ public class ENTemporaryTruce extends GkmasBossCard {
         }
         else{
             addToBot(new EnemySkewerAction(m, p, this.damage, this.damageTypeForTurn, this.freeToPlayOnce, this.energyOnUse));
+        }
+        addToBot(new ApplyPowerAction(p,p,new GreatNotGoodTune(p,this.magicNumber),this.magicNumber));
+        for(AbstractMonster monster: AbstractDungeon.getMonsters().monsters){
+            if(!monster.isDeadOrEscaped()){
+                addToBot(new ApplyPowerAction(monster,monster,new GreatNotGoodTune(monster,this.magicNumber),this.magicNumber));
+            }
         }
     }
 

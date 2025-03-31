@@ -1,5 +1,6 @@
 package gkmasmod.downfall.cards.logic;
 
+import com.megacrit.cardcrawl.actions.common.LoseHPAction;
 import gkmasmod.downfall.charbosses.bosses.AbstractCharBoss;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -52,6 +53,7 @@ public class ENMiracleMagic extends GkmasBossCard {
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
+        addToBot(new LoseHPAction(m, m, HPMagicNumber));
         addToBot(new GoodImpressionDamageAction(1.0F * magicNumber / 100, 0, m, p,this));
     }
 

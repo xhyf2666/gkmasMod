@@ -2,7 +2,9 @@ package gkmasmod.downfall.bosses;
 
 import gkmasmod.downfall.charbosses.bosses.AbstractBossDeckArchetype;
 import gkmasmod.downfall.charbosses.bosses.AbstractCharBoss;
+import gkmasmod.downfall.charbosses.cards.AbstractBossCard;
 import gkmasmod.downfall.charbosses.relics.CBR_FossilizedHelix;
+import gkmasmod.downfall.charbosses.relics.CBR_Sozu;
 import gkmasmod.downfall.charbosses.relics.CBR_ThreadAndNeedle;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -14,6 +16,7 @@ import gkmasmod.downfall.cards.sense.*;
 import gkmasmod.downfall.relics.*;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class BossConfig_amao1 extends AbstractBossDeckArchetype {
 
@@ -36,6 +39,8 @@ public class BossConfig_amao1 extends AbstractBossDeckArchetype {
         addRelic(new CBR_GentlemanHandkerchief());
         addRelic(new CBR_DearLittlePrince());
         addRelic(new CBR_InnerLightEarrings());
+        if(AbstractDungeon.ascensionLevel >= 10)
+            addRelic(new CBR_Sozu());
     }
 
     @Override
@@ -45,7 +50,7 @@ public class BossConfig_amao1 extends AbstractBossDeckArchetype {
         if (!looped) {
             switch (turn) {
                 case 0:
-                    addToList(cardsList, new ENLoveMyselfCool(),extraUpgrades);
+                    addToList(cardsList, new ENLoveMyselfCool(),true);
                     addToList(cardsList, new ENSteadyWill(),extraUpgrades);
                     addToList(cardsList, new ENEndlessApplause(),extraUpgrades);
                     addToList(cardsList, new ENAuthenticity(),extraUpgrades);
@@ -53,7 +58,7 @@ public class BossConfig_amao1 extends AbstractBossDeckArchetype {
                     turn++;
                     break;
                 case 1:
-                    addToList(cardsList, new ENLoveMyselfCute(),extraUpgrades);
+                    addToList(cardsList, new ENLoveMyselfCute(),true);
                     addToList(cardsList, new ENStartSignal());
                     addToList(cardsList, new ENDressedUpInStyle(),extraUpgrades);
                     addToList(cardsList, new ENLeap(),extraUpgrades);
@@ -61,12 +66,11 @@ public class BossConfig_amao1 extends AbstractBossDeckArchetype {
                     turn++;
                     break;
                 case 2:
-                    addToList(cardsList, new ENLoveMyselfCool(),extraUpgrades);
+                    addToList(cardsList, new ENLoveMyselfCool(),true);
                     addToList(cardsList, new ENCharmPerformance(),extraUpgrades);
                     addToList(cardsList, new ENNationalIdol(),extraUpgrades);
                     addToList(cardsList, new ENAchievement());
                     addToList(cardsList, new ENBaseAppeal());
-
                     turn = 0;
                     looped = true;
                     break;
@@ -74,7 +78,7 @@ public class BossConfig_amao1 extends AbstractBossDeckArchetype {
         } else {
             switch (turn) {
                 case 0:
-                    addToList(cardsList, new ENLoveMyselfCute(),extraUpgrades);
+                    addToList(cardsList, new ENLoveMyselfCute(),true);
                     addToList(cardsList, new ENExistence(),extraUpgrades);
                     addToList(cardsList, new ENEncoreCall(),extraUpgrades);
                     addToList(cardsList, new ENPopPhrase());
@@ -82,7 +86,7 @@ public class BossConfig_amao1 extends AbstractBossDeckArchetype {
                     turn++;
                     break;
                 case 1:
-                    addToList(cardsList, new ENLoveMyselfCool(),extraUpgrades);
+                    addToList(cardsList, new ENLoveMyselfCool(),true);
                     addToList(cardsList, new ENExistence(),extraUpgrades);
                     addToList(cardsList, new ENEncoreCall(),extraUpgrades);
                     addToList(cardsList, new ENBaseAppeal());

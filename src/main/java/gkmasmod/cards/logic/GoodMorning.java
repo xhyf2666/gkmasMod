@@ -3,6 +3,7 @@ package gkmasmod.cards.logic;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
+import com.megacrit.cardcrawl.actions.common.DrawCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -36,6 +37,7 @@ public class GoodMorning extends GkmasCard {
     private static final int UPGRADE_PLUS_MAGIC = 1;
     private static final int ATTACK_DMG = 5;
     private static final int UPGRADE_PLUS_DMG = 2;
+    private static final int BASE_MAGIC2 = 1;
 
     private static final CardType TYPE = CardType.ATTACK;
     private static final CardColor COLOR = PlayerColorEnum.gkmasModColorLogic;
@@ -47,6 +49,8 @@ public class GoodMorning extends GkmasCard {
         this.baseDamage = ATTACK_DMG;
         this.baseMagicNumber = BASE_MAGIC;
         this.magicNumber = this.baseMagicNumber;
+        this.baseSecondMagicNumber = BASE_MAGIC2;
+        this.secondMagicNumber = this.baseSecondMagicNumber;
         this.tags.add(GkmasCardTag.GOOD_IMPRESSION_TAG);
         this.customLimit = 3;
         this.customEffectList = new ArrayList<>();
@@ -60,6 +64,7 @@ public class GoodMorning extends GkmasCard {
     public void use(AbstractPlayer p, AbstractMonster m) {
         addToBot(new DamageAction(m, new DamageInfo(p, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
         addToBot(new ApplyPowerAction(p, p, new GoodImpression(p, this.magicNumber), this.magicNumber));
+        addToBot(new DrawCardAction(p, this.secondMagicNumber));
     }
 
     @Override

@@ -9,10 +9,13 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import gkmasmod.actions.EnemyDrawAction;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.characters.PlayerColorEnum;
+import gkmasmod.downfall.bosses.IdolBoss_jsna;
 import gkmasmod.downfall.cards.GkmasBossCard;
 import gkmasmod.downfall.cards.free.ENSleepLate;
+import gkmasmod.downfall.charbosses.bosses.AbstractCharBoss;
 import gkmasmod.utils.NameHelper;
 
 public class ENServiceSpirit extends GkmasBossCard {
@@ -27,7 +30,7 @@ public class ENServiceSpirit extends GkmasBossCard {
     private static final String IMG_PATH = String.format("gkmasModResource/img/cards/common/%s.png", CLASSNAME2);
 
     private static final int COST = 1;
-    private static final int ATTACK_DMG = 4;
+    private static final int ATTACK_DMG = 7;
     private static final int UPGRADE_PLUS_DMG = 2;
 
     private static final int BASE_MAGIC = 1;
@@ -51,7 +54,9 @@ public class ENServiceSpirit extends GkmasBossCard {
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
         addToBot( new DamageAction(p, new DamageInfo(m, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
-//        addToBot( new DrawCardAction(m, this.magicNumber));
+        if(m instanceof IdolBoss_jsna){
+            addToBot(new EnemyDrawAction(2,false));
+        }
     }
 
     @Override

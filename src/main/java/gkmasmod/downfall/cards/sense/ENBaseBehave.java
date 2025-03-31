@@ -27,7 +27,7 @@ public class ENBaseBehave extends GkmasBossCard {
 
     private static final int COST = 1;
     private static final int BASE_MAGIC = 2;
-
+    private static final int UPGRADE_PLUS_MAGIC = 1;
 
     private static final int BLOCK_AMT = 4;
     private static final int UPGRADE_PLUS_BLOCK = 3;
@@ -64,6 +64,7 @@ public class ENBaseBehave extends GkmasBossCard {
         if (!this.upgraded) {
             upgradeName();
             upgradeBlock(UPGRADE_PLUS_BLOCK);
+            upgradeMagicNumber(UPGRADE_PLUS_MAGIC);
             if (CARD_STRINGS.UPGRADE_DESCRIPTION != null)
                 this.rawDescription = CARD_STRINGS.UPGRADE_DESCRIPTION;
             this.initializeDescription();

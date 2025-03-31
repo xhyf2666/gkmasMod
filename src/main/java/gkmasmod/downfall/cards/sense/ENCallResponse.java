@@ -1,5 +1,6 @@
 package gkmasmod.downfall.cards.sense;
 
+import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import gkmasmod.downfall.charbosses.bosses.AbstractCharBoss;
 import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
@@ -17,6 +18,7 @@ import com.megacrit.cardcrawl.relics.AbstractRelic;
 import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.downfall.cards.GkmasBossCard;
+import gkmasmod.powers.NotGoodTune;
 import gkmasmod.utils.ImageHelper;
 import gkmasmod.utils.NameHelper;
 import gkmasmod.utils.PlayerHelper;
@@ -42,6 +44,7 @@ public class ENCallResponse extends GkmasBossCard {
     private static final int UPGRADE_PLUS_DMG2 = 5;
     private static final int BASE_MAGIC = 2;
     private static final int BASE_MAGIC2 = 150;
+    private static final int BASE_MAGIC3 = 4;
 
 
     private static final CardType TYPE = CardType.ATTACK;
@@ -60,7 +63,9 @@ public class ENCallResponse extends GkmasBossCard {
         this.magicNumber = this.baseMagicNumber;
         this.baseSecondMagicNumber = BASE_MAGIC2;
         this.secondMagicNumber = this.baseSecondMagicNumber;
-        this.intent = AbstractMonster.Intent.ATTACK;
+        this.baseThirdMagicNumber = BASE_MAGIC3;
+        this.thirdMagicNumber = this.baseThirdMagicNumber;
+        this.intent = AbstractMonster.Intent.ATTACK_DEBUFF;
         this.exhaust = true;
         this.tags.add(GkmasCardTag.FOCUS_TAG);
     }
@@ -73,6 +78,7 @@ public class ENCallResponse extends GkmasBossCard {
         if(count > this.magicNumber){
             addToBot(new DamageAction(p, new DamageInfo(m, this.secondDamage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
         }
+        addToBot(new ApplyPowerAction(m,m,new NotGoodTune(m,this.thirdMagicNumber),this.thirdMagicNumber));
     }
 
     public void applyPowers() {

@@ -1,5 +1,6 @@
 package gkmasmod.downfall.cards.logic;
 
+import com.megacrit.cardcrawl.actions.common.DrawCardAction;
 import gkmasmod.downfall.charbosses.bosses.AbstractCharBoss;
 import com.evacipated.cardcrawl.mod.stslib.patches.FlavorText;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -33,6 +34,8 @@ public class ENFlowering extends GkmasBossCard {
     private static final int BASE_MAGIC2 = 200;
     private static final int UPGRADE_PLUS_MAGIC2 = 100;
 
+    private static final int BASE_MAGIC3 = 2;
+
 
     private static final CardType TYPE = CardType.ATTACK;
     private static final CardColor COLOR = PlayerColorEnum.gkmasModColorLogic;
@@ -49,6 +52,8 @@ public class ENFlowering extends GkmasBossCard {
         this.magicNumber = this.baseMagicNumber;
         this.baseSecondMagicNumber = BASE_MAGIC2;
         this.secondMagicNumber = this.baseSecondMagicNumber;
+        this.baseThirdMagicNumber = BASE_MAGIC3;
+        this.thirdMagicNumber = this.baseThirdMagicNumber;
         this.intent = AbstractMonster.Intent.ATTACK_BUFF;
         FlavorText.AbstractCardFlavorFields.boxColor.set(this, CardHelper.getColor(73, 224, 254));
         flavor = FlavorText.CardStringsFlavorField.flavor.get(CARD_STRINGS);
@@ -57,6 +62,7 @@ public class ENFlowering extends GkmasBossCard {
     
     public void use(AbstractPlayer p, AbstractMonster m) {
         addToBot(new DexterityPowerDamageAction(this.secondMagicNumber*1.0F/100, this.magicNumber,m, p, this));
+//        addToBot(new DrawCardAction(p, this.thirdMagicNumber));
     }
 
     @Override

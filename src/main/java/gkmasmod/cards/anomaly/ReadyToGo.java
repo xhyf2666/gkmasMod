@@ -1,6 +1,8 @@
 package gkmasmod.cards.anomaly;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
+import com.megacrit.cardcrawl.actions.common.DrawCardAction;
 import com.megacrit.cardcrawl.actions.watcher.ChangeStanceAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
@@ -8,14 +10,22 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import gkmasmod.actions.GrowAction;
 import gkmasmod.actions.ModifyDamageAction;
+import gkmasmod.cardCustomEffect.*;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
+import gkmasmod.growEffect.DamageGrow;
+import gkmasmod.powers.EnthusiasticPower;
 import gkmasmod.screen.SkinSelectScreen;
 import gkmasmod.stances.ConcentrationStance;
+import gkmasmod.stances.FullPowerStance;
+import gkmasmod.utils.CustomHelper;
 import gkmasmod.utils.ImageHelper;
 import gkmasmod.utils.NameHelper;
+
+import java.util.ArrayList;
 
 public class ReadyToGo extends GkmasCard {
     private static final String CLASSNAME = ReadyToGo.class.getSimpleName();
@@ -32,8 +42,9 @@ public class ReadyToGo extends GkmasCard {
 
     private static final int UPGRADE_DMG_PLUS = 4;
 
-    private static final int BASE_MAGIC = 2;
+    private static final int BASE_MAGIC = 0;
 
+    private static final int BASE_MAGIC2 = 2;
 
     private static final CardType TYPE = CardType.ATTACK;
     private static final CardColor COLOR = PlayerColorEnum.gkmasModColorAnomaly;
@@ -46,12 +57,26 @@ public class ReadyToGo extends GkmasCard {
         this.updateShowImg = true;
         this.tags.add(GkmasCardTag.CONCENTRATION_TAG);
         this.baseDamage = BASE_DAMAGE;
+        this.baseMagicNumber = BASE_MAGIC;
+        this.magicNumber = this.baseMagicNumber;
+        this.baseSecondMagicNumber = BASE_MAGIC2;
+        this.secondMagicNumber = this.baseSecondMagicNumber;
+        this.customLimit = 2;
+        this.customEffectList = new ArrayList<>();
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(DamageCustom.growID,new int[]{2,2},new int[]{50,50},CustomHelper.CustomEffectType.DAMAGE_ADD));
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(MagicCustom.growID, new int[]{2,2}, new int[]{60,60}, CustomHelper.CustomEffectType.EFFECT_ADD));
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
         addToBot(new ChangeStanceAction(ConcentrationStance.STANCE_ID2));
         addToBot(new ModifyDamageAction(m, new DamageInfo(p, this.baseDamage, DamageInfo.DamageType.NORMAL), AbstractGameAction.AttackEffect.SLASH_VERTICAL,this,false));
+        if(this.magicNumber>0){
+            addToBot(new GrowAction(DamageGrow.growID, GrowAction.GrowType.allHand, this.magicNumber));
+        }
+        if(p.stance.ID.equals(FullPowerStance.STANCE_ID)){
+            addToBot(new ApplyPowerAction(p,p,new EnthusiasticPower(p,this.secondMagicNumber),this.secondMagicNumber));
+        }
     }
 
     @Override

@@ -12,6 +12,7 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import gkmasmod.actions.GoodImpressionDamageAction;
 import gkmasmod.cards.GkmasCard;
+import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.powers.EvenIfDreamNotRealizePower;
 import gkmasmod.powers.GoodImpression;
@@ -44,6 +45,7 @@ public class CreateYourStyle extends GkmasCard {
         super(ID, NAME, IMG_PATH, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET,"color");
         this.baseMagicNumber = BASE_MAGIC;
         this.exhaust = true;
+        this.tags.add(GkmasCardTag.COST_POWER_TAG);
         FlavorText.AbstractCardFlavorFields.boxColor.set(this, CardHelper.getColor(73, 224, 254));
         flavor = FlavorText.CardStringsFlavorField.flavor.get(CARD_STRINGS);
         this.backGroundColor = IdolData.amao;
@@ -52,7 +54,7 @@ public class CreateYourStyle extends GkmasCard {
 
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        addToBot(new GoodImpressionDamageAction(1.0F * magicNumber / 100, 0, p, m,this,1.0f));
+        addToBot(new GoodImpressionDamageAction(1.0F * this.magicNumber / 100, 0, p, m,this,1.0f));
     }
 
     public void applyPowers() {

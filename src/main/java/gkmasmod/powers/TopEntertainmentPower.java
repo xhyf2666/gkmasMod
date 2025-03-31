@@ -52,7 +52,7 @@ public class TopEntertainmentPower extends AbstractPower {
             return;
         if(this.owner instanceof AbstractCharBoss&&(!(card instanceof AbstractBossCard)))
             return;
-        if(card.type == AbstractCard.CardType.ATTACK) {
+        if(card.type == AbstractCard.CardType.ATTACK||card.type == AbstractCard.CardType.POWER) {
             AbstractCreature target = action.target;
             if(this.owner instanceof AbstractCharBoss)
                 target = AbstractDungeon.player;

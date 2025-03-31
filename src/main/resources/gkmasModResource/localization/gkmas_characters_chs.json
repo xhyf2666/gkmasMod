@@ -45,7 +45,7 @@
   },
   "IdolName:hmsz": {
     "NAMES": [""],
-    "TEXT": ["秦谷美玲"]
+    "TEXT": ["秦谷美铃"]
   },
   "IdolName:jsna": {
     "NAMES": [""],
@@ -243,6 +243,10 @@
     "NAMES": [""],
     "TEXT": ["170cm"]
   },
+  "IdolHeight:hmsz":{
+    "NAMES": [""],
+    "TEXT": ["160cm"]
+  },
   "IdolWeight:shro":{
     "NAMES": [""],
     "TEXT": ["41kg"]
@@ -287,6 +291,10 @@
     "NAMES": [""],
     "TEXT": ["54kg"]
   },
+  "IdolWeight:hmsz":{
+    "NAMES": [""],
+    "TEXT": ["42kg"]
+  },
   "IdolThreeSize:shro":{
     "NAMES": [""],
     "TEXT": ["B72/W54/H76"]
@@ -301,7 +309,7 @@
   },
   "IdolThreeSize:hume":{
     "NAMES": [""],
-    "TEXT": ["B82/W58/H80"]
+    "TEXT": ["B91/W60/H85"]
   },
   "IdolThreeSize:hski":{
     "NAMES": [""],
@@ -321,7 +329,7 @@
   },
   "IdolThreeSize:ssmk":{
     "NAMES": [""],
-    "TEXT": ["B80/W58/H85"]
+    "TEXT": ["B89/W58/H85"]
   },
   "IdolThreeSize:ttmr":{
     "NAMES": [""],
@@ -375,6 +383,10 @@
     "NAMES": [""],
     "TEXT": ["课程 NL 寻找有才华的偶像"]
   },
+  "IdolInterest:hmsz":{
+    "NAMES": [""],
+    "TEXT": ["睡觉，照顾他人"]
+  },
   "IdolSkill:shro":{
     "NAMES": [""],
     "TEXT": ["所有学业，物理 NL 数学，解谜"]
@@ -418,6 +430,10 @@
   "IdolSkill:jsna":{
     "NAMES": [""],
     "TEXT": ["发掘偶像的才能"]
+  },
+  "IdolSkill:hmsz":{
+    "NAMES": [""],
+    "TEXT": ["料理"]
   },
   "IdolPlan1:shro": {
     "NAMES": [""],

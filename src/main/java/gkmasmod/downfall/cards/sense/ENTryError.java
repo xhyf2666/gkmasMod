@@ -25,8 +25,8 @@ public class ENTryError extends GkmasBossCard {
     private static final String DESCRIPTION = CARD_STRINGS.DESCRIPTION;
     private static final String IMG_PATH = String.format("gkmasModResource/img/cards/common/%s.png", CLASSNAME2);
 
-    private static final int COST = 2;
-    private static final int ATTACK_DMG = 8;
+    private static final int COST = 1;
+    private static final int ATTACK_DMG = 6;
     private static final int UPGRADE_PLUS_DMG = 3;
 
     private static final int BASE_MAGIC = 2;

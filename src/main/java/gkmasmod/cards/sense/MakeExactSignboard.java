@@ -10,15 +10,19 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.ArtifactPower;
 import gkmasmod.actions.GainTrainRoundPowerAction;
-import gkmasmod.cardCustomEffect.MoreActionCustom;
+import gkmasmod.cardCustomEffect.*;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.powers.GoodTune;
 import gkmasmod.powers.GreatGoodTune;
+import gkmasmod.powers.NegativeNotPower;
+import gkmasmod.utils.CustomHelper;
 import gkmasmod.utils.IdolData;
 import gkmasmod.utils.NameHelper;
 import gkmasmod.utils.SoundHelper;
+
+import java.util.ArrayList;
 
 public class MakeExactSignboard extends GkmasCard {
     private static final String CLASSNAME = MakeExactSignboard.class.getSimpleName();
@@ -54,13 +58,18 @@ public class MakeExactSignboard extends GkmasCard {
         this.backGroundColor = IdolData.shro;
         updateBackgroundImg();
         CardModifierManager.addModifier(this,new MoreActionCustom(1));
+        this.customLimit = 1;
+        this.customEffectList = new ArrayList<>();
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(MagicCustom.growID, new int[]{1}, new int[]{50}, CustomHelper.CustomEffectType.GOOD_TUNE_ADD));
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(SecondMagicCustom.growID, new int[]{1}, new int[]{60}, CustomHelper.CustomEffectType.EFFECT_ADD));
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(ExhaustRemoveCustom.growID,new int[]{0},new int[]{80},CustomHelper.CustomEffectType.EXHAUST_REMOVE));
     }
 
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
         addToBot(new ApplyPowerAction(p, p, new GoodTune(p, this.magicNumber), this.magicNumber));
-        addToBot(new ApplyPowerAction(p, p, new ArtifactPower(p, this.secondMagicNumber), this.secondMagicNumber));
+        addToBot(new ApplyPowerAction(p, p, new NegativeNotPower(p, this.secondMagicNumber), this.secondMagicNumber));
 //        addToBot(new GainTrainRoundPowerAction(p,1));
         SoundHelper.playSound("gkmasModResource/audio/voice/skillcard/cidol_shro_3_006_produce_skillcard_01.ogg");
 

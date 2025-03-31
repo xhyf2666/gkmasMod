@@ -35,8 +35,10 @@ public class Idol {
     public String[] bossSongs;
     public String[] bossReward;
     public String[] bossSkins;
+    public String[] replaceCards;
+    public String[] fireImgs;
 
-    public Idol(String idolName,String[] skins,String[] skinImg,String[] cards,String[] relics,IdolType[] types,IdolStyle[] styles,ArrayList<String[]> comments,String[] texts,String[] songs,String[] bgms,String[] videos,int hp,int gold,int[] baseThreeSize,float[] threeSizeRate,int[] threeSizeRequires,int[] planTypes,int[] planRequires,int[] spVoiceNum,String[] lives,String[] bossSongs,String[] bossReward,String[] bossSkins){
+    public Idol(String idolName,String[] skins,String[] skinImg,String[] cards,String[] relics,IdolType[] types,IdolStyle[] styles,ArrayList<String[]> comments,String[] texts,String[] songs,String[] bgms,String[] videos,int hp,int gold,int[] baseThreeSize,float[] threeSizeRate,int[] threeSizeRequires,int[] planTypes,int[] planRequires,int[] spVoiceNum,String[] lives,String[] bossSongs,String[] bossReward,String[] bossSkins,String[] replaceCards,String[] fireImgs){
         this.idolName = idolName;
         this.skins = skins.clone();
         this.skinImg = skinImg.clone();
@@ -57,6 +59,10 @@ public class Idol {
         this.baseThreeSize = baseThreeSize.clone();
         this.threeSizeRate = threeSizeRate.clone();
         this.threeSizeRequires = threeSizeRequires.clone();
+        //将threeSizeRequires中的每项增加200
+        for(int i = 0; i < threeSizeRequires.length; i++){
+            threeSizeRequires[i] += 200;
+        }
         this.planTypes = planTypes.clone();
         this.planRequires = planRequires.clone();
         this.spVoiceNum = spVoiceNum.clone();
@@ -64,6 +70,8 @@ public class Idol {
         this.bossSongs = bossSongs.clone();
         this.bossReward = bossReward.clone();
         this.bossSkins = bossSkins.clone();
+        this.replaceCards = replaceCards.clone();
+        this.fireImgs = fireImgs.clone();
 
         //得到threeSizeRequires中最大值和次大值的索引
         int maxIndex = 0;
@@ -120,6 +128,17 @@ public class Idol {
                 continue;
             }
             cardList.add(card);
+        }
+        return cardList;
+    }
+
+    public ArrayList<String> getCardListExcept(String card){
+        ArrayList<String> cardList = new ArrayList<>();
+        for(String c : this.cards){
+            if(cardList.contains(c) || c.equals(card)){
+                continue;
+            }
+            cardList.add(c);
         }
         return cardList;
     }
@@ -191,12 +210,24 @@ public class Idol {
         return bossSongs[num];
     }
 
+    public String[] getBossRewards(){
+        return bossReward;
+    }
+
     public String getBossReward(int num){
         return bossReward[num];
     }
 
     public String getBossSkin(int num){
         return bossSkins[num];
+    }
+
+    public String getReplaceCard(int num){
+        return replaceCards[num];
+    }
+
+    public String getRandomFireImg(){
+        return fireImgs[(int)(Math.random()*fireImgs.length)];
     }
 
     public int getHp(){

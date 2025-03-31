@@ -26,7 +26,7 @@ public class CBR_FirstVoiceProofSaki extends AbstractCharbossRelic {
 
     private static final RelicTier RARITY = RelicTier.STARTER;
 
-    private static final int magicNumber = 2;
+    private static final int magicNumber = 3;
 
     private static final  int playTimes = 2;
 

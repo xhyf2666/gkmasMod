@@ -1,11 +1,11 @@
 {
   "gkmasMod:FirstStarWater": {
     "NAME": "初星水",
-    "DESCRIPTIONS": ["造成 #b%d 点伤害。"]
+    "DESCRIPTIONS": ["造成 #b%d 点伤害(吃加成)。"]
   },
   "gkmasMod:OolongTea": {
     "NAME": "乌龙茶",
-    "DESCRIPTIONS": ["获得 #b%d 点 #y格挡 。"]
+    "DESCRIPTIONS": ["获得 #b%d 点 #y格挡 (吃加成)。"]
   },
   "gkmasMod:VitaminDrink": {
     "NAME": "维生素饮料",
@@ -55,6 +55,10 @@
     "NAME": "初星特制青汁",
     "DESCRIPTIONS": ["在本场战斗中，获得 #b%d 张强化的彩色牌。"]
   },
+  "gkmasMod:FirstStarSpecialSPAojiru": {
+    "NAME": "初星特制青汁·SP",
+    "DESCRIPTIONS": ["在本场战斗中，获得 #b%d 张强化的 #y彩色专属初始卡 ，并将其打出。 NL (同职业)"]
+  },
   "gkmasMod:SelectFirstStarMacchiato": {
     "NAME": "初星严选·玛奇朵",
     "DESCRIPTIONS": ["回合结束时，获得 #b%d 点 #y力量 。"]
@@ -73,7 +77,7 @@
   },
   "gkmasMod:SpecialFirstStarExtract": {
     "NAME": "特制初星精华",
-    "DESCRIPTIONS": ["失去 #b%d 点 #y体力 。 NL 获得 #b%d 层 受伤剧增 。 NL 本回合使用的下 #b%d 张攻击牌额外触发一次。"]
+    "DESCRIPTIONS": ["失去 #b%d 点 #y体力 。 NL 获得 #b%d 层 受伤剧增 。 NL 本回合使用的下 #b%d 张攻击牌或能力牌额外触发一次。"]
   },
   "gkmasMod:GingerAle": {
     "NAME": "姜汁汽水",
@@ -102,5 +106,13 @@
   "gkmasMod:PowerfulHerbalDrink": {
     "NAME": "强效汉方饮料",
     "DESCRIPTIONS": ["获得 #b%d 层 受伤锐减 。 NL 将 #y弃牌堆 或 #y抽牌堆 中的 #y偶像专属卡 加入手牌。"]
+  },
+  "gkmasMod:FirstStarBlackVinegar": {
+    "NAME": "初星黑醋",
+    "DESCRIPTIONS": ["失去 #b%d 点 #y体力 ，获得 #b%d 层 受伤剧增 。 NL 从手牌和弃牌堆中选择 #b%d 张牌 加入手牌。 NL 接下来打出 #b%d 张牌时，获得消耗的能量。"]
+  },
+  "gkmasMod:SenburiSoda": {
+    "NAME": "千振苏打",
+    "DESCRIPTIONS": ["失去 #b%d 点 #y体力 ，抽 #b%d 张牌。 NL 下 #b%d 个回合：伤害增加 #b%d %%，回合开始时，抽 #b%d 张牌。"]
   }
 }

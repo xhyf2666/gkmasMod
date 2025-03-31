@@ -40,7 +40,7 @@ public class FirstLoveProofSumikaAction extends AbstractGameAction {
             }
         }
         else if(p instanceof AbstractCharBoss){
-            if(AbstractCharBoss.boss.getRelic(CBR_FirstLoveProofSumika.ID).counter <= 0){
+            if(AbstractCharBoss.boss.getRelic(CBR_FirstLoveProofSumika.ID2).counter <= 0){
                 this.isDone = true;
                 return;
             }
