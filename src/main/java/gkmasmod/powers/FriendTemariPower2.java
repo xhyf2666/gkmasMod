@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
 import com.megacrit.cardcrawl.vfx.SpeechBubble;
 import gkmasmod.cards.free.EatEmptyYourRefrigerator;
 import gkmasmod.utils.NameHelper;
@@ -48,11 +49,11 @@ public class FriendTemariPower2 extends AbstractPower {
 
 
     public void eatSomething(int cardNum){
-        int count1 = AbstractDungeon.player.energy.energy;
+        int count1 = EnergyPanel.totalCount;
         int count2 = cardNum;
         if(count1>0){
             this.owner.maxHealth += MAGIC*count1;
-            AbstractDungeon.player.loseEnergy(count1);
+//            AbstractDungeon.player.loseEnergy(count1);
         }
         if(count2>0){
             this.owner.currentHealth += MAGIC3*count2;

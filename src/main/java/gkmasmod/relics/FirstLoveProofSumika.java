@@ -56,7 +56,7 @@ public class FirstLoveProofSumika extends CustomRelic {
             if(target==null) {
                 target = AbstractDungeon.getMonsters().getRandomMonster(null, true, AbstractDungeon.cardRandomRng);
             }
-            addToBot(new FirstLoveProofSumikaAction(AbstractDungeon.player,target,YARUKI,magicNumber,HP_COST));
+            addToBot(new FirstLoveProofSumikaAction(AbstractDungeon.player,target,YARUKI,magicNumber,HP_COST,this));
 //            int amount = AbstractDungeon.player.getPower(DexterityPower.POWER_ID)==null?0:AbstractDungeon.player.getPower(DexterityPower.POWER_ID).amount;
 //
 //            if (card.type == AbstractCard.CardType.ATTACK && amount>YARUKI) {

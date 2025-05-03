@@ -129,19 +129,13 @@ public class GoodImpression extends AbstractPower {
             }
             amount--;
         }
-        addToBot(new ApplyPowerAction(this.owner,this.owner,new GoodImpression(this.owner,-count),-count));
+        updateDescription();
         if(this.owner.hasPower(IsENotAPower.POWER_ID)){
             int IsENotAPowerAmount = this.owner.getPower(IsENotAPower.POWER_ID).amount;
-            for (int i = 0; i < count-1; i++) {
+            for (int i = 0; i < count; i++) {
                 addToBot(new GainBlockWithPowerAction(this.owner, this.owner, IsENotAPowerAmount));
             }
         }
     }
 
-    @Override
-    public void atStartOfTurn() {
-//        if(!this.owner.isPlayer){
-//            addToTop(new GoodImpressionAutoDamageAction(this.owner));
-//        }
-    }
 }

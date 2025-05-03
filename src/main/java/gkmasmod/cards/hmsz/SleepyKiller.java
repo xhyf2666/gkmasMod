@@ -55,6 +55,7 @@ public class SleepyKiller extends GkmasCard {
         this.baseThirdMagicNumber = BASE_MAGIC3;
         this.thirdMagicNumber = this.baseThirdMagicNumber;
         this.tags.add(GkmasCardTag.SLEEP_TAG);
+        this.tags.add(GkmasCardTag.GOOD_TUNE_TAG);
     }
 
 

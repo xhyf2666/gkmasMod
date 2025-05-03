@@ -56,7 +56,7 @@ public class MonsterSena2 extends CustomMonster {
     }
 
     public MonsterSena2(float x, float y) {
-        super(NAME, ID, MAX_HEALTH, -8.0F, 0.0F, 200.0F, 240.0F, null, x, y);
+        super(NAME, ID, MAX_HEALTH, -8.0F, 0.0F, 200.0F, 480.0F, null, x, y);
         this.img = new Texture("gkmasModResource/img/monsters/Idol/MonsterSena1.png");
         this.type = EnemyType.ELITE;
         if (AbstractDungeon.ascensionLevel >= 10) {
@@ -82,10 +82,10 @@ public class MonsterSena2 extends CustomMonster {
         if (Gdx.files.internal(song).exists())
             CardCrawlGame.music.playTempBgmInstantly(song, true);
         if (AbstractDungeon.ascensionLevel >= 5) {
-            AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(this, this, new SenaMoreActionPower(this,3),3));
+            AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(this, this, new SenaMoreActionPower(this,2),2));
             AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(this, this, new SenaTopPower(this,8),8));
         } else {
-            AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(this, this, new SenaMoreActionPower(this,2),2));
+            AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(this, this, new SenaMoreActionPower(this,1),1));
             AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(this, this, new SenaTopPower(this,5),5));
         }
         AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(this, this, new StarNature(this,20),20));

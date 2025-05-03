@@ -22,7 +22,7 @@ public class FateCommunity extends GkmasCard {
     private static final String DESCRIPTION = CARD_STRINGS.DESCRIPTION;
     private static final String IMG_PATH = String.format("gkmasModResource/img/cards/common/%s.png", CLASSNAME);
 
-    private static final int COST = 2;
+    private static final int COST = 3;
 
 
     private static final CardType TYPE = CardType.POWER;
@@ -33,6 +33,7 @@ public class FateCommunity extends GkmasCard {
     public FateCommunity() {
         super(ID, NAME, ImageHelper.getCardImgPath(CLASSNAME,TYPE), COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tags.add(GkmasCardTag.ONLY_ONE_TAG);
+        this.tags.add(GkmasCardTag.FOCUS_TAG);
     }
 
 

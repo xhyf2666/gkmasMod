@@ -17,6 +17,9 @@
   "gkmasMod:moon": {
     "TEXT": ["极月"]
   },
+  "gkmasMod:other": {
+    "TEXT": ["偶像大师"]
+  },
   "typeHintName:logic": {
     "TEXT": ["理性"]
   },
@@ -26,6 +29,9 @@
   "typeHintName:anomaly": {
     "TEXT": ["非凡"]
   },
+  "typeHintName:produce": {
+    "TEXT": ["全能"]
+  },
   "typeHint:sense": {
     "TEXT": ["卡池为感性卡和通用卡，偏向 #y攻杀 。"]
   },
@@ -34,6 +40,12 @@
   },
   "typeHint:anomaly": {
     "TEXT": ["卡池为非凡卡和通用卡，在 #y温存 、 #y强气 和 #y全力 三态间灵活切换。"]
+  },
+  "typeHint:produce": {
+    "TEXT": ["每回合开始时，选择进入 #y理性 、 #y感性 或 #y非凡 的训练时间。"]
+  },
+  "typeHint:logicSense": {
+    "TEXT": ["卡池为理性卡、通用卡和少量感性卡， #y攻守兼备 。"]
   },
   "gkmasMod:Name:update": {
     "TEXT": ["慎选"]
@@ -65,6 +77,21 @@
   "styleHintName:concentration": {
     "TEXT": ["强气"]
   },
+  "styleHintName:allCard": {
+    "TEXT": ["育成"]
+  },
+  "styleHintName:notGoodTune": {
+    "TEXT": ["不调"]
+  },
+  "styleHintName:fightWill": {
+    "TEXT": ["战意"]
+  },
+  "styleHintName:lifeNotStop": {
+    "TEXT": ["疗愈"]
+  },
+  "styleHintName:pinkGirl": {
+    "TEXT": ["雌小鬼"]
+  },
   "styleHint:goodTune": {
     "TEXT": ["叠加 #y好调 和 #y绝好调 ，获得高额增伤。"]
   },
@@ -82,6 +109,21 @@
   },
   "styleHint:concentration": {
     "TEXT": ["在 #y强气 和 #y温存 间灵活切换，叠加 #y成长 。"]
+  },
+  "styleHint:allCard": {
+    "TEXT": ["卡池为通用卡和偶像卡，风格多变。"]
+  },
+  "styleHint:notGoodTune": {
+    "TEXT": ["叠加 #y不调 ，减少敌人伤害。"]
+  },
+  "styleHint:fightWill": {
+    "TEXT": ["叠加 #y战意 ，基于层数获得强化。"]
+  },
+  "styleHint:lifeNotStop": {
+    "TEXT": ["战斗中的治疗量受到限制，但溢出的治疗量可转化为 #y好印象 。"]
+  },
+  "styleHint:pinkGirl": {
+    "TEXT": ["每回合结束时，交换 #y力量 和 #y敏捷 层数。"]
   },
   "gkmasMod:PocketBookUI": {
     "TEXT": ["姓名","班级","生日","年龄","身高","体重","三维","兴趣","对手","特长","关闭","下一页","考核标准","满足考核标准可以使担当偶像更容易通过最终考核。","育成课题","完成育成课题后，可以获得对应奖励。 NL 育成课题需要按顺序完成。"]
@@ -310,7 +352,7 @@
   },
   "growEffect:DamageGrow": {
     "TEXT": [
-      "gkmasmod:伤害追加 %d"
+      "gkmasmod:伤害增加 %d"
     ]
   },
   "growEffect:AttackTimeGrow": {
@@ -325,12 +367,12 @@
   },
   "growEffect:DrawCardGrow": {
     "TEXT": [
-      "gkmasmod:抽牌追加 %d"
+      "gkmasmod:抽牌增加 %d"
     ]
   },
   "growEffect:EnergyGrow": {
     "TEXT": [
-      "gkmasmod:耗能追加 %d"
+      "gkmasmod:耗能增加 %d"
     ]
   },
   "growEffect:EnergyReduceGrow": {
@@ -340,17 +382,17 @@
   },
   "growEffect:BlockGrow": {
     "TEXT": [
-      "格挡追加 %d"
+      "格挡增加 %d"
     ]
   },
   "growEffect:BaseDamageGrow": {
     "TEXT": [
-      "基础伤害追加 %d"
+      "基础伤害增加 %d"
     ]
   },
   "growEffect:BaseBlockGrow": {
     "TEXT": [
-      "基础格挡追加 %d"
+      "基础格挡增加 %d"
     ]
   },
   "growEffect:CanNotPlayGrow": {
@@ -633,7 +675,7 @@
   },
   "customEffect:EffectAdd": {
     "TEXT": [
-      "效果追加"
+      "效果增加"
     ]
   },
   "customEffect:EffectChange": {
@@ -648,7 +690,7 @@
   },
   "customEffect:GrowEffectAdd": {
     "TEXT": [
-      "成长效果追加"
+      "成长效果增加"
     ]
   },
   "customEffect:GrowEffectChange": {

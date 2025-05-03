@@ -20,6 +20,11 @@ public class BlossomingSeasonAction extends AbstractGameAction {
     private int num;
     private boolean upgrade;
 
+    /**
+     * 花开Action：选择num张手牌，将其除外然后生成等量随机卡。
+     * @param numCards 选择的卡牌数量
+     * @param upgrade 是否升级
+     **/
     public BlossomingSeasonAction(int numCards,boolean upgrade) {
         this.actionType = ActionType.CARD_MANIPULATION;
         this.p = AbstractDungeon.player;
@@ -36,7 +41,6 @@ public class BlossomingSeasonAction extends AbstractGameAction {
             }
 
             if (this.p.hand.group.size() <= this.num) {
-
                 ArrayList<AbstractCard> cards = new ArrayList<>();
                 for (AbstractCard c : this.p.hand.group) {
                     cards.add(c);
@@ -50,12 +54,9 @@ public class BlossomingSeasonAction extends AbstractGameAction {
                 return;
             }
 
-            if(p.hand.group.size()>2)
-            {
-                AbstractDungeon.handCardSelectScreen.open(TEXT[0], 2, false, false, false,false);
-                this.tickDuration();
-                return;
-            }
+            AbstractDungeon.handCardSelectScreen.open(TEXT[0], this.num, false, false, false,false);
+            this.tickDuration();
+            return;
         }
         else {
             Iterator var1;

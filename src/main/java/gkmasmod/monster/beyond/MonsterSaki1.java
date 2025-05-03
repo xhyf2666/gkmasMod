@@ -68,12 +68,12 @@ public class MonsterSaki1 extends CustomMonster {
             setHp(170);
         }
         if (AbstractDungeon.ascensionLevel >= 4) {
-            this.damage.add(new DamageInfo(this, 10));
-            this.damage.add(new DamageInfo(this, 20));
-            this.bloodHitCount = 2;
-        } else {
             this.damage.add(new DamageInfo(this, 8));
             this.damage.add(new DamageInfo(this, 15));
+            this.bloodHitCount = 2;
+        } else {
+            this.damage.add(new DamageInfo(this, 6));
+            this.damage.add(new DamageInfo(this, 10));
             this.bloodHitCount = 2;
         }
     }
@@ -103,7 +103,7 @@ public class MonsterSaki1 extends CustomMonster {
             case 1:
                 for (AbstractMonster mo:AbstractDungeon.getCurrRoom().monsters.monsters){
                     if(!mo.isDeadOrEscaped()&& !AbstractMonsterPatch.friendlyField.friendly.get(mo)){
-                        addToBot(new GainBlockAction(mo,this,600));
+                        addToBot(new GainBlockAction(mo,this,500));
                         if(flag){
                             addToBot(new ApplyPowerAction(mo,this,new SSDSecretPower(mo,1),1));
                         }

@@ -47,12 +47,9 @@ public class CardOfVictory extends CustomRelic {
     public void onEquip() {}
 
     public void atTurnStartPostDraw() {
-        if (this.counter > 0) {
-            if(AbstractDungeon.player.stance.ID.equals(ConcentrationStance.STANCE_ID)){
-                addToBot(new GainBlockWithPowerAction(AbstractDungeon.player,magicNumber));
-            }
+        if(AbstractDungeon.player.stance.ID.equals(ConcentrationStance.STANCE_ID)){
+            addToBot(new GainBlockWithPowerAction(AbstractDungeon.player,magicNumber));
         }
-
     }
 
     public void loadLargeImg() {

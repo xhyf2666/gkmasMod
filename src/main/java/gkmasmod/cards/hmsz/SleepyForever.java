@@ -7,9 +7,12 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.powers.StrengthPower;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
+import gkmasmod.patches.AbstractPowerPatch;
 import gkmasmod.powers.WantToSleepEnemy;
 import gkmasmod.utils.ImageHelper;
 import gkmasmod.utils.NameHelper;
@@ -25,7 +28,7 @@ public class SleepyForever extends GkmasCard {
     private static final String IMG_PATH = String.format("gkmasModResource/img/cards/common/%s.png", CLASSNAME);
 
     private static final int COST = 1;
-    private static final int BASE_MAGIC = 100;
+    private static final int BASE_MAGIC = 200;
 
     private static final CardType TYPE = CardType.SKILL;
     private static final CardColor COLOR = PlayerColorEnum.gkmasModColorMisuzu;
@@ -43,9 +46,11 @@ public class SleepyForever extends GkmasCard {
 
     public void use(AbstractPlayer p, AbstractMonster m) {
         int amount = PlayerHelper.getPowerAmount(m, WantToSleepEnemy.POWER_ID);
-        int change = (int) (1.0F*amount * this.magicNumber/100);
-        if (amount > 0) {
-            addToBot(new ApplyPowerAction(m,p,new WantToSleepEnemy(m,change),change));
+        if(amount>0){
+            amount = (int) (1.0F*amount*(this.magicNumber-100)/100);
+            AbstractPower power = new WantToSleepEnemy(m, amount);
+            AbstractPowerPatch.IgnoreIncreaseModifyField.flag.set(power, true);
+            addToBot(new ApplyPowerAction(m, m, power, amount));
         }
     }
 

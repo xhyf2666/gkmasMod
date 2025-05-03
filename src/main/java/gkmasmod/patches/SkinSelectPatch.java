@@ -10,14 +10,21 @@ import com.megacrit.cardcrawl.screens.CharSelectInfo;
 import com.megacrit.cardcrawl.screens.charSelect.CharacterOption;
 import com.megacrit.cardcrawl.screens.charSelect.CharacterSelectScreen;
 import gkmasmod.characters.IdolCharacter;
+import gkmasmod.characters.OtherIdolCharacter;
 import gkmasmod.characters.PlayerColorEnum;
+import gkmasmod.screen.OtherSkinSelectScreen;
 import gkmasmod.screen.SkinSelectScreen;
 import gkmasmod.utils.IdolData;
 
+import java.util.Random;
+
 public class SkinSelectPatch {
     public static boolean isGkmasSelected() {
-        return (CardCrawlGame.chosenCharacter == PlayerColorEnum.gkmasMod_character && (
-           (Boolean)ReflectionHacks.getPrivate(CardCrawlGame.mainMenuScreen.charSelectScreen, CharacterSelectScreen.class, "anySelected")).booleanValue());
+        return (CardCrawlGame.chosenCharacter == PlayerColorEnum.gkmasMod_character && (Boolean) ReflectionHacks.getPrivate(CardCrawlGame.mainMenuScreen.charSelectScreen, CharacterSelectScreen.class, "anySelected"));
+    }
+
+    public static boolean isGkmasOtherSelected() {
+        return (CardCrawlGame.chosenCharacter == PlayerColorEnum.gkmasModOther_character && (Boolean) ReflectionHacks.getPrivate(CardCrawlGame.mainMenuScreen.charSelectScreen, CharacterSelectScreen.class, "anySelected"));
     }
 
     @SpirePatch(clz = CharacterSelectScreen.class, method = "update")
@@ -31,6 +38,8 @@ public class SkinSelectPatch {
                     SkinSelectScreen.Inst.videoPlayer = null;
                 }
             }
+            if(SkinSelectPatch.isGkmasOtherSelected())
+                OtherSkinSelectScreen.Inst.update();
         }
     }
 
@@ -39,12 +48,14 @@ public class SkinSelectPatch {
         public static void Postfix(CharacterSelectScreen _inst, SpriteBatch sb) {
             if (SkinSelectPatch.isGkmasSelected())
                 SkinSelectScreen.Inst.render(sb);
+            if (SkinSelectPatch.isGkmasOtherSelected())
+                OtherSkinSelectScreen.Inst.render(sb);
         }
     }
 
-    public static boolean isGkmasMod() {
-        return (CardCrawlGame.chosenCharacter == PlayerColorEnum.gkmasMod_character);
-    }
+//    public static boolean isGkmasMod() {
+//        return (CardCrawlGame.chosenCharacter == PlayerColorEnum.gkmasMod_character);
+//    }
 
 
     @SpirePatch(clz = CharacterOption.class, method = "update")
@@ -56,6 +67,10 @@ public class SkinSelectPatch {
             if(__instance.c instanceof IdolCharacter){
                 ___charInfo[0] = __instance.c.getLoadout();
                 __instance.name = SkinSelectScreen.Inst.curName;
+            }
+            if(__instance.c instanceof OtherIdolCharacter){
+                ___charInfo[0] = __instance.c.getLoadout();
+                __instance.name = OtherSkinSelectScreen.Inst.curName;
             }
         }
     }
@@ -71,6 +86,11 @@ public class SkinSelectPatch {
                 SkinSelectScreen.isClick = false;
                 __instance.bgCharImg = getSkinTexture();
             }
+            if (SkinSelectPatch.isGkmasOtherSelected() && OtherSkinSelectScreen.isClick)
+            {
+                OtherSkinSelectScreen.isClick = false;
+                __instance.bgCharImg = getOtherSkinTexture();
+            }
         }
     }
 
@@ -82,7 +102,20 @@ public class SkinSelectPatch {
 
         if(Gdx.files.internal(IMG_PATH).exists())
             return new Texture(IMG_PATH);
-        return new Texture("gkmasModResource/img/charSelect/background_init.png");
+        // 生成一个1或2的随机数
+        int index = new Random().nextInt(2);
+        return new Texture(String.format("gkmasModResource/img/charSelect/background_%d.png",index));
+    }
+
+    public static Texture getOtherSkinTexture() {
+        String name = IdolData.otherIdolNames[OtherSkinSelectScreen.Inst.idolIndex];
+        String skinName = IdolData.getOtherIdol(name).getSkin(OtherSkinSelectScreen.Inst.skinIndex);
+        int updateIndex = OtherSkinSelectScreen.Inst.updateIndex;
+        String IMG_PATH = String.format("gkmasModResource/img/charSelect/%s_%s_%d.jpg", name, skinName,updateIndex);
+
+        if(Gdx.files.internal(IMG_PATH).exists())
+            return new Texture(IMG_PATH);
+        return new Texture(String.format("gkmasModResource/img/charSelect/background_%d.png",0));
     }
 }
 

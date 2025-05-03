@@ -99,7 +99,7 @@ public class MonsterRinha extends CustomMonster {
     }
 
     public MonsterRinha(float x, float y) {
-        super(NAME, ID, MAX_HEALTH, -8.0F, 0.0F, 360.0F, 240.0F, null, x, y);
+        super(NAME, ID, MAX_HEALTH, -8.0F, 0.0F, 360.0F, 480.0F, null, x, y);
         this.img = new Texture("gkmasModResource/img/monsters/Rinha/MonsterRinha1.png");
         this.type = EnemyType.BOSS;
         if (AbstractDungeon.ascensionLevel >= 10) {

@@ -1,6 +1,7 @@
 package gkmasmod.utils;
 
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
+import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
@@ -10,6 +11,8 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import gkmasmod.patches.AbstractMonsterPatch;
+
+import java.util.ArrayList;
 
 import static gkmasmod.characters.PlayerColorEnum.gkmasModColorLogic;
 import static gkmasmod.characters.PlayerColorEnum.gkmasModColor;
@@ -44,6 +47,36 @@ public class PlayerHelper {
             }
         }
         return count;
+    }
+
+    public static void removeNegativePower(AbstractCreature p,int amount){
+        ArrayList<AbstractPower> powers = new ArrayList<>();
+        for(AbstractPower power:p.powers){
+            if(power.type== AbstractPower.PowerType.DEBUFF){
+                powers.add(power);
+            }
+            if(power.type== AbstractPower.PowerType.BUFF&&power.canGoNegative&&power.amount<0){
+                powers.add(power);
+            }
+        }
+        for(int i=0;i<amount&&i<powers.size();i++){
+            AbstractDungeon.actionManager.addToBottom(new RemoveSpecificPowerAction(p,p,powers.get(i)));
+        }
+    }
+
+    public static void removeAllNegativePower(AbstractCreature p){
+        ArrayList<AbstractPower> powers = new ArrayList<>();
+        for(AbstractPower power:p.powers){
+            if(power.type== AbstractPower.PowerType.DEBUFF){
+                powers.add(power);
+            }
+            if(power.type== AbstractPower.PowerType.BUFF&&power.canGoNegative&&power.amount<0){
+                powers.add(power);
+            }
+        }
+        for(int i=0;i<powers.size();i++){
+            AbstractDungeon.actionManager.addToBottom(new RemoveSpecificPowerAction(p,p,powers.get(i)));
+        }
     }
 
     public static float getCardRate() {

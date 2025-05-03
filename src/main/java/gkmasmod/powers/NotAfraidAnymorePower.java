@@ -45,7 +45,7 @@ public class NotAfraidAnymorePower extends AbstractPower {
 
     public void atEndOfTurnPreEndTurnCards(boolean isPlayer) {
         flash();
-        addToTop(new ApplyPowerAction(this.owner, this.owner, new GoodImpression(this.owner, this.amount), this.amount));
+        addToBot(new ApplyPowerAction(this.owner, this.owner, new GoodImpression(this.owner, this.amount), this.amount));
     }
 
 }

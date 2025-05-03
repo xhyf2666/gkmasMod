@@ -12,9 +12,11 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.powers.StrengthPower;
 import gkmasmod.actions.ModifyDamageAction;
 import gkmasmod.actions.ModifyDamageRandomEnemyAction;
 import gkmasmod.downfall.charbosses.bosses.AbstractCharBoss;
+import gkmasmod.patches.AbstractPowerPatch;
 import gkmasmod.utils.NameHelper;
 import gkmasmod.utils.PlayerHelper;
 
@@ -61,9 +63,12 @@ public class DreamColorLipstickPower extends AbstractPower {
 
     public void atStartOfTurn() {
         int count = PlayerHelper.getPowerAmount(this.owner,GoodImpression.POWER_ID);
-        count = (int) (count*1.0F*this.rate/100);
-        if(count>0)
-            addToBot(new ApplyPowerAction(this.owner,this.owner,new GoodImpression(this.owner,count),count));
+        if(count>0){
+            count = (int) (1.0F*count*(this.rate-100)/100);
+            AbstractPower power = new GoodImpression(this.owner, count);
+            AbstractPowerPatch.IgnoreIncreaseModifyField.flag.set(power, true);
+            addToBot(new ApplyPowerAction(this.owner, this.owner, power, count));
+        }
         addToBot(new ReducePowerAction(this.owner, this.owner, this, 1));
     }
 

@@ -1,12 +1,15 @@
 package gkmasmod.patches;
 
+import com.evacipated.cardcrawl.modthespire.lib.SpireInsertPatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePrefixPatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpireReturn;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.dungeons.Exordium;
 import com.megacrit.cardcrawl.dungeons.TheBeyond;
 import com.megacrit.cardcrawl.dungeons.TheCity;
+import com.megacrit.cardcrawl.monsters.MonsterInfo;
 import gkmasmod.characters.IdolCharacter;
 import gkmasmod.characters.MisuzuCharacter;
 import gkmasmod.event.Live_jsna;
@@ -92,6 +95,23 @@ public class TheBeyondPatch
 //            System.out.println(TheBeyond.bossList);
 //            System.out.println(AbstractDungeon.bossList);
             return SpireReturn.Return();
+        }
+    }
+
+    @SpirePatch(clz = TheBeyond.class,method = "generateElites")
+    public static class TheBeyond_insert_generateElites {
+        @SpireInsertPatch(rloc = 4,localvars = {"monsters"})
+        public static SpireReturn<Void> addElite(TheBeyond __instance, int count, ArrayList<MonsterInfo> monsters) {
+            if(!(AbstractDungeon.player instanceof IdolCharacter||AbstractDungeon.player instanceof MisuzuCharacter)){
+                return SpireReturn.Continue();
+            }
+            if(AbstractDungeon.player instanceof IdolCharacter){
+                if(SkinSelectScreen.Inst.idolName.equals(IdolData.hrnm)||SkinSelectScreen.Inst.idolName.equals(IdolData.amao)) {
+                    return SpireReturn.Continue();
+                }
+            }
+            monsters.add(new MonsterInfo("rinamiAndMao", 2.0F));
+            return SpireReturn.Continue();
         }
     }
 

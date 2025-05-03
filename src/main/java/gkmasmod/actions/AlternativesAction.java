@@ -17,13 +17,14 @@ public class AlternativesAction extends AbstractGameAction {
     private static final UIStrings uiStrings;
     public static final String[] TEXT;
     private AbstractPlayer p;
-    private int num;
 
-    public AlternativesAction(int numCards) {
+    /**
+     * 秋色Action：选择2张牌，将第1张牌转化为第2张牌
+     */
+    public AlternativesAction() {
         this.actionType = ActionType.CARD_MANIPULATION;
         this.p = AbstractDungeon.player;
         this.duration = Settings.ACTION_DUR_FAST;
-        this.num = numCards;
     }
 
     public void update() {
@@ -33,17 +34,14 @@ public class AlternativesAction extends AbstractGameAction {
                 this.isDone = true;
             }
 
-            if (this.p.hand.group.size() < this.num) {
+            if (this.p.hand.group.size() < 2) {
                 this.isDone = true;
                 return;
             }
 
-            if(p.hand.group.size()>=2)
-            {
-                AbstractDungeon.handCardSelectScreen.open(TEXT[0], 2, false, false, false,false);
-                this.tickDuration();
-                return;
-            }
+            AbstractDungeon.handCardSelectScreen.open(TEXT[0], 2, false, false, false,false);
+            this.tickDuration();
+            return;
         }
         else {
             Iterator var1;
@@ -57,13 +55,11 @@ public class AlternativesAction extends AbstractGameAction {
                         addToBot(new MakeTempCardInHandAction(c2, true, true));
                         addToBot(new MakeTempCardInHandAction(c2, 1));
                     }
-
                     this.returnCards();
                     AbstractDungeon.handCardSelectScreen.wereCardsRetrieved = true;
                     AbstractDungeon.handCardSelectScreen.selectedCards.group.clear();
                     this.isDone = true;
                 }
-
             this.tickDuration();
         }
     }

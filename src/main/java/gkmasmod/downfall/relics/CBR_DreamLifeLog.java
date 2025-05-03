@@ -1,5 +1,6 @@
 package gkmasmod.downfall.relics;
 
+import com.megacrit.cardcrawl.powers.AbstractPower;
 import gkmasmod.downfall.charbosses.bosses.AbstractCharBoss;
 import gkmasmod.downfall.charbosses.relics.AbstractCharbossRelic;
 import com.badlogic.gdx.Gdx;
@@ -12,6 +13,7 @@ import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import gkmasmod.actions.ModifyDamageAction;
+import gkmasmod.patches.AbstractPowerPatch;
 import gkmasmod.powers.GoodImpression;
 import gkmasmod.relics.DreamLifeLog;
 
@@ -32,7 +34,7 @@ public class CBR_DreamLifeLog extends AbstractCharbossRelic {
 
     private static final int BLOCK = 11;
 
-    private static final int BASE_MAGIC = 50;
+    private static final int BASE_MAGIC = 150;
     private static final int BASE_MAGIC2 = 30;
 
     private float magicNumber;
@@ -76,11 +78,14 @@ public class CBR_DreamLifeLog extends AbstractCharbossRelic {
             if(amount> BLOCK){
                 int damage = (int) (1.0F*amount*magicNumber2);
                 int goodImpressionAmount = AbstractCharBoss.boss.getPower(GoodImpression.POWER_ID) ==null?0:AbstractCharBoss.boss.getPower(GoodImpression.POWER_ID).amount;
-                int goodImpressionIncrease = (int) (1.0F*goodImpressionAmount*magicNumber);
-
+                if (goodImpressionAmount > 0) {
+                    int add = (int) (1.0F*goodImpressionAmount*(BASE_MAGIC-100)/100);
+                    AbstractPower power = new GoodImpression(AbstractCharBoss.boss, add);
+                    AbstractPowerPatch.IgnoreIncreaseModifyField.flag.set(power, true);
+                    addToBot(new ApplyPowerAction(AbstractCharBoss.boss, AbstractCharBoss.boss, power, add));
+                }
                 addToBot(new RelicAboveCreatureAction(AbstractCharBoss.boss, this));
                 this.flash();
-                addToBot(new ApplyPowerAction(AbstractCharBoss.boss, AbstractCharBoss.boss, new GoodImpression(AbstractCharBoss.boss, goodImpressionIncrease), goodImpressionIncrease));
                 addToBot(new ModifyDamageAction(AbstractDungeon.player, new DamageInfo(AbstractCharBoss.boss, damage, DamageInfo.DamageType.NORMAL), AbstractGameAction.AttackEffect.SLASH_VERTICAL));
                 this.counter--;
                 if (this.counter == 0) {

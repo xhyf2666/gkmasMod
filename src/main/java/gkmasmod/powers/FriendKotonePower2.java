@@ -26,7 +26,7 @@ public class FriendKotonePower2 extends AbstractPower {
     String path48 = String.format("gkmasModResource/img/powers/%s_32.png","MyPrideBigSisterPower");
 
 
-    private static final int MAGIC = 5;
+    private static final int MAGIC = 4;
     private static final int MAGIC2 = 3;
 
     public FriendKotonePower2(AbstractCreature owner) {

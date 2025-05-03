@@ -25,6 +25,7 @@ import gkmasmod.utils.NameHelper;
 import gkmasmod.utils.PlayerHelper;
 
 import java.io.IOException;
+import java.util.Random;
 
 import static gkmasmod.characters.PlayerColorEnum.gkmasMod_character;
 
@@ -81,6 +82,8 @@ public class SkinSelectScreen implements ISubscriber, CustomSavable<int[]> {
     private static String updateHintTitle = CardCrawlGame.languagePack.getUIString("gkmasMod:Name:update").TEXT[0];
     private static String hideHint = CardCrawlGame.languagePack.getUIString("gkmasMod:Hint:hide").TEXT[0];
     private static String hideHintTitle = CardCrawlGame.languagePack.getUIString("gkmasMod:Name:hide").TEXT[0];
+
+    public int defaultBackgroundIndex=0;
     public SkinSelectScreen() {
         this.refresh();
         this.leftHb = new Hitbox(70.0F * Settings.scale, 70.0F * Settings.scale);
@@ -99,6 +102,7 @@ public class SkinSelectScreen implements ISubscriber, CustomSavable<int[]> {
         selectIdolHint = CardCrawlGame.languagePack.getCharacterString("selectIdol").TEXT[0];
         BaseMod.subscribe(this);
         BaseMod.addSaveField(NameHelper.makePath("skin"), this);
+        defaultBackgroundIndex = new Random().nextInt(2);
     }
     public Texture usedImg;
     public Texture nameImg;

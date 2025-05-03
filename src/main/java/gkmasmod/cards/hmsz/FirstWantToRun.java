@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import gkmasmod.actions.FirstWantToRunAction;
 import gkmasmod.cards.GkmasCard;
+import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.powers.WantToSleepEnemy;
 import gkmasmod.utils.ImageHelper;
@@ -39,6 +40,7 @@ public class FirstWantToRun extends GkmasCard {
         this.magicNumber = this.baseMagicNumber;
         this.exhaust = true;
         this.cardHeader = CardCrawlGame.languagePack.getUIString("gkmasMod:FirstWantToRunHeader").TEXT[0];
+        this.tags.add(GkmasCardTag.FOCUS_TAG);
     }
 
 

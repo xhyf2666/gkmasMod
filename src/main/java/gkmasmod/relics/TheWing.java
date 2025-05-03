@@ -29,7 +29,7 @@ public class TheWing extends CustomRelic {
     private static final RelicTier RARITY = RelicTier.STARTER;
 
     private static final int magicNumber = 6;
-    private static final int magicNumber2 = 50;
+    private static final int magicNumber2 = 150;
 
     private static final  int playTimes = 2;
 
@@ -58,7 +58,7 @@ public class TheWing extends CustomRelic {
             if (this.counter > 0) {
                 addToBot(new RelicAboveCreatureAction(AbstractDungeon.player, this));
                 this.flash();
-                addToBot(new TheWingAction(AbstractDungeon.player,magicNumber,1.0F*magicNumber2/100));
+                addToBot(new TheWingAction(AbstractDungeon.player,magicNumber,1.0F*(magicNumber2-100)/100,this));
             }
         }
 

@@ -1,5 +1,8 @@
 package gkmasmod.downfall.cards.sense;
 
+import com.megacrit.cardcrawl.powers.AbstractPower;
+import gkmasmod.actions.AnotherLimitBreakAction;
+import gkmasmod.cardCustomEffect.EffectReduceCustom;
 import gkmasmod.downfall.charbosses.actions.unique.EnemyLimitBreakAction;
 import gkmasmod.downfall.charbosses.bosses.AbstractCharBoss;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
@@ -13,8 +16,10 @@ import com.megacrit.cardcrawl.powers.StrengthPower;
 import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.downfall.cards.GkmasBossCard;
+import gkmasmod.patches.AbstractPowerPatch;
 import gkmasmod.powers.GoodTune;
 import gkmasmod.powers.NotGoodTune;
+import gkmasmod.utils.CustomHelper;
 import gkmasmod.utils.NameHelper;
 
 public class ENJustOneMore extends GkmasBossCard {
@@ -52,13 +57,16 @@ public class ENJustOneMore extends GkmasBossCard {
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
         int count = AbstractCharBoss.boss.getPower(GoodTune.POWER_ID) == null ? 0 : AbstractCharBoss.boss.getPower(GoodTune.POWER_ID).amount;
+        AbstractPower power;
         if (count > 0) {
             addToBot(new RemoveSpecificPowerAction(m, m, GoodTune.POWER_ID));
-            addToBot(new ApplyPowerAction(m, m, new StrengthPower(m, count), count));
-        } else {
-            addToBot(new ApplyPowerAction(m, m, new NotGoodTune( m, this.magicNumber), this.magicNumber));
+            power = new StrengthPower(m, count);
+            AbstractPowerPatch.IgnoreIncreaseModifyField.flag.set(power, true);
+            addToBot(new ApplyPowerAction(m, m,power, count));
+        } else if(!CustomHelper.hasCustom(this, EffectReduceCustom.growID)){
+            addToBot(new ApplyPowerAction(m,  m,  new NotGoodTune(m, this.magicNumber), this.magicNumber));
         }
-        addToBot(new EnemyLimitBreakAction());
+        addToBot(new AnotherLimitBreakAction(m));
     }
 
     @Override

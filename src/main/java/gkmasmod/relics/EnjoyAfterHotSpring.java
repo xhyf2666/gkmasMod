@@ -27,7 +27,7 @@ public class EnjoyAfterHotSpring extends CustomRelic {
 
     private static final RelicTier RARITY = RelicTier.STARTER;
 
-    private static final int magicNumber = 30;
+    private static final int magicNumber = 130;
     private static final int magicNumber2 = 4;
 
 
@@ -60,12 +60,7 @@ public class EnjoyAfterHotSpring extends CustomRelic {
                 addToBot(new RelicAboveCreatureAction(AbstractDungeon.player, this));
                 this.flash();
                 addToBot(new GainBlockAction(AbstractDungeon.player, AbstractDungeon.player, magicNumber2));
-                addToBot(new EnjoyAfterHotSpringAction(AbstractDungeon.player,1.0F*magicNumber/100));
-//                int strength = PlayerHelper.getPowerAmount(AbstractDungeon.player, StrengthPower.POWER_ID);
-//                int add = (int) (1.0F*magicNumber/100*strength);
-//                if(add > 0){
-//                    addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new StrengthPower(AbstractDungeon.player, add), add));
-//                }
+                addToBot(new EnjoyAfterHotSpringAction(AbstractDungeon.player,1.0F*(magicNumber-100)/100));
                 currentTimes++;
                 if(currentTimes == playTimes){
                     grayscale = true;

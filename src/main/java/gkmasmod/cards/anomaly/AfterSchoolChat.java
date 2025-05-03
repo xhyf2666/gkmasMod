@@ -88,8 +88,8 @@ public class AfterSchoolChat extends GkmasCard {
             }
         }
         addToBot(new ApplyPowerAction(p,p,new AchievementPower(p,this.baseDamage+count,m)));
-//        addToBot(new ApplyPowerAction(p,p,new EndOfTurnPreservationStancePower(p,1),1));
-//        SoundHelper.playSound("gkmasModResource/audio/voice/skillcard/cidol_amao_3_014_produce_skillcard_01.ogg");
+        SoundHelper.playSound("gkmasModResource/audio/voice/skillcard/cidol_kllj_3_015_produce_skillcard_01.ogg");
+
     }
 
     public void onFullPowerValueIncrease(AbstractPower power){

@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
+import gkmasmod.patches.AbstractPowerPatch;
 import gkmasmod.utils.NameHelper;
 import gkmasmod.utils.PlayerHelper;
 
@@ -44,15 +45,18 @@ public class DreamColorLipstickSPPower extends AbstractPower {
     }
 
     public void updateDescription() {
-        this.description = String.format(DESCRIPTIONS[0], this.amount*this.rate);
+        this.description = String.format(DESCRIPTIONS[0], this.amount*this.rate+100);
     }
 
     public void atStartOfTurn() {
         this.flash();
         int count = PlayerHelper.getPowerAmount(this.owner,GoodImpression.POWER_ID);
-        count = (int) (count*1.0F*this.amount*this.rate/100);
-        if(count>0)
-            addToBot(new ApplyPowerAction(this.owner,this.owner,new GoodImpression(this.owner,count),count));
+        if(count>0){
+            count = (int) (1.0F*count*(this.amount*this.rate)/100);
+            AbstractPower power = new GoodImpression(this.owner, count);
+            AbstractPowerPatch.IgnoreIncreaseModifyField.flag.set(power, true);
+            addToBot(new ApplyPowerAction(this.owner, this.owner, power, count));
+        }
     }
 
 }

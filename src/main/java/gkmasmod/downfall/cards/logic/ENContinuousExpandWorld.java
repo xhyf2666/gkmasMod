@@ -17,6 +17,7 @@ import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.downfall.cards.GkmasBossCard;
 import gkmasmod.downfall.cards.anomaly.ENFinalSpurt;
 import gkmasmod.powers.ContinuousExpandWorldPower;
+import gkmasmod.powers.NextTurnIdolBlockPower;
 import gkmasmod.utils.CustomHelper;
 import gkmasmod.utils.IdolData;
 import gkmasmod.utils.NameHelper;
@@ -67,7 +68,7 @@ public class ENContinuousExpandWorld extends GkmasBossCard {
     public void use(AbstractPlayer p, AbstractMonster m) {
         addToBot(new LoseHPAction(m,m,this.HPMagicNumber));
         addToBot(new ApplyPowerAction(m,m,new DexterityPower(m,this.magicNumber),this.magicNumber));
-        addToBot(new ApplyPowerAction(m,m,new NextTurnBlockPower(m,this.block),this.block));
+        addToBot(new ApplyPowerAction(m,m,new NextTurnIdolBlockPower(m,this.baseBlock),this.baseBlock));
         addToBot(new ApplyPowerAction(m,m,new ContinuousExpandWorldPower(m)));
         SoundHelper.playSound("gkmasModResource/audio/voice/skillcard/cidol_kcna_3_010_produce_skillcard_01.ogg");
     }

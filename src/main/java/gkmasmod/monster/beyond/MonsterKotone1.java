@@ -65,11 +65,11 @@ public class MonsterKotone1 extends CustomMonster {
         }
         if (AbstractDungeon.ascensionLevel >= 4) {
             this.damage.add(new DamageInfo(this, 5));
-            this.damage.add(new DamageInfo(this, 10));
+            this.damage.add(new DamageInfo(this, 5));
             this.bloodHitCount = 2;
         } else {
             this.damage.add(new DamageInfo(this, 4));
-            this.damage.add(new DamageInfo(this, 8));
+            this.damage.add(new DamageInfo(this, 4));
             this.bloodHitCount = 2;
         }
     }

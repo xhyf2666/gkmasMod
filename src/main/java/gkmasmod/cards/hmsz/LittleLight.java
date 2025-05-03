@@ -41,6 +41,8 @@ public class LittleLight extends GkmasCard {
         this.baseSecondMagicNumber = BASE_MAGIC2;
         this.secondMagicNumber = this.baseSecondMagicNumber;
         this.exhaust = true;
+        this.tags.add(GkmasCardTag.FOCUS_TAG);
+        this.tags.add(GkmasCardTag.GOOD_TUNE_TAG);
     }
 
 

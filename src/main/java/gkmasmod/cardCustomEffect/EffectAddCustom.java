@@ -9,6 +9,7 @@ import gkmasmod.cards.free.Repartitioning;
 import gkmasmod.cards.free.TurnBack;
 import gkmasmod.cards.logic.ForShiningYou;
 import gkmasmod.cards.logic.HardStretching;
+import gkmasmod.cards.logic.MyColor;
 import gkmasmod.cards.logic.WaitALittleLonger;
 import gkmasmod.utils.CustomHelper;
 
@@ -74,6 +75,9 @@ public class EffectAddCustom extends AbstractCardCustomEffect {
         }
         if(card instanceof CareCard){
             return CardCrawlGame.languagePack.getCardStrings("gkmasMod:CareCard_Effect0").DESCRIPTION;
+        }
+        if(card instanceof MyColor){
+            return CardCrawlGame.languagePack.getCardStrings("gkmasMod:MyColor_Effect0").DESCRIPTION;
         }
         return rawDescription;
     }

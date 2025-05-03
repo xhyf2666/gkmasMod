@@ -18,8 +18,10 @@ import gkmasmod.cards.moon.BloodySacrifice;
 import gkmasmod.cards.moon.CatchNunu;
 import gkmasmod.cards.moon.StartingLine;
 import gkmasmod.cards.moon.TimeLoop;
+import gkmasmod.cards.othe.*;
 import gkmasmod.cards.special.*;
 import gkmasmod.characters.MisuzuCharacter;
+import gkmasmod.characters.OtherIdolCharacter;
 import gkmasmod.downfall.bosses.*;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
@@ -32,7 +34,6 @@ import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.dungeons.Exordium;
 import com.megacrit.cardcrawl.dungeons.TheBeyond;
 import com.megacrit.cardcrawl.dungeons.TheCity;
@@ -51,14 +52,10 @@ import gkmasmod.characters.IdolCharacter;
 import gkmasmod.dungeons.Gokugetsu;
 import gkmasmod.dungeons.IdolRoad;
 import gkmasmod.event.*;
-import gkmasmod.growEffect.BaseDamageGrow;
 import gkmasmod.monster.beyond.*;
 import gkmasmod.monster.ending.MisuzuBoss;
 import gkmasmod.monster.ending.MonsterRinha;
-import gkmasmod.monster.exordium.MonsterAsari;
-import gkmasmod.monster.exordium.MonsterGekka;
-import gkmasmod.monster.exordium.MonsterNadeshiko;
-import gkmasmod.monster.exordium.MonsterShion;
+import gkmasmod.monster.exordium.*;
 import gkmasmod.potion.*;
 import gkmasmod.relics.*;
 import gkmasmod.room.shop.AnotherShopScreen;
@@ -67,7 +64,6 @@ import gkmasmod.screen.PocketBookViewScreen;
 import gkmasmod.screen.SkinSelectScreen;
 import gkmasmod.utils.*;
 import gkmasmod.variables.*;
-import gkmasmod.vfx.SimplePlayVideoEffect2;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -99,8 +95,10 @@ public class GkmasMod implements EditCardsSubscriber, EditStringsSubscriber, Edi
 
     private static final String MY_CHARACTER_BUTTON = "gkmasModResource/img/charSelect/selectButton.png";
     private static final String MY_CHARACTER_BUTTON2 = "gkmasModResource/img/charSelect/selectButton3.png";
-    private static final String MARISA_PORTRAIT = "gkmasModResource/img/charSelect/background_init.png";
+    private static final String MY_CHARACTER_BUTTON3 = "gkmasModResource/img/charSelect/selectButton4.png";
+    private static final String MARISA_PORTRAIT = "gkmasModResource/img/charSelect/background_1.png";
     private static final String MARISA_PORTRAIT2 = "gkmasModResource/img/charSelect/background_hmsz.png";
+    private static final String MARISA_PORTRAIT3 = "gkmasModResource/img/charSelect/background_0.png";
     public static final Color gkmasMod_color = CardHelper.getColor(80, 80, 50);
 
     public static final Color gkmasMod_colorLogic = CardHelper.getColor(50, 70, 200);
@@ -112,6 +110,8 @@ public class GkmasMod implements EditCardsSubscriber, EditStringsSubscriber, Edi
     public static final Color gkmasMod_colorMisuzu = CardHelper.getColor(147, 134, 226);
 
     public static final Color gkmasMod_colorMoon = CardHelper.getColor(20, 20, 20);
+
+    public static final Color gkmasMod_colorOther = CardHelper.getColor(255, 178, 204);
 
     public static boolean onlyModBoss;
     public static boolean hasNewYear;
@@ -148,6 +148,7 @@ public class GkmasMod implements EditCardsSubscriber, EditStringsSubscriber, Edi
         addColor(gkmasModColorAnomaly,gkmasMod_colorAnomaly,idolName,suffix[3]);
         addColor(gkmasModColorMisuzu,gkmasMod_colorMisuzu,IdolData.hmsz,"hmsz_");
         addColor(gkmasModColorMoon,gkmasMod_colorMoon,"moon","");
+        addColor(gkmasModColorOther,gkmasMod_colorOther,"othe","");
     }
 
     private void addColor(AbstractCard.CardColor cc,Color c,String idolName,String suffix){
@@ -289,6 +290,8 @@ public class GkmasMod implements EditCardsSubscriber, EditStringsSubscriber, Edi
         instances.add(new GoldfishScoopingChallenge());
         instances.add(new VeryEasy());
         instances.add(new UntilNowAndFromNow());
+        instances.add(new ThatDayHere());
+        instances.add(new MyColor());
         // 莉波
         instances.add(new Accommodating());
         instances.add(new FirstFriend());
@@ -308,6 +311,7 @@ public class GkmasMod implements EditCardsSubscriber, EditStringsSubscriber, Edi
         instances.add(new SummerEveningSparklers());
         instances.add(new HappyChristmas());
         instances.add(new MyPrideBigSister());
+        instances.add(new NewLight());
         // 麻央
         instances.add(new LittlePrince());
         instances.add(new FirstCrystal());
@@ -335,12 +339,14 @@ public class GkmasMod implements EditCardsSubscriber, EditStringsSubscriber, Edi
         instances.add(new StruggleHandmade());
         instances.add(new SayGoodbyeToDislikeMyself());
         instances.add(new CareCard());
+        instances.add(new UntilHopeReach());
         // 星南
         instances.add(new TopIdolInSchool());
         instances.add(new KingAppear());
         instances.add(new TopStar());
         instances.add(new DreamStillContinue());
         instances.add(new GiveYou());
+        instances.add(new SurgingEmotion());
 
         // 普通
         instances.add(new LightGait());
@@ -667,6 +673,21 @@ public class GkmasMod implements EditCardsSubscriber, EditStringsSubscriber, Edi
         instances.add(new ChocolateForProducer());
         instances.add(new DoNotGo());
 
+        instances.add(new Echo());
+        instances.add(new TauntAttack());
+        instances.add(new UniverseFirstHappiness());
+        instances.add(new HeavyLove());
+        instances.add(new FormalContract());
+        instances.add(new Fluffy());
+        instances.add(new PleaseTakeCare());
+        instances.add(new PleaseGuideMe());
+        instances.add(new IRemember());
+        instances.add(new IDontRemember());
+        instances.add(new ThirtySeconds());
+        instances.add(new ProducerAlsoIdol());
+        instances.add(new AsYourFan());
+        instances.add(new FromNowOn());
+
         // 遍历instances的所有元素，将其添加到listener中
         for (Object instance : instances) {
             listeners.add((CardImgUpdateListener) instance);
@@ -678,6 +699,7 @@ public class GkmasMod implements EditCardsSubscriber, EditStringsSubscriber, Edi
     public void receiveEditCharacters() {
         BaseMod.addCharacter(new IdolCharacter(CardCrawlGame.playerName), MY_CHARACTER_BUTTON, MARISA_PORTRAIT, gkmasMod_character);
         BaseMod.addCharacter(new MisuzuCharacter(CardCrawlGame.playerName), MY_CHARACTER_BUTTON2, MARISA_PORTRAIT2, gkmasModMisuzu_character);
+        BaseMod.addCharacter(new OtherIdolCharacter(CardCrawlGame.playerName), MY_CHARACTER_BUTTON3, MARISA_PORTRAIT3, gkmasModOther_character);
     }
 
     @Override
@@ -732,6 +754,8 @@ public class GkmasMod implements EditCardsSubscriber, EditStringsSubscriber, Edi
         BaseMod.addRelicToCustomPool(new UndefeatedPoi(), gkmasModColor);
         BaseMod.addRelicToCustomPool(new AnimateEquipment(), gkmasModColor);
         BaseMod.addRelicToCustomPool(new FaceTheAwakening(), gkmasModColor);
+        BaseMod.addRelicToCustomPool(new DestinyEncounter(), gkmasModColor);
+        BaseMod.addRelicToCustomPool(new AfterRainFlower(), gkmasModColor);
         // 莉波
         BaseMod.addRelicToCustomPool(new RegularMakeupPouch(), gkmasModColor);
         BaseMod.addRelicToCustomPool(new FirstHeartProofRinami(), gkmasModColor);
@@ -751,6 +775,7 @@ public class GkmasMod implements EditCardsSubscriber, EditStringsSubscriber, Edi
         BaseMod.addRelicToCustomPool(new CracklingSparkler(), gkmasModColor);
         BaseMod.addRelicToCustomPool(new FreeLoveMax(), gkmasModColor);
         BaseMod.addRelicToCustomPool(new OnlyMyFirstStar(), gkmasModColor);
+        BaseMod.addRelicToCustomPool(new AfterRainRainbow(), gkmasModColor);
         // 麻央
         BaseMod.addRelicToCustomPool(new GentlemanHandkerchief(), gkmasModColor);
         BaseMod.addRelicToCustomPool(new FirstLoveProofMao(), gkmasModColor);
@@ -778,12 +803,14 @@ public class GkmasMod implements EditCardsSubscriber, EditStringsSubscriber, Edi
         BaseMod.addRelicToCustomPool(new ClumsyBat(), gkmasModColor);
         BaseMod.addRelicToCustomPool(new SongToTheSun(), gkmasModColor);
         BaseMod.addRelicToCustomPool(new CardOfVictory(), gkmasModColor);
+        BaseMod.addRelicToCustomPool(new AfterRainGoddess(), gkmasModColor);
         // 星南
         BaseMod.addRelicToCustomPool(new TeaCaddy(),gkmasModColor);
         BaseMod.addRelicToCustomPool(new EveryoneDream(),gkmasModColor);
         BaseMod.addRelicToCustomPool(new AbsoluteNewSelf(),gkmasModColor);
         BaseMod.addRelicToCustomPool(new PastLittleStar(),gkmasModColor);
         BaseMod.addRelicToCustomPool(new DeepLoveForYou(),gkmasModColor);
+        BaseMod.addRelicToCustomPool(new FirstStarChallenge(),gkmasModColor);
 
         BaseMod.addRelicToCustomPool(new SyngUpRelic(), gkmasModColorMisuzu);
         BaseMod.addRelicToCustomPool(new SyngUpRelicBroken(), gkmasModColorMisuzu);
@@ -875,6 +902,7 @@ public class GkmasMod implements EditCardsSubscriber, EditStringsSubscriber, Edi
 
         BaseMod.addEvent(new AddEventParams.Builder(TogetherTrain.ID,TogetherTrain.class).spawnCondition(ConditionHelper.Condition_ttmr).dungeonID(Exordium.ID).create());
         BaseMod.addEvent(new AddEventParams.Builder(KakaSong.ID,KakaSong.class).playerClass(gkmasMod_character).dungeonID(TheCity.ID).dungeonID(TheBeyond.ID).create());
+        BaseMod.addEvent(new AddEventParams.Builder(IdolMakeFood.ID,IdolMakeFood.class).playerClass(gkmasMod_character).dungeonID(Exordium.ID).dungeonID(TheCity.ID).create());
         BaseMod.addEvent(new AddEventParams.Builder(HajimeReward.ID,HajimeReward.class).spawnCondition(ConditionHelper.Condition_never).create());
         BaseMod.addEvent(new AddEventParams.Builder(NIAReward.ID,NIAReward.class).spawnCondition(ConditionHelper.Condition_never).create());
 
@@ -941,7 +969,19 @@ public class GkmasMod implements EditCardsSubscriber, EditStringsSubscriber, Edi
         BaseMod.addMonster(IdolBoss_kcna.ID, () -> new IdolBoss_kcna());
         BaseMod.addMonster(IdolBoss_kllj.ID, () -> new IdolBoss_kllj());
         BaseMod.addMonster(IdolBoss_jsna.ID, () -> new IdolBoss_jsna());
+        BaseMod.addMonster(SpikeSlimeTemari_L.ID, () -> new SpikeSlimeTemari_L());
+        BaseMod.addMonster(SpikeSlimeTemari_M.ID, () -> new SpikeSlimeTemari_M());
+        BaseMod.addMonster(SpikeSlimeTemari_S.ID, () -> new SpikeSlimeTemari_S());
+        BaseMod.addMonster(AcidSlimeTemari_L.ID, () -> new AcidSlimeTemari_L());
+        BaseMod.addMonster(AcidSlimeTemari_M.ID, () -> new AcidSlimeTemari_M());
+        BaseMod.addMonster(AcidSlimeTemari_S.ID, () -> new AcidSlimeTemari_S());
         BaseMod.addMonster(MonsterSena2.ID, () -> new MonsterSena2());
+        BaseMod.addMonster(MonsterRinami1.ID, () -> new MonsterRinami1());
+        BaseMod.addMonster(MonsterMao1.ID, () -> new MonsterMao1());
+        BaseMod.addMonster(MonsterHiro1.ID, () -> new MonsterHiro1());
+        BaseMod.addMonster(MonsterChina1.ID, () -> new MonsterChina1());
+        BaseMod.addMonster(MonsterSumika1.ID, () -> new MonsterSumika1());
+        BaseMod.addMonster(MonsterLilja1.ID, () -> new MonsterLilja1());
         BaseMod.addMonster("reiris", () -> {
             AbstractMonster[] Reiris = new AbstractMonster[3];
             Reiris[0] = new MonsterTemari1(-250.0F, 20.0F);
@@ -955,6 +995,24 @@ public class GkmasMod implements EditCardsSubscriber, EditStringsSubscriber, Edi
             Begrazia[1] = new MonsterUme1(000.0F, 20.0F);
             Begrazia[2] = new MonsterSena1(250.0F, 20.0F);
             return new MonsterGroup(Begrazia);
+        });
+        BaseMod.addMonster("sumikaAndLilja", () -> {
+            AbstractMonster[] SumikaAndLilja = new AbstractMonster[2];
+            SumikaAndLilja[0] = new MonsterSumika1(-175.0F, 20.0F);
+            SumikaAndLilja[1] = new MonsterLilja1(125.0F, 20.0F);
+            return new MonsterGroup(SumikaAndLilja);
+        });
+        BaseMod.addMonster("hiroAndChina", () -> {
+            AbstractMonster[] HiroAndChina = new AbstractMonster[2];
+            HiroAndChina[0] = new MonsterHiro1(-175.0F, 20.0F);
+            HiroAndChina[1] = new MonsterChina1(125.0F, 20.0F);
+            return new MonsterGroup(HiroAndChina);
+        });
+        BaseMod.addMonster("rinamiAndMao", () -> {
+            AbstractMonster[] RinamiAndMao = new AbstractMonster[2];
+            RinamiAndMao[0] = new MonsterRinami1(-175.0F, 20.0F);
+            RinamiAndMao[1] = new MonsterMao1(125.0F, 20.0F);
+            return new MonsterGroup(RinamiAndMao);
         });
 
         shopScreen = new AnotherShopScreen();
@@ -1078,25 +1136,6 @@ public class GkmasMod implements EditCardsSubscriber, EditStringsSubscriber, Edi
     @Override
     public void receivePostCreateStartingDeck(AbstractPlayer.PlayerClass playerClass, CardGroup cardGroup) {
         AnotherShopScreen.purgeTimes = 0;
-        hasNewYear = false;
-        if(playerClass == gkmasMod_character){
-            String videoPath = "gkmasModResource/video/other/op1.webm";
-            String[] videoList = {
-                    "gkmasModResource/video/other/op1.webm",
-                    "gkmasModResource/video/other/op2.webm",
-            };
-            java.util.Random random = new java.util.Random();
-            int index = random.nextInt(videoList.length);
-            videoPath = videoList[index];
-
-//        AbstractDungeon.isScreenUp = true;
-            CardCrawlGame.fadeIn(1.0F);
-            CardCrawlGame.music.dispose();
-            if(Gdx.files.local(videoPath).exists()){
-                AbstractDungeon.topLevelEffectsQueue.add(new SimplePlayVideoEffect2(videoPath,true));
-            }
-        }
-
     }
 
     @Override

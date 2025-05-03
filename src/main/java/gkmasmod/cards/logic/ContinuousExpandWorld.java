@@ -17,6 +17,7 @@ import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.powers.ContinuousExpandWorldPower;
 import gkmasmod.powers.MyPrideBigSisterPower;
+import gkmasmod.powers.NextTurnIdolBlockPower;
 import gkmasmod.utils.CustomHelper;
 import gkmasmod.utils.IdolData;
 import gkmasmod.utils.NameHelper;
@@ -70,7 +71,7 @@ public class ContinuousExpandWorld extends GkmasCard {
     public void use(AbstractPlayer p, AbstractMonster m) {
         addToBot(new LoseHPAction(p,p,this.HPMagicNumber));
         addToBot(new ApplyPowerAction(p,p,new DexterityPower(p,this.magicNumber),this.magicNumber));
-        addToBot(new ApplyPowerAction(p,p,new NextTurnBlockPower(p,this.block),this.block));
+        addToBot(new ApplyPowerAction(p,p,new NextTurnIdolBlockPower(p,this.baseBlock),this.baseBlock));
         addToBot(new ApplyPowerAction(p,p,new ContinuousExpandWorldPower(p)));
         SoundHelper.playSound("gkmasModResource/audio/voice/skillcard/cidol_kcna_3_010_produce_skillcard_01.ogg");
     }

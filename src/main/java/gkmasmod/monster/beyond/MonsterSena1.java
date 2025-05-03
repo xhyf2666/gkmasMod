@@ -62,12 +62,12 @@ public class MonsterSena1 extends CustomMonster {
             setHp(170);
         }
         if (AbstractDungeon.ascensionLevel >= 4) {
-            this.damage.add(new DamageInfo(this, 8));
-            this.damage.add(new DamageInfo(this, 15));
+            this.damage.add(new DamageInfo(this, 7));
+            this.damage.add(new DamageInfo(this, 14));
             this.bloodHitCount = 2;
         } else {
-            this.damage.add(new DamageInfo(this, 6));
-            this.damage.add(new DamageInfo(this, 12));
+            this.damage.add(new DamageInfo(this, 5));
+            this.damage.add(new DamageInfo(this, 10));
             this.bloodHitCount = 2;
         }
     }
@@ -85,12 +85,11 @@ public class MonsterSena1 extends CustomMonster {
             CardCrawlGame.music.playTempBgmInstantly(song, true);
         if (AbstractDungeon.ascensionLevel >= 5) {
             AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(this, this, new SenaMoreActionPower(this,2),2));
-            AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(this, this, new SenaTopPower(this,10),10));
-            AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(this, this, new SenaTeachPower(this,20),20));
+            AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(this, this, new SenaTopPower(this,8),8));
+            AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(this, this, new SenaTeachPower(this,10),10));
         } else {
             AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(this, this, new SenaMoreActionPower(this,1),1));
             AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(this, this, new SenaTopPower(this,5),5));
-            AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(this, this, new SenaTeachPower(this,10),10));
         }
         AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(this, this, new SenaEncallPower(this)));
     }
@@ -107,7 +106,7 @@ public class MonsterSena1 extends CustomMonster {
                 for (AbstractMonster mo:AbstractDungeon.getCurrRoom().monsters.monsters){
                     if(!mo.isDeadOrEscaped()&& !AbstractMonsterPatch.friendlyField.friendly.get(mo)){
                         addToBot(new HealAction(mo,mo,600));
-                        addToBot(new ApplyPowerAction(mo,mo,new GoodTune(mo,3),3));
+                        addToBot(new ApplyPowerAction(mo,mo,new GoodTune(mo,2),2));
                     }
                 }
                 break;

@@ -13,6 +13,7 @@ import com.megacrit.cardcrawl.screens.charSelect.CharacterOption;
 import com.megacrit.cardcrawl.screens.charSelect.CharacterSelectScreen;
 import gkmasmod.characters.IdolCharacter;
 import gkmasmod.characters.MisuzuCharacter;
+import gkmasmod.characters.OtherIdolCharacter;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.screen.SkinSelectScreen;
 import gkmasmod.utils.IdolData;
@@ -40,11 +41,25 @@ public class CharacterOptionPatch {
         @SpireInsertPatch(rloc = 46)
         public static void Insert(CharacterOption __instance)
         {
-//            if(__instance.c instanceof MisuzuCharacter){
+            if(__instance.c instanceof OtherIdolCharacter){
 //                if(SkinSelectScreen.Inst.idolName==IdolData.ttmr&&IdolData.getIdol(SkinSelectScreen.Inst.idolName).getSkinImg(SkinSelectScreen.Inst.skinIndex).equals("skin21")&&SkinSelectScreen.Inst.hideSameIdol&&SkinSelectScreen.Inst.updateIndex==1)
 //                    return;
-//                CardCrawlGame.mainMenuScreen.charSelectScreen.confirmButton.hide();
-//            }
+                CardCrawlGame.mainMenuScreen.charSelectScreen.confirmButton.hide();
+            }
+        }
+    }
+
+    @SpirePatch(clz = CharacterOption.class, method = "updateHitbox")
+    public static class CharacterOptionPatch_updateHitbox2
+    {
+        @SpireInsertPatch(rloc = 193-139)
+        public static void Insert(CharacterOption __instance)
+        {
+            if(__instance.c instanceof IdolCharacter){
+                SkinSelectScreen.Inst.defaultBackgroundIndex+=1;
+                SkinSelectScreen.Inst.defaultBackgroundIndex%=2;
+                CardCrawlGame.mainMenuScreen.charSelectScreen.bgCharImg = new Texture(String.format("gkmasModResource/img/charSelect/background_%d.png",SkinSelectScreen.Inst.defaultBackgroundIndex));
+            }
         }
     }
 

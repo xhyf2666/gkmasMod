@@ -11,6 +11,7 @@ import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import gkmasmod.actions.FullPowerValueAction;
 import gkmasmod.downfall.charbosses.bosses.AbstractCharBoss;
+import gkmasmod.monster.beyond.MonsterMao1;
 import gkmasmod.monster.beyond.MonsterMisuzu1;
 import gkmasmod.monster.beyond.MonsterSena1;
 import gkmasmod.monster.beyond.MonsterUme1;
@@ -59,6 +60,11 @@ public class AttackTimePower extends AbstractPower {
         }
         else if(this.owner instanceof MonsterMisuzu1){
             MonsterMisuzu1 m = (MonsterMisuzu1)this.owner;
+            m.attackTime = this.amount;
+            m.updateMove();
+        }
+        else if(this.owner instanceof MonsterMao1){
+            MonsterMao1 m = (MonsterMao1)this.owner;
             m.attackTime = this.amount;
             m.updateMove();
         }

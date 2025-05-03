@@ -27,7 +27,7 @@ public class CBR_EnjoyAfterHotSpring extends AbstractCharbossRelic {
 
     private static final RelicTier RARITY = RelicTier.STARTER;
 
-    private static final int magicNumber = 30;
+    private static final int magicNumber = 130;
     private static final int magicNumber2 = 4;
 
 
@@ -59,12 +59,7 @@ public class CBR_EnjoyAfterHotSpring extends AbstractCharbossRelic {
                 addToBot(new RelicAboveCreatureAction(AbstractCharBoss.boss, this));
                 this.flash();
                 addToBot(new GainBlockAction(AbstractCharBoss.boss, AbstractCharBoss.boss, magicNumber2));
-                addToBot(new EnjoyAfterHotSpringAction(AbstractCharBoss.boss,1.0F*magicNumber/100));
-//                int strength = PlayerHelper.getPowerAmount(AbstractCharBoss.boss, StrengthPower.POWER_ID);
-//                int add = (int) (1.0F*magicNumber/100*strength);
-//                if(add > 0){
-//                    addToBot(new ApplyPowerAction(AbstractCharBoss.boss, AbstractCharBoss.boss, new StrengthPower(AbstractCharBoss.boss, add), add));
-//                }
+                addToBot(new EnjoyAfterHotSpringAction(AbstractCharBoss.boss,1.0F*(magicNumber-100)/100));
                 currentTimes++;
                 if(currentTimes == playTimes){
                     grayscale = true;

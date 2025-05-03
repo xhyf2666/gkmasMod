@@ -23,8 +23,8 @@ public class SummerSleepy extends GkmasCard {
     private static final String DESCRIPTION = CARD_STRINGS.DESCRIPTION;
     private static final String IMG_PATH = String.format("gkmasModResource/img/cards/common/%s.png", CLASSNAME);
 
-    private static final int COST = 2;
-    private static final int UPGRADE_COST = 1;
+    private static final int COST = 3;
+    private static final int UPGRADE_COST = 2;
     private static final int BASE_MAGIC = 1;
 
 

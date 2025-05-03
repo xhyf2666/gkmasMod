@@ -45,7 +45,7 @@ public class AnotherMultiLinePowersPatches {
             return;
         if (isNotInvis(p)) {
             count++;
-            if(p.owner!=null&&(p.owner instanceof MonsterTemari1||p.owner instanceof MonsterSaki1 ||p.owner instanceof MonsterKotone1)||p.owner instanceof MonsterMisuzu1 ||p.owner instanceof MonsterUme1 ||p.owner instanceof MonsterSena1){
+            if(p.owner!=null&&(p.owner instanceof MonsterTemari1||p.owner instanceof MonsterSaki1 ||p.owner instanceof MonsterKotone1||p.owner instanceof MonsterMisuzu1 ||p.owner instanceof MonsterUme1 ||p.owner instanceof MonsterSena1||p.owner instanceof MonsterLilja1||p.owner instanceof MonsterSumika1 ||p.owner instanceof MonsterHiro1||p.owner instanceof MonsterChina1 ||p.owner instanceof MonsterRinami1 ||p.owner instanceof MonsterMao1)){
                 if (count == 5) {
                     count = 0;
                     offsetY -= 38.0F * Settings.scale;

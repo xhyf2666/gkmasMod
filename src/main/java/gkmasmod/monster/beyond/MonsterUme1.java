@@ -76,10 +76,10 @@ public class MonsterUme1 extends CustomMonster {
     public void usePreBattleAction() {
         if (AbstractDungeon.ascensionLevel >= 5) {
             AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(this, this, new UmeGreatGoodTunePower(this,3),3));
-            AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(this, this, new UmeStancePower(this,6)));
+            AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(this, this, new UmeStancePower(this,8)));
         } else {
             AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(this, this, new UmeGreatGoodTunePower(this,2),2));
-            AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(this, this, new UmeStancePower(this,8)));
+            AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(this, this, new UmeStancePower(this,10)));
         }
         AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(this, this, new UmeBecomeIdolPower(this)));
         AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(this, this, new UmeEncallPower(this)));

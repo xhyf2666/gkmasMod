@@ -52,6 +52,7 @@ public class EurekaPlusPower extends AbstractPower {
     public void atStartOfTurn() {
         float amount = 1.0F*this.owner.currentHealth / this.owner.maxHealth;
         if(amount<=0.5F){
+            this.flash();
             if(this.owner.isPlayer){
                 AbstractCreature target = AbstractDungeon.getMonsters().getRandomMonster(null, true, AbstractDungeon.cardRandomRng);
                 if(target != null){

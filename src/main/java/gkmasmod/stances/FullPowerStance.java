@@ -101,7 +101,7 @@ public class FullPowerStance extends GkmasModStance {
 
     public void stopIdleSfx() {
         if (sfxId != -1L) {
-            CardCrawlGame.sound.stop("STANCE_LOOP_WRATH", sfxId);
+            CardCrawlGame.sound.stop("STANCE_LOOP_DIVINITY", sfxId);
             sfxId = -1L;
         }
     }

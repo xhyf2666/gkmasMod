@@ -60,12 +60,12 @@ public class CardGroupPatch {
     public static class PrefixPatchCardGroup_moveToDiscardPile {
         @SpirePrefixPatch
         public static SpireReturn<Void> Prefix(CardGroup __instance, AbstractCard c) {
-            if(c.cardID.equals(FinalSpurt.ID)||c.cardID.equals(StepByStep.ID)){
-                if(AbstractDungeon.player.stance.ID.equals(PreservationStance.STANCE_ID)){
-                    AbstractDungeon.actionManager.addToBottom(new RemoveFromDiscardPileAction(c));
-//                    SpireReturn.Return(null);
-                }
-            }
+//            if(c.cardID.equals(FinalSpurt.ID)||c.cardID.equals(StepByStep.ID)){
+//                if(AbstractDungeon.player.stance.ID.equals(PreservationStance.STANCE_ID)){
+//                    AbstractDungeon.actionManager.addToBottom(new RemoveFromDiscardPileAction(c));
+////                    SpireReturn.Return(null);
+//                }
+//            }
             return SpireReturn.Continue();
         }
     }

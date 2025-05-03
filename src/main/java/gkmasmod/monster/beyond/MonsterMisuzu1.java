@@ -54,23 +54,22 @@ public class MonsterMisuzu1 extends CustomMonster {
             setHp(150);
         }
         if (AbstractDungeon.ascensionLevel >= 4) {
-            this.damage.add(new DamageInfo(this, 8));
-            this.damage.add(new DamageInfo(this, 15));
+            this.damage.add(new DamageInfo(this, 4));
+            this.damage.add(new DamageInfo(this, 6));
             this.bloodHitCount = 2;
         } else {
-            this.damage.add(new DamageInfo(this, 6));
-            this.damage.add(new DamageInfo(this, 10));
+            this.damage.add(new DamageInfo(this, 3));
+            this.damage.add(new DamageInfo(this, 5));
             this.bloodHitCount = 2;
         }
     }
 
     public void usePreBattleAction() {
         if (AbstractDungeon.ascensionLevel >= 5) {
-            AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(this, this, new MisuzuDreamPower(this,2),2));
-            AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(this, this, new MisuzuNightPower(this,2)));
-        } else {
             AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(this, this, new MisuzuDreamPower(this,1),1));
             AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(this, this, new MisuzuNightPower(this,3)));
+        } else {
+            AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(this, this, new MisuzuNightPower(this,4)));
         }
         AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(this, this, new MisuzuSleepPower(this,1),1));
         AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(this, this, new MisuzuEncallPower(this)));
@@ -87,7 +86,6 @@ public class MonsterMisuzu1 extends CustomMonster {
             case 1:
                 addToBot(new MakeTempCardInDrawPileAction(new Sleepy(),2,true,true));
                 addToBot(new ApplyPowerAction(AbstractDungeon.player, this, new NotGoodTune(AbstractDungeon.player,3),3));
-                addToBot(new ApplyPowerAction(AbstractDungeon.player, this, new GreatGoodTune(AbstractDungeon.player,2),2));
                 break;
         }
         AbstractDungeon.actionManager.addToBottom(new RollMoveAction(this));

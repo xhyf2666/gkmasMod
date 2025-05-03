@@ -33,7 +33,7 @@
   },
   "gkmasMod:FreshVinegar": {
     "NAME": "新鲜醋汁",
-    "DESCRIPTIONS": ["回复 #b%d 点 #y体力 。 NL 升级所有手牌 。"]
+    "DESCRIPTIONS": ["回复 #b%d 点 #y体力 。 NL 强化所有手牌 。"]
   },
   "gkmasMod:BoostExtract": {
     "NAME": "Boost精华",

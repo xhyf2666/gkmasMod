@@ -17,7 +17,6 @@ import gkmasmod.utils.CommonEnum.IdolType;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 public class IdolStartingDeck {
 
@@ -121,26 +120,30 @@ public class IdolStartingDeck {
         return logicYarukiStartingDeck.clone();
     }
 
-    public static String getSpecailCard(String idolName, String skinName){
+    public static String getSpecialCard(String idolName, String skinName){
         return IdolData.getIdol(idolName).getCard(skinName);
     }
 
-    public static String getSpecailCard(int idolIndex, int skinIndex){
+    public static String getSpecialCard(int idolIndex, int skinIndex){
         return IdolData.getIdol(idolIndex).getCard(skinIndex);
     }
 
-    public static String getSpecailRelic(String idolName, String skinName){
+    public static String getSpecialRelic(String idolName, String skinName){
         return IdolData.getIdol(idolName).getRelic(skinName);
     }
 
-    public static String getSpecailRelic(int idolIndex, int skinIndex){
+    public static String getSpecialRelic(int idolIndex, int skinIndex){
+        return IdolData.getIdol(idolIndex).getRelic(skinIndex);
+    }
+
+    public static String getOtherSpecialRelic(int idolIndex, int skinIndex){
         return IdolData.getIdol(idolIndex).getRelic(skinIndex);
     }
 
     public static ArrayList<String> getStartingDeck(String idolName, String skinName){
         IdolType type = IdolData.getIdol(idolName).getType(skinName);
         IdolStyle style = IdolData.getIdol(idolName).getStyle(skinName);
-        String specialCard = getSpecailCard(idolName, skinName);
+        String specialCard = getSpecialCard(idolName, skinName);
 
         // 创建一个变长数组
         ArrayList<String> startingDeck = new ArrayList<>();
@@ -176,7 +179,7 @@ public class IdolStartingDeck {
     public static ArrayList<String> getStartingDeck(int idolIndex, int skinIndex){
         IdolType type = IdolData.getIdol(idolIndex).getType(skinIndex);
         IdolStyle style = IdolData.getIdol(idolIndex).getStyle(skinIndex);
-        String specialCard = getSpecailCard(idolIndex, skinIndex);
+        String specialCard = getSpecialCard(idolIndex, skinIndex);
         String replaceCard = IdolData.getIdol(idolIndex).getReplaceCard(skinIndex);
 
         // 创建一个变长数组

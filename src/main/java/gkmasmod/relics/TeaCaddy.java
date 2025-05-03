@@ -53,7 +53,7 @@ public class TeaCaddy extends CustomRelic {
             if(target==null) {
                 target = AbstractDungeon.getMonsters().getRandomMonster(null, true, AbstractDungeon.cardRandomRng);
             }
-            addToBot(new TeaCaddyAction(AbstractDungeon.player,target,BASE_DAMAGE,HP));
+            addToBot(new TeaCaddyAction(AbstractDungeon.player,target,BASE_DAMAGE,HP,this));
         }
 
     }

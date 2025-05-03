@@ -8,12 +8,15 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.AbstractPower;
 import gkmasmod.cardCustomEffect.MagicCustom;
 import gkmasmod.cardCustomEffect.SelfRetainCustom;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
+import gkmasmod.patches.AbstractPowerPatch;
 import gkmasmod.powers.FullPowerValue;
+import gkmasmod.powers.GoodImpression;
 import gkmasmod.screen.SkinSelectScreen;
 import gkmasmod.stances.PreservationStance;
 import gkmasmod.utils.CustomHelper;
@@ -33,7 +36,7 @@ public class EyesOfTheScenery extends GkmasCard {
 
     private static final int COST = 1;
 
-    private static final int BASE_MAGIC = 30;
+    private static final int BASE_MAGIC = 130;
     private static final int UPGRADE_MAGIC_PLUS = 20;
 
     private static final CardType TYPE = CardType.SKILL;
@@ -54,10 +57,12 @@ public class EyesOfTheScenery extends GkmasCard {
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        int amount = PlayerHelper.getPowerAmount(p, FullPowerValue.POWER_ID);
-        int add = (int) (1.0F* amount * this.magicNumber / 100);
-        if(add > 0){
-            addToBot(new ApplyPowerAction(p, p, new FullPowerValue(p, add), add));
+        int count = PlayerHelper.getPowerAmount(p, FullPowerValue.POWER_ID);
+        if (count > 0) {
+            int add = (int) (1.0F*count*(this.magicNumber-100)/100);
+            AbstractPower power = new FullPowerValue(p, add);
+            AbstractPowerPatch.IgnoreIncreaseModifyField.flag.set(power, true);
+            addToBot(new ApplyPowerAction(p, p, power, add));
         }
     }
 

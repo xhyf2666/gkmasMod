@@ -101,6 +101,7 @@ public class BossConfig_shro1 extends AbstractBossDeckArchetype {
         } else {
             switch (turn) {
                 case 0:
+                case 1:
                     addToList(cardsList, new ENBaseMental());
                     addToList(cardsList, new ENSkipWater());
                     addToList(cardsList, new ENYeah(),true);
@@ -110,7 +111,7 @@ public class BossConfig_shro1 extends AbstractBossDeckArchetype {
                     addToList(cardsList, new ENBasePose());
                     turn++;
                     break;
-                case 1:
+                case 2:
                     addToList(cardsList, new ENClimax());
                     addToList(cardsList, new ENSkipWater());
                     turn=0;

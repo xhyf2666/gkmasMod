@@ -32,7 +32,7 @@ public class ShockWakeUp extends GkmasCard {
     private static final String DESCRIPTION = CARD_STRINGS.DESCRIPTION;
     private static final String IMG_PATH = String.format("gkmasModResource/img/cards/common/%s.png", CLASSNAME);
 
-    private static final int COST = 0;
+    private static final int COST = 1;
     private static final int BASE_HP = 3;
     private static final int BASE_MAGIC = 2;
 

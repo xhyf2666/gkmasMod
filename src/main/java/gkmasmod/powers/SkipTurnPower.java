@@ -46,7 +46,6 @@ public class SkipTurnPower extends AbstractPower {
 
     public void stackPower(int stackAmount) {
         super.stackPower(stackAmount);
-
     }
 
     @Override

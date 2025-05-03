@@ -27,4 +27,7 @@ public class PlayerLibraryEnum {
 
     @SpireEnum(name = "gkmasMod:moon")
     public static CardLibrary.LibraryType gkmasModColorMoon;
+
+    @SpireEnum(name = "gkmasMod:other")
+    public static CardLibrary.LibraryType gkmasModColorOther;
 }

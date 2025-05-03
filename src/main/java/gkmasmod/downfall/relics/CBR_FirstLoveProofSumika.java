@@ -58,7 +58,7 @@ public class CBR_FirstLoveProofSumika extends AbstractCharbossRelic {
     public void onUseCard(AbstractCard card, UseCardAction useCardAction) {
         if (this.counter > 0) {
             AbstractCreature target = AbstractDungeon.player;
-            addToBot(new FirstLoveProofSumikaAction(AbstractCharBoss.boss,target,YARUKI,magicNumber,HP_COST));
+            addToBot(new FirstLoveProofSumikaAction(AbstractCharBoss.boss,target,YARUKI,magicNumber,HP_COST,this));
 //            int amount = AbstractCharBoss.boss.getPower(DexterityPower.POWER_ID)==null?0:AbstractCharBoss.boss.getPower(DexterityPower.POWER_ID).amount;
 //
 //            if (card.type == AbstractCard.CardType.ATTACK && amount>YARUKI) {

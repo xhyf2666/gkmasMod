@@ -45,7 +45,7 @@ public class Assimilation extends GkmasCard {
 
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        addToBot(new DrawCardAction(this.magicNumber));
+//        addToBot(new DrawCardAction(this.magicNumber));
         addToBot(new AssimilationAction(1));
     }
 

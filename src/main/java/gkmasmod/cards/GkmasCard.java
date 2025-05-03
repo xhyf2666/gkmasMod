@@ -420,7 +420,7 @@ public abstract class GkmasCard extends CustomCard  implements CardImgUpdateList
     }
 
     public void updateBackgroundImg(){
-        if(this.color == PlayerColorEnum.gkmasModColorMisuzu||this.color == PlayerColorEnum.gkmasModColorMoon)
+        if(this.color == PlayerColorEnum.gkmasModColorMisuzu||this.color == PlayerColorEnum.gkmasModColorMoon||this.color == PlayerColorEnum.gkmasModColorOther)
             return;
         String idolName;
         idolName = SkinSelectScreen.Inst.idolName;

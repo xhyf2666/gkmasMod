@@ -31,6 +31,8 @@ public class FriendUmePower1 extends AbstractPower {
 
     private int current = 0;
 
+    private boolean isTrigger = false;
+
     public FriendUmePower1(AbstractCreature owner) {
         this.name = NAME;
         this.ID = POWER_ID;
@@ -54,6 +56,16 @@ public class FriendUmePower1 extends AbstractPower {
         if(current == 0) {
             this.flash();
             addToBot(new ApplyPowerAction(AbstractDungeon.player,AbstractDungeon.player,new BlurPower(AbstractDungeon.player,MAGIC),MAGIC));
+        }
+    }
+
+    @Override
+    public void onSpecificTrigger() {
+        if(!isTrigger) {
+            isTrigger = true;
+            this.flash();
+            AbstractDungeon.player.maxHealth+=1;
+            AbstractDungeon.player.currentHealth+=1;
         }
     }
 }

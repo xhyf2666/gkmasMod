@@ -13,6 +13,7 @@ import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import gkmasmod.cards.logic.TeaChat;
 import gkmasmod.cards.sense.ServiceSpirit;
+import gkmasmod.downfall.charbosses.bosses.AbstractCharBoss;
 import gkmasmod.powers.AnotherTurnPower;
 import gkmasmod.powers.GreatGoodTune;
 
@@ -29,7 +30,7 @@ public class DreamOfTheDescription extends CustomRelic {
     private static final RelicTier RARITY = RelicTier.STARTER;
 
     private static final int magicNumber = 1;
-    private static final int magicNumber2 = 60;
+    private static final int magicNumber2 = 160;
     private static final int HP_LOSS = 3;
 
     private static final  int playTimes = 1;
@@ -61,7 +62,7 @@ public class DreamOfTheDescription extends CustomRelic {
                 this.flash();
                 addToBot(new LoseHPAction(AbstractDungeon.player, AbstractDungeon.player, HP_LOSS));
                 addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new AnotherTurnPower(AbstractDungeon.player, magicNumber), magicNumber));
-                int block = (int) (AbstractDungeon.player.currentBlock *1.0F*magicNumber2/100);
+                int block = (int) (AbstractDungeon.player.currentBlock *1.0F*(magicNumber2-100)/100);
                 addToBot(new GainBlockAction(AbstractDungeon.player, AbstractDungeon.player, block));
                 this.counter--;
                 if (this.counter == 0) {

@@ -27,12 +27,10 @@ public class SleepWall extends GkmasCard {
     private static final String DESCRIPTION = CARD_STRINGS.DESCRIPTION;
     private static final String IMG_PATH = String.format("gkmasModResource/img/cards/common/%s.png", CLASSNAME);
 
-    private static final int COST = 1;
-    private static final int BASE_BLOCK = 5;
-    private static final int UPGRADE_PLUS_BLOCK = 2;
-    private static final int BASE_MAGIC = 1;
-    private static final int UPGRADE_PLUS_MAGIC = 1;
-
+    private static final int COST = 2;
+    private static final int BASE_BLOCK = 8;
+    private static final int UPGRADE_PLUS_BLOCK = 4;
+    private static final int BASE_MAGIC = 2;
 
     private static final CardType TYPE = CardType.SKILL;
     private static final CardColor COLOR = PlayerColorEnum.gkmasModColorMisuzu;
@@ -62,7 +60,6 @@ public class SleepWall extends GkmasCard {
         if (!this.upgraded) {
             upgradeName();
             upgradeBlock(UPGRADE_PLUS_BLOCK);
-            upgradeMagicNumber(UPGRADE_PLUS_MAGIC);
             if (CARD_STRINGS.UPGRADE_DESCRIPTION != null)
                 this.rawDescription = CARD_STRINGS.UPGRADE_DESCRIPTION;
             this.initializeDescription();

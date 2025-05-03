@@ -24,12 +24,10 @@ public class CoolIdol extends GkmasCard {
     private static final String DESCRIPTION = CARD_STRINGS.DESCRIPTION;
     private static final String IMG_PATH = String.format("gkmasModResource/img/cards/common/%s.png", CLASSNAME);
 
-    private static final int COST = 1;
+    private static final int COST = 2;
     private static final int BASE_MAGIC = 6;
     private static final int UPGRADE_MAGIC_PLUS = 1;
     private static final int BASE_MAGIC2 = 2;
-
-
 
     private static final CardType TYPE = CardType.POWER;
     private static final CardColor COLOR = PlayerColorEnum.gkmasModColorMisuzu;
@@ -43,6 +41,7 @@ public class CoolIdol extends GkmasCard {
         this.baseSecondMagicNumber = BASE_MAGIC2;
         this.secondMagicNumber = this.baseSecondMagicNumber;
         this.tags.add(GkmasCardTag.ONLY_ONE_TAG);
+        this.tags.add(GkmasCardTag.FOCUS_TAG);
     }
 
 

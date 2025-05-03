@@ -12,6 +12,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
+import gkmasmod.actions.GekkaChaseDamageAction;
 import gkmasmod.actions.ModifyDamageAction;
 import gkmasmod.downfall.charbosses.bosses.AbstractCharBoss;
 import gkmasmod.utils.NameHelper;
@@ -33,6 +34,8 @@ public class GekkaChase extends AbstractPower {
 
     String path128 = String.format("gkmasModResource/img/powers/%s_84.png",CLASSNAME);
     String path48 = String.format("gkmasModResource/img/powers/%s_32.png",CLASSNAME);
+
+    public boolean flag = true;
 
     public GekkaChase(AbstractCreature owner) {
         this.name = NAME;
@@ -62,7 +65,7 @@ public class GekkaChase extends AbstractPower {
             this.amount = 0;
             playApplyPowerSfx();
             this.flash();
-            addToBot(new ModifyDamageAction(AbstractDungeon.player,new DamageInfo(this.owner, MAGIC2, DamageInfo.DamageType.NORMAL), AbstractGameAction.AttackEffect.SLASH_VERTICAL));
+            addToBot(new GekkaChaseDamageAction(this.owner,MAGIC,flag));
         }
         updateDescription();
     }

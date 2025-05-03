@@ -18,22 +18,26 @@ import java.util.Iterator;
 public class BattlePracticeAction extends AbstractGameAction {
     public static final String[] TEXT;
     private AbstractPlayer player;
-    private int numberOfCards;
+    private int num;
     private boolean optional;
 
     private ArrayList<AbstractCard> retain = new ArrayList<>();
 
-    public BattlePracticeAction(int numberOfCards) {
+    /**
+     * 切磋琢磨Action：从抽牌堆和弃牌堆选择num张牌，将其暂存
+     * @param num 选择的牌数
+     */
+    public BattlePracticeAction(int num) {
         this.actionType = ActionType.CARD_MANIPULATION;
         this.duration = this.startDuration = Settings.ACTION_DUR_FAST;
         this.player = AbstractDungeon.player;
-        this.numberOfCards = numberOfCards;
+        this.num = num;
         this.optional = true;
     }
 
     public void update() {
         if (this.duration == this.startDuration) {
-            if (this.numberOfCards > 0) {
+            if (this.num > 0) {
                 AbstractCard c;
                 Iterator var6;
                 CardGroup temp = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
@@ -54,9 +58,9 @@ public class BattlePracticeAction extends AbstractGameAction {
                 temp.sortAlphabetically(true);
                 temp.sortByRarityPlusStatusCardType(false);
                 if (this.optional) {
-                    AbstractDungeon.gridSelectScreen.open(temp, this.numberOfCards, true, String.format(TEXT[0], this.numberOfCards));
+                    AbstractDungeon.gridSelectScreen.open(temp, this.num, true, String.format(TEXT[0], this.num));
                 } else {
-                    AbstractDungeon.gridSelectScreen.open(temp, this.numberOfCards, String.format(TEXT[0], this.numberOfCards), false);
+                    AbstractDungeon.gridSelectScreen.open(temp, this.num, String.format(TEXT[0], this.num), false);
                 }
 
                 this.tickDuration();
@@ -75,7 +79,6 @@ public class BattlePracticeAction extends AbstractGameAction {
                 AbstractDungeon.gridSelectScreen.selectedCards.clear();
                 AbstractDungeon.player.hand.refreshHandLayout();
             }
-
             this.tickDuration();
         }
     }

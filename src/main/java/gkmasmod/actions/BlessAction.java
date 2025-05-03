@@ -20,8 +20,12 @@ public class BlessAction extends AbstractGameAction {
 
     private ArrayList<AbstractPower> blessMap = new ArrayList<>();
 
-//    private HashMap<String,Integer> blessMap = new HashMap<>();
 
+    /**
+     * 祝福Action：击杀时，获得随机buff
+     * @param target 目标
+     * @param info   伤害信息
+     */
     public BlessAction(AbstractCreature target, DamageInfo info) {
         this.info = info;
         setValues(target, info);

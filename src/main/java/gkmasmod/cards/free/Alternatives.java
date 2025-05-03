@@ -41,7 +41,7 @@ public class Alternatives extends GkmasCard {
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        addToBot(new AlternativesAction(2));
+        addToBot(new AlternativesAction());
     }
 
     @Override

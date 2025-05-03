@@ -13,6 +13,7 @@ import com.megacrit.cardcrawl.powers.NextTurnBlockPower;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.downfall.cards.GkmasBossCard;
+import gkmasmod.powers.NextTurnIdolBlockPower;
 import gkmasmod.utils.NameHelper;
 
 public class ENEnjoySummer extends GkmasBossCard {
@@ -56,7 +57,7 @@ public class ENEnjoySummer extends GkmasBossCard {
         int count = m.currentBlock;
         int lost = (int) (1.0f*this.magicNumber*count/100);
         m.currentBlock = count- lost;
-        addToBot(new ApplyPowerAction(m, m, new NextTurnBlockPower(m, (int) (1.0f*this.secondMagicNumber*lost/100))));
+        addToBot(new ApplyPowerAction(m, m, new NextTurnIdolBlockPower(m, (int) (1.0f*this.secondMagicNumber*lost/100))));
     }
 
     @Override

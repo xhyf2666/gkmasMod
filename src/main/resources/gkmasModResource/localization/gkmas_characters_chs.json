@@ -55,6 +55,34 @@
     "NAMES": [""],
     "TEXT": ["根绪亚纱里"]
   },
+  "IdolName:atbm": {
+    "NAMES": [""],
+    "TEXT": ["雨夜燕"]
+  },
+  "IdolName:krnh": {
+    "NAMES": [""],
+    "TEXT": ["贺阳燐羽"]
+  },
+  "IdolName:andk": {
+    "NAMES": [""],
+    "TEXT": ["蓝井抚子"]
+  },
+  "IdolName:sson": {
+    "NAMES": [""],
+    "TEXT": ["白草四音"]
+  },
+  "IdolName:sgka": {
+    "NAMES": [""],
+    "TEXT": ["白草月花"]
+  },
+  "IdolName:mshy": {
+    "NAMES": [""],
+    "TEXT": ["真城忧"]
+  },
+  "IdolName:prod": {
+    "NAMES": [""],
+    "TEXT": ["制作人"]
+  },
   "IdolClass:shro": {
     "NAMES": [""],
     "TEXT": ["1年2班"]

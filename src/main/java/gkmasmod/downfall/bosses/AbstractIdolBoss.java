@@ -317,7 +317,6 @@ public class AbstractIdolBoss extends AbstractCharBoss {
             applyPowers();
         }
         else if(this.currentHealth <= 0){
-
             die();
         }
     }

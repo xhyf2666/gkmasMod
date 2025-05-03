@@ -19,6 +19,10 @@ public class AssimilationAction extends AbstractGameAction {
     private AbstractPlayer p;
     private int num;
 
+    /**
+     * 同化Action：选择num张牌，将其转化为眠气
+     * @param numCards 选择的牌数
+     */
     public AssimilationAction(int numCards) {
         this.actionType = ActionType.CARD_MANIPULATION;
         this.p = AbstractDungeon.player;
@@ -38,19 +42,16 @@ public class AssimilationAction extends AbstractGameAction {
                 return;
             }
 
-            if(p.hand.group.size()>=1)
-            {
-                AbstractDungeon.handCardSelectScreen.open(TEXT[0], 1, false, false, false,false);
-                this.tickDuration();
-                return;
-            }
+            AbstractDungeon.handCardSelectScreen.open(TEXT[0], this.num, false, false, false,false);
+            this.tickDuration();
+            return;
         }
         else {
             Iterator var1;
             AbstractCard c1;
             if (!AbstractDungeon.handCardSelectScreen.wereCardsRetrieved) {
                     var1 = AbstractDungeon.handCardSelectScreen.selectedCards.group.iterator();
-                    if(AbstractDungeon.handCardSelectScreen.selectedCards.group.size()==1){
+                    if(AbstractDungeon.handCardSelectScreen.selectedCards.group.size()==this.num){
                         c1 = AbstractDungeon.handCardSelectScreen.selectedCards.group.get(0);
                         p.hand.removeCard(c1);
                         addToBot(new MakeTempCardInHandAction(new Sleepy(), 1));

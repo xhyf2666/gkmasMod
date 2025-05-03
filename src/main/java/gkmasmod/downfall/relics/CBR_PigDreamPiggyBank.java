@@ -57,7 +57,7 @@ public class CBR_PigDreamPiggyBank extends AbstractCharbossRelic {
 
     public void onUseCard(AbstractCard card, UseCardAction useCardAction){
         if (this.counter > 0) {
-            addToBot(new PigDreamPiggyBankAction(AbstractCharBoss.boss,GOOD_IMPRESSION,magicNumber));
+            addToBot(new PigDreamPiggyBankAction(AbstractCharBoss.boss,GOOD_IMPRESSION,magicNumber,this));
 //            int count = AbstractCharBoss.boss.getPower(GoodImpression.POWER_ID)==null?0:AbstractCharBoss.boss.getPower(GoodImpression.POWER_ID).amount;
 //            if(count>GOOD_IMPRESSION){
 //                addToBot(new RelicAboveCreatureAction(AbstractCharBoss.boss, this));

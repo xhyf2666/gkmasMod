@@ -10,12 +10,15 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.CardHelper;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import gkmasmod.actions.GoodTuneDamageAction;
 import gkmasmod.cardCustomEffect.*;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
+import gkmasmod.patches.AbstractPowerPatch;
+import gkmasmod.powers.FullPowerValue;
 import gkmasmod.powers.GoodTune;
 import gkmasmod.powers.TheScenerySawSomedayPower;
 import gkmasmod.utils.*;
@@ -34,7 +37,7 @@ public class TheScenerySawSomeday extends GkmasCard {
     private static final int COST = 2;
     private static final int BASE_MAGIC = 5;
     private static final int UPGRADE_PLUS_MAGIC = -1;
-    private static final int BASE_MAGIC2 = 50;
+    private static final int BASE_MAGIC2 = 150;
     private static final int BASE_MAGIC3 = 3;
     private static final int BASE_DMG = 3;
     private static final int UPGRADE_PLUS_DMG = 2;
@@ -68,9 +71,11 @@ public class TheScenerySawSomeday extends GkmasCard {
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
         int amount = PlayerHelper.getPowerAmount(p, StrengthPower.POWER_ID);
-        amount = (int) (1.0F*amount*this.secondMagicNumber/100);
         if(amount>0){
-            addToBot(new ApplyPowerAction(p,p,new StrengthPower(p,amount),amount));
+            amount = (int) (1.0F*amount*(this.secondMagicNumber-100)/100);
+            AbstractPower power = new StrengthPower(p, amount);
+            AbstractPowerPatch.IgnoreIncreaseModifyField.flag.set(power, true);
+            addToBot(new ApplyPowerAction(p, p, power, amount));
         }
         addToBot(new ApplyPowerAction(p,p,new TheScenerySawSomedayPower(p,this.baseDamage),this.baseDamage));
         SoundHelper.playSound("gkmasModResource/audio/voice/skillcard/cidol_kllj_3_010_produce_skillcard_01.ogg");

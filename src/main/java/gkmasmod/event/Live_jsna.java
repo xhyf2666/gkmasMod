@@ -13,6 +13,7 @@ import com.megacrit.cardcrawl.relics.Circlet;
 import com.megacrit.cardcrawl.vfx.RainingGoldEffect;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndObtainEffect;
 import gkmasmod.cards.free.BrightFuture;
+import gkmasmod.cards.free.HighSpirits;
 import gkmasmod.relics.IdolNoSoul;
 import gkmasmod.relics.StruggleRecord;
 import gkmasmod.room.shop.AnotherShopPotions;
@@ -33,7 +34,8 @@ public class Live_jsna extends AbstractImageEvent {
         super(NAME, DESCRIPTIONS[0], String.format("gkmasModResource/img/event/%s.png",ID));
         this.imageEventText.setDialogOption(String.format(OPTIONS[0],HP_LOST),new IdolNoSoul());
         this.imageEventText.setDialogOption(String.format(OPTIONS[1],MONEY),new BrightFuture());
-        this.imageEventText.setDialogOption(OPTIONS[2]);
+        this.imageEventText.setDialogOption(OPTIONS[2],new HighSpirits());
+        this.imageEventText.setDialogOption(OPTIONS[3]);
     }
 
     @Override
@@ -44,7 +46,7 @@ public class Live_jsna extends AbstractImageEvent {
                     case 0:
                         this.imageEventText.updateBodyText(DESCRIPTIONS[1]);
                         this.imageEventText.clearAllDialogs();
-                        this.imageEventText.setDialogOption(OPTIONS[2]);
+                        this.imageEventText.setDialogOption(OPTIONS[3]);
                         AbstractDungeon.player.damage(new DamageInfo(null, HP_LOST));
                         if (!AbstractDungeon.player.hasRelic(IdolNoSoul.ID)) {
                             AbstractDungeon.getCurrRoom().spawnRelicAndObtain(this.drawX, this.drawY, new IdolNoSoul());
@@ -58,13 +60,20 @@ public class Live_jsna extends AbstractImageEvent {
                     case 1:
                         this.imageEventText.updateBodyText(DESCRIPTIONS[2]);
                         this.imageEventText.clearAllDialogs();
-                        this.imageEventText.setDialogOption(OPTIONS[2]);
+                        this.imageEventText.setDialogOption(OPTIONS[3]);
                         AbstractDungeon.effectList.add(new ShowCardAndObtainEffect(CardLibrary.getCopy(BrightFuture.ID), (Settings.WIDTH / 2), (Settings.HEIGHT / 2)));
                         AbstractDungeon.effectList.add(new RainingGoldEffect(MONEY));
                         AbstractDungeon.player.gainGold(MONEY);
                         screenNum++;
                         return;
                     case 2:
+                        this.imageEventText.updateBodyText(DESCRIPTIONS[3]);
+                        this.imageEventText.clearAllDialogs();
+                        this.imageEventText.setDialogOption(OPTIONS[3]);
+                        AbstractDungeon.effectList.add(new ShowCardAndObtainEffect(CardLibrary.getCopy(HighSpirits.ID), (Settings.WIDTH / 2), (Settings.HEIGHT / 2)));
+                        screenNum++;
+                        return;
+                    case 3:
                         screenNum++;
                         openMap();
                         return;

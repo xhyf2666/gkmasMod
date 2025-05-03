@@ -1,20 +1,22 @@
 package gkmasmod.patches;
 
 import basemod.BaseMod;
-import com.evacipated.cardcrawl.modthespire.lib.SpireInsertPatch;
-import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
-import com.evacipated.cardcrawl.modthespire.lib.SpirePrefixPatch;
-import com.evacipated.cardcrawl.modthespire.lib.SpireReturn;
+import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.dungeons.Exordium;
+import com.megacrit.cardcrawl.dungeons.TheBeyond;
+import com.megacrit.cardcrawl.monsters.MonsterInfo;
 import com.megacrit.cardcrawl.ui.buttons.CancelButton;
 import gkmasmod.characters.IdolCharacter;
 import gkmasmod.characters.MisuzuCharacter;
 import gkmasmod.modcore.GkmasMod;
 import gkmasmod.monster.exordium.MonsterNadeshiko;
 import gkmasmod.room.specialTeach.SpecialTeachScreen;
+import gkmasmod.screen.SkinSelectScreen;
+import gkmasmod.utils.IdolData;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
 
@@ -49,6 +51,23 @@ public class ExordiumPatch
 //                AbstractDungeon.bossList.remove(AbstractDungeon.bossList.size() - 1);
             }
             return SpireReturn.Return();
+        }
+    }
+
+    @SpirePatch(clz = Exordium.class,method = "generateElites")
+    public static class Exordium_insert_generateElites {
+        @SpireInsertPatch(rloc = 4,localvars = {"monsters"})
+        public static SpireReturn<Void> addElite(Exordium __instance, int count, ArrayList<MonsterInfo> monsters) {
+            if(!(AbstractDungeon.player instanceof IdolCharacter||AbstractDungeon.player instanceof MisuzuCharacter)){
+                return SpireReturn.Continue();
+            }
+            if(AbstractDungeon.player instanceof IdolCharacter){
+                if(SkinSelectScreen.Inst.idolName.equals(IdolData.kllj)||SkinSelectScreen.Inst.idolName.equals(IdolData.ssmk)) {
+                    return SpireReturn.Continue();
+                }
+            }
+            monsters.add(new MonsterInfo("sumikaAndLilja", 1.0F));
+            return SpireReturn.Continue();
         }
     }
 }

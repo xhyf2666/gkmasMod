@@ -178,6 +178,18 @@ public class ApplyPowerActionPatch {
                         }
                     }
                 }
+                else {
+                    if (___powerToApply instanceof StrengthPower) {
+                        if (lastPower != null && lastPower == ___powerToApply) {
+                            return;
+                        } else {
+                            lastPower = ___powerToApply;
+                        }
+                        if (___powerToApply.owner.hasPower(RinamiStoryPower.POWER_ID)) {
+                            ___powerToApply.owner.getPower(RinamiStoryPower.POWER_ID).onSpecificTrigger();
+                        }
+                    }
+                }
             }
         }
     }
@@ -186,6 +198,25 @@ public class ApplyPowerActionPatch {
     public static class InsertPatch_ApplyPowerAction_update {
         @SpireInsertPatch(rloc =209-141)
         public static SpireReturn<Void> Insert(ApplyPowerAction __instance, AbstractPower ___powerToApply,@ByRef float[] ___duration) {
+            float tmp = __instance.amount;
+            if(tmp>0){
+                for(AbstractPower p:__instance.target.powers){
+                    if(p instanceof AbstractIncreaseModifyPower){
+                        tmp = ((AbstractIncreaseModifyPower)p).modifyPower(___powerToApply,tmp);
+                    }
+                }
+                for(AbstractPower p:__instance.target.powers){
+                    if(p instanceof AbstractIncreaseModifyPower){
+                        tmp = ((AbstractIncreaseModifyPower)p).modifyPowerLast(___powerToApply,tmp);
+                    }
+                }
+                ___powerToApply.amount= (int) tmp;
+                __instance.amount=(int)tmp;
+            }
+
+
+
+
             if (__instance.target.hasPower(NegativeNotPower.POWER_ID) &&
                     ___powerToApply.type == AbstractPower.PowerType.DEBUFF) {
                 if(___powerToApply instanceof StrengthPower||___powerToApply instanceof DexterityPower||___powerToApply instanceof GoodImpression||___powerToApply instanceof GoodTune||___powerToApply instanceof FullPowerValue){

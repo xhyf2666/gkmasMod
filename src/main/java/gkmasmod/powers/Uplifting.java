@@ -57,10 +57,10 @@ public class Uplifting extends AbstractPower {
 
 
     @Override
-    public int onLoseHp(int damageAmount) {
+    public void wasHPLost(DamageInfo info, int damageAmount) {
         if(damageAmount > 0){
             addToBot(new ReducePowerAction(this.owner,this.owner,this.ID,1));
         }
-        return damageAmount;
     }
+
 }

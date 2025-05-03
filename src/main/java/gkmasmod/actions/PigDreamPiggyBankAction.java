@@ -1,6 +1,7 @@
 package gkmasmod.actions;
 
 
+import com.megacrit.cardcrawl.relics.AbstractRelic;
 import gkmasmod.downfall.charbosses.bosses.AbstractCharBoss;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
@@ -15,26 +16,20 @@ public class PigDreamPiggyBankAction extends AbstractGameAction {
     private AbstractCreature p;
     private int require;
     private int reward;
+    AbstractRelic relic = null;
 
-    public PigDreamPiggyBankAction(AbstractCreature p, int require, int reward) {
+    public PigDreamPiggyBankAction(AbstractCreature p, int require, int reward,AbstractRelic relic) {
         this.p = p;
         this.require = require;
         this.reward = reward;
+        this.relic = relic;
     }
 
     public void update() {
         int count = PlayerHelper.getPowerAmount(p, GoodImpression.POWER_ID);
-        if(p.isPlayer){
-            if(AbstractDungeon.player.getRelic(PigDreamPiggyBank.ID).counter <= 0){
-                this.isDone = true;
-                return;
-            }
-        }
-        else if(p instanceof AbstractCharBoss){
-            if(AbstractCharBoss.boss.getRelic(CBR_PigDreamPiggyBank.ID2).counter <= 0){
-                this.isDone = true;
-                return;
-            }
+        if(relic.counter <= 0){
+            this.isDone = true;
+            return;
         }
         if(count > require){
             addToBot(new ApplyPowerAction(p, p, new GoodImpression(p, reward), reward));
@@ -44,17 +39,10 @@ public class PigDreamPiggyBankAction extends AbstractGameAction {
             this.isDone = true;
             return;
         }
-        if(p.isPlayer){
-            AbstractDungeon.player.getRelic(PigDreamPiggyBank.ID).counter--;
-            if(AbstractDungeon.player.getRelic(PigDreamPiggyBank.ID).counter == 0){
-                AbstractDungeon.player.getRelic(PigDreamPiggyBank.ID).grayscale = true;
-            }
-        }
-        else if(p instanceof AbstractCharBoss){
-            AbstractCharBoss.boss.getRelic(CBR_PigDreamPiggyBank.ID2).counter--;
-            if(AbstractCharBoss.boss.getRelic(CBR_PigDreamPiggyBank.ID2).counter == 0){
-                AbstractCharBoss.boss.getRelic(CBR_PigDreamPiggyBank.ID2).grayscale = true;
-            }
+        relic.flash();
+        relic.counter--;
+        if(relic.counter == 0){
+            relic.grayscale = true;
         }
         this.isDone = true;
     }

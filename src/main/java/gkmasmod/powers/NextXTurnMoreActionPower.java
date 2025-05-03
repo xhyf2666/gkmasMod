@@ -39,9 +39,10 @@ public class NextXTurnMoreActionPower extends AbstractPower {
         this.updateDescription();
     }
 
-    public NextXTurnMoreActionPower(AbstractCreature owner, int Amount, int dramoreAction) {
+    public NextXTurnMoreActionPower(AbstractCreature owner, int Amount, int moreAction) {
         this.name = NAME;
-        this.ID = POWER_ID;
+        this.ID = POWER_ID + AchievementIDOffset;
+        AchievementIDOffset++;
         this.owner = owner;
         this.type = PowerType.BUFF;
         this.amount = Amount;
@@ -56,10 +57,10 @@ public class NextXTurnMoreActionPower extends AbstractPower {
         flash();
         if(this.owner.isPlayer){
             if(this.amount > 1){
-                addToBot(new ReducePowerAction(this.owner, this.owner, POWER_ID, 1));
+                addToBot(new ReducePowerAction(this.owner, this.owner, this.ID, 1));
             }else{
                 addToBot(new GainTrainRoundPowerAction(this.owner, this.moreAction));
-                addToBot(new RemoveSpecificPowerAction(this.owner, this.owner, POWER_ID));
+                addToBot(new RemoveSpecificPowerAction(this.owner, this.owner, this.ID));
             }
         }
     }

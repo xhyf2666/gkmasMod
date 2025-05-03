@@ -61,7 +61,7 @@ public class CBR_FrogFan extends AbstractCharbossRelic {
             if(target==null) {
                 target = AbstractDungeon.getMonsters().getRandomMonster(null, true, AbstractDungeon.cardRandomRng);
             }
-            addToBot(new FrogFanAction(AbstractCharBoss.boss,target,YARUKI,magicNumber,HP_COST));
+            addToBot(new FrogFanAction(AbstractCharBoss.boss,target,YARUKI,magicNumber,HP_COST,this));
 //            int amount = AbstractCharBoss.boss.getPower(DexterityPower.POWER_ID)==null?0:AbstractCharBoss.boss.getPower(DexterityPower.POWER_ID).amount;
 //
 //            if (card.type == AbstractCard.CardType.ATTACK && amount>YARUKI) {

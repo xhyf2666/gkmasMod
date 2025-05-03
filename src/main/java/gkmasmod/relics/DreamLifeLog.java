@@ -6,11 +6,14 @@ import com.megacrit.cardcrawl.actions.common.*;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
+import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import gkmasmod.actions.ModifyDamageRandomEnemyAction;
 import gkmasmod.cards.free.BaseAppeal;
+import gkmasmod.patches.AbstractPowerPatch;
 import gkmasmod.powers.GoodImpression;
+import gkmasmod.utils.PlayerHelper;
 
 public class DreamLifeLog extends CustomRelic {
 
@@ -26,7 +29,7 @@ public class DreamLifeLog extends CustomRelic {
 
     private static final int BLOCK = 11;
 
-    private static final int BASE_MAGIC = 50;
+    private static final int BASE_MAGIC = 150;
     private static final int BASE_MAGIC2 = 30;
 
     private float magicNumber;
@@ -69,11 +72,15 @@ public class DreamLifeLog extends CustomRelic {
             if(amount> BLOCK){
                 int damage = (int) (1.0F*amount*magicNumber2);
                 int goodImpressionAmount = AbstractDungeon.player.getPower(GoodImpression.POWER_ID) ==null?0:AbstractDungeon.player.getPower(GoodImpression.POWER_ID).amount;
-                int goodImpressionIncrease = (int) (1.0F*goodImpressionAmount*magicNumber);
 
                 addToBot(new RelicAboveCreatureAction(AbstractDungeon.player, this));
                 this.flash();
-                addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new GoodImpression(AbstractDungeon.player, goodImpressionIncrease), goodImpressionIncrease));
+                if (goodImpressionAmount > 0) {
+                    int add = (int) (1.0F*goodImpressionAmount*(BASE_MAGIC-100)/100);
+                    AbstractPower power = new GoodImpression(AbstractDungeon.player, add);
+                    AbstractPowerPatch.IgnoreIncreaseModifyField.flag.set(power, true);
+                    addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, power, add));
+                }
                 addToBot(new ModifyDamageRandomEnemyAction(new DamageInfo(AbstractDungeon.player, damage, DamageInfo.DamageType.NORMAL), AbstractGameAction.AttackEffect.SLASH_VERTICAL));
                 this.counter--;
                 if (this.counter == 0) {

@@ -32,7 +32,6 @@ public class AnxietyPower extends AbstractPower {
         this.owner = owner;
         this.type = PowerType.DEBUFF;
         this.amount = Amount;
-
         // 添加一大一小两张能力图
         this.region128 = new TextureAtlas.AtlasRegion(ImageMaster.loadImage(path128), 0, 0, 84, 84);
         this.region48 = new TextureAtlas.AtlasRegion(ImageMaster.loadImage(path48), 0, 0, 32, 32);
@@ -53,12 +52,11 @@ public class AnxietyPower extends AbstractPower {
         } else {
             addToBot(new ReducePowerAction(this.owner, this.owner, POWER_ID, 1));
         }
-
     }
 
 
     @Override
     public float modifyBlock(float blockAmount, AbstractCard card) {
-        return blockAmount * 0.5F;
+        return blockAmount * 0.67F;
     }
 }

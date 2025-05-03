@@ -38,7 +38,7 @@ public class CBR_DreamOfTheDescription extends AbstractCharbossRelic {
     private static final RelicTier RARITY = RelicTier.STARTER;
 
     private static final int magicNumber = 1;
-    private static final int magicNumber2 = 60;
+    private static final int magicNumber2 = 160;
     private static final int HP_LOSS = 3;
 
     private static final  int playTimes = 1;
@@ -71,7 +71,7 @@ public class CBR_DreamOfTheDescription extends AbstractCharbossRelic {
                 addToBot(new LoseHPAction(AbstractCharBoss.boss, AbstractCharBoss.boss, HP_LOSS));
                 addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new SkipTurnPower(AbstractDungeon.player, magicNumber), magicNumber));
                 addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new BlurPower(AbstractDungeon.player, magicNumber), magicNumber));
-                int block = (int) (AbstractCharBoss.boss.currentBlock *1.0F*magicNumber2/100);
+                int block = (int) (AbstractCharBoss.boss.currentBlock *1.0F*(magicNumber2-100)/100);
                 addToBot(new GainBlockAction(AbstractCharBoss.boss, AbstractCharBoss.boss, block));
                 this.counter--;
                 if (this.counter == 0) {

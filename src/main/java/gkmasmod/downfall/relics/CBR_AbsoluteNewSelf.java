@@ -60,7 +60,7 @@ public class CBR_AbsoluteNewSelf extends AbstractCharbossRelic {
 
     public void onUseCard(AbstractCard card, UseCardAction useCardAction) {
         if (card.type == AbstractCard.CardType.ATTACK &&this.counter > 0) {
-            addToBot(new AbsoluteNewSelfAction(AbstractCharBoss.boss,AbstractDungeon.player,BASE_DAMAGE,HP));
+            addToBot(new AbsoluteNewSelfAction(AbstractCharBoss.boss,AbstractDungeon.player,BASE_DAMAGE,HP,this));
         }
     }
 

@@ -6,11 +6,13 @@ import com.megacrit.cardcrawl.actions.common.DrawCardAction;
 import com.megacrit.cardcrawl.actions.common.RelicAboveCreatureAction;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
+import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.DexterityPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import gkmasmod.downfall.charbosses.bosses.AbstractCharBoss;
 import gkmasmod.downfall.charbosses.relics.AbstractCharbossRelic;
+import gkmasmod.patches.AbstractPowerPatch;
 import gkmasmod.relics.BeginnerGuideForEveryone;
 import gkmasmod.relics.BeyondTheSea;
 
@@ -30,7 +32,7 @@ public class CBR_BeyondTheSea extends AbstractCharbossRelic {
 
     private static final RelicTier RARITY = RelicTier.STARTER;
 
-    private static final int magicNumber = 30;
+    private static final int magicNumber = 130;
 
     private static final int YARUKI = 2;
 
@@ -68,9 +70,11 @@ public class CBR_BeyondTheSea extends AbstractCharbossRelic {
             if(count>YARUKI){
                 addToBot(new RelicAboveCreatureAction(AbstractCharBoss.boss, this));
                 this.flash();
-                int add = (int) (1.0F*count*magicNumber/100);
+                int add = (int) (1.0F*count*(magicNumber-100)/100);
                 if(add>0){
-                    addToBot(new ApplyPowerAction(AbstractCharBoss.boss, AbstractCharBoss.boss, new DexterityPower(AbstractCharBoss.boss, add), add));
+                    AbstractPower power = new DexterityPower(AbstractCharBoss.boss, add);
+                    AbstractPowerPatch.IgnoreIncreaseModifyField.flag.set(power, true);
+                    addToBot(new ApplyPowerAction(AbstractCharBoss.boss, AbstractCharBoss.boss, power, add));
                 }
 //                addToBot(new DrawCardAction(1));
                 this.counter--;

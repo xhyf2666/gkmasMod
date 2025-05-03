@@ -32,7 +32,7 @@ public class CBR_TheWing extends AbstractCharbossRelic {
     private static final RelicTier RARITY = RelicTier.STARTER;
 
     private static final int magicNumber = 6;
-    private static final int magicNumber2 = 50;
+    private static final int magicNumber2 = 150;
 
     private static final  int playTimes = 2;
 
@@ -51,7 +51,6 @@ public class CBR_TheWing extends AbstractCharbossRelic {
         return new CBR_TheWing();
     }
 
-
     public void onEquip() {
         this.counter = playTimes;
     }
@@ -61,10 +60,9 @@ public class CBR_TheWing extends AbstractCharbossRelic {
             if (this.counter > 0) {
                 addToBot(new RelicAboveCreatureAction(AbstractCharBoss.boss, this));
                 this.flash();
-                addToBot(new TheWingAction(AbstractCharBoss.boss,magicNumber,1.0F*magicNumber2/100));
+                addToBot(new TheWingAction(AbstractCharBoss.boss,magicNumber,1.0F*(magicNumber2-100)/100,this));
             }
         }
-
     }
 
     public void atBattleStart() {

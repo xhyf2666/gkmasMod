@@ -41,6 +41,7 @@ public class SleepyCardPower extends GkmasCard {
         this.baseMagicNumber = BASE_MAGIC;
         this.magicNumber = this.baseMagicNumber;
         this.tags.add(GkmasCardTag.SLEEP_TAG);
+        this.tags.add(GkmasCardTag.FOCUS_TAG);
     }
 
 

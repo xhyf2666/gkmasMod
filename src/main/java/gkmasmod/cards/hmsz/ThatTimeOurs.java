@@ -41,6 +41,7 @@ public class ThatTimeOurs extends GkmasCard {
         super(ID, NAME, ImageHelper.getCardImgPath(CLASSNAME,TYPE), COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.baseBlock = BASE_BLOCK;
         this.tags.add(GkmasCardTag.ONLY_ONE_TAG);
+        this.exhaust = true;
     }
 
 

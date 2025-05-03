@@ -34,13 +34,15 @@ public class SleepLate extends GkmasCard {
         this.baseMagicNumber = BASE_MAGIC;
         this.magicNumber = this.baseMagicNumber;
         this.cardsToPreview = new Sleepy();
+        this.cardsToPreview.upgrade();
     }
-
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
         addToBot(new GainEnergyAction(this.magicNumber));
-        addToBot(new MakeTempCardInDrawPileAction(new Sleepy(), 1, true, true));
+        AbstractCard c = new Sleepy();
+        c.upgrade();
+        addToBot(new MakeTempCardInDrawPileAction(c, 1, true, true));
     }
 
     @Override

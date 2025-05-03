@@ -30,7 +30,7 @@ public class KawaiiKawaiiKawaii extends GkmasCard {
     private static final String IMG_PATH = String.format("gkmasModResource/img/cards/common/%s.png", CLASSNAME);
 
     private static final int COST = 1;
-    private static final int BASE_MAGIC = 2;
+    private static final int BASE_MAGIC = 1;
     private static final int BASE_MAGIC2 = 2;
 
     private static final CardType TYPE = CardType.SKILL;

@@ -57,7 +57,7 @@ public class CBR_RollingSourceOfEnergy extends AbstractCharbossRelic {
 
     public void onUseCard(AbstractCard card, UseCardAction useCardAction){
         if (this.counter > 0 && card.type == AbstractCard.CardType.SKILL) {
-            addToBot(new RollingSourceOfEnergyAction(AbstractCharBoss.boss, YARUKI, magicNumber));
+            addToBot(new RollingSourceOfEnergyAction(AbstractCharBoss.boss, YARUKI, magicNumber,this));
 //            int count = AbstractCharBoss.boss.getPower(DexterityPower.POWER_ID)==null?0:AbstractCharBoss.boss.getPower(DexterityPower.POWER_ID).amount;
 //            if(count>YARUKI){
 //                addToBot(new RelicAboveCreatureAction(AbstractCharBoss.boss, this));

@@ -3,6 +3,7 @@ package gkmasmod.cards.free;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.ExhaustSpecificCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.status.Burn;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -23,6 +24,7 @@ public class Sleepy extends GkmasCard {
     private static final String IMG_PATH = String.format("gkmasModResource/img/cards/common/%s.png", CLASSNAME);
 
     private static final int COST = 0;
+    private static final int UPGRADE_COST = 1;
     private static final int BASE_MAGIC = 2;
 
     private static final CardType TYPE = CardType.STATUS;
@@ -47,7 +49,6 @@ public class Sleepy extends GkmasCard {
     public void triggerOnEndOfPlayerTurn() {
         addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new NotGoodTune(AbstractDungeon.player, this.magicNumber), this.magicNumber));
         addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new FrailPower(AbstractDungeon.player, this.magicNumber,false), this.magicNumber));
-
         if (this.isEthereal) {
             this.addToTop(new ExhaustSpecificCardAction(this, AbstractDungeon.player.hand));
         }
@@ -61,5 +62,13 @@ public class Sleepy extends GkmasCard {
 
     @Override
     public void upgrade() {
+        if (!this.upgraded) {
+            upgradeName();
+            upgradeBaseCost(UPGRADE_COST);
+            this.costForTurn = this.cost;
+            if (CARD_STRINGS.UPGRADE_DESCRIPTION != null)
+                this.rawDescription = CARD_STRINGS.UPGRADE_DESCRIPTION;
+            this.initializeDescription();
+        }
     }
 }

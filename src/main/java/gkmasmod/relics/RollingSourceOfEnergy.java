@@ -67,7 +67,7 @@ public class RollingSourceOfEnergy extends CustomRelic {
 
     public void onUseCard(AbstractCard card, UseCardAction useCardAction){
         if (this.counter > 0 && card.type == AbstractCard.CardType.SKILL) {
-            addToBot(new RollingSourceOfEnergyAction(AbstractDungeon.player, YARUKI, magicNumber));
+            addToBot(new RollingSourceOfEnergyAction(AbstractDungeon.player, YARUKI, magicNumber,this));
 //            int count = AbstractDungeon.player.getPower(DexterityPower.POWER_ID)==null?0:AbstractDungeon.player.getPower(DexterityPower.POWER_ID).amount;
 //            if(count>YARUKI){
 //                addToBot(new RelicAboveCreatureAction(AbstractDungeon.player, this));

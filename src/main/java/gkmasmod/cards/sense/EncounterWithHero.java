@@ -77,7 +77,7 @@ public class EncounterWithHero extends GkmasCard {
         if(count>=this.HPMagicNumber){
             addToBot(new ApplyPowerAction(p, p, new NextXTurnMoreActionPower(p, 2), 2));
         }
-        //        SoundHelper.playSound("gkmasModResource/audio/voice/skillcard/cidol_hski_3_010_produce_skillcard_01.ogg");
+        SoundHelper.playSound("gkmasModResource/audio/voice/skillcard/cidol_ssmk_3_015_produce_skillcard_01.ogg");
     }
 
 

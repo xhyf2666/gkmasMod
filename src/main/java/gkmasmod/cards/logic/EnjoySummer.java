@@ -18,6 +18,7 @@ import gkmasmod.cardCustomEffect.SecondMagicCustom;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.patches.AbstractPlayerPatch;
+import gkmasmod.powers.NextTurnIdolBlockPower;
 import gkmasmod.utils.CustomHelper;
 import gkmasmod.utils.NameHelper;
 
@@ -66,7 +67,7 @@ public class EnjoySummer extends GkmasCard {
         int count = p.currentBlock;
         int lost = (int) (1.0f*this.magicNumber*count/100);
         p.currentBlock = count- lost;
-        addToBot(new ApplyPowerAction(p, p, new NextTurnBlockPower(p, (int) (1.0f*this.secondMagicNumber*lost/100))));
+        addToBot(new ApplyPowerAction(p, p, new NextTurnIdolBlockPower(p, (int) (1.0f*this.secondMagicNumber*lost/100))));
     }
 
     public void applyPowers() {

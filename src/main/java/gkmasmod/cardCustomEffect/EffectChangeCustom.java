@@ -176,6 +176,9 @@ public class EffectChangeCustom extends AbstractCardCustomEffect {
         if(card instanceof Resilience){
             return CardCrawlGame.languagePack.getCardStrings("gkmasMod:Resilience_Effect0").DESCRIPTION;
         }
+        if(card instanceof MyColor){
+            return CardCrawlGame.languagePack.getCardStrings("gkmasMod:MyColor_Effect1").DESCRIPTION;
+        }
         return rawDescription;
     }
 

@@ -6,12 +6,14 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.AbstractPower;
 import gkmasmod.cardCustomEffect.BlockCustom;
 import gkmasmod.cardCustomEffect.MagicCustom;
 import gkmasmod.cardCustomEffect.SelfRetainCustom;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
+import gkmasmod.patches.AbstractPowerPatch;
 import gkmasmod.powers.GoodImpression;
 import gkmasmod.utils.CustomHelper;
 import gkmasmod.utils.NameHelper;
@@ -29,7 +31,7 @@ public class WakeUp extends GkmasCard {
     private static final String IMG_PATH = String.format("gkmasModResource/img/cards/common/%s.png", CLASSNAME);
 
     private static final int COST = 1;
-    private static final int BASE_MAGIC = 50;
+    private static final int BASE_MAGIC = 150;
     private static final int UPGRADE_PLUS_MAGIC = 50;
 
 
@@ -57,8 +59,10 @@ public class WakeUp extends GkmasCard {
     public void use(AbstractPlayer p, AbstractMonster m) {
         int count = PlayerHelper.getPowerAmount(p, GoodImpression.POWER_ID);
         if (count > 0) {
-            int add = (int) (1.0F*count*this.magicNumber/100);
-            addToBot(new ApplyPowerAction(p, p, new GoodImpression(p, add), add));
+            int add = (int) (1.0F*count*(this.magicNumber-100)/100);
+            AbstractPower power = new GoodImpression(p, add);
+            AbstractPowerPatch.IgnoreIncreaseModifyField.flag.set(power, true);
+            addToBot(new ApplyPowerAction(p, p, power, add));
         }
     }
 

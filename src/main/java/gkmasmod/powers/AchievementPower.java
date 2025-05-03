@@ -25,7 +25,7 @@ public class AchievementPower extends AbstractPower {
 
     private static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
 
-    private static int AchievementIDOffset;
+    private static int offset;
 
     private int damage = 0;
 
@@ -36,8 +36,8 @@ public class AchievementPower extends AbstractPower {
 
     public AchievementPower(AbstractCreature owner, int Damage,AbstractCreature target) {
         this.name = NAME;
-        this.ID = POWER_ID + AchievementIDOffset;
-        AchievementIDOffset++;
+        this.ID = POWER_ID + offset;
+        offset++;
         this.owner = owner;
         this.type = PowerType.BUFF;
         this.amount = 1;

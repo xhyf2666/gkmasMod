@@ -25,6 +25,16 @@ public class BlockDamageAction extends AbstractGameAction {
         this(rate, blockAdd, p, m,card, false,0.0f);
     }
 
+    /**
+     * 格挡倍率伤害Action
+     * @param rate 伤害倍率
+     * @param blockAdd 格挡增加量
+     * @param p 触发者
+     * @param m 目标
+     * @param card 触发卡牌
+     * @param damageAll 是否为aoe伤害
+     * @param blockReduceRate 格挡减少倍率
+     **/
     public BlockDamageAction(float rate, int blockAdd, AbstractCreature p, AbstractCreature m, AbstractCard card,boolean damageAll,float blockReduceRate) {
         this.m = m;
         this.p = p;
@@ -36,10 +46,6 @@ public class BlockDamageAction extends AbstractGameAction {
     }
 
     public void update() {
-//        if(yarukiRate>1.0f){
-//            int count = PlayerHelper.getPowerAmount(p, DexterityPower.POWER_ID);
-//            this.blockAdd = (int) (1.0f*count*(yarukiRate)*this.blockAdd);
-//        }
         if(this.blockAdd > 0)
             p.addBlock(this.blockAdd);
         int damage = (int)(this.rate*p.currentBlock);

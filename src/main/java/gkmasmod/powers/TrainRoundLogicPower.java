@@ -39,8 +39,8 @@ public class TrainRoundLogicPower extends AbstractPower {
     private int finalMagicNumber = 60;
     private int currentMagicNumber = 100;
 
-    String path128 = String.format("gkmasModResource/img/powers/%s_84.png",CLASSNAME);;
-    String path48 = String.format("gkmasModResource/img/powers/%s_32.png",CLASSNAME);;
+    String path128 = String.format("gkmasModResource/img/powers/%s_84.png",CLASSNAME);
+    String path48 = String.format("gkmasModResource/img/powers/%s_32.png",CLASSNAME);
 
     public TrainRoundLogicPower(AbstractCreature owner, int Amount) {
         this(owner, Amount, true);
@@ -67,11 +67,11 @@ public class TrainRoundLogicPower extends AbstractPower {
         }
         else if(AbstractDungeon.actNum==3){
             baseMagicNumber = 80;
-            finalMagicNumber = 40;
+            finalMagicNumber = 50;
         }
         else{
             baseMagicNumber = 80;
-            finalMagicNumber = 40;
+            finalMagicNumber = 50;
         }
         this.currentMagicNumber = baseMagicNumber;
 

@@ -9,10 +9,12 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
+import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.IdolCharacter;
 import gkmasmod.characters.PlayerColorEnum;
+import gkmasmod.patches.AbstractPowerPatch;
 import gkmasmod.utils.CommonEnum;
 import gkmasmod.utils.PlayerHelper;
 
@@ -32,8 +34,11 @@ public class EnjoyAfterHotSpringAction extends AbstractGameAction {
     public void update() {
         int count = PlayerHelper.getPowerAmount(p, StrengthPower.POWER_ID);
         int amount = (int)(count * rate);
-        if(amount>0)
-            addToBot(new ApplyPowerAction(p, p, new StrengthPower(p, amount), amount));
+        if(amount>0){
+            AbstractPower power = new StrengthPower(p, amount);
+            AbstractPowerPatch.IgnoreIncreaseModifyField.flag.set(power, true);
+            addToBot(new ApplyPowerAction(p, p, power, amount));
+        }
         this.isDone = true;
     }
 

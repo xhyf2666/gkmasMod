@@ -45,7 +45,7 @@
     "NAME": "通往梦想的日志",
     "FLAVOR": "记录着某人为了实现梦想而不断努力的生活和经历。",
     "DESCRIPTIONS": [
-      "回合结束时，如果 #y格挡 大于 #b%d ，则对随机敌人造成 #ygkmasmod:好印象 层数 #b%d %%的伤害， #ygkmasmod:好印象 层数增加 #b%d %%。 NL (每场战斗可触发 #b%d 次)。"
+      "回合结束时，如果 #y格挡 大于 #b%d ，则对随机敌人造成 #ygkmasmod:好印象 层数 #b%d %%的伤害， #ygkmasmod:好印象 层数变为 #b%d %%。 NL (每场战斗可触发 #b%d 次)。"
     ]
   },
   "SparklingInTheBottle": {
@@ -332,7 +332,7 @@
     "NAME": "温泉后的享受",
     "FLAVOR": "这是温泉后的享受。",
     "DESCRIPTIONS": [
-      "每打出 #b%d 张牌， #y力量 层数增加 #b%d %%，获得 #b%d 点 #ygkmasmod:固定格挡 。 NL (每场战斗可触发 #b%d 次)。"
+      "每打出 #b%d 张牌， #y力量 层数变为 #b%d %%，获得 #b%d 点 #ygkmasmod:固定格挡 。 NL (每场战斗可触发 #b%d 次)。"
     ]
   },
   "FirstHeartProofRinami": {
@@ -544,7 +544,7 @@
     "DESCRIPTIONS": [
       "战斗开始时，获得 #b%d 点 #y格挡 和 #b%d %s #y%s 。 NL Boss战中，特殊回合减少 #b%d 。 NL 敌人血量提高 #b%d %%。 NL 获得三维提高 #b%d 。",
       "战斗开始时，获得 #b%d 点 #ygkmasmod:全力值 ，进入 #ygkmasmod:温存 。 NL Boss战中，特殊回合减少 #b%d 。 NL 敌人血量提高 #b%d %%。 NL 获得三维提高 #b%d 。",
-      "战斗开始时，所有牌获得 #ygkmasmod:伤害追加 #b%d ，进入 #ygkmasmod:温存 。 NL Boss战中，特殊回合减少 #b%d 。 NL 敌人血量提高 #b%d %%。 NL 获得三维提高 #b%d 。"
+      "战斗开始时，所有牌获得 #ygkmasmod:伤害增加 #b%d ，进入 #ygkmasmod:温存 。 NL Boss战中，特殊回合减少 #b%d 。 NL 敌人血量提高 #b%d %%。 NL 获得三维提高 #b%d 。"
     ]
   },
   "MasterRoller": {
@@ -569,7 +569,7 @@
     "DESCRIPTIONS": [
       "SP战斗开始时，获得 #b%d 点 #y格挡 和 #b%d %s #y%s ，造成伤害减少 #b%d %%。 NL 敌人血量提高 #b%d %%。 NL 获得三维提高 #b%d 。",
       "SP战斗开始时，进入 #ygkmasmod:温存 ，获得 #b%d 点 #ygkmasmod:全力值 ，造成伤害减少 #b%d %%。 NL 敌人血量提高 #b%d %%。 NL 获得三维提高 #b%d 。",
-      "SP战斗开始时，进入 #ygkmasmod:温存 ，所有牌获得 #ygkmasmod:伤害追加 #b%d ，造成伤害减少 #b%d %%。 NL 敌人血量提高 #b%d %%。 NL 获得三维提高 #b%d 。"
+      "SP战斗开始时，进入 #ygkmasmod:温存 ，所有牌获得 #ygkmasmod:伤害增加 #b%d ，造成伤害减少 #b%d %%。 NL 敌人血量提高 #b%d %%。 NL 获得三维提高 #b%d 。"
     ]
   },
   "MasterDumbbell": {
@@ -669,7 +669,7 @@
     "NAME": "到海的另一边",
     "FLAVOR": "到海的另一边。",
     "DESCRIPTIONS": [
-      "回合开始时，如果 #y敏捷 大于 #b%d ，则使 #y敏捷 层数增加 #b%d %%，抽 #b%d 张牌。 NL (每场战斗可触发 #b%d 次)。"
+      "回合开始时，如果 #y敏捷 大于 #b%d ，则使 #y敏捷 层数变为 #b%d %%，抽 #b%d 张牌。 NL (每场战斗可触发 #b%d 次)。"
     ]
   },
   "SyngUpRelic": {
@@ -753,7 +753,7 @@
     "NAME": "我的一部分",
     "FLAVOR": "我的一部分。",
     "DESCRIPTIONS": [
-      "使用 #y星光 时，如果处于 #ygkmasmod:温存 姿态，则失去 #b%d 点体力，抽 #b%d 张牌，获得 #b%d 层 #ygkmasmod:受伤锐减 ，并使所有 #y星光 获得 #ygkmasmod:伤害追加 #b%d 。 NL (每场战斗可触发 #b%d 次)。"
+      "使用 #y星光 时，如果处于 #ygkmasmod:温存 姿态，则失去 #b%d 点体力，抽 #b%d 张牌，获得 #b%d 层 #ygkmasmod:受伤锐减 ，并使所有 #y星光 获得 #ygkmasmod:伤害增加 #b%d 。 NL (每场战斗可触发 #b%d 次)。"
     ]
   },
   "PastLittleStar": {
@@ -771,10 +771,10 @@
     ]
   },
   "DreamOfTheDescription": {
-    "NAME": "迈向描述的梦想",
-    "FLAVOR": "迈向描述的梦想。",
+    "NAME": "迈向描绘的梦想",
+    "FLAVOR": "迈向描绘的梦想。",
     "DESCRIPTIONS": [
-      "使用 #y茶会闲话 后，获得 #b%d 个 #y额外回合 ， #y格挡 增加 #b%d %%。 NL (每场战斗可触发 #b%d 次)。"
+      "使用 #y茶会闲话 后，获得 #b%d 个 #y额外回合 ， #y格挡 层数变为 #b%d %%。 NL (每场战斗可触发 #b%d 次)。"
     ]
   },
   "SelectedPassion": {
@@ -788,7 +788,7 @@
     "NAME": "实现梦想的觉悟",
     "FLAVOR": "实现梦想的觉悟。",
     "DESCRIPTIONS": [
-      "使用 #y恰当的展示 后，如果 #ygkmasmod:暂存 区卡牌数不低于 #b%d ，则进入 #ygkmasmod:温存2段 ，获得 #b%d 点 #ygkmasmod:全力值 ，使 #ygkmasmod:暂存 区所有卡牌获得 #ygkmasmod:连击 #b%d 和 #ygkmasmod:耗能追加 #b%d 。 NL (每场战斗可触发 #b%d 次)。"
+      "使用 #y恰当的展示 后，如果 #ygkmasmod:暂存 区卡牌数不低于 #b%d ，则进入 #ygkmasmod:温存2段 ，获得 #b%d 点 #ygkmasmod:全力值 ，使 #ygkmasmod:暂存 区所有卡牌获得 #ygkmasmod:连击 #b%d 和 #ygkmasmod:耗能增加 #b%d 。 NL (每场战斗可触发 #b%d 次)。"
     ]
   },
   "TheDreamSawSomeday": {
@@ -802,7 +802,7 @@
     "NAME": "翼",
     "FLAVOR": "翼。",
     "DESCRIPTIONS": [
-      "使用 #yRestart 后，如果 #y格挡 大于 #b%d ，则使 #ygkmasmod:好印象 层数增加 #b%d %%，下回合开始时，将 #y消耗 的 #y再一次，飞翔 加入手牌。 NL (每场战斗可触发 #b%d 次)。"
+      "使用 #yRestart 后，如果 #y格挡 大于 #b%d ，则使 #ygkmasmod:好印象 层数变为 #b%d %%，下回合开始时，将 #y消耗 的 #y再一次，飞翔 加入手牌。 NL (每场战斗可触发 #b%d 次)。"
     ]
   },
   "TheMarkOfPractice": {
@@ -893,7 +893,7 @@
     "NAME": "圆润的春色",
     "FLAVOR": "圆润的春色。",
     "DESCRIPTIONS": [
-      "进入 #ygkmasmod:全力 时，如果本场战斗进入 #ygkmasmod:强气 的次数大于 #b%d ，则使所有 #ygkmasmod:全力 效果的攻击卡获得 #ygkmasmod:伤害追加 #b%d ，回合结束时，进入 #ygkmasmod:温存2段 。 NL (每场战斗可触发 #b%d 次)。"
+      "进入 #ygkmasmod:全力 时，如果本场战斗进入 #ygkmasmod:强气 的次数大于 #b%d ，则使所有 #ygkmasmod:全力 效果的攻击卡获得 #ygkmasmod:伤害增加 #b%d ，回合结束时，进入 #ygkmasmod:温存2段 。 NL (每场战斗可触发 #b%d 次)。"
     ]
   },
   "MisuzuNatureRelic": {
@@ -921,7 +921,7 @@
     "NAME": "小小的银河",
     "FLAVOR": "小小的银河。",
     "DESCRIPTIONS": [
-      "使用 #y技能牌 时，如果处于 #ygkmasmod:强气2段 ，则失去 #b%d 点体力，使所有 #y技能牌 获得 #ygkmasmod:格挡追加 #b%d 。 NL (每场战斗可触发 #b%d 次)。"
+      "使用 #y技能牌 时，如果处于 #ygkmasmod:强气2段 ，则失去 #b%d 点体力，使所有 #y技能牌 获得 #ygkmasmod:格挡增加 #b%d 。 NL (每场战斗可触发 #b%d 次)。"
     ]
   },
   "NIABadge": {
@@ -943,6 +943,41 @@
     "FLAVOR": "P亲。",
     "DESCRIPTIONS": [
       "#y力量 大于 #b%d 时，每打出 #b%d 张卡，失去 #b%d 点 #y力量 ，获得 #b%d 层 #ygkmasmod:好调 。"
+    ]
+  },
+  "DestinyEncounter": {
+    "NAME": "命运般的相遇",
+    "FLAVOR": "与你相遇，然后立下契约。",
+    "DESCRIPTIONS": [
+      "回合开始时，如果处于 #ygkmasmod:全力 ，则获得 #b%d 点 #y格挡 和 #b%d 点 #ygkmasmod:全力值 ，使所有手牌获得 #ygkmasmod:伤害增加 #b%d ，回合结束时，进入 #ygkmasmod:温存 。 NL (每场战斗可触发 #b%d 次)。"
+    ]
+  },
+  "FirstStarChallenge": {
+    "NAME": "一番星的挑战书",
+    "FLAVOR": "一番星的挑战书。",
+    "DESCRIPTIONS": [
+      "出牌后，如果 #ygkmasmod:好印象 大于 #b%d ，则获得 #b%d 层 #ygkmasmod:好印象 和 #b%d 点 #y敏捷 。 NL (每场战斗可触发 #b%d 次)。"
+    ]
+  },
+  "AfterRainFlower": {
+    "NAME": "雨后的花",
+    "FLAVOR": "雨后的花。",
+    "DESCRIPTIONS": [
+      "回合开始时，失去 #b%d 点体力，获得 #b%d 点 #y敏捷 ， #b%d 回合后，获得 #b%d 层 #ygkmasmod:不安 。 NL (每场战斗可触发 #b%d 次)。"
+    ]
+  },
+  "AfterRainGoddess": {
+    "NAME": "雨后的女神",
+    "FLAVOR": "你觉得你是女神吗？",
+    "DESCRIPTIONS": [
+      "回合开始时，获得 #b%d 点 #y格挡 ，向抽牌堆中加入 #b%d 张 #y眠气 ， #ygkmasmod:再动 。 NL (每场战斗可触发 #b%d 次)。"
+    ]
+  },
+  "AfterRainRainbow": {
+    "NAME": "雨后的彩虹",
+    "FLAVOR": "雨后的彩虹。",
+    "DESCRIPTIONS": [
+      "使用 #y技能牌 后，如果处于 #ygkmasmod:温存2段 ，则获得 #b%d 层 #ygkmasmod:热意 #ygkmasmod:追加 。 NL (每场战斗可触发 #b%d 次)。"
     ]
   }
 }

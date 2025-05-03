@@ -28,7 +28,7 @@ public class FriendSenaPower1 extends AbstractPower {
     String path48 = String.format("gkmasModResource/img/powers/%s_32.png","GiveYouSPPower");
 
 
-    private static final int MAGIC = 2;
+    private static final int MAGIC = 1;
     private static final int MAGIC2 = 3;
 
     public FriendSenaPower1(AbstractCreature owner) {

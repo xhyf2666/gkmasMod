@@ -38,7 +38,7 @@ public class DreamColorLipstick extends GkmasCard {
     private static final int UPGRADE_PLUS_HP = 10;
     private static final int BASE_MAGIC2 = 3;
     private static final int UPGRADE_PLUS_MAGIC2 = 1;
-    private static final int BASE_MAGIC3 = 20;
+    private static final int BASE_MAGIC3 = 120;
 
     private static final CardType TYPE = CardType.POWER;
     private static final CardColor COLOR = PlayerColorEnum.gkmasModColorLogic;

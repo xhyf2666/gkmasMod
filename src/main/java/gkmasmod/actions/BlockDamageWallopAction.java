@@ -20,22 +20,25 @@ import java.util.Iterator;
 
 public class BlockDamageWallopAction extends AbstractGameAction {
     private AbstractCreature m;
-
     private AbstractCreature p;
-
     private int blockAdd;
-
     private float rate;
-
-
     private boolean damageAll;
-
     private AbstractCard card;
 
     public BlockDamageWallopAction(float rate, int blockAdd, AbstractCreature p, AbstractCreature m, AbstractCard card) {
         this(rate, blockAdd, p, m,card, false);
     }
 
+    /**
+     * 格挡倍率版当头Action
+     * @param rate 伤害倍率
+     * @param blockAdd 格挡增加量
+     * @param p 触发者
+     * @param m 目标
+     * @param card 触发卡牌
+     * @param damageAll 是否为aoe伤害
+     **/
     public BlockDamageWallopAction(float rate, int blockAdd, AbstractCreature p, AbstractCreature m, AbstractCard card, boolean damageAll) {
         this.m = m;
         this.p = p;

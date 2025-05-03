@@ -13,10 +13,12 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
+import gkmasmod.actions.AnotherLimitBreakAction;
 import gkmasmod.cardCustomEffect.*;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
+import gkmasmod.patches.AbstractPowerPatch;
 import gkmasmod.powers.BalancePower;
 import gkmasmod.powers.GoodTune;
 import gkmasmod.powers.NotGoodTune;
@@ -38,6 +40,8 @@ public class JustOneMore extends GkmasCard {
 
     private static int BASE_MAGIC = 2;
 
+    private static int BASE_MAGIC2 = 200;
+
 
     private static final CardType TYPE = CardType.SKILL;
     private static final CardColor COLOR = PlayerColorEnum.gkmasModColorSense;
@@ -49,6 +53,8 @@ public class JustOneMore extends GkmasCard {
         this.exhaust = true;
         this.baseMagicNumber = BASE_MAGIC;
         this.magicNumber = this.baseMagicNumber;
+        this.baseSecondMagicNumber = BASE_MAGIC2;
+        this.secondMagicNumber = this.baseSecondMagicNumber;
         this.tags.add(GkmasCardTag.GOOD_TUNE_TAG);
         this.tags.add(GkmasCardTag.FOCUS_TAG);
         this.customLimit = 1;
@@ -62,13 +68,16 @@ public class JustOneMore extends GkmasCard {
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
         int count = AbstractDungeon.player.getPower(GoodTune.POWER_ID) == null ? 0 : AbstractDungeon.player.getPower(GoodTune.POWER_ID).amount;
+        AbstractPower power;
         if (count > 0) {
             addToBot(new RemoveSpecificPowerAction(p, p, GoodTune.POWER_ID));
-            addToBot(new ApplyPowerAction(p, p, new StrengthPower(p, count), count));
+            power = new StrengthPower(p, count);
+            AbstractPowerPatch.IgnoreIncreaseModifyField.flag.set(power, true);
+            addToBot(new ApplyPowerAction(p, p,power, count));
         } else if(!CustomHelper.hasCustom(this, EffectReduceCustom.growID)){
             addToBot(new ApplyPowerAction(p,  p,  new NotGoodTune(p, this.magicNumber), this.magicNumber));
         }
-        addToBot( new LimitBreakAction());
+        addToBot(new AnotherLimitBreakAction(p));
 
     }
 

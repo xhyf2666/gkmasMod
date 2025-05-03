@@ -33,8 +33,8 @@ public class TheTwelfth extends AbstractPower {
 
     private int moreActionCount = 0;
 
-    String path128 = String.format("gkmasModResource/img/powers/%s_84.png",CLASSNAME);;
-    String path48 = String.format("gkmasModResource/img/powers/%s_32.png",CLASSNAME);;
+    String path128 = String.format("gkmasModResource/img/powers/%s_84.png",CLASSNAME);
+    String path48 = String.format("gkmasModResource/img/powers/%s_32.png",CLASSNAME);
 
     public TheTwelfth(AbstractCreature owner) {
         this.name = NAME;

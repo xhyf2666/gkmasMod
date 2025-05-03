@@ -57,21 +57,6 @@ public class Balance extends GkmasCard {
         }
         else{
             addToBot(new BalanceAction(p));
-//            int count_goodTune = PlayerHelper.getPowerAmount(p, GoodTune.POWER_ID);
-//            int count_strength = PlayerHelper.getPowerAmount(p, StrengthPower.POWER_ID);
-//            int count = (count_goodTune + count_strength+1)/2;
-//            if(count<=0)
-//                return;
-//            if(p.hasPower(GoodTune.POWER_ID))
-//                addToBot(new ApplyPowerAction(p, p, new GoodTune(p, count-count_goodTune), count-count_goodTune));
-//            else{
-//                addToBot(new ApplyPowerAction(p, p, new GoodTune(p, count), count));
-//            }
-//            if(p.hasPower(StrengthPower.POWER_ID))
-//                addToBot(new ApplyPowerAction(p, p, new StrengthPower(p, count-count_strength), count-count_strength));
-//            else{
-//                addToBot(new ApplyPowerAction(p, p, new StrengthPower(p, count), count));
-//            }
         }
     }
 

@@ -22,6 +22,11 @@ public class AojiruAction extends AbstractGameAction {
     private boolean isUpgraded;
     private AbstractCard.CardRarity rarity;
 
+    /**
+     * 青汁Action：生成随机卡到手牌
+     * @param isUpgraded 是否升级
+     * @param rarity 卡牌稀有度
+     */
     public AojiruAction(AbstractPlayer p, boolean isUpgraded, AbstractCard.CardRarity rarity) {
         this.p = p;
         this.isUpgraded = isUpgraded;
@@ -52,9 +57,6 @@ public class AojiruAction extends AbstractGameAction {
             getRandomCard(PlayerColorEnum.gkmasModColorSense,tmpPool);
             getRandomCard(PlayerColorEnum.gkmasModColorAnomaly,tmpPool);
         }
-//        for (int i = 0; i < tmpPool.size(); i++) {
-//            System.out.println(tmpPool.get(i).name);
-//        }
         AbstractCard card = tmpPool.get(AbstractDungeon.cardRandomRng.random(0,tmpPool.size()-1));
         if(isUpgraded)
             card.upgrade();
@@ -77,7 +79,6 @@ public class AojiruAction extends AbstractGameAction {
                 if (card.color.equals(color) && !card.tags.contains(GkmasCardTag.IDOL_CARD_TAG) && card.rarity == this.rarity)
                     tmpPool.add(card);
             }
-
         }
     }
 

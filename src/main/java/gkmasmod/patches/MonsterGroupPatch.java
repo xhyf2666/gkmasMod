@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.monsters.MonsterGroup;
 import com.megacrit.cardcrawl.powers.MinionPower;
 import com.megacrit.cardcrawl.random.Random;
 import gkmasmod.monster.friend.LittleGundam;
+import gkmasmod.powers.FriendUmePower1;
 import gkmasmod.powers.FriendUmePower2;
 
 import java.util.ArrayList;
@@ -33,9 +34,8 @@ public class MonsterGroupPatch
                     return SpireReturn.Return(false);
             }
             for (AbstractMonster m : __instance.monsters) {
-                if (AbstractMonsterPatch.friendlyField.friendly.get(m)&&m.hasPower(FriendUmePower2.POWER_ID)){
-                    AbstractDungeon.player.maxHealth+=1;
-                    AbstractDungeon.player.currentHealth+=1;
+                if (AbstractMonsterPatch.friendlyField.friendly.get(m)&&m.hasPower(FriendUmePower1.POWER_ID)){
+                    m.getPower(FriendUmePower1.POWER_ID).onSpecificTrigger();
                     break;
                 }
             }

@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import gkmasmod.cardCustomEffect.CostCustom;
 import gkmasmod.cardCustomEffect.MagicCustom;
@@ -15,6 +16,7 @@ import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.downfall.cards.GkmasBossCard;
 import gkmasmod.downfall.cards.anomaly.ENFinalSpurt;
+import gkmasmod.patches.AbstractPowerPatch;
 import gkmasmod.powers.TheScenerySawSomedayPower;
 import gkmasmod.utils.*;
 
@@ -34,7 +36,7 @@ public class ENTheScenerySawSomeday extends GkmasBossCard {
     private static final int COST = 2;
     private static final int BASE_MAGIC = 5;
     private static final int UPGRADE_PLUS_MAGIC = -1;
-    private static final int BASE_MAGIC2 = 50;
+    private static final int BASE_MAGIC2 = 150;
     private static final int BASE_MAGIC3 = 3;
     private static final int BASE_DMG = 3;
     private static final int UPGRADE_PLUS_DMG = 2;
@@ -62,9 +64,11 @@ public class ENTheScenerySawSomeday extends GkmasBossCard {
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
         int amount = PlayerHelper.getPowerAmount(m, StrengthPower.POWER_ID);
-        amount = (int) (1.0F*amount*this.secondMagicNumber/100);
         if(amount>0){
-            addToBot(new ApplyPowerAction(m,m,new StrengthPower(p,amount),amount));
+            amount = (int) (1.0F*amount*(this.secondMagicNumber-100)/100);
+            AbstractPower power = new StrengthPower(m, amount);
+            AbstractPowerPatch.IgnoreIncreaseModifyField.flag.set(power, true);
+            addToBot(new ApplyPowerAction(m, m, power, amount));
         }
         addToBot(new ApplyPowerAction(m,m,new TheScenerySawSomedayPower(m,this.baseDamage),this.baseDamage));
         SoundHelper.playSound("gkmasModResource/audio/voice/skillcard/cidol_kllj_3_010_produce_skillcard_01.ogg");

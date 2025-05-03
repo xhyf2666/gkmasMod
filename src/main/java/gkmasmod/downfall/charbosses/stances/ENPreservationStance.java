@@ -40,7 +40,7 @@ public class ENPreservationStance extends AbstractEnemyStance {
 
     private static int BLOCK = 5;
     private static int ENTHUSIASTIC1 = 2;
-    private static int ENTHUSIASTIC2 = 4;
+    private static int ENTHUSIASTIC2 = 3;
 
     public ENPreservationStance() {
         this(0);
@@ -109,6 +109,8 @@ public class ENPreservationStance extends AbstractEnemyStance {
     }
 
     public void onExitStance() {
+        if(AbstractCharBoss.boss==null)
+            return;
         if(stage==1){
             AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(AbstractCharBoss.boss, AbstractCharBoss.boss, new EnthusiasticPower(AbstractCharBoss.boss, ENTHUSIASTIC2), ENTHUSIASTIC2));
             AbstractDungeon.actionManager.addToTop(new GainBlockAction(AbstractCharBoss.boss, AbstractCharBoss.boss, BLOCK));

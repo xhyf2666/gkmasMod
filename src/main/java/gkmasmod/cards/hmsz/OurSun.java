@@ -13,6 +13,7 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import gkmasmod.cards.GkmasCard;
+import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.patches.AbstractMonsterPatch;
 import gkmasmod.powers.NotGoodTune;
@@ -46,6 +47,7 @@ public class OurSun extends GkmasCard {
         this.damage = this.baseDamage;
         this.baseMagicNumber = BASE_MAGIC;
         this.magicNumber = this.baseMagicNumber;
+        this.tags.add(GkmasCardTag.FOCUS_TAG);
     }
 
 

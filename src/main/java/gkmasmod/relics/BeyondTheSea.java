@@ -6,10 +6,12 @@ import com.megacrit.cardcrawl.actions.common.DrawCardAction;
 import com.megacrit.cardcrawl.actions.common.RelicAboveCreatureAction;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
+import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.DexterityPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import gkmasmod.actions.GainBlockWithPowerAction;
+import gkmasmod.patches.AbstractPowerPatch;
 
 public class BeyondTheSea extends CustomRelic {
 
@@ -23,7 +25,7 @@ public class BeyondTheSea extends CustomRelic {
 
     private static final RelicTier RARITY = RelicTier.STARTER;
 
-    private static final int magicNumber = 30;
+    private static final int magicNumber = 130;
 
     private static final int YARUKI = 2;
 
@@ -60,9 +62,11 @@ public class BeyondTheSea extends CustomRelic {
             if(count>YARUKI){
                 addToBot(new RelicAboveCreatureAction(AbstractDungeon.player, this));
                 this.flash();
-                int add = (int) (1.0F*count*magicNumber/100);
+                int add = (int) (1.0F*count*(magicNumber-100)/100);
                 if(add>0){
-                    addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new DexterityPower(AbstractDungeon.player, add), add));
+                    AbstractPower power = new DexterityPower(AbstractDungeon.player, add);
+                    AbstractPowerPatch.IgnoreIncreaseModifyField.flag.set(power, true);
+                    addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, power, add));
                 }
                 addToBot(new DrawCardAction(1));
                 this.counter--;

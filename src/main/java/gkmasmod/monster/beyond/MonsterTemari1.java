@@ -61,12 +61,12 @@ public class MonsterTemari1 extends CustomMonster {
             setHp(140);
         }
         if (AbstractDungeon.ascensionLevel >= 4) {
-            this.damage.add(new DamageInfo(this, 10));
-            this.damage.add(new DamageInfo(this, 13));
+            this.damage.add(new DamageInfo(this, 7));
+            this.damage.add(new DamageInfo(this, 11));
             this.bloodHitCount = 2;
         } else {
-            this.damage.add(new DamageInfo(this, 7));
-            this.damage.add(new DamageInfo(this, 10));
+            this.damage.add(new DamageInfo(this, 5));
+            this.damage.add(new DamageInfo(this, 8));
             this.bloodHitCount = 2;
         }
     }

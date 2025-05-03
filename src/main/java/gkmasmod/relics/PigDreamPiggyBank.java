@@ -61,7 +61,7 @@ public class PigDreamPiggyBank extends CustomRelic {
 
     public void onUseCard(AbstractCard card, UseCardAction useCardAction){
         if (this.counter > 0) {
-            addToBot(new PigDreamPiggyBankAction(AbstractDungeon.player,GOOD_IMPRESSION,magicNumber));
+            addToBot(new PigDreamPiggyBankAction(AbstractDungeon.player,GOOD_IMPRESSION,magicNumber,this));
 //            int count = AbstractDungeon.player.getPower(GoodImpression.POWER_ID)==null?0:AbstractDungeon.player.getPower(GoodImpression.POWER_ID).amount;
 //            if(count>GOOD_IMPRESSION){
 //                addToBot(new RelicAboveCreatureAction(AbstractDungeon.player, this));

@@ -41,8 +41,8 @@ public class TrainRoundSensePower extends AbstractPower {
     private boolean isDone = true;
 
 
-    String path128 = String.format("gkmasModResource/img/powers/%s_84.png",CLASSNAME);;
-    String path48 = String.format("gkmasModResource/img/powers/%s_32.png",CLASSNAME);;
+    String path128 = String.format("gkmasModResource/img/powers/%s_84.png",CLASSNAME);
+    String path48 = String.format("gkmasModResource/img/powers/%s_32.png",CLASSNAME);
 
     public TrainRoundSensePower(AbstractCreature owner, int Amount) {
         this(owner,Amount,true);
@@ -195,7 +195,6 @@ public class TrainRoundSensePower extends AbstractPower {
     public void atStartOfTurn() {
         if(this.currentMagicNumber > this.finalMagicNumber){
             this.currentMagicNumber -= decreaseMagicNumber;
-
             updateDescription();
         }
     }
@@ -205,18 +204,11 @@ public class TrainRoundSensePower extends AbstractPower {
             return;
         }
         int count = (int) (1.0F*damageAmount * currentMagicNumber /100);
-        if(AbstractDungeon.player instanceof IdolCharacter){
-            IdolCharacter idol = (IdolCharacter) AbstractDungeon.player;
-            if(AbstractPlayerPatch.FinalCircleRoundField.finalCircleRound.get(AbstractDungeon.player).size()>0){
-                count = (int) (1.0f*count / (AbstractPlayerPatch.FinalDamageRateField.finalDamageRate.get(AbstractDungeon.player)*1.0f));
-            }
+        if(AbstractPlayerPatch.FinalCircleRoundField.finalCircleRound.get(AbstractDungeon.player).size()>0){
+            count = (int) (1.0f*count / (AbstractPlayerPatch.FinalDamageRateField.finalDamageRate.get(AbstractDungeon.player)*1.0f));
         }
         addToTop(new GainBlockAction(AbstractDungeon.player, AbstractDungeon.player, count));
     }
 
-
-
-    public void onInitialApplication() {
-    }
 
 }
