@@ -23,8 +23,8 @@ public class ENMadeOneForYou extends GkmasBossCard {
     private static final String DESCRIPTION = CARD_STRINGS.DESCRIPTION;
     private static final String IMG_PATH = String.format("gkmasModResource/img/cards/common/%s.png", CLASSNAME2);
 
-    private static final int COST = 1;
-    private static final int UPGRADE_COST = 0;
+    private static final int COST = 2;
+    private static final int UPGRADE_COST = 1;
 
 
     private static final CardType TYPE = CardType.POWER;

@@ -16,9 +16,11 @@ import gkmasmod.utils.ThreeSizeHelper;
 
 public class LightningOrbPassiveActionPatch
 {
-
+    /**
+     * 电球伤害受到三维倍率的加成
+     */
     @SpirePatch(clz = LightningOrbPassiveAction.class,method = SpirePatch.CONSTRUCTOR)
-    public static class LightningOrbPassiveActionPostPatch_constructor {
+    public static class PostPatchLightningOrbPassiveAction_Constructor {
         @SpirePostfixPatch
         public static void Post(LightningOrbPassiveAction __instance, @ByRef DamageInfo[] ___info) {
             if(AbstractDungeon.player.hasRelic(PocketBook.ID)){

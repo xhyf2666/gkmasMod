@@ -10,6 +10,7 @@ import com.megacrit.cardcrawl.helpers.CardLibrary;
 import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.IdolCharacter;
 import gkmasmod.characters.MisuzuCharacter;
+import gkmasmod.characters.OtherIdolCharacter;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.utils.CommonEnum;
 
@@ -46,6 +47,25 @@ public class AojiruAction extends AbstractGameAction {
                 getRandomCard(PlayerColorEnum.gkmasModColorSense,tmpPool);
             }
             else if(type == CommonEnum.IdolType.ANOMALY){
+                getRandomCard(PlayerColorEnum.gkmasModColorAnomaly,tmpPool);
+            }
+        }
+        else if(p instanceof OtherIdolCharacter){
+            OtherIdolCharacter idol = (OtherIdolCharacter)p;
+            CommonEnum.IdolType type = idol.idolData.getType(idol.skinIndex);
+            getRandomCard(PlayerColorEnum.gkmasModColor,tmpPool);
+            if(type == CommonEnum.IdolType.LOGIC){
+                getRandomCard(PlayerColorEnum.gkmasModColorLogic,tmpPool);
+            }
+            else if(type == CommonEnum.IdolType.SENSE){
+                getRandomCard(PlayerColorEnum.gkmasModColorSense,tmpPool);
+            }
+            else if(type == CommonEnum.IdolType.ANOMALY){
+                getRandomCard(PlayerColorEnum.gkmasModColorAnomaly,tmpPool);
+            }
+            else if(type== CommonEnum.IdolType.PRODUCE){
+                getRandomCard(PlayerColorEnum.gkmasModColorLogic,tmpPool);
+                getRandomCard(PlayerColorEnum.gkmasModColorSense,tmpPool);
                 getRandomCard(PlayerColorEnum.gkmasModColorAnomaly,tmpPool);
             }
         }

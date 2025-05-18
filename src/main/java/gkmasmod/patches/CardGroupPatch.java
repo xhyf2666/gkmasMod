@@ -27,6 +27,9 @@ import gkmasmod.vfx.effect.ThreeSizeChangeEffect;
 import java.util.ArrayList;
 
 public class CardGroupPatch {
+    /**
+     * 消耗眠气时，触发敌人的监听能力   将除外卡从消耗堆移除
+     */
     @SpirePatch(clz = CardGroup.class,method = "moveToExhaustPile")
     public static class PostPatchCardGroup_moveToExhaustPile {
         @SpirePostfixPatch
@@ -57,7 +60,7 @@ public class CardGroupPatch {
     }
 
     @SpirePatch(clz = CardGroup.class,method = "moveToDiscardPile")
-    public static class PrefixPatchCardGroup_moveToDiscardPile {
+    public static class PrePatchCardGroup_moveToDiscardPile {
         @SpirePrefixPatch
         public static SpireReturn<Void> Prefix(CardGroup __instance, AbstractCard c) {
 //            if(c.cardID.equals(FinalSpurt.ID)||c.cardID.equals(StepByStep.ID)){

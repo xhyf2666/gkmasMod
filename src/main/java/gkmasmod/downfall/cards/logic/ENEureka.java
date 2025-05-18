@@ -59,6 +59,8 @@ public class ENEureka extends GkmasBossCard {
         this.tags.add(GkmasCardTag.MORE_ACTION_TAG);
         this.cardHeader = "Eureka!";
         this.intent = AbstractMonster.Intent.BUFF;
+        this.backGroundColor = IdolData.shro;
+        updateBackgroundImg();
     }
 
 

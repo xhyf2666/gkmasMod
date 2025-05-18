@@ -43,7 +43,6 @@ public class InformationMasterPower extends AbstractPower {
         this.updateDescription();
     }
 
-    // 能力在更新时如何修改描述
     public void updateDescription() {
         this.description = String.format(DESCRIPTIONS[0]);
     }

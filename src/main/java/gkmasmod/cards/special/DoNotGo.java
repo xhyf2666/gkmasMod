@@ -16,7 +16,6 @@ import com.megacrit.cardcrawl.powers.VulnerablePower;
 import com.megacrit.cardcrawl.powers.WeakPower;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.cards.GkmasCardTag;
-import gkmasmod.characters.MisuzuCharacter;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.monster.ending.MonsterRinha;
 import gkmasmod.monster.friend.FriendOnigiri;

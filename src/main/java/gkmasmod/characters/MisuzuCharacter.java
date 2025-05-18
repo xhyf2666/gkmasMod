@@ -47,7 +47,6 @@ import java.util.Iterator;
 import java.util.Map;
 
 
-// 继承CustomPlayer类
 public class MisuzuCharacter extends CustomPlayer {
 
     private static final String CORPSE_IMAGE = "gkmasModResource/img/idol/hmsz/sleep_skin10.png";
@@ -66,7 +65,6 @@ public class MisuzuCharacter extends CustomPlayer {
         this.dialogY = (this.drawY + 150.0F * Settings.scale);
         initializeData();
 
-//        refreshSkin();
     }
 
     public void initializeData(){
@@ -96,16 +94,6 @@ public class MisuzuCharacter extends CustomPlayer {
         this.animation = new SpriterAnimation(path);
     }
 
-
-//    public void refreshSkin() {
-//        if(this.idolData == null)
-//            this.idolData = IdolData.getIdol(SkinSelectScreen.Inst.idolIndex);
-//        this.idolName = this.idolData.idolName;
-//        String skinName = this.idolData.getSkinImg(SkinSelectScreen.Inst.skinIndex);
-//        String path = String.format("gkmasModResource/img/idol/%s/stand/stand_%s.scml",SkinSelectScreen.Inst.idolName,skinName);
-//        this.animation = new SpriterAnimation(path);
-//    }
-
     public ArrayList<AbstractCard> addColorToCardPool(AbstractCard.CardColor color, ArrayList<AbstractCard> tmpPool) {
         Iterator<Map.Entry<String, AbstractCard>> cardLib = CardLibrary.cards.entrySet().iterator();
         while (true) {
@@ -124,7 +112,6 @@ public class MisuzuCharacter extends CustomPlayer {
         addColorToCardPool(PlayerColorEnum.gkmasModColor, tmpPool);
         addColorToCardPool(PlayerColorEnum.gkmasModColorMoon, tmpPool);
         addColorToCardPool(PlayerColorEnum.gkmasModColorMisuzu, tmpPool);
-//        addColorToCardPool(PlayerColorEnum.gkmasModColorSense, tmpPool);
 
         return tmpPool;
     }
@@ -199,6 +186,7 @@ public class MisuzuCharacter extends CustomPlayer {
         ArrayList<String> retVal = new ArrayList<>();
         retVal.add(SyngUpRelic.ID);
         retVal.add(PocketBook.ID);
+        retVal.add(ProducerPhone.ID);
         retVal.add(MisuzuNatureRelic.ID);
         retVal.add(DreamCatcher.ID);
         return retVal;
@@ -218,7 +206,7 @@ public class MisuzuCharacter extends CustomPlayer {
 
     public CharSelectInfo getLoadout() {
         return new CharSelectInfo(
-                "秦谷美铃",
+                "泰谷美铃",
                 "悠闲自在、我行我素的女孩子，状态经常在 #y困倦 、 #y睡眠 和 #y清醒 之间波动。 NL 对自己和他人都温柔友善，喜欢制作点心、照顾和宠爱别人。 NL 能够召唤昔日的 #y好友 辅助战斗。",
                 getHP(),
                 getHP(),
@@ -234,7 +222,7 @@ public class MisuzuCharacter extends CustomPlayer {
 
     @Override
     public String getTitle(PlayerClass playerClass) {
-        return "秦谷美铃";
+        return "泰谷美铃";
     }
 
     @Override
@@ -244,7 +232,7 @@ public class MisuzuCharacter extends CustomPlayer {
 
     @Override
     public AbstractCard getStartCardForEvent() {
-        return new GachaAgain();
+        return new Stress();
     }
 
     @Override
@@ -270,10 +258,9 @@ public class MisuzuCharacter extends CustomPlayer {
     @Override
     public ArrayList<CutscenePanel> getCutscenePanels() {
         ArrayList<CutscenePanel> panels = new ArrayList<>();
+        panels.add(new CutscenePanel("gkmasModResource/img/UI/end/end1.png"));
         panels.add(new CutscenePanel(String.format("gkmasModResource/img/UI/end/end_%s_001_00.png", this.idolName)));
         panels.add(new CutscenePanel(String.format("gkmasModResource/img/UI/end/end_%s_001_01.png", this.idolName)));
-        panels.add(new CutscenePanel(String.format("gkmasModResource/img/UI/end/end_%s_001_02.png", this.idolName)));
-        panels.add(new CutscenePanel(String.format("gkmasModResource/img/UI/end/end_%s_001_03.png", this.idolName)));
         return panels;
     }
 
@@ -284,7 +271,7 @@ public class MisuzuCharacter extends CustomPlayer {
 
     @Override
     public String getLocalizedCharacterName() {
-        return "秦谷美铃";
+        return "泰谷美铃";
     }
 
     @Override

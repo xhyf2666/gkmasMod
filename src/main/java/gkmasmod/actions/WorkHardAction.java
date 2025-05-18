@@ -3,10 +3,9 @@ package gkmasmod.actions;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import gkmasmod.growEffect.BlockGrow;
-import gkmasmod.growEffect.DamageGrow;
+import gkmasmod.cardGrowEffect.BlockGrow;
+import gkmasmod.cardGrowEffect.DamageGrow;
 import gkmasmod.stances.FullPowerStance;
-import gkmasmod.vfx.effect.GakuenLinkMasterEffect;
 
 public class WorkHardAction extends AbstractGameAction {
     AbstractCreature owner;

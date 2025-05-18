@@ -47,103 +47,43 @@ public class GainTrainRoundPowerAction extends AbstractGameAction {
             }
         }
         if(this.target.isPlayer){
-            if(this.target instanceof IdolCharacter){
-                IdolCharacter idol = (IdolCharacter) this.target;
-                CommonEnum.IdolType type = idol.idolData.getType(idol.skinIndex);
-                int count =0;
+            int countLogic = PlayerHelper.getPowerAmount(this.target, TrainRoundLogicPower.POWER_ID);
+            int countSense = PlayerHelper.getPowerAmount(this.target, TrainRoundSensePower.POWER_ID);
+            int countAnomaly = PlayerHelper.getPowerAmount(this.target, TrainRoundAnomalyPower.POWER_ID);
+            int countMisuzu = PlayerHelper.getPowerAmount(this.target, TrainRoundMisuzuPower.POWER_ID);
+            if(countLogic>0){
+                addToTop(new ApplyPowerAction(this.target, this.target, new TrainRoundLogicPower(this.target, this.amount), this.amount));
+            }
+            if(countSense>0){
+                addToTop(new ApplyPowerAction(this.target, this.target, new TrainRoundSensePower(this.target, this.amount), this.amount));
+            }
+            if(countAnomaly>0){
+                addToTop(new ApplyPowerAction(this.target, this.target, new TrainRoundAnomalyPower(this.target, this.amount), this.amount));
+            }
+            if(countMisuzu>0){
+                addToTop(new ApplyPowerAction(this.target, this.target, new TrainRoundMisuzuPower(this.target, this.amount), this.amount));
+            }
+            if(countLogic==1||countSense==1||countAnomaly==1||countMisuzu==1){
+                if(AbstractDungeon.player.hasRelic(SidewalkResearchNotes.ID)){
+                    ((SidewalkResearchNotes)AbstractDungeon.player.getRelic(SidewalkResearchNotes.ID)).onTrainRoundRemove();
+                }
+                if(AbstractDungeon.player.hasRelic(LifeSizeLadyLip.ID)){
+                    ((LifeSizeLadyLip)AbstractDungeon.player.getRelic(LifeSizeLadyLip.ID)).onTrainRoundRemove();
+                }
+                if(AbstractDungeon.player.hasRelic(UltimateSleepMask.ID)){
+                    ((UltimateSleepMask)AbstractDungeon.player.getRelic(UltimateSleepMask.ID)).onTrainRoundRemove();
+                }
+                if(AbstractDungeon.player.hasRelic(HeartFlutteringCup.ID)){
+                    ((HeartFlutteringCup)AbstractDungeon.player.getRelic(HeartFlutteringCup.ID)).onTrainRoundRemove();
+                }
+                if(AbstractDungeon.player.hasRelic(FirstHeartProofChina.ID)){
+                    ((FirstHeartProofChina)AbstractDungeon.player.getRelic(FirstHeartProofChina.ID)).onTrainRoundRemove();
+                }
+                if(AbstractDungeon.player.hasRelic(ChristmasLion.ID)){
+                    ((ChristmasLion)AbstractDungeon.player.getRelic(ChristmasLion.ID)).onTrainRoundRemove();
+                }
+            }
 
-                if(type==CommonEnum.IdolType.SENSE){
-                    if(this.target.hasPower(TrainRoundSensePower.POWER_ID))
-                        addToBot(new ApplyPowerAction(this.target, this.target, new TrainRoundSensePower(AbstractDungeon.player, this.amount), this.amount));
-                    count = PlayerHelper.getPowerAmount(AbstractDungeon.player, TrainRoundSensePower.POWER_ID);
-                    if(count ==1){
-                        if(AbstractDungeon.player.hasRelic(SidewalkResearchNotes.ID)){
-                            ((SidewalkResearchNotes)AbstractDungeon.player.getRelic(SidewalkResearchNotes.ID)).onTrainRoundRemove();
-                        }
-                        if(AbstractDungeon.player.hasRelic(LifeSizeLadyLip.ID)){
-                            ((LifeSizeLadyLip)AbstractDungeon.player.getRelic(LifeSizeLadyLip.ID)).onTrainRoundRemove();
-                        }
-                        if(AbstractDungeon.player.hasRelic(UltimateSleepMask.ID)){
-                            ((UltimateSleepMask)AbstractDungeon.player.getRelic(UltimateSleepMask.ID)).onTrainRoundRemove();
-                        }
-                        if(AbstractDungeon.player.hasRelic(HeartFlutteringCup.ID)){
-                            ((HeartFlutteringCup)AbstractDungeon.player.getRelic(HeartFlutteringCup.ID)).onTrainRoundRemove();
-                        }
-                        if(AbstractDungeon.player.hasRelic(FirstHeartProofChina.ID)){
-                            ((FirstHeartProofChina)AbstractDungeon.player.getRelic(FirstHeartProofChina.ID)).onTrainRoundRemove();
-                        }
-                        if(AbstractDungeon.player.hasRelic(ChristmasLion.ID)){
-                            ((ChristmasLion)AbstractDungeon.player.getRelic(ChristmasLion.ID)).onTrainRoundRemove();
-                        }
-                    }
-                }
-                else if (type==CommonEnum.IdolType.LOGIC){
-                    if(this.target.hasPower(TrainRoundLogicPower.POWER_ID))
-                        addToBot(new ApplyPowerAction(this.target, this.target, new TrainRoundLogicPower(AbstractDungeon.player, this.amount), this.amount));
-                    count = PlayerHelper.getPowerAmount(AbstractDungeon.player, TrainRoundLogicPower.POWER_ID);
-                    if(count ==1){
-                        if(AbstractDungeon.player.hasRelic(SidewalkResearchNotes.ID)){
-                            ((SidewalkResearchNotes)AbstractDungeon.player.getRelic(SidewalkResearchNotes.ID)).onTrainRoundRemove();
-                        }
-                        if(AbstractDungeon.player.hasRelic(LifeSizeLadyLip.ID)){
-                            ((LifeSizeLadyLip)AbstractDungeon.player.getRelic(LifeSizeLadyLip.ID)).onTrainRoundRemove();
-                        }
-                        if(AbstractDungeon.player.hasRelic(UltimateSleepMask.ID)){
-                            ((UltimateSleepMask)AbstractDungeon.player.getRelic(UltimateSleepMask.ID)).onTrainRoundRemove();
-                        }
-                        if(AbstractDungeon.player.hasRelic(HeartFlutteringCup.ID)){
-                            ((HeartFlutteringCup)AbstractDungeon.player.getRelic(HeartFlutteringCup.ID)).onTrainRoundRemove();
-                        }
-                        if(AbstractDungeon.player.hasRelic(FirstHeartProofChina.ID)){
-                            ((FirstHeartProofChina)AbstractDungeon.player.getRelic(FirstHeartProofChina.ID)).onTrainRoundRemove();
-                        }
-                        if(AbstractDungeon.player.hasRelic(ChristmasLion.ID)){
-                            ((ChristmasLion)AbstractDungeon.player.getRelic(ChristmasLion.ID)).onTrainRoundRemove();
-                        }
-                    }
-                }
-                else if (type == CommonEnum.IdolType.ANOMALY){
-                    if(this.target.hasPower(TrainRoundAnomalyPower.POWER_ID))
-                        addToBot(new ApplyPowerAction(this.target, this.target, new TrainRoundAnomalyPower(AbstractDungeon.player, this.amount), this.amount));
-                    count = PlayerHelper.getPowerAmount(AbstractDungeon.player, TrainRoundAnomalyPower.POWER_ID);
-                    if(count ==1){
-                        if(AbstractDungeon.player.hasRelic(SidewalkResearchNotes.ID)){
-                            ((SidewalkResearchNotes)AbstractDungeon.player.getRelic(SidewalkResearchNotes.ID)).onTrainRoundRemove();
-                        }
-                        if(AbstractDungeon.player.hasRelic(LifeSizeLadyLip.ID)){
-                            ((LifeSizeLadyLip)AbstractDungeon.player.getRelic(LifeSizeLadyLip.ID)).onTrainRoundRemove();
-                        }
-                        if(AbstractDungeon.player.hasRelic(UltimateSleepMask.ID)){
-                            ((UltimateSleepMask)AbstractDungeon.player.getRelic(UltimateSleepMask.ID)).onTrainRoundRemove();
-                        }
-                        if(AbstractDungeon.player.hasRelic(HeartFlutteringCup.ID)){
-                            ((HeartFlutteringCup)AbstractDungeon.player.getRelic(HeartFlutteringCup.ID)).onTrainRoundRemove();
-                        }
-                        if(AbstractDungeon.player.hasRelic(FirstHeartProofChina.ID)){
-                            ((FirstHeartProofChina)AbstractDungeon.player.getRelic(FirstHeartProofChina.ID)).onTrainRoundRemove();
-                        }
-                        if(AbstractDungeon.player.hasRelic(ChristmasLion.ID)){
-                            ((ChristmasLion)AbstractDungeon.player.getRelic(ChristmasLion.ID)).onTrainRoundRemove();
-                        }
-                    }
-                }
-
-            }
-            else if(this.target instanceof MisuzuCharacter){
-                addToTop(new ApplyPowerAction(this.target,this.target,new TrainRoundMisuzuPower(AbstractDungeon.player,this.amount),this.amount));
-            }
-            else{
-                CommonEnum.IdolType type = IdolData.getIdol(SkinSelectScreen.Inst.idolIndex).getType(SkinSelectScreen.Inst.skinIndex);
-                if(type==CommonEnum.IdolType.SENSE){
-                    addToBot(new ApplyPowerAction(this.target, this.target, new TrainRoundSensePower(AbstractDungeon.player, this.amount), this.amount));
-                }
-                else if (type==CommonEnum.IdolType.LOGIC){
-                    addToBot(new ApplyPowerAction(this.target, this.target, new TrainRoundLogicPower(AbstractDungeon.player,  this.amount), this.amount));
-                }
-                else if (type==CommonEnum.IdolType.ANOMALY){
-                    addToBot(new ApplyPowerAction(this.target, this.target, new TrainRoundAnomalyPower(AbstractDungeon.player,  this.amount), this.amount));
-                }
-            }
             for(AbstractMonster mo: AbstractDungeon.getMonsters().monsters){
                 if(!mo.isDeadOrEscaped()&& mo.hasPower(SenaMoreActionPower.POWER_ID)){
                     mo.getPower(SenaMoreActionPower.POWER_ID).onSpecificTrigger();

@@ -62,6 +62,8 @@ public class ENWithLove extends GkmasBossCard {
         this.tags.add(GkmasCardTag.YARUKI_TAG);
         this.tags.add(GkmasCardTag.IDOL_CARD_TAG);
         this.exhaust = true;
+        this.backGroundColor = IdolData.kllj;
+        updateBackgroundImg();
         this.intent = AbstractMonster.Intent.ATTACK_DEFEND;
     }
 

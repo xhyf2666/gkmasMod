@@ -54,7 +54,7 @@ public class UntilHopeReach extends GkmasCard {
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
         addToBot(new ApplyPowerAction(p, p, new UntilHopeReachPower(p, this.magicNumber), this.magicNumber));
-//        SoundHelper.playSound("gkmasModResource/audio/voice/skillcard/cidol_ssmk_3_015_produce_skillcard_01.ogg");
+        SoundHelper.playSound("gkmasModResource/audio/voice/skillcard/cidol_ttmr_3_016_produce_skillcard_01.ogg");
     }
 
 

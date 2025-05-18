@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.megacrit.cardcrawl.actions.GameActionManager;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
@@ -18,21 +19,24 @@ import com.megacrit.cardcrawl.monsters.MonsterGroup;
 import com.megacrit.cardcrawl.random.Random;
 import com.megacrit.cardcrawl.rooms.MonsterRoom;
 import com.megacrit.cardcrawl.saveAndContinue.SaveFile;
+import com.megacrit.cardcrawl.unlock.UnlockTracker;
+import gkmasmod.cards.GkmasCard;
+import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.IdolCharacter;
 import gkmasmod.characters.MisuzuCharacter;
+import gkmasmod.characters.OtherIdolCharacter;
+import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.downfall.bosses.*;
 import gkmasmod.monster.ending.MonsterRinha;
-import gkmasmod.relics.NIABadge;
+import gkmasmod.relics.*;
 import gkmasmod.room.EventMonsterRoom;
 import gkmasmod.room.FixedMonsterRoom;
 import gkmasmod.dungeons.IdolRoad;
 import gkmasmod.modcore.GkmasMod;
 import gkmasmod.monster.ending.MisuzuBoss;
-import gkmasmod.relics.PocketBook;
-import gkmasmod.relics.ReChallenge;
-import gkmasmod.relics.StruggleRecord;
 import gkmasmod.room.shop.AnotherShopScreen;
 import gkmasmod.room.specialTeach.SpecialTeachScreen;
+import gkmasmod.screen.OtherSkinSelectScreen;
 import gkmasmod.screen.SkinSelectScreen;
 import gkmasmod.utils.IdolData;
 import gkmasmod.utils.PlayerHelper;
@@ -43,13 +47,15 @@ import javassist.expr.MethodCall;
 import org.lwjgl.Sys;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Properties;
+import java.util.*;
 
 public class AbstractDungeonPatch {
+
+    /**
+     * 进入新地图时，初始化偶像数据。 进入偶像之路时，播放视频
+     */
     @SpirePatch(clz = AbstractDungeon.class,method = SpirePatch.CONSTRUCTOR,paramtypez = {String.class, String.class, AbstractPlayer.class, ArrayList.class})
-    public static class PostPatchAbstractDungeonConstructor {
+    public static class PostPatchAbstractDungeon_Constructor {
         @SpirePostfixPatch
         public static void Postfix(AbstractDungeon __instance, String name, String levelId, AbstractPlayer p, ArrayList<String> newSpecialOneTimeEventList) {
             if(p instanceof IdolCharacter){
@@ -64,6 +70,26 @@ public class AbstractDungeonPatch {
                     SkinSelectScreen.Inst.videoPlayer.dispose();
                     SkinSelectScreen.Inst.videoPlayer = null;
                 }
+                if(AbstractDungeon.id.equals(IdolRoad.ID)){
+                    String videoPath = "gkmasModResource/video/other/op4.webm";
+                    CardCrawlGame.fadeIn(1.0F);
+                    CardCrawlGame.music.dispose();
+                    if(Gdx.files.local(videoPath).exists()){
+                        AbstractDungeon.topLevelEffectsQueue.add(new IdolRoadOPEffect(videoPath,true));
+                    }
+                    if(Gdx.files.internal(videoPath).exists()){
+                        AbstractDungeon.topLevelEffectsQueue.add(new IdolRoadOPEffect(videoPath,false));
+                    }
+                }
+            }
+            else if(p instanceof OtherIdolCharacter){
+                OtherIdolCharacter idol = (OtherIdolCharacter) p;
+                idol.idolData = IdolData.getOtherIdol(OtherSkinSelectScreen.Inst.idolIndex);
+
+                idol.skinIndex = OtherSkinSelectScreen.Inst.skinIndex;
+                idol.shoulderImg = ImageMaster.loadImage(String.format("gkmasModResource/img/idol/othe/%s/stand/fire.png",idol.idolName));
+                idol.shoulder2Img = ImageMaster.loadImage(String.format("gkmasModResource/img/idol/othe/%s/stand/fire.png",idol.idolName));
+                idol.corpseImg = ImageMaster.loadImage(String.format("gkmasModResource/img/idol/othe/%s/stand/sleep_skin10.png",idol.idolName));
                 if(AbstractDungeon.id.equals(IdolRoad.ID)){
                     String videoPath = "gkmasModResource/video/other/op4.webm";
                     CardCrawlGame.fadeIn(1.0F);
@@ -92,8 +118,11 @@ public class AbstractDungeonPatch {
         }
     }
 
+    /**
+     * 从存档加载数据时，初始化偶像数据
+     */
     @SpirePatch(clz = AbstractDungeon.class,method = SpirePatch.CONSTRUCTOR,paramtypez = {String.class, AbstractPlayer.class, SaveFile.class})
-    public static class PostPatchAbstractDungeonConstructor2 {
+    public static class PostPatchAbstractDungeon_Constructor2 {
         @SpirePostfixPatch
         public static void Postfix(AbstractDungeon __instance, String name, AbstractPlayer p, SaveFile saveFile) {
             if(p instanceof IdolCharacter){
@@ -104,30 +133,52 @@ public class AbstractDungeonPatch {
                 idol.shoulder2Img = ImageMaster.loadImage(String.format("gkmasModResource/img/idol/%s/stand/fire.png",idol.idolName));
                 idol.corpseImg = ImageMaster.loadImage(String.format("gkmasModResource/img/idol/%s/stand/sleep_skin10.png",idol.idolName));
             }
+            else if(p instanceof OtherIdolCharacter){
+                OtherIdolCharacter idol = (OtherIdolCharacter) p;
+                idol.idolData = IdolData.getOtherIdol(OtherSkinSelectScreen.Inst.idolIndex);
+                idol.skinIndex = OtherSkinSelectScreen.Inst.skinIndex;
+                idol.shoulderImg = ImageMaster.loadImage(String.format("gkmasModResource/img/idol/othe/%s/stand/fire.png",idol.idolName));
+                idol.shoulder2Img = ImageMaster.loadImage(String.format("gkmasModResource/img/idol/othe/%s/stand/fire.png",idol.idolName));
+                idol.corpseImg = ImageMaster.loadImage(String.format("gkmasModResource/img/idol/othe/%s/stand/sleep_skin10.png",idol.idolName));
+            }
         }
     }
 
+    /**
+     * 设置左上角的角色名字
+     */
     @SpirePatch(clz = AbstractDungeon.class,method = SpirePatch.CONSTRUCTOR,paramtypez = {String.class, String.class, AbstractPlayer.class, ArrayList.class})
-    public static class PrePatchAbstractDungeonConstructor {
+    public static class PrePatchAbstractDungeon_Constructor {
         @SpirePrefixPatch
         public static void Prefix(AbstractDungeon __instance, String name, String levelId, AbstractPlayer p, ArrayList<String> newSpecialOneTimeEventList) {
             if(p instanceof IdolCharacter){
                 p.title = SkinSelectScreen.Inst.curName;
             }
+            else if(p instanceof OtherIdolCharacter){
+                p.title = OtherSkinSelectScreen.Inst.curName;
+            }
         }
     }
 
+    /**
+     * 设置左上角的角色名字
+     */
     @SpirePatch(clz = AbstractDungeon.class,method = SpirePatch.CONSTRUCTOR,paramtypez = {String.class, AbstractPlayer.class, SaveFile.class})
-    public static class PrePatchAbstractDungeonConstructor2 {
+    public static class PrePatchAbstractDungeon_Constructor2 {
         @SpirePrefixPatch
         public static void Prefix(AbstractDungeon __instance, String name, AbstractPlayer p, SaveFile saveFile) {
             if(p instanceof IdolCharacter){
                 p.title = SkinSelectScreen.Inst.curName;
             }
+            else if(p instanceof OtherIdolCharacter){
+                p.title = OtherSkinSelectScreen.Inst.curName;
+            }
         }
     }
 
-
+    /**
+     * 生成地图时，设置SP节点
+     */
     @SpirePatch(clz = AbstractDungeon.class,method = "generateMap")
     public static class PostPatchAbstractDungeon_generateMap {
         @SpirePostfixPatch
@@ -159,16 +210,17 @@ public class AbstractDungeonPatch {
                     }
                     row_num--;
                 }
-
             }
         }
     }
 
+    /**
+     * 设置4层Boss
+     */
     @SpirePatch(clz = AbstractDungeon.class,method = "setBoss",paramtypez = {String.class})
     public static class PrePatchAbstractDungeon_setBoss {
         @SpirePrefixPatch
         public static SpireReturn<Void> Prefix(AbstractDungeon __instance, String key) {
-//            System.out.println("setBoss");
             if(AbstractDungeon.player.hasRelic(PocketBook.ID)){
                 if(AbstractDungeon.player instanceof MisuzuCharacter||AbstractDungeon.player.hasRelic(NIABadge.ID)){
                     if (key!=null&&key.equals("The Heart")){
@@ -221,16 +273,13 @@ public class AbstractDungeonPatch {
                         }
                     }
                 }
-
                 //使用Setting.seed作为随机数，打乱bosslist的顺序
                 java.util.Random rng = new java.util.Random(Settings.seed);
                 Collections.shuffle(bossList, rng);
-
                 // 8进4的3位胜者
                 int battle1_1 = rng.nextInt(2);
                 int battle1_2 = rng.nextInt(2)+2;
                 int battle1_3 = rng.nextInt(2)+5;
-
                 // 4进2的1位胜者
                 int battle2_1 = rng.nextInt(2);
                 if(battle2_1 == 0){
@@ -253,6 +302,9 @@ public class AbstractDungeonPatch {
         }
     }
 
+    /**
+     * 设置三维TAG的随机数
+     */
     @SpirePatch(clz = AbstractDungeon.class,method = "generateSeeds")
     public static class PostPatchAbstractDungeon_generateSeeds {
         @SpirePostfixPatch
@@ -261,8 +313,11 @@ public class AbstractDungeonPatch {
         }
     }
 
+    /**
+     * 设置4层Boss
+     */
     @SpirePatch(clz = MonsterHelper.class,method = "getEncounter")
-    public static class PatchGetEncounter {
+    public static class PrePatchMonsterHelper_getEncounter {
         @SpirePrefixPatch
         public static SpireReturn<MonsterGroup> Prefix(String key) {
             if (key!=null&&key.equals("MisuzuBoss")) {
@@ -328,13 +383,14 @@ public class AbstractDungeonPatch {
         }
     }
 
+    /**
+     * 在特殊商店或特殊指导进入星系仪界面后，返回原来的窗口
+     */
     @SpirePatch(clz = AbstractDungeon.class,method = "closeCurrentScreen")
-    public static class AbstractDungeonPrePatchGetEncounter {
+    public static class PrePatchAbstractDungeon_closeCurrentScreen {
         @SpirePrefixPatch
         public static SpireReturn<Void> Prefix() {
             if(AbstractDungeon.player.hasRelic(PocketBook.ID)){
-//                System.out.println(AbstractDungeon.previousScreen);
-//                System.out.println(AbstractDungeon.screen);
                 if(GkmasMod.screenIndex==1&&AbstractDungeon.screen!= AbstractDungeon.CurrentScreen.CARD_REWARD)
                     AbstractDungeon.previousScreen = AnotherShopScreen.Enum.AnotherShop_Screen;
                 else if(GkmasMod.screenIndex==2)
@@ -344,6 +400,9 @@ public class AbstractDungeonPatch {
         }
     }
 
+    /**
+     * 设置偶像之路的掉落物
+     */
     @SpirePatch(clz = AbstractDungeon.class,method = "getRewardCards")
     public static class PostPatchAbstractDungeon_getRewardCards {
         @SpireInsertPatch(rloc = 1866 - 1792, localvars = {"retVal2", "numCards"})
@@ -356,7 +415,6 @@ public class AbstractDungeonPatch {
                     tmp = tmp.substring(9);
                 }
                 ArrayList<String> cards = IdolData.getIdol(tmp).getCardList();
-                //从cards中随机选取numCards张卡牌,需要考虑不足numCards张的情况
                 ArrayList<String> cardList = new ArrayList<>();
 
                 java.util.Random random = new java.util.Random(Settings.seed+AbstractDungeon.floorNum);
@@ -385,7 +443,6 @@ public class AbstractDungeonPatch {
                     tmp = tmp.substring(9);
                 }
                 ArrayList<String> cards = IdolData.getIdol(tmp).getCardList();
-                //从cards中随机选取numCards张卡牌,需要考虑不足numCards张的情况
                 ArrayList<String> cardList = new ArrayList<>();
 
                 java.util.Random random = new java.util.Random(Settings.seed+AbstractDungeon.floorNum);
@@ -416,31 +473,35 @@ public class AbstractDungeonPatch {
         }
     }
 
+    /**
+     * 遗物 再挑战券 的相关逻辑，已废弃
+     */
+//    @SpirePatch(clz = AbstractDungeon.class,method = "nextRoomTransition",paramtypez = {SaveFile.class})
+//    public static class PrePatchAbstractDungeon_nextRoomTransition {
+//        @SpireInsertPatch(rloc = 2210-2126)
+//        public static void Insert(AbstractDungeon __instance,SaveFile saveFile) {
+//            if(AbstractDungeon.player.hasRelic(ReChallenge.ID)){
+//                Properties defaults = new Properties();
+//                defaults.setProperty("cardRate", String.valueOf(PlayerHelper.getCardRate()));
+//                defaults.setProperty("beat_hmsz", "0");
+//                defaults.setProperty("ReChallenge", "1");
+//                int tmp = GkmasMod.config.getInt("ReChallenge");
+//                if(tmp>0){
+//                    AbstractDungeon.monsterHpRng = new Random(Long.valueOf(Settings.seed.longValue() + AbstractDungeon.floorNum+tmp*100));
+//                    AbstractDungeon.aiRng = new Random(Long.valueOf(Settings.seed.longValue() + AbstractDungeon.floorNum+tmp*100));
+//                    AbstractDungeon.shuffleRng = new Random(Long.valueOf(Settings.seed.longValue() + AbstractDungeon.floorNum+tmp*100));
+//                    AbstractDungeon.cardRandomRng = new Random(Long.valueOf(Settings.seed.longValue() + AbstractDungeon.floorNum+tmp*100));
+//                    AbstractDungeon.miscRng = new Random(Long.valueOf(Settings.seed.longValue() + AbstractDungeon.floorNum+tmp*100));
+//                }
+//            }
+//        }
+//    }
 
-
-    @SpirePatch(clz = AbstractDungeon.class,method = "nextRoomTransition",paramtypez = {SaveFile.class})
-    public static class PrePatchAbstractDungeon_nextRoomTransition {
-        @SpireInsertPatch(rloc = 2210-2126)
-        public static void Insert(AbstractDungeon __instance,SaveFile saveFile) {
-            if(AbstractDungeon.player.hasRelic(ReChallenge.ID)){
-                Properties defaults = new Properties();
-                defaults.setProperty("cardRate", String.valueOf(PlayerHelper.getCardRate()));
-                defaults.setProperty("beat_hmsz", "0");
-                defaults.setProperty("ReChallenge", "1");
-                int tmp = GkmasMod.config.getInt("ReChallenge");
-                if(tmp>0){
-                    AbstractDungeon.monsterHpRng = new Random(Long.valueOf(Settings.seed.longValue() + AbstractDungeon.floorNum+tmp*100));
-                    AbstractDungeon.aiRng = new Random(Long.valueOf(Settings.seed.longValue() + AbstractDungeon.floorNum+tmp*100));
-                    AbstractDungeon.shuffleRng = new Random(Long.valueOf(Settings.seed.longValue() + AbstractDungeon.floorNum+tmp*100));
-                    AbstractDungeon.cardRandomRng = new Random(Long.valueOf(Settings.seed.longValue() + AbstractDungeon.floorNum+tmp*100));
-                    AbstractDungeon.miscRng = new Random(Long.valueOf(Settings.seed.longValue() + AbstractDungeon.floorNum+tmp*100));
-                }
-            }
-        }
-    }
-
+    /**
+     * 前3层Boss战中，取消绘制原有的地图背景
+     */
     @SpirePatch(clz = AbstractDungeon.class, method = "render")
-    public static class GetNextAction {
+    public static class InstrumentPatchAbstractDungeon_render {
         public static ExprEditor Instrument() {
             return new ExprEditor() {
                 public void edit(MethodCall m) throws CannotCompileException {
@@ -452,5 +513,107 @@ public class AbstractDungeonPatch {
         }
     }
 
+    /**
+     * 添加偶像卡到制作人的战后卡池中
+     */
+    @SpirePatch(clz = AbstractDungeon.class,method = "initializeCardPools")
+    public static class InsertPatchAbstractDungeon_initializeCardPools {
+        @SpireInsertPatch(rloc = 1471-1419)
+        public static void Insert(AbstractDungeon __instance) {
+            if(AbstractDungeon.player instanceof OtherIdolCharacter){
+                if(OtherSkinSelectScreen.Inst.idolName.equals(IdolData.prod)){
+                    Iterator<Map.Entry<String, AbstractCard>> cardLib = CardLibrary.cards.entrySet().iterator();
+                    while (true) {
+                        if (!cardLib.hasNext())
+                            break;
+                        Map.Entry c = cardLib.next();
+                        AbstractCard card = (AbstractCard)c.getValue();
+                        if (card instanceof GkmasCard &&card.hasTag(GkmasCardTag.IDOL_CARD_TAG) && (
+                                !UnlockTracker.isCardLocked((String)c.getKey()) || Settings.isDailyRun)){
+                            GkmasCard gkmasCard = (GkmasCard)card;
+                            switch (gkmasCard.bannerColor){
+                                case "blue":
+                                    AbstractDungeon.commonCardPool.addToTop(card);
+                                    break;
+                                case "yellow":
+                                    AbstractDungeon.uncommonCardPool.addToTop(card);
+                                    break;
+                                case "color":
+                                    AbstractDungeon.rareCardPool.addToTop(card);
+                                    break;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    /**
+     * 感理之衡
+     */
+    @SpirePatch2(clz = AbstractDungeon.class, method = "getCard", paramtypez = {AbstractCard.CardRarity.class})
+    public static class PrefixPatchAbstractDungeon_getCard {
+        @SpirePrefixPatch
+        public static SpireReturn<AbstractCard> prefix(AbstractCard.CardRarity rarity){
+            if (AbstractDungeon.player!=null&&AbstractDungeon.player.hasRelic(BalanceLogicAndSense.ID)){
+                return SpireReturn.Return(getAnyGkmasCard(rarity));
+            }
+            return SpireReturn.Continue();
+        }
+    }
+
+    public static AbstractCard getAnyGkmasCard(AbstractCard.CardRarity rarity) {
+        CardGroup anyCard = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
+        for (Map.Entry<String, AbstractCard> c : CardLibrary.cards.entrySet()) {
+            if (isGkmasColor(c.getValue())&&(c.getValue()).rarity == rarity && (c.getValue()).type != AbstractCard.CardType.CURSE && (c
+                    .getValue()).type != AbstractCard.CardType.STATUS && (!UnlockTracker.isCardLocked(c.getKey()) ||
+                    Settings.treatEverythingAsUnlocked()))
+                anyCard.addToBottom(c.getValue());
+        }
+        anyCard.shuffle(AbstractDungeon.cardRng);
+        return anyCard.getRandomCard(true, rarity).makeCopy();
+    }
+
+    public static boolean isGkmasColor(AbstractCard card) {
+        return card.color==AbstractDungeon.player.getCardColor()||card.color == PlayerColorEnum.gkmasModColor || card.color == PlayerColorEnum.gkmasModColorLogic || card.color == PlayerColorEnum.gkmasModColorSense|| card.color == PlayerColorEnum.gkmasModColorAnomaly|| card.color == PlayerColorEnum.gkmasModColorMoon;
+    }
+
+    /**
+     * 卡组中的唯一卡不会重复出现
+     */
+    @SpirePatch2(clz = AbstractDungeon.class, method = "getRewardCards")
+    public static class InsertPatchAbstractDungeon_getRewardCards {
+        @SpireInsertPatch(rloc = 1837-1792,localvars = {"card","containsDupe"})
+        public static SpireReturn<Void> insert(AbstractCard card,@ByRef boolean[] containsDupe){
+            if(card!=null&&card.hasTag(GkmasCardTag.ONLY_ONE_TAG)){
+                for(AbstractCard c:AbstractDungeon.player.masterDeck.group) {
+                    if (c.cardID.equals(card.cardID)) {
+                        containsDupe[0] = true;
+                        return SpireReturn.Continue();
+                    }
+                }
+            }
+            return SpireReturn.Continue();
+        }
+    }
+
+    /**
+     * 卡组中的唯一卡不会重复出现
+     */
+    @SpirePatch2(clz = AbstractDungeon.class, method = "getCardFromPool", paramtypez = {AbstractCard.CardRarity.class,AbstractCard.CardType.class,boolean.class})
+    public static class getCardFromPoolInsertPatch {
+        @SpireInsertPatch(rlocs={4,10,22},localvars = {"retVal"})
+        public static SpireReturn<AbstractCard> postfix(AbstractCard.CardRarity rarity, AbstractCard.CardType type, boolean useRng,AbstractCard retVal){
+            if(retVal!=null&&retVal.hasTag(GkmasCardTag.ONLY_ONE_TAG)){
+                for(AbstractCard c:AbstractDungeon.player.masterDeck.group) {
+                    if (c.cardID.equals(retVal.cardID)) {
+                        return SpireReturn.Return(AbstractDungeon.getCardFromPool(rarity,type,useRng));
+                    }
+                }
+            }
+            return SpireReturn.Continue();
+        }
+    }
 
 }

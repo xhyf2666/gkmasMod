@@ -1,34 +1,23 @@
 package gkmasmod.downfall.cards.anomaly;
 
-import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import gkmasmod.actions.BattlePracticeAction;
 import gkmasmod.actions.GrowAction;
-import gkmasmod.cardCustomEffect.MagicCustom;
-import gkmasmod.cardCustomEffect.MoreActionCustom;
-import gkmasmod.cardCustomEffect.SecondMagicCustom;
-import gkmasmod.cards.GkmasCard;
 import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.downfall.bosses.IdolBoss_hume;
-import gkmasmod.downfall.bosses.IdolBoss_shro;
 import gkmasmod.downfall.cards.GkmasBossCard;
-import gkmasmod.downfall.cards.logic.ENSeriousHobby;
 import gkmasmod.downfall.charbosses.bosses.AbstractCharBoss;
-import gkmasmod.growEffect.DamageGrow;
+import gkmasmod.cardGrowEffect.DamageGrow;
 import gkmasmod.powers.FullPowerValue;
 import gkmasmod.powers.TempSavePower;
-import gkmasmod.utils.CustomHelper;
 import gkmasmod.utils.IdolData;
 import gkmasmod.utils.NameHelper;
 import gkmasmod.utils.SoundHelper;
-
-import java.util.ArrayList;
 
 public class ENNewStage extends GkmasBossCard {
     private static final String CLASSNAME = ENNewStage.class.getSimpleName();
@@ -64,6 +53,9 @@ public class ENNewStage extends GkmasBossCard {
         this.baseSecondMagicNumber = BASE_MAGIC2;
         this.secondMagicNumber = this.baseSecondMagicNumber;
         this.intent = AbstractMonster.Intent.MAGIC;
+
+        this.backGroundColor = IdolData.hume;
+        updateBackgroundImg();
     }
 
     @Override

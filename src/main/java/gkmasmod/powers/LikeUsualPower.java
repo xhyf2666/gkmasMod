@@ -9,13 +9,9 @@ import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.stances.AbstractStance;
-import gkmasmod.actions.GrowAction;
 import gkmasmod.downfall.charbosses.actions.common.EnemyGainEnergyAction;
 import gkmasmod.downfall.charbosses.bosses.AbstractCharBoss;
 import gkmasmod.downfall.charbosses.stances.ENPreservationStance;
-import gkmasmod.growEffect.BlockGrow;
-import gkmasmod.growEffect.DamageGrow;
-import gkmasmod.stances.ConcentrationStance;
 import gkmasmod.stances.PreservationStance;
 import gkmasmod.utils.NameHelper;
 
@@ -30,8 +26,8 @@ public class LikeUsualPower extends AbstractPower {
 
     private static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
 
-    String path128 = String.format("gkmasModResource/img/powers/%s_84.png",CLASSNAME);;
-    String path48 = String.format("gkmasModResource/img/powers/%s_32.png",CLASSNAME);;
+    String path128 = String.format("gkmasModResource/img/powers/%s_84.png",CLASSNAME);
+    String path48 = String.format("gkmasModResource/img/powers/%s_32.png",CLASSNAME);
 
     public LikeUsualPower(AbstractCreature owner, int Amount) {
         this.name = NAME;
@@ -40,15 +36,12 @@ public class LikeUsualPower extends AbstractPower {
         this.type = PowerType.BUFF;
         this.amount = Amount;
 
-        // 添加一大一小两张能力图
         this.region128 = new TextureAtlas.AtlasRegion(ImageMaster.loadImage(path128), 0, 0, 84, 84);
         this.region48 = new TextureAtlas.AtlasRegion(ImageMaster.loadImage(path48), 0, 0, 32, 32);
 
-        // 首次添加能力更新描述
         this.updateDescription();
     }
 
-    // 能力在更新时如何修改描述
     public void updateDescription() {
         this.description = String.format(DESCRIPTIONS[0], this.amount);
     }
@@ -59,7 +52,7 @@ public class LikeUsualPower extends AbstractPower {
         if(this.owner instanceof AbstractPlayer){
             if(oldStance.ID.equals(PreservationStance.STANCE_ID)){
                 PreservationStance preservationStance = (PreservationStance) oldStance;
-                if(preservationStance.stage==1){
+                if(preservationStance.stage>=1){
                     addToBot(new GainEnergyAction(this.amount));
                 }
             }
@@ -67,7 +60,7 @@ public class LikeUsualPower extends AbstractPower {
         else if(this.owner instanceof AbstractCharBoss){
             if(oldStance.ID.equals(ENPreservationStance.STANCE_ID)){
                 ENPreservationStance preservationStance = (ENPreservationStance) oldStance;
-                if(preservationStance.stage==1){
+                if(preservationStance.stage>=1){
                     addToBot(new EnemyGainEnergyAction(this.amount));
                 }
             }

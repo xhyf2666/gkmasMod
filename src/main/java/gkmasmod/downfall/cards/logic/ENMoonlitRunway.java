@@ -13,6 +13,7 @@ import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.downfall.cards.GkmasBossCard;
 import gkmasmod.powers.MoonlitRunwayPlusPower;
 import gkmasmod.powers.MoonlitRunwayPower;
+import gkmasmod.utils.IdolData;
 import gkmasmod.utils.NameHelper;
 import gkmasmod.utils.SoundHelper;
 
@@ -46,6 +47,8 @@ public class ENMoonlitRunway extends GkmasBossCard {
         this.baseSecondMagicNumber = BASE_MAGIC2;
         this.secondMagicNumber = this.baseSecondMagicNumber;
         this.intent = AbstractMonster.Intent.BUFF;
+        this.backGroundColor = IdolData.amao;
+        updateBackgroundImg();
         this.tags.add(GkmasCardTag.YARUKI_TAG);
         this.tags.add(GkmasCardTag.GOOD_IMPRESSION_TAG);
     }

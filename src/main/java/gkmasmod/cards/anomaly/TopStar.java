@@ -15,8 +15,8 @@ import gkmasmod.cardCustomEffect.ExhaustRemoveCustom;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
-import gkmasmod.growEffect.DamageGrow;
-import gkmasmod.growEffect.EnergyGrow;
+import gkmasmod.cardGrowEffect.DamageGrow;
+import gkmasmod.cardGrowEffect.EnergyGrow;
 import gkmasmod.stances.ConcentrationStance;
 import gkmasmod.utils.*;
 

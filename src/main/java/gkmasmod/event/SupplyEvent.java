@@ -14,9 +14,11 @@ import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndObtainEffect;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.MisuzuCharacter;
+import gkmasmod.characters.OtherIdolCharacter;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.modcore.GkmasMod;
 import gkmasmod.relics.*;
+import gkmasmod.screen.OtherSkinSelectScreen;
 import gkmasmod.screen.SkinSelectScreen;
 import gkmasmod.utils.CommonEnum;
 import gkmasmod.utils.IdolData;
@@ -42,6 +44,9 @@ public class SupplyEvent extends AbstractImageEvent {
         this.cards = new ArrayList<>();
         if(AbstractDungeon.player instanceof MisuzuCharacter){
             getRandomCard(PlayerColorEnum.gkmasModColorSense,cards);
+        }
+        if(AbstractDungeon.player instanceof OtherIdolCharacter){
+            type  = IdolData.getOtherIdol(OtherSkinSelectScreen.Inst.idolIndex).getType(OtherSkinSelectScreen.Inst.skinIndex);
         }
         else{
             if(type==CommonEnum.IdolType.SENSE){

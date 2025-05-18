@@ -57,6 +57,8 @@ public class ENFlyAgain extends GkmasBossCard {
         this.tags.add(GkmasCardTag.GOOD_IMPRESSION_TAG);
         this.tags.add(GkmasCardTag.MORE_ACTION_TAG);
         this.intent = AbstractMonster.Intent.DEFEND_BUFF;
+        this.backGroundColor = IdolData.ssmk;
+        updateBackgroundImg();
     }
 
 

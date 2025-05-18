@@ -15,6 +15,7 @@ import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.downfall.cards.GkmasBossCard;
 import gkmasmod.downfall.cards.free.ENSleepLate;
+import gkmasmod.utils.IdolData;
 import gkmasmod.utils.NameHelper;
 import gkmasmod.utils.SoundHelper;
 
@@ -45,6 +46,8 @@ public class ENStubborn extends GkmasBossCard {
         this.baseMagicNumber = BASE_MAGIC;
         this.magicNumber = this.baseMagicNumber;
         this.exhaust = true;
+        this.backGroundColor = IdolData.ttmr;
+        updateBackgroundImg();
         this.intent = AbstractMonster.Intent.ATTACK_BUFF;
         this.tags.add(GkmasCardTag.FOCUS_TAG);
         this.tags.add(GkmasCardTag.IDOL_CARD_TAG);

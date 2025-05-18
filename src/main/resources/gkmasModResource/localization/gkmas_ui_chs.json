@@ -18,7 +18,7 @@
     "TEXT": ["极月"]
   },
   "gkmasMod:other": {
-    "TEXT": ["偶像大师"]
+    "TEXT": ["IDOLM@STER"]
   },
   "typeHintName:logic": {
     "TEXT": ["理性"]
@@ -77,6 +77,9 @@
   "styleHintName:concentration": {
     "TEXT": ["强气"]
   },
+  "styleHintName:overPreservation": {
+    "TEXT": ["悠闲"]
+  },
   "styleHintName:allCard": {
     "TEXT": ["育成"]
   },
@@ -91,6 +94,9 @@
   },
   "styleHintName:pinkGirl": {
     "TEXT": ["雌小鬼"]
+  },
+  "styleHintName:robot": {
+    "TEXT": ["机器人"]
   },
   "styleHint:goodTune": {
     "TEXT": ["叠加 #y好调 和 #y绝好调 ，获得高额增伤。"]
@@ -110,6 +116,9 @@
   "styleHint:concentration": {
     "TEXT": ["在 #y强气 和 #y温存 间灵活切换，叠加 #y成长 。"]
   },
+  "styleHint:overPreservation": {
+    "TEXT": ["在 #y悠闲 姿态下，进入 #y强气 获得 #y热意 ，或进入 #y全力 叠加 #y成长 。"]
+  },
   "styleHint:allCard": {
     "TEXT": ["卡池为通用卡和偶像卡，风格多变。"]
   },
@@ -124,6 +133,9 @@
   },
   "styleHint:pinkGirl": {
     "TEXT": ["每回合结束时，交换 #y力量 和 #y敏捷 层数。"]
+  },
+  "styleHint:robot": {
+    "TEXT": ["卡池为蓝色卡，叠加 #y集中 获得成长。"]
   },
   "gkmasMod:PocketBookUI": {
     "TEXT": ["姓名","班级","生日","年龄","身高","体重","三维","兴趣","对手","特长","关闭","下一页","考核标准","满足考核标准可以使担当偶像更容易通过最终考核。","育成课题","完成育成课题后，可以获得对应奖励。 NL 育成课题需要按顺序完成。"]
@@ -382,17 +394,17 @@
   },
   "growEffect:BlockGrow": {
     "TEXT": [
-      "格挡增加 %d"
+      "gkmasmod:格挡增加 %d"
     ]
   },
   "growEffect:BaseDamageGrow": {
     "TEXT": [
-      "基础伤害增加 %d"
+      "gkmasmod:基础伤害增加 %d"
     ]
   },
   "growEffect:BaseBlockGrow": {
     "TEXT": [
-      "基础格挡增加 %d"
+      "gkmasmod:基础格挡增加 %d"
     ]
   },
   "growEffect:CanNotPlayGrow": {
@@ -403,6 +415,16 @@
   "growEffect:SleepyGrow": {
     "TEXT": [
       "gkmasmod:梦游"
+    ]
+  },
+  "growEffect:TempOutAutoPlayGrow": {
+    "TEXT": [
+      "gkmasmod:释出 ：自动打出。"
+    ]
+  },
+  "growEffect:EtherealGrow": {
+    "TEXT": [
+      "虚无"
     ]
   },
   "customEffect:MoreActionCustom": {

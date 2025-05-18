@@ -55,16 +55,22 @@ public class AbstractPlayerPatch {
         public static SpireField<Double> finalDamageRate = new SpireField<>(() -> 1.0);
     }
 
+    /**
+     * 战斗开始时，将玩家的本场战斗内获得格挡数设为0
+     */
     @SpirePatch(clz = AbstractPlayer.class,method = "applyStartOfCombatLogic")
-    public static class AbstractPlayerPrefixPatch_applyStartOfCombatLogic {
+    public static class PrePatchAbstractPlayer_applyStartOfCombatLogic {
         @SpirePrefixPatch
         public static void Prefix() {
             AbstractCreaturePatch.BlockField.ThisCombatBlock.set(AbstractDungeon.player, 0);
         }
     }
 
+    /**
+     * ktn 在拥有绿帽时，可以照常获得金币
+     */
     @SpirePatch(clz = AbstractPlayer.class,method = "gainGold")
-    public static class AbstractPlayerPrefixPatch_gainGold {
+    public static class PrePatchAbstractPlayer_gainGold {
         @SpirePrefixPatch
         public static void Prefix(AbstractPlayer __instance, int amount) {
             if (__instance.hasRelic("Ectoplasm")) {
@@ -84,6 +90,9 @@ public class AbstractPlayerPatch {
         }
     }
 
+    /**
+     * 获得金币时，触发伙伴ktn的协同攻击
+     */
     @SpirePatch(clz = AbstractPlayer.class,method = "gainGold")
     public static class InsertPatchAbstractPlayer_gainGold {
         @SpireInsertPatch(rloc =865-855)
@@ -100,6 +109,9 @@ public class AbstractPlayerPatch {
         }
     }
 
+    /**
+     * 失去金币时，触发伙伴ktn的协同攻击
+     */
     @SpirePatch(clz = AbstractPlayer.class,method = "loseGold")
     public static class InsertPatchAbstractPlayer_loseGold {
         @SpireInsertPatch(rloc =844-830)
@@ -116,6 +128,9 @@ public class AbstractPlayerPatch {
         }
     }
 
+    /**
+     * 受到伤害时，触发燐羽诅咒的效果，抵消该伤害
+     */
     @SpirePatch(clz = AbstractPlayer.class,method = "damage")
     public static class InsertPatchAbstractPlayer_damage2 {
         @SpireInsertPatch(rloc =1761-1725,localvars = {"damageAmount"})
@@ -133,6 +148,9 @@ public class AbstractPlayerPatch {
         }
     }
 
+    /**
+     * 死亡时，触发 复苏 和 闪现
+     */
     @SpirePatch(clz = AbstractPlayer.class,method = "damage")
     public static class InsertPatchAbstractPlayer_damage {
         @SpireInsertPatch(rloc =1851-1725)
@@ -153,6 +171,9 @@ public class AbstractPlayerPatch {
         }
     }
 
+    /**
+     * 切换姿态时，触发 消耗堆和暂存区的成长，增加ber美铃的能力计数
+     */
     @SpirePatch(clz = AbstractPlayer.class,method = "switchedStance")
     public static class PostPatchAbstractPlayer_switchedStance {
         @SpirePostfixPatch
@@ -161,11 +182,11 @@ public class AbstractPlayerPatch {
                 GkmasMod.needCheckCard.switchedStance();
                 GkmasMod.needCheckCard = null;
             }
-            for (AbstractCard c : AbstractDungeon.player.exhaustPile.group){
-                if(c instanceof GkmasCard){
-                    c.switchedStance();
-                }
-            }
+//            for (AbstractCard c : AbstractDungeon.player.exhaustPile.group){
+//                if(c instanceof GkmasCard){
+//                    c.switchedStance();
+//                }
+//            }
             if(AbstractDungeon.player.hasPower(TempSavePower.POWER_ID)){
                 TempSavePower tempSavePower = (TempSavePower) AbstractDungeon.player.getPower(TempSavePower.POWER_ID);
                 for(AbstractCard c:tempSavePower.getCards()){
@@ -185,17 +206,7 @@ public class AbstractPlayerPatch {
                     mo.getPower(MisuzuNightPower.POWER_ID).onSpecificTrigger();
                 }
             }
-
         }
     }
-
-//    @SpirePatch(clz = AbstractPlayer.class,method = "renderPowerTips")
-//    public static class AbstractPlayerPrefixPatch_renderPowerTips {
-//        @SpirePrefixPatch
-//        public static void Prefix(AbstractPlayer __instance) {
-//            System.out.println(__instance.stance);
-//            System.out.println(__instance.stance.ID);
-//        }
-//    }
 
 }

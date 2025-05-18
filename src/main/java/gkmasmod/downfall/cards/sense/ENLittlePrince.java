@@ -14,6 +14,7 @@ import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.downfall.cards.GkmasBossCard;
 import gkmasmod.downfall.cards.free.ENSleepLate;
 import gkmasmod.powers.GoodTune;
+import gkmasmod.utils.IdolData;
 import gkmasmod.utils.NameHelper;
 import gkmasmod.utils.PlayerHelper;
 import gkmasmod.utils.SoundHelper;
@@ -46,6 +47,8 @@ public class ENLittlePrince extends GkmasBossCard {
         this.baseDamage = ATTACK_DMG;
         this.baseSecondDamage = SECOND_ATTACK_DMG;
         this.exhaust = true;
+        this.backGroundColor = IdolData.amao;
+        updateBackgroundImg();
         this.intent = AbstractMonster.Intent.ATTACK;
         this.tags.add(GkmasCardTag.GOOD_TUNE_TAG);
         this.tags.add(GkmasCardTag.IDOL_CARD_TAG);

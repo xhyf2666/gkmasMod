@@ -56,6 +56,8 @@ public class ENBeyondTheCrossing extends GkmasBossCard {
         this.baseMagicNumber = BASE_MAGIC;
         this.magicNumber = this.baseMagicNumber;
         this.exhaust = true;
+        this.backGroundColor = IdolData.ssmk;
+        updateBackgroundImg();
         this.tags.add(GkmasCardTag.FULL_POWER_TAG);
         this.tags.add(GkmasCardTag.PRESERVATION_TAG);
         this.tags.add(GkmasCardTag.IDOL_CARD_TAG);

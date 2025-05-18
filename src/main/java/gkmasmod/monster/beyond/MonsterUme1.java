@@ -1,27 +1,17 @@
 package gkmasmod.monster.beyond;
 
 import basemod.abstracts.CustomMonster;
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.*;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
-import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import com.megacrit.cardcrawl.vfx.SpeechBubble;
-import com.megacrit.cardcrawl.vfx.combat.ViceCrushEffect;
 import gkmasmod.actions.GrowAction;
-import gkmasmod.growEffect.BlockGrow;
-import gkmasmod.growEffect.DamageGrow;
-import gkmasmod.modcore.GkmasMod;
-import gkmasmod.monster.ChangeScene;
-import gkmasmod.monster.LatterEffect;
-import gkmasmod.patches.AbstractMonsterPatch;
+import gkmasmod.cardGrowEffect.BlockGrow;
+import gkmasmod.cardGrowEffect.DamageGrow;
 import gkmasmod.powers.*;
 
 public class MonsterUme1 extends CustomMonster {

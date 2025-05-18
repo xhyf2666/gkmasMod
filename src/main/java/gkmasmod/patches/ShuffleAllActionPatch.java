@@ -16,7 +16,7 @@ public class ShuffleAllActionPatch
 {
 
     @SpirePatch(clz = ShuffleAllAction.class,method = SpirePatch.CONSTRUCTOR)
-    public static class ShuffleAllActionInsertPatch_update{
+    public static class InsertPatchShuffleAllAction_update{
         @SpirePostfixPatch()
         public static void postfix(ShuffleAllAction __instance) {
             if(AbstractDungeon.player.hasPower(PracticeAgainPower.POWER_ID))

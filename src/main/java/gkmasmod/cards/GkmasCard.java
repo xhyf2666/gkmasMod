@@ -18,10 +18,12 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.DexterityPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.screens.SingleCardViewPopup;
-import gkmasmod.Listener.CardImgUpdateListener;
+import gkmasmod.characters.OtherIdolCharacter;
+import gkmasmod.listener.CardImgUpdateListener;
 import gkmasmod.characters.MisuzuCharacter;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.patches.SingleCardViewPopupPatch;
+import gkmasmod.screen.OtherSkinSelectScreen;
 import gkmasmod.screen.SkinSelectScreen;
 import gkmasmod.utils.IdolData;
 
@@ -420,12 +422,18 @@ public abstract class GkmasCard extends CustomCard  implements CardImgUpdateList
     }
 
     public void updateBackgroundImg(){
-        if(this.color == PlayerColorEnum.gkmasModColorMisuzu||this.color == PlayerColorEnum.gkmasModColorMoon||this.color == PlayerColorEnum.gkmasModColorOther)
+        if(backGroundColor==""&&(this.color == PlayerColorEnum.gkmasModColorMisuzu||this.color == PlayerColorEnum.gkmasModColorMoon||this.color == PlayerColorEnum.gkmasModColorOther))
             return;
         String idolName;
         idolName = SkinSelectScreen.Inst.idolName;
-        if(AbstractDungeon.player !=null && AbstractDungeon.player instanceof MisuzuCharacter){
+        if(AbstractDungeon.player instanceof MisuzuCharacter){
             idolName = IdolData.hmsz;
+        }
+        if(AbstractDungeon.player instanceof OtherIdolCharacter){
+            idolName = "othe";
+            if(OtherSkinSelectScreen.Inst.idolName.equals(IdolData.sson)||OtherSkinSelectScreen.Inst.idolName.equals(IdolData.sgka)||OtherSkinSelectScreen.Inst.idolName.equals(IdolData.andk)){
+                idolName = "moon";
+            }
         }
         Color color = Settings.RED_TEXT_COLOR.cpy();
         Color textColor = Settings.PURPLE_RELIC_COLOR.cpy();
@@ -621,8 +629,5 @@ public abstract class GkmasCard extends CustomCard  implements CardImgUpdateList
 
     public void renderCardHeader(SpriteBatch sb) {
         renderCardHeader(sb, this.current_x, this.current_y, 400.0F, this.drawScale); }
-
-
-
 
 }

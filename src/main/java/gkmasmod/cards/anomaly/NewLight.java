@@ -58,7 +58,7 @@ public class NewLight extends GkmasCard {
     public void use(AbstractPlayer p, AbstractMonster m) {
         addToBot(new ChangeStanceAction(PreservationStance.STANCE_ID2));
         addToBot(new ApplyPowerAction(p,p,new EnthusiasticAddPower(p,this.magicNumber),this.magicNumber));
-//        SoundHelper.playSound("gkmasModResource/audio/voice/skillcard/cidol_kllj_3_015_produce_skillcard_01.ogg");
+        SoundHelper.playSound("gkmasModResource/audio/voice/skillcard/cidol_fktn_3_016_produce_skillcard_01.ogg");
 
     }
 

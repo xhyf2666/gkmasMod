@@ -6,8 +6,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import gkmasmod.cards.anomaly.Starlight;
 import gkmasmod.cards.anomaly.TakeFlight;
-import gkmasmod.growEffect.AttackTimeGrow;
-import gkmasmod.growEffect.DamageGrow;
+import gkmasmod.cardGrowEffect.DamageGrow;
 import gkmasmod.powers.TempSavePower;
 import gkmasmod.utils.GrowHelper;
 

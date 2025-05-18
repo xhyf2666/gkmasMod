@@ -14,9 +14,8 @@ import gkmasmod.utils.ThreeSizeHelper;
 
 public class ChampPatch
 {
-
     @SpirePatch(clz = Champ.class,method = SpirePatch.CONSTRUCTOR)
-    public static class ChampPostPatch_constructor {
+    public static class PostPatchChamp_Constructor {
         @SpirePostfixPatch
         public static void Post(Champ __instance, @ByRef int[] ___blockAmt, @ByRef int[] ___forgeAmt) {
             if(AbstractDungeon.player!=null&&AbstractDungeon.player.hasRelic(PocketBook.ID)){

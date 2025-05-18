@@ -6,22 +6,16 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import gkmasmod.cardCustomEffect.DamageCustom;
-import gkmasmod.cardCustomEffect.ExhaustRemoveCustom;
-import gkmasmod.cards.GkmasCard;
 import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.downfall.cards.GkmasBossCard;
 import gkmasmod.downfall.charbosses.bosses.AbstractCharBoss;
 import gkmasmod.downfall.charbosses.stances.ENFullPowerStance;
-import gkmasmod.growEffect.AttackTimeGrow;
+import gkmasmod.cardGrowEffect.AttackTimeGrow;
 import gkmasmod.stances.FullPowerStance;
 import gkmasmod.utils.*;
-
-import java.util.ArrayList;
 
 public class ENLetMeBecomeIdol extends GkmasBossCard {
     private static final String CLASSNAME = ENLetMeBecomeIdol.class.getSimpleName();
@@ -59,6 +53,8 @@ public class ENLetMeBecomeIdol extends GkmasBossCard {
         this.growMagicNumber = this.baseGrowMagicNumber;
         this.exhaust = true;
         this.intent = AbstractMonster.Intent.ATTACK;
+        this.backGroundColor = IdolData.hrnm;
+        updateBackgroundImg();
     }
 
     public ENLetMeBecomeIdol(int fullPowerTime) {

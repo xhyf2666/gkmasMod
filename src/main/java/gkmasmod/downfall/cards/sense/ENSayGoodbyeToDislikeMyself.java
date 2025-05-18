@@ -54,6 +54,8 @@ public class ENSayGoodbyeToDislikeMyself extends GkmasBossCard {
         this.tags.add(GkmasCardTag.IDOL_CARD_TAG);
         this.tags.add(GkmasCardTag.FOCUS_TAG);
         this.intent = AbstractMonster.Intent.BUFF;
+        this.backGroundColor = IdolData.ttmr;
+        updateBackgroundImg();
     }
 
 

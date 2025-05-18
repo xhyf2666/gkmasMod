@@ -25,15 +25,11 @@ import org.lwjgl.Sys;
 
 public class GoodTune extends AbstractPower {
     private static final String CLASSNAME = GoodTune.class.getSimpleName();
-    // 能力的ID
     public static final String POWER_ID = NameHelper.makePath(CLASSNAME);
-    // 能力的本地化字段
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(CLASSNAME);
 
     private static final PowerStrings powerStrings2 = CardCrawlGame.languagePack.getPowerStrings("NegativeGoodTune");
-    // 能力的名称
     private static final String NAME = powerStrings.NAME;
-    // 能力的描述
     private static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
 
     private static float BASR_RATE = 1.5f;
@@ -52,11 +48,9 @@ public class GoodTune extends AbstractPower {
         this.type = PowerType.BUFF;
         this.amount = Amount;
 
-        // 添加一大一小两张能力图
         this.region128 = new TextureAtlas.AtlasRegion(ImageMaster.loadImage(path128), 0, 0, 84, 84);
         this.region48 = new TextureAtlas.AtlasRegion(ImageMaster.loadImage(path48), 0, 0, 32, 32);
 
-        // 首次添加能力更新描述
         this.updateDescription();
         this.canGoNegative = true;
     }

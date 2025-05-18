@@ -13,9 +13,8 @@ import gkmasmod.utils.ThreeSizeHelper;
 public class TheCollectorPatch
 {
 
-
     @SpirePatch(clz = TheCollector.class,method = SpirePatch.CONSTRUCTOR)
-    public static class ChampPostPatch_constructor {
+    public static class PostPatchTheCollector_Constructor {
         @SpirePostfixPatch
         public static void Post(TheCollector __instance, @ByRef int[] ___blockAmt) {
             if(AbstractDungeon.player!=null&&AbstractDungeon.player.hasRelic(PocketBook.ID)){

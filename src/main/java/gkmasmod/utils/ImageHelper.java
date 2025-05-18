@@ -10,6 +10,7 @@ public class ImageHelper {
     public static Texture VoTagImg = ImageMaster.loadImage("gkmasModResource/img/UI/ThreeSize/VoTag.png");
     public static Texture DaTagImg = ImageMaster.loadImage("gkmasModResource/img/UI/ThreeSize/DaTag.png");
     public static Texture ViTagImg = ImageMaster.loadImage("gkmasModResource/img/UI/ThreeSize/ViTag.png");
+    public static Texture misuzuNameImg = ImageMaster.loadImage("gkmasModResource/img/UI/misuzuName.png");
     public static Texture finalCircleBg = ImageMaster.loadImage("gkmasModResource/img/UI/ThreeSize/finalCircle/bg.png");
     public static Texture BlackBg = ImageMaster.loadImage("gkmasModResource/img/UI/black.png");
     public static Texture[] arcs= new Texture[3];

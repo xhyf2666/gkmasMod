@@ -18,7 +18,7 @@ public class TorchHeadPatch
 {
 
     @SpirePatch(clz = TorchHead.class,method = SpirePatch.CONSTRUCTOR, paramtypez = {float.class, float.class})
-    public static class TorchHeadPostPatch_constructor {
+    public static class PostPatchTorchHead_Constructor {
         @SpirePostfixPatch
         public static void Post(TorchHead __instance,float x, float y) {
             if(AbstractDungeon.player!=null&&AbstractDungeon.player.hasRelic(PocketBook.ID)){

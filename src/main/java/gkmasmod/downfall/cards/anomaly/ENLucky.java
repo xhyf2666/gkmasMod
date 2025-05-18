@@ -9,23 +9,13 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import gkmasmod.actions.GrowAction;
-import gkmasmod.cardCustomEffect.DamageCustom;
-import gkmasmod.cardCustomEffect.MagicCustom;
-import gkmasmod.cardCustomEffect.SecondMagicCustom;
-import gkmasmod.cards.GkmasCard;
 import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.downfall.cards.GkmasBossCard;
 import gkmasmod.downfall.charbosses.bosses.AbstractCharBoss;
 import gkmasmod.downfall.charbosses.stances.ENConcentrationStance;
-import gkmasmod.growEffect.DamageGrow;
 import gkmasmod.powers.FullPowerValue;
-import gkmasmod.stances.ConcentrationStance;
-import gkmasmod.utils.CustomHelper;
 import gkmasmod.utils.NameHelper;
-
-import java.util.ArrayList;
 
 public class ENLucky extends GkmasBossCard {
     private static final String CLASSNAME = ENLucky.class.getSimpleName();

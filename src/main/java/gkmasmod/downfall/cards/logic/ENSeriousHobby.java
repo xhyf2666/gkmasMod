@@ -12,6 +12,7 @@ import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.downfall.cards.GkmasBossCard;
 import gkmasmod.downfall.cards.free.ENSleepLate;
+import gkmasmod.utils.IdolData;
 import gkmasmod.utils.NameHelper;
 import gkmasmod.utils.PlayerHelper;
 import gkmasmod.utils.SoundHelper;
@@ -49,6 +50,8 @@ public class ENSeriousHobby extends GkmasBossCard {
         this.baseSecondBlock = BLOCK_AMT2;
         this.exhaust = true;
         this.intent = AbstractMonster.Intent.DEFEND;
+        this.backGroundColor = IdolData.shro;
+        updateBackgroundImg();
         this.tags.add(GkmasCardTag.YARUKI_TAG);
         this.tags.add(GkmasCardTag.IDOL_CARD_TAG);
     }

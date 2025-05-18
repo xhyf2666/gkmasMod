@@ -314,16 +314,13 @@ public class CallResponse extends GkmasCard {
                     }
                 }
             }
-
             for(i = 0; i < tmp.length; ++i) {
                 for(var6 = player.powers.iterator(); var6.hasNext(); tmp[i] = p.atDamageFinalGive(tmp[i], this.damageTypeForTurn, this)) {
                     p = (AbstractPower)var6.next();
                 }
             }
-
             for(i = 0; i < tmp.length; ++i) {
                 var6 = ((AbstractMonster)m.get(i)).powers.iterator();
-
                 while(var6.hasNext()) {
                     p = (AbstractPower)var6.next();
                     if (!((AbstractMonster)m.get(i)).isDying && !((AbstractMonster)m.get(i)).isEscaping) {
@@ -331,37 +328,29 @@ public class CallResponse extends GkmasCard {
                     }
                 }
             }
-
             for(i = 0; i < tmp.length; ++i) {
                 if (tmp[i] < 0.0F) {
                     tmp[i] = 0.0F;
                 }
             }
-
             this.multiDamage = new int[tmp.length];
-
             for(i = 0; i < tmp.length; ++i) {
                 if (this.baseDamage != MathUtils.floor(tmp[i])) {
                     this.isDamageModified = true;
                 }
-
                 this.multiDamage[i] = MathUtils.floor(tmp[i]);
             }
-
             this.damage = this.multiDamage[0];
         }
         this.isSecondDamageModified = false;
         if (!this.isMultiDamage && mo != null) {
             float tmp = (float)this.baseSecondDamage;
-
             int count = PlayerHelper.getPowerAmount(AbstractDungeon.player, StrengthPower.POWER_ID);
             if(this.upgraded&&count > this.magicNumber){
                 int damageAppend = (int) (1.0F *(this.secondMagicNumber/100.0F - 1) * count);
                 tmp += damageAppend;
             }
-
             Iterator var9 = player.relics.iterator();
-
             while(var9.hasNext()) {
                 AbstractRelic r = (AbstractRelic)var9.next();
                 tmp = r.atDamageModify(tmp, this);
@@ -369,40 +358,31 @@ public class CallResponse extends GkmasCard {
                     this.isSecondDamageModified = true;
                 }
             }
-
             AbstractPower p;
             for(var9 = player.powers.iterator(); var9.hasNext(); tmp = p.atDamageGive(tmp, this.damageTypeForTurn, this)) {
                 p = (AbstractPower)var9.next();
             }
-
             tmp = player.stance.atDamageGive(tmp, this.damageTypeForTurn, this);
             if (this.baseSecondDamage != (int)tmp) {
                 this.isSecondDamageModified = true;
             }
-
             for(var9 = mo.powers.iterator(); var9.hasNext(); tmp = p.atDamageReceive(tmp, this.damageTypeForTurn, this)) {
                 p = (AbstractPower)var9.next();
             }
-
             for(var9 = player.powers.iterator(); var9.hasNext(); tmp = p.atDamageFinalGive(tmp, this.damageTypeForTurn, this)) {
                 p = (AbstractPower)var9.next();
             }
-
             for(var9 = mo.powers.iterator(); var9.hasNext(); tmp = p.atDamageFinalReceive(tmp, this.damageTypeForTurn, this)) {
                 p = (AbstractPower)var9.next();
             }
-
             if (tmp < 0.0F) {
                 tmp = 0.0F;
             }
-
             if (this.baseSecondDamage != MathUtils.floor(tmp)) {
                 this.isSecondDamageModified = true;
             }
-
             this.secondDamage = MathUtils.floor(tmp);
         }
-
     }
 
 

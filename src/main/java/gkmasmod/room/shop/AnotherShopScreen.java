@@ -34,6 +34,8 @@ import com.megacrit.cardcrawl.vfx.FloatyEffect;
 import com.megacrit.cardcrawl.vfx.ShopSpeechBubble;
 import com.megacrit.cardcrawl.vfx.SpeechTextEffect;
 import com.megacrit.cardcrawl.vfx.cardManip.PurgeCardEffect;
+import gkmasmod.cards.GkmasCard;
+import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.modcore.GkmasMod;
 import gkmasmod.relics.*;
 import gkmasmod.screen.PocketBookViewScreen;
@@ -324,6 +326,22 @@ public class AnotherShopScreen extends CustomScreen{
         AbstractRelic r;
         for(i = 0; i < this.coloredCards.size(); ++i) {
             tmpPrice = (float)AbstractCard.getPrice((this.coloredCards.get(i)).rarity) * AbstractDungeon.merchantRng.random(0.9F, 1.1F);
+            AbstractCard card = this.coloredCards.get(i);
+            if(card instanceof GkmasCard &&card.hasTag(GkmasCardTag.IDOL_CARD_TAG)){
+                GkmasCard gkmasCard = (GkmasCard)card;
+                AbstractDungeon.merchantRng.setCounter(AbstractDungeon.merchantRng.counter-1);
+                switch (gkmasCard.bannerColor){
+                    case "blue":
+                        tmpPrice = (float)AbstractCard.getPrice(AbstractCard.CardRarity.COMMON) * AbstractDungeon.merchantRng.random(0.9F, 1.1F);
+                        break;
+                    case "yellow":
+                        tmpPrice = (float)AbstractCard.getPrice(AbstractCard.CardRarity.UNCOMMON) * AbstractDungeon.merchantRng.random(0.9F, 1.1F);
+                        break;
+                    case "color":
+                        tmpPrice = (float)AbstractCard.getPrice(AbstractCard.CardRarity.RARE) * AbstractDungeon.merchantRng.random(0.9F, 1.1F);
+                        break;
+                }
+            }
             c = this.coloredCards.get(i);
             c.price = (int)tmpPrice;
             c.current_x = (float)(Settings.WIDTH / 2);
@@ -896,6 +914,21 @@ public class AnotherShopScreen extends CustomScreen{
 
     private void setPrice(AbstractCard card) {
         float tmpPrice = (float)AbstractCard.getPrice(card.rarity) * AbstractDungeon.merchantRng.random(0.9F, 1.1F);
+        if(card instanceof GkmasCard &&card.hasTag(GkmasCardTag.IDOL_CARD_TAG)){
+            GkmasCard gkmasCard = (GkmasCard)card;
+            AbstractDungeon.merchantRng.setCounter(AbstractDungeon.merchantRng.counter-1);
+            switch (gkmasCard.bannerColor){
+                case "blue":
+                    tmpPrice = (float)AbstractCard.getPrice(AbstractCard.CardRarity.COMMON) * AbstractDungeon.merchantRng.random(0.9F, 1.1F);
+                    break;
+                case "yellow":
+                    tmpPrice = (float)AbstractCard.getPrice(AbstractCard.CardRarity.UNCOMMON) * AbstractDungeon.merchantRng.random(0.9F, 1.1F);
+                    break;
+                case "color":
+                    tmpPrice = (float)AbstractCard.getPrice(AbstractCard.CardRarity.RARE) * AbstractDungeon.merchantRng.random(0.9F, 1.1F);
+                    break;
+            }
+        }
         if (card.color == AbstractCard.CardColor.COLORLESS) {
             tmpPrice *= 1.2F;
         }

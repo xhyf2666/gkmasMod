@@ -7,8 +7,8 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.MonsterHelper;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.MonsterGroup;
-import com.megacrit.cardcrawl.monsters.exordium.LouseDefensive;
-import com.megacrit.cardcrawl.monsters.exordium.LouseNormal;
+import com.megacrit.cardcrawl.monsters.exordium.*;
+import gkmasmod.characters.OtherIdolCharacter;
 import gkmasmod.monster.exordium.*;
 import gkmasmod.relics.PocketBook;
 
@@ -16,33 +16,38 @@ import java.util.ArrayList;
 
 public class MonsterHelperPatch {
     @SpirePatch(clz = MonsterHelper.class,method = "getEncounter")
-    public static class MonsterHelperPrefix_getEncounter {
+    public static class PrePatchMonsterHelper_getEncounter {
         @SpirePrefixPatch
         public static SpireReturn<MonsterGroup> prefix(String key) {
-            if(AbstractDungeon.player.hasRelic(PocketBook.ID)){
+            if(AbstractDungeon.player.hasRelic(PocketBook.ID)||AbstractDungeon.player instanceof OtherIdolCharacter){
                 if (key.equals("Large Slime")){
                     if (AbstractDungeon.miscRng.randomBoolean())
                         return SpireReturn.Return(new MonsterGroup(new AcidSlimeTemari_L()));
                     return SpireReturn.Return(new MonsterGroup(new SpikeSlimeTemari_L()));
                 }
-
+                else if(key.equals("Looter")){
+                    return SpireReturn.Return(new MonsterGroup(new LooterBandai(0.0F, 0.0F)));
+                }
+                else if(key.equals("2 Thieves")){
+                    return SpireReturn.Return(new MonsterGroup(new AbstractMonster[] {new LooterBandai(-200.0F, 15.0F), new LooterNamco(80.0F, 0.0F) }));
+                }
             }
             return SpireReturn.Continue();
         }
     }
 
     @SpirePatch(clz = MonsterHelper.class,method = "spawnSmallSlimes")
-    public static class MonsterHelperPrefix_spawnSmallSlimes {
+    public static class PrePatchMonsterHelper_spawnSmallSlimes {
         @SpirePrefixPatch
         public static SpireReturn<MonsterGroup> prefix() {
-            if(AbstractDungeon.player.hasRelic(PocketBook.ID)){
+            if(AbstractDungeon.player.hasRelic(PocketBook.ID)||AbstractDungeon.player instanceof OtherIdolCharacter){
                 AbstractMonster[] retVal = new AbstractMonster[2];
                 if (AbstractDungeon.miscRng.randomBoolean()) {
-                    retVal[0] = (AbstractMonster)new SpikeSlimeTemari_S(-230.0F, 32.0F, 0);
-                    retVal[1] = (AbstractMonster)new AcidSlimeTemari_M(35.0F, 8.0F);
+                    retVal[0] = new SpikeSlimeTemari_S(-230.0F, 32.0F, 0);
+                    retVal[1] = new AcidSlimeTemari_M(35.0F, 8.0F);
                 } else {
-                    retVal[0] = (AbstractMonster)new AcidSlimeTemari_S(-230.0F, 32.0F, 0);
-                    retVal[1] = (AbstractMonster)new SpikeSlimeTemari_M(35.0F, 8.0F);
+                    retVal[0] = new AcidSlimeTemari_S(-230.0F, 32.0F, 0);
+                    retVal[1] = new SpikeSlimeTemari_M(35.0F, 8.0F);
                 }
                 return SpireReturn.Return(new MonsterGroup(retVal));
             }
@@ -50,11 +55,32 @@ public class MonsterHelperPatch {
         }
     }
 
+    @SpirePatch(clz = MonsterHelper.class,method = "bottomGetStrongHumanoid")
+    public static class PrePatchMonsterHelper_bottomGetStrongHumanoid {
+        @SpirePrefixPatch
+        public static SpireReturn<AbstractMonster> prefix(float x,float y) {
+            if(AbstractDungeon.player.hasRelic(PocketBook.ID)||AbstractDungeon.player instanceof OtherIdolCharacter){
+                ArrayList<AbstractMonster> monsters = new ArrayList<>();
+                monsters.add(new Cultist(x, y));
+                AbstractMonster slaver;
+                if (AbstractDungeon.miscRng.randomBoolean())
+                    slaver = new SlaverRed(x, y);
+                else
+                    slaver = new SlaverBlue(x, y);
+                monsters.add(slaver);
+                monsters.add(new LooterBandai(x, y));
+                AbstractMonster output = monsters.get(AbstractDungeon.miscRng.random(0, monsters.size() - 1));
+                return SpireReturn.Return(output);
+            }
+            return SpireReturn.Continue();
+        }
+    }
+
     @SpirePatch(clz = MonsterHelper.class,method = "spawnManySmallSlimes")
-    public static class MonsterHelperPrefix_spawnManySmallSlimes {
+    public static class PrePatchMonsterHelper_spawnManySmallSlimes {
         @SpirePrefixPatch
         public static SpireReturn<MonsterGroup> prefix() {
-            if(AbstractDungeon.player.hasRelic(PocketBook.ID)){
+            if(AbstractDungeon.player.hasRelic(PocketBook.ID)||AbstractDungeon.player instanceof OtherIdolCharacter){
                 ArrayList<String> slimePool = new ArrayList<>();
                 slimePool.add(SpikeSlimeTemari_S.ID);
                 slimePool.add(SpikeSlimeTemari_S.ID);
@@ -109,10 +135,10 @@ public class MonsterHelperPatch {
     }
 
     @SpirePatch(clz = MonsterHelper.class,method = "bottomGetWeakWildlife")
-    public static class MonsterHelperPrefix_bottomGetWeakWildlife {
+    public static class PrePatchMonsterHelper_bottomGetWeakWildlife {
         @SpirePrefixPatch
         public static SpireReturn<AbstractMonster> prefix(float x, float y) {
-            if(AbstractDungeon.player.hasRelic(PocketBook.ID)){
+            if(AbstractDungeon.player.hasRelic(PocketBook.ID)||AbstractDungeon.player instanceof OtherIdolCharacter){
                 ArrayList<AbstractMonster> monsters = new ArrayList<>();
                 AbstractMonster louse;
                 if (AbstractDungeon.miscRng.randomBoolean())

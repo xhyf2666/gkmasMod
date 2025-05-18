@@ -12,6 +12,7 @@ import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.downfall.cards.GkmasBossCard;
 import gkmasmod.downfall.cards.free.ENSleepLate;
 import gkmasmod.powers.GoodImpression;
+import gkmasmod.utils.IdolData;
 import gkmasmod.utils.NameHelper;
 import gkmasmod.utils.SoundHelper;
 
@@ -43,6 +44,8 @@ public class ENTangledFeelings extends GkmasBossCard {
         this.exhaust = true;
         this.isInnate = true;
         this.intent = AbstractMonster.Intent.BUFF;
+        this.backGroundColor = IdolData.ttmr;
+        updateBackgroundImg();
         this.tags.add(GkmasCardTag.GOOD_IMPRESSION_TAG);
         this.tags.add(GkmasCardTag.IDOL_CARD_TAG);
     }

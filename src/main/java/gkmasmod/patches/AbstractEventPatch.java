@@ -32,7 +32,9 @@ import java.util.ArrayList;
 
 public class AbstractEventPatch {
 
-
+    /**
+     * 添加事件 Master·其一 在涅奥事件后
+     */
     @SpirePatch(clz = AbstractEvent.class,method = "openMap")
     public static class PrePatchAbstractEvent_openMap {
         @SpirePrefixPatch
@@ -102,7 +104,5 @@ public class AbstractEventPatch {
             return SpireReturn.Continue();
         }
     }
-
-
 
 }

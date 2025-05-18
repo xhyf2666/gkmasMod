@@ -51,6 +51,8 @@ public class ENMyPrideBigSister extends GkmasBossCard {
         this.tags.add(GkmasCardTag.IDOL_CARD_TAG);
         this.tags.add(GkmasCardTag.GOOD_IMPRESSION_TAG);
         this.intent = AbstractMonster.Intent.BUFF;
+        this.backGroundColor = IdolData.fktn;
+        updateBackgroundImg();
     }
 
 

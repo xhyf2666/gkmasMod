@@ -23,8 +23,8 @@ public class LikeUsualSPPower extends AbstractPower {
 
     private static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
 
-    String path128 = String.format("gkmasModResource/img/powers/%s_84.png",CLASSNAME);;
-    String path48 = String.format("gkmasModResource/img/powers/%s_32.png",CLASSNAME);;
+    String path128 = String.format("gkmasModResource/img/powers/%s_84.png",CLASSNAME);
+    String path48 = String.format("gkmasModResource/img/powers/%s_32.png",CLASSNAME);
 
     public LikeUsualSPPower(AbstractCreature owner, int Amount) {
         this.name = NAME;
@@ -33,15 +33,12 @@ public class LikeUsualSPPower extends AbstractPower {
         this.type = PowerType.BUFF;
         this.amount = Amount;
 
-        // 添加一大一小两张能力图
         this.region128 = new TextureAtlas.AtlasRegion(ImageMaster.loadImage(path128), 0, 0, 84, 84);
         this.region48 = new TextureAtlas.AtlasRegion(ImageMaster.loadImage(path48), 0, 0, 32, 32);
 
-        // 首次添加能力更新描述
         this.updateDescription();
     }
 
-    // 能力在更新时如何修改描述
     public void updateDescription() {
         this.description = String.format(DESCRIPTIONS[0], this.amount);
     }
@@ -51,7 +48,7 @@ public class LikeUsualSPPower extends AbstractPower {
     public void onChangeStance(AbstractStance oldStance, AbstractStance newStance) {
         if(oldStance.ID.equals(PreservationStance.STANCE_ID)){
             PreservationStance preservationStance = (PreservationStance) oldStance;
-            if(preservationStance.stage==1){
+            if(preservationStance.stage>=1){
                 addToBot(new GainTrainRoundPowerAction(this.owner,this.amount));
             }
         }

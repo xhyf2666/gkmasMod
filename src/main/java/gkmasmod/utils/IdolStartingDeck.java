@@ -136,8 +136,12 @@ public class IdolStartingDeck {
         return IdolData.getIdol(idolIndex).getRelic(skinIndex);
     }
 
+    public static String getOtherSpecialRelic(String idolName, String skinName){
+        return IdolData.getOtherIdol(idolName).getRelic(skinName);
+    }
+
     public static String getOtherSpecialRelic(int idolIndex, int skinIndex){
-        return IdolData.getIdol(idolIndex).getRelic(skinIndex);
+        return IdolData.getOtherIdol(idolIndex).getRelic(skinIndex);
     }
 
     public static ArrayList<String> getStartingDeck(String idolName, String skinName){
@@ -145,7 +149,6 @@ public class IdolStartingDeck {
         IdolStyle style = IdolData.getIdol(idolName).getStyle(skinName);
         String specialCard = getSpecialCard(idolName, skinName);
 
-        // 创建一个变长数组
         ArrayList<String> startingDeck = new ArrayList<>();
 
         switch (style){
@@ -182,7 +185,6 @@ public class IdolStartingDeck {
         String specialCard = getSpecialCard(idolIndex, skinIndex);
         String replaceCard = IdolData.getIdol(idolIndex).getReplaceCard(skinIndex);
 
-        // 创建一个变长数组
         ArrayList<String> startingDeck = new ArrayList<>();
 
         switch (style){

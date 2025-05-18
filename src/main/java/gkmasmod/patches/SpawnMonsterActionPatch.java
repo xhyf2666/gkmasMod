@@ -28,9 +28,8 @@ import gkmasmod.utils.ThreeSizeHelper;
 public class SpawnMonsterActionPatch
 {
 
-
     @SpirePatch(clz = SpawnMonsterAction.class,method = "update")
-    public static class AbstractCardPostPatch_MakeStatEquivalentCopy{
+    public static class InsertPatchInstrument_update{
         @SpireInsertPatch(rloc = 7)
         public static void Insert(SpawnMonsterAction __instance, AbstractMonster ___m) {
         }

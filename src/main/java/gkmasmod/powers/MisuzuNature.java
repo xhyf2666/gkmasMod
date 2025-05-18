@@ -42,11 +42,9 @@ public class MisuzuNature extends AbstractPower {
         this.amount1 = amount1;
         this.amount2 = amount2;
 
-        // 添加一大一小两张能力图
         this.region128 = new TextureAtlas.AtlasRegion(ImageMaster.loadImage(path128), 0, 0, 84, 84);
         this.region48 = new TextureAtlas.AtlasRegion(ImageMaster.loadImage(path48), 0, 0, 32, 32);
 
-        // 首次添加能力更新描述
         this.updateDescription();
     }
 
@@ -65,7 +63,6 @@ public class MisuzuNature extends AbstractPower {
         updateDescription();
     }
 
-    // 能力在更新时如何修改描述
     public void updateDescription() {
         this.description = String.format(DESCRIPTIONS[0],this.amount1,this.amount2);
     }

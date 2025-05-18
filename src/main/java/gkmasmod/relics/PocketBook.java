@@ -38,12 +38,14 @@ import com.megacrit.cardcrawl.rooms.*;
 import com.megacrit.cardcrawl.ui.campfire.AbstractCampfireOption;
 import gkmasmod.actions.GainTrainRoundPowerAction;
 import gkmasmod.actions.TrainRoundAnomalyFirstAction;
+import gkmasmod.actions.TrainRoundProduceFirstAction;
 import gkmasmod.cards.free.GakuenLinkMaster;
 import gkmasmod.cards.free.ProducerTrumpCard;
 import gkmasmod.cards.special.DoNotGo;
 import gkmasmod.cards.special.InformationMaster;
 import gkmasmod.characters.IdolCharacter;
 import gkmasmod.characters.MisuzuCharacter;
+import gkmasmod.characters.OtherIdolCharacter;
 import gkmasmod.downfall.bosses.AbstractIdolBoss;
 import gkmasmod.downfall.charbosses.bosses.AbstractCharBoss;
 import gkmasmod.dungeons.IdolRoad;
@@ -65,6 +67,7 @@ import gkmasmod.room.shop.AnotherShopOption;
 import gkmasmod.room.shop.AnotherShopScreen;
 import gkmasmod.room.specialTeach.SpecialTeachOption;
 import gkmasmod.room.supply.SupplyOption;
+import gkmasmod.screen.OtherSkinSelectScreen;
 import gkmasmod.screen.PocketBookViewScreen;
 import gkmasmod.screen.SkinSelectScreen;
 import gkmasmod.utils.*;
@@ -127,6 +130,9 @@ public class PocketBook extends CustomRelic  implements ISubscriber, CustomSavab
         super(ID, ImageMaster.loadImage(String.format("gkmasModResource/img/idol/%s/relics/%s.png", SkinSelectScreen.Inst.idolName,CLASSNAME)),
                 ImageMaster.loadImage(String.format("gkmasModResource/img/idol/%s/relics/%s.png", SkinSelectScreen.Inst.idolName,CLASSNAME)), RARITY, LandingSound.CLINK);
         type = IdolData.getIdol(SkinSelectScreen.Inst.idolIndex).getType(SkinSelectScreen.Inst.skinIndex);
+        if(AbstractDungeon.player instanceof OtherIdolCharacter){
+            type = IdolData.getOtherIdol(OtherSkinSelectScreen.Inst.idolIndex).getType(OtherSkinSelectScreen.Inst.skinIndex);
+        }
         BaseMod.subscribe(this);
         BaseMod.addSaveField(NameHelper.makePath("threeSize"), this);
     }
@@ -214,6 +220,11 @@ public class PocketBook extends CustomRelic  implements ISubscriber, CustomSavab
         float[] threeSizeRate;
         if(AbstractDungeon.player instanceof IdolCharacter){
             IdolCharacter player = (IdolCharacter) AbstractDungeon.player;
+            threeSize = player.idolData.getBaseThreeSize();
+            threeSizeRate = player.idolData.getThreeSizeRate();
+        }
+        else if(AbstractDungeon.player instanceof OtherIdolCharacter){
+            OtherIdolCharacter player = (OtherIdolCharacter) AbstractDungeon.player;
             threeSize = player.idolData.getBaseThreeSize();
             threeSizeRate = player.idolData.getThreeSizeRate();
         }
@@ -398,6 +409,10 @@ public class PocketBook extends CustomRelic  implements ISubscriber, CustomSavab
             else if(type==CommonEnum.IdolType.ANOMALY){
                 addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new TrainRoundAnomalyPower(AbstractDungeon.player, trainRoundNum,false), trainRoundNum));
                 addToBot(new TrainRoundAnomalyFirstAction());
+            }
+            else if(type== CommonEnum.IdolType.PRODUCE){
+                addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new TrainRoundProducePower(AbstractDungeon.player, trainRoundNum,false), trainRoundNum));
+                addToBot(new TrainRoundProduceFirstAction());
             }
         }
 
@@ -585,7 +600,7 @@ public class PocketBook extends CustomRelic  implements ISubscriber, CustomSavab
     private void getHajimeReward(){
         if(this.hajime == true)
             return;
-        if(AbstractDungeon.player instanceof IdolCharacter||AbstractDungeon.player instanceof MisuzuCharacter){
+        if(AbstractDungeon.player instanceof IdolCharacter||AbstractDungeon.player instanceof MisuzuCharacter||AbstractDungeon.player instanceof OtherIdolCharacter){
                 String eventID = "HajimeReward";
                 AbstractEvent event =  EventUtils.getEvent(eventID);
                 if(event!=null){
@@ -625,7 +640,7 @@ public class PocketBook extends CustomRelic  implements ISubscriber, CustomSavab
     private void getNIAReward(){
         if(this.nia)
             return;
-        if(AbstractDungeon.player instanceof IdolCharacter||AbstractDungeon.player instanceof MisuzuCharacter){
+        if(AbstractDungeon.player instanceof IdolCharacter||AbstractDungeon.player instanceof MisuzuCharacter||AbstractDungeon.player instanceof OtherIdolCharacter){
             String eventID = "NIAReward";
             AbstractEvent event =  EventUtils.getEvent(eventID);
             if(event!=null){

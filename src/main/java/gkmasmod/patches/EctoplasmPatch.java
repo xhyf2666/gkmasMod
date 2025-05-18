@@ -20,7 +20,7 @@ public class EctoplasmPatch
     private static String append = CardCrawlGame.languagePack.getUIString("gkmasMod:EctoplasmSpecial").TEXT[0];
 
     @SpirePatch(clz = Ectoplasm.class,method = "setDescription")
-    public static class EctoplasmPrePatch_setDescription {
+    public static class PrePatchEctoplasm_setDescription {
         public static SpireReturn<String> Prefix(Ectoplasm __instance) {
             return SpireReturn.Return(__instance.DESCRIPTIONS[1]+__instance.DESCRIPTIONS[0]+append);
         }

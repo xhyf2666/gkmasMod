@@ -41,7 +41,7 @@ public class MapRoomNodePatch {
     @SpirePatch(clz = MapRoomNode.class, method = "render")
     public static class InsertPatchMapRoomNode_render {
         @SpireInsertPatch(rloc = 64)
-        public static void inerst(MapRoomNode __instance, SpriteBatch sb) {
+        public static void insert(MapRoomNode __instance, SpriteBatch sb) {
             if(__instance.room instanceof FixedMonsterRoom||__instance.room instanceof GkmasBossRoom){
                 sb.setColor(Color.WHITE);
             }
@@ -49,7 +49,6 @@ public class MapRoomNodePatch {
                 for(AbstractMonster m:(__instance.room).monsters.monsters){
                     if(m instanceof MonsterShion || m instanceof MonsterNadeshiko){
                         sb.setColor(Color.WHITE);
-//                        System.out.println("boss");
                     }
                 }
             }

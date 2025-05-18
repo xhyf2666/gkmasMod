@@ -10,10 +10,14 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import gkmasmod.cards.GkmasCard;
+import gkmasmod.characters.OtherIdolCharacter;
 import gkmasmod.monster.exordium.MonsterGekka;
 import gkmasmod.powers.GekkaWill;
+import gkmasmod.powers.GekkaWillOther;
 import gkmasmod.powers.GoodTune;
 import gkmasmod.powers.NotGoodTune;
+import gkmasmod.screen.OtherSkinSelectScreen;
+import gkmasmod.utils.IdolData;
 import gkmasmod.utils.NameHelper;
 
 public class FightWill extends GkmasCard {
@@ -58,6 +62,14 @@ public class FightWill extends GkmasCard {
                 addToBot(new ApplyPowerAction(monster, AbstractDungeon.player, new GekkaWill(monster, this.secondMagicNumber), this.secondMagicNumber));
             }
         }
+        if(AbstractDungeon.player instanceof OtherIdolCharacter && OtherSkinSelectScreen.Inst.idolName.equals(IdolData.sgka)){
+            addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new GekkaWillOther(AbstractDungeon.player, this.secondMagicNumber), this.secondMagicNumber));
+        }
+    }
+
+    @Override
+    public void customTrigger() {
+        this.triggerWhenDrawn();
     }
 
     @Override

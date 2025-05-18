@@ -12,10 +12,12 @@ import com.megacrit.cardcrawl.dungeons.TheCity;
 import com.megacrit.cardcrawl.monsters.MonsterInfo;
 import gkmasmod.characters.IdolCharacter;
 import gkmasmod.characters.MisuzuCharacter;
+import gkmasmod.characters.OtherIdolCharacter;
 import gkmasmod.event.Live_jsna;
 import gkmasmod.modcore.GkmasMod;
 import gkmasmod.monster.exordium.MonsterGekka;
 import gkmasmod.monster.exordium.MonsterShion;
+import gkmasmod.screen.OtherSkinSelectScreen;
 import gkmasmod.screen.SkinSelectScreen;
 import gkmasmod.utils.IdolData;
 import org.lwjgl.Sys;
@@ -28,11 +30,14 @@ import java.util.Random;
 public class TheBeyondPatch
 {
 
+    /**
+     * 设置3层Boss
+     */
     @SpirePatch(clz = TheBeyond.class,method = "initializeBoss")
-    public static class TheBeyond_Prefix_initializeBoss {
+    public static class PrePatchTheBeyond_initializeBoss {
         @SpirePrefixPatch
-        public static SpireReturn<Void> addBoss() {
-            if(!(AbstractDungeon.player instanceof IdolCharacter||AbstractDungeon.player instanceof MisuzuCharacter)){
+        public static SpireReturn<Void> prefix() {
+            if(!(AbstractDungeon.player instanceof IdolCharacter||AbstractDungeon.player instanceof MisuzuCharacter||AbstractDungeon.player instanceof OtherIdolCharacter)){
                 return SpireReturn.Continue();
             }
             TheBeyond.bossList.clear();
@@ -43,17 +48,26 @@ public class TheBeyondPatch
                 Collections.shuffle(TheCity.bossList, new Random(AbstractDungeon.monsterRng.randomLong()));
                 AbstractDungeon.bossList.remove(AbstractDungeon.bossList.size() - 1);
             } else if (GkmasMod.onlyModBoss) {
-                TheBeyond.bossList.add(MonsterGekka.ID);
+                if(AbstractDungeon.player instanceof OtherIdolCharacter && OtherSkinSelectScreen.Inst.idolName.equals(IdolData.sgka)){
+
+                }
+                else{
+                    TheBeyond.bossList.add(MonsterGekka.ID);
+                }
                 if(AbstractDungeon.player instanceof MisuzuCharacter){
                     TheBeyond.bossList.add("reiris");
                 }
-                else{
+                else if(AbstractDungeon.player instanceof IdolCharacter){
                     if(!SkinSelectScreen.Inst.idolName.equals(IdolData.ttmr)&&!SkinSelectScreen.Inst.idolName.equals(IdolData.fktn)&&!SkinSelectScreen.Inst.idolName.equals(IdolData.hski)) {
                         TheBeyond.bossList.add("reiris");
                     }
                     if(!SkinSelectScreen.Inst.idolName.equals(IdolData.jsna)&&!SkinSelectScreen.Inst.idolName.equals(IdolData.hume)&&!SkinSelectScreen.Inst.idolName.equals(IdolData.hmsz)){
                         TheBeyond.bossList.add("begrazia");
                     }
+                }
+                else{
+                    TheBeyond.bossList.add("reiris");
+                    TheBeyond.bossList.add("begrazia");
                 }
                 Collections.shuffle(TheCity.bossList, new Random(AbstractDungeon.monsterRng.randomLong()));
                 Random random = new Random(AbstractDungeon.monsterRng.randomLong());
@@ -73,17 +87,26 @@ public class TheBeyondPatch
 
 //                System.out.println("TheBeyondPatch.TheBeyond_Prefix_initializeBoss type1");
             } else {
-                TheBeyond.bossList.add(MonsterGekka.ID);
+                if(AbstractDungeon.player instanceof OtherIdolCharacter && OtherSkinSelectScreen.Inst.idolName.equals(IdolData.sgka)){
+
+                }
+                else{
+                    TheBeyond.bossList.add(MonsterGekka.ID);
+                }
                 if(AbstractDungeon.player instanceof MisuzuCharacter){
                     TheBeyond.bossList.add("reiris");
                 }
-                else{
+                else if(AbstractDungeon.player instanceof IdolCharacter){
                     if(!SkinSelectScreen.Inst.idolName.equals(IdolData.ttmr)&&!SkinSelectScreen.Inst.idolName.equals(IdolData.fktn)&&!SkinSelectScreen.Inst.idolName.equals(IdolData.hski)) {
                         TheBeyond.bossList.add("reiris");
                     }
                     if(!SkinSelectScreen.Inst.idolName.equals(IdolData.jsna)&&!SkinSelectScreen.Inst.idolName.equals(IdolData.hume)&&!SkinSelectScreen.Inst.idolName.equals(IdolData.hmsz)){
                         TheBeyond.bossList.add("begrazia");
                     }
+                }
+                else{
+                    TheBeyond.bossList.add("reiris");
+                    TheBeyond.bossList.add("begrazia");
                 }
                 TheBeyond.bossList.add("Awakened One");
                 TheBeyond.bossList.add("Time Eater");
@@ -98,11 +121,14 @@ public class TheBeyondPatch
         }
     }
 
+    /**
+     * 设置3层精英
+     */
     @SpirePatch(clz = TheBeyond.class,method = "generateElites")
-    public static class TheBeyond_insert_generateElites {
+    public static class InsertPatchTheBeyond_generateElites {
         @SpireInsertPatch(rloc = 4,localvars = {"monsters"})
-        public static SpireReturn<Void> addElite(TheBeyond __instance, int count, ArrayList<MonsterInfo> monsters) {
-            if(!(AbstractDungeon.player instanceof IdolCharacter||AbstractDungeon.player instanceof MisuzuCharacter)){
+        public static SpireReturn<Void> insert(TheBeyond __instance, int count, ArrayList<MonsterInfo> monsters) {
+            if(!(AbstractDungeon.player instanceof IdolCharacter||AbstractDungeon.player instanceof MisuzuCharacter||AbstractDungeon.player instanceof OtherIdolCharacter)){
                 return SpireReturn.Continue();
             }
             if(AbstractDungeon.player instanceof IdolCharacter){

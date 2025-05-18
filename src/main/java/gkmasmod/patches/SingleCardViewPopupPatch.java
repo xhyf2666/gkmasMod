@@ -36,7 +36,7 @@ public class SingleCardViewPopupPatch
     public static String customTip= CardCrawlGame.languagePack.getUIString("gkmasMod:SpecialTeachScreen").TEXT[6];
 
     @SpirePatch(clz = SingleCardViewPopup.class, method = "open", paramtypez = {AbstractCard.class, CardGroup.class})
-    public static class SingleCardViewPatch_Open {
+    public static class PostfixPatchSingleCardView_open {
 
         @SpirePostfixPatch
         public static void Postfix(SingleCardViewPopup _inst, AbstractCard card, CardGroup group) {
@@ -77,7 +77,7 @@ public class SingleCardViewPopupPatch
     }
 
     @SpirePatch(clz = SingleCardViewPopup.class, method = "close")
-    public static class SingleCardViewPatch_Close {
+    public static class PostPatchSingleCardView_close {
 
         @SpirePostfixPatch
         public static void Postfix(SingleCardViewPopup _inst) {
@@ -98,7 +98,7 @@ public class SingleCardViewPopupPatch
     }
 
     @SpirePatch(clz = SingleCardViewPopup.class, method = "update")
-    public static class SingleCardViewPatch_Update {
+    public static class PostPatchSingleCardView_update {
 
         @SpirePostfixPatch
         public static void Postfix(SingleCardViewPopup _inst) {
@@ -114,7 +114,7 @@ public class SingleCardViewPopupPatch
     }
 
     @SpirePatch(clz = SingleCardViewPopup.class, method = "renderTitle", paramtypez = {SpriteBatch.class})
-    public static class SingleCardViewPatch {
+    public static class PostPatchSingleCardView_renderTitle {
         private static float drawScale = 2.0F;
         private static float yOffsetBase = 690.0F;
 
@@ -131,7 +131,7 @@ public class SingleCardViewPopupPatch
     }
 
     @SpirePatch(clz = SingleCardViewPopup.class,method = "renderFrame")
-    public static class SingleCardViewPopupInsertPatch_renderFrame{
+    public static class InsertPatchSingleCardView_renderFrame {
         @SpireInsertPatch(rloc = 680-589, localvars = {"tmpImg"})
         public static SpireReturn<Void> Insert(SingleCardViewPopup __instance,SpriteBatch sb, AbstractCard ___card,@ByRef TextureAtlas.AtlasRegion[] tmpImg) {
             if(!(___card instanceof GkmasCard)){

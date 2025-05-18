@@ -2,27 +2,21 @@ package gkmasmod.cards.anomaly;
 
 import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
-import com.megacrit.cardcrawl.actions.common.DrawCardAction;
 import com.megacrit.cardcrawl.actions.common.GainBlockAction;
-import com.megacrit.cardcrawl.actions.common.LoseHPAction;
 import com.megacrit.cardcrawl.actions.watcher.ChangeStanceAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import gkmasmod.actions.GainTrainRoundPowerAction;
 import gkmasmod.actions.SelectCardGrowAction;
 import gkmasmod.cardCustomEffect.*;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
-import gkmasmod.growEffect.AttackTimeGrow;
-import gkmasmod.growEffect.BaseBlockGrow;
+import gkmasmod.cardGrowEffect.AttackTimeGrow;
 import gkmasmod.powers.FullPowerValue;
-import gkmasmod.powers.HeartAndSoulPower;
 import gkmasmod.screen.SkinSelectScreen;
-import gkmasmod.stances.ConcentrationStance;
 import gkmasmod.stances.PreservationStance;
 import gkmasmod.utils.*;
 
@@ -80,7 +74,6 @@ public class BecomeIdol extends GkmasCard {
         else{
             GrowHelper.growAllHand(AttackTimeGrow.growID,this.secondMagicNumber);
         }
-
         if(this.upgraded){
             addToBot(new GainBlockAction(p,p,this.block));
             addToBot(new ChangeStanceAction(PreservationStance.STANCE_ID));

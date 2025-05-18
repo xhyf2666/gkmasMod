@@ -31,7 +31,7 @@ public class ENRainbowDreamer extends GkmasBossCard {
     private static final int BASE_MAGIC = 1;
     private static final int UPGRADE_PLUS_MAGIC = 3;
     private static final int BASE_MAGIC2 = 2;
-    private static final int BASE_MAGIC3 = 3;
+    private static final int BASE_MAGIC3 = 7;
 
     private static final CardType TYPE = CardType.POWER;
     private static final CardColor COLOR = PlayerColorEnum.gkmasModColorLogic;
@@ -57,7 +57,7 @@ public class ENRainbowDreamer extends GkmasBossCard {
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
         addToBot(new ApplyPowerAction(m, m, new GoodImpression(m, this.magicNumber), this.magicNumber));
-        addToBot(new ApplyPowerAction(m, m, new RainbowDreamerPower(m, 1), 1));
+        addToBot(new ApplyPowerAction(m, m, new RainbowDreamerPower(m, this.thirdMagicNumber), this.thirdMagicNumber));
     }
 
     @Override

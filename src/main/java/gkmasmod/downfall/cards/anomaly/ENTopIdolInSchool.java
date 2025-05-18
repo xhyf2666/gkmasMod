@@ -56,6 +56,8 @@ public class ENTopIdolInSchool extends GkmasBossCard {
         this.baseMagicNumber = BASE_MAGIC;
         this.magicNumber = this.baseMagicNumber;
         this.exhaust = true;
+        this.backGroundColor = IdolData.jsna;
+        updateBackgroundImg();
         this.intent = AbstractMonster.Intent.ATTACK;
     }
 

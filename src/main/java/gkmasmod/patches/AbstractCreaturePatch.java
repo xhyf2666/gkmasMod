@@ -40,8 +40,11 @@ public class AbstractCreaturePatch {
         public static SpireField<Integer> ThisCombatBlock = new SpireField<>(() -> 0);
     }
 
+    /**
+     * 持有制作人手账时，格挡上限变为99999
+     */
     @SpirePatch(clz = AbstractCreature.class,method = "addBlock")
-    public static class PostPatchAbstractCreature_addBlock {
+    public static class InsertPatchAbstractCreature_addBlock {
         @SpireInsertPatch(locator = Locator.class, localvars = {"tmp"})
         public static void Insert(AbstractCreature __instance, int blockAmount,float tmp) {
             if(AbstractDungeon.player!=null&&AbstractDungeon.player.hasRelic(PocketBook.ID)){
@@ -69,7 +72,6 @@ public class AbstractCreaturePatch {
                     block = 99999;
                 }
                 blockBakField.blockBak.set(__instance, block);
-
                 int count = AbstractCreaturePatch.BlockField.ThisCombatBlock.get(__instance);
                 AbstractCreaturePatch.BlockField.ThisCombatBlock.set(__instance, count+increase);
             }
@@ -77,8 +79,18 @@ public class AbstractCreaturePatch {
         }
     }
 
+    private static class Locator extends SpireInsertLocator {
+        public int[] Locate(CtBehavior ctMethodToPatch) throws Exception {
+            Matcher.MethodCallMatcher methodCallMatcher = new Matcher.MethodCallMatcher(MathUtils.class, "floor");
+            return LineFinder.findInOrder(ctMethodToPatch, new ArrayList(), (Matcher)methodCallMatcher);
+        }
+    }
+
+    /**
+     * 持有制作人手账时，格挡上限变为99999
+     */
     @SpirePatch(clz = AbstractCreature.class,method = "addBlock")
-    public static class PostPatchAbstractCreature_addBlock2 {
+    public static class InsertPatchAbstractCreature_addBlock2 {
         @SpireInsertPatch(rloc =37 ,localvars = {"tmp"})
         public static void Insert(AbstractCreature __instance, int blockAmount,float tmp) {
             if(AbstractDungeon.player!=null&&AbstractDungeon.player.hasRelic(PocketBook.ID)){
@@ -87,8 +99,11 @@ public class AbstractCreaturePatch {
         }
     }
 
+    /**
+     * 玩家获得格挡时，触发伙伴hiro的协同攻击
+     */
     @SpirePatch(clz = AbstractCreature.class,method = "addBlock")
-    public static class PostPatchAbstractCreature_addBlock3 {
+    public static class InsertPatchAbstractCreature_addBlock3 {
         @SpireInsertPatch(rloc =484-479 ,localvars = {"tmp"})
         public static void Insert(AbstractCreature __instance, int blockAmount,float tmp) {
             if(tmp<=0)
@@ -101,11 +116,13 @@ public class AbstractCreaturePatch {
         }
     }
 
+    /**
+     * 实现 训练时间·理性 在回合结束时保留部分格挡 的效果
+     */
     @SpirePatch(clz = AbstractCreature.class,method = "loseBlock",paramtypez = {int.class, boolean.class})
-    public static class PostPatchAbstractCreature_loseBlock {
+    public static class InsertPatchAbstractCreature_loseBlock {
         @SpireInsertPatch(rloc =0)
         public static SpireReturn Insert(AbstractCreature __instance, int amount, boolean noAnimation) {
-            System.out.println("loseBlock");
             if(__instance.isPlayer&&AbstractDungeon.player.hasPower(TrainRoundLogicPower.POWER_ID)&& GkmasMod.loseBlock){
                 GkmasMod.loseBlock = false;
                 return SpireReturn.Return(null);
@@ -114,13 +131,9 @@ public class AbstractCreaturePatch {
         }
     }
 
-    private static class Locator extends SpireInsertLocator {
-        public int[] Locate(CtBehavior ctMethodToPatch) throws Exception {
-            Matcher.MethodCallMatcher methodCallMatcher = new Matcher.MethodCallMatcher(MathUtils.class, "floor");
-            return LineFinder.findInOrder(ctMethodToPatch, new ArrayList(), (Matcher)methodCallMatcher);
-        }
-    }
-
+    /**
+     * Boss战中，绘制三维加成倍率圈
+     */
     @SpirePatch(clz = AbstractCreature.class,method = "renderHealth")
     public static class PostPatchAbstractCreature_renderHealth {
         @SpirePostfixPatch
@@ -150,6 +163,9 @@ public class AbstractCreaturePatch {
         FontHelper.renderSmartText(sb, FontHelper.tipHeaderFont, String.format("%.0f%%",finalDamageRate*100), Settings.WIDTH / 2.0F - 400.0F*Settings.xScale+100.0F, Settings.HEIGHT / 2.0F + 325.0F*Settings.yScale, 10000.0F, 30.0F * Settings.scale, Settings.CREAM_COLOR);
     }
 
+    /**
+     * 实现 我有话想对你说 每回合首次突破敌人格挡时，撤销该伤害 的效果
+     */
     @SpirePatch(clz = AbstractCreature.class,method = "decrementBlock")
     public static class PrefixPatchAbstractCreature_decrementBlock {
         public static SpireReturn<Integer> Prefix(AbstractCreature __instance, DamageInfo info, int damageAmount) {
@@ -165,13 +181,13 @@ public class AbstractCreaturePatch {
                 }
             }
             else{
-            if(AbstractDungeon.player.hasPower(SaySomethingToYouPower.POWER_ID)){
-                SaySomethingToYouPower power = (SaySomethingToYouPower)AbstractDungeon.player.getPower(SaySomethingToYouPower.POWER_ID);
-                if(!power.breakBlock&&__instance.currentBlock>0&&damageAmount>=__instance.currentBlock){
-                    power.onBreakBlock(__instance);
-                    return SpireReturn.Return(0);
+                if(AbstractDungeon.player.hasPower(SaySomethingToYouPower.POWER_ID)){
+                    SaySomethingToYouPower power = (SaySomethingToYouPower)AbstractDungeon.player.getPower(SaySomethingToYouPower.POWER_ID);
+                    if(!power.breakBlock&&__instance.currentBlock>0&&damageAmount>=__instance.currentBlock){
+                        power.onBreakBlock(__instance);
+                        return SpireReturn.Return(0);
+                    }
                 }
-            }
             }
             return SpireReturn.Continue();
         }

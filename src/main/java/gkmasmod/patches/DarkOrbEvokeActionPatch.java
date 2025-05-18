@@ -14,8 +14,11 @@ import gkmasmod.relics.PocketBook;
 public class DarkOrbEvokeActionPatch
 {
 
+    /**
+     * 使黑球的伤害受到三维倍率加成
+     */
     @SpirePatch(clz = DarkOrbEvokeAction.class,method = SpirePatch.CONSTRUCTOR)
-    public static class DarkOrbEvokeActionPostPatch_constructor {
+    public static class PostPatchDarkOrbEvokeAction_Constructor {
         @SpirePostfixPatch
         public static void Post(DarkOrbEvokeAction __instance, @ByRef DamageInfo[] ___info) {
             if(AbstractDungeon.player.hasRelic(PocketBook.ID)){

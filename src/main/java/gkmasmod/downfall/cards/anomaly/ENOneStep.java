@@ -2,27 +2,15 @@ package gkmasmod.downfall.cards.anomaly;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
-import com.megacrit.cardcrawl.actions.common.DrawCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import gkmasmod.actions.GrowAction;
-import gkmasmod.actions.PotentialAbilityAction;
-import gkmasmod.cardCustomEffect.DamageCustom;
-import gkmasmod.cardCustomEffect.FullPowerValueCustom;
-import gkmasmod.cardCustomEffect.ThirdMagicCustom;
-import gkmasmod.cards.GkmasCard;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.downfall.cards.GkmasBossCard;
-import gkmasmod.growEffect.DamageGrow;
-import gkmasmod.utils.CustomHelper;
-import gkmasmod.utils.GrowHelper;
 import gkmasmod.utils.NameHelper;
-
-import java.util.ArrayList;
 
 public class ENOneStep extends GkmasBossCard {
     private static final String CLASSNAME = ENOneStep.class.getSimpleName();

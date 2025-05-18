@@ -1,5 +1,7 @@
 package gkmasmod.utils;
 
+import com.megacrit.cardcrawl.core.CardCrawlGame;
+
 import java.util.Locale;
 
 public class NameHelper {
@@ -23,6 +25,15 @@ public class NameHelper {
             return rank.replace("+","plus").toLowerCase();
         }
         return rank.toLowerCase();
+    }
+
+    public static String getIdolName(String name){
+        try{
+            return CardCrawlGame.languagePack.getCharacterString(NameHelper.addSplitWords("IdolName",name)).TEXT[0];
+        }
+        catch (Exception e){
+            return "";
+        }
     }
 
 }

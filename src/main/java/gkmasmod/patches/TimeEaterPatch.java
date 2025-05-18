@@ -19,9 +19,8 @@ import gkmasmod.utils.ThreeSizeHelper;
 public class TimeEaterPatch
 {
 
-
     @SpirePatch(clz = TimeEater.class,method = SpirePatch.CONSTRUCTOR)
-    public static class TimeEaterPostPatch_constructor {
+    public static class PostPatchTimeEater_Constructor {
         @SpirePostfixPatch
         public static void Post(TimeEater __instance, @ByRef int[] ___headSlamDmg) {
             if(AbstractDungeon.player!=null&&AbstractDungeon.player.hasRelic(PocketBook.ID)){
@@ -32,7 +31,7 @@ public class TimeEaterPatch
     }
 
     @SpirePatch(clz = TimeEater.class,method = "takeTurn")
-    public static class TimeEaterPrePatch_RenderCard {
+    public static class PrePatchTimeEater_takeTurn {
         @SpirePrefixPatch
         public static void Prefix(TimeEater __instance) {
             if(AbstractDungeon.player!=null&&AbstractDungeon.player.hasRelic(PocketBook.ID)){
@@ -41,7 +40,6 @@ public class TimeEaterPatch
                     AbstractDungeon.actionManager.addToBottom(new GainBlockAction(__instance, __instance, 20 * change));
                 }
             }
-
         }
     }
 }

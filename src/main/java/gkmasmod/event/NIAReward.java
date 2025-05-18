@@ -13,9 +13,11 @@ import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.relics.Circlet;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.characters.MisuzuCharacter;
+import gkmasmod.characters.OtherIdolCharacter;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.modcore.GkmasMod;
 import gkmasmod.relics.*;
+import gkmasmod.screen.OtherSkinSelectScreen;
 import gkmasmod.screen.SkinSelectScreen;
 import gkmasmod.utils.CommonEnum;
 import gkmasmod.utils.IdolData;
@@ -40,8 +42,14 @@ public class NIAReward extends AbstractImageEvent {
     public NIAReward() {
         super(NAME, DESCRIPTIONS[0], "gkmasModResource/img/event/teacher.png");
         type  = IdolData.getIdol(SkinSelectScreen.Inst.idolIndex).getType(SkinSelectScreen.Inst.skinIndex);
-        if(AbstractDungeon.player!=null&&AbstractDungeon.player instanceof MisuzuCharacter){
+        if(AbstractDungeon.player instanceof MisuzuCharacter){
             type = CommonEnum.IdolType.SENSE;
+        }
+        if(AbstractDungeon.player instanceof OtherIdolCharacter){
+            type  = IdolData.getOtherIdol(OtherSkinSelectScreen.Inst.idolIndex).getType(OtherSkinSelectScreen.Inst.skinIndex);
+            if(OtherSkinSelectScreen.Inst.idolName.equals(IdolData.prod)){
+                type = CommonEnum.IdolType.SENSE;
+            }
         }
         generateRelic();
         updateRelicOption();

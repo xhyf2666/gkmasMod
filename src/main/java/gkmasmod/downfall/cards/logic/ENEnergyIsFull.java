@@ -1,5 +1,7 @@
 package gkmasmod.downfall.cards.logic;
 
+import basemod.helpers.CardModifierManager;
+import gkmasmod.cardCustomEffect.MoreActionCustom;
 import gkmasmod.downfall.charbosses.bosses.AbstractCharBoss;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.GainBlockAction;
@@ -26,7 +28,7 @@ public class ENEnergyIsFull extends GkmasBossCard {
     private static final String DESCRIPTION = CARD_STRINGS.DESCRIPTION;
     private static String IMG_PATH = ImageHelper.idolImgPath(AbstractCharBoss.theIdolName, CLASSNAME2);
 
-    private static final int COST = 0;
+    private static final int COST = 1;
     private static final int BASE_MAGIC = 3;
     private static final int UPGRADE_PLUS_MAGIC = 1;
     private static final int BLOCK_AMT = 1;
@@ -48,6 +50,9 @@ public class ENEnergyIsFull extends GkmasBossCard {
         this.baseBlock = BLOCK_AMT;
         this.block = this.baseBlock;
         this.exhaust = true;
+        this.tags.add(GkmasCardTag.MORE_ACTION_TAG);
+        CardModifierManager.addModifier(this,new MoreActionCustom(1));
+        this.energyGeneratedIfPlayed = 1;
         this.intent = AbstractMonster.Intent.DEFEND_BUFF;
         this.tags.add(GkmasCardTag.GOOD_IMPRESSION_TAG);
     }

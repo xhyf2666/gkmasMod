@@ -28,8 +28,11 @@ import gkmasmod.utils.IdolData;
 import java.util.ArrayList;
 
 public class CampfireSleepEffectPatch {
+    /**
+     * 睡觉时，触发特定遗物的效果
+     */
     @SpirePatch(clz = CampfireSleepEffect.class,method = SpirePatch.CONSTRUCTOR)
-    public static class PostPatchCampfireSleepEffectConstructor {
+    public static class PostPatchCampfireSleepEffect_Constructor {
         @SpirePostfixPatch
         public static void Postfix(CampfireSleepEffect __instance) {
             if(AbstractDungeon.player.hasRelic(MysteriousObject.ID)){

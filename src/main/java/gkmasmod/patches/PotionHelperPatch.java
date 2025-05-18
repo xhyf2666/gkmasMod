@@ -13,9 +13,11 @@ import com.megacrit.cardcrawl.potions.AbstractPotion;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import gkmasmod.characters.IdolCharacter;
 import gkmasmod.characters.MisuzuCharacter;
+import gkmasmod.characters.OtherIdolCharacter;
 import gkmasmod.modcore.GkmasMod;
 import gkmasmod.potion.*;
 import gkmasmod.relics.PledgePetal;
+import gkmasmod.screen.OtherSkinSelectScreen;
 import gkmasmod.screen.SkinSelectScreen;
 import gkmasmod.utils.CommonEnum;
 import gkmasmod.utils.IdolData;
@@ -29,15 +31,18 @@ import java.util.ArrayList;
 public class PotionHelperPatch
 {
     @SpirePatch(clz = PotionHelper.class,method = "getPotions",paramtypez = {AbstractPlayer.PlayerClass.class, boolean.class})
-    public static class AbstractCardPostPatch_MakeStatEquivalentCopy{
+    public static class InsertPatchPotionHelper_getPotions{
         @SpireInsertPatch(rloc = 2,localvars = {"retVal"})
         public static void Insert(AbstractPlayer.PlayerClass c, boolean getAll,@ByRef ArrayList<String>[] retVal) {
             ArrayList<String> tmp =new ArrayList<>();
-            if(AbstractDungeon.player instanceof IdolCharacter||AbstractDungeon.player instanceof MisuzuCharacter){
+            if(AbstractDungeon.player instanceof IdolCharacter||AbstractDungeon.player instanceof MisuzuCharacter||AbstractDungeon.player instanceof OtherIdolCharacter){
                 if(!getAll){
                     CommonEnum.IdolType type  = IdolData.getIdol(SkinSelectScreen.Inst.idolIndex).getType(SkinSelectScreen.Inst.skinIndex);
                     if(AbstractDungeon.player instanceof MisuzuCharacter){
                         type = CommonEnum.IdolType.SENSE;
+                    }
+                    if(AbstractDungeon.player instanceof OtherIdolCharacter){
+                        type = IdolData.getOtherIdol(OtherSkinSelectScreen.Inst.idolIndex).getType(OtherSkinSelectScreen.Inst.skinIndex);
                     }
                     if(type==CommonEnum.IdolType.SENSE){
                         tmp.add(VitaminDrink.ID);
@@ -56,6 +61,26 @@ public class PotionHelperPatch
                         tmp.add(SpecialFirstStarExtract.ID);
                     }
                     else if(type== CommonEnum.IdolType.ANOMALY){
+                        tmp.add(GingerAle.ID);
+                        tmp.add(Hojicha.ID);
+                        tmp.add(HotGreenTea.ID);
+                        tmp.add(SelectFirstStarChai.ID);
+                        tmp.add(SelectFirstStarMilkTea.ID);
+                        tmp.add(FirstStarSoup.ID);
+                    }
+                    else if(type== CommonEnum.IdolType.PRODUCE){
+                        tmp.add(VitaminDrink.ID);
+                        tmp.add(IcedCoffee.ID);
+                        tmp.add(StaminaExplosionDrink.ID);
+                        tmp.add(SelectFirstStarMacchiato.ID);
+                        tmp.add(FirstStarBoostEnergy.ID);
+                        tmp.add(FirstStarBlackVinegar.ID);
+                        tmp.add(RooibosTea.ID);
+                        tmp.add(HotCoffee.ID);
+                        tmp.add(StylishHerbalTea.ID);
+                        tmp.add(SelectFirstStarTea.ID);
+                        tmp.add(SelectFirstStarBlend.ID);
+                        tmp.add(SpecialFirstStarExtract.ID);
                         tmp.add(GingerAle.ID);
                         tmp.add(Hojicha.ID);
                         tmp.add(HotGreenTea.ID);
@@ -91,10 +116,7 @@ public class PotionHelperPatch
         }
     }
 
-    @SpirePatch2(
-            clz = PotionHelper.class,
-            method = "getPotion"
-    )
+    @SpirePatch2(clz = PotionHelper.class, method = "getPotion")
     public static class PotionHelperGetPotion {
         @SpireInsertPatch(locator = Locator.class)
         public static SpireReturn<AbstractPotion> patch(String name) {

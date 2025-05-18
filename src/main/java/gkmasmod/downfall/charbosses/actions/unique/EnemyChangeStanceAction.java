@@ -2,6 +2,7 @@ package gkmasmod.downfall.charbosses.actions.unique;
 
 
 import com.evacipated.cardcrawl.modthespire.lib.SpireReturn;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.stances.AbstractStance;
 import com.megacrit.cardcrawl.stances.NeutralStance;
 import gkmasmod.downfall.charbosses.bosses.AbstractCharBoss;
@@ -16,6 +17,7 @@ import gkmasmod.powers.StepOnStagePower;
 import gkmasmod.stances.ConcentrationStance;
 import gkmasmod.stances.FullPowerStance;
 import gkmasmod.stances.PreservationStance;
+import gkmasmod.utils.StanceHelper;
 
 import java.util.Iterator;
 
@@ -67,12 +69,38 @@ public class EnemyChangeStanceAction extends AbstractGameAction {
                     return;
                 }
 
+                //从悠闲进入其他姿态时
+                if(oldStance.ID.equals(ENPreservationStance.STANCE_ID)){
+                    if(StanceHelper.enemyIsInStance(oldStance,ENPreservationStance.STANCE_ID,2)){
+                        //无法从悠闲进入温存
+                        if(this.id.equals(ENPreservationStance.STANCE_ID)||this.id.equals(ENPreservationStance.STANCE_ID2)||this.id.equals(ENPreservationStance.STANCE_ID3)){
+                            isDone = true;
+                            return;
+                        }
+                        if(this.id.equals(ConcentrationStance.STANCE_ID2)){
+                            if(AbstractCharBoss.boss.hasPower(StepOnStagePower.POWER_ID)){
+                                AbstractCharBoss.boss.getPower(StepOnStagePower.POWER_ID).onSpecificTrigger();
+                            }
+                        }
+                        newStance = AbstractEnemyStance.getStanceFromName(this.id);
+                        for (AbstractPower p : AbstractCharBoss.boss.powers)
+                            p.onChangeStance(oldStance, newStance);
+                        for (AbstractRelic r : AbstractCharBoss.boss.relics)
+                            r.onChangeStance(oldStance, newStance);
+                        ENPreservationStance preservationStance = (ENPreservationStance) oldStance;
+                        preservationStance.onExitSpecialStance(newStance);
+                        AbstractCharBoss.boss.stance = newStance;
+                        newStance.onEnterStance();
+                        AbstractCharBoss.boss.switchedStance();
+                        AbstractCharBoss.boss.onStanceChange(this.id);
+                    }
+                }
+
                 if(this.id.equals(ENPreservationStance.STANCE_ID)||this.id.equals(ENPreservationStance.STANCE_ID2)){
                     if(oldStance.ID.equals(ENPreservationStance.STANCE_ID)){
                         //如果之前处于温存
                         ENPreservationStance current = (ENPreservationStance)oldStance;
-                        int stage = current.stage;
-                        if(stage ==0){
+                        if(StanceHelper.enemyIsInStance(oldStance,ENPreservationStance.STANCE_ID)){
                             //从温存1进入温存2
                             if(AbstractCharBoss.boss.hasPower(StepOnStagePower.POWER_ID)){
                                 AbstractCharBoss.boss.getPower(StepOnStagePower.POWER_ID).onSpecificTrigger();
@@ -86,6 +114,32 @@ public class EnemyChangeStanceAction extends AbstractGameAction {
                                 AbstractCharBoss.boss.getPower(StepOnStagePower.POWER_ID).onSpecificTrigger();
                             }
                         }
+                        this.newStance = AbstractEnemyStance.getStanceFromName(this.id);
+                        for (AbstractPower p : AbstractCharBoss.boss.powers)
+                            p.onChangeStance(oldStance, newStance);
+                        for (AbstractRelic r : AbstractCharBoss.boss.relics)
+                            r.onChangeStance(oldStance, newStance);
+                        oldStance.onExitStance();
+                        AbstractCharBoss.boss.stance = newStance;
+                        newStance.onEnterStance();
+                        AbstractCharBoss.boss.switchedStance();
+                        AbstractCharBoss.boss.onStanceChange(this.id);
+                    }
+                }
+                else if(this.id.equals(ENPreservationStance.STANCE_ID3)){
+                    if(oldStance.ID.equals(ENPreservationStance.STANCE_ID)){
+                        //从温存进入悠闲
+                        ENPreservationStance current = (ENPreservationStance)oldStance;
+                        if(!StanceHelper.enemyIsInStance(oldStance,ENPreservationStance.STANCE_ID,2)){
+                            //之前不处于悠闲
+                            if(AbstractCharBoss.boss.hasPower(StepOnStagePower.POWER_ID)){
+                                AbstractCharBoss.boss.getPower(StepOnStagePower.POWER_ID).onSpecificTrigger();
+                            }
+                        }
+                        current.onEnterSpecialStance();
+                    }
+                    else{
+                        //从其他姿态进入悠闲
                         this.newStance = AbstractEnemyStance.getStanceFromName(this.id);
                         for (AbstractPower p : AbstractCharBoss.boss.powers)
                             p.onChangeStance(oldStance, newStance);

@@ -2,6 +2,7 @@ package gkmasmod.screen;
 
 
 import basemod.BaseMod;
+import basemod.ReflectionHacks;
 import basemod.abstracts.CustomSavable;
 import basemod.interfaces.ISubscriber;
 import com.badlogic.gdx.Gdx;
@@ -9,6 +10,8 @@ import com.badlogic.gdx.video.VideoPlayer;
 import com.badlogic.gdx.video.VideoPlayerCreator;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.helpers.*;
+import com.megacrit.cardcrawl.screens.charSelect.CharacterOption;
+import com.megacrit.cardcrawl.screens.charSelect.CharacterSelectScreen;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.characters.IdolCharacter;
 import com.badlogic.gdx.graphics.Color;
@@ -127,6 +130,22 @@ public class SkinSelectScreen implements ISubscriber, CustomSavable<int[]> {
             if(GkmasMod.beat_hmsz>0)
                 this.specialCard.upgrade();
         }
+        //
+        try{
+            for(CharacterOption o: CardCrawlGame.mainMenuScreen.charSelectScreen.options){
+                if(o.c instanceof IdolCharacter &&o.selected){
+                    ReflectionHacks.setPrivate(o,CharacterOption.class,"charInfo",o.c.getLoadout());
+                    ReflectionHacks.setPrivate(o,CharacterOption.class,"name",curName);
+                    ReflectionHacks.setPrivate(o,CharacterOption.class,"gold",((IdolCharacter) o.c).getGold());
+                    ReflectionHacks.setPrivate(o,CharacterOption.class,"hp",String.valueOf(((IdolCharacter) o.c).getHP()));
+                    ReflectionHacks.setPrivate(o,CharacterOption.class,"flavorText",((IdolCharacter) o.c).getStory());
+                }
+            }
+        }
+        catch (Exception e){
+
+        }
+
         switch (this.idolType){
             case SENSE:
                 this.typeImg = ImageMaster.loadImage("gkmasModResource/img/UI/sense.png");
@@ -176,13 +195,18 @@ public class SkinSelectScreen implements ISubscriber, CustomSavable<int[]> {
                 this.styleHint = CardCrawlGame.languagePack.getUIString("styleHint:fullPower").TEXT[0];
                 break;
         }
+        if(idolName.equals(IdolData.hmsz)){
+            this.styleImg = ImageMaster.loadImage("gkmasModResource/img/UI/overPreservation.png");
+            this.styleHintName = CardCrawlGame.languagePack.getUIString("styleHintName:overPreservation").TEXT[0];
+            this.styleHint = CardCrawlGame.languagePack.getUIString("styleHint:overPreservation").TEXT[0];
+        }
         if (AbstractDungeon.player instanceof IdolCharacter) {
             IdolCharacter k = (IdolCharacter)AbstractDungeon.player;
             k.idolName = idolName;
             k.idolData = IdolData.getIdol(idolName);
             k.skinIndex = skinIndex;
             k.refreshSkin();
-    }
+        }
     }
 
     public int prevIndex() {
@@ -484,7 +508,7 @@ public class SkinSelectScreen implements ISubscriber, CustomSavable<int[]> {
         float dist = 100.0F * Settings.scale;
 
 //        if(idolName!=IdolData.jsna)
-            renderCardPreviewInSingleView(sb);
+        renderCardPreviewInSingleView(sb);
         //FontHelper.renderFontCentered(sb, FontHelper.cardTitleFont, this.curName, centerX, centerY-200, RC);
         //FontHelper.renderFontCentered(sb, FontHelper.cardTitleFont, this.SpecialName, centerX, centerY-250, RC);
         if (this.leftHb.hovered) {
@@ -638,7 +662,7 @@ public class SkinSelectScreen implements ISubscriber, CustomSavable<int[]> {
 
     public void renderCardPreviewInSingleView(SpriteBatch sb) {
         this.specialCard.current_x = Settings.WIDTH * 0.35F;
-        this.specialCard.current_y = Settings.HEIGHT * 0.35F;
+        this.specialCard.current_y = Settings.HEIGHT * 0.31F;
         this.specialCard.render(sb);
     }
 
@@ -660,8 +684,8 @@ public class SkinSelectScreen implements ISubscriber, CustomSavable<int[]> {
                 e.printStackTrace();
             }
         }
+    }
 
-   }
     public int[] onSave() {
 
         try {

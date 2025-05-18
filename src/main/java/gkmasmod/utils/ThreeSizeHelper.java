@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.powers.MinionPower;
 import com.megacrit.cardcrawl.random.Random;
 import gkmasmod.characters.IdolCharacter;
 import gkmasmod.characters.MisuzuCharacter;
+import gkmasmod.characters.OtherIdolCharacter;
 import gkmasmod.patches.AbstractCardPatch;
 import gkmasmod.patches.AbstractPlayerPatch;
 import gkmasmod.powers.DaSpPower;
@@ -149,7 +150,7 @@ public class ThreeSizeHelper {
     }
 
     public static int getHealthRate(int act){
-        if(AbstractDungeon.player instanceof IdolCharacter||AbstractDungeon.player instanceof MisuzuCharacter){
+        if(AbstractDungeon.player instanceof IdolCharacter||AbstractDungeon.player instanceof MisuzuCharacter||AbstractDungeon.player instanceof OtherIdolCharacter){
             if(act==1)
                 return 4;
             else if(act==2)
@@ -184,7 +185,6 @@ public class ThreeSizeHelper {
             if(roundNum > 2)
                 tmp.add(idol.idolData.getThirdThreeType());
             ArrayList<Integer> tmp2 = new ArrayList<>();
-//            com.megacrit.cardcrawl.random.Random spRng = new Random(Settings.seed, AbstractDungeon.floorNum*20);
             for(int i = 0; i < roundNum - 3; i++){
                 if(i%3==0)
                     tmp2.add(idol.idolData.getFirstThreeType());
@@ -204,6 +204,31 @@ public class ThreeSizeHelper {
                 require = idol.idolData.getAnotherThreeSizeRequire(currentThreeType);
             }
         }
+        else if(AbstractDungeon.player instanceof OtherIdolCharacter){
+            OtherIdolCharacter idol = (OtherIdolCharacter)AbstractDungeon.player;
+            if(roundNum > 0)
+                tmp.add(idol.idolData.getFirstThreeType());
+            if(roundNum > 1)
+                tmp.add(idol.idolData.getSecondThreeType());
+            if(roundNum > 2)
+                tmp.add(idol.idolData.getThirdThreeType());
+            ArrayList<Integer> tmp2 = new ArrayList<>();
+            for(int i = 0; i < roundNum - 3; i++){
+                if(i%3==0)
+                    tmp2.add(idol.idolData.getFirstThreeType());
+                else if (i%3==1)
+                    tmp2.add(idol.idolData.getSecondThreeType());
+                else
+                    tmp2.add(idol.idolData.getThirdThreeType());
+            }
+            Collections.shuffle(tmp2, new java.util.Random(Settings.seed+AbstractDungeon.floorNum*20));
+            for(int i = 0; i < tmp2.size(); i++){
+                tmp.add(tmp2.get(i));
+            }
+            currentThreeType = tmp.get(tmp.size()-1);
+            baseDamageRate = idol.idolData.getBaseDamageRate(currentThreeType);
+            require = idol.idolData.getThreeSizeRequire(currentThreeType);
+        }
         else if(AbstractDungeon.player instanceof MisuzuCharacter){
             if(roundNum > 0)
                 tmp.add(IdolData.hmszData.getFirstThreeType());
@@ -212,7 +237,6 @@ public class ThreeSizeHelper {
             if(roundNum > 2)
                 tmp.add(IdolData.hmszData.getThirdThreeType());
             ArrayList<Integer> tmp2 = new ArrayList<>();
-//            com.megacrit.cardcrawl.random.Random spRng = new Random(Settings.seed, AbstractDungeon.floorNum*20);
             for(int i = 0; i < roundNum - 3; i++){
                 if(i%3==0)
                     tmp2.add(IdolData.hmszData.getFirstThreeType());
@@ -271,6 +295,13 @@ public class ThreeSizeHelper {
                 if(idol.idolData.idolName.equals(IdolData.hume)&&idol.idolData.getRelic(SkinSelectScreen.Inst.skinIndex).equals(ChristmasLion.ID)){
                     require = idol.idolData.getAnotherThreeSizeRequire(i);
                 }
+                rates[i] = calculateDamageRate(idol.idolData.getBaseDamageRate(i),AbstractPlayerPatch.ThreeSizeField.threeSize.get(AbstractDungeon.player)[i],require);
+            }
+        }
+        else if(AbstractDungeon.player instanceof OtherIdolCharacter){
+            OtherIdolCharacter idol = (OtherIdolCharacter)AbstractDungeon.player;
+            for(int i = 0; i < 3; i++){
+                int require = idol.idolData.getThreeSizeRequire(i);
                 rates[i] = calculateDamageRate(idol.idolData.getBaseDamageRate(i),AbstractPlayerPatch.ThreeSizeField.threeSize.get(AbstractDungeon.player)[i],require);
             }
         }

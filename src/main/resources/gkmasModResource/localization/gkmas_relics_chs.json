@@ -3,7 +3,7 @@
     "NAME": "超绝安眠眼罩",
     "FLAVOR": "睡得更香。",
     "DESCRIPTIONS": [
-      "训练时间结束时，失去 #b%d 点体力，对所有敌人造成自身 #y格挡 #b%d %%的伤害。 NL (每场战斗可触发 #b%d 次)。"
+      "#ygkmasmod:训练时间 结束时，失去 #b%d 点体力，对所有敌人造成自身 #y格挡 #b%d %%的伤害。 NL (每场战斗可触发 #b%d 次)。"
     ]
   },
   "BeginnerGuideForEveryone": {
@@ -17,14 +17,14 @@
     "NAME": "路边野草研究笔记",
     "FLAVOR": "这些笔记记录了一些有趣研究结果。",
     "DESCRIPTIONS": [
-      "训练时间剩余 #b1 层时和结束时，失去 #b%d 点体力，对所有敌人造成自身 #y格挡 #b%d %%的伤害。 NL (每场战斗可触发 #b%d 次)。"
+      "#ygkmasmod:训练时间 剩余 #b1 层时和结束时，失去 #b%d 点体力，对所有敌人造成自身 #y格挡 #b%d %%的伤害。 NL (每场战斗可触发 #b%d 次)。"
     ]
   },
   "TowardsAnUnseenWorld": {
     "NAME": "前往未知的世界",
     "FLAVOR": "唔姆。",
     "DESCRIPTIONS": [
-      "回合开始时，如果体力不高于 #b%d %%，则获得 #b%d 点 #y力量 ， #y受伤减少 #b%d ，同时 #y强化 所有手牌。 NL (每场战斗可触发 #b%d 次)。"
+      "回合开始时，如果体力不高于 #b%d %%，则获得 #b%d 点 #y力量 ， #ygkmasmod:受伤减少 #b%d ，同时 #y强化 所有手牌。 NL (每场战斗可触发 #b%d 次)。"
     ]
   },
   "GreenUniformBracelet": {
@@ -80,7 +80,7 @@
     "NAME": "满满一杯的心动",
     "FLAVOR": "要来咯。",
     "DESCRIPTIONS": [
-      "训练时间结束时，失去 #b%d 点体力，对随机敌人造成 #b%d 点伤害。 NL 每打出一张牌伤害增加 #b%d 。 NL (每场战斗可触发 #b%d 次)。"
+      "#ygkmasmod:训练时间 结束时，失去 #b%d 点体力，对随机敌人造成 #b%d 点伤害。 NL 每打出一张牌伤害增加 #b%d 。 NL (每场战斗可触发 #b%d 次)。"
     ]
   },
   "TechnoDog": {
@@ -164,7 +164,7 @@
     "NAME": "等身的女士口红",
     "FLAVOR": "这是等身的女士口红。",
     "DESCRIPTIONS": [
-      " #y训练时间 剩余 #b1 层时和结束时，对所有敌人造成 #b%d 点伤害。 NL (每场战斗可触发 #b%d 次)。"
+      "#ygkmasmod:训练时间 剩余 #b1 层时和结束时，对所有敌人造成 #b%d 点伤害。 NL (每场战斗可触发 #b%d 次)。"
     ]
   },
   "SummerToShareWithYou": {
@@ -185,7 +185,7 @@
     "NAME": "初声之证·琴音",
     "FLAVOR": "琴音的初声之证。",
     "DESCRIPTIONS": [
-      "使用 #y初次奖励 后，获得 #b%d 层 #ygkmasmod:好调 。"
+      "使用 #y初次奖励 时，获得 #b%d 层 #ygkmasmod:好调 。"
     ]
   },
   "FavoriteSneakers": {
@@ -206,7 +206,7 @@
     "NAME": "终极幸福源泉",
     "FLAVOR": "这是终极幸福源泉。",
     "DESCRIPTIONS": [
-      "使用 #y肾上腺素全开 后，获得 #b%d 层 #ygkmasmod:好调 和 #b%d 点 #y格挡 。"
+      "使用 #y肾上腺素全开 时，获得 #b%d 层 #ygkmasmod:好调 和 #b%d 点 #y格挡 。"
     ]
   },
   "CracklingSparkler": {
@@ -297,7 +297,7 @@
     "NAME": "防护耳机",
     "FLAVOR": "这是防护耳机。",
     "DESCRIPTIONS": [
-      "出牌后，如果 #y力量 大于 #b%d ，则获得 #b%d 点 #y力量 ， #ygkmasmod:再动 。 NL (每场战斗可触发 #b%d 次)。"
+      "出牌时，如果 #y力量 大于 #b%d ，则获得 #b%d 点 #y力量 ， #ygkmasmod:再动 。 NL (每场战斗可触发 #b%d 次)。"
     ]
   },
   "ThisIsMe": {
@@ -346,7 +346,7 @@
     "NAME": "初心之证·千奈",
     "FLAVOR": "千奈的初心之证。",
     "DESCRIPTIONS": [
-      " #y训练时间 结束时，失去 #b%d 点体力，对随机敌人造成 #b%d 点伤害。 NL 每打出一张牌伤害增加 #b%d 。 NL (每场战斗可触发 #b%d 次)。"
+      "#ygkmasmod:训练时间 结束时，失去 #b%d 点体力，对随机敌人造成 #b%d 点伤害。 NL 每打出一张牌伤害增加 #b%d 。 NL (每场战斗可触发 #b%d 次)。"
     ]
   },
   "FirstHeartProofLilja": {
@@ -451,14 +451,14 @@
     "NAME": "呜~啦~咪~嘻~呀~",
     "FLAVOR": "呜~啦~咪~嘻~呀~",
     "DESCRIPTIONS": [
-      "使用 #y攻击牌 后，获得 #b%d 点 #ygkmasmod:固定格挡 。"
+      "使用 #y攻击牌 时，获得 #b%d 点 #ygkmasmod:固定格挡 。"
     ]
   },
   "NaughtyPuppet": {
     "NAME": "淘气木偶",
     "FLAVOR": "淘气木偶。",
     "DESCRIPTIONS": [
-      "使用 #y攻击牌 后，如果体力 不高于 #b%d %% ，则对敌人额外造成本场战斗中 #y累计损失体力 #b%d %%的伤害，回复 #b%d 点体力， #b%d 回合内无法获得 #y格挡 。 NL (每场战斗可触发 #b%d 次)。"
+      "使用 #y攻击牌 时，如果体力 不高于 #b%d %% ，则对敌人额外造成本场战斗中 #y累计损失体力 #b%d %%的伤害，回复 #b%d 点体力， #b%d 回合内无法获得 #y格挡 。 NL (每场战斗可触发 #b%d 次)。"
     ]
   },
   "FirstLoveProofHiro": {
@@ -510,6 +510,13 @@
       "右键使用，获得制作人的帮助。 NL (每场战斗可呼叫 #b1 次)。"
     ]
   },
+  "IdolPhone": {
+    "NAME": "小偶像的电话",
+    "FLAVOR": "没事就不能……吗？",
+    "DESCRIPTIONS": [
+      "右键使用，将随机 #b%d 张 #y偶像 牌加入手牌，使其获得 #y消耗 #y移除 和 #ygkmasmod:耗能减少 #b1 。 NL (每场战斗可呼叫 #b1 次)。"
+    ]
+  },
   "StruggleRecord": {
     "NAME": "斗争的记录",
     "FLAVOR": "战斗，爽。",
@@ -521,64 +528,64 @@
     "NAME": "增强型束带",
     "FLAVOR": "增强型束带。",
     "DESCRIPTIONS": [
-      "每次进入特殊商店时，回复 #b%d 点体力， NL 特殊商店涨价 #b%d %%，敌人血量提高 #b%d %%。 NL 获得三维提高 #b%d 。"
+      "每次进入特殊商店时，回复 #b%d 点体力， NL 特殊商店涨价 #b%d %%，敌人血量提高 #b%d %%。 NL 获得 #ygkmasmod:三维 提高 #b%d 。"
     ]
   },
   "MasterHighHeels": {
     "NAME": "增强型高跟鞋",
     "FLAVOR": "增强型高跟鞋。",
     "DESCRIPTIONS": [
-      "战斗开始时，获得 #b%d 点 #y格挡 。 NL 获得 #y%s 牌时，失去 #b%d 点金币，敌方血量提高 #b%d %%。 NL (本局游戏可触发 #b%d 次)。 NL 获得三维提高 #b%d 。"
+      "战斗开始时，获得 #b%d 点 #y格挡 。 NL 获得 #y%s 牌时，失去 #b%d 点金币，敌方血量提高 #b%d %%。 NL (本局游戏可触发 #b%d 次)。 NL 获得 #ygkmasmod:三维 提高 #b%d 。"
     ]
   },
   "MasterVest": {
     "NAME": "增强型背心",
-    "FLAVOR": "真得删卡！",
+    "FLAVOR": "删卡大于一切",
     "DESCRIPTIONS": [
-      "随机删除 #b%d 张 #y初始卡 。 NL 敌人血量提高 #b%d %%。 NL 获得三维提高 #b%d 。"
+      "随机删除 #b%d 张 #y初始卡 。 NL 敌人血量提高 #b%d %%。 NL 获得 #ygkmasmod:三维 提高 #b%d 。"
     ]
   },
   "MasterSupportFrame": {
     "NAME": "增强型支撑架",
     "FLAVOR": "增强型支撑架。",
     "DESCRIPTIONS": [
-      "战斗开始时，获得 #b%d 点 #y格挡 和 #b%d %s #y%s 。 NL Boss战中，特殊回合减少 #b%d 。 NL 敌人血量提高 #b%d %%。 NL 获得三维提高 #b%d 。",
-      "战斗开始时，获得 #b%d 点 #ygkmasmod:全力值 ，进入 #ygkmasmod:温存 。 NL Boss战中，特殊回合减少 #b%d 。 NL 敌人血量提高 #b%d %%。 NL 获得三维提高 #b%d 。",
-      "战斗开始时，所有牌获得 #ygkmasmod:伤害增加 #b%d ，进入 #ygkmasmod:温存 。 NL Boss战中，特殊回合减少 #b%d 。 NL 敌人血量提高 #b%d %%。 NL 获得三维提高 #b%d 。"
+      "战斗开始时，获得 #b%d 点 #y格挡 和 #b%d %s #y%s 。 NL Boss战中，特殊回合减少 #b%d 。 NL 敌人血量提高 #b%d %%。 NL 获得 #ygkmasmod:三维 提高 #b%d 。",
+      "战斗开始时，获得 #b%d 点 #ygkmasmod:全力值 ，进入 #ygkmasmod:温存 。 NL Boss战中，特殊回合减少 #b%d 。 NL 敌人血量提高 #b%d %%。 NL 获得 #ygkmasmod:三维 提高 #b%d 。",
+      "战斗开始时，所有牌获得 #ygkmasmod:伤害增加 #b%d ，进入 #ygkmasmod:温存 。 NL Boss战中，特殊回合减少 #b%d 。 NL 敌人血量提高 #b%d %%。 NL 获得 #ygkmasmod:三维 提高 #b%d 。"
     ]
   },
   "MasterRoller": {
     "NAME": "增强型滚轮",
     "FLAVOR": "增强型滚轮。",
     "DESCRIPTIONS": [
-      "战斗开始时，获得 #b%d 点 #y格挡 和 #b%d %s #y%s 。 NL SP战斗开始时，首回合造成伤害减少 #b%d %%。 NL 获得三维提高 #b%d 。",
-      "战斗开始时，获得 #b%d 点 #y格挡 和 #b%d 点 #ygkmasmod:全力值 ，进入 #ygkmasmod:温存 。 NL SP战斗开始时，失去 [E] 。 NL 获得三维提高 #b%d 。",
-      "战斗开始时，获得 #b%d 点 #y格挡 ，进入 #ygkmasmod:温存2段 。 NL SP战斗开始时，首回合造成伤害减少 #b%d %%。 NL 获得三维提高 #b%d 。"
+      "战斗开始时，获得 #b%d 点 #y格挡 和 #b%d %s #y%s 。 NL SP战斗开始时，首回合造成伤害减少 #b%d %%。 NL 获得 #ygkmasmod:三维 提高 #b%d 。",
+      "战斗开始时，获得 #b%d 点 #y格挡 和 #b%d 点 #ygkmasmod:全力值 ，进入 #ygkmasmod:温存 。 NL SP战斗开始时，失去 [E] 。 NL 获得 #ygkmasmod:三维 提高 #b%d 。",
+      "战斗开始时，获得 #b%d 点 #y格挡 ，进入 #ygkmasmod:温存2段 。 NL SP战斗开始时，首回合造成伤害减少 #b%d %%。 NL 获得 #ygkmasmod:三维 提高 #b%d 。"
     ]
   },
   "MasterBall": {
     "NAME": "增强型球",
     "FLAVOR": "增强型球。",
     "DESCRIPTIONS": [
-      "获得 #b%d 点金币。 NL 敌人血量提高 #b%d %%。 NL 获得三维提高 #b%d 。"
+      "获得 #b%d 点金币。 NL 敌人血量提高 #b%d %%。 NL 获得 #ygkmasmod:三维 提高 #b%d 。"
     ]
   },
   "MasterTreadmill": {
     "NAME": "增强型跑步机",
     "FLAVOR": "增强型跑步机。",
     "DESCRIPTIONS": [
-      "SP战斗开始时，获得 #b%d 点 #y格挡 和 #b%d %s #y%s ，造成伤害减少 #b%d %%。 NL 敌人血量提高 #b%d %%。 NL 获得三维提高 #b%d 。",
-      "SP战斗开始时，进入 #ygkmasmod:温存 ，获得 #b%d 点 #ygkmasmod:全力值 ，造成伤害减少 #b%d %%。 NL 敌人血量提高 #b%d %%。 NL 获得三维提高 #b%d 。",
-      "SP战斗开始时，进入 #ygkmasmod:温存 ，所有牌获得 #ygkmasmod:伤害增加 #b%d ，造成伤害减少 #b%d %%。 NL 敌人血量提高 #b%d %%。 NL 获得三维提高 #b%d 。"
+      "SP战斗开始时，获得 #b%d 点 #y格挡 和 #b%d %s #y%s ，造成伤害减少 #b%d %%。 NL 敌人血量提高 #b%d %%。 NL 获得 #ygkmasmod:三维 提高 #b%d 。",
+      "SP战斗开始时，进入 #ygkmasmod:温存 ，获得 #b%d 点 #ygkmasmod:全力值 ，造成伤害减少 #b%d %%。 NL 敌人血量提高 #b%d %%。 NL 获得 #ygkmasmod:三维 提高 #b%d 。",
+      "SP战斗开始时，进入 #ygkmasmod:温存 ，所有牌获得 #ygkmasmod:伤害增加 #b%d ，造成伤害减少 #b%d %%。 NL 敌人血量提高 #b%d %%。 NL 获得 #ygkmasmod:三维 提高 #b%d 。"
     ]
   },
   "MasterDumbbell": {
     "NAME": "增强型哑铃",
     "FLAVOR": "增强型哑铃。",
     "DESCRIPTIONS": [
-      "回合开始时，抽 #b%d 张牌。 NL 回合结束时，失去 #b%d %s #y%s 。 NL 敌人血量提高 #b%d %%。 NL 获得三维提高 #b%d 。",
-      "回合开始时，抽 #b%d 张牌，退出当前 #y姿态 。 NL 敌人血量提高 #b%d %%。 NL 获得三维提高 #b%d 。",
-      "回合开始时，抽 #b%d 张牌，所有牌获得 #ygkmasmod:伤害减少 #b%d 。 NL 敌人血量提高 #b%d %%。 NL 获得三维提高 #b%d 。"
+      "回合开始时，抽 #b%d 张牌。 NL 回合结束时，失去 #b%d %s #y%s 。 NL 敌人血量提高 #b%d %%。 NL 获得 #ygkmasmod:三维 提高 #b%d 。",
+      "回合开始时，抽 #b%d 张牌，退出当前 #y姿态 。 NL 敌人血量提高 #b%d %%。 NL 获得 #ygkmasmod:三维 提高 #b%d 。",
+      "回合开始时，抽 #b%d 张牌，所有牌获得 #ygkmasmod:伤害减少 #b%d 。 NL 敌人血量提高 #b%d %%。 NL 获得 #ygkmasmod:三维 提高 #b%d 。"
     ]
   },
   "AnimateEquipment": {
@@ -662,7 +669,7 @@
     "NAME": "圣诞狮子",
     "FLAVOR": "圣诞狮子。",
     "DESCRIPTIONS": [
-      "训练时间剩余 #b1 层时和结束时，对随机敌人造成 #ygkmasmod:好调 层数 #b%d %%的伤害。 NL (每场战斗可触发 #b%d 次)。"
+      "#ygkmasmod:训练时间 剩余 #b1 层时和结束时，对随机敌人造成 #ygkmasmod:好调 层数 #b%d %%的伤害。 NL (每场战斗可触发 #b%d 次)。"
     ]
   },
   "BeyondTheSea": {
@@ -774,7 +781,7 @@
     "NAME": "迈向描绘的梦想",
     "FLAVOR": "迈向描绘的梦想。",
     "DESCRIPTIONS": [
-      "使用 #y茶会闲话 后，获得 #b%d 个 #y额外回合 ， #y格挡 层数变为 #b%d %%。 NL (每场战斗可触发 #b%d 次)。"
+      "使用 #y茶会闲话 时，获得 #b%d 个 #y额外回合 ， #y格挡 层数变为 #b%d %%。 NL (每场战斗可触发 #b%d 次)。"
     ]
   },
   "SelectedPassion": {
@@ -977,7 +984,49 @@
     "NAME": "雨后的彩虹",
     "FLAVOR": "雨后的彩虹。",
     "DESCRIPTIONS": [
-      "使用 #y技能牌 后，如果处于 #ygkmasmod:温存2段 ，则获得 #b%d 层 #ygkmasmod:热意 #ygkmasmod:追加 。 NL (每场战斗可触发 #b%d 次)。"
+      "使用 #y技能牌 后，如果处于 #ygkmasmod:温存2段 或 #ygkmasmod:悠闲 ，则获得 #b%d 层 #ygkmasmod:热意 #ygkmasmod:追加 。 NL (每场战斗可触发 #b%d 次)。"
+    ]
+  },
+  "LadyDiary": {
+    "NAME": "淑女的日记",
+    "FLAVOR": "淑女的日记。",
+    "DESCRIPTIONS": [
+      "回合结束时，交换你的 #y力量 和 #y敏捷 层数。"
+    ]
+  },
+  "SisterComplex": {
+    "NAME": "姐控的自我修养",
+    "FLAVOR": "姐控的自我修养。",
+    "DESCRIPTIONS": [
+      "每次向敌人施加 #y负面效果 时，获得 #b%d 层 #ygkmasmod:好调 。"
+    ]
+  },
+  "TopIdolPride": {
+    "NAME": "顶级偶像的骄傲",
+    "FLAVOR": "顶级偶像的骄傲。",
+    "DESCRIPTIONS": [
+      "每累计获得 #b%d 点 #ygkmasmod:全力值 ，获得 #b%d 层 #ygkmasmod:战意 。"
+    ]
+  },
+  "SomethingLongHold": {
+    "NAME": "一直以来的持有物",
+    "FLAVOR": "一直以来的持有物。",
+    "DESCRIPTIONS": [
+      "处于 #ygkmasmod:全力 时，每次打出 #ygkmasmod:温存 牌后，对随机敌人造成本场战斗中累计获得的 #ygkmasmod:全力值 #b%d %%的伤害。"
+    ]
+  },
+  "SwayWindHairpin": {
+    "NAME": "随风摇曳的发饰",
+    "FLAVOR": "随风摇曳的发饰。",
+    "DESCRIPTIONS": [
+      "使用 #y攻击牌 后，失去 #b%d 点体力，进入 #ygkmasmod:温存 ，使所有 #ygkmasmod:强气 牌获得 #ygkmasmod:伤害增加 #b%d 。 NL (每场战斗可触发 #b%d 次)。"
+    ]
+  },
+  "DescriptionOfDream": {
+    "NAME": "描绘的梦想",
+    "FLAVOR": "描绘的梦想。",
+    "DESCRIPTIONS": [
+      "处于 #ygkmasmod:全力 时，每次打出 #ygkmasmod:温存 牌后，对随机敌人造成本场战斗中累计获得的 #ygkmasmod:全力值 #b%d %%的伤害。"
     ]
   }
 }

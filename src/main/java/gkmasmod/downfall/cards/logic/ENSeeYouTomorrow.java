@@ -15,6 +15,7 @@ import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.downfall.cards.GkmasBossCard;
 import gkmasmod.downfall.cards.free.ENSleepLate;
 import gkmasmod.powers.GoodImpression;
+import gkmasmod.utils.IdolData;
 import gkmasmod.utils.NameHelper;
 import gkmasmod.utils.PlayerHelper;
 import gkmasmod.utils.SoundHelper;
@@ -51,6 +52,8 @@ public class ENSeeYouTomorrow extends GkmasBossCard {
         this.secondMagicNumber = this.baseSecondMagicNumber;
         this.baseBlock = BASE_BLOCK;
         this.exhaust = true;
+        this.backGroundColor = IdolData.hrnm;
+        updateBackgroundImg();
         this.intent = AbstractMonster.Intent.MAGIC;
         this.tags.add(GkmasCardTag.GOOD_IMPRESSION_TAG);
         this.tags.add(GkmasCardTag.IDOL_CARD_TAG);

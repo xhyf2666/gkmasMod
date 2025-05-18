@@ -2,9 +2,7 @@ package gkmasmod.powers;
 
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
-import com.megacrit.cardcrawl.actions.common.MakeTempCardInDiscardAction;
 import com.megacrit.cardcrawl.actions.common.MakeTempCardInHandAction;
-import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
@@ -14,15 +12,18 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
+import gkmasmod.actions.AutoPlayAction;
 import gkmasmod.actions.GrowAction;
 import gkmasmod.actions.ShowCardToDiscardEffect;
+import gkmasmod.cardCustomEffect.EffectChangeCustom;
+import gkmasmod.cardGrowEffect.TempOutAutoPlayGrow;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.downfall.cards.GkmasBossCard;
 import gkmasmod.downfall.charbosses.actions.common.EnemyMakeTempCardInHandAction;
 import gkmasmod.downfall.charbosses.bosses.AbstractCharBoss;
-import gkmasmod.growEffect.BlockGrow;
-import gkmasmod.growEffect.DamageGrow;
-import gkmasmod.utils.GrowHelper;
+import gkmasmod.cardGrowEffect.BlockGrow;
+import gkmasmod.cardGrowEffect.DamageGrow;
+import gkmasmod.utils.CustomHelper;
 import gkmasmod.utils.NameHelper;
 import gkmasmod.utils.PlayerHelper;
 
@@ -150,6 +151,9 @@ public class TempSavePower extends AbstractPower {
             }
             if(c instanceof GkmasBossCard){
                 ((GkmasBossCard) c).customTrigger();
+            }
+            if(CustomHelper.hasCustom(c, TempOutAutoPlayGrow.growID)){
+                AbstractDungeon.actionManager.addToBottom(new AutoPlayAction(c,false));
             }
 
             i++;

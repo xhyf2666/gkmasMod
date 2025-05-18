@@ -23,7 +23,7 @@ public class UseCardActionPatch
 {
 
     @SpirePatch(clz = UseCardAction.class,method = SpirePatch.CONSTRUCTOR,paramtypez = {AbstractCard.class, AbstractCreature.class})
-    public static class UseCardActionInsertPatch_constructor {
+    public static class InsertPatchUseCardAction_Constructor {
         @SpireInsertPatch(rloc = 46-23)
         public static void Insert(UseCardAction __instance, AbstractCard card, AbstractCreature target) {
             if(AbstractDungeon.player.stance.ID.equals(WakeStance.STANCE_ID)){
@@ -36,7 +36,7 @@ public class UseCardActionPatch
     }
 
     @SpirePatch(clz = UseCardAction.class,method = "update")
-    public static class UseCardActionInsertPatch_update {
+    public static class InsertPatchUseCardAction_update {
         @SpireInsertPatch(rloc = 144-84)
         public static SpireReturn<Void> Insert(UseCardAction __instance, AbstractCard ___targetCard, @ByRef float[] ___duration) {
             if(AbstractDungeon.player.stance.ID.equals(PreservationStance.STANCE_ID)){
@@ -45,7 +45,6 @@ public class UseCardActionPatch
                     ___targetCard.dontTriggerOnUseCard = false;
                     AbstractDungeon.actionManager.addToBottom(new HandCheckAction());
                     __instance.isDone = true;
-//                    ___duration[0] -= Gdx.graphics.getDeltaTime();
                     return SpireReturn.Return(null);
                 }
             }

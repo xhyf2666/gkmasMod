@@ -37,8 +37,11 @@ import java.util.ArrayList;
 
 public class CombatRewardScreenPatch {
 
+    /**
+     * 设置1层和2层Boss战的额外奖励
+     */
     @SpirePatch(clz = CombatRewardScreen.class,method = "setupItemReward")
-    public static class PostPatch_CombatRewardScreen_setupItemReward {
+    public static class PostPatchCombatRewardScreen_setupItemReward {
         @SpirePostfixPatch
         public static void Postfix(CombatRewardScreen __instance) {
             if (AbstractDungeon.getCurrRoom() instanceof com.megacrit.cardcrawl.rooms.MonsterRoomBoss && AbstractDungeon.actNum == 1 && (AbstractDungeon.player instanceof IdolCharacter || AbstractDungeon.player instanceof MisuzuCharacter)) {
@@ -114,8 +117,11 @@ public class CombatRewardScreenPatch {
         }
     }
 
+    /**
+     * 战后获得三维时，显示三维变化
+     */
     @SpirePatch(clz = CombatRewardScreen.class, method = "update")
-    public static class PrefixCombatRewardScreenPatch_update {
+    public static class PrePatchCombatRewardScreenPatch_update {
         public static void Prefix(CombatRewardScreen _inst) {
             if (AbstractDungeon.player.hasRelic(PocketBook.ID)){
                 if(ThreeSizeChangeScreen.VoInst != null)
@@ -128,8 +134,11 @@ public class CombatRewardScreenPatch {
         }
     }
 
+    /**
+     * 战后获得三维时，显示三维变化
+     */
     @SpirePatch(clz = CombatRewardScreen.class, method = "render")
-    public static class PostfixCombatRewardScreenPatch_render {
+    public static class PostPatchCombatRewardScreen_render {
         public static void Postfix(CombatRewardScreen _inst, SpriteBatch sb) {
             if (AbstractDungeon.player.hasRelic(PocketBook.ID)){
                 if(ThreeSizeChangeScreen.VoInst != null)
@@ -143,14 +152,17 @@ public class CombatRewardScreenPatch {
     }
 
     @SpirePatch(clz = CombatRewardScreen.class, method = "open", paramtypez = {String.class})
-    public static class PostfixCombatRewardScreenPatch_open {
+    public static class PostPatchCombatRewardScreen_open {
         public static void Postfix(CombatRewardScreen _inst) {
 
         }
     }
 
+    /**
+     * SP战后，触发遗物 初星手镯 的效果
+     */
     @SpirePatch(clz = CombatRewardScreen.class, method = "open", paramtypez = {})
-    public static class PostfixCombatRewardScreenPatch_open2 {
+    public static class PostPatchCombatRewardScreen_open2 {
         public static void Postfix(CombatRewardScreen _inst) {
             if(AbstractDungeon.player.hasRelic(FirstStarBracelet.ID)){
                 FirstStarBracelet relic = (FirstStarBracelet)AbstractDungeon.player.getRelic(FirstStarBracelet.ID);
@@ -160,12 +172,8 @@ public class CombatRewardScreenPatch {
     }
 
     @SpirePatch(clz = CombatRewardScreen.class, method = "openCombat", paramtypez = {String.class, boolean.class})
-    public static class PostfixCombatRewardScreenPatch_openCombat {
+    public static class PostPatchCombatRewardScreen_openCombat {
         public static void Postfix(CombatRewardScreen _inst) {
         }
     }
-
-
-
 }
-

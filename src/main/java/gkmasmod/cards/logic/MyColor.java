@@ -87,7 +87,7 @@ public class MyColor extends GkmasCard {
             PlayerHelper.removeNegativePower(p,this.secondMagicNumber);
         }
 
-//        SoundHelper.playSound("gkmasModResource/audio/voice/skillcard/cidol_ssmk_3_010_produce_skillcard_01.ogg");
+        SoundHelper.playSound("gkmasModResource/audio/voice/skillcard/cidol_hski_3_016_produce_skillcard_01.ogg");
     }
 
     @Override

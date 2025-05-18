@@ -12,7 +12,7 @@ import gkmasmod.cardCustomEffect.*;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
-import gkmasmod.growEffect.BlockGrow;
+import gkmasmod.cardGrowEffect.BlockGrow;
 import gkmasmod.stances.PreservationStance;
 import gkmasmod.utils.CustomHelper;
 import gkmasmod.utils.NameHelper;

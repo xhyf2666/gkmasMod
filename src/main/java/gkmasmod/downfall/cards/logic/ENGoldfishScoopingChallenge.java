@@ -14,6 +14,7 @@ import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.downfall.cards.GkmasBossCard;
 import gkmasmod.powers.GoodImpression;
+import gkmasmod.utils.IdolData;
 import gkmasmod.utils.NameHelper;
 import gkmasmod.utils.SoundHelper;
 
@@ -46,6 +47,8 @@ public class ENGoldfishScoopingChallenge extends GkmasBossCard {
         this.baseMagicNumber = BASE_MAGIC;
         this.magicNumber = this.baseMagicNumber;
         this.exhaust = true;
+        this.backGroundColor = IdolData.hski;
+        updateBackgroundImg();
         this.intent = AbstractMonster.Intent.BUFF;
         this.tags.add(GkmasCardTag.GOOD_IMPRESSION_TAG);
         this.tags.add(GkmasCardTag.IDOL_CARD_TAG);

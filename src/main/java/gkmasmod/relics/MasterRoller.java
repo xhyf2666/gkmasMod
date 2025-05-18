@@ -12,11 +12,13 @@ import com.megacrit.cardcrawl.powers.DexterityPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import gkmasmod.characters.MisuzuCharacter;
+import gkmasmod.characters.OtherIdolCharacter;
 import gkmasmod.patches.MapRoomNodePatch;
 import gkmasmod.powers.FullPowerValue;
 import gkmasmod.powers.GoodImpression;
 import gkmasmod.powers.GoodTune;
 import gkmasmod.powers.MasterRollerPower;
+import gkmasmod.screen.OtherSkinSelectScreen;
 import gkmasmod.screen.SkinSelectScreen;
 import gkmasmod.stances.PreservationStance;
 import gkmasmod.utils.CommonEnum;
@@ -60,6 +62,11 @@ public class MasterRoller extends MasterRelic {
         }
         else{
             style = IdolData.getIdol(SkinSelectScreen.Inst.idolIndex).getStyle(SkinSelectScreen.Inst.skinIndex);
+        }
+        if(AbstractDungeon.player instanceof OtherIdolCharacter){
+            style = IdolData.getIdol(OtherSkinSelectScreen.Inst.idolIndex).getStyle(OtherSkinSelectScreen.Inst.skinIndex);
+            if(OtherSkinSelectScreen.Inst.idolName.equals(IdolData.prod))
+                style = CommonEnum.IdolStyle.FOCUS;
         }
     }
 
@@ -139,6 +146,11 @@ public class MasterRoller extends MasterRelic {
         else{
             style = IdolData.getIdol(SkinSelectScreen.Inst.idolIndex).getStyle(SkinSelectScreen.Inst.skinIndex);
         }
+        if(AbstractDungeon.player instanceof OtherIdolCharacter){
+            style = IdolData.getIdol(OtherSkinSelectScreen.Inst.idolIndex).getStyle(OtherSkinSelectScreen.Inst.skinIndex);
+            if(OtherSkinSelectScreen.Inst.idolName.equals(IdolData.prod))
+                style = CommonEnum.IdolStyle.FOCUS;
+        }
         if(style == CommonEnum.IdolStyle.GOOD_TUNE)
             return String.format(IMG, CLASSNAME, "Purple");
         else if(style == CommonEnum.IdolStyle.FOCUS)
@@ -161,6 +173,11 @@ public class MasterRoller extends MasterRelic {
         }
         else{
             style = IdolData.getIdol(SkinSelectScreen.Inst.idolIndex).getStyle(SkinSelectScreen.Inst.skinIndex);
+        }
+        if(AbstractDungeon.player instanceof OtherIdolCharacter){
+            style = IdolData.getIdol(OtherSkinSelectScreen.Inst.idolIndex).getStyle(OtherSkinSelectScreen.Inst.skinIndex);
+            if(OtherSkinSelectScreen.Inst.idolName.equals(IdolData.prod))
+                style = CommonEnum.IdolStyle.FOCUS;
         }
         if(style == CommonEnum.IdolStyle.GOOD_TUNE)
             return String.format(IMG_LARGE, CLASSNAME, "Purple");

@@ -43,7 +43,7 @@ import com.megacrit.cardcrawl.localization.*;
 import com.megacrit.cardcrawl.map.MapRoomNode;
 import com.megacrit.cardcrawl.random.Random;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
-import gkmasmod.Listener.CardImgUpdateListener;
+import gkmasmod.listener.CardImgUpdateListener;
 import gkmasmod.cards.anomaly.*;
 import gkmasmod.cards.free.*;
 import gkmasmod.cards.logic.*;
@@ -98,7 +98,7 @@ public class GkmasMod implements EditCardsSubscriber, EditStringsSubscriber, Edi
     private static final String MY_CHARACTER_BUTTON3 = "gkmasModResource/img/charSelect/selectButton4.png";
     private static final String MARISA_PORTRAIT = "gkmasModResource/img/charSelect/background_1.png";
     private static final String MARISA_PORTRAIT2 = "gkmasModResource/img/charSelect/background_hmsz.png";
-    private static final String MARISA_PORTRAIT3 = "gkmasModResource/img/charSelect/background_0.png";
+    private static final String MARISA_PORTRAIT3 = "gkmasModResource/img/charSelect/background_2.png";
     public static final Color gkmasMod_color = CardHelper.getColor(80, 80, 50);
 
     public static final Color gkmasMod_colorLogic = CardHelper.getColor(50, 70, 200);
@@ -348,6 +348,11 @@ public class GkmasMod implements EditCardsSubscriber, EditStringsSubscriber, Edi
         instances.add(new GiveYou());
         instances.add(new SurgingEmotion());
 
+        // 美铃
+        instances.add(new FreeWoman());
+        instances.add(new RestAndWalk());
+        instances.add(new SceneryOnHouse());
+
         // 普通
         instances.add(new LightGait());
         instances.add(new AiJiao());
@@ -596,6 +601,8 @@ public class GkmasMod implements EditCardsSubscriber, EditStringsSubscriber, Edi
         instances.add(new AllMembersGatherSense());
         instances.add(new DoYouLikeIt());
         instances.add(new Resilience());
+        instances.add(new ClumsyAsAlways());
+        instances.add(new WalkAndWin());
 
         instances.add(new StartingLine());
         instances.add(new TimeLoop());
@@ -673,20 +680,24 @@ public class GkmasMod implements EditCardsSubscriber, EditStringsSubscriber, Edi
         instances.add(new ChocolateForProducer());
         instances.add(new DoNotGo());
 
-        instances.add(new Echo());
-        instances.add(new TauntAttack());
+//        instances.add(new Echo());
+//        instances.add(new TauntAttack());
         instances.add(new UniverseFirstHappiness());
         instances.add(new HeavyLove());
         instances.add(new FormalContract());
         instances.add(new Fluffy());
         instances.add(new PleaseTakeCare());
-        instances.add(new PleaseGuideMe());
+        instances.add(new CatchTheLight());
         instances.add(new IRemember());
         instances.add(new IDontRemember());
         instances.add(new ThirtySeconds());
         instances.add(new ProducerAlsoIdol());
         instances.add(new AsYourFan());
         instances.add(new FromNowOn());
+        instances.add(new SenseOfDistanceBlue());
+        instances.add(new SupportiveFeelingsBlue());
+        instances.add(new FarewellFlower());
+        instances.add(new BaseProvocation());
 
         // 遍历instances的所有元素，将其添加到listener中
         for (Object instance : instances) {
@@ -812,6 +823,11 @@ public class GkmasMod implements EditCardsSubscriber, EditStringsSubscriber, Edi
         BaseMod.addRelicToCustomPool(new DeepLoveForYou(),gkmasModColor);
         BaseMod.addRelicToCustomPool(new FirstStarChallenge(),gkmasModColor);
 
+        // 美铃
+        BaseMod.addRelicToCustomPool(new DreamOfTheDescription(), gkmasModColorMisuzu);
+        BaseMod.addRelicToCustomPool(new SwayWindHairpin(), gkmasModColorMisuzu);
+        BaseMod.addRelicToCustomPool(new SomethingLongHold(), gkmasModColorMisuzu);
+
         BaseMod.addRelicToCustomPool(new SyngUpRelic(), gkmasModColorMisuzu);
         BaseMod.addRelicToCustomPool(new SyngUpRelicBroken(), gkmasModColorMisuzu);
         BaseMod.addRelicToCustomPool(new FriendChinaRelic(), gkmasModColorMisuzu);
@@ -863,6 +879,10 @@ public class GkmasMod implements EditCardsSubscriber, EditStringsSubscriber, Edi
         BaseMod.addRelicToCustomPool(new FoodTonkatsuSP(),gkmasModColor);
 
         BaseMod.addRelicToCustomPool(new NIABadge(),gkmasModColor);
+        BaseMod.addRelicToCustomPool(new IdolPhone(),gkmasModColor);
+        BaseMod.addRelicToCustomPool(new LadyDiary(),gkmasModColor);
+        BaseMod.addRelicToCustomPool(new SisterComplex(),gkmasModColor);
+        BaseMod.addRelicToCustomPool(new TopIdolPride(),gkmasModColor);
 
     }
 
@@ -939,6 +959,9 @@ public class GkmasMod implements EditCardsSubscriber, EditStringsSubscriber, Edi
         BaseMod.addEvent(new AddEventParams.Builder(Plan_jsna1.ID,Plan_jsna1.class).spawnCondition(ConditionHelper.Condition_never).create());
         BaseMod.addEvent(new AddEventParams.Builder(Plan_jsna2.ID,Plan_jsna2.class).spawnCondition(ConditionHelper.Condition_never).create());
         BaseMod.addEvent(new AddEventParams.Builder(Plan_jsna3.ID,Plan_jsna3.class).spawnCondition(ConditionHelper.Condition_never).create());
+        BaseMod.addEvent(new AddEventParams.Builder(Plan_hmsz1.ID,Plan_hmsz1.class).spawnCondition(ConditionHelper.Condition_never).create());
+        BaseMod.addEvent(new AddEventParams.Builder(Plan_hmsz2.ID,Plan_hmsz2.class).spawnCondition(ConditionHelper.Condition_never).create());
+        BaseMod.addEvent(new AddEventParams.Builder(Plan_hmsz3.ID,Plan_hmsz3.class).spawnCondition(ConditionHelper.Condition_never).create());
         BaseMod.addEvent(new AddEventParams.Builder(MasterEvent1.ID,MasterEvent1.class).spawnCondition(ConditionHelper.Condition_never).create());
         BaseMod.addEvent(new AddEventParams.Builder(MasterEvent2.ID,MasterEvent2.class).spawnCondition(ConditionHelper.Condition_never).create());
         BaseMod.addEvent(new AddEventParams.Builder(MasterEvent3.ID,MasterEvent3.class).spawnCondition(ConditionHelper.Condition_never).create());
@@ -969,12 +992,15 @@ public class GkmasMod implements EditCardsSubscriber, EditStringsSubscriber, Edi
         BaseMod.addMonster(IdolBoss_kcna.ID, () -> new IdolBoss_kcna());
         BaseMod.addMonster(IdolBoss_kllj.ID, () -> new IdolBoss_kllj());
         BaseMod.addMonster(IdolBoss_jsna.ID, () -> new IdolBoss_jsna());
+        BaseMod.addMonster(ProducerBoss.ID, () -> new ProducerBoss());
         BaseMod.addMonster(SpikeSlimeTemari_L.ID, () -> new SpikeSlimeTemari_L());
         BaseMod.addMonster(SpikeSlimeTemari_M.ID, () -> new SpikeSlimeTemari_M());
         BaseMod.addMonster(SpikeSlimeTemari_S.ID, () -> new SpikeSlimeTemari_S());
         BaseMod.addMonster(AcidSlimeTemari_L.ID, () -> new AcidSlimeTemari_L());
         BaseMod.addMonster(AcidSlimeTemari_M.ID, () -> new AcidSlimeTemari_M());
         BaseMod.addMonster(AcidSlimeTemari_S.ID, () -> new AcidSlimeTemari_S());
+        BaseMod.addMonster(LooterBandai.ID, () -> new LooterBandai(0,0));
+        BaseMod.addMonster(LooterNamco.ID, () -> new LooterNamco(0,0));
         BaseMod.addMonster(MonsterSena2.ID, () -> new MonsterSena2());
         BaseMod.addMonster(MonsterRinami1.ID, () -> new MonsterRinami1());
         BaseMod.addMonster(MonsterMao1.ID, () -> new MonsterMao1());
@@ -1078,6 +1104,17 @@ public class GkmasMod implements EditCardsSubscriber, EditStringsSubscriber, Edi
             pref.putInteger("WIN_COUNT", 1);
         int misuzuMaxAscensionLevel = pref.getInteger("ASCENSION_LEVEL", 1);
         if (misuzuMaxAscensionLevel < idolMaxAscensionLevel){
+            pref.putInteger("ASCENSION_LEVEL", idolMaxAscensionLevel);
+            pref.putInteger("LAST_ASCENSION_LEVEL", idolMaxAscensionLevel);
+        }
+        pref.flush();
+
+        AbstractPlayer otherIdol = CardCrawlGame.characterManager.recreateCharacter(gkmasModOther_character);
+        pref = otherIdol.getPrefs();
+        if (pref.getInteger("WIN_COUNT", 0) == 0)
+            pref.putInteger("WIN_COUNT", 1);
+        int otherIdolMaxAscensionLevel = pref.getInteger("ASCENSION_LEVEL", 1);
+        if (otherIdolMaxAscensionLevel < idolMaxAscensionLevel){
             pref.putInteger("ASCENSION_LEVEL", idolMaxAscensionLevel);
             pref.putInteger("LAST_ASCENSION_LEVEL", idolMaxAscensionLevel);
         }

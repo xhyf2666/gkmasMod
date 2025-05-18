@@ -16,7 +16,7 @@ public class TheGuardianPatch
 
 
     @SpirePatch(clz = TheGuardian.class,method = SpirePatch.CONSTRUCTOR)
-    public static class TheGuardianPostPatch_constructor {
+    public static class PostPatchTheGuardian_Constructor {
         @SpirePostfixPatch
         public static void Post(TheGuardian __instance,@ByRef int[] ___dmgThreshold, @ByRef int[] ___dmgThresholdIncrease, @ByRef int[] ___blockAmount,@ByRef int[] ___DEFENSIVE_BLOCK) {
             if(AbstractDungeon.player!=null&&AbstractDungeon.player.hasRelic(PocketBook.ID)){

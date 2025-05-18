@@ -11,9 +11,7 @@ import gkmasmod.cardCustomEffect.MagicCustom;
 import gkmasmod.cardCustomEffect.SecondMagicCustom;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.characters.PlayerColorEnum;
-import gkmasmod.growEffect.DamageGrow;
 import gkmasmod.utils.CustomHelper;
-import gkmasmod.utils.GrowHelper;
 import gkmasmod.utils.NameHelper;
 
 import java.util.ArrayList;

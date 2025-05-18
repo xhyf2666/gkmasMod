@@ -13,6 +13,7 @@ import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.downfall.cards.GkmasBossCard;
 import gkmasmod.downfall.cards.free.ENSleepLate;
+import gkmasmod.utils.IdolData;
 import gkmasmod.utils.NameHelper;
 import gkmasmod.utils.SoundHelper;
 
@@ -47,6 +48,8 @@ public class ENWholeheartedly extends GkmasBossCard {
         this.baseBlock = BASE_BLOCK;
         this.block = this.baseBlock;
         this.exhaust = true;
+        this.backGroundColor = IdolData.kcna;
+        updateBackgroundImg();
         this.intent = AbstractMonster.Intent.DEFEND_BUFF;
         this.tags.add(GkmasCardTag.YARUKI_TAG);
         this.tags.add(GkmasCardTag.IDOL_CARD_TAG);

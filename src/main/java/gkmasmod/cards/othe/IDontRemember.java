@@ -1,10 +1,12 @@
 package gkmasmod.cards.othe;
 
+import com.megacrit.cardcrawl.actions.unique.FiendFireAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import gkmasmod.actions.IDontRememberAction;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.utils.NameHelper;
@@ -34,10 +36,12 @@ public class IDontRemember extends GkmasCard {
         super(ID, NAME, IMG_PATH, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.baseBlock = BASE_BLOCK;
         this.magicNumber = this.baseMagicNumber;
+        this.exhaust = true;
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
+        addToBot(new IDontRememberAction(p));
     }
 
     @Override

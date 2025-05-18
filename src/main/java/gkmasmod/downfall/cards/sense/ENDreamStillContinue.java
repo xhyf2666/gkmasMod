@@ -63,6 +63,8 @@ public class ENDreamStillContinue extends GkmasBossCard {
         this.tags.add(GkmasCardTag.GOOD_TUNE_TAG);
         this.tags.add(GkmasCardTag.MORE_ACTION_TAG);
         this.intent = AbstractMonster.Intent.ATTACK_BUFF;
+        this.backGroundColor = IdolData.jsna;
+        updateBackgroundImg();
     }
 
 

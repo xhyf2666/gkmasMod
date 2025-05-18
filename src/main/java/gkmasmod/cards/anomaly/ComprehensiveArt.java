@@ -1,8 +1,6 @@
 package gkmasmod.cards.anomaly;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.common.DamageAction;
-import com.megacrit.cardcrawl.actions.common.LoseHPAction;
 import com.megacrit.cardcrawl.actions.watcher.ChangeStanceAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
@@ -17,11 +15,10 @@ import gkmasmod.cardCustomEffect.*;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
-import gkmasmod.growEffect.DamageGrow;
+import gkmasmod.cardGrowEffect.DamageGrow;
 import gkmasmod.modcore.GkmasMod;
 import gkmasmod.screen.SkinSelectScreen;
 import gkmasmod.stances.ConcentrationStance;
-import gkmasmod.stances.FullPowerStance;
 import gkmasmod.utils.CustomHelper;
 import gkmasmod.utils.GrowHelper;
 import gkmasmod.utils.ImageHelper;

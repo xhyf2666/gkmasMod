@@ -12,10 +12,7 @@ import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import gkmasmod.cards.anomaly.*;
 import gkmasmod.cards.free.*;
 import gkmasmod.cards.logic.*;
-import gkmasmod.cards.sense.Balance;
-import gkmasmod.cards.sense.PushingTooHardAgain;
-import gkmasmod.cards.sense.StartSignal;
-import gkmasmod.cards.sense.WishPower;
+import gkmasmod.cards.sense.*;
 import gkmasmod.utils.CustomHelper;
 
 public class EffectChangeCustom extends AbstractCardCustomEffect {
@@ -47,18 +44,18 @@ public class EffectChangeCustom extends AbstractCardCustomEffect {
             card.cost = 0;
             card.costForTurn = 0;
         }
-        if(card instanceof HandwrittenLetter){
+        else if(card instanceof HandwrittenLetter){
             card.cost = -1;
             card.costForTurn = -1;
         }
-        if(card instanceof IdolDeclaration){
+        else if(card instanceof IdolDeclaration){
             card.exhaust = false;
             card.tags.remove(gkmasmod.cards.GkmasCardTag.MORE_ACTION_TAG);
             CustomHelper.removeCustom(card,MoreActionCustom.growID);
             if(!fromCopy)
                 CustomHelper.custom(card,TempMoreActionCustom.growID,((IdolDeclaration) card).thirdMagicNumber);
         }
-        if(card instanceof Repartitioning){
+        else if(card instanceof Repartitioning){
             card.exhaust = false;
             card.tags.remove(gkmasmod.cards.GkmasCardTag.MORE_ACTION_TAG);
             CustomHelper.removeCustom(card,MoreActionCustom.growID);
@@ -67,11 +64,11 @@ public class EffectChangeCustom extends AbstractCardCustomEffect {
             card.cost = 0;
             card.costForTurn = 0;
         }
-        if(card instanceof Balance){
+        else if(card instanceof Balance){
             card.cost = 2;
             card.costForTurn = 2;
         }
-        if(card instanceof HeartAndSoul){
+        else if(card instanceof HeartAndSoul){
             card.cost = 1;
             card.costForTurn = 1;
             card.tags.remove(gkmasmod.cards.GkmasCardTag.MORE_ACTION_TAG);
@@ -82,20 +79,24 @@ public class EffectChangeCustom extends AbstractCardCustomEffect {
             }
             card.exhaust = false;
         }
-        if(card instanceof BecomeIdol){
+        else if(card instanceof BecomeIdol){
             card.exhaust = false;
             card.tags.remove(gkmasmod.cards.GkmasCardTag.MORE_ACTION_TAG);
             CustomHelper.removeCustom(card,MoreActionCustom.growID);
         }
-        if(card instanceof StarPicking){
+        else if(card instanceof StarPicking){
             card.exhaust = true;
         }
-        if(card instanceof TurnBack){
+        else if(card instanceof TurnBack){
             card.exhaust = false;
         }
-        if(card instanceof GetAnswer){
+        else if(card instanceof GetAnswer){
             if(!fromCopy)
                 CustomHelper.custom(card,MoreActionCustom.growID,1);
+        }
+        else if(card instanceof SenseOfDistance){
+            if(!fromCopy)
+                CustomHelper.custom(card,MagicCustom.growID,-1);
         }
     }
 
@@ -104,80 +105,86 @@ public class EffectChangeCustom extends AbstractCardCustomEffect {
         if(card instanceof HardStretching){
             return CardCrawlGame.languagePack.getCardStrings("gkmasMod:HardStretching_Effect0").DESCRIPTION;
         }
-        if(card instanceof HandwrittenLetter){
+        else if(card instanceof HandwrittenLetter){
             return CardCrawlGame.languagePack.getCardStrings("gkmasMod:HandwrittenLetter_Effect0").DESCRIPTION;
         }
-        if(card instanceof IdolDeclaration){
+        else if(card instanceof IdolDeclaration){
             return CardCrawlGame.languagePack.getCardStrings("gkmasMod:IdolDeclaration_Effect1").DESCRIPTION;
         }
-        if(card instanceof WhatDoesSheDo){
+        else if(card instanceof WhatDoesSheDo){
             return CardCrawlGame.languagePack.getCardStrings("gkmasMod:WhatDoesSheDo_Effect0").DESCRIPTION;
         }
-        if(card instanceof Repartitioning){
+        else if(card instanceof Repartitioning){
             return CardCrawlGame.languagePack.getCardStrings("gkmasMod:Repartitioning_Effect1").DESCRIPTION;
         }
-        if(card instanceof StartSignal){
+        else if(card instanceof StartSignal){
             return CardCrawlGame.languagePack.getCardStrings("gkmasMod:StartSignal_Effect0").DESCRIPTION;
         }
-        if(card instanceof TurnBack){
+        else if(card instanceof TurnBack){
             return CardCrawlGame.languagePack.getCardStrings("gkmasMod:TurnBack_Effect1").DESCRIPTION;
         }
-        if(card instanceof WishPower){
+        else if(card instanceof WishPower){
             return CardCrawlGame.languagePack.getCardStrings("gkmasMod:WishPower_Effect0").DESCRIPTION;
         }
-        if(card instanceof Balance){
+        else if(card instanceof Balance){
             return CardCrawlGame.languagePack.getCardStrings("gkmasMod:Balance_Effect0").DESCRIPTION;
         }
-        if(card instanceof PushingTooHardAgain){
+        else if(card instanceof PushingTooHardAgain){
             return CardCrawlGame.languagePack.getCardStrings("gkmasMod:PushingTooHardAgain_Effect0").DESCRIPTION;
         }
-        if(card instanceof StartSmile){
+        else if(card instanceof StartSmile){
             return CardCrawlGame.languagePack.getCardStrings("gkmasMod:StartSmile_Effect0").DESCRIPTION;
         }
-        if(card instanceof HeartAndSoul){
+        else if(card instanceof HeartAndSoul){
             return CardCrawlGame.languagePack.getCardStrings("gkmasMod:HeartAndSoul_Effect0").DESCRIPTION;
         }
-        if(card instanceof BecomeIdol){
+        else if(card instanceof BecomeIdol){
             return CardCrawlGame.languagePack.getCardStrings("gkmasMod:BecomeIdol_Effect0").DESCRIPTION;
         }
-        if(card instanceof ThunderWillStop){
+        else if(card instanceof ThunderWillStop){
             return CardCrawlGame.languagePack.getCardStrings("gkmasMod:ThunderWillStop_Effect0").DESCRIPTION;
         }
-        if(card instanceof LikeStars){
+        else if(card instanceof LikeStars){
             return CardCrawlGame.languagePack.getCardStrings("gkmasMod:LikeStars_Effect0").DESCRIPTION;
         }
-        if(card instanceof StarPicking){
+        else if(card instanceof StarPicking){
             return CardCrawlGame.languagePack.getCardStrings("gkmasMod:StarPicking_Effect0").DESCRIPTION;
         }
-        if(card instanceof CanYouAccept){
+        else if(card instanceof CanYouAccept){
             return CardCrawlGame.languagePack.getCardStrings("gkmasMod:CanYouAccept_Effect1").DESCRIPTION;
         }
-        if(card instanceof Todoku){
+        else if(card instanceof Todoku){
             return CardCrawlGame.languagePack.getCardStrings("gkmasMod:Todoku_Effect0").DESCRIPTION;
         }
-        if(card instanceof GetAnswer){
+        else if(card instanceof GetAnswer){
             return CardCrawlGame.languagePack.getCardStrings("gkmasMod:GetAnswer_Effect0").DESCRIPTION;
         }
-        if(card instanceof GiveYou){
+        else if(card instanceof GiveYou){
             return CardCrawlGame.languagePack.getCardStrings("gkmasMod:GiveYou_Effect0").DESCRIPTION;
         }
-        if(card instanceof GachaAgain){
+        else if(card instanceof GachaAgain){
             return CardCrawlGame.languagePack.getCardStrings("gkmasMod:GachaAgain_Effect0").DESCRIPTION;
         }
-        if(card instanceof CareCard){
+        else if(card instanceof CareCard){
             return CardCrawlGame.languagePack.getCardStrings("gkmasMod:CareCard_Effect1").DESCRIPTION;
         }
-        if(card instanceof LittleSun){
+        else if(card instanceof LittleSun){
             return CardCrawlGame.languagePack.getCardStrings("gkmasMod:LittleSun_Effect0").DESCRIPTION;
         }
-        if(card instanceof DreamColorLipstick){
+        else if(card instanceof DreamColorLipstick){
             return CardCrawlGame.languagePack.getCardStrings("gkmasMod:DreamColorLipstick_Effect1").DESCRIPTION;
         }
-        if(card instanceof Resilience){
+        else if(card instanceof Resilience){
             return CardCrawlGame.languagePack.getCardStrings("gkmasMod:Resilience_Effect0").DESCRIPTION;
         }
-        if(card instanceof MyColor){
+        else if(card instanceof MyColor){
             return CardCrawlGame.languagePack.getCardStrings("gkmasMod:MyColor_Effect1").DESCRIPTION;
+        }
+        else if(card instanceof SenseOfDistance){
+            return CardCrawlGame.languagePack.getCardStrings("gkmasMod:SenseOfDistance_Effect1").DESCRIPTION;
+        }
+        else if(card instanceof DressedUpInStyle){
+            return CardCrawlGame.languagePack.getCardStrings("gkmasMod:DressedUpInStyle_Effect1").DESCRIPTION;
         }
         return rawDescription;
     }
@@ -191,17 +198,17 @@ public class EffectChangeCustom extends AbstractCardCustomEffect {
             card.cost = 1;
             card.costForTurn = 1;
         }
-        if(card instanceof HandwrittenLetter){
+        else if(card instanceof HandwrittenLetter){
             card.cost = 1;
             card.costForTurn = 1;
         }
-        if(card instanceof IdolDeclaration){
+        else if(card instanceof IdolDeclaration){
             card.exhaust = true;
             card.tags.add(gkmasmod.cards.GkmasCardTag.MORE_ACTION_TAG);
             CustomHelper.removeCustom(card,TempMoreActionCustom.growID);
             CustomHelper.custom(card,MoreActionCustom.growID,1);
         }
-        if(card instanceof Repartitioning){
+        else if(card instanceof Repartitioning){
             card.exhaust = true;
             card.tags.add(gkmasmod.cards.GkmasCardTag.MORE_ACTION_TAG);
             CustomHelper.custom(card,MoreActionCustom.growID,1);
@@ -209,11 +216,11 @@ public class EffectChangeCustom extends AbstractCardCustomEffect {
             card.cost = 1;
             card.costForTurn = 1;
         }
-        if(card instanceof Balance){
+        else if(card instanceof Balance){
             card.cost = 1;
             card.costForTurn = 1;
         }
-        if(card instanceof HeartAndSoul){
+        else if(card instanceof HeartAndSoul){
             card.cost = 3;
             card.costForTurn = 3;
             card.tags.add(gkmasmod.cards.GkmasCardTag.MORE_ACTION_TAG);
@@ -222,16 +229,19 @@ public class EffectChangeCustom extends AbstractCardCustomEffect {
             CustomHelper.removeCustom(card,SecondMagicCustom.growID);
             card.exhaust = true;
         }
-        if(card instanceof BecomeIdol){
+        else if(card instanceof BecomeIdol){
             card.tags.add(gkmasmod.cards.GkmasCardTag.MORE_ACTION_TAG);
             CustomHelper.custom(card,MoreActionCustom.growID,1);
             card.exhaust = true;
         }
-        if(card instanceof StarPicking){
+        else if(card instanceof StarPicking){
             card.exhaust = false;
         }
-        if(card instanceof TurnBack){
+        else if(card instanceof TurnBack){
             card.exhaust = true;
+        }
+        else if(card instanceof SenseOfDistance){
+            CustomHelper.removeCustom(card,MagicCustom.growID);
         }
     }
 

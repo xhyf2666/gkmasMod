@@ -8,8 +8,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import gkmasmod.actions.SelectCardGrowAction;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.characters.PlayerColorEnum;
-import gkmasmod.growEffect.BaseBlockGrow;
-import gkmasmod.growEffect.BaseDamageGrow;
+import gkmasmod.cardGrowEffect.BaseBlockGrow;
 import gkmasmod.utils.NameHelper;
 
 public class AllMembersGatherLogic extends GkmasCard {

@@ -19,13 +19,9 @@ import gkmasmod.utils.NameHelper;
 
 public class NextTurnIdolBlockPower extends AbstractPower {
     private static final String CLASSNAME = NextTurnIdolBlockPower.class.getSimpleName();
-    // 能力的ID
     public static final String POWER_ID = NameHelper.makePath(CLASSNAME);
-    // 能力的本地化字段
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(CLASSNAME);
-    // 能力的名称
     private static final String NAME = powerStrings.NAME;
-    // 能力的描述
     private static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
 
     public NextTurnIdolBlockPower(AbstractCreature owner, int Amount) {

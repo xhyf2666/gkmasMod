@@ -2,7 +2,6 @@ package gkmasmod.relics;
 import com.badlogic.gdx.Gdx;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.DrawCardAction;
-import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.actions.common.RelicAboveCreatureAction;
 import com.megacrit.cardcrawl.actions.watcher.ChangeStanceAction;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -13,11 +12,11 @@ import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.stances.NeutralStance;
 import gkmasmod.characters.MisuzuCharacter;
-import gkmasmod.growEffect.DamageGrow;
-import gkmasmod.patches.MapRoomNodePatch;
+import gkmasmod.characters.OtherIdolCharacter;
+import gkmasmod.cardGrowEffect.DamageGrow;
 import gkmasmod.powers.GoodImpression;
 import gkmasmod.powers.GoodTune;
-import gkmasmod.powers.MasterTreadmillPower;
+import gkmasmod.screen.OtherSkinSelectScreen;
 import gkmasmod.screen.SkinSelectScreen;
 import gkmasmod.utils.CommonEnum;
 import gkmasmod.utils.GrowHelper;
@@ -59,6 +58,11 @@ public class MasterDumbbell extends MasterRelic {
         }
         else{
             style = IdolData.getIdol(SkinSelectScreen.Inst.idolIndex).getStyle(SkinSelectScreen.Inst.skinIndex);
+        }
+        if(AbstractDungeon.player instanceof OtherIdolCharacter){
+            style = IdolData.getIdol(OtherSkinSelectScreen.Inst.idolIndex).getStyle(OtherSkinSelectScreen.Inst.skinIndex);
+            if(OtherSkinSelectScreen.Inst.idolName.equals(IdolData.prod))
+                style = CommonEnum.IdolStyle.FOCUS;
         }
     }
 
@@ -127,6 +131,11 @@ public class MasterDumbbell extends MasterRelic {
         else{
             style = IdolData.getIdol(SkinSelectScreen.Inst.idolIndex).getStyle(SkinSelectScreen.Inst.skinIndex);
         }
+        if(AbstractDungeon.player instanceof OtherIdolCharacter){
+            style = IdolData.getIdol(OtherSkinSelectScreen.Inst.idolIndex).getStyle(OtherSkinSelectScreen.Inst.skinIndex);
+            if(OtherSkinSelectScreen.Inst.idolName.equals(IdolData.prod))
+                style = CommonEnum.IdolStyle.FOCUS;
+        }
         if(style == CommonEnum.IdolStyle.GOOD_TUNE)
             return String.format(IMG, CLASSNAME, "Purple");
         else if(style == CommonEnum.IdolStyle.FOCUS)
@@ -149,6 +158,11 @@ public class MasterDumbbell extends MasterRelic {
         }
         else{
             style = IdolData.getIdol(SkinSelectScreen.Inst.idolIndex).getStyle(SkinSelectScreen.Inst.skinIndex);
+        }
+        if(AbstractDungeon.player instanceof OtherIdolCharacter){
+            style = IdolData.getIdol(OtherSkinSelectScreen.Inst.idolIndex).getStyle(OtherSkinSelectScreen.Inst.skinIndex);
+            if(OtherSkinSelectScreen.Inst.idolName.equals(IdolData.prod))
+                style = CommonEnum.IdolStyle.FOCUS;
         }
         if(style == CommonEnum.IdolStyle.GOOD_TUNE)
             return String.format(IMG_LARGE, CLASSNAME, "Purple");

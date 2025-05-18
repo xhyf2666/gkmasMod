@@ -40,7 +40,7 @@ public class AfterRainRainbowAction extends AbstractGameAction {
                 return;
             }
             int stage = ((PreservationStance)(AbstractDungeon.player.stance)).stage;
-            if(stage!=1){
+            if(stage<=1){
                 this.isDone = true;
                 return;
             }

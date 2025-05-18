@@ -51,7 +51,7 @@ import gkmasmod.utils.IdolData;
 
 import static gkmasmod.characters.PlayerColorEnum.gkmasMod_character;
 
-public class AbstractIdolBoss extends AbstractCharBoss {
+abstract public class AbstractIdolBoss extends AbstractCharBoss {
     public int maxStage = 3;
     public int stage = 0;
     public String idolName;

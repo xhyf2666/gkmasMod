@@ -10,26 +10,19 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
-import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
-import gkmasmod.actions.PotentialAbilityAction;
 import gkmasmod.actions.GrowAction;
 import gkmasmod.downfall.charbosses.cards.AbstractBossCard;
-import gkmasmod.growEffect.BlockGrow;
-import gkmasmod.growEffect.DamageGrow;
+import gkmasmod.cardGrowEffect.BlockGrow;
+import gkmasmod.cardGrowEffect.DamageGrow;
 import gkmasmod.relics.*;
 import gkmasmod.utils.NameHelper;
-import gkmasmod.utils.PlayerHelper;
 import gkmasmod.utils.ThreeSizeHelper;
 
 public class TrainRoundAnomalyPower extends AbstractPower {
     private static final String CLASSNAME = TrainRoundAnomalyPower.class.getSimpleName();
-    // 能力的ID
     public static final String POWER_ID = NameHelper.makePath(CLASSNAME);
-    // 能力的本地化字段
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(CLASSNAME);
-    // 能力的名称
     private static final String NAME = powerStrings.NAME;
-    // 能力的描述
     private static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
 
     private boolean isDone = true;
@@ -40,8 +33,8 @@ public class TrainRoundAnomalyPower extends AbstractPower {
     private int MAGIC2 = 2;
 
 
-    String path128 = String.format("gkmasModResource/img/powers/%s_84.png",CLASSNAME);;
-    String path48 = String.format("gkmasModResource/img/powers/%s_32.png",CLASSNAME);;
+    String path128 = String.format("gkmasModResource/img/powers/%s_84.png",CLASSNAME);
+    String path48 = String.format("gkmasModResource/img/powers/%s_32.png",CLASSNAME);
 
     public TrainRoundAnomalyPower(AbstractCreature owner, int Amount) {
         this(owner, Amount, true);
@@ -57,7 +50,6 @@ public class TrainRoundAnomalyPower extends AbstractPower {
         this.isPostActionPower = true;
 
         this.amount = Amount;
-        this.priority = 99;
 
         if(AbstractDungeon.actNum==1){
             MAGIC = 1;
@@ -83,7 +75,7 @@ public class TrainRoundAnomalyPower extends AbstractPower {
 
     @Override
     public void reducePower(int reduceAmount) {
-        if(this.amount-reduceAmount==1){
+        if(!AbstractDungeon.player.hasPower(TrainRoundProducePower.POWER_ID)&&this.amount-reduceAmount==1){
             if(AbstractDungeon.player.hasRelic(SidewalkResearchNotes.ID)){
                 ((SidewalkResearchNotes)AbstractDungeon.player.getRelic(SidewalkResearchNotes.ID)).onTrainRoundRemove();
             }
@@ -119,9 +111,6 @@ public class TrainRoundAnomalyPower extends AbstractPower {
 
     public void atEndOfTurnPreEndTurnCards(boolean isPlayer) {
         flash();
-//        if(EnergyPanel.totalCount > 0){
-//            addToTop(new HealAction(this.owner, this.owner, 1));
-//        }
     }
 
     public void atEndOfTurn(boolean isPlayer) {
@@ -169,6 +158,9 @@ public class TrainRoundAnomalyPower extends AbstractPower {
 
 
     public void onRemove() {
+        if(AbstractDungeon.player.hasPower(TrainRoundProducePower.POWER_ID)){
+            return;
+        }
         if(AbstractDungeon.player.hasRelic(SidewalkResearchNotes.ID)){
             ((SidewalkResearchNotes)AbstractDungeon.player.getRelic(SidewalkResearchNotes.ID)).onTrainRoundRemove();
         }

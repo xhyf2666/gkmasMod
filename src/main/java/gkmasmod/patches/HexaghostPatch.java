@@ -13,9 +13,8 @@ import gkmasmod.utils.ThreeSizeHelper;
 public class HexaghostPatch
 {
 
-
     @SpirePatch(clz = Hexaghost.class,method = SpirePatch.CONSTRUCTOR)
-    public static class HexaghostPostPatch_constructor {
+    public static class PostPatchHexaghost_Constructor {
         @SpirePostfixPatch
         public static void Post(Hexaghost __instance, @ByRef int[] ___strengthenBlockAmt) {
             if(AbstractDungeon.player!=null&&AbstractDungeon.player.hasRelic(PocketBook.ID)){

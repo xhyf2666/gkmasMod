@@ -7,10 +7,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import gkmasmod.cardCustomEffect.BlockCustom;
-import gkmasmod.cardCustomEffect.DrawCardCustom;
-import gkmasmod.cardCustomEffect.InnateCustom;
-import gkmasmod.cardCustomEffect.MagicCustom;
+import gkmasmod.cardCustomEffect.*;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
@@ -60,7 +57,7 @@ public class GreatCheer extends GkmasCard {
         this.tags.add(GkmasCardTag.GOOD_TUNE_TAG);
         this.customLimit = 2;
         this.customEffectList = new ArrayList<>();
-        this.customEffectList.add(CustomHelper.generateCustomEffectList(BlockCustom.growID, new int[]{2,2}, new int[]{40,40}, CustomHelper.CustomEffectType.BLOCK_ADD));
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(SecondMagicCustom.growID, new int[]{25,25}, new int[]{50,50}, CustomHelper.CustomEffectType.RATE_ADD));
         this.customEffectList.add(CustomHelper.generateCustomEffectList(MagicCustom.growID, new int[]{1,1}, new int[]{50,50}, CustomHelper.CustomEffectType.GOOD_TUNE_ADD));
         this.customEffectList.add(CustomHelper.generateCustomEffectList(DrawCardCustom.growID, new int[]{1}, new int[]{70}, CustomHelper.CustomEffectType.DRAW_CARD_ADD));
     }
@@ -70,7 +67,7 @@ public class GreatCheer extends GkmasCard {
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
        addToBot(new ApplyPowerAction(p,p,new GoodTune(p,this.magicNumber),this.magicNumber));
-       addToBot(new GainBlockAction(p,p,this.block));
+//       addToBot(new GainBlockAction(p,p,this.block));
        int count = PlayerHelper.getPowerAmount(p,GoodTune.POWER_ID);
        count = (int) (1.0F *count*this.secondMagicNumber/100);
        if(count>0)

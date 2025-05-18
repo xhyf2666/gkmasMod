@@ -1,29 +1,23 @@
 package gkmasmod.downfall.relics;
-import basemod.abstracts.CustomRelic;
 import com.badlogic.gdx.Gdx;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.RelicAboveCreatureAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
-import com.megacrit.cardcrawl.actions.watcher.ChangeStanceAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import gkmasmod.actions.GrowAction;
-import gkmasmod.cards.anomaly.JustAppeal;
 import gkmasmod.downfall.cards.anomaly.ENJustAppeal;
 import gkmasmod.downfall.charbosses.actions.unique.EnemyChangeStanceAction;
 import gkmasmod.downfall.charbosses.bosses.AbstractCharBoss;
 import gkmasmod.downfall.charbosses.relics.AbstractCharbossRelic;
 import gkmasmod.downfall.charbosses.stances.ENPreservationStance;
-import gkmasmod.growEffect.AttackTimeGrow;
-import gkmasmod.growEffect.EnergyGrow;
+import gkmasmod.cardGrowEffect.AttackTimeGrow;
+import gkmasmod.cardGrowEffect.EnergyGrow;
 import gkmasmod.powers.FullPowerValue;
 import gkmasmod.powers.TempSavePower;
 import gkmasmod.relics.AchieveDreamAwakening;
-import gkmasmod.relics.BeginnerGuideForEveryone;
-import gkmasmod.stances.PreservationStance;
 import gkmasmod.utils.PlayerHelper;
 
 public class CBR_AchieveDreamAwakening extends AbstractCharbossRelic {

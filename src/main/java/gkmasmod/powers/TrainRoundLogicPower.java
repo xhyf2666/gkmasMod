@@ -23,13 +23,9 @@ import gkmasmod.utils.ThreeSizeHelper;
 
 public class TrainRoundLogicPower extends AbstractPower {
     private static final String CLASSNAME = TrainRoundLogicPower.class.getSimpleName();
-    // 能力的ID
     public static final String POWER_ID = NameHelper.makePath(CLASSNAME);
-    // 能力的本地化字段
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(CLASSNAME);
-    // 能力的名称
     private static final String NAME = powerStrings.NAME;
-    // 能力的描述
     private static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
 
     private boolean isDone = true;
@@ -82,7 +78,7 @@ public class TrainRoundLogicPower extends AbstractPower {
 
     @Override
     public void reducePower(int reduceAmount) {
-        if(this.amount-reduceAmount==1){
+        if(!AbstractDungeon.player.hasPower(TrainRoundProducePower.POWER_ID)&&this.amount-reduceAmount==1){
             if(AbstractDungeon.player.hasRelic(SidewalkResearchNotes.ID)){
                 ((SidewalkResearchNotes)AbstractDungeon.player.getRelic(SidewalkResearchNotes.ID)).onTrainRoundRemove();
             }
@@ -134,16 +130,23 @@ public class TrainRoundLogicPower extends AbstractPower {
             addToBot(new RemoveSpecificPowerAction(this.owner, this.owner, POWER_ID));
     }
 
+    public AbstractPower updateMagic(int count){
+        for(int i=0;i<count;i++){
+            if(this.currentMagicNumber > finalMagicNumber){
+                this.currentMagicNumber -= decreaseMagicNumber;
+            }
+        }
+        this.updateDescription();
+        return this;
+    }
+
     @Override
     public void atEndOfRound() {
         int loseBlock = (int) (AbstractDungeon.player.currentBlock*1.0F*(100-this.currentMagicNumber)/100);
         if(loseBlock<0){
             loseBlock = -loseBlock;
             addToBot(new GainBlockAction(this.owner, this.owner, loseBlock));
-            if(this.currentMagicNumber > finalMagicNumber){
-                this.currentMagicNumber -= decreaseMagicNumber;
-                this.updateDescription();
-            }
+
             GkmasMod.loseBlock = true;
             return;
         }
@@ -157,10 +160,7 @@ public class TrainRoundLogicPower extends AbstractPower {
         if(loseBlock>0){
             AbstractDungeon.player.loseBlock(loseBlock);
         }
-        if(this.currentMagicNumber > finalMagicNumber){
-            this.currentMagicNumber -= decreaseMagicNumber;
-            this.updateDescription();
-        }
+        updateMagic(1);
         GkmasMod.loseBlock = true;
     }
 
@@ -192,6 +192,9 @@ public class TrainRoundLogicPower extends AbstractPower {
     }
 
     public void onRemove() {
+        if(AbstractDungeon.player.hasPower(TrainRoundProducePower.POWER_ID)){
+            return;
+        }
         if(AbstractDungeon.player.hasRelic(SidewalkResearchNotes.ID)){
             ((SidewalkResearchNotes)AbstractDungeon.player.getRelic(SidewalkResearchNotes.ID)).onTrainRoundRemove();
         }

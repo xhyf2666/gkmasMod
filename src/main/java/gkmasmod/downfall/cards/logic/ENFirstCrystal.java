@@ -16,6 +16,7 @@ import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.downfall.cards.GkmasBossCard;
 import gkmasmod.powers.GoodImpression;
+import gkmasmod.utils.IdolData;
 import gkmasmod.utils.NameHelper;
 import gkmasmod.utils.PlayerHelper;
 import gkmasmod.utils.SoundHelper;
@@ -52,6 +53,8 @@ public class ENFirstCrystal extends GkmasBossCard {
         this.baseSecondMagicNumber = BASE_MAGIC2;
         this.secondMagicNumber = this.baseSecondMagicNumber;
         this.exhaust = true;
+        this.backGroundColor = IdolData.amao;
+        updateBackgroundImg();
         this.intent = AbstractMonster.Intent.ATTACK_BUFF;
         FlavorText.AbstractCardFlavorFields.boxColor.set(this, CardHelper.getColor(73, 224, 254));
         flavor = FlavorText.CardStringsFlavorField.flavor.get(CARD_STRINGS);

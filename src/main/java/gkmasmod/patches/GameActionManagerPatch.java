@@ -33,8 +33,12 @@ public class GameActionManagerPatch {
         public static StaticSpireField<Integer> fullPowerValueThisCombat = new StaticSpireField<>(() -> 0);
     }
 
+    /**
+     * 回合结束时，计算敌人的困意
+     * 触发伙伴rinha的攻击
+     */
     @SpirePatch(clz= GameActionManager.class, method="callEndOfTurnActions")
-    public static class GameActionManagerPostPatch_callEndOfTurnActions {
+    public static class PostPatchGameActionManager_callEndOfTurnActions {
         public static void Postfix(GameActionManager __instance) {
             for(AbstractMonster m : AbstractDungeon.getMonsters().monsters){
                 if(!m.isDying && !m.isEscaping&&!AbstractMonsterPatch.friendlyField.friendly.get(m)){
@@ -49,8 +53,11 @@ public class GameActionManagerPatch {
         }
     }
 
+    /**
+     * 实现 训练时间·理性 在回合结束时保留部分格挡 的效果
+     */
     @SpirePatch(clz = GameActionManager.class, method = "getNextAction")
-    public static class GameActionManagerInsertPatch_getNextAction {
+    public static class InsertPatchGameActionManager_getNextAction {
         @SpireInsertPatch(rloc = 433-210)
         public static void Insert(GameActionManager __instance) {
             if ((AbstractDungeon.getCurrRoom()).skipMonsterTurn){
@@ -62,7 +69,7 @@ public class GameActionManagerPatch {
     }
 
     @SpirePatch(clz = GameActionManager.class, method = "getNextAction")
-    public static class GameActionManagerInsertPatch_getNextAction2 {
+    public static class InsertPatchGameActionManager_getNextAction2 {
         @SpireInsertPatch(rloc = 451-210)
         public static void Insert(GameActionManager __instance) {
             for(AbstractMonster m:AbstractDungeon.getMonsters().monsters){
@@ -77,27 +84,14 @@ public class GameActionManagerPatch {
     }
 
     @SpirePatch(clz = GameActionManager.class, method = "getNextAction")
-    public static class GameActionManagerInsertPatch_getNextAction3 {
+    public static class InsertPatchGameActionManager_getNextAction3 {
         @SpireInsertPatch(rloc = 458-210)
         public static void Insert(GameActionManager __instance) {
         }
     }
 
-//    @SpirePatch(clz = GameActionManager.class, method = "getNextAction")
-//    public static class GetNextAction {
-//        public static ExprEditor Instrument() {
-//            return new ExprEditor() {
-//                public void edit(MethodCall m) throws CannotCompileException {
-//                    if (m.getClassName().equals(AbstractCreature.class.getName()) && m
-//                            .getMethodName().equals("loseBlock"))
-//                        m.replace("if (AbstractDungeon.player.hasPower(gkmasmod.powers.TrainRoundLogicPower.POWER_ID)) {$_ = $proceed($$);}");
-//                }
-//            };
-//        }
-//    }
-
     @SpirePatch(clz = GameActionManager.class,method = "clear")
-    public static class GameActionManagerPostPatch_clear {
+    public static class PostPatchGameActionManager_clear {
         public static void Postfix(GameActionManager __instance) {
             FullPowerValueThisCombatField.fullPowerValueThisCombat.set(0);
         }

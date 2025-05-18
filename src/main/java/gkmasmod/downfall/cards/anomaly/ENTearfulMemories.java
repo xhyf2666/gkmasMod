@@ -1,31 +1,15 @@
 package gkmasmod.downfall.cards.anomaly;
 
-import com.megacrit.cardcrawl.actions.common.DrawCardAction;
 import com.megacrit.cardcrawl.actions.common.GainBlockAction;
-import com.megacrit.cardcrawl.actions.watcher.ChangeStanceAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import gkmasmod.cardCustomEffect.EffectAddCustom;
-import gkmasmod.cardCustomEffect.SecondMagicCustom;
-import gkmasmod.cards.GkmasCard;
 import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.downfall.cards.GkmasBossCard;
-import gkmasmod.growEffect.DrawCardGrow;
-import gkmasmod.powers.FullPowerValue;
-import gkmasmod.stances.ConcentrationStance;
-import gkmasmod.stances.FullPowerStance;
-import gkmasmod.stances.PreservationStance;
-import gkmasmod.utils.CustomHelper;
-import gkmasmod.utils.GrowHelper;
 import gkmasmod.utils.NameHelper;
-import gkmasmod.utils.PlayerHelper;
-
-import java.util.ArrayList;
 
 public class ENTearfulMemories extends GkmasBossCard {
     private static final String CLASSNAME = ENTearfulMemories.class.getSimpleName();

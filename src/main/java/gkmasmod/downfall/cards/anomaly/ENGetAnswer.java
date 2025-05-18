@@ -1,31 +1,19 @@
 package gkmasmod.downfall.cards.anomaly;
 
-import basemod.helpers.CardModifierManager;
-import com.megacrit.cardcrawl.actions.watcher.ChangeStanceAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import gkmasmod.actions.GetAnswerGrowAction;
-import gkmasmod.actions.GetAnswerSelectAction;
-import gkmasmod.cardCustomEffect.EffectChangeCustom;
-import gkmasmod.cardCustomEffect.MoreActionCustom;
-import gkmasmod.cards.GkmasCard;
 import gkmasmod.cards.GkmasCardTag;
-import gkmasmod.cards.anomaly.Starlight;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.downfall.cards.GkmasBossCard;
 import gkmasmod.downfall.charbosses.actions.common.EnemyGainEnergyAction;
 import gkmasmod.downfall.charbosses.actions.common.EnemyMakeTempCardInHandBottomAction;
 import gkmasmod.downfall.charbosses.actions.unique.EnemyChangeStanceAction;
-import gkmasmod.downfall.charbosses.bosses.AbstractCharBoss;
 import gkmasmod.downfall.charbosses.stances.ENPreservationStance;
-import gkmasmod.growEffect.AttackTimeGrow;
-import gkmasmod.stances.PreservationStance;
+import gkmasmod.cardGrowEffect.AttackTimeGrow;
 import gkmasmod.utils.*;
-
-import java.util.ArrayList;
 
 public class ENGetAnswer extends GkmasBossCard {
     private static final String CLASSNAME = ENGetAnswer.class.getSimpleName();
@@ -57,6 +45,8 @@ public class ENGetAnswer extends GkmasBossCard {
         this.magicNumber = this.baseMagicNumber;
         this.exhaust = true;
         this.intent = AbstractMonster.Intent.MAGIC;
+        this.backGroundColor = IdolData.amao;
+        updateBackgroundImg();
     }
 
     @Override

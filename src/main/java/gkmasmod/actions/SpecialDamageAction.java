@@ -13,8 +13,8 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import gkmasmod.downfall.charbosses.bosses.AbstractCharBoss;
-import gkmasmod.growEffect.AttackTimeGrow;
-import gkmasmod.growEffect.DamageGrow;
+import gkmasmod.cardGrowEffect.AttackTimeGrow;
+import gkmasmod.cardGrowEffect.DamageGrow;
 
 import java.util.Iterator;
 

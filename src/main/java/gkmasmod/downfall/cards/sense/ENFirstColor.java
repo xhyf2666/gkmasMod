@@ -13,6 +13,7 @@ import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.downfall.cards.GkmasBossCard;
 import gkmasmod.downfall.cards.free.ENSleepLate;
 import gkmasmod.powers.GreatGoodTune;
+import gkmasmod.utils.IdolData;
 import gkmasmod.utils.NameHelper;
 import gkmasmod.utils.SoundHelper;
 
@@ -43,6 +44,8 @@ public class ENFirstColor extends GkmasBossCard {
         this.magicNumber = this.baseMagicNumber;
         this.baseBlock = BASE_BLOCK;
         this.exhaust = true;
+        this.backGroundColor = IdolData.kcna;
+        updateBackgroundImg();
         this.intent = AbstractMonster.Intent.DEFEND_BUFF;
         this.tags.add(GkmasCardTag.GOOD_TUNE_TAG);
         this.tags.add(GkmasCardTag.IDOL_CARD_TAG);

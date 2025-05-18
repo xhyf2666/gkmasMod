@@ -11,6 +11,9 @@ import gkmasmod.powers.TopWisdomPower;
 
 public class BlockReturnPowerPatch
 {
+    /**
+     * 来自 无上智慧 的伤害，无法触发受击获得格挡的效果
+     */
     @SpirePatch(clz = BlockReturnPower.class,method = "onAttacked")
     public static class BlockReturnPower_Prefix_onAttacked {
         @SpirePrefixPatch

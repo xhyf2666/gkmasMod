@@ -2,7 +2,6 @@ package gkmasmod.cards.special;
 
 import basemod.abstracts.AbstractCardModifier;
 import basemod.helpers.CardModifierManager;
-import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.actions.common.MakeTempCardInDrawPileAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -14,8 +13,7 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import gkmasmod.actions.GainBlockWithPowerAction;
 import gkmasmod.cards.GkmasCard;
-import gkmasmod.growEffect.BlockGrow;
-import gkmasmod.powers.NotGoodTune;
+import gkmasmod.cardGrowEffect.BlockGrow;
 import gkmasmod.utils.NameHelper;
 
 public class ResultWillNotChange extends GkmasCard {

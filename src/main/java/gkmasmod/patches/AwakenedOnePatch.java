@@ -21,10 +21,11 @@ import gkmasmod.utils.ThreeSizeHelper;
 
 public class AwakenedOnePatch
 {
-
-
+    /**
+     * 觉醒者复活后，血量膨胀
+     */
     @SpirePatch(clz = AwakenedOne.class,method = "changeState")
-    public static class AwakenedOneInsertPatch_changeState{
+    public static class InsertPatchAwakenedOne_changeState{
         @SpireInsertPatch(rloc = 17)
         public static void Insert(AwakenedOne __instance, String key) {
             if(AbstractDungeon.player!=null&&AbstractDungeon.player.hasRelic(PocketBook.ID)){

@@ -11,7 +11,6 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.vfx.WallopEffect;
 import com.megacrit.cardcrawl.vfx.combat.FlashAtkImgEffect;
-import gkmasmod.characters.IdolCharacter;
 import gkmasmod.patches.AbstractPlayerPatch;
 import gkmasmod.powers.Uplifting;
 

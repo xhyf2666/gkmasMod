@@ -11,6 +11,7 @@ import gkmasmod.cards.GkmasCard;
 import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.downfall.cards.GkmasBossCard;
+import gkmasmod.utils.IdolData;
 import gkmasmod.utils.NameHelper;
 import gkmasmod.utils.PlayerHelper;
 import gkmasmod.utils.SoundHelper;
@@ -47,6 +48,8 @@ public class ENHighlyEducatedIdol extends GkmasBossCard {
         this.baseBlock = BLOCK_AMT;
         this.baseSecondBlock = BLOCK_AMT2;
         this.exhaust = true;
+        this.backGroundColor = IdolData.shro;
+        updateBackgroundImg();
         this.intent = AbstractMonster.Intent.DEFEND_BUFF;
         this.tags.add(GkmasCardTag.YARUKI_TAG);
         this.tags.add(GkmasCardTag.IDOL_CARD_TAG);

@@ -15,6 +15,7 @@ import gkmasmod.downfall.cards.GkmasBossCard;
 import gkmasmod.downfall.cards.free.ENSleepLate;
 import gkmasmod.powers.GoodImpression;
 import gkmasmod.powers.SummerEveningSparklersPower;
+import gkmasmod.utils.IdolData;
 import gkmasmod.utils.NameHelper;
 import gkmasmod.utils.SoundHelper;
 
@@ -54,6 +55,8 @@ public class ENSummerEveningSparklers extends GkmasBossCard {
         this.baseThirdMagicNumber = BASE_MAGIC3;
         this.thirdMagicNumber = this.baseThirdMagicNumber;
         this.isInnate = true;
+        this.backGroundColor = IdolData.fktn;
+        updateBackgroundImg();
         this.intent = AbstractMonster.Intent.BUFF;
         this.tags.add(GkmasCardTag.YARUKI_TAG);
         this.tags.add(GkmasCardTag.GOOD_IMPRESSION_TAG);

@@ -22,7 +22,7 @@ import gkmasmod.utils.ThreeSizeHelper;
 public class OrreryPatch
 {
     @SpirePatch(clz = Orrery.class,method = "onEquip")
-    public static class OrreryInsertPatch_onEquip{
+    public static class InsertPatchOrrery_onEquip{
         @SpireInsertPatch(rloc = 0)
         public static void Insert(Orrery __instance) {
             if(AbstractDungeon.player!=null&&AbstractDungeon.player.hasRelic(PocketBook.ID)){

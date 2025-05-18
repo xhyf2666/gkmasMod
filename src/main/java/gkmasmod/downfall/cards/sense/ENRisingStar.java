@@ -13,6 +13,7 @@ import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.downfall.cards.GkmasBossCard;
 import gkmasmod.downfall.cards.free.ENSleepLate;
+import gkmasmod.utils.IdolData;
 import gkmasmod.utils.NameHelper;
 import gkmasmod.utils.SoundHelper;
 
@@ -41,6 +42,8 @@ public class ENRisingStar extends GkmasBossCard {
         super(ID, NAME, IMG_PATH, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET, "blue");
         this.baseDamage = ATTACK_DMG;
         this.exhaust = true;
+        this.backGroundColor = IdolData.hski;
+        updateBackgroundImg();
         this.intent = AbstractMonster.Intent.ATTACK;
         this.tags.add(GkmasCardTag.IDOL_CARD_TAG);
     }

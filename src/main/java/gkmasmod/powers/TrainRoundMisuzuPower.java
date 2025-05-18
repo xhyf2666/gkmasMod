@@ -30,13 +30,9 @@ import gkmasmod.utils.ThreeSizeHelper;
 
 public class TrainRoundMisuzuPower extends AbstractPower {
     private static final String CLASSNAME = TrainRoundMisuzuPower.class.getSimpleName();
-    // 能力的ID
     public static final String POWER_ID = NameHelper.makePath(CLASSNAME);
-    // 能力的本地化字段
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(CLASSNAME);
-    // 能力的名称
     private static final String NAME = powerStrings.NAME;
-    // 能力的描述
     private static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
 
     private int MAGIC = 1;
@@ -51,8 +47,8 @@ public class TrainRoundMisuzuPower extends AbstractPower {
     private boolean isDone = true;
 
 
-    String path128 = String.format("gkmasModResource/img/powers/%s_84.png",CLASSNAME);;
-    String path48 = String.format("gkmasModResource/img/powers/%s_32.png",CLASSNAME);;
+    String path128 = String.format("gkmasModResource/img/powers/%s_84.png",CLASSNAME);
+    String path48 = String.format("gkmasModResource/img/powers/%s_32.png",CLASSNAME);
 
     public TrainRoundMisuzuPower(AbstractCreature owner, int Amount) {
         this(owner,Amount,true);
@@ -76,7 +72,7 @@ public class TrainRoundMisuzuPower extends AbstractPower {
 
     @Override
     public void reducePower(int reduceAmount) {
-        if(this.amount-reduceAmount==1){
+        if(!AbstractDungeon.player.hasPower(TrainRoundProducePower.POWER_ID)&&this.amount-reduceAmount==1){
             if(AbstractDungeon.player.hasRelic(SidewalkResearchNotes.ID)){
                 ((SidewalkResearchNotes)AbstractDungeon.player.getRelic(SidewalkResearchNotes.ID)).onTrainRoundRemove();
             }
@@ -178,6 +174,9 @@ public class TrainRoundMisuzuPower extends AbstractPower {
     }
 
     public void onRemove() {
+        if(AbstractDungeon.player.hasPower(TrainRoundProducePower.POWER_ID)){
+            return;
+        }
         if(this.amount == 1){
             if(AbstractDungeon.player.hasRelic(SidewalkResearchNotes.ID)){
                 ((SidewalkResearchNotes)AbstractDungeon.player.getRelic(SidewalkResearchNotes.ID)).onTrainRoundRemove();

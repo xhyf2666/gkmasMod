@@ -100,7 +100,8 @@ public class FriendNunu extends CustomMonster {
                 if(nadeshiko.getPower(IntangibleSpecialPower.POWER_ID)!=null){
                     nadeshiko.getPower(IntangibleSpecialPower.POWER_ID).onSpecificTrigger();
                 }
-                addToBot(new DamageAction(nadeshiko, new DamageInfo(this, 30, DamageInfo.DamageType.THORNS), AbstractGameAction.AttackEffect.FIRE, true));
+                DamageInfo info = new DamageInfo(this, 30, DamageInfo.DamageType.THORNS);
+                addToBot(new DamageAction(nadeshiko,info, AbstractGameAction.AttackEffect.FIRE, true));
             }
         }
     }

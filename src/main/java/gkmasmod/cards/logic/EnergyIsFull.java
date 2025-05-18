@@ -1,5 +1,6 @@
 package gkmasmod.cards.logic;
 
+import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -10,6 +11,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import gkmasmod.cardCustomEffect.BlockCustom;
 import gkmasmod.cardCustomEffect.DrawCardCustom;
 import gkmasmod.cardCustomEffect.MagicCustom;
+import gkmasmod.cardCustomEffect.MoreActionCustom;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
@@ -30,7 +32,7 @@ public class EnergyIsFull extends GkmasCard {
     private static final String DESCRIPTION = CARD_STRINGS.DESCRIPTION;
     private static String IMG_PATH = ImageHelper.idolImgPath(SkinSelectScreen.Inst.idolName, CLASSNAME);
 
-    private static final int COST = 0;
+    private static final int COST = 1;
     private static final int BASE_MAGIC = 3;
     private static final int UPGRADE_PLUS_MAGIC = 1;
     private static final int BLOCK_AMT = 1;
@@ -52,6 +54,8 @@ public class EnergyIsFull extends GkmasCard {
         this.block = this.baseBlock;
         this.exhaust = true;
         this.tags.add(GkmasCardTag.GOOD_IMPRESSION_TAG);
+        this.tags.add(GkmasCardTag.MORE_ACTION_TAG);
+        CardModifierManager.addModifier(this,new MoreActionCustom(1));
         this.customLimit = 2;
         this.customEffectList = new ArrayList<>();
         this.customEffectList.add(CustomHelper.generateCustomEffectList(MagicCustom.growID,new int[]{2,2},new int[]{80,80},CustomHelper.CustomEffectType.GOOD_IMPRESSION_ADD));

@@ -3,6 +3,7 @@ package gkmasmod.downfall.charbosses.bosses;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.helpers.PowerTip;
 import gkmasmod.downfall.bosses.AbstractIdolBoss;
+import gkmasmod.downfall.bosses.ProducerBoss;
 import gkmasmod.downfall.charbosses.actions.common.EnemyDiscardAtEndOfTurnAction;
 import gkmasmod.downfall.charbosses.actions.common.EnemyUseCardAction;
 import gkmasmod.downfall.charbosses.actions.orb.EnemyAnimateOrbAction;
@@ -148,10 +149,13 @@ public abstract class AbstractCharBoss extends AbstractMonster {
 
     @Override
     public void init() {
-//        System.out.println("Charboss - init");
         AbstractCharBoss.boss = this;
         this.setHp(this.maxHealth);
-        this.energy.energyMaster = 3;
+        if(AbstractCharBoss.boss instanceof ProducerBoss){
+            this.energy.energyMaster = 999;
+        }
+        else
+            this.energy.energyMaster = 3;
         this.generateAll();
         super.init();
         this.preBattlePrep();
@@ -171,11 +175,13 @@ public abstract class AbstractCharBoss extends AbstractMonster {
 
     public void generateAll() {
         this.generateDeck();
-        maxHealth += chosenArchetype.maxHPModifier;
-        if (AbstractDungeon.ascensionLevel >= 9) {
-            maxHealth = Math.round(maxHealth * 1.2F);
+        if(!(AbstractCharBoss.boss instanceof ProducerBoss)){
+            maxHealth += chosenArchetype.maxHPModifier;
+            if (AbstractDungeon.ascensionLevel >= 9) {
+                maxHealth = Math.round(maxHealth * 1.2F);
+            }
+            currentHealth = maxHealth;
         }
-        currentHealth = maxHealth;
         updateHealthBar();
     }
 
@@ -190,9 +196,8 @@ public abstract class AbstractCharBoss extends AbstractMonster {
         }
         playMusic();
 
-        chosenArchetype.addedPreBattle();
-
         if(AbstractCharBoss.boss instanceof AbstractIdolBoss){
+            chosenArchetype.addedPreBattle();
 
         }
     }
@@ -209,7 +214,7 @@ public abstract class AbstractCharBoss extends AbstractMonster {
         this.gameHandSize = this.masterHandSize;
         this.cardInUse = null;
 
-        AbstractDungeon.overlayMenu.endTurnButton.enabled = false;
+//        AbstractDungeon.overlayMenu.endTurnButton.enabled = false;
         this.hand.clear();
         this.drawPile.clear();
         if (this.hasRelic("SlaversCollar")) {
@@ -248,6 +253,9 @@ public abstract class AbstractCharBoss extends AbstractMonster {
             AbstractBossCard c = (AbstractBossCard) _c;
             if (c.canUse(AbstractDungeon.player, this) && c.getPriority(this.hand.group) > -100) {
                 this.useCard(c, this, EnemyEnergyPanel.totalCount);
+                if(AbstractCharBoss.boss instanceof ProducerBoss &&cardsPlayedThisTurn>2){
+                    return;
+                }
                 this.addToBot(new DelayedActionAction(new CharbossDoNextCardAction()));
                 return;
             }
@@ -275,7 +283,10 @@ public abstract class AbstractCharBoss extends AbstractMonster {
 
     @Override
     public void applyEndOfTurnTriggers() {
-        if (hasPower(StunMonsterPower.POWER_ID)) chosenArchetype.turn--;
+        if(AbstractCharBoss.boss instanceof ProducerBoss){
+
+        }
+        else if (hasPower(StunMonsterPower.POWER_ID)) chosenArchetype.turn--;
 
         this.energy.recharge();
 
@@ -287,14 +298,17 @@ public abstract class AbstractCharBoss extends AbstractMonster {
             c.triggerOnEndOfTurnForPlayingCard();
         }
         this.stance.onEndOfTurn();
+        if(AbstractCharBoss.boss instanceof ProducerBoss){
 
-        addToBot(new EnemyDiscardAtEndOfTurnAction());
-        for (final AbstractCard c : this.hand.group) {
-            c.resetAttributes();
         }
-        addToBot(new DelayedActionAction(new CharbossTurnstartDrawAction()));
+        else {
+            addToBot(new EnemyDiscardAtEndOfTurnAction());
+            for (final AbstractCard c : this.hand.group) {
+                c.resetAttributes();
+            }
+            addToBot(new DelayedActionAction(new CharbossTurnstartDrawAction()));
+        }
     }
-
 
     public void startTurn() {
         this.cardsPlayedThisTurn = 0;
@@ -325,36 +339,57 @@ public abstract class AbstractCharBoss extends AbstractMonster {
 
     public void endTurnStartTurn() {
         if (!AbstractDungeon.getCurrRoom().isBattleOver) {
-            addToBot(new AbstractGameAction() {
-                @Override
-                public void update() {
-                    isDone = true;
-                    for (AbstractCard q : getThisTurnCards()) {
-                        AbstractCharBoss.boss.hand.addToTop(q);
-                        if (q instanceof AbstractBossCard) ((AbstractBossCard) q).bossDarken();
-                        q.current_y = Settings.HEIGHT / 2F;
-                        q.current_x = Settings.WIDTH;
+            if(AbstractCharBoss.boss instanceof ProducerBoss){
+                addToBot(new AbstractGameAction() {
+                    @Override
+                    public void update() {
+                        isDone = true;
+                        int handSize = AbstractCharBoss.boss.hand.group.size();
+                        while(handSize<12){
+                            handSize++;
+                            AbstractCard c = ProducerBoss.getProducerCard();
+                            AbstractCharBoss.boss.hand.addToTop(c);
+                            if (c instanceof AbstractBossCard) ((AbstractBossCard) c).bossDarken();
+                            c.current_y = Settings.HEIGHT / 2F;
+                            c.current_x = Settings.WIDTH;
+                        }
+                        AbstractCharBoss.boss.hand.refreshHandLayout();
+                        applyPowers();
                     }
+                });
+            }
+            else{
+                addToBot(new AbstractGameAction() {
+                    @Override
+                    public void update() {
+                        isDone = true;
+                        for (AbstractCard q : getThisTurnCards()) {
+                            AbstractCharBoss.boss.hand.addToTop(q);
+                            if (q instanceof AbstractBossCard) ((AbstractBossCard) q).bossDarken();
+                            q.current_y = Settings.HEIGHT / 2F;
+                            q.current_x = Settings.WIDTH;
+                        }
 
-                    ArrayList<AbstractBossCard> handAsBoss = new ArrayList<>();
-                    for (AbstractCard c : AbstractCharBoss.boss.hand.group) {
-                        handAsBoss.add((AbstractBossCard) c);
+                        ArrayList<AbstractBossCard> handAsBoss = new ArrayList<>();
+                        for (AbstractCard c : AbstractCharBoss.boss.hand.group) {
+                            handAsBoss.add((AbstractBossCard) c);
+                        }
+
+                        Collections.sort(handAsBoss, new sortByNewPrio());
+
+                        ArrayList<AbstractCard> newHand = new ArrayList<>();
+                        for (AbstractCard c : handAsBoss) {
+                            newHand.add(c);
+                            c.applyPowers();
+                        }
+
+                        AbstractCharBoss.boss.hand.group = newHand;
+
+                        AbstractCharBoss.boss.hand.refreshHandLayout();
+                        applyPowers();
                     }
-
-                    Collections.sort(handAsBoss, new sortByNewPrio());
-
-                    ArrayList<AbstractCard> newHand = new ArrayList<>();
-                    for (AbstractCard c : handAsBoss) {
-                        newHand.add(c);
-                        c.applyPowers();
-                    }
-
-                    AbstractCharBoss.boss.hand.group = newHand;
-
-                    AbstractCharBoss.boss.hand.refreshHandLayout();
-                    applyPowers();
-                }
-            });
+                });
+            }
             addToBot(new WaitAction(0.2f));
             this.applyStartOfTurnPostDrawRelics();
             this.applyStartOfTurnPostDrawPowers();
@@ -687,7 +722,17 @@ public abstract class AbstractCharBoss extends AbstractMonster {
                 this.onPlayAttackCardSound();
             }
         }
-        this.cardsPlayedThisTurn++;
+        if(AbstractCharBoss.boss instanceof ProducerBoss){
+            if (AbstractDungeon.actionManager.turnHasEnded &&(AbstractDungeon.getCurrRoom()).phase == AbstractRoom.RoomPhase.COMBAT){
+                cardsPlayedThisTurn++;
+            }
+            else{
+
+            }
+        }
+        else{
+            cardsPlayedThisTurn++;
+        }
         this.cardsPlayedThisCombat++;
         c.calculateCardDamage(monster);
         if (c.cost == -1 && EnemyEnergyPanel.totalCount < energyOnUse && !c.ignoreEnergyOnUse) {

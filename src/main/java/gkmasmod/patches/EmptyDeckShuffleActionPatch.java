@@ -15,8 +15,11 @@ import gkmasmod.powers.SakiPracticePower;
 public class EmptyDeckShuffleActionPatch
 {
 
+    /**
+     * 洗牌的监听
+     */
     @SpirePatch(clz = EmptyDeckShuffleAction.class,method = SpirePatch.CONSTRUCTOR)
-    public static class EmptyDeckShuffleActionInsertPatch_update{
+    public static class InsertPatchEmptyDeckShuffleAction_update{
         @SpirePostfixPatch()
         public static void postfix(EmptyDeckShuffleAction __instance) {
             if(AbstractDungeon.player.hasPower(PracticeAgainPower.POWER_ID))

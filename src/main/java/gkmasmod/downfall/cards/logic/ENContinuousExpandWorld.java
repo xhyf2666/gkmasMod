@@ -61,6 +61,8 @@ public class ENContinuousExpandWorld extends GkmasBossCard {
         this.tags.add(GkmasCardTag.IDOL_CARD_TAG);
         this.tags.add(GkmasCardTag.YARUKI_TAG);
         this.intent = AbstractMonster.Intent.BUFF;
+        this.backGroundColor = IdolData.kcna;
+        updateBackgroundImg();
     }
 
 

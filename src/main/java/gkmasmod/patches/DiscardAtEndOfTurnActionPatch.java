@@ -15,8 +15,11 @@ import gkmasmod.powers.PracticeAgainPower;
 public class DiscardAtEndOfTurnActionPatch
 {
 
+    /**
+     * 回合结束时，触发伙伴tmr的进食效果
+     */
     @SpirePatch(clz = DiscardAtEndOfTurnAction.class,method = "update")
-    public static class DiscardAtEndOfTurnActionInsertPatch_update{
+    public static class InsertPatchDiscardAtEndOfTurnAction_update{
         @SpireInsertPatch(rloc = 34-24)
         public static void insert(DiscardAtEndOfTurnAction __instance) {
             for(AbstractMonster mo:AbstractDungeon.getMonsters().monsters){

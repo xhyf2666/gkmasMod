@@ -34,8 +34,8 @@ public class MoonlitRunwayPower extends AbstractPower {
 
     private boolean useCardFinished = false;
 
-    String path128 = String.format("gkmasModResource/img/powers/%s_84.png",CLASSNAME);;
-    String path48 = String.format("gkmasModResource/img/powers/%s_32.png",CLASSNAME);;
+    String path128 = String.format("gkmasModResource/img/powers/%s_84.png",CLASSNAME);
+    String path48 = String.format("gkmasModResource/img/powers/%s_32.png",CLASSNAME);
 
     public MoonlitRunwayPower(AbstractCreature owner, int Amount) {
         this.name = NAME;

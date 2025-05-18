@@ -1,6 +1,5 @@
 package gkmasmod.cards.anomaly;
 
-import com.megacrit.cardcrawl.actions.watcher.ChangeStanceAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -8,10 +7,8 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import gkmasmod.actions.SelectCardGrowAction;
 import gkmasmod.cards.GkmasCard;
-import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
-import gkmasmod.growEffect.BaseDamageGrow;
-import gkmasmod.stances.ConcentrationStance;
+import gkmasmod.cardGrowEffect.BaseDamageGrow;
 import gkmasmod.utils.NameHelper;
 
 public class AllMembersGatherSense extends GkmasCard {

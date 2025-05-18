@@ -31,8 +31,8 @@ public class AchievementPower extends AbstractPower {
 
     AbstractCreature target;
 
-    String path128 = String.format("gkmasModResource/img/powers/%s_84.png",CLASSNAME);;
-    String path48 = String.format("gkmasModResource/img/powers/%s_32.png",CLASSNAME);;
+    String path128 = String.format("gkmasModResource/img/powers/%s_84.png",CLASSNAME);
+    String path48 = String.format("gkmasModResource/img/powers/%s_32.png",CLASSNAME);
 
     public AchievementPower(AbstractCreature owner, int Damage,AbstractCreature target) {
         this.name = NAME;

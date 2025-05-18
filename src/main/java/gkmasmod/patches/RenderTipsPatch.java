@@ -9,7 +9,7 @@ public class RenderTipsPatch{
     public static boolean notShowPlayerPowerTip = false;
 
     @SpirePatch2(clz = AbstractPlayer.class, method = "renderPowerTips")
-    public static class AbstractPlayerPowerTipPatch {
+    public static class PrePatchAbstractPlayer_renderPowerTips {
         public static SpireReturn<Void> Prefix() {
             if (RenderTipsPatch.notShowPlayerPowerTip)
                 return SpireReturn.Return();
@@ -18,7 +18,7 @@ public class RenderTipsPatch{
     }
 
     @SpirePatch2(clz = AbstractMonster.class, method = "renderTip")
-    public static class AbstractMonsterPowerTipPatch {
+    public static class PrePatchAbstractMonster_renderTip {
         public static SpireReturn<Void> Prefix() {
             if (RenderTipsPatch.notShowPlayerPowerTip)
                 return SpireReturn.Return();

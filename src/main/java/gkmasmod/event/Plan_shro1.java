@@ -8,7 +8,6 @@ import com.megacrit.cardcrawl.localization.EventStrings;
 import com.megacrit.cardcrawl.map.MapRoomNode;
 import com.megacrit.cardcrawl.relics.Circlet;
 import com.megacrit.cardcrawl.vfx.RainingGoldEffect;
-import gkmasmod.characters.IdolCharacter;
 import gkmasmod.modcore.GkmasMod;
 import gkmasmod.relics.EveryoneTextbook;
 import gkmasmod.relics.MysteriousObject;

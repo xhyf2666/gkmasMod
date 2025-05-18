@@ -12,24 +12,20 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.downfall.charbosses.bosses.AbstractCharBoss;
 import gkmasmod.downfall.charbosses.cards.AbstractBossCard;
-import gkmasmod.growEffect.DamageGrow;
+import gkmasmod.cardGrowEffect.DamageGrow;
 import gkmasmod.stances.ConcentrationStance;
 import gkmasmod.utils.GrowHelper;
 import gkmasmod.utils.NameHelper;
 
 public class KiraKiraPrismPower extends AbstractPower {
     private static final String CLASSNAME = KiraKiraPrismPower.class.getSimpleName();
-    // 能力的ID
     public static final String POWER_ID = NameHelper.makePath(CLASSNAME);
-    // 能力的本地化字段
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(CLASSNAME);
-    // 能力的名称
     private static final String NAME = powerStrings.NAME;
-    // 能力的描述
     private static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
 
-    String path128 = String.format("gkmasModResource/img/powers/%s_84.png",CLASSNAME);;
-    String path48 = String.format("gkmasModResource/img/powers/%s_32.png",CLASSNAME);;
+    String path128 = String.format("gkmasModResource/img/powers/%s_84.png",CLASSNAME);
+    String path48 = String.format("gkmasModResource/img/powers/%s_32.png",CLASSNAME);
 
     public KiraKiraPrismPower(AbstractCreature owner, int amount) {
         this.name = NAME;
@@ -39,28 +35,27 @@ public class KiraKiraPrismPower extends AbstractPower {
         this.amount = amount;
         this.priority = 90;
 
-        // 添加一大一小两张能力图
         this.region128 = new TextureAtlas.AtlasRegion(ImageMaster.loadImage(path128), 0, 0, 84, 84);
         this.region48 = new TextureAtlas.AtlasRegion(ImageMaster.loadImage(path48), 0, 0, 32, 32);
 
-        // 首次添加能力更新描述
         this.updateDescription();
     }
 
-    // 能力在更新时如何修改描述
     public void updateDescription() {
         this.description = String.format(DESCRIPTIONS[0],amount);
     }
 
-
     @Override
-    public void onAfterUseCard(AbstractCard card, UseCardAction action) {
+    public void onUseCard(AbstractCard card, UseCardAction action) {
         if(!(this.owner instanceof AbstractCharBoss)&&card instanceof AbstractBossCard)
             return;
         if(this.owner instanceof AbstractCharBoss&&(!(card instanceof AbstractBossCard)))
             return;
         boolean flag= false;
         if(card.type== AbstractCard.CardType.SKILL){
+            if(!this.owner.isPlayer){
+                return;
+            }
             if(AbstractDungeon.player.stance.ID.equals(ConcentrationStance.STANCE_ID)){
                 ConcentrationStance concentrationStance = (ConcentrationStance) AbstractDungeon.player.stance;
                 if(concentrationStance.stage==1){
@@ -98,5 +93,10 @@ public class KiraKiraPrismPower extends AbstractPower {
                 }
             }
         }
+    }
+
+    @Override
+    public void onAfterUseCard(AbstractCard card, UseCardAction action) {
+
     }
 }

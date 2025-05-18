@@ -16,7 +16,6 @@ public class TempMusicPatch {
     @SpirePrefixPatch
     public static SpireReturn<Music> Prefix(TempMusic __instance, String key) {
         if (key.startsWith("gkmasModResource")) {
-//            System.out.println("Starting custom music: " + key);
             return SpireReturn.Return(newMusic(key));
         }
         return SpireReturn.Continue();

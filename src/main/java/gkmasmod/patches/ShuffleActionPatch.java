@@ -25,7 +25,7 @@ public class ShuffleActionPatch
 {
 
     @SpirePatch(clz = ShuffleAction.class,method = "update")
-    public static class ShuffleActionInsertPatch_update{
+    public static class InsertPatchShuffleAction_update{
         @SpirePrefixPatch()
         public static void prefix(ShuffleAction __instance, boolean ___triggerRelics) {
             if (___triggerRelics) {

@@ -31,8 +31,8 @@ public class EurekaPlusPower extends AbstractPower {
 
     AbstractCreature target;
 
-    String path128 = String.format("gkmasModResource/img/powers/%s_84.png",CLASSNAME);;
-    String path48 = String.format("gkmasModResource/img/powers/%s_32.png",CLASSNAME);;
+    String path128 = String.format("gkmasModResource/img/powers/%s_84.png",CLASSNAME);
+    String path48 = String.format("gkmasModResource/img/powers/%s_32.png",CLASSNAME);
 
     public EurekaPlusPower(AbstractCreature owner) {
         this.name = NAME;

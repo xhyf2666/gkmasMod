@@ -4,18 +4,13 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.screens.CardRewardScreen;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndAddToDiscardEffect;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndAddToHandEffect;
-import gkmasmod.cards.GkmasCard;
-import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
-import gkmasmod.utils.IdolData;
+import gkmasmod.utils.CardHelper;
 
 import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.Map;
 
 public class SisterHelpAction extends AbstractGameAction {
     private boolean retrieveCard = false;
@@ -86,11 +81,12 @@ public class SisterHelpAction extends AbstractGameAction {
 
     private ArrayList<AbstractCard> generateCardChoices() {
         ArrayList<AbstractCard> derp = new ArrayList<>();
-        ArrayList<AbstractCard> tmpPool = new ArrayList<>();
-        getRandomCard(PlayerColorEnum.gkmasModColorLogic,tmpPool);
-        getRandomCard(PlayerColorEnum.gkmasModColorSense,tmpPool);
-        getRandomCard(PlayerColorEnum.gkmasModColorAnomaly,tmpPool);
-        getRandomCard(PlayerColorEnum.gkmasModColor,tmpPool);
+        ArrayList<AbstractCard.CardColor> colorList = new ArrayList<>();
+        colorList.add(PlayerColorEnum.gkmasModColorLogic);
+        colorList.add(PlayerColorEnum.gkmasModColorSense);
+        colorList.add(PlayerColorEnum.gkmasModColorAnomaly);
+        colorList.add(PlayerColorEnum.gkmasModColor);
+        ArrayList<AbstractCard> tmpPool = CardHelper.getAllIdolCards(colorList,"","");
 
         while (derp.size() != showCardCount) {
             boolean dupe = false;
@@ -108,21 +104,4 @@ public class SisterHelpAction extends AbstractGameAction {
         return derp;
     }
 
-    public ArrayList<AbstractCard> getRandomCard(AbstractCard.CardColor color,ArrayList<AbstractCard> tmpPool) {
-        Iterator<Map.Entry<String, AbstractCard>> cardLib = CardLibrary.cards.entrySet().iterator();
-        while (true) {
-            if (!cardLib.hasNext())
-                return tmpPool;
-            Map.Entry c = cardLib.next();
-            AbstractCard card = (AbstractCard)c.getValue();
-            if (card.hasTag(GkmasCardTag.IDOL_CARD_TAG)&&card.color.equals(color) &&card.rarity != AbstractCard.CardRarity.CURSE) {
-                if(card instanceof GkmasCard){
-                    GkmasCard gkmasCard = (GkmasCard)card;
-                    if(gkmasCard.backGroundColor.equals(IdolData.hski))
-                        tmpPool.add(card);
-                }
-            }
-
-        }
-    }
 }

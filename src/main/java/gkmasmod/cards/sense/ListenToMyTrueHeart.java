@@ -78,7 +78,6 @@ public class ListenToMyTrueHeart extends GkmasCard {
         if (!this.upgraded) {
             upgradeName();
             upgradeSecondMagicNumber(UPGRADE_PLUS_MAGIC2);
-            this.exhaust = false;
             if (CARD_STRINGS.UPGRADE_DESCRIPTION != null)
                 this.rawDescription = CARD_STRINGS.UPGRADE_DESCRIPTION;
             this.initializeDescription();

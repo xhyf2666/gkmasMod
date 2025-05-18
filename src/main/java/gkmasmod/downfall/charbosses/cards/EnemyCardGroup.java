@@ -13,7 +13,7 @@ import com.megacrit.cardcrawl.vfx.cardManip.ExhaustCardEffect;
 import java.util.ArrayList;
 
 public class EnemyCardGroup extends CardGroup {
-    public static final int HAND_ROW_LENGTH = 10;
+    public static final int HAND_ROW_LENGTH = 12;
     public static final float HAND_HEIGHT_OFFSET = 0.56F;
     public AbstractCharBoss owner;
     public static AbstractBossCard hov2holder = null;

@@ -1,7 +1,5 @@
 package gkmasmod.cards.anomaly;
 
-import basemod.abstracts.AbstractCardModifier;
-import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.LoseHPAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -9,18 +7,13 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.AbstractPower;
 import gkmasmod.actions.BattlePracticeAction;
 import gkmasmod.cardCustomEffect.ExhaustRemoveCustom;
 import gkmasmod.cardCustomEffect.HPMagicCustom;
 import gkmasmod.cardCustomEffect.MagicCustom;
-import gkmasmod.cardCustomEffect.SecondMagicCustom;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
-import gkmasmod.growEffect.AbstractGrowEffect;
-import gkmasmod.growEffect.DamageGrow;
-import gkmasmod.powers.AchievementPower;
 import gkmasmod.powers.FullPowerValue;
 import gkmasmod.utils.*;
 

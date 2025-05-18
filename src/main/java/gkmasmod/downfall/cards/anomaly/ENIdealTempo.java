@@ -6,26 +6,16 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.stances.NeutralStance;
-import gkmasmod.cardCustomEffect.BlockCustom;
-import gkmasmod.cardCustomEffect.CostCustom;
-import gkmasmod.cardCustomEffect.DamageCustom;
-import gkmasmod.cards.GkmasCard;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.downfall.cards.GkmasBossCard;
 import gkmasmod.downfall.charbosses.bosses.AbstractCharBoss;
 import gkmasmod.downfall.charbosses.stances.EnNeutralStance;
-import gkmasmod.growEffect.DamageGrow;
-import gkmasmod.screen.SkinSelectScreen;
-import gkmasmod.utils.CustomHelper;
+import gkmasmod.cardGrowEffect.DamageGrow;
 import gkmasmod.utils.GrowHelper;
 import gkmasmod.utils.ImageHelper;
 import gkmasmod.utils.NameHelper;
-
-import java.util.ArrayList;
 
 public class ENIdealTempo extends GkmasBossCard {
     private static final String CLASSNAME = ENIdealTempo.class.getSimpleName();

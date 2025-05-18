@@ -12,6 +12,8 @@ import gkmasmod.cardCustomEffect.*;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
+import gkmasmod.powers.SenseOfDistancePower;
+import gkmasmod.powers.SenseOfDistanceSPPower;
 import gkmasmod.utils.CustomHelper;
 import gkmasmod.utils.IdolData;
 import gkmasmod.utils.NameHelper;
@@ -35,6 +37,8 @@ public class SenseOfDistance extends GkmasCard {
     private static final int BASE_MAGIC2 = 4;
     private static final int UPGRADE_PLUS_MAGIC2 = 1;
 
+    private static final int BASE_MAGIC3 = 3;
+
     private static final CardType TYPE = CardType.SKILL;
     private static final CardColor COLOR = PlayerColorEnum.gkmasModColorSense;
     private static final CardRarity RARITY = CardRarity.BASIC;
@@ -46,6 +50,8 @@ public class SenseOfDistance extends GkmasCard {
         this.magicNumber = this.baseMagicNumber;
         this.baseSecondMagicNumber = BASE_MAGIC2;
         this.secondMagicNumber = this.baseSecondMagicNumber;
+        this.baseThirdMagicNumber = BASE_MAGIC3;
+        this.thirdMagicNumber = this.baseThirdMagicNumber;
         this.exhaust = true;
         this.tags.add(GkmasCardTag.FOCUS_TAG);
         this.tags.add(GkmasCardTag.IDOL_CARD_TAG);
@@ -54,16 +60,25 @@ public class SenseOfDistance extends GkmasCard {
         updateBackgroundImg();
         this.customLimit = 1;
         this.customEffectList = new ArrayList<>();
-        this.customEffectList.add(CustomHelper.generateCustomEffectList(BlockCustom.growID, new int[]{5}, new int[]{80}, CustomHelper.CustomEffectType.BLOCK_ADD));
-        this.customEffectList.add(CustomHelper.generateCustomEffectList(GoodTuneCustom.growID, new int[]{2}, new int[]{80}, CustomHelper.CustomEffectType.GOOD_TUNE_ADD));
-        this.customEffectList.add(CustomHelper.generateCustomEffectList(SecondMagicCustom.growID,new int[]{2},new int[]{80},CustomHelper.CustomEffectType.HP_REDUCE));
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(MoreActionCustom.growID, new int[]{1}, new int[]{80}, CustomHelper.CustomEffectType.MORE_ACTION_ADD));
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(EffectAddCustom.growID, new int[]{0}, new int[]{60}, CustomHelper.CustomEffectType.EFFECT_CHANGE));
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(EffectChangeCustom.growID,new int[]{0},new int[]{60},CustomHelper.CustomEffectType.EFFECT_CHANGE));
     }
-
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        addToBot(new ApplyPowerAction(p, p, new StrengthPower(p, this.magicNumber), this.magicNumber));
-        addToBot(new HealAction(p, p, this.secondMagicNumber));
+        if(CustomHelper.hasCustom(this,EffectAddCustom.growID)){
+            addToBot(new ApplyPowerAction(p, p, new StrengthPower(p, this.magicNumber), this.magicNumber));
+            addToBot(new ApplyPowerAction(p,p, new SenseOfDistancePower(p,this.thirdMagicNumber),this.thirdMagicNumber));
+            addToBot(new HealAction(p, p, this.secondMagicNumber));
+        }
+        else if(CustomHelper.hasCustom(this,EffectChangeCustom.growID)){
+            addToBot(new ApplyPowerAction(p,p, new SenseOfDistanceSPPower(p,this.magicNumber),this.magicNumber));
+        }
+        else{
+            addToBot(new ApplyPowerAction(p, p, new StrengthPower(p, this.magicNumber), this.magicNumber));
+            addToBot(new HealAction(p, p, this.secondMagicNumber));
+        }
         SoundHelper.playSound("gkmasModResource/audio/voice/skillcard/cidol_hrnm_3_000_produce_skillcard_01.ogg");
 
     }

@@ -213,5 +213,10 @@
     "NAME": "十王星南",
     "DIALOG": [],
     "MOVES": ["biu"]
+  },
+  "IdolBoss_prod": {
+    "NAME": "制作人",
+    "DIALOG": [],
+    "MOVES": ["biu"]
   }
 }

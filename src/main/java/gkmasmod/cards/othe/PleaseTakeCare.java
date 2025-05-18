@@ -1,13 +1,19 @@
 package gkmasmod.cards.othe;
 
+import com.megacrit.cardcrawl.actions.common.DrawCardAction;
+import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import gkmasmod.cards.GkmasCard;
+import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.utils.NameHelper;
+
+import java.util.HashSet;
 
 public class PleaseTakeCare extends GkmasCard {
     private static final String CLASSNAME = PleaseTakeCare.class.getSimpleName();
@@ -39,6 +45,19 @@ public class PleaseTakeCare extends GkmasCard {
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
+        HashSet<String> idols = new HashSet<>();
+        for(AbstractCard c : AbstractDungeon.player.masterDeck.group){
+            if(c.hasTag(GkmasCardTag.IDOL_CARD_TAG)){
+                GkmasCard gkmasCard = (GkmasCard) c;
+                if(!idols.contains(gkmasCard.backGroundColor)){
+                    idols.add(gkmasCard.backGroundColor);
+                }
+            }
+        }
+        int count = idols.size()/this.magicNumber;
+        if(count>0)
+            addToBot(new DrawCardAction(p, this.secondMagicNumber*count));
+
     }
 
     @Override

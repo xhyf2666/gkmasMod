@@ -42,12 +42,8 @@ import java.util.Iterator;
 import java.util.Map;
 
 
-// 继承CustomPlayer类
 public class IdolCharacter extends CustomPlayer {
-    // 人物死亡图像
     private static final String CORPSE_IMAGE = "gkmasModResource/img/idol/shro/sleep_skin10.png";
-    // 战斗界面左下角能量图标的每个图层
-
 
     private static final int STARTING_HP = 80;
     private static final int MAX_HP = 80;
@@ -68,7 +64,6 @@ public class IdolCharacter extends CustomPlayer {
         super(name, PlayerColorEnum.gkmasMod_character,new IdolEnergyOrb(), new SpriterAnimation(filepath));
 
 
-        // 人物对话气泡的大小，如果游戏中尺寸不对在这里修改（libgdx的坐标轴左下为原点）
         this.dialogX = (this.drawX + 0.0F * Settings.scale);
         this.dialogY = (this.drawY + 150.0F * Settings.scale);
         initializeData();
@@ -84,8 +79,8 @@ public class IdolCharacter extends CustomPlayer {
                 String.format("gkmasModResource/img/idol/%s/stand/sleep_skin10.png",this.idolName),
                 this.getLoadout(),
                 0.0F, 0.0F,
-                200.0F, 220.0F, // 人物碰撞箱大小，越大的人物模型这个越大
-                new EnergyManager(3) // 初始每回合的能量
+                200.0F, 220.0F,
+                new EnergyManager(3)
         );
     }
 
@@ -173,6 +168,9 @@ public class IdolCharacter extends CustomPlayer {
         else if(SkinSelectScreen.Inst.idolName==IdolData.jsna){
             retVal.add(FrozenEye.ID);
         }
+        else if(SkinSelectScreen.Inst.idolName==IdolData.hmsz){
+            retVal.add(DreamCatcher.ID);
+        }
         return retVal;
     }
 
@@ -182,6 +180,15 @@ public class IdolCharacter extends CustomPlayer {
 
     public int getGold(){
         return IdolData.getIdol(SkinSelectScreen.Inst.idolIndex).getGold();
+    }
+
+    public String getStory(){
+        try{
+            return CardCrawlGame.languagePack.getCharacterString(String.format("IdolStory:%s",SkinSelectScreen.Inst.idolName)).TEXT[0];
+        }
+        catch (Exception e){
+            return "来自初星学园的偶像团体。每位偶像拥有各自的初始卡组、专属遗物和成长倾向。";
+        }
     }
 
     public int getMaxOrbs(){
@@ -194,7 +201,7 @@ public class IdolCharacter extends CustomPlayer {
     public CharSelectInfo getLoadout() {
         return new CharSelectInfo(
                 SkinSelectScreen.Inst.curName,
-                "来自初星学园的偶像团体。每位偶像拥有各自的初始卡组、专属遗物和成长倾向。",
+                getStory(),
                 getHP(),
                 getHP(),
                 getMaxOrbs(),
@@ -242,14 +249,12 @@ public class IdolCharacter extends CustomPlayer {
         CardCrawlGame.screenShake.shake(ScreenShake.ShakeIntensity.MED, ScreenShake.ShakeDur.SHORT, true);
     }
 
-    // 碎心图片
     @Override
     public ArrayList<CutscenePanel> getCutscenePanels() {
         ArrayList<CutscenePanel> panels = new ArrayList<>();
         panels.add(new CutscenePanel("gkmasModResource/img/UI/end/end1.png"));
         panels.add(new CutscenePanel(String.format("gkmasModResource/img/UI/end/end_%s_001_00.png", this.idolName)));
         panels.add(new CutscenePanel(String.format("gkmasModResource/img/UI/end/end_%s_001_01.png", this.idolName)));
-        panels.add(new CutscenePanel("gkmasModResource/img/UI/end/end4.png"));
         return panels;
     }
 

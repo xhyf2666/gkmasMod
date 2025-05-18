@@ -32,6 +32,8 @@ public class AbstractStancePatch
                 return SpireReturn.Return(new PreservationStance(1));
             else if(name.equals(ConcentrationStance.STANCE_ID2))
                 return SpireReturn.Return(new ConcentrationStance(1));
+            else if(name.equals(PreservationStance.STANCE_ID3))
+                return SpireReturn.Return(new PreservationStance(2));
             else if(name.equals(SleepyStance.STANCE_ID))
                 return SpireReturn.Return(new SleepyStance());
             else if(name.equals(SleepStance.STANCE_ID))

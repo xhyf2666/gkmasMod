@@ -17,7 +17,7 @@ public class DecaPatch
 {
 
     @SpirePatch(clz = Deca.class,method = "takeTurn")
-    public static class DecaPrePatch_RenderCard{
+    public static class PrePatchDeca_takeTurn{
         @SpirePrefixPatch
         public static void Prefix(Deca __instance) {
             if(AbstractDungeon.player!=null&&AbstractDungeon.player.hasRelic(PocketBook.ID)){

@@ -16,6 +16,7 @@ import com.megacrit.cardcrawl.vfx.combat.VerticalImpactEffect;
 import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.downfall.cards.GkmasBossCard;
+import gkmasmod.utils.IdolData;
 import gkmasmod.utils.NameHelper;
 import gkmasmod.utils.SoundHelper;
 
@@ -51,6 +52,8 @@ public class ENFirstFun extends GkmasBossCard {
         this.magicNumber = this.baseMagicNumber;
         this.baseBlock = BLOCK_AMT;
         this.exhaust = true;
+        this.backGroundColor = IdolData.shro;
+        updateBackgroundImg();
         this.intent = AbstractMonster.Intent.ATTACK;
         this.tags.add(GkmasCardTag.FOCUS_TAG);
         this.tags.add(GkmasCardTag.IDOL_CARD_TAG);

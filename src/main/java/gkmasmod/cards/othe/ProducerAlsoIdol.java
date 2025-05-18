@@ -1,13 +1,20 @@
 package gkmasmod.cards.othe;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.colorless.Mayhem;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.MayhemPower;
+import gkmasmod.actions.AutoPlayAction;
 import gkmasmod.cards.GkmasCard;
+import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.utils.NameHelper;
+
+import java.util.ListIterator;
 
 public class ProducerAlsoIdol extends GkmasCard {
     private static final String CLASSNAME = ProducerAlsoIdol.class.getSimpleName();
@@ -20,9 +27,6 @@ public class ProducerAlsoIdol extends GkmasCard {
 
     private static final int COST = 1;
 
-    private static final int BASE_MAGIC = 2;
-    private static final int BASE_MAGIC2 = 2;
-    private static final int UPGRADE_PLUS_MAGIC2 = 2;
 
     private static final CardType TYPE = CardType.SKILL;
     private static final CardColor COLOR = PlayerColorEnum.gkmasModColorOther;
@@ -31,14 +35,25 @@ public class ProducerAlsoIdol extends GkmasCard {
 
     public ProducerAlsoIdol() {
         super(ID, NAME, IMG_PATH, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseMagicNumber = BASE_MAGIC;
-        this.magicNumber = this.baseMagicNumber;
-        this.baseSecondMagicNumber = BASE_MAGIC2;
-        this.secondMagicNumber = this.baseSecondMagicNumber;
+        this.exhaust = true;
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
+        AbstractCard previousCard = null;
+        ListIterator<AbstractCard> it = AbstractDungeon.actionManager.cardsPlayedThisCombat.listIterator(AbstractDungeon.actionManager.cardsPlayedThisCombat.size());
+        while(it.hasPrevious()) {
+            AbstractCard card = it.previous();
+            if (card instanceof GkmasCard) {
+                if(card.hasTag(GkmasCardTag.IDOL_CARD_TAG)){
+                    previousCard = card;
+                    break;
+                }
+            }
+        }
+        if(previousCard != null) {
+            addToBot(new AutoPlayAction(previousCard,true));
+        }
     }
 
     @Override
@@ -50,7 +65,7 @@ public class ProducerAlsoIdol extends GkmasCard {
     public void upgrade() {
         if (!this.upgraded) {
             upgradeName();
-            upgradeMagicNumber(UPGRADE_PLUS_MAGIC2);
+            this.exhaust = false;
             if (CARD_STRINGS.UPGRADE_DESCRIPTION != null)
                 this.rawDescription = CARD_STRINGS.UPGRADE_DESCRIPTION;
             this.initializeDescription();

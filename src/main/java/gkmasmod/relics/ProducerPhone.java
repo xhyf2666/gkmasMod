@@ -16,6 +16,7 @@ import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.vfx.SpeechBubble;
 import gkmasmod.actions.GainTrainRoundPowerAction;
 import gkmasmod.characters.IdolCharacter;
+import gkmasmod.characters.MisuzuCharacter;
 import gkmasmod.powers.CallMeAnyTimePower;
 import gkmasmod.powers.HalfDamageReceive;
 import gkmasmod.powers.NoPhoneInClassPower;
@@ -107,7 +108,11 @@ public class ProducerPhone extends CustomRelic {
 
         java.util.Random random = new java.util.Random();
         int index = random.nextInt(12)+1;
-        SoundHelper.playSound(String.format(AUDIO,SkinSelectScreen.Inst.idolName,index));
+        String idolName = SkinSelectScreen.Inst.idolName;
+        if(AbstractDungeon.player instanceof MisuzuCharacter){
+            idolName = IdolData.hmsz;
+        }
+        SoundHelper.playSound(String.format(AUDIO,idolName,index));
     }
 
     @Override

@@ -12,6 +12,7 @@ import gkmasmod.downfall.charbosses.stances.ENConcentrationStance;
 import gkmasmod.downfall.relics.CBR_AbsoluteNewSelf;
 import gkmasmod.relics.AbsoluteNewSelf;
 import gkmasmod.stances.ConcentrationStance;
+import gkmasmod.utils.IdolData;
 
 public class AbsoluteNewSelfAction extends AbstractGameAction {
     private AbstractCreature p;
@@ -22,6 +23,11 @@ public class AbsoluteNewSelfAction extends AbstractGameAction {
 
     /**
      * 十王星南遗物：全新的我 Action
+     * @param p 遗物持有者
+     * @param m 目标
+     * @param damage 基础伤害
+     * @param HP 损失血量
+     * @param relic 触发该Action的遗物
      */
     public AbsoluteNewSelfAction(AbstractCreature p, AbstractCreature m, int damage, int HP, AbstractRelic relic) {
         this.p = p;

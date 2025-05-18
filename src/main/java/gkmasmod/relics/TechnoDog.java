@@ -56,6 +56,7 @@ public class TechnoDog extends CustomRelic {
     public void onEquip() {}
 
     public void onUseCard(AbstractCard card, UseCardAction useCardAction) {
+        //TODO 实际是出牌时，需要封装为action，变为出牌后
         if (this.counter > 0) {
             int amount = AbstractDungeon.player.getPower(DexterityPower.POWER_ID)==null?0:AbstractDungeon.player.getPower(DexterityPower.POWER_ID).amount;
 

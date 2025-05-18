@@ -16,11 +16,14 @@ public class CampfireUIPatch
 
     private static final String s = "gkmasModResource/img/idol/%s/stand/%s.png";
 
+    /**
+     * 小偶像进入火堆时，随机显示一张火堆图
+     */
     @SpirePatch(clz = CampfireUI.class,method = "initializeButtons")
-    public static class CampfireUIPrefixPatch_initializeButtons{
+    public static class PrePatchCampfireUI_initializeButtons{
         @SpirePrefixPatch
         public static void Prefix(CampfireUI __instance) {
-            if(AbstractDungeon.player!=null&&(AbstractDungeon.player instanceof IdolCharacter||AbstractDungeon.player instanceof MisuzuCharacter)){
+            if((AbstractDungeon.player instanceof IdolCharacter || AbstractDungeon.player instanceof MisuzuCharacter)){
                 if(AbstractDungeon.player instanceof IdolCharacter){
                     IdolCharacter idol = (IdolCharacter) AbstractDungeon.player;
                     String tmp = String.format(s,idol.idolName,idol.idolData.getRandomFireImg());

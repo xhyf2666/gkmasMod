@@ -31,8 +31,8 @@ public class CharmPerformancePower extends AbstractPower {
 
     private int damage = 0;
 
-    String path128 = String.format("gkmasModResource/img/powers/%s_84.png",CLASSNAME);;
-    String path48 = String.format("gkmasModResource/img/powers/%s_32.png",CLASSNAME);;
+    String path128 = String.format("gkmasModResource/img/powers/%s_84.png",CLASSNAME);
+    String path48 = String.format("gkmasModResource/img/powers/%s_32.png",CLASSNAME);
 
     public CharmPerformancePower(AbstractCreature owner, int Damage,AbstractCreature target) {
         this.name = NAME;

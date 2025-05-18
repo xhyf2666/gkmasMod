@@ -35,7 +35,6 @@ public class ENGreatCheer extends GkmasBossCard {
     private static final int BASE_MAGIC2 = 100;
     private static final int UPGRADE_PLUS_MAGIC2 = 50;
 
-
     private static final CardType TYPE = CardType.SKILL;
     private static final CardColor COLOR = PlayerColorEnum.gkmasModColorSense;
     private static final CardRarity RARITY = CardRarity.UNCOMMON;
@@ -60,7 +59,7 @@ public class ENGreatCheer extends GkmasBossCard {
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
        addToBot(new ApplyPowerAction(m,m,new GoodTune(m,this.magicNumber),this.magicNumber));
-       addToBot(new GainBlockAction(m,m,this.block));
+//       addToBot(new GainBlockAction(m,m,this.block));
        int count = PlayerHelper.getPowerAmount(p,GoodTune.POWER_ID);
        count = (int) (1.0F *count*this.secondMagicNumber/100);
        if(count>0)

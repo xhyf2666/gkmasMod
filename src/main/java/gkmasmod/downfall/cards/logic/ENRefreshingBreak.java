@@ -17,13 +17,14 @@ import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.downfall.cards.GkmasBossCard;
 import gkmasmod.powers.ReduceDamageReceive;
+import gkmasmod.utils.IdolData;
 import gkmasmod.utils.NameHelper;
 import gkmasmod.utils.SoundHelper;
 
 public class ENRefreshingBreak extends GkmasBossCard {
     private static final String CLASSNAME = ENRefreshingBreak.class.getSimpleName();
     public static final String ID = NameHelper.makePath(CLASSNAME);
-    private static final String CLASSNAME2 = ENBaseVision.class.getSimpleName().substring(2);
+    private static final String CLASSNAME2 = ENRefreshingBreak.class.getSimpleName().substring(2);
     public static final String ID2 = NameHelper.makePath(CLASSNAME2);
     private static final CardStrings CARD_STRINGS = CardCrawlGame.languagePack.getCardStrings(ID2);
 
@@ -63,6 +64,8 @@ public class ENRefreshingBreak extends GkmasBossCard {
         this.tags.add(GkmasCardTag.YARUKI_TAG);
         this.tags.add(GkmasCardTag.IDOL_CARD_TAG);
         this.exhaust = true;
+        this.backGroundColor = IdolData.hrnm;
+        updateBackgroundImg();
         this.intent = AbstractMonster.Intent.ATTACK_BUFF;
         FlavorText.AbstractCardFlavorFields.boxColor.set(this, CardHelper.getColor(73, 224, 254));
         flavor = FlavorText.CardStringsFlavorField.flavor.get(CARD_STRINGS);

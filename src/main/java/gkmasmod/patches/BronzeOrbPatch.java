@@ -22,7 +22,7 @@ public class BronzeOrbPatch
 {
 
     @SpirePatch(clz = BronzeOrb.class,method = SpirePatch.CONSTRUCTOR)
-    public static class BronzeOrbPostPatch_constructor {
+    public static class PostPatchBronzeOrb_Constructor {
         @SpirePostfixPatch
         public static void Post(BronzeOrb __instance, @ByRef int[] ___headSlamDmg) {
             if(AbstractDungeon.player!=null&&AbstractDungeon.player.hasRelic(PocketBook.ID)){
@@ -33,7 +33,7 @@ public class BronzeOrbPatch
     }
 
     @SpirePatch(clz = BronzeOrb.class,method = "takeTurn")
-    public static class BronzeOrbPostPatch_RenderCard{
+    public static class PostPatchBronzeOrb_takeTurn{
         @SpirePrefixPatch
         public static void Prefix(BronzeOrb __instance) {
             if(AbstractDungeon.player!=null&&AbstractDungeon.player.hasRelic(PocketBook.ID)){

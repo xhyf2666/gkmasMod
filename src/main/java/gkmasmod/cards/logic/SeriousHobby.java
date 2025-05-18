@@ -7,8 +7,11 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.DexterityPower;
+import gkmasmod.actions.GainBlockWithPowerAction;
 import gkmasmod.cardCustomEffect.BlockCustom;
+import gkmasmod.cardCustomEffect.EffectAddCustom;
 import gkmasmod.cardCustomEffect.ExhaustRemoveCustom;
+import gkmasmod.cardCustomEffect.MoreActionCustom;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
@@ -28,6 +31,8 @@ public class SeriousHobby extends GkmasCard {
     private static final int COST = 0;
     private static final int BASE_MAGIC = 2;
 
+    private static final int BASE_MAGIC2 = 2;
+
     private static final int BLOCK_AMT = 5;
     private static final int UPGRADE_PLUS_BLOCK = 2;
 
@@ -43,6 +48,8 @@ public class SeriousHobby extends GkmasCard {
         super(ID, NAME, IMG_PATH, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET, "color");
         this.baseMagicNumber = BASE_MAGIC;
         this.magicNumber = this.baseMagicNumber;
+        this.baseSecondMagicNumber = BASE_MAGIC2;
+        this.secondMagicNumber = this.baseSecondMagicNumber;
         this.baseBlock = BLOCK_AMT;
         this.baseSecondBlock = BLOCK_AMT2;
         this.exhaust = true;
@@ -52,8 +59,9 @@ public class SeriousHobby extends GkmasCard {
         updateBackgroundImg();
         this.customLimit = 1;
         this.customEffectList = new ArrayList<>();
-        this.customEffectList.add(CustomHelper.generateCustomEffectList(BlockCustom.growID, new int[]{4}, new int[]{60}, CustomHelper.CustomEffectType.BLOCK_ADD));
-        this.customEffectList.add(CustomHelper.generateCustomEffectList(ExhaustRemoveCustom.growID,new int[]{0},new int[]{80},CustomHelper.CustomEffectType.EXHAUST_REMOVE));
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(MoreActionCustom.growID, new int[]{1}, new int[]{70}, CustomHelper.CustomEffectType.MORE_ACTION_ADD));
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(ExhaustRemoveCustom.growID,new int[]{0},new int[]{60},CustomHelper.CustomEffectType.EXHAUST_REMOVE));
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(EffectAddCustom.growID,new int[]{0},new int[]{70},CustomHelper.CustomEffectType.EFFECT_ADD));
     }
 
 
@@ -64,8 +72,10 @@ public class SeriousHobby extends GkmasCard {
         if (count > magicNumber) {
             addToBot(new GainBlockAction(p, p, this.secondBlock));
         }
+        if(CustomHelper.hasCustom(this,EffectAddCustom.growID)){
+            addToBot(new GainBlockWithPowerAction(p,p,this.secondMagicNumber,1.5F));
+        }
         SoundHelper.playSound("gkmasModResource/audio/voice/skillcard/cidol_shro_3_000_produce_skillcard_01.ogg");
-
     }
 
     @Override

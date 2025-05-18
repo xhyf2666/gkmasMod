@@ -14,7 +14,7 @@ import gkmasmod.cardCustomEffect.*;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
-import gkmasmod.growEffect.DamageGrow;
+import gkmasmod.cardGrowEffect.DamageGrow;
 import gkmasmod.powers.FullPowerValue;
 import gkmasmod.powers.TempSavePower;
 import gkmasmod.stances.FullPowerStance;

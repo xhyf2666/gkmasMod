@@ -53,6 +53,8 @@ public class ENKingAppear extends GkmasBossCard {
         this.tags.add(GkmasCardTag.FULL_POWER_TAG);
         this.tags.add(GkmasCardTag.IDOL_CARD_TAG);
         this.exhaust = true;
+        this.backGroundColor = IdolData.jsna;
+        updateBackgroundImg();
         this.intent = AbstractMonster.Intent.BUFF;
     }
 

@@ -4,11 +4,10 @@ import basemod.abstracts.AbstractCardModifier;
 import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import gkmasmod.cardCustomEffect.AbstractCardCustomEffect;
-import gkmasmod.cards.anomaly.ComprehensiveArt;
-import gkmasmod.cards.anomaly.IdealTempo;
+import gkmasmod.downfall.cards.GkmasBossCard;
 import gkmasmod.downfall.charbosses.bosses.AbstractCharBoss;
-import gkmasmod.growEffect.*;
+import gkmasmod.cardGrowEffect.*;
+import gkmasmod.powers.ClumsyAsAlwaysPower;
 import gkmasmod.powers.TempSavePower;
 
 public class GrowHelper {
@@ -44,13 +43,27 @@ public class GrowHelper {
             CardModifierManager.addModifier(card,new SleepyGrow(amount));
         else if(effect.equals(BlockTimeGrow.growID))
             CardModifierManager.addModifier(card,new BlockTimeGrow(amount));
+        else if(effect.equals(ExhaustRemoveGrow.growID))
+            CardModifierManager.addModifier(card,new ExhaustRemoveGrow(amount));
+        else if(effect.equals(MoreActionGrow.growID))
+            CardModifierManager.addModifier(card,new MoreActionGrow(amount));
+        else if(effect.equals(EtherealGrow.growID))
+            CardModifierManager.addModifier(card,new EtherealGrow(amount));
+        else if(effect.equals(TempOutAutoPlayGrow.growID))
+            CardModifierManager.addModifier(card,new TempOutAutoPlayGrow(amount));
+        if(AbstractDungeon.player.hasPower(ClumsyAsAlwaysPower.POWER_ID)){
+            if(card instanceof GkmasBossCard){
+                return;
+            }
+            AbstractDungeon.player.getPower(ClumsyAsAlwaysPower.POWER_ID).onSpecificTrigger();
+        }
     }
 
     public static void growAll(String effect, int amount){
         growAllHand(effect, amount);
         growAllDraw(effect, amount);
         growAllDiscard(effect, amount);
-        growAllExhaust(effect, amount);
+//        growAllExhaust(effect, amount);
         growAllTempSave(effect, amount);
     }
 

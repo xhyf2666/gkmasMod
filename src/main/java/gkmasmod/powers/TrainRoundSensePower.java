@@ -21,13 +21,9 @@ import gkmasmod.utils.ThreeSizeHelper;
 
 public class TrainRoundSensePower extends AbstractPower {
     private static final String CLASSNAME = TrainRoundSensePower.class.getSimpleName();
-    // 能力的ID
     public static final String POWER_ID = NameHelper.makePath(CLASSNAME);
-    // 能力的本地化字段
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(CLASSNAME);
-    // 能力的名称
     private static final String NAME = powerStrings.NAME;
-    // 能力的描述
     private static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
 
     private int baseMagicNumber = 40;
@@ -87,7 +83,7 @@ public class TrainRoundSensePower extends AbstractPower {
 
     @Override
     public void reducePower(int reduceAmount) {
-        if(this.amount-reduceAmount==1){
+        if(!AbstractDungeon.player.hasPower(TrainRoundProducePower.POWER_ID)&&this.amount-reduceAmount==1){
             if(AbstractDungeon.player.hasRelic(SidewalkResearchNotes.ID)){
                 ((SidewalkResearchNotes)AbstractDungeon.player.getRelic(SidewalkResearchNotes.ID)).onTrainRoundRemove();
             }
@@ -156,6 +152,9 @@ public class TrainRoundSensePower extends AbstractPower {
     }
 
     public void onRemove() {
+        if(AbstractDungeon.player.hasPower(TrainRoundProducePower.POWER_ID)){
+            return;
+        }
         if(this.amount == 1){
             if(AbstractDungeon.player.hasRelic(SidewalkResearchNotes.ID)){
                 ((SidewalkResearchNotes)AbstractDungeon.player.getRelic(SidewalkResearchNotes.ID)).onTrainRoundRemove();
@@ -192,11 +191,18 @@ public class TrainRoundSensePower extends AbstractPower {
         }
     }
 
-    public void atStartOfTurn() {
-        if(this.currentMagicNumber > this.finalMagicNumber){
-            this.currentMagicNumber -= decreaseMagicNumber;
-            updateDescription();
+    public AbstractPower updateMagic(int count){
+        for(int i=0;i<count;i++){
+            if(this.currentMagicNumber > finalMagicNumber){
+                this.currentMagicNumber -= decreaseMagicNumber;
+            }
         }
+        this.updateDescription();
+        return this;
+    }
+
+    public void atStartOfTurn() {
+        updateMagic(1);
     }
 
     public void onAttack(DamageInfo info, int damageAmount, AbstractCreature target) {

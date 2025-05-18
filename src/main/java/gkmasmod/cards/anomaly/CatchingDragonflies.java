@@ -1,6 +1,5 @@
 package gkmasmod.cards.anomaly;
 
-import com.megacrit.cardcrawl.actions.common.DrawCardAction;
 import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -10,13 +9,10 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import gkmasmod.cardCustomEffect.BlockCustom;
 import gkmasmod.cardCustomEffect.DamageCustom;
-import gkmasmod.cardCustomEffect.MagicCustom;
-import gkmasmod.cardCustomEffect.SecondMagicCustom;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.characters.PlayerColorEnum;
-import gkmasmod.growEffect.AttackTimeGrow;
-import gkmasmod.growEffect.BlockTimeGrow;
-import gkmasmod.growEffect.DamageGrow;
+import gkmasmod.cardGrowEffect.BlockTimeGrow;
+import gkmasmod.cardGrowEffect.DamageGrow;
 import gkmasmod.stances.FullPowerStance;
 import gkmasmod.utils.CustomHelper;
 import gkmasmod.utils.GrowHelper;

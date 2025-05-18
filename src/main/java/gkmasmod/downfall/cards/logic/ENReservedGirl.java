@@ -13,6 +13,7 @@ import gkmasmod.downfall.cards.GkmasBossCard;
 import gkmasmod.downfall.cards.free.ENSleepLate;
 import gkmasmod.powers.GoodImpression;
 import gkmasmod.powers.ReservedGirlPower;
+import gkmasmod.utils.IdolData;
 import gkmasmod.utils.NameHelper;
 import gkmasmod.utils.SoundHelper;
 
@@ -44,6 +45,8 @@ public class ENReservedGirl extends GkmasBossCard {
         this.magicNumber = this.baseMagicNumber;
         this.baseSecondMagicNumber = BASE_MAGIC2;
         this.secondMagicNumber = this.baseSecondMagicNumber;
+        this.backGroundColor = IdolData.kllj;
+        updateBackgroundImg();
         this.intent = AbstractMonster.Intent.BUFF;
         this.tags.add(GkmasCardTag.GOOD_IMPRESSION_TAG);
         this.tags.add(GkmasCardTag.IDOL_CARD_TAG);

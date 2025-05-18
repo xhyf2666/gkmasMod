@@ -11,6 +11,7 @@ import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.AbstractCard.CardColor;
 import com.megacrit.cardcrawl.cards.DamageInfo;
+import com.megacrit.cardcrawl.cards.colorless.Chrysalis;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
@@ -31,6 +32,7 @@ import gkmasmod.relics.PledgePetal;
 import gkmasmod.relics.PocketBook;
 import gkmasmod.stances.SleepStance;
 import gkmasmod.stances.WakeStance;
+import gkmasmod.utils.IdolData;
 import gkmasmod.utils.ImageHelper;
 
 import java.lang.reflect.InvocationTargetException;
@@ -40,12 +42,11 @@ import java.lang.reflect.Method;
 public class AbstractCardPatch
 {
 
-    @SpirePatch(
-            clz = AbstractCard.class,
-            method = "applyPowers"
-    )
-    public static class CardModifierOnApplyPowers {
-        //modifyBaseSecondMagic
+    /**
+     * 在战斗中显示卡牌指导后的数值
+     */
+    @SpirePatch(clz = AbstractCard.class, method = "applyPowers")
+    public static class PrePatchAbstractCard_applyPowers {
         public static void Prefix(AbstractCard __instance) {
             if(__instance instanceof GkmasCard){
                 GkmasCard card = (GkmasCard)__instance;
@@ -64,6 +65,9 @@ public class AbstractCardPatch
         }
     }
 
+    /**
+     * 睡眠、梦游、无法出牌的判断
+     */
     @SpirePatch(clz = AbstractCard.class,method = "hasEnoughEnergy")
     public static class PrePatchAbstractCard_hasEnoughEnergy {
         @SpirePrefixPatch
@@ -79,6 +83,9 @@ public class AbstractCardPatch
         }
     }
 
+    /**
+     * 清醒姿态下可打出诅咒牌
+     */
     @SpirePatch(clz = AbstractCard.class,method = "canUse")
     public static class PrePatchAbstractCard_canUse {
         @SpirePrefixPatch
@@ -91,32 +98,16 @@ public class AbstractCardPatch
         }
     }
 
-    @SpirePatch(clz = AbstractCard.class,method = "cardPlayable")
-    public static class PrePatchAbstractCard_cardPlayable {
-        @SpirePrefixPatch
-        public static SpireReturn<Boolean> Prefix(AbstractCard __instance, AbstractMonster m) {
-//            if(__instance.target==GkmasCardTag.SELF_OR_FRIEND){
-//                if(m!=null&&AbstractMonsterPatch.friendlyField.friendly.get(m)){
-//                    return SpireReturn.Return(true);
-//                }
-//
-//            }
-            return SpireReturn.Continue();
-        }
-    }
-
     @SpirePatch(clz = AbstractCard.class,method = SpirePatch.CLASS)
     public static class ThreeSizeTagField {
         public static SpireField<Integer> threeSizeTag = new SpireField<>(() -> -1);
     }
 
-//    @SpirePatch(clz = AbstractCard.class,method = SpirePatch.CLASS)
-//    public static class isDreamField {
-//        public static SpireField<Boolean> isDream = new SpireField<>(() -> false);
-//    }
-
+    /**
+     * 战斗外卡牌升级事件的监听
+     */
     @SpirePatch(clz = AbstractCard.class,method = "upgradeName")
-    public static class CardUpgradePostPatch {
+    public static class PostPatchAbstractCard_upgradeName {
         public static void Postfix(AbstractCard __instance) {
             if(AbstractDungeon.currMapNode!=null&&AbstractDungeon.getCurrRoom()!=null&&((AbstractDungeon.getCurrRoom()).phase != AbstractRoom.RoomPhase.COMBAT)){
                 if(AbstractDungeon.player.masterDeck.contains(__instance)){
@@ -128,6 +119,9 @@ public class AbstractCardPatch
         }
     }
 
+    /**
+     * 获得卡牌时，生成随机三维TAG
+     */
     @SpirePatch(
             clz = AbstractCard.class,
             method = SpirePatch.CONSTRUCTOR,
@@ -144,7 +138,7 @@ public class AbstractCardPatch
                     DamageInfo.DamageType.class
             }
     )
-    public static class AbstractCardPostPatch_Constructor {
+    public static class PostPatchAbstractCard_Constructor {
         @SpirePostfixPatch
         public static void Postfix(AbstractCard __instance, String id, String name, String imgUrl, int cost, String rawDescription, AbstractCard.CardType type, AbstractCard.CardColor color, AbstractCard.CardRarity rarity, AbstractCard.CardTarget target, DamageInfo.DamageType dType) {
             if(CardCrawlGame.isInARun() && AbstractDungeon.isPlayerInDungeon() && type!= AbstractCard.CardType.CURSE && type!= AbstractCard.CardType.STATUS){
@@ -156,13 +150,15 @@ public class AbstractCardPatch
         }
     }
 
+    /**
+     * 绘制卡牌的三维TAG
+     */
     @SpirePatch(clz = AbstractCard.class,method = "render",paramtypez = {SpriteBatch.class, boolean.class})
-    public static class AbstractCardPostPatch_RenderCard{
+    public static class PostPatchAbstractCard_render {
         @SpirePostfixPatch
         public static void Postfix(AbstractCard __instance, SpriteBatch sb, boolean selected) {
             float offsetY = 400 * Settings.scale * __instance.drawScale / 2.0F;
             float offsetX = 280 * Settings.scale * __instance.drawScale / 2.0F;
-
             int tag = ThreeSizeTagField.threeSizeTag.get(__instance);
             if(tag == 0) {
                 sb.draw(ImageHelper.VoTagImg, __instance.current_x - offsetX, __instance.current_y - offsetY, 32.0F, 32.0F, 64.0F, 64.0F, Settings.scale, Settings.scale, 0.0F, 0, 0, 64, 64, false, false);
@@ -176,8 +172,11 @@ public class AbstractCardPatch
         }
     }
 
+    /**
+     * 复制卡牌时，保留三维TAG
+     */
     @SpirePatch(clz = AbstractCard.class,method = "makeStatEquivalentCopy")
-    public static class AbstractCardPostPatch_MakeStatEquivalentCopy{
+    public static class InsertPatchAbstractCard_makeStatEquivalentCopy {
         @SpireInsertPatch(rloc = 11,localvars = {"card"})
         public static void Insert(AbstractCard __instance, AbstractCard card) {
             int tag = ThreeSizeTagField.threeSizeTag.get(__instance);
@@ -187,43 +186,37 @@ public class AbstractCardPatch
         }
     }
 
-    @SpirePatch(
-            clz=AbstractCard.class,
-            method="renderBannerImage"
-    )
-    public static class RenderBannerSwitch
-    {
-        public static SpireReturn<?> Prefix(AbstractCard __instance, SpriteBatch sb, float drawX, float drawY, Color ___renderColor)
-        {
-            //If it is not a custom card it cant possibly have the method getBannerSmallRegion, so use normal rendering
+    /**
+     * 绘制崩坠卡牌的banner
+     */
+    @SpirePatch(clz=AbstractCard.class,method="renderBannerImage")
+    public static class PrePatchAbstractCard_renderBannerImage{
+        @SpirePrefixPatch
+        public static SpireReturn<?> Prefix(AbstractCard __instance, SpriteBatch sb, float drawX, float drawY, Color ___renderColor) {
             if (!(__instance instanceof GkmasBossCard)) {
                 return SpireReturn.Continue();
             }
-
             GkmasBossCard card = (GkmasBossCard) __instance;
             TextureAtlas.AtlasRegion region = card.getBannerSmallRegion();
             if (region == null) {
                 return SpireReturn.Continue();
             }
-
             renderHelper(card, sb, ___renderColor, region, drawX, drawY);
-
             return SpireReturn.Return(null);
         }
     }
 
-    @SpirePatch(
-            clz=AbstractCard.class,
-            method="renderAttackPortrait"
-    )
-    public static class AbstractCard_prePatch_renderAttackPortrait
-    {
+    /**
+     * 绘制崩坠卡牌的边框(攻击牌)
+     */
+    @SpirePatch(clz=AbstractCard.class,method="renderAttackPortrait")
+    public static class prePatchAbstractCard_renderAttackPortrait {
+        @SpirePrefixPatch
         public static SpireReturn<?> Prefix(AbstractCard __instance, SpriteBatch sb, float x, float y, Color ___renderColor)
         {
             if (!(__instance instanceof GkmasCard)) {
                 return SpireReturn.Continue();
             }
-
             GkmasCard card = (GkmasCard) __instance;
             String color = card.bannerColor;
             if(color.equals("")){
@@ -252,12 +245,12 @@ public class AbstractCardPatch
         }
     }
 
-    @SpirePatch(
-            clz=AbstractCard.class,
-            method="renderSkillPortrait"
-    )
-    public static class AbstractCard_prePatch_renderSkillPortrait
-    {
+    /**
+     * 绘制崩坠卡牌的边框(技能牌)
+     */
+    @SpirePatch(clz=AbstractCard.class, method="renderSkillPortrait")
+    public static class prePatchAbstractCard_renderSkillPortrait {
+        @SpirePrefixPatch
         public static SpireReturn<?> Prefix(AbstractCard __instance, SpriteBatch sb, float x, float y, Color ___renderColor)
         {
             if (!(__instance instanceof GkmasCard)) {
@@ -292,12 +285,12 @@ public class AbstractCardPatch
         }
     }
 
-    @SpirePatch(
-            clz=AbstractCard.class,
-            method="renderPowerPortrait"
-    )
-    public static class AbstractCard_prePatch_renderPowerPortrait
-    {
+    /**
+     * 绘制崩坠卡牌的边框(能力牌)
+     */
+    @SpirePatch(clz=AbstractCard.class, method="renderPowerPortrait")
+    public static class AbstractCard_prePatch_renderPowerPortrait {
+        @SpirePrefixPatch
         public static SpireReturn<?> Prefix(AbstractCard __instance, SpriteBatch sb, float x, float y, Color ___renderColor)
         {
             if (!(__instance instanceof GkmasCard)) {
@@ -332,26 +325,13 @@ public class AbstractCardPatch
         }
     }
 
-//    @SpirePatch(clz = AbstractCard.class,method = "initializeDescriptionCN")
-//    public static class AbstractCard_prePatch_initializeDescriptionCN{
-//        @SpireInsertPatch(rloc = 11,localvars = {"card"})
-//        public static SpireReturn<Void> Insert(AbstractCard __instance, AbstractCard card) {
-//            if (!(__instance instanceof GkmasCard)||Settings.BIG_TEXT_MODE) {
-//                return SpireReturn.Continue();
-//            }
-//            float w = 300.0F * Settings.scale  * 0.92F;
-//            return SpireReturn.Return(null);
-//        }
-//    }
-
-    @SpirePatch(
-            clz=AbstractCard.class,
-            method="renderCardBg"
-    )
-    public static class RenderBgSwitch
-    {
-        public static SpireReturn<?> Prefix(AbstractCard __instance, SpriteBatch sb, float xPos, float yPos, Color ___renderColor)
-        {
+    /**
+     * 绘制崩坠卡牌的背景
+     */
+    @SpirePatch(clz=AbstractCard.class, method="renderCardBg")
+    public static class PrePatchAbstractCard_renderCardBg {
+        @SpirePrefixPatch
+        public static SpireReturn<?> Prefix(AbstractCard __instance, SpriteBatch sb, float xPos, float yPos, Color ___renderColor) {
             if (!(__instance instanceof GkmasBossCard)) {
                 return SpireReturn.Continue();
             }
@@ -359,13 +339,10 @@ public class AbstractCardPatch
             GkmasBossCard card = (GkmasBossCard) __instance;
             Texture texture = null;
             TextureAtlas.AtlasRegion region = null;
-
-
             if (card.textureBackgroundSmallImg != null && !card.textureBackgroundSmallImg.isEmpty()) {
                 texture = card.getBackgroundSmallTexture();
             }
-            else
-            {
+            else {
                 switch (card.type) {
                     case POWER:
                         if (BaseMod.getPowerBgTexture(color) == null) {
@@ -390,33 +367,21 @@ public class AbstractCardPatch
                         break;
                 }
             }
-
             if (texture != null) {
                 region = new TextureAtlas.AtlasRegion(texture, 0, 0, texture.getWidth(), texture.getHeight());
             }
-
             if (region == null) {
-                BaseMod.logger.info(color.toString() + " texture is null wtf");
                 return SpireReturn.Continue();
             }
-
             renderHelper(card, sb, ___renderColor, region, xPos, yPos);
-
             return SpireReturn.Return(null);
         }
     }
 
-
-
-
-    //renderHelper usability
     private static Method renderHelperMethod;
     private static Method renderHelperMethodWithScale;
-
-    static
-    {
-        try
-        {
+    static {
+        try {
             renderHelperMethod = AbstractCard.class.getDeclaredMethod("renderHelper", SpriteBatch.class, Color.class, TextureAtlas.AtlasRegion.class, float.class, float.class);
             renderHelperMethod.setAccessible(true);
             renderHelperMethodWithScale = AbstractCard.class.getDeclaredMethod("renderHelper", SpriteBatch.class, Color.class, TextureAtlas.AtlasRegion.class, float.class, float.class, float.class);
@@ -426,23 +391,96 @@ public class AbstractCardPatch
         }
     }
 
-    private static void renderHelper(AbstractCard card, SpriteBatch sb, Color color, TextureAtlas.AtlasRegion region, float xPos, float yPos)
-    {
+    private static void renderHelper(AbstractCard card, SpriteBatch sb, Color color, TextureAtlas.AtlasRegion region, float xPos, float yPos) {
         try {
-            // use reflection hacks to invoke renderHelper (without float scale)
             renderHelperMethod.invoke(card, sb, color, region, xPos, yPos);
         } catch (IllegalAccessException | IllegalArgumentException | SecurityException | InvocationTargetException e) {
             e.printStackTrace();
         }
     }
-    private static void renderHelper(AbstractCard card, SpriteBatch sb, Color color, TextureAtlas.AtlasRegion region, float xPos, float yPos, float scale)
-    {
+    private static void renderHelper(AbstractCard card, SpriteBatch sb, Color color, TextureAtlas.AtlasRegion region, float xPos, float yPos, float scale) {
         try {
-            // use reflection hacks to invoke renderHelper (without float scale)
             renderHelperMethodWithScale.invoke(card, sb, color, region, xPos, yPos, scale);
         } catch (IllegalAccessException | IllegalArgumentException | SecurityException | InvocationTargetException e) {
             e.printStackTrace();
         }
     }
+
+    /**
+     * 绘制透明的学mod卡牌，移除卡名
+     */
+    @SpirePatch(clz=AbstractCard.class, method="renderTitle")
+    public static class PrePatchAbstractCard_renderTitle {
+        @SpirePrefixPatch
+        public static SpireReturn<?> Prefix(AbstractCard __instance, SpriteBatch sb) {
+            if (!(__instance instanceof GkmasCard)) {
+                return SpireReturn.Continue();
+            }
+            GkmasCard card = (GkmasCard) __instance;
+            String color = card.backGroundColor;
+            if(color.equals(IdolData.empty)) {
+                return SpireReturn.Return(null);
+            }
+            return SpireReturn.Continue();
+        }
+    }
+
+    /**
+     * 绘制透明的学mod卡牌，移除卡牌类型
+     */
+    @SpirePatch(clz=AbstractCard.class, method="renderType")
+    public static class PrePatchAbstractCard_renderType {
+        @SpirePrefixPatch
+        public static SpireReturn<?> Prefix(AbstractCard __instance, SpriteBatch sb) {
+            if (!(__instance instanceof GkmasCard)) {
+                return SpireReturn.Continue();
+            }
+            GkmasCard card = (GkmasCard) __instance;
+            String color = card.backGroundColor;
+            if(color.equals(IdolData.empty)) {
+                return SpireReturn.Return(null);
+            }
+            return SpireReturn.Continue();
+        }
+    }
+
+    /**
+     * 绘制透明的学mod卡牌，移除能量图标
+     */
+    @SpirePatch(clz=AbstractCard.class, method="renderEnergy")
+    public static class AbstractCard_prePatch_renderEnergy {
+        @SpirePrefixPatch
+        public static SpireReturn<?> Prefix(AbstractCard __instance, SpriteBatch sb) {
+            if (!(__instance instanceof GkmasCard)) {
+                return SpireReturn.Continue();
+            }
+            GkmasCard card = (GkmasCard) __instance;
+            String color = card.backGroundColor;
+            if(color.equals(IdolData.empty)) {
+                return SpireReturn.Return(null);
+            }
+            return SpireReturn.Continue();
+        }
+    }
+
+    /**
+     * 绘制透明的学mod卡牌，移除卡牌背景
+     */
+    @SpirePatch(clz=AbstractCard.class, method="renderCardBg")
+    public static class PrePatchAbstractCard_renderCardBg2 {
+        @SpirePrefixPatch
+        public static SpireReturn<?> Prefix(AbstractCard __instance, SpriteBatch sb, float x, float y) {
+            if (!(__instance instanceof GkmasCard)) {
+                return SpireReturn.Continue();
+            }
+            GkmasCard card = (GkmasCard) __instance;
+            String color = card.backGroundColor;
+            if(color.equals(IdolData.empty)) {
+                return SpireReturn.Return(null);
+            }
+            return SpireReturn.Continue();
+        }
+    }
+
 }
 

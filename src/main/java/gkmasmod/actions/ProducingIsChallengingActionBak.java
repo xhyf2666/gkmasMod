@@ -9,7 +9,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.UIStrings;
-import gkmasmod.growEffect.AbstractGrowEffect;
+import gkmasmod.cardGrowEffect.AbstractGrowEffect;
 
 import java.util.ArrayList;
 import java.util.Iterator;

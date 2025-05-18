@@ -50,7 +50,7 @@ public class StruggleRecord extends CustomRelic {
 
     public void onEquip() {
         if(AbstractDungeon.player.hasRelic(PocketBook.ID)){
-            GkmasMod.listeners.forEach(listener -> listener.onCardImgUpdate());
+//            GkmasMod.listeners.forEach(listener -> listener.onCardImgUpdate());
             Random spRng = new Random(Settings.seed, AbstractDungeon.actNum*100);
             float chance = 0.2f;
             if(AbstractDungeon.player.hasRelic(StruggleRecord.ID))

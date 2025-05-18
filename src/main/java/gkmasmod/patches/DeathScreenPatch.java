@@ -11,25 +11,45 @@ import com.megacrit.cardcrawl.screens.VictoryScreen;
 import com.megacrit.cardcrawl.screens.stats.StatsScreen;
 import gkmasmod.characters.IdolCharacter;
 import gkmasmod.characters.MisuzuCharacter;
+import gkmasmod.characters.OtherIdolCharacter;
 
-import static gkmasmod.characters.PlayerColorEnum.gkmasModMisuzu_character;
-import static gkmasmod.characters.PlayerColorEnum.gkmasMod_character;
+import static gkmasmod.characters.PlayerColorEnum.*;
+import static gkmasmod.characters.PlayerColorEnum.gkmasModOther_character;
 
 
 public class DeathScreenPatch
 {
 
+    /**
+     * 4层死亡时，同步mod3种角色的进阶数
+     */
     @SpirePatch(clz = DeathScreen.class,method = "updateAscensionProgress")
-    public static class DeathScreenInsertPatch_constructor {
+    public static class InsertPatchDeathScreen_updateAscensionProgress {
         @SpireInsertPatch(rloc = 812-809)
         public static void Insert(DeathScreen __instance) {
-            if(AbstractDungeon.player instanceof IdolCharacter){
-                AbstractPlayer misuzuPlayer = CardCrawlGame.characterManager.recreateCharacter(gkmasModMisuzu_character);
-                StatsScreen.incrementAscension(misuzuPlayer.getCharStat());
+            //进阶数同步
+            try{
+                if(AbstractDungeon.player instanceof IdolCharacter){
+                    AbstractPlayer misuzuPlayer = CardCrawlGame.characterManager.recreateCharacter(gkmasModMisuzu_character);
+                    StatsScreen.incrementAscension(misuzuPlayer.getCharStat());
+                    AbstractPlayer otherIdolPlayer = CardCrawlGame.characterManager.recreateCharacter(gkmasModOther_character);
+                    StatsScreen.incrementAscension(otherIdolPlayer.getCharStat());
+                }
+                else if(AbstractDungeon.player instanceof MisuzuCharacter){
+                    AbstractPlayer idolPlayer = CardCrawlGame.characterManager.recreateCharacter(gkmasMod_character);
+                    StatsScreen.incrementAscension(idolPlayer.getCharStat());
+                    AbstractPlayer otherIdolPlayer = CardCrawlGame.characterManager.recreateCharacter(gkmasModOther_character);
+                    StatsScreen.incrementAscension(otherIdolPlayer.getCharStat());
+                }
+                else if(AbstractDungeon.player instanceof OtherIdolCharacter){
+                    AbstractPlayer idolPlayer = CardCrawlGame.characterManager.recreateCharacter(gkmasMod_character);
+                    StatsScreen.incrementAscension(idolPlayer.getCharStat());
+                    AbstractPlayer misuzuPlayer = CardCrawlGame.characterManager.recreateCharacter(gkmasModMisuzu_character);
+                    StatsScreen.incrementAscension(misuzuPlayer.getCharStat());
+                }
             }
-            else if(AbstractDungeon.player instanceof MisuzuCharacter){
-                AbstractPlayer idolPlayer = CardCrawlGame.characterManager.recreateCharacter(gkmasMod_character);
-                StatsScreen.incrementAscension(idolPlayer.getCharStat());
+            catch (Exception e){
+                e.printStackTrace();
             }
         }
     }

@@ -12,14 +12,13 @@ import gkmasmod.screen.SkinSelectScreen;
 public class SaveAndContinuePatch {
 
     @SpirePatch(clz= SaveAndContinue.class, method="loadSaveFile",paramtypez ={String.class})
-    public static class GetIdolNamePatch {
+    public static class InsertPatchSaveAndContinue_loadSaveFile {
         @SpireInsertPatch(rloc = 24, localvars = {"saveFile"})
         public static void InsertPatch(String filePath, SaveFile saveFile) {
             ModSaves.HashMapOfJsonElement modSaves = ModSaves.modSaves.get(saveFile);
             if(modSaves!=null){
                 Gson saveFileGson = new Gson();
                 int[] data = saveFileGson.fromJson(modSaves.get("gkmasMod:skin"), int[].class);
-//                System.out.println("LoadPlayerSavesPatch: " + data);
                 if(data != null && data.length == 3){
                     SkinSelectScreen.Inst.idolIndex = data[0];
                     SkinSelectScreen.Inst.skinIndex = data[1];

@@ -14,13 +14,9 @@ import gkmasmod.utils.NameHelper;
 
 public class DrawCardNextXTurnPower extends AbstractPower {
     private static final String CLASSNAME = DrawCardNextXTurnPower.class.getSimpleName();
-    // 能力的ID
     public static final String POWER_ID = NameHelper.makePath(CLASSNAME);
-    // 能力的本地化字段
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(CLASSNAME);
-    // 能力的名称
     private static final String NAME = powerStrings.NAME;
-    // 能力的描述
     private static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
     private int drawNum=2;
 

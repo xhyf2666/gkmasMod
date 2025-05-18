@@ -12,6 +12,7 @@ import gkmasmod.cards.GkmasCard;
 import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.downfall.cards.GkmasBossCard;
+import gkmasmod.utils.IdolData;
 import gkmasmod.utils.NameHelper;
 import gkmasmod.utils.PlayerHelper;
 import gkmasmod.utils.SoundHelper;
@@ -52,6 +53,8 @@ public class ENFirstMiss extends GkmasBossCard {
         this.baseThirdMagicNumber = BASE_MAGIC3;
         this.thirdMagicNumber = this.baseThirdMagicNumber;
         this.exhaust = true;
+        this.backGroundColor = IdolData.ssmk;
+        updateBackgroundImg();
         this.intent = AbstractMonster.Intent.BUFF;
         this.tags.add(GkmasCardTag.YARUKI_TAG);
         this.tags.add(GkmasCardTag.IDOL_CARD_TAG);

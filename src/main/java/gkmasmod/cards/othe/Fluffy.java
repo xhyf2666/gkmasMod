@@ -1,13 +1,18 @@
 package gkmasmod.cards.othe;
 
+import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import gkmasmod.cards.GkmasCard;
+import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.utils.NameHelper;
+
+import java.util.HashSet;
 
 public class Fluffy extends GkmasCard {
     private static final String CLASSNAME = Fluffy.class.getSimpleName();
@@ -23,6 +28,8 @@ public class Fluffy extends GkmasCard {
     private static final int BASE_BLOCK = 4;
     private static final int UPGRADE_PLUS_BLOCK = 2;
 
+    private static final int BASE_MAGIC = 2;
+
     private static final CardType TYPE = CardType.SKILL;
     private static final CardColor COLOR = PlayerColorEnum.gkmasModColorOther;
     private static final CardRarity RARITY = CardRarity.UNCOMMON;
@@ -31,11 +38,25 @@ public class Fluffy extends GkmasCard {
     public Fluffy() {
         super(ID, NAME, IMG_PATH, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.baseBlock = BASE_BLOCK;
+        this.baseMagicNumber = BASE_MAGIC;
         this.magicNumber = this.baseMagicNumber;
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
+        HashSet<String> idols = new HashSet<>();
+        for(AbstractCard c :AbstractDungeon.actionManager.cardsPlayedThisTurn){
+            if(c.hasTag(GkmasCardTag.IDOL_CARD_TAG)){
+                GkmasCard gkmasCard = (GkmasCard) c;
+                if(!idols.contains(gkmasCard.backGroundColor)){
+                    idols.add(gkmasCard.backGroundColor);
+                }
+            }
+        }
+        int count = idols.size()/this.magicNumber+1;
+        for (int i = 0; i < count; i++) {
+            addToBot(new GainBlockAction(p, p, this.block));
+        }
     }
 
     @Override

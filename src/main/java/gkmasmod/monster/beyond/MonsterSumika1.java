@@ -55,10 +55,10 @@ public class MonsterSumika1 extends CustomMonster {
             setHp(50);
         }
         if (AbstractDungeon.ascensionLevel >= 4) {
-            this.damage.add(new DamageInfo(this, 10));
+            this.damage.add(new DamageInfo(this, 8));
             this.bloodHitCount = 1;
         } else {
-            this.damage.add(new DamageInfo(this, 8));
+            this.damage.add(new DamageInfo(this, 6));
             this.bloodHitCount = 1;
         }
     }

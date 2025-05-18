@@ -4,16 +4,10 @@ import basemod.abstracts.AbstractCardModifier;
 import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.powers.DexterityPower;
 import gkmasmod.cardCustomEffect.*;
 import gkmasmod.cards.CustomEffect;
-import gkmasmod.cards.GkmasCard;
-import gkmasmod.growEffect.*;
-import gkmasmod.powers.TempSavePower;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 
 public class CustomHelper {
     public static void custom(AbstractCard card, String effect, int amount) {
@@ -49,13 +43,7 @@ public class CustomHelper {
     }
 
     public static void removeCustom(AbstractCard card, String effect) {
-        Iterator<AbstractCardModifier> iteratorC1 = CardModifierManager.modifiers(card).iterator();
-        while (iteratorC1.hasNext()) {
-            AbstractCardModifier mod = iteratorC1.next();
-            if (mod instanceof AbstractCardCustomEffect && ((AbstractCardCustomEffect) mod).growEffectID.equals(effect)) {
-                iteratorC1.remove();  // 使用 Iterator 的 remove 方法安全地移除元素
-            }
-        }
+        CardModifierManager.modifiers(card).removeIf(mod -> mod instanceof AbstractCardCustomEffect && ((AbstractCardCustomEffect) mod).growEffectID.equals(effect));
     }
 
     public static boolean hasCustom(AbstractCard card, String effect) {
@@ -133,8 +121,6 @@ public class CustomHelper {
             return new SelfRetainCustom(amount);
         else if(id.equals(SlowCustom.growID))
             return new SlowCustom(amount);
-        else if(id.equals(StrengthCustom.growID))
-            return new StrengthCustom(amount);
         else if(id.equals(TempMoreActionCustom.growID))
             return new TempMoreActionCustom(amount);
         else if(id.equals(ThirdMagicCustom.growID))
@@ -256,7 +242,7 @@ public class CustomHelper {
         }
     }
 
-    public static enum CustomEffectType{
+    public enum CustomEffectType{
         BLOCK_ADD,//格挡增加
         DAMAGE_ADD,//伤害增加
         ATTACK_TIME_ADD,//攻击次数增加
@@ -302,7 +288,6 @@ public class CustomHelper {
         NEXT_TURN_PRESERVATION,//下回合温存
         END_TURN_PRESERVATION,//回合结束温存
         TEMP_SAVE_ADD,//暂存增加
-
     }
 
 

@@ -38,6 +38,35 @@ public class Idol {
     public String[] replaceCards;
     public String[] fireImgs;
 
+    /**
+     *
+     * @param idolName 偶像名称
+     * @param skins 皮肤名称[]
+     * @param skinImg 皮肤图片[]
+     * @param cards 初始卡[]
+     * @param relics 初始遗物[]
+     * @param types 职业类型[]
+     * @param styles 职业风格[]
+     * @param comments 手账图片
+     * @param texts 手账文本
+     * @param songs 歌曲[]
+     * @param bgms BGM[]
+     * @param videos 预览视频[]
+     * @param hp 初始HP
+     * @param gold 初始金币
+     * @param baseThreeSize 初始三围
+     * @param threeSizeRate 三围成长率
+     * @param threeSizeRequires 三围考核要求
+     * @param planTypes 每次考核的类型
+     * @param planRequires 考核要求
+     * @param spVoiceNum SP语音数量
+     * @param lives live[]
+     * @param bossSongs 偶像之路Boss战歌曲
+     * @param bossReward 偶像之路温泉事件卡牌奖励
+     * @param bossSkins 偶像之路Boss战皮肤
+     * @param replaceCards FES初始卡牌替换[]
+     * @param fireImgs 火堆皮肤
+     */
     public Idol(String idolName,String[] skins,String[] skinImg,String[] cards,String[] relics,IdolType[] types,IdolStyle[] styles,ArrayList<String[]> comments,String[] texts,String[] songs,String[] bgms,String[] videos,int hp,int gold,int[] baseThreeSize,float[] threeSizeRate,int[] threeSizeRequires,int[] planTypes,int[] planRequires,int[] spVoiceNum,String[] lives,String[] bossSongs,String[] bossReward,String[] bossSkins,String[] replaceCards,String[] fireImgs){
         this.idolName = idolName;
         this.skins = skins.clone();

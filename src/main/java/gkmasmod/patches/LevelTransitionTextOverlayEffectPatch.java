@@ -14,7 +14,7 @@ public class LevelTransitionTextOverlayEffectPatch
 {
 
     @SpirePatch(clz = LevelTransitionTextOverlayEffect.class,method = "update")
-    public static class LevelTransitionTextOverlayEffectPrePatch_RenderCard {
+    public static class PrePatchLevelTransitionTextOverlayEffect_update {
         @SpirePrefixPatch
         public static SpireReturn<Void> Prefix(LevelTransitionTextOverlayEffect __instance) {
             if(GkmasMod.playVideo)

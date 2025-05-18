@@ -1,33 +1,20 @@
 package gkmasmod.downfall.cards.anomaly;
 
-import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import gkmasmod.actions.BattlePracticeAction;
-import gkmasmod.actions.GrowAction;
-import gkmasmod.cardCustomEffect.EffectAddCustom;
-import gkmasmod.cardCustomEffect.MoreActionCustom;
-import gkmasmod.cardCustomEffect.SecondMagicCustom;
-import gkmasmod.cardCustomEffect.ThirdMagicCustom;
-import gkmasmod.cards.GkmasCard;
 import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.downfall.cards.GkmasBossCard;
 import gkmasmod.downfall.charbosses.actions.common.EnemyGainEnergyAction;
 import gkmasmod.downfall.charbosses.bosses.AbstractCharBoss;
-import gkmasmod.growEffect.DamageGrow;
 import gkmasmod.powers.FullPowerValue;
 import gkmasmod.powers.StanceLock;
-import gkmasmod.screen.SkinSelectScreen;
-import gkmasmod.utils.CustomHelper;
 import gkmasmod.utils.ImageHelper;
 import gkmasmod.utils.NameHelper;
-
-import java.util.ArrayList;
 
 public class ENBattlePractice extends GkmasBossCard {
     private static final String CLASSNAME = ENBattlePractice.class.getSimpleName();

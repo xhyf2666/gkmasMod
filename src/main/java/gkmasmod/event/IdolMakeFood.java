@@ -13,9 +13,11 @@ import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndObtainEffect;
 import gkmasmod.cards.free.HighSpirits;
 import gkmasmod.cards.free.SpecialHuHu;
 import gkmasmod.characters.MisuzuCharacter;
+import gkmasmod.characters.OtherIdolCharacter;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.relics.*;
 import gkmasmod.room.shop.AnotherShopPotions;
+import gkmasmod.screen.OtherSkinSelectScreen;
 import gkmasmod.screen.SkinSelectScreen;
 import gkmasmod.utils.CommonEnum;
 import gkmasmod.utils.IdolData;
@@ -63,9 +65,15 @@ public class IdolMakeFood extends AbstractImageEvent {
         this.imageEventText.setDialogOption(OPTIONS[2]);
         this.imageEventText.setDialogOption(OPTIONS[11]);
         type  = IdolData.getIdol(SkinSelectScreen.Inst.idolIndex).getType(SkinSelectScreen.Inst.skinIndex);
-        if(AbstractDungeon.player!=null&&AbstractDungeon.player instanceof MisuzuCharacter){
+        if(AbstractDungeon.player instanceof MisuzuCharacter){
             type = CommonEnum.IdolType.SENSE;
             colorIndex=0;
+        }
+        if(AbstractDungeon.player instanceof OtherIdolCharacter){
+            type  = IdolData.getOtherIdol(OtherSkinSelectScreen.Inst.idolIndex).getType(OtherSkinSelectScreen.Inst.skinIndex);
+            if(OtherSkinSelectScreen.Inst.idolName.equals(IdolData.prod)){
+                type = CommonEnum.IdolType.SENSE;
+            }
         }
         if(type==CommonEnum.IdolType.SENSE){
             colorIndex=0;

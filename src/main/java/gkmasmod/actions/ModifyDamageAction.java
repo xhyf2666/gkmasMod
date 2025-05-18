@@ -2,6 +2,7 @@ package gkmasmod.actions;
 
 import basemod.abstracts.AbstractCardModifier;
 import basemod.helpers.CardModifierManager;
+import com.megacrit.cardcrawl.powers.StrengthPower;
 import gkmasmod.downfall.charbosses.bosses.AbstractCharBoss;
 import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
@@ -13,12 +14,12 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
-import gkmasmod.growEffect.AttackTimeGrow;
-import gkmasmod.growEffect.DamageGrow;
+import gkmasmod.cardGrowEffect.AttackTimeGrow;
+import gkmasmod.cardGrowEffect.DamageGrow;
 import gkmasmod.patches.AbstractMonsterPatch;
 import gkmasmod.patches.AbstractPlayerPatch;
 import gkmasmod.powers.AllEffort;
-import org.lwjgl.Sys;
+import gkmasmod.powers.GoodTune;
 
 import java.util.Iterator;
 
@@ -27,6 +28,8 @@ public class ModifyDamageAction extends AbstractGameAction {
     private AbstractCard card;
     private AbstractCreature owner;
     private boolean countTime = false;
+    private float goodTuneAffectRate = 1.0F;
+    private float strengthAffectRate = 1.0F;
 
     public ModifyDamageAction(AbstractCreature target, DamageInfo info, AttackEffect effect) {
         this(target, info, effect, null);
@@ -37,12 +40,18 @@ public class ModifyDamageAction extends AbstractGameAction {
     }
 
     public ModifyDamageAction(AbstractCreature target, DamageInfo info, AttackEffect effect, AbstractCard card, boolean countTime) {
+        this(target, info, effect, card, countTime, 1.0F,1.0F);
+    }
+
+    public ModifyDamageAction(AbstractCreature target, DamageInfo info, AttackEffect effect, AbstractCard card, boolean countTime, float strengthAffectRate,float goodTuneAffectRate) {
         this.target = target;
         this.info = info;
         this.owner = info.owner;
         this.attackEffect = effect;
         this.card = card;
         this.countTime = countTime;
+        this.strengthAffectRate = strengthAffectRate;
+        this.goodTuneAffectRate = goodTuneAffectRate;
     }
 
     @Override
@@ -89,8 +98,18 @@ public class ModifyDamageAction extends AbstractGameAction {
             }
 
             AbstractPower p;
-            for(var9 = this.owner.powers.iterator(); var9.hasNext(); tmp = p.atDamageGive(tmp, DamageInfo.DamageType.NORMAL)) {
+            for(var9 = this.owner.powers.iterator(); var9.hasNext(); ) {
                 p = (AbstractPower)var9.next();
+                if(p instanceof StrengthPower &&strengthAffectRate>1.0f){
+                    float damageChange = p.atDamageGive(tmp, DamageInfo.DamageType.NORMAL)-tmp;
+                    if(damageChange>0){
+                        damageChange *= strengthAffectRate;
+                        tmp += damageChange;
+                    }
+                }
+                else{
+                    tmp = p.atDamageGive(tmp, DamageInfo.DamageType.NORMAL);
+                }
             }
 
             if(this.owner.isPlayer)
@@ -100,8 +119,18 @@ public class ModifyDamageAction extends AbstractGameAction {
                 p = (AbstractPower)var9.next();
             }
 
-            for(var9 = this.owner.powers.iterator(); var9.hasNext(); tmp = p.atDamageFinalGive(tmp, DamageInfo.DamageType.NORMAL)) {
+            for(var9 = this.owner.powers.iterator(); var9.hasNext(); ) {
                 p = (AbstractPower)var9.next();
+                if(p instanceof GoodTune&&goodTuneAffectRate>1.0f){
+                    float damageChange = p.atDamageFinalGive(tmp, DamageInfo.DamageType.NORMAL)-tmp;
+                    if(damageChange>0){
+                        damageChange *= goodTuneAffectRate;
+                        tmp += damageChange;
+                    }
+                }
+                else{
+                    tmp = p.atDamageFinalGive(tmp, DamageInfo.DamageType.NORMAL);
+                }
             }
 
             for(var9 = m.powers.iterator(); var9.hasNext(); tmp = p.atDamageFinalReceive(tmp, DamageInfo.DamageType.NORMAL)) {

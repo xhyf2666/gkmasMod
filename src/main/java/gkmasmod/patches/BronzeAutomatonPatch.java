@@ -15,7 +15,7 @@ public class BronzeAutomatonPatch
 {
 
     @SpirePatch(clz = BronzeAutomaton.class,method = SpirePatch.CONSTRUCTOR)
-    public static class ChampPostPatch_constructor {
+    public static class PostPatchBronzeAutomaton_Constructor {
         @SpirePostfixPatch
         public static void Post(BronzeAutomaton __instance, @ByRef int[] ___blockAmt) {
             if(AbstractDungeon.player!=null&&AbstractDungeon.player.hasRelic(PocketBook.ID)){

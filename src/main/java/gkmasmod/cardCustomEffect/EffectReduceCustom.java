@@ -39,13 +39,13 @@ public class EffectReduceCustom extends AbstractCardCustomEffect {
         if(card instanceof JustOneMore){
             return CardCrawlGame.languagePack.getCardStrings("gkmasMod:JustOneMore_Effect0").DESCRIPTION;
         }
-        if(card instanceof DoYourBest){
+        else if(card instanceof DoYourBest){
             return CardCrawlGame.languagePack.getCardStrings("gkmasMod:DoYourBest_Effect0").DESCRIPTION;
         }
-        if(card instanceof ComprehensiveArt){
+        else if(card instanceof ComprehensiveArt){
             return CardCrawlGame.languagePack.getCardStrings("gkmasMod:ComprehensiveArt_Effect0").DESCRIPTION;
         }
-        if(card instanceof KiraKiraPrism){
+        else if(card instanceof KiraKiraPrism){
             return CardCrawlGame.languagePack.getCardStrings("gkmasMod:KiraKiraPrism_Effect0").DESCRIPTION;
         }
         return rawDescription;

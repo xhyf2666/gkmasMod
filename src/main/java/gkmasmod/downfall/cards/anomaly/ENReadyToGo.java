@@ -2,36 +2,23 @@ package gkmasmod.downfall.cards.anomaly;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
-import com.megacrit.cardcrawl.actions.watcher.ChangeStanceAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import gkmasmod.actions.GrowAction;
 import gkmasmod.actions.ModifyDamageAction;
-import gkmasmod.cardCustomEffect.DamageCustom;
-import gkmasmod.cardCustomEffect.MagicCustom;
-import gkmasmod.cards.GkmasCard;
 import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.downfall.cards.GkmasBossCard;
-import gkmasmod.downfall.cards.logic.ENGirlHeart;
 import gkmasmod.downfall.charbosses.actions.unique.EnemyChangeStanceAction;
 import gkmasmod.downfall.charbosses.bosses.AbstractCharBoss;
 import gkmasmod.downfall.charbosses.stances.ENConcentrationStance;
 import gkmasmod.downfall.charbosses.stances.ENFullPowerStance;
-import gkmasmod.growEffect.DamageGrow;
 import gkmasmod.powers.EnthusiasticPower;
-import gkmasmod.screen.SkinSelectScreen;
-import gkmasmod.stances.ConcentrationStance;
-import gkmasmod.stances.FullPowerStance;
-import gkmasmod.utils.CustomHelper;
 import gkmasmod.utils.ImageHelper;
 import gkmasmod.utils.NameHelper;
-
-import java.util.ArrayList;
 
 public class ENReadyToGo extends GkmasBossCard {
     private static final String CLASSNAME = ENReadyToGo.class.getSimpleName();

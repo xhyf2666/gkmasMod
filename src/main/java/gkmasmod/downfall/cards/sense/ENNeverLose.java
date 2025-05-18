@@ -14,6 +14,7 @@ import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.downfall.cards.GkmasBossCard;
 import gkmasmod.downfall.cards.free.ENIdolDeclaration;
+import gkmasmod.utils.IdolData;
 import gkmasmod.utils.NameHelper;
 import gkmasmod.utils.SoundHelper;
 
@@ -42,6 +43,8 @@ public class ENNeverLose extends GkmasBossCard {
         this.baseDamage = ATTACK_DMG;
         this.exhaust = true;
         this.isEthereal = true;
+        this.backGroundColor = IdolData.hski;
+        updateBackgroundImg();
         this.intent = AbstractMonster.Intent.ATTACK;
         this.tags.add(GkmasCardTag.IDOL_CARD_TAG);
     }

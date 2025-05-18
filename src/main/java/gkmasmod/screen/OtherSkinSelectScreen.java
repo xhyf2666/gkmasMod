@@ -2,6 +2,8 @@ package gkmasmod.screen;
 
 
 import basemod.BaseMod;
+import basemod.ReflectionHacks;
+import basemod.abstracts.CustomSavable;
 import basemod.interfaces.ISubscriber;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
@@ -11,15 +13,21 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.*;
 import com.megacrit.cardcrawl.helpers.input.InputHelper;
+import com.megacrit.cardcrawl.screens.charSelect.CharacterOption;
+import gkmasmod.characters.IdolCharacter;
 import gkmasmod.characters.OtherIdolCharacter;
+import gkmasmod.modcore.GkmasMod;
 import gkmasmod.utils.CommonEnum;
 import gkmasmod.utils.IdolData;
 import gkmasmod.utils.NameHelper;
+import gkmasmod.utils.PlayerHelper;
+
+import java.io.IOException;
 import java.util.Random;
 
 import static gkmasmod.characters.PlayerColorEnum.gkmasModOther_character;
 
-public class OtherSkinSelectScreen implements ISubscriber {
+public class OtherSkinSelectScreen implements ISubscriber , CustomSavable<int[]> {
     public static OtherSkinSelectScreen Inst;
     public static boolean isClick = false;
     public static boolean isClick2 = false;
@@ -74,6 +82,7 @@ public class OtherSkinSelectScreen implements ISubscriber {
         this.styleHb = new Hitbox(70.0F * Settings.scale, 70.0F * Settings.scale);
         selectIdolHint = CardCrawlGame.languagePack.getCharacterString("selectIdol").TEXT[0];
         BaseMod.subscribe(this);
+        BaseMod.addSaveField(NameHelper.makePath("otherSkin"), this);
 //        defaultBackgroundIndex = new Random().nextInt(2);
     }
     public Texture usedImg;
@@ -83,6 +92,16 @@ public class OtherSkinSelectScreen implements ISubscriber {
 
     public void refresh() {
         idolName = IdolData.otherIdolNames[this.idolIndex];
+        try{
+            if(idolName==IdolData.prod||idolName==IdolData.andk||idolName==IdolData.sson||idolName==IdolData.sgka||idolName==IdolData.arnm){
+                CardCrawlGame.mainMenuScreen.charSelectScreen.confirmButton.show();
+            }
+            else{
+                CardCrawlGame.mainMenuScreen.charSelectScreen.confirmButton.hide();
+            }
+        }
+        catch (Exception e){
+        }
 
         this.curName = CardCrawlGame.languagePack.getCharacterString(NameHelper.addSplitWords("IdolName",idolName)).TEXT[0];
 
@@ -93,6 +112,22 @@ public class OtherSkinSelectScreen implements ISubscriber {
         this.nameImg = ImageMaster.loadImage(String.format("gkmasModResource/img/idol/othe/%s/stand/name.png", idolName));
         this.idolType = IdolData.getOtherIdol(idolName).getType(this.skinIndex);
         this.idolStyle = IdolData.getOtherIdol(idolName).getStyle(this.skinIndex);
+
+        try{
+            for(CharacterOption o: CardCrawlGame.mainMenuScreen.charSelectScreen.options){
+                if(o.c instanceof OtherIdolCharacter &&o.selected){
+                    ReflectionHacks.setPrivate(o,CharacterOption.class,"charInfo",o.c.getLoadout());
+                    ReflectionHacks.setPrivate(o,CharacterOption.class,"name",curName);
+                    ReflectionHacks.setPrivate(o,CharacterOption.class,"gold",((OtherIdolCharacter) o.c).getGold());
+                    ReflectionHacks.setPrivate(o,CharacterOption.class,"hp",String.valueOf(((OtherIdolCharacter) o.c).getHP()));
+                    ReflectionHacks.setPrivate(o,CharacterOption.class,"flavorText",((OtherIdolCharacter) o.c).getStory());
+                }
+            }
+        }
+        catch (Exception e){
+
+        }
+
         switch (this.idolType){
             case SENSE:
                 this.typeImg = ImageMaster.loadImage("gkmasModResource/img/UI/sense.png");
@@ -169,9 +204,14 @@ public class OtherSkinSelectScreen implements ISubscriber {
             this.typeImg = ImageMaster.loadImage("gkmasModResource/img/UI/logicSense.png");
             this.typeHintName = CardCrawlGame.languagePack.getUIString("typeHintName:logic").TEXT[0];
             this.typeHint = CardCrawlGame.languagePack.getUIString("typeHint:logicSense").TEXT[0];
-            this.styleImg = ImageMaster.loadImage("gkmasModResource/img/UI/pinkGirl.png");
-            this.styleHintName = CardCrawlGame.languagePack.getUIString("styleHintName:pinkGirl").TEXT[0];
-            this.styleHint = CardCrawlGame.languagePack.getUIString("styleHint:pinkGirl").TEXT[0];
+        }
+        else if(idolName.equals(IdolData.arnm)){
+            this.typeImg = null;
+            this.typeHintName = "";
+            this.typeHint = "";
+            this.styleImg = ImageMaster.loadImage("gkmasModResource/img/UI/robot.png");
+            this.styleHintName = CardCrawlGame.languagePack.getUIString("styleHintName:robot").TEXT[0];
+            this.styleHint = CardCrawlGame.languagePack.getUIString("styleHint:robot").TEXT[0];
         }
         if (AbstractDungeon.player instanceof OtherIdolCharacter) {
             OtherIdolCharacter k = (OtherIdolCharacter)AbstractDungeon.player;
@@ -331,7 +371,8 @@ public class OtherSkinSelectScreen implements ISubscriber {
         if(this.nameImg != null)
             sb.draw(this.nameImg,centerX-250, centerY-420);
 
-        sb.draw(this.typeImg,this.typeHb.cX-24.0F, this.typeHb.cY-24.0F);
+        if(this.typeImg!=null)
+            sb.draw(this.typeImg,this.typeHb.cX-24.0F, this.typeHb.cY-24.0F);
         if(this.styleImg != null)
             sb.draw(this.styleImg,this.styleHb.cX-24.0F, this.styleHb.cY-24.0F);
         FontHelper.renderFontCentered(sb, FontHelper.cardTitleFont, selectIdolHint, centerX-250.0F*Settings.xScale, centerY + 400.0F * Settings.scale, Color.WHITE, 1.25F);
@@ -390,13 +431,16 @@ public class OtherSkinSelectScreen implements ISubscriber {
         else
             sb.draw(ImageMaster.OPTION_TOGGLE,this.updateHb.cX - 24.0F, this.updateHb.cY - 24.0F, 24.0F, 24.0F, 48.0F, 48.0F, Settings.scale, Settings.scale, 0.0F, 0, 0, 48, 48, false, false);
 
-        if(this.typeHb.hovered){
-            sb.setColor(Color.LIGHT_GRAY);
-            TipHelper.renderGenericTip( this.typeHb.cX + 20.F,  this.typeHb.cY + 20.F, this.typeHintName, this.typeHint);
+        if (this.typeHintName != "" && this.typeHint != "") {
+            if(this.typeHb.hovered){
+                sb.setColor(Color.LIGHT_GRAY);
+                TipHelper.renderGenericTip( this.typeHb.cX + 20.F,  this.typeHb.cY + 20.F, this.typeHintName, this.typeHint);
+            }
+            else{
+                sb.setColor(Color.WHITE);
+            }
         }
-        else{
-            sb.setColor(Color.WHITE);
-        }
+
 
 
         if(this.styleImg!=null){
@@ -429,4 +473,18 @@ public class OtherSkinSelectScreen implements ISubscriber {
         Inst = new OtherSkinSelectScreen();
     }
 
+    @Override
+    public int[] onSave() {
+        return new int[]{this.idolIndex,this.skinIndex,this.updateIndex};
+    }
+
+    public void onLoad(int[] args) {
+        if(args != null && args.length == 3){
+            this.idolIndex = args[0];
+            this.skinIndex = args[1];
+            this.updateIndex = args[2];
+            refresh();
+//            GkmasMod.listeners.forEach(listener -> listener.onCardImgUpdate());
+        }
+    }
 }

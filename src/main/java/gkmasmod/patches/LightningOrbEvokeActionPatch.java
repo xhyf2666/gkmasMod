@@ -14,8 +14,11 @@ import gkmasmod.relics.PocketBook;
 public class LightningOrbEvokeActionPatch
 {
 
+    /**
+     * 电球伤害受到三维倍率的加成
+     */
     @SpirePatch(clz = LightningOrbEvokeAction.class,method = SpirePatch.CONSTRUCTOR)
-    public static class LightningOrbEvokeActionPostPatch_constructor {
+    public static class PostPatchLightningOrbEvokeAction_Constructor {
         @SpirePostfixPatch
         public static void Post(LightningOrbEvokeAction __instance, @ByRef DamageInfo[] ___info) {
             if(AbstractDungeon.player.hasRelic(PocketBook.ID)){

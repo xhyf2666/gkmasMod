@@ -31,7 +31,7 @@ import java.util.ArrayList;
 public class GridCardSelectScreenPatch {
 
     @SpirePatch(clz = GridCardSelectScreen.class,method = "update")
-    public static class GridCardSelectScreenInsert_update {
+    public static class InsertPatchGridCardSelectScreen_update {
         @SpireInsertPatch(rloc = 145)
         public static void Insert(GridCardSelectScreen __instance) {
             if(AbstractDungeon.player.hasRelic(PocketBook.ID)){

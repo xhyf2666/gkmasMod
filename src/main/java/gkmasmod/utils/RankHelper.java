@@ -5,7 +5,11 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 
 public class RankHelper {
     public static String getRank(int value) {
-        if(value>=2500)
+        if(value>=3500)
+            return "SSS+";
+        else if(value>=3000)
+            return "SSS";
+        else if(value>=2500)
             return "SS+";
         else if(value>=2200)
             return "SS";
@@ -36,8 +40,12 @@ public class RankHelper {
     public static int[] getRankBoundary(int value){
         if(value>=4000)
             return new int[]{4000, Integer.MAX_VALUE};
-        if (value >= 2500)
-            return new int[]{2500, 4000};
+        if (value >= 3500)
+            return new int[]{3500, 4000};
+        else if (value >= 3000)
+            return new int[]{3000, 3500};
+        else if (value >= 2500)
+            return new int[]{2500, 3000};
         else if (value >= 2200)
             return new int[]{2200, 2500};
         else if (value >= 1800)

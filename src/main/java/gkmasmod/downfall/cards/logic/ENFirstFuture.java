@@ -15,6 +15,7 @@ import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.downfall.cards.GkmasBossCard;
 import gkmasmod.powers.GoodImpression;
+import gkmasmod.utils.IdolData;
 import gkmasmod.utils.NameHelper;
 import gkmasmod.utils.PlayerHelper;
 import gkmasmod.utils.SoundHelper;
@@ -49,6 +50,8 @@ public class ENFirstFuture extends GkmasBossCard {
         this.baseHPMagicNumber = BASE_HP;
         this.HPMagicNumber = this.baseHPMagicNumber;
         this.exhaust = true;
+        this.backGroundColor = IdolData.hski;
+        updateBackgroundImg();
         this.intent = AbstractMonster.Intent.ATTACK;
         FlavorText.AbstractCardFlavorFields.boxColor.set(this, CardHelper.getColor(73, 224, 254));
         flavor = FlavorText.CardStringsFlavorField.flavor.get(CARD_STRINGS);

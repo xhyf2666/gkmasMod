@@ -16,6 +16,7 @@ import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.downfall.cards.GkmasBossCard;
 import gkmasmod.downfall.cards.free.ENSleepLate;
+import gkmasmod.utils.IdolData;
 import gkmasmod.utils.NameHelper;
 import gkmasmod.utils.SoundHelper;
 
@@ -49,6 +50,8 @@ public class ENAccommodating extends GkmasBossCard {
         this.baseMagicNumber = BASE_MAGIC;
         this.magicNumber = this.baseMagicNumber;
         this.exhaust = true;
+        this.backGroundColor = IdolData.hrnm;
+        updateBackgroundImg();
         this.intent = AbstractMonster.Intent.MAGIC;
         this.tags.add(GkmasCardTag.IDOL_CARD_TAG);
         this.tags.add(CardTags.HEALING);

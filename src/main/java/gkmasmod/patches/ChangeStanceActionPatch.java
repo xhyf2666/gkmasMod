@@ -27,13 +27,16 @@ import gkmasmod.stances.ConcentrationStance;
 import gkmasmod.stances.FullPowerStance;
 import gkmasmod.stances.PreservationStance;
 import gkmasmod.utils.ImageHelper;
+import gkmasmod.utils.StanceHelper;
 
 
 public class ChangeStanceActionPatch
 {
-
+    /**
+     * 切换姿态的判断逻辑
+     */
     @SpirePatch(clz = ChangeStanceAction.class,method = "update")
-    public static class ChangeStanceActionInsertPatch_update{
+    public static class InsertPatchChangeStanceAction_update{
         @SpireInsertPatch(rloc = 7)
         public static SpireReturn<Void> Insert(ChangeStanceAction __instance, String ___id) {
             AbstractStance oldStance = AbstractDungeon.player.stance;
@@ -71,12 +74,47 @@ public class ChangeStanceActionPatch
                 return SpireReturn.Return(null);
             }
 
+            //从悠闲进入其他姿态时
+            if(oldStance.ID.equals(PreservationStance.STANCE_ID)){
+                if(StanceHelper.isInStance(oldStance,PreservationStance.STANCE_ID,2)){
+                    //无法从悠闲进入温存
+                    if(___id.equals(PreservationStance.STANCE_ID)||___id.equals(PreservationStance.STANCE_ID2)||___id.equals(PreservationStance.STANCE_ID3)){
+                        __instance.isDone = true;
+                        return SpireReturn.Return();
+                    }
+                    if(___id.equals(ConcentrationStance.STANCE_ID2)){
+                        if(AbstractDungeon.player.hasPower(StepOnStagePower.POWER_ID)){
+                            AbstractDungeon.player.getPower(StepOnStagePower.POWER_ID).onSpecificTrigger();
+                        }
+                    }
+                    newStance = AbstractStance.getStanceFromName(___id);
+                    for (AbstractPower p : AbstractDungeon.player.powers)
+                        p.onChangeStance(oldStance, newStance);
+                    for (AbstractRelic r : AbstractDungeon.player.relics)
+                        r.onChangeStance(oldStance, newStance);
+                    PreservationStance preservationStance = (PreservationStance) oldStance;
+                    preservationStance.onExitSpecialStance(newStance);
+                    AbstractDungeon.player.stance = newStance;
+                    newStance.onEnterStance();
+                    String key = ___id;
+                    if (AbstractDungeon.actionManager.uniqueStancesThisCombat.containsKey(key)) {
+                        int currentCount = (AbstractDungeon.actionManager.uniqueStancesThisCombat.get(key)).intValue();
+                        AbstractDungeon.actionManager.uniqueStancesThisCombat.put(key, Integer.valueOf(currentCount + 1));
+                    } else {
+                        AbstractDungeon.actionManager.uniqueStancesThisCombat.put(key, Integer.valueOf(1));
+                    }
+                    AbstractDungeon.player.switchedStance();
+                    for (AbstractCard c : AbstractDungeon.player.discardPile.group)
+                        c.triggerExhaustedCardsOnStanceChange(newStance);
+                    AbstractDungeon.player.onStanceChange(___id);
+                }
+            }
+
             if(___id.equals(PreservationStance.STANCE_ID)||___id.equals(PreservationStance.STANCE_ID2)){
                 if(oldStance.ID.equals(PreservationStance.STANCE_ID)){
                     //如果之前处于温存
                     PreservationStance current = (PreservationStance)oldStance;
-                    int stage = current.stage;
-                    if(stage ==0){
+                    if(StanceHelper.isInStance(oldStance,PreservationStance.STANCE_ID)){
                         //从温存1进入温存2
                         if(AbstractDungeon.player.hasPower(StepOnStagePower.POWER_ID)){
                             AbstractDungeon.player.getPower(StepOnStagePower.POWER_ID).onSpecificTrigger();
@@ -90,9 +128,9 @@ public class ChangeStanceActionPatch
                         }
                     }
                     current.onEnterSameStance();
-
                 }
                 else{
+                    //之前不处于温存
                     if(___id.equals(PreservationStance.STANCE_ID2)){
                         if(AbstractDungeon.player.hasPower(StepOnStagePower.POWER_ID)){
                             AbstractDungeon.player.getPower(StepOnStagePower.POWER_ID).onSpecificTrigger();
@@ -129,11 +167,52 @@ public class ChangeStanceActionPatch
                     AbstractDungeon.player.onStanceChange(___id);
                 }
             }
+            else if(___id.equals(PreservationStance.STANCE_ID3)){
+                if(oldStance.ID.equals(PreservationStance.STANCE_ID)){
+                    //从温存进入悠闲
+                    PreservationStance current = (PreservationStance)oldStance;
+                    if(!StanceHelper.isInStance(oldStance,PreservationStance.STANCE_ID,2)){
+                        //之前不处于悠闲
+                        if(AbstractDungeon.player.hasPower(StepOnStagePower.POWER_ID)){
+                            AbstractDungeon.player.getPower(StepOnStagePower.POWER_ID).onSpecificTrigger();
+                        }
+                        String key = PreservationStance.STANCE_ID3;
+                        if (AbstractDungeon.actionManager.uniqueStancesThisCombat.containsKey(key)) {
+                            int currentCount = (AbstractDungeon.actionManager.uniqueStancesThisCombat.get(key)).intValue();
+                            AbstractDungeon.actionManager.uniqueStancesThisCombat.put(key, Integer.valueOf(currentCount + 1));
+                        } else {
+                            AbstractDungeon.actionManager.uniqueStancesThisCombat.put(key, Integer.valueOf(1));
+                        }
+                    }
+                    current.onEnterSpecialStance();
+                }
+                else{
+                    //从其他姿态进入悠闲
+                    newStance = AbstractStance.getStanceFromName(___id);
+                    for (AbstractPower p : AbstractDungeon.player.powers)
+                        p.onChangeStance(oldStance, newStance);
+                    for (AbstractRelic r : AbstractDungeon.player.relics)
+                        r.onChangeStance(oldStance, newStance);
+                    oldStance.onExitStance();
+                    AbstractDungeon.player.stance = newStance;
+                    newStance.onEnterStance();
+                    String key = ___id;
+                    if (AbstractDungeon.actionManager.uniqueStancesThisCombat.containsKey(key)) {
+                        int currentCount = (AbstractDungeon.actionManager.uniqueStancesThisCombat.get(key)).intValue();
+                        AbstractDungeon.actionManager.uniqueStancesThisCombat.put(key, Integer.valueOf(currentCount + 1));
+                    } else {
+                        AbstractDungeon.actionManager.uniqueStancesThisCombat.put(key, Integer.valueOf(1));
+                    }
+                    AbstractDungeon.player.switchedStance();
+                    for (AbstractCard c : AbstractDungeon.player.discardPile.group)
+                        c.triggerExhaustedCardsOnStanceChange(newStance);
+                    AbstractDungeon.player.onStanceChange(___id);
+                }
+            }
             else if(___id.equals(ConcentrationStance.STANCE_ID)||___id.equals(ConcentrationStance.STANCE_ID2)){
                 if(oldStance.ID.equals(ConcentrationStance.STANCE_ID)){
                     ConcentrationStance current = (ConcentrationStance)oldStance;
-                    int stage = current.stage;
-                    if(stage ==0){
+                    if(StanceHelper.isInStance(oldStance,ConcentrationStance.STANCE_ID)){
                         //从强气1进入强气2
                         if(AbstractDungeon.player.hasPower(StepOnStagePower.POWER_ID)){
                             AbstractDungeon.player.getPower(StepOnStagePower.POWER_ID).onSpecificTrigger();

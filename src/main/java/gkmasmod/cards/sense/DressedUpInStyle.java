@@ -9,10 +9,9 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import gkmasmod.cardCustomEffect.CostCustom;
-import gkmasmod.cardCustomEffect.DamageCustom;
-import gkmasmod.cardCustomEffect.ExhaustRemoveCustom;
-import gkmasmod.cardCustomEffect.GoodTuneCustom;
+import gkmasmod.actions.GoodTuneReturnAction;
+import gkmasmod.actions.ModifyDamageAction;
+import gkmasmod.cardCustomEffect.*;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
@@ -35,6 +34,7 @@ public class DressedUpInStyle extends GkmasCard {
     private static final int UPGRADE_PLUS_DMG = 3;
     private static final int ATTACK_DMG2 = 3;
     private static final int UPGRADE_PLUS_DMG2 = 3;
+    private static final int BASE_MAGIC = 15;
 
     private static final CardType TYPE = CardType.ATTACK;
     private static final CardColor COLOR = PlayerColorEnum.gkmasModColorSense;
@@ -45,6 +45,8 @@ public class DressedUpInStyle extends GkmasCard {
         super(ID, NAME, IMG_PATH, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET, "color");
         this.baseDamage = ATTACK_DMG;
         this.baseSecondDamage = ATTACK_DMG2;
+        this.baseMagicNumber = BASE_MAGIC;
+        this.magicNumber = this.baseMagicNumber;
         this.exhaust = true;
         this.tags.add(GkmasCardTag.GOOD_TUNE_TAG);
         this.tags.add(GkmasCardTag.IDOL_CARD_TAG);
@@ -52,21 +54,30 @@ public class DressedUpInStyle extends GkmasCard {
         updateBackgroundImg();
         this.customLimit = 1;
         this.customEffectList = new ArrayList<>();
-        this.customEffectList.add(CustomHelper.generateCustomEffectList(DamageCustom.growID, new int[]{3}, new int[]{60}, CustomHelper.CustomEffectType.DAMAGE_ADD));
-        this.customEffectList.add(CustomHelper.generateCustomEffectList(CostCustom.growID, new int[]{-1}, new int[]{80}, CustomHelper.CustomEffectType.ENERGY_COST_REDUCE));
-        this.customEffectList.add(CustomHelper.generateCustomEffectList(ExhaustRemoveCustom.growID,new int[]{0},new int[]{80},CustomHelper.CustomEffectType.EXHAUST_REMOVE));
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(MoreActionCustom.growID, new int[]{1}, new int[]{70}, CustomHelper.CustomEffectType.MORE_ACTION_ADD));
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(EffectAddCustom.growID, new int[]{0}, new int[]{70}, CustomHelper.CustomEffectType.EFFECT_ADD));
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(EffectChangeCustom.growID, new int[]{0}, new int[]{60}, CustomHelper.CustomEffectType.EFFECT_CHANGE));
     }
 
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        addToBot(new DamageAction(m, new DamageInfo(p, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
-        int count = PlayerHelper.getPowerAmount(p, GoodTune.POWER_ID);
-        if (count > 0) {
-            addToBot(new DamageAction(m, new DamageInfo(p, this.secondDamage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_VERTICAL));
+        if(CustomHelper.hasCustom(this,EffectChangeCustom.growID)){
+            addToBot(new GoodTuneReturnAction(m,new DamageInfo(p,this.damage, DamageInfo.DamageType.NORMAL),1.0F*this.magicNumber/100));
+        }
+        else if(CustomHelper.hasCustom(this,EffectAddCustom.growID)){
+            addToBot(new ModifyDamageAction(m, new DamageInfo(p, this.baseDamage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_HORIZONTAL,this,false,1.0F,2.0F));
+            if (PlayerHelper.getPowerAmount(p, GoodTune.POWER_ID) > 0) {
+                addToBot(new ModifyDamageAction(m, new DamageInfo(p, this.baseSecondDamage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_HORIZONTAL,this,false,3.0F,1.0F));
+            }
+        }
+        else{
+            addToBot(new DamageAction(m, new DamageInfo(p, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
+            if (PlayerHelper.getPowerAmount(p, GoodTune.POWER_ID) > 0) {
+                addToBot(new DamageAction(m, new DamageInfo(p, this.secondDamage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_VERTICAL));
+            }
         }
         SoundHelper.playSound("gkmasModResource/audio/voice/skillcard/cidol_amao_3_000_produce_skillcard_01.ogg");
-
     }
 
     @Override

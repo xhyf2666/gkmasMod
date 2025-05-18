@@ -23,6 +23,8 @@ public class SelectCardGrowAction extends AbstractGameAction {
 
     private int num;
     private String growID;
+    private boolean tempSave = false;
+    private int selectedCardNum = 1;
 
     public SelectCardGrowAction(int num,String growID) {
         this.actionType = ActionType.CARD_MANIPULATION;
@@ -32,6 +34,16 @@ public class SelectCardGrowAction extends AbstractGameAction {
         this.growID = growID;
     }
 
+    public SelectCardGrowAction(int num,String growID,int selectedCardNum,boolean tempSave) {
+        this.actionType = ActionType.CARD_MANIPULATION;
+        this.p = AbstractDungeon.player;
+        this.duration = Settings.ACTION_DUR_FAST;
+        this.num = num;
+        this.growID = growID;
+        this.selectedCardNum = selectedCardNum;
+        this.tempSave = tempSave;
+    }
+
     public void update() {
         if (this.duration == Settings.ACTION_DUR_FAST) {
             if (this.p.hand.isEmpty()) {
@@ -39,7 +51,7 @@ public class SelectCardGrowAction extends AbstractGameAction {
             }
             if(p.hand.group.size()>0)
             {
-                AbstractDungeon.handCardSelectScreen.open(TEXT[0], 1, false, false, false,false);
+                AbstractDungeon.handCardSelectScreen.open(TEXT[0], this.selectedCardNum, false, false, false,false);
                 this.tickDuration();
                 return;
             }
@@ -51,9 +63,14 @@ public class SelectCardGrowAction extends AbstractGameAction {
                 var1 = AbstractDungeon.handCardSelectScreen.selectedCards.group.iterator();
                 while(var1.hasNext()) {
                     c = (AbstractCard)var1.next();
+                    GrowHelper.grow(c,this.growID,this.num);
+                    if(tempSave){
+                        TempSavePower.addCard(AbstractDungeon.player,c);
+                    }
+                    else{
+                        AbstractDungeon.player.hand.addToTop(c);
+                    }
                 }
-                GrowHelper.grow(c,this.growID,this.num);
-                AbstractDungeon.player.hand.addToTop(c);
                 AbstractDungeon.handCardSelectScreen.wereCardsRetrieved = true;
                 AbstractDungeon.handCardSelectScreen.selectedCards.group.clear();
                 this.isDone = true;

@@ -11,19 +11,22 @@ import com.megacrit.cardcrawl.screens.charSelect.CharacterOption;
 import com.megacrit.cardcrawl.screens.custom.CustomModeCharacterButton;
 import gkmasmod.characters.IdolCharacter;
 import gkmasmod.characters.OtherIdolCharacter;
+import gkmasmod.screen.OtherSkinSelectScreen;
 import gkmasmod.screen.SkinSelectScreen;
+import gkmasmod.utils.IdolData;
 
 public class CustomModeCharacterButtonPatch {
 
+    /**
+     * 自定义模式界面，隐藏部分角色的开始游戏按钮
+     */
     @SpirePatch(clz = CustomModeCharacterButton.class, method = "updateHitbox")
-    public static class CustomModeCharacterButtonPatch_updateHitbox
-    {
+    public static class InsertPatchCustomModeCharacterButton_updateHitbox {
         @SpireInsertPatch(rloc = 21)
-        public static void Insert(CustomModeCharacterButton __instance)
-        {
+        public static void Insert(CustomModeCharacterButton __instance) {
             if(__instance.c instanceof OtherIdolCharacter){
-//                if(SkinSelectScreen.Inst.idolName==IdolData.ttmr&&IdolData.getIdol(SkinSelectScreen.Inst.idolName).getSkinImg(SkinSelectScreen.Inst.skinIndex).equals("skin21")&&SkinSelectScreen.Inst.hideSameIdol&&SkinSelectScreen.Inst.updateIndex==1)
-//                    return;
+                if(OtherSkinSelectScreen.Inst.idolName== IdolData.prod||OtherSkinSelectScreen.Inst.idolName==IdolData.andk||OtherSkinSelectScreen.Inst.idolName==IdolData.sson||OtherSkinSelectScreen.Inst.idolName==IdolData.sgka||OtherSkinSelectScreen.Inst.idolName==IdolData.arnm)
+                    return;
                 CardCrawlGame.mainMenuScreen.customModeScreen.confirmButton.hide();
             }
 //            else {

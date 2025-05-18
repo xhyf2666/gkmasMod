@@ -25,6 +25,9 @@ public class AbstractMonsterPatch {
         public static SpireField<Boolean> friendly = new SpireField<>(() -> false);
     }
 
+    /**
+     * 敌人死亡时，触发 复苏
+     */
     @SpirePatch(clz = AbstractMonster.class,method = "damage")
     public static class InsertPatchAbstractMonster_damage {
         @SpireInsertPatch(rloc =832-739)
@@ -44,15 +47,17 @@ public class AbstractMonsterPatch {
         }
     }
 
-        @SpirePatch(clz = AbstractMonster.class,method = "renderTip")
-    public static class PostPatchAbstractMonster_renderPowerTips {
+    /**
+     * 在 偶像之路 中显示敌人的姿态提示
+     */
+    @SpirePatch(clz = AbstractMonster.class,method = "renderTip")
+    public static class InsertPatchAbstractMonster_renderPowerTips {
         @SpireInsertPatch(rloc =2)
         public static SpireReturn Insert(AbstractMonster __instance, SpriteBatch sb, ArrayList<PowerTip> ___tips) {
             if(__instance instanceof AbstractCharBoss&&AbstractCharBoss.boss!=null){
                 if (!AbstractCharBoss.boss.stance.ID.equals("Neutral")){
                     ___tips.add(new PowerTip(AbstractCharBoss.boss.stance.name, AbstractCharBoss.boss.stance.description));
                 }
-
             }
             return SpireReturn.Continue();
         }

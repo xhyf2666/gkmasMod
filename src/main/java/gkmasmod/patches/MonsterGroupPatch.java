@@ -18,16 +18,15 @@ import java.util.ArrayList;
 public class MonsterGroupPatch
 {
     @SpirePatch(clz = MonsterGroup.class,method = "getRandomMonster",paramtypez = {AbstractMonster.class, boolean.class, Random.class})
-    public static class MonsterGroupPatchInsertPatch_getRandomMonster{
+    public static class InsertPatchMonsterGroupPatch_getRandomMonster{
         @SpireInsertPatch(rloc = 14,localvars = {"tmp"})
         public static void Insert(MonsterGroup __instance,AbstractMonster exception, boolean aliveOnly, Random rng, ArrayList<AbstractMonster> tmp) {
-            //删除arraylist中的满足特定条件的元素
             tmp.removeIf(monster -> AbstractMonsterPatch.friendlyField.friendly.get(monster));
         }
     }
 
     @SpirePatch(clz = MonsterGroup.class,method = "areMonstersBasicallyDead")
-    public static class PrefixPatchMonsterGroup_areMonstersBasicallyDead {
+    public static class PrePatchMonsterGroup_areMonstersBasicallyDead {
         public static SpireReturn<Boolean> Prefix(MonsterGroup __instance) {
             for (AbstractMonster m : __instance.monsters) {
                 if (!m.isDying && !m.isEscaping&&!AbstractMonsterPatch.friendlyField.friendly.get(m)&&!m.hasPower(MinionPower.POWER_ID))
@@ -44,7 +43,7 @@ public class MonsterGroupPatch
     }
 
     @SpirePatch(clz = MonsterGroup.class,method = "areMonstersDead")
-    public static class PrefixPatchMonsterGroup_areMonstersDead {
+    public static class PrePatchMonsterGroup_areMonstersDead {
         public static SpireReturn<Boolean> Prefix(MonsterGroup __instance) {
             for (AbstractMonster m : __instance.monsters) {
                 if (!m.isDying && !m.escaped&&!AbstractMonsterPatch.friendlyField.friendly.get(m)&&!m.hasPower(MinionPower.POWER_ID))

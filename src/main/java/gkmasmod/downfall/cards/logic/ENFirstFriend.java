@@ -18,6 +18,7 @@ import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.downfall.cards.GkmasBossCard;
 import gkmasmod.powers.ReduceDamageReceive;
+import gkmasmod.utils.IdolData;
 import gkmasmod.utils.NameHelper;
 import gkmasmod.utils.SoundHelper;
 
@@ -66,6 +67,8 @@ public class ENFirstFriend extends GkmasBossCard {
         this.tags.add(GkmasCardTag.IDOL_CARD_TAG);
         this.intent = AbstractMonster.Intent.ATTACK_BUFF;
         this.exhaust = true;
+        this.backGroundColor = IdolData.hrnm;
+        updateBackgroundImg();
         FlavorText.AbstractCardFlavorFields.boxColor.set(this, CardHelper.getColor(73, 224, 254));
         flavor = FlavorText.CardStringsFlavorField.flavor.get(CARD_STRINGS);
     }

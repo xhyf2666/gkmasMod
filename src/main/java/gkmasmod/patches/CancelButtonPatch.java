@@ -17,12 +17,13 @@ import java.util.ArrayList;
 
 public class CancelButtonPatch
 {
+    /**
+     * 特殊指导界面，点击 取消 按钮时，如果还没指导过则保留界面
+     */
     @SpirePatch(clz = CancelButton.class,method = "update")
-    public static class CancelButtonInsert_update {
+    public static class InsertPatchCancelButton_update {
         @SpireInsertPatch(rloc = 63)
         public static SpireReturn<Void> Insert(CancelButton _inst) {
-//            System.out.println("CancelButtonPatch");
-//            System.out.println(GkmasMod.screenIndex);
             if(GkmasMod.screenIndex==3){
                 SpecialTeachScreen screen = ((SpecialTeachScreen)BaseMod.getCustomScreen(SpecialTeachScreen.Enum.SpecialTeach_Screen));
                 screen.cancelUpgrade();

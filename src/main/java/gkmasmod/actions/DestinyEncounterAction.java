@@ -5,12 +5,9 @@ import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
-import gkmasmod.growEffect.BlockGrow;
-import gkmasmod.growEffect.DamageGrow;
+import gkmasmod.cardGrowEffect.DamageGrow;
 import gkmasmod.powers.EndOfTurnPreservationStancePower;
 import gkmasmod.powers.FullPowerValue;
-import gkmasmod.relics.DestinyEncounter;
-import gkmasmod.relics.FrogFan;
 import gkmasmod.stances.FullPowerStance;
 
 public class DestinyEncounterAction extends AbstractGameAction {

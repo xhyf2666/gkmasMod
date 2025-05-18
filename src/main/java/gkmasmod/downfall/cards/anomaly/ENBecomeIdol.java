@@ -1,33 +1,21 @@
 package gkmasmod.downfall.cards.anomaly;
 
-import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.GainBlockAction;
-import com.megacrit.cardcrawl.actions.watcher.ChangeStanceAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import gkmasmod.actions.SelectCardGrowAction;
-import gkmasmod.cardCustomEffect.BlockCustom;
-import gkmasmod.cardCustomEffect.EffectChangeCustom;
-import gkmasmod.cardCustomEffect.MagicCustom;
-import gkmasmod.cardCustomEffect.MoreActionCustom;
-import gkmasmod.cards.GkmasCard;
 import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.downfall.cards.GkmasBossCard;
 import gkmasmod.downfall.charbosses.actions.unique.EnemyChangeStanceAction;
 import gkmasmod.downfall.charbosses.bosses.AbstractCharBoss;
 import gkmasmod.downfall.charbosses.stances.ENPreservationStance;
-import gkmasmod.growEffect.AttackTimeGrow;
+import gkmasmod.cardGrowEffect.AttackTimeGrow;
 import gkmasmod.powers.FullPowerValue;
-import gkmasmod.screen.SkinSelectScreen;
-import gkmasmod.stances.PreservationStance;
 import gkmasmod.utils.*;
-
-import java.util.ArrayList;
 
 public class ENBecomeIdol extends GkmasBossCard {
     private static final String CLASSNAME = ENBecomeIdol.class.getSimpleName();

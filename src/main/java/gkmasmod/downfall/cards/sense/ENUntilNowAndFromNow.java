@@ -54,6 +54,8 @@ public class ENUntilNowAndFromNow extends GkmasBossCard {
         this.tags.add(GkmasCardTag.IDOL_CARD_TAG);
         this.tags.add(GkmasCardTag.GOOD_TUNE_TAG);
         this.intent = AbstractMonster.Intent.ATTACK;
+        this.backGroundColor = IdolData.hski;
+        updateBackgroundImg();
     }
 
 

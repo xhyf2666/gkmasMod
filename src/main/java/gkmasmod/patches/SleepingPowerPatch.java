@@ -11,7 +11,7 @@ import javassist.expr.MethodCall;
 
 public class SleepingPowerPatch {
     @SpirePatch(clz = GameActionManager.class, method = "getNextAction")
-    public static class GetNextAction {
+    public static class InstrumentPatch_getNextAction {
         public static ExprEditor Instrument() {
             return new ExprEditor() {
                 public void edit(MethodCall m) throws CannotCompileException {
@@ -24,7 +24,7 @@ public class SleepingPowerPatch {
     }
 
     @SpirePatch(clz = AbstractMonster.class, method = "rollMove")
-    public static class RollMove {
+    public static class PrePatchAbstractMonster_rollMove {
         public static SpireReturn<Void> Prefix(AbstractMonster __instance) {
             if (__instance.hasPower(SleepingPower.POWER_ID))
                 return SpireReturn.Return(null);

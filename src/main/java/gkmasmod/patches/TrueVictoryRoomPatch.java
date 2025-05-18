@@ -18,7 +18,7 @@ public class TrueVictoryRoomPatch {
     public static boolean notShowPlayerPowerTip = false;
 
     @SpirePatch2(clz = TrueVictoryRoom.class, method = "onPlayerEntry")
-    public static class AbstractPlayerPowerTipPatch {
+    public static class PrePatchTrueVictoryRoom_onPlayerEntry {
         public static SpireReturn<Void> Prefix() {
             if (AbstractDungeon.player instanceof IdolCharacter) {
                 if(!existsVideo()){
@@ -42,7 +42,7 @@ public class TrueVictoryRoomPatch {
     }
 
     @SpirePatch2(clz = TrueVictoryRoom.class, method = "update")
-    public static class AbstractPlayerPowerTipPatch1 {
+    public static class PrePatchTrueVictoryRoom_update {
         public static SpireReturn<Void> Prefix() {
             if (AbstractDungeon.player instanceof IdolCharacter){
                 if(!existsVideo()){
@@ -55,7 +55,7 @@ public class TrueVictoryRoomPatch {
     }
 
     @SpirePatch2(clz = TrueVictoryRoom.class, method = "render")
-    public static class AbstractPlayerPowerTipPatch2 {
+    public static class PrePatchTrueVictoryRoom_render {
         public static SpireReturn<Void> Prefix() {
             if (AbstractDungeon.player instanceof IdolCharacter){
                 if(!existsVideo()){
@@ -68,7 +68,7 @@ public class TrueVictoryRoomPatch {
     }
 
     @SpirePatch2(clz = TrueVictoryRoom.class, method = "renderAboveTopPanel")
-    public static class AbstractPlayerPowerTipPatch3 {
+    public static class PrePatchTrueVictoryRoom_renderAboveTopPanel {
         public static SpireReturn<Void> Prefix() {
             if (AbstractDungeon.player instanceof IdolCharacter){
                 if(!existsVideo()){
@@ -82,7 +82,6 @@ public class TrueVictoryRoomPatch {
 
     public static boolean existsVideo(){
         String videoPath = String.format("gkmasModResource\\video\\live\\%s_%s.webm", SkinSelectScreen.Inst.idolName, IdolData.getIdol(SkinSelectScreen.Inst.idolIndex).getLive(SkinSelectScreen.Inst.skinIndex));
-
         if(Gdx.files.local(videoPath).exists()){
             return true;
         }

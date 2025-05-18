@@ -15,7 +15,7 @@ public class PoisonLoseHpActionPatch
 {
 
     @SpirePatch(clz = PoisonLoseHpAction.class,method = SpirePatch.CONSTRUCTOR)
-    public static class PoisonLoseHpActionPostPatch_constructor {
+    public static class PostPatchPoisonLoseHpAction_Constructor {
         @SpirePostfixPatch
         public static void Post(PoisonLoseHpAction __instance) {
             if(AbstractDungeon.player.hasRelic(PocketBook.ID)){
