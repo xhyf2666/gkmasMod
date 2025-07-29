@@ -174,21 +174,8 @@ public class MonsterShion extends CustomMonster {
         super.damage(info);
         if(!this.isOutTriggered && this.currentHealth<=this.maxHealth/2) {
             CardCrawlGame.music.dispose();
-            if(AbstractDungeon.player instanceof MisuzuCharacter){
-                String song = String.format("gkmasModResource/audio/song/%s_00%s.ogg", IdolData.hmsz,2);
-                if (Gdx.files.internal(song).exists())
-                    CardCrawlGame.music.playTempBgmInstantly(song, true);
-            }
-            else{
-                String song = String.format("gkmasModResource/audio/song/%s_00%s.ogg", SkinSelectScreen.Inst.idolName,
-                        IdolData.getIdol(SkinSelectScreen.Inst.idolIndex).getSong(SkinSelectScreen.Inst.skinIndex));
-                if (Gdx.files.internal(song).exists())
-                    CardCrawlGame.music.playTempBgmInstantly(song, true);
-                else {
-                    song = String.format("gkmasModResource/audio/song/%s_00%s.ogg", SkinSelectScreen.Inst.idolName, 2);
-                    CardCrawlGame.music.playTempBgmInstantly(song, true);
-                }
-            }
+            String song = SoundHelper.getSong();
+            CardCrawlGame.music.playTempBgmInstantly(song, true);
             this.isOutTriggered = true;
         }
     }

@@ -33,7 +33,7 @@ public class ENComprehensiveArt extends GkmasBossCard {
 
     private static final int COST = 2;
 
-    private static final int BASE_DAMAGE = 8;
+    private static final int BASE_DAMAGE = 12;
 
     private static final int BASE_MAGIC = 2;
     private static final int UPGRADE_MAGIC_PLUS = 1;
@@ -73,7 +73,7 @@ public class ENComprehensiveArt extends GkmasBossCard {
     public void use(AbstractPlayer p, AbstractMonster m) {
         AbstractCharBoss.boss.drawPile.addToBottom(this);
         addToBot(new EnemyChangeStanceAction(ENConcentrationStance.STANCE_ID));
-        addToBot(new ModifyDamageAction(p, new DamageInfo(m, this.damage, DamageInfo.DamageType.NORMAL), AbstractGameAction.AttackEffect.SLASH_VERTICAL,this,false));
+        addToBot(new ModifyDamageAction(p, new DamageInfo(m, this.baseDamage, DamageInfo.DamageType.NORMAL), AbstractGameAction.AttackEffect.SLASH_VERTICAL,this,false));
     }
 
     @Override

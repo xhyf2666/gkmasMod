@@ -49,7 +49,7 @@ public class SkipWater extends GkmasCard {
         this.customLimit = 2;
         this.customEffectList = new ArrayList<>();
         this.customEffectList.add(CustomHelper.generateCustomEffectList(BlockCustom.growID,new int[]{2,2},new int[]{40,40},CustomHelper.CustomEffectType.BLOCK_ADD));
-        this.customEffectList.add(CustomHelper.generateCustomEffectList(HPMagicCustom.growID,new int[]{-1},new int[]{60},CustomHelper.CustomEffectType.HP_REDUCE));
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(HPMagicCustom.growID,new int[]{-1},new int[]{40},CustomHelper.CustomEffectType.HP_REDUCE));
     }
 
 

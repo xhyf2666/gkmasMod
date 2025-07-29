@@ -98,6 +98,10 @@ public class EffectChangeCustom extends AbstractCardCustomEffect {
             if(!fromCopy)
                 CustomHelper.custom(card,MagicCustom.growID,-1);
         }
+        else if(card instanceof ComprehensiveArt){
+            if(!fromCopy)
+                CustomHelper.custom(card,MagicCustom.growID,-1);
+        }
     }
 
     @Override
@@ -186,6 +190,21 @@ public class EffectChangeCustom extends AbstractCardCustomEffect {
         else if(card instanceof DressedUpInStyle){
             return CardCrawlGame.languagePack.getCardStrings("gkmasMod:DressedUpInStyle_Effect1").DESCRIPTION;
         }
+        else if(card instanceof ComprehensiveArt){
+            return CardCrawlGame.languagePack.getCardStrings("gkmasMod:ComprehensiveArt_Effect1").DESCRIPTION;
+        }
+        else if(card instanceof StarDust){
+            return CardCrawlGame.languagePack.getCardStrings("gkmasMod:StarDust_Effect0").DESCRIPTION;
+        }
+        else if(card instanceof FirstImpression){
+            return CardCrawlGame.languagePack.getCardStrings("gkmasMod:FirstImpression_Effect0").DESCRIPTION;
+        }
+        else if(card instanceof InternetInfluencer){
+            return CardCrawlGame.languagePack.getCardStrings("gkmasMod:InternetInfluencer_Effect1").DESCRIPTION;
+        }
+        else if(card instanceof HeatUp){
+            return CardCrawlGame.languagePack.getCardStrings("gkmasMod:HeatUp_Effect0").DESCRIPTION;
+        }
         return rawDescription;
     }
 
@@ -241,6 +260,9 @@ public class EffectChangeCustom extends AbstractCardCustomEffect {
             card.exhaust = true;
         }
         else if(card instanceof SenseOfDistance){
+            CustomHelper.removeCustom(card,MagicCustom.growID);
+        }
+        else if(card instanceof ComprehensiveArt){
             CustomHelper.removeCustom(card,MagicCustom.growID);
         }
     }

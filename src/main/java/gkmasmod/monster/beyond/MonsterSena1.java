@@ -62,12 +62,12 @@ public class MonsterSena1 extends CustomMonster {
             setHp(170);
         }
         if (AbstractDungeon.ascensionLevel >= 4) {
-            this.damage.add(new DamageInfo(this, 7));
-            this.damage.add(new DamageInfo(this, 14));
+            this.damage.add(new DamageInfo(this, 6));
+            this.damage.add(new DamageInfo(this, 11));
             this.bloodHitCount = 2;
         } else {
             this.damage.add(new DamageInfo(this, 5));
-            this.damage.add(new DamageInfo(this, 10));
+            this.damage.add(new DamageInfo(this, 9));
             this.bloodHitCount = 2;
         }
     }
@@ -84,11 +84,10 @@ public class MonsterSena1 extends CustomMonster {
         if (Gdx.files.internal(song).exists())
             CardCrawlGame.music.playTempBgmInstantly(song, true);
         if (AbstractDungeon.ascensionLevel >= 5) {
-            AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(this, this, new SenaMoreActionPower(this,2),2));
+            AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(this, this, new SenaMoreActionPower(this,1),1));
             AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(this, this, new SenaTopPower(this,8),8));
             AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(this, this, new SenaTeachPower(this,10),10));
         } else {
-            AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(this, this, new SenaMoreActionPower(this,1),1));
             AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(this, this, new SenaTopPower(this,5),5));
         }
         AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(this, this, new SenaEncallPower(this)));

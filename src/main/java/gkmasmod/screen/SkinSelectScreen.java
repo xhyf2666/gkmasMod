@@ -195,7 +195,7 @@ public class SkinSelectScreen implements ISubscriber, CustomSavable<int[]> {
                 this.styleHint = CardCrawlGame.languagePack.getUIString("styleHint:fullPower").TEXT[0];
                 break;
         }
-        if(idolName.equals(IdolData.hmsz)){
+        if(idolName.equals(IdolData.hmsz)&&idolType== CommonEnum.IdolType.ANOMALY){
             this.styleImg = ImageMaster.loadImage("gkmasModResource/img/UI/overPreservation.png");
             this.styleHintName = CardCrawlGame.languagePack.getUIString("styleHintName:overPreservation").TEXT[0];
             this.styleHint = CardCrawlGame.languagePack.getUIString("styleHint:overPreservation").TEXT[0];

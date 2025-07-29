@@ -32,7 +32,6 @@ public class CanYouAcceptPower extends AbstractPower {
         this.owner = owner;
         this.type = PowerType.BUFF;
         this.amount = amount;
-        this.priority = 90;
 
         this.region128 = new TextureAtlas.AtlasRegion(ImageMaster.loadImage(path128), 0, 0, 84, 84);
         this.region48 = new TextureAtlas.AtlasRegion(ImageMaster.loadImage(path48), 0, 0, 32, 32);
@@ -71,11 +70,11 @@ public class CanYouAcceptPower extends AbstractPower {
                     GrowHelper.grow(c,DamageGrow.growID,amount);
                 }
             }
-            for(AbstractCard c:AbstractDungeon.player.exhaustPile.group) {
-                if(c.hasTag(GkmasCardTag.CONCENTRATION_TAG)){
-                    GrowHelper.grow(c,DamageGrow.growID,amount);
-                }
-            }
+//            for(AbstractCard c:AbstractDungeon.player.exhaustPile.group) {
+//                if(c.hasTag(GkmasCardTag.CONCENTRATION_TAG)){
+//                    GrowHelper.grow(c,DamageGrow.growID,amount);
+//                }
+//            }
             if(AbstractDungeon.player.hasPower(TempSavePower.POWER_ID)){
                 TempSavePower tempSavePower = (TempSavePower) AbstractDungeon.player.getPower(TempSavePower.POWER_ID);
                 for(AbstractCard c:tempSavePower.getCards()){

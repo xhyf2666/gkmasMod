@@ -81,7 +81,7 @@
   },
   "IdolName:mshy": {
     "NAMES": [""],
-    "TEXT": ["真城忧"]
+    "TEXT": ["真城优"]
   },
   "IdolName:prod": {
     "NAMES": [""],
@@ -90,6 +90,14 @@
   "IdolName:arnm": {
     "NAMES": [""],
     "TEXT": ["鼓掌姬崎人"]
+  },
+  "IdolName:yktn": {
+    "NAMES": [""],
+    "TEXT": ["藤田言音"]
+  },
+  "IdolName:lhro": {
+    "NAMES": [""],
+    "TEXT": ["HP为1的公主"]
   },
   "IdolClass:shro": {
     "NAMES": [""],
@@ -851,6 +859,38 @@
     "NAMES": [""],
     "TEXT": ["来自初星学园的三年生，担任学生会的书记。 NL 与制作人在尖塔散步时意外走散，机缘巧合之下获得了蓝色力量的传承。 NL 机缘巧合之下获得了蓝色力量的传承。"]
   },
+  "IdolStory:yktn": {
+    "NAMES": [""],
+    "TEXT": ["家庭并不富裕，有很多弟弟妹妹，于是想着要做点什么。 NL 为了缓解家庭负担，在偶像学习之余过度打工，身体状况不好，形成了恶性循环。 NL 在制作人的帮助下重新调整平衡，取得突破。"]
+  },
+  "IdolStory:lhro": {
+    "NAMES": [""],
+    "TEXT": ["「囚禁在地牢中，HP只有1的公主」，只是走路都会晕倒。 NL 因为认为偶像是最不适合自己的工作，而选择了这份职业。 NL 在制作人安排的特训和朋友们的帮助下，成功超越了人类的极限。"]
+  },
+  "IdolStory:default": {
+    "NAMES": [""],
+    "TEXT": ["来自初星学园的偶像团体。每位偶像拥有各自的初始卡组、专属遗物和成长倾向。"]
+  },
+  "IdolStory:default2": {
+    "NAMES": [""],
+    "TEXT": ["不同背景的偶像团体。每位偶像拥有各自的初始卡组、专属遗物和成长倾向。"]
+  },
+  "gkmasMod:title1": {
+    "NAMES": [""],
+    "TEXT": ["学园偶像大师"]
+  },
+  "gkmasMod:title2": {
+    "NAMES": [""],
+    "TEXT": ["泰谷美铃"]
+  },
+  "gkmasMod:meetHeart1": {
+    "NAMES": [""],
+    "TEXT": ["到了……登上舞台的时候。"]
+  },
+  "gkmasMod:meetHeart2": {
+    "NAMES": [""],
+    "TEXT": ["让我们一起……把那个孩子带回来吧。"]
+  },
   "Sensei:Merchant": {
     "NAMES": [
       "离开",
@@ -914,11 +954,11 @@
       "Fight On!"
     ]
   },
-    "IdolBossStartTalk:shro_hski": {
-        "NAMES": [
-        ],
-        "TEXT": [
-        "啊，是第二名的人"
-        ]
-    }
+  "IdolBossStartTalk:shro_hski": {
+    "NAMES": [
+    ],
+    "TEXT": [
+      "啊，是第二名的人"
+    ]
+  }
 }

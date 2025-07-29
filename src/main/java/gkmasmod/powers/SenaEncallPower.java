@@ -2,6 +2,7 @@ package gkmasmod.powers;
 
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -12,6 +13,7 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 import gkmasmod.actions.GrowAction;
 import gkmasmod.cardGrowEffect.EnergyGrow;
 import gkmasmod.patches.AbstractMonsterPatch;
+import gkmasmod.utils.GrowHelper;
 import gkmasmod.utils.NameHelper;
 import gkmasmod.utils.PlayerHelper;
 
@@ -53,6 +55,16 @@ public class SenaEncallPower extends AbstractPower {
                 }
             }
         }
-        addToBot(new GrowAction(EnergyGrow.growID, GrowAction.GrowType.allHand,1));
+
+        int i=0;
+        for(AbstractCard c : AbstractDungeon.player.hand.group) {
+            if(i%2==0){
+                GrowHelper.grow(c,EnergyGrow.growID,-1);
+            }
+            else{
+                GrowHelper.grow(c,EnergyGrow.growID,1);
+            }
+            i++;
+        }
     }
 }

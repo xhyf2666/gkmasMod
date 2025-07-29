@@ -374,18 +374,8 @@ public class MonsterRinha extends CustomMonster {
                 CardCrawlGame.music.dispose();
                 CardCrawlGame.music.unsilenceBGM();
                 AbstractDungeon.scene.fadeOutAmbiance();
-                if(AbstractDungeon.player instanceof MisuzuCharacter){
-                    CardCrawlGame.music.playTempBgmInstantly("gkmasModResource/audio/song/hmsz_002.ogg",true);
-                }
-                else{
-                    String song = String.format("gkmasModResource/audio/song/%s_00%s.ogg",SkinSelectScreen.Inst.idolName,
-                            IdolData.getIdol(SkinSelectScreen.Inst.idolIndex).getSong(SkinSelectScreen.Inst.skinIndex));
-                    if(!Gdx.files.internal(song).exists()) {
-                        song = String.format("gkmasModResource/audio/song/%s_00%s.ogg",SkinSelectScreen.Inst.idolName,2);
-
-                    }
-                    CardCrawlGame.music.playTempBgmInstantly(song, true);
-                }
+                String song = SoundHelper.getSong();
+                CardCrawlGame.music.playTempBgmInstantly(song, true);
                 break;
         }
     }

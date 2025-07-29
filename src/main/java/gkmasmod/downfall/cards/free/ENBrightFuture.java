@@ -27,9 +27,9 @@ public class ENBrightFuture extends GkmasBossCard {
     private static String IMG_PATH = ImageHelper.idolImgPath(AbstractCharBoss.theIdolName, CLASSNAME2);
 
     private static final int COST = 2;
-    private static final int ATTACK_DMG = 11;
+    private static final int ATTACK_DMG = 10;
     private static final int UPGRADE_PLUS_DMG = 3;
-    private static final int BLOCK_AMT = 9;
+    private static final int BLOCK_AMT = 10;
     private static final int UPGRADE_PLUS_BLOCK = 3;
 
     private static final CardType TYPE = CardType.ATTACK;

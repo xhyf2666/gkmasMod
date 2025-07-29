@@ -10,6 +10,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.AbstractPower;
 import gkmasmod.patches.AbstractPlayerPatch;
 import gkmasmod.powers.*;
 import gkmasmod.utils.PlayerHelper;
@@ -25,7 +26,6 @@ public class GoodImpressionAutoDamageAction extends AbstractGameAction {
     }
 
     public void update() {
-        System.out.println("GoodImpressionAutoDamageAction");
         int amount = this.p.getPower(GoodImpression.POWER_ID)==null?0:this.p.getPower(GoodImpression.POWER_ID).amount;
         int count = this.p.getPower(SSDSecretPower.POWER_ID)==null?0:this.p.getPower(SSDSecretPower.POWER_ID).amount;
         count++;
@@ -42,6 +42,30 @@ public class GoodImpressionAutoDamageAction extends AbstractGameAction {
             rate *= 0.8f;
         if(p.hasPower(IdolExamPower.POWER_ID)){
             rate *= ((IdolExamPower)p.getPower(IdolExamPower.POWER_ID)).getRate();
+        }
+        if(p.hasPower(DamageIncreasePower.POWER_ID)){
+            rate *= (1 + p.getPower(DamageIncreasePower.POWER_ID).amount * 1.0F / 100);
+        }
+        if(p.hasPower(BeyondSunSongPower.POWER_ID)){
+            rate *= 0.5f;
+        }
+        if(p.hasPower(MasterRollerPower.POWER_ID)){
+            rate *= 0.5f;
+        }
+        if(p.hasPower(MasterTreadmillPower.POWER_ID)){
+            rate *= 0.8f;
+        }
+        if(p.hasPower(BeyondSunSongPower.POWER_ID)){
+            rate *= 1.5f;
+        }
+        int goodImpressionDamageAdd = 0;
+        for(AbstractPower power : p.powers) {
+            if (power instanceof GoodImpressionDamageAddPower) {
+                goodImpressionDamageAdd += ((GoodImpressionDamageAddPower) power).getMagic();
+            }
+        }
+        if(goodImpressionDamageAdd>0){
+            rate *= (1 + goodImpressionDamageAdd * 1.0F / 100);
         }
         int countNotGoodTune = 0;
         int countGreatNotGoodTune = 0;

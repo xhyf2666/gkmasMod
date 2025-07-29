@@ -30,7 +30,7 @@ public class ENOpeningAct extends GkmasBossCard {
     private static final String DESCRIPTION = CARD_STRINGS.DESCRIPTION;
     private static String IMG_PATH = ImageHelper.idolImgPath(AbstractCharBoss.theIdolName, CLASSNAME2);
 
-    private static final int COST = 2;
+    private static final int COST = 1;
 
     private static final int BASE_DAMAGE = 6;
     private static final int UPGRADE_DMG_PLUS = 2;

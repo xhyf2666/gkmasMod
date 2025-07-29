@@ -13,6 +13,7 @@ import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.downfall.cards.GkmasBossCard;
 import gkmasmod.powers.GoodImpression;
+import gkmasmod.powers.StarDustPower;
 import gkmasmod.utils.ImageHelper;
 import gkmasmod.utils.NameHelper;
 import gkmasmod.utils.PlayerHelper;
@@ -67,6 +68,7 @@ public class ENStarDust extends GkmasBossCard {
         if(this.upgraded){
 //            addToBot(new DrawCardAction(thirdMagicNumber));
         }
+        addToBot(new ApplyPowerAction(m,m,new StarDustPower(m,3),3));
         addToBot(new GainTrainRoundPowerAction(m,1));
     }
 

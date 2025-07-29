@@ -12,6 +12,7 @@ import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.powers.NewFriendsPower;
 import gkmasmod.powers.SpringSleepyPower;
+import gkmasmod.utils.IdolData;
 import gkmasmod.utils.ImageHelper;
 import gkmasmod.utils.NameHelper;
 
@@ -35,11 +36,21 @@ public class NewFriends extends GkmasCard {
     private static final CardRarity RARITY = CardRarity.RARE;
     private static final CardTarget TARGET = CardTarget.ENEMY;
 
+    private static final String[] colors = new String[]{
+            IdolData.shro,
+            IdolData.hume,
+            IdolData.kcna
+    };
+
     public NewFriends() {
         super(ID, NAME, ImageHelper.getCardImgPath(CLASSNAME,TYPE), COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.baseMagicNumber = BASE_MAGIC;
         this.magicNumber = this.baseMagicNumber;
         this.tags.add(GkmasCardTag.ONLY_ONE_TAG);
+
+        this.backGroundColor = colors[(int) (Math.random() * colors.length)];
+
+        updateBackgroundImg();
     }
 
 

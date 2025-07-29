@@ -194,7 +194,13 @@ public class GkmasMod implements EditCardsSubscriber, EditStringsSubscriber, Edi
         String lang;
         if (Settings.language == Settings.GameLanguage.ZHS) {
             lang = "chs";
-        } else {
+        } else if(Settings.language == Settings.GameLanguage.ZHT){
+            lang = "cht";
+        }
+        else if(Settings.language == Settings.GameLanguage.JPN){
+            lang = "jpn";
+        }
+        else{
             lang = "chs";
         }
         BaseMod.loadCustomStringsFile(CardStrings.class, "gkmasModResource/localization/gkmas_cards_"+lang+".json");
@@ -214,7 +220,13 @@ public class GkmasMod implements EditCardsSubscriber, EditStringsSubscriber, Edi
         String lang = "eng";
         if (Settings.language == Settings.GameLanguage.ZHS) {
             lang = "chs";
-        } else {
+        } else if(Settings.language == Settings.GameLanguage.ZHT){
+            lang = "cht";
+        }
+        else if(Settings.language == Settings.GameLanguage.JPN){
+            lang = "jpn";
+        }
+        else{
             lang = "chs";
         }
 
@@ -263,6 +275,7 @@ public class GkmasMod implements EditCardsSubscriber, EditStringsSubscriber, Edi
         instances.add(new TheScenerySawSomeday());
         instances.add(new KiraKiraPrism());
         instances.add(new AfterSchoolChat());
+        instances.add(new FightReason());
         // 千奈
         instances.add(new FullOfEnergy());
         instances.add(new FirstColor());
@@ -273,6 +286,7 @@ public class GkmasMod implements EditCardsSubscriber, EditStringsSubscriber, Edi
         instances.add(new GonnaTrickYou());
         instances.add(new ContinuousExpandWorld());
         instances.add(new LittleSun());
+        instances.add(new NextTimeMust());
         // 佑芽
         instances.add(new UntappedPotential());
         instances.add(new DefeatBigSister());
@@ -302,6 +316,7 @@ public class GkmasMod implements EditCardsSubscriber, EditStringsSubscriber, Edi
         instances.add(new RefreshingBreak());
         instances.add(new LetMeBecomeIdol());
         instances.add(new CanYouAccept());
+        instances.add(new NoMatterWhatWorld());
         // 琴音
         instances.add(new Arbeiter());
         instances.add(new FirstReward());
@@ -352,6 +367,7 @@ public class GkmasMod implements EditCardsSubscriber, EditStringsSubscriber, Edi
         instances.add(new FreeWoman());
         instances.add(new RestAndWalk());
         instances.add(new SceneryOnHouse());
+        instances.add(new DreamIdol());
 
         // 普通
         instances.add(new LightGait());
@@ -476,7 +492,7 @@ public class GkmasMod implements EditCardsSubscriber, EditStringsSubscriber, Edi
         instances.add(new WarmCare());
         instances.add(new HardStretching());
         instances.add(new MadeOneForYou());
-        instances.add(new AngelAndDemon());
+//        instances.add(new AngelAndDemon());
         instances.add(new JustAngel());
         instances.add(new JustDemon());
         instances.add(new TopWisdom());
@@ -575,34 +591,42 @@ public class GkmasMod implements EditCardsSubscriber, EditStringsSubscriber, Edi
         instances.add(new MiracleMagic());
         instances.add(new Excite());
         instances.add(new SparklingConfetti());
-        instances.add(new DiggingTalent());
+//        instances.add(new DiggingTalent());
         instances.add(new PacificSaury());
         instances.add(new IrresistibleClassmate());
         instances.add(new MyPaceMyLife());
-        instances.add(new CatchingDragonflies());
+//        instances.add(new CatchingDragonflies());
         instances.add(new EverythingIsReady());
         instances.add(new ProducingIsChallenging());
         instances.add(new MayRain());
         instances.add(new ThunderWillStop());
         instances.add(new BeyondTheSky());
         instances.add(new StepOnStage());
-        instances.add(new LikeStars());
+//        instances.add(new LikeStars());
         instances.add(new StarPicking());
         instances.add(new StarPickingConcentration());
         instances.add(new StarPickingPreservation());
         instances.add(new WhereDreamsAre());
         instances.add(new HoldBack());
         instances.add(new Unpredictable());
-        instances.add(new LikeUsual());
+//        instances.add(new LikeUsual());
         instances.add(new EyesOfTheScenery());
-        instances.add(new WarmMemories());
-        instances.add(new AllMembersGather());
-        instances.add(new AllMembersGatherLogic());
-        instances.add(new AllMembersGatherSense());
+//        instances.add(new WarmMemories());
+//        instances.add(new AllMembersGather());
+//        instances.add(new AllMembersGatherLogic());
+//        instances.add(new AllMembersGatherSense());
         instances.add(new DoYouLikeIt());
         instances.add(new Resilience());
         instances.add(new ClumsyAsAlways());
         instances.add(new WalkAndWin());
+
+        instances.add(new Setting());
+        instances.add(new FirstImpression());
+        instances.add(new FashionLeader());
+        instances.add(new Motivation());
+        instances.add(new InternetInfluencer());
+        instances.add(new HeatUp());
+        instances.add(new KeepOneMind());
 
         instances.add(new StartingLine());
         instances.add(new TimeLoop());
@@ -698,6 +722,12 @@ public class GkmasMod implements EditCardsSubscriber, EditStringsSubscriber, Edi
         instances.add(new SupportiveFeelingsBlue());
         instances.add(new FarewellFlower());
         instances.add(new BaseProvocation());
+        instances.add(new LifeRhythm());
+        instances.add(new TheHappiestLife());
+        instances.add(new IrreplaceableYou());
+
+        instances.add(new Sunfaded());
+        instances.add(new SunfadedJudge());
 
         // 遍历instances的所有元素，将其添加到listener中
         for (Object instance : instances) {
@@ -738,6 +768,7 @@ public class GkmasMod implements EditCardsSubscriber, EditStringsSubscriber, Edi
         BaseMod.addRelicToCustomPool(new TheDreamSawSomeday(), gkmasModColor);
         BaseMod.addRelicToCustomPool(new SmallGalaxy(), gkmasModColor);
         BaseMod.addRelicToCustomPool(new ContinuousEffort(), gkmasModColor);
+        BaseMod.addRelicToCustomPool(new SilvistaAttack(), gkmasModColor);
         // 千奈
         BaseMod.addRelicToCustomPool(new WishFulfillmentAmulet(), gkmasModColor);
         BaseMod.addRelicToCustomPool(new FirstHeartProofChina(), gkmasModColor);
@@ -748,6 +779,7 @@ public class GkmasMod implements EditCardsSubscriber, EditStringsSubscriber, Edi
         BaseMod.addRelicToCustomPool(new CursedSpirit(), gkmasModColor);
         BaseMod.addRelicToCustomPool(new DreamOfTheDescription(), gkmasModColor);
         BaseMod.addRelicToCustomPool(new SpringIsComing(), gkmasModColor);
+        BaseMod.addRelicToCustomPool(new LegendaryIdolEquipment(), gkmasModColor);
         // 佑芽
         BaseMod.addRelicToCustomPool(new TechnoDog(), gkmasModColor);
         BaseMod.addRelicToCustomPool(new ShibaInuPochette(), gkmasModColor);
@@ -777,6 +809,7 @@ public class GkmasMod implements EditCardsSubscriber, EditStringsSubscriber, Edi
         BaseMod.addRelicToCustomPool(new ClapClapFan(), gkmasModColor);
         BaseMod.addRelicToCustomPool(new YouFindMe(), gkmasModColor);
         BaseMod.addRelicToCustomPool(new SweetTaste(), gkmasModColor);
+        BaseMod.addRelicToCustomPool(new SaveWorldMicrophone(), gkmasModColor);
         // 琴音
         BaseMod.addRelicToCustomPool(new HandmadeMedal(), gkmasModColor);
         BaseMod.addRelicToCustomPool(new FirstVoiceProofKotone(), gkmasModColor);
@@ -824,9 +857,10 @@ public class GkmasMod implements EditCardsSubscriber, EditStringsSubscriber, Edi
         BaseMod.addRelicToCustomPool(new FirstStarChallenge(),gkmasModColor);
 
         // 美铃
-        BaseMod.addRelicToCustomPool(new DreamOfTheDescription(), gkmasModColorMisuzu);
+        BaseMod.addRelicToCustomPool(new DescriptionOfDream(), gkmasModColorMisuzu);
         BaseMod.addRelicToCustomPool(new SwayWindHairpin(), gkmasModColorMisuzu);
         BaseMod.addRelicToCustomPool(new SomethingLongHold(), gkmasModColorMisuzu);
+        BaseMod.addRelicToCustomPool(new BeyondSunSong(), gkmasModColorMisuzu);
 
         BaseMod.addRelicToCustomPool(new SyngUpRelic(), gkmasModColorMisuzu);
         BaseMod.addRelicToCustomPool(new SyngUpRelicBroken(), gkmasModColorMisuzu);
@@ -883,7 +917,12 @@ public class GkmasMod implements EditCardsSubscriber, EditStringsSubscriber, Edi
         BaseMod.addRelicToCustomPool(new LadyDiary(),gkmasModColor);
         BaseMod.addRelicToCustomPool(new SisterComplex(),gkmasModColor);
         BaseMod.addRelicToCustomPool(new TopIdolPride(),gkmasModColor);
+        BaseMod.addRelicToCustomPool(new ProducerBaseSkill(),gkmasModColor);
+        BaseMod.addRelicToCustomPool(new AsariHelp(),gkmasModColor);
 
+        BaseMod.addRelicToCustomPool(new LikeUsualRelic(),gkmasModColorAnomaly);
+        BaseMod.addRelicToCustomPool(new AngelAndDemonRelic(),gkmasModColor);
+        BaseMod.addRelicToCustomPool(new FriendSupport(),gkmasModColor);
     }
 
     private void addPotions(){
@@ -1057,13 +1096,14 @@ public class GkmasMod implements EditCardsSubscriber, EditStringsSubscriber, Edi
 
         CustomDungeon.addAct(4, new IdolRoad());
 
-        CardCrawlGame.languagePack.getEventString(ActLikeIt.makeID("ForkInTheRoad")).OPTIONS[4]="挑战美铃或燐羽（这里有两个未实装的小孩）";
+        String[] tips = CardCrawlGame.languagePack.getUIString("gkmasMod:IdolRoadTips").TEXT;
+        CardCrawlGame.languagePack.getEventString(ActLikeIt.makeID("ForkInTheRoad")).OPTIONS[4]=tips[0];
 
         if(CardCrawlGame.languagePack.getEventString(ActLikeIt.makeID("ForkInTheRoad")).DESCRIPTIONS.length>6){
-            CardCrawlGame.languagePack.getEventString(ActLikeIt.makeID("ForkInTheRoad")).DESCRIPTIONS[6]="你的旅途即将进入下一阶段 NL 选择你接下来的 #b计划 ";
+            CardCrawlGame.languagePack.getEventString(ActLikeIt.makeID("ForkInTheRoad")).DESCRIPTIONS[6]=tips[1];
         }
 
-        CardCrawlGame.languagePack.getEventString(ActLikeIt.makeID("ForkInTheRoad")).DESCRIPTIONS[3]="趁着没人来，先睡一会吧……";
+        CardCrawlGame.languagePack.getEventString(ActLikeIt.makeID("ForkInTheRoad")).DESCRIPTIONS[3]=tips[2];
 
         try {
             // 设置默认值
@@ -1082,7 +1122,7 @@ public class GkmasMod implements EditCardsSubscriber, EditStringsSubscriber, Edi
             hasNewYear = config.getBool("hasNewYear");
             ModPanel panel = new ModPanel();
             BaseMod.registerModBadge(new Texture("gkmasModResource/img/UI/badge.png"), "GkmasMod", "虚怀盈风", "学园偶像大师Mod", panel);
-            ModLabeledToggleButton onlyModBossButton = new ModLabeledToggleButton("优先出现Mod Boss", 400.0F, 500.0F, Color.WHITE, FontHelper.buttonLabelFont, onlyModBoss, panel, l -> {}, GkmasMod::onlyModBossTrigger);
+            ModLabeledToggleButton onlyModBossButton = new ModLabeledToggleButton(tips[3], 400.0F, 500.0F, Color.WHITE, FontHelper.buttonLabelFont, onlyModBoss, panel, l -> {}, GkmasMod::onlyModBossTrigger);
             panel.addUIElement(onlyModBossButton);
             if(beat_hmsz>0)
                 SkinSelectScreen.Inst.specialCard.upgrade();

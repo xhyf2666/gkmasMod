@@ -37,6 +37,9 @@ public class ExordiumPatch
             if(!(AbstractDungeon.player instanceof IdolCharacter||AbstractDungeon.player instanceof MisuzuCharacter||AbstractDungeon.player instanceof OtherIdolCharacter)){
                 return SpireReturn.Continue();
             }
+            if(AbstractDungeon.player instanceof OtherIdolCharacter && OtherSkinSelectScreen.Inst.idolName.equals(IdolData.arnm)){
+                return SpireReturn.Continue();
+            }
             Exordium.bossList.clear();
             if (Settings.isDailyRun) {
                 Exordium.bossList.add("The Guardian");
@@ -84,6 +87,9 @@ public class ExordiumPatch
         @SpireInsertPatch(rloc = 4,localvars = {"monsters"})
         public static SpireReturn<Void> insert(Exordium __instance, int count, ArrayList<MonsterInfo> monsters) {
             if(!(AbstractDungeon.player instanceof IdolCharacter||AbstractDungeon.player instanceof MisuzuCharacter||AbstractDungeon.player instanceof OtherIdolCharacter)){
+                return SpireReturn.Continue();
+            }
+            if(AbstractDungeon.player instanceof OtherIdolCharacter && OtherSkinSelectScreen.Inst.idolName.equals(IdolData.arnm)){
                 return SpireReturn.Continue();
             }
             if(AbstractDungeon.player instanceof IdolCharacter){

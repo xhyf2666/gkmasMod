@@ -6,6 +6,7 @@ import basemod.abstracts.CustomSavable;
 import basemod.eventUtil.EventUtils;
 import basemod.interfaces.ISubscriber;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.actions.animations.TalkAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.MakeTempCardInHandAction;
@@ -277,11 +278,15 @@ public class PocketBook extends CustomRelic  implements ISubscriber, CustomSavab
         }
         if(AbstractDungeon.floorNum==15||AbstractDungeon.floorNum==32||AbstractDungeon.floorNum==49) {
             options.add(new AnotherShopOption(true));
-            options.add(new SpecialTeachOption(true));
         }
         else{
             options.add(new SupplyOption(true));
         }
+        if(AbstractDungeon.player.hasRelic(AsariHelp.ID)||AbstractDungeon.floorNum==15||AbstractDungeon.floorNum==32||AbstractDungeon.floorNum==49){
+            options.add(new SpecialTeachOption(true));
+        }
+
+
     }
 
     public void atTurnStart() {
@@ -385,6 +390,12 @@ public class PocketBook extends CustomRelic  implements ISubscriber, CustomSavab
                     addToBot(new MakeTempCardInHandAction(new ProducerTrumpCard()));
                 }
                 break;
+            }
+        }
+
+        if(AbstractDungeon.player instanceof OtherIdolCharacter){
+            if(OtherSkinSelectScreen.Inst.idolName.equals(IdolData.prod)){
+                trainRoundNum = (int) (trainRoundNum*1.5F);
             }
         }
 

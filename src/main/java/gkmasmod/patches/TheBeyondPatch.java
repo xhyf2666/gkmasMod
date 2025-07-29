@@ -40,6 +40,9 @@ public class TheBeyondPatch
             if(!(AbstractDungeon.player instanceof IdolCharacter||AbstractDungeon.player instanceof MisuzuCharacter||AbstractDungeon.player instanceof OtherIdolCharacter)){
                 return SpireReturn.Continue();
             }
+            if(AbstractDungeon.player instanceof OtherIdolCharacter && OtherSkinSelectScreen.Inst.idolName.equals(IdolData.arnm)){
+                return SpireReturn.Continue();
+            }
             TheBeyond.bossList.clear();
             if (Settings.isDailyRun) {
                 TheBeyond.bossList.add("Awakened One");
@@ -129,6 +132,9 @@ public class TheBeyondPatch
         @SpireInsertPatch(rloc = 4,localvars = {"monsters"})
         public static SpireReturn<Void> insert(TheBeyond __instance, int count, ArrayList<MonsterInfo> monsters) {
             if(!(AbstractDungeon.player instanceof IdolCharacter||AbstractDungeon.player instanceof MisuzuCharacter||AbstractDungeon.player instanceof OtherIdolCharacter)){
+                return SpireReturn.Continue();
+            }
+            if(AbstractDungeon.player instanceof OtherIdolCharacter && OtherSkinSelectScreen.Inst.idolName.equals(IdolData.arnm)){
                 return SpireReturn.Continue();
             }
             if(AbstractDungeon.player instanceof IdolCharacter){

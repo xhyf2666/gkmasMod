@@ -1,0 +1,843 @@
+{
+  "gkmasModFree": {
+    "TEXT": ["IDOL:共通"]
+  },
+  "gkmasModLogic": {
+    "TEXT": ["IDOL:ロジック"]
+  },
+  "gkmasModSense": {
+    "TEXT": ["IDOL:センス"]
+  },
+  "gkmasModAnomaly": {
+    "TEXT": ["IDOL:アノマリー"]
+  },
+  "gkmasModMisuzu": {
+    "TEXT": ["秦谷美鈴"]
+  },
+  "gkmasModMoon": {
+    "TEXT": ["極月"]
+  },
+  "gkmasModOther": {
+    "TEXT": ["IDOLM@STER"]
+  },
+  "typeHintName:logic": {
+    "TEXT": ["ロジック"]
+  },
+  "typeHintName:sense": {
+    "TEXT": ["センス"]
+  },
+  "typeHintName:anomaly": {
+    "TEXT": ["アノマリー"]
+  },
+  "typeHintName:produce": {
+    "TEXT": ["プロデュース"]
+  },
+  "typeHint:sense": {
+  "TEXT": ["カードプールは #yセンス カードと汎用カード。 #y攻殺 寄りの構成。"]
+  },
+  "typeHint:logic": {
+    "TEXT": ["カードプールは #yロジック カードと汎用カード。 #y防殺 寄りの構成。"]
+  },
+  "typeHint:anomaly": {
+    "TEXT": ["カードプールは #yアノマリー カードと汎用カード。 #y温存 、 #y強気 、 #y全力 を柔軟に切り替える。"]
+  },
+  "typeHint:produce": {
+    "TEXT": ["ターン開始時に #yロジック 、 #yセンス 、 #yアノマリー のいずれかの訓練時間を選択する。"]
+  },
+  "typeHint:logicSense": {
+    "TEXT": ["カードプールは #yロジック 、汎用、少数の #yセンス カード。 #y攻守両立 型。"]
+  },
+  "gkmasMod:Name:update": {
+    "TEXT": ["慎重選択"]
+  },
+  "gkmasMod:Hint:update": {
+    "TEXT": ["初期レリックとして #y感理の秤 を獲得。 NL カードプールに #yロジック 、 #yセンス 、 #yアノマリー カードがすべて出現する。"]
+  },
+  "gkmasMod:Name:hide": {
+    "TEXT": ["見た目統合"]
+  },
+  "gkmasMod:Hint:hide": {
+    "TEXT": ["同一スキル構成の見た目違いを統合表示する。"]
+  },
+  "styleHintName:goodTune": {
+    "TEXT": ["好調"]
+  },
+  "styleHintName:focus": {
+    "TEXT": ["筋力"]
+  },
+  "styleHintName:goodImpression": {
+    "TEXT": ["好印象"]
+  },
+  "styleHintName:yaruki": {
+    "TEXT": ["敏捷性"]
+  },
+  "styleHintName:fullPower": {
+    "TEXT": ["全力"]
+  },
+  "styleHintName:concentration": {
+    "TEXT": ["強気"]
+  },
+  "styleHintName:overPreservation": {
+    "TEXT": ["のんびり"]
+  },
+  "styleHintName:allCard": {
+    "TEXT": ["育成"]
+  },
+  "styleHintName:notGoodTune": {
+    "TEXT": ["不調"]
+  },
+  "styleHintName:fightWill": {
+    "TEXT": ["戦意"]
+  },
+  "styleHintName:lifeNotStop": {
+    "TEXT": ["癒し"]
+  },
+  "styleHintName:pinkGirl": {
+    "TEXT": ["小悪魔"]
+  },
+  "styleHintName:robot": {
+    "TEXT": ["ロボット"]
+  },
+  "styleHint:goodTune": {
+    "TEXT": [" #y好調 と #y絶好調 を重ね、高いダメージボーナスを得る。"]
+  },
+  "styleHint:focus": {
+    "TEXT": [" #y筋力 を重ねて基礎ダメージを強化する。"]
+  },
+  "styleHint:yaruki": {
+    "TEXT": [" #y敏捷 と #yブロック を重ね、 #yブロック に応じたダメージを与える。"]
+  },
+  "styleHint:goodImpression": {
+    "TEXT": [" #y好印象 を重ね、ターン終了時に自動で攻撃する。"]
+  },
+  "styleHint:fullPower": {
+    "TEXT": [" #y全力値 をため、 #y温存 を活用して #y全力 ターンで爆発力を発揮する。"]
+  },
+  "styleHint:concentration": {
+    "TEXT": [" #y強気 と #y温存 を切り替えながら、 #y成長 を重ねる。"]
+  },
+  "styleHint:overPreservation": {
+    "TEXT": [" #yのんびり に #y強気 で #y熱意 を得るか、 #y全力 で #y成長 を得る。"]
+  },
+  "styleHint:allCard": {
+    "TEXT": ["カードプールは汎用カードとアイドルカード。多様なスタイルを取る。"]
+  },
+  "styleHint:notGoodTune": {
+    "TEXT": [" #y不調 を重ねて敵の与ダメージを下げる。"]
+  },
+  "styleHint:fightWill": {
+    "TEXT": [" #y戦意 を重ね、スタック数に応じて強化される。"]
+  },
+  "styleHint:lifeNotStop": {
+    "TEXT": ["戦闘中の回復量に制限があるが、余剰回復分を #y好印象 に変換できる。"]
+  },
+  "styleHint:pinkGirl": {
+    "TEXT": ["ターン終了時に #y筋力 と #y敏捷性 のスタック数を入れ替える。"]
+  },
+  "styleHint:robot": {
+    "TEXT": ["カードプールは青カード。 #y集中力 を重ねて成長する。"]
+  },
+  "gkmasMod:PocketBookUI": {
+    "TEXT": ["名前","クラス","誕生日","年齢","身長","体重","BWH","趣味","宿敵","特技","閉じる","次へ","評価基準","評価基準を満たすことで、担当アイドルが最終評価を通過しやすくなる。","育成課題","育成課題を達成すると、報酬を獲得できる。 NL 課題は順番に達成する必要がある。"]
+  },
+  "gkmasMod:PlanReward1": {
+    "TEXT": [" #b50 ゴールドを得る。特殊レリックを選択。"]
+  },
+  "gkmasMod:PlanReward2": {
+    "TEXT": ["特定のドリンクを選ぶ。特殊レリックを得る。"]
+  },
+  "gkmasMod:PlanReward3": {
+    "TEXT": ["カードをアップグレード／削除する。"]
+  },
+  "gkmasMod:PlanRequire": {
+    "TEXT": [" #y%s を #b%d まで上げる"]
+  },
+  "gkmasMod:NotEnoughGoodImpression": {
+    "TEXT": [" #y好印象 が足りない"]
+  },
+  "gkmasMod:NotEnoughDexterityPower": {
+    "TEXT": [" #y敏捷性 が足りない"]
+  },
+  "gkmasMod:NotEnoughStrengthPower": {
+    "TEXT": [" #y筋力 が足りない"]
+  },
+  "gkmasMod:NotEnoughGoodTune": {
+    "TEXT": [" #y好調 が足りない"]
+  },
+  "gkmasMod:NotEnoughMoney": {
+    "TEXT": ["ゴールドが足りない"]
+  },
+  "gkmasMod:NotEnoughBlock": {
+    "TEXT": [" #yブロック が足りない"]
+  },
+  "gkmasMod:NotStance": {
+    "TEXT": ["スタンスに入っていない"]
+  },
+  "gkmasMod:NotFullPowerStance": {
+    "TEXT": [" #y全力 スタンスでない"]
+  },
+  "gkmasMod:NotPreservationStance": {
+    "TEXT": [" #y温存 スタンスでない"]
+  },
+  "gkmasMod:NotConcentrationStance": {
+    "TEXT": [" #y強気 スタンスでない"]
+  },
+  "gkmasMod:NotEnoughFullPowerValue": {
+    "TEXT": [" #y全力値 が足りない"]
+  },
+  "gkmasMod:NotEnoughPreservationStanceTime": {
+    "TEXT": ["温存のスタンスに入った回数が足りない"]
+  },
+  "gkmasMod:NotEnoughConcentrationStanceTime": {
+    "TEXT": ["強気のスタンスに入った回数が足りない"]
+  },
+  "gkmasMod:NotEnoughFullPowerStanceTime": {
+    "TEXT": ["全力のスタンスに入った回数が足りない"]
+  },
+  "gkmasMod:ProudStudentAction": {
+    "TEXT": ["カード1枚を保留する"]
+  },
+  "gkmasMod:PotentialAbilityAction": {
+    "TEXT": ["カード%d枚を暂存する"]
+  },
+  "gkmasMod:DiggingTalentAction": {
+    "TEXT": ["カード1枚を暂存する"]
+  },
+  "gkmasMod:SelectCardGrowAction": {
+    "TEXT": ["カード1枚を成長させる"]
+  },
+  "gkmasMod:BlossomingSeasonAction": {
+    "TEXT": ["除外"]
+  },
+  "gkmasMod:AlternativesAction": {
+    "TEXT": ["、1枚目のカードが2枚目のカードに変化する"]
+  },
+  "gkmasMod:AssimilationAction": {
+    "TEXT": ["、手札1枚を眠気に変化させる"]
+  },
+  "gkmasMod:ProducingIsChallengingAction": {
+    "TEXT": ["成長効果を移す"]
+  },
+  "gkmasMod:TurnBackAction": {
+    "TEXT": ["手札1枚を選ぶ", "カード1枚を選ぶ"]
+  },
+  "gkmasMod:Retain": {
+    "TEXT": ["保留 。"]
+  },
+  "gkmasMod:TempSave": {
+    "TEXT": ["暂存 。"]
+  },
+  "gkmasMod:WakeUpHeader": {
+    "TEXT": ["触媒"]
+  },
+  "gkmasMod:DoNotGoHeader": {
+    "TEXT": ["(ノДＴ)"]
+  },
+  "gkmasMod:LunaSayHeader": {
+    "TEXT": ["「LUNA」"]
+  },
+  "gkmasMod:FirstWantToRunHeader": {
+    "TEXT": ["「MOON」"]
+  },
+  "gkmasMod:SleepyHeader": {
+    "TEXT": ["「怠惰」"]
+  },
+  "gkmasMod:EatEmptyYourRefrigeratorHeader": {
+    "TEXT": ["「暴食」"]
+  },
+  "gkmasMod:RumorHeader": {
+    "TEXT": ["「嫉妬」"]
+  },
+  "gkmasMod:ResultWillNotChangeHeader": {
+    "TEXT": ["「傲慢」"]
+  },
+  "gkmasMod:KissHeader": {
+    "TEXT": ["「色欲」"]
+  },
+  "gkmasMod:WorkFighterHeader": {
+    "TEXT": ["「強欲」"]
+  },
+  "gkmasMod:GachaAgainHeader": {
+    "TEXT": ["バンダイケーシー"]
+  },
+  "gkmasMod:FutureTrajectory": {
+    "TEXT": ["「白線」"]
+  },
+  "gkmasMod:CallMeAnyTimeHeader": {
+    "TEXT": ["用がなくても電話していいよ"]
+  },
+  "gkmasMod:ListenToMyTrueHeartHeader": {
+    "TEXT": ["「あのね」"]
+  },
+  "gkmasMod:MotherAIHeader": {
+    "TEXT": ["MOTHER"]
+  },
+  "gkmasMod:AnotherShopOption": {
+    "TEXT": [
+      "相談する（自由行動）",
+      "特殊商店に入る。",
+      "すでに入った。"
+    ]
+  },
+  "gkmasMod:SpecialTeachOption": {
+    "TEXT": [
+      "特別指導",
+      "カードをカスタマイズする。",
+      "すでに入った。"
+    ]
+  },
+  "gkmasMod:SupplyOption": {
+    "TEXT": [
+      "支給",
+      "ゴールドと特殊なカードを得る。",
+      "すでに入った。"
+    ]
+  },
+  "gkmasMod:SelectBossOption": {
+    "TEXT": [
+      "進路を決める（自由行動）",
+      "最終ボスを選ぶ。",
+      "すでに入った。"
+    ]
+  },
+  "gkmasMod:WhatDoesSheDoAction": {
+    "TEXT": ["カード%s枚を選び、次のターンに得る。"]
+  },
+  "gkmasMod:BattlePracticeAction": {
+    "TEXT": ["カード%s枚を暂存する。"]
+  },
+  "gkmasMod:GetAnswerSelectAction": {
+    "TEXT": ["カード%s枚の #yスターライト を手札に加える。"]
+  },
+  "gkmasMod:SelectCardFromDiscardAndDrawAction": {
+    "TEXT": ["カード%s枚を手札に加える。"]
+  },
+  "gkmasMod:FirstHeartProofChinaTip": {
+    "TEXT": ["現在、 #b%d ダメージを与えられる"]
+  },
+  "gkmasMod:NaughtyPuppetTip": {
+    "TEXT": ["この戦闘で累計 #b%d 点の体力を失った"]
+  },
+  "gkmasMod:HintName:achievement1_1": {
+    "TEXT": ["カード掌握"]
+  },
+  "gkmasMod:HintName:achievement1_2": {
+    "TEXT": ["カード掌握"]
+  },
+  "gkmasMod:HintName:achievement2": {
+    "TEXT": ["自分と向き合う"]
+  },
+  "gkmasMod:Hint:achievement1_1": {
+    "TEXT": ["カードのアンロック率が #b40 % を超える。 NL 初期カードをランダムに #b1 枚アップグレード。"]
+  },
+  "gkmasMod:Hint:achievement1_2": {
+    "TEXT": ["カードのアンロック率が #b70 % を超える。 NL 初期カードをランダムに #b2 枚アップグレード。"]
+  },
+  "gkmasMod:Hint:achievement2": {
+    "TEXT": ["美鈴に勝利する。 NL #yアイドルカード をアップグレード。"]
+  },
+  "gkmasMod:UnitName:One": {
+    "TEXT": [""]
+  },
+  "gkmasMod:UnitName:Two": {
+    "TEXT": [""]
+  },
+  "gkmasMod:CreditsScreen": {
+    "TEXT": [
+      "もう一度クリックでスキップ",
+      "スキップ",
+      "もう一度タップでスキップ"
+    ]
+  },
+  "gkmasMod:EctoplasmSpecial": {
+    "TEXT": [
+      " NL （誰かには効果がないかも）"
+    ]
+  },
+  "downfall:EnergyPanelTip": {
+    "TEXT": [
+      "敵の現在のエナジー。カードを使うにはエナジーが必要。"
+    ],
+    "EXTRA_TEXT": [
+      "エナジー"
+    ]
+  },
+  "growEffect:DamageGrow": {
+    "TEXT": [
+      "gkmasmod:ダメージ増加 %d"
+    ]
+  },
+  "growEffect:AttackTimeGrow": {
+    "TEXT": [
+      "gkmasmod:攻撃回数増加 %d"
+    ]
+  },
+  "growEffect:BlockTimeGrow": {
+    "TEXT": [
+      "gkmasmod:防御回数增加 %d"
+    ]
+  },
+  "growEffect:DrawCardGrow": {
+    "TEXT": [
+      "gkmasmod:引く枚数増加 %d"
+    ]
+  },
+  "growEffect:EnergyGrow": {
+    "TEXT": [
+      "gkmasmod:コスト値増加 %d"
+    ]
+  },
+  "growEffect:EnergyReduceGrow": {
+    "TEXT": [
+      "gkmasmod:コスト値減少 %d"
+    ]
+  },
+  "growEffect:BlockGrow": {
+    "TEXT": [
+      "gkmasmod:ブロック増加 %d"
+    ]
+  },
+  "growEffect:BaseDamageGrow": {
+    "TEXT": [
+      "gkmasmod:基本ダメージ増加 %d"
+    ]
+  },
+  "growEffect:LoseHPGrow": {
+    "TEXT": [
+      "gkmasmod:体力喪失 %d"
+    ]
+  },
+  "growEffect:LoseBlockGrow": {
+    "TEXT": [
+      "gkmasmod:ブロック喪失 %d"
+    ]
+  },
+  "growEffect:BaseBlockGrow": {
+    "TEXT": [
+      "gkmasmod:基本ブロック増加 %d"
+    ]
+  },
+  "growEffect:CanNotPlayGrow": {
+    "TEXT": [
+      "プレイできない"
+    ]
+  },
+  "growEffect:SleepyGrow": {
+    "TEXT": [
+      "gkmasmod:夢遊"
+    ]
+  },
+  "growEffect:TempOutAutoPlayGrow": {
+    "TEXT": [
+      "gkmasmod:解放 ：自動でプレイされる。"
+    ]
+  },
+  "growEffect:EtherealGrow": {
+    "TEXT": [
+      "エセリアル"
+    ]
+  },
+  "customEffect:MoreActionCustom": {
+    "TEXT": [
+      "gkmasmod:再動"
+    ]
+  },
+  "customEffect:TempMoreActionCustom": {
+    "TEXT": [
+      "gkmasmod:一時再動"
+    ]
+  },
+  "customEffect:AttackTimeCustom": {
+    "TEXT": [
+      "!D! ダメージを与える。",
+      "!D! ダメージを %d 回与える。"
+    ]
+  },
+  "customEffect:BlockTimeCustom": {
+    "TEXT": [
+      "!B! ブロック を得る。",
+      "!B! ブロック を %d 回得る。"
+    ]
+  },
+  "customEffect:VigorCustom": {
+    "TEXT": [
+      " 活力 %d を得る。"
+    ]
+  },
+  "customEffect:DamageCustom": {
+    "TEXT": [
+      "!D! ダメージを与える。"
+    ]
+  },
+  "customEffect:BlockCustom": {
+    "TEXT": [
+      "!B! ブロック を得る。"
+    ]
+  },
+  "customEffect:ExhaustRemoveCustom": {
+    "TEXT": [
+      " 廃棄 。",
+      " gkmasmod:除外 。"
+    ]
+  },
+  "customEffect:InnateCustom": {
+    "TEXT": [
+      "天賦 。"
+    ]
+  },
+  "customEffect:SelfRetainCustom": {
+    "TEXT": [
+      "保留 。"
+    ]
+  },
+  "customEffect:StrengthCustom": {
+    "TEXT": [
+      "筋力 %d を得る。"
+    ]
+  },
+  "customEffect:DexterityCustom": {
+    "TEXT": [
+      "敏捷性 %d を得る。"
+    ]
+  },
+  "customEffect:GoodImpressionCustom": {
+    "TEXT": [
+      "gkmasmod:好印象 %d を得る。"
+    ]
+  },
+  "customEffect:GoodTuneCustom": {
+    "TEXT": [
+      "gkmasmod:好調 %d を得る。"
+    ]
+  },
+  "customEffect:EnthusiasticCustom": {
+    "TEXT": [
+      "gkmasmod:熱意 %d を得る。"
+    ]
+  },
+  "customEffect:TopSkyCustom": {
+    "TEXT": [
+      "gkmasmod:浮遊 %d を得る。"
+    ]
+  },
+  "customEffect:GreatGoodTuneCustom": {
+    "TEXT": [
+      "gkmasmod:絶好調 %d を得る。"
+    ]
+  },
+  "customEffect:FullPowerValueCustom": {
+    "TEXT": [
+      "gkmasmod:全力値 %d を得る。"
+    ]
+  },
+  "customEffect:SlowCustom": {
+    "TEXT": [
+      " 遅延 #b%d を与える。"
+    ]
+  },
+  "customEffect:NotGoodTuneCustom": {
+    "TEXT": [
+      " gkmasmod:不調 #b%d を与える。"
+    ]
+  },
+  "customEffect:NotGreatGoodTuneCustom": {
+    "TEXT": [
+      " gkmasmod:绝不調 #b%d を与える。"
+    ]
+  },
+  "customEffect:DexterityRateAttackCustom": {
+    "TEXT": [
+      "敏捷性 の #b%d %% 分のダメージを与える。"
+    ]
+  },
+  "customEffect:GoodImpressionRateAttackCustom": {
+    "TEXT": [
+      " gkmasmod:好印象 の #b%d %% 分のダメージを与える。"
+    ]
+  },
+  "customEffect:BlockRateAttackCustom": {
+    "TEXT": [
+      " gkmasmod:ブロック の #b%d %% 分のダメージを与える。"
+    ]
+  },
+  "customEffect:GoodTuneRateAttackCustom": {
+    "TEXT": [
+      " gkmasmod:好調 の #b%d %% 分のダメージを与える。"
+    ]
+  },
+  "customEffect:GreatGoodTuneRateAttackCustom": {
+    "TEXT": [
+      " gkmasmod:绝好調 の #b%d %% 分のダメージを与える。"
+    ]
+  },
+  "customEffect:DrawCardCustom": {
+    "TEXT": [
+      "カードを % d枚引く。"
+    ]
+  },
+  "customEffect:UpgradeAllHandCustom": {
+    "TEXT": [
+      "手札のカードをすべてアップグレードする。"
+    ]
+  },
+  "customEffect:HalfDamageReceiveCustom": {
+    "TEXT": [
+      " gkmasmod:消費体力減少 #b%d を得る。"
+    ]
+  },
+  "customEffect:BlockAdd": {
+    "TEXT": [
+      "ブロック %+d"
+    ]
+  },
+  "customEffect:DamageAdd": {
+    "TEXT": [
+      "ダメージ %+d"
+    ]
+  },
+  "customEffect:AttackTimeAdd": {
+    "TEXT": [
+      "攻撃回数 %+d"
+    ]
+  },
+  "customEffect:BlockTimeAdd": {
+    "TEXT": [
+      "防御回数 %+d"
+    ]
+  },
+  "customEffect:UseTimeAdd": {
+    "TEXT": [
+      "使用回数 %+d"
+    ]
+  },
+  "customEffect:DrawCardAdd": {
+    "TEXT": [
+      "カードを引く枚数 %+d"
+    ]
+  },
+  "customEffect:EnergyCostReduce": {
+    "TEXT": [
+      "消費エナジー %+d"
+    ]
+  },
+  "customEffect:GoodTuneAdd": {
+    "TEXT": [
+      "好調 %+d"
+    ]
+  },
+  "customEffect:GreatGoodTuneAdd": {
+    "TEXT": [
+      "絶好調 %+d"
+    ]
+  },
+  "customEffect:NotGoodTuneAdd": {
+    "TEXT": [
+      "不調 %+d"
+    ]
+  },
+  "customEffect:NotGreatGoodTuneAdd": {
+    "TEXT": [
+      "絶不調 %+d"
+    ]
+  },
+  "customEffect:StrengthAdd": {
+    "TEXT": [
+      "筋力 %+d"
+    ]
+  },
+  "customEffect:SlowAdd": {
+    "TEXT": [
+      "スロー %+d"
+    ]
+  },
+  "customEffect:DexterityAdd": {
+    "TEXT": [
+      "敏捷性 %+d"
+    ]
+  },
+  "customEffect:GoodImpressionAdd": {
+    "TEXT": [
+      "好印象 %+d"
+    ]
+  },
+  "customEffect:EnthusiasticAdd": {
+    "TEXT": [
+      "熱意 %+d"
+    ]
+  },
+  "customEffect:TopSkyAdd": {
+    "TEXT": [
+      "浮遊 %+d"
+    ]
+  },
+  "customEffect:FullPowerValueAdd": {
+    "TEXT": [
+      "全力値 %+d"
+    ]
+  },
+  "customEffect:ConcentrationAdd": {
+    "TEXT": [
+      "強気 %+d"
+    ]
+  },
+  "customEffect:PreservationAdd": {
+    "TEXT": [
+      "温存 %+d"
+    ]
+  },
+  "customEffect:NextTurnPreservation": {
+    "TEXT": [
+      "次のターン、温存"
+    ]
+  },
+  "customEffect:EndTurnPreservation": {
+    "TEXT": [
+      "ターン終了時、温存"
+    ]
+  },
+  "customEffect:TempSaveAdd": {
+    "TEXT": [
+      "暂存 %+d"
+    ]
+  },
+  "customEffect:RateAdd": {
+    "TEXT": [
+      "倍率 %+d%%"
+    ]
+  },
+  "customEffect:EffectAdd": {
+    "TEXT": [
+      "効果追加"
+    ]
+  },
+  "customEffect:EffectChange": {
+    "TEXT": [
+      "効果変更"
+    ]
+  },
+  "customEffect:EffectReduce": {
+    "TEXT": [
+      "効果削除"
+    ]
+  },
+  "customEffect:GrowEffectAdd": {
+    "TEXT": [
+      "成長効果追加"
+    ]
+  },
+  "customEffect:GrowEffectChange": {
+    "TEXT": [
+      "成長効果変更"
+    ]
+  },
+  "customEffect:GrowEffectReduce": {
+    "TEXT": [
+      "成長効果削除"
+    ]
+  },
+  "customEffect:DexterityRateAttack": {
+    "TEXT": [
+      "敏捷性倍率ダメージ %+d%%"
+    ]
+  },
+  "customEffect:BlockRateAttack": {
+    "TEXT": [
+      "ブロック倍率ダメージ %+d%%"
+    ]
+  },
+  "customEffect:GoodImpressionRateAttack": {
+    "TEXT": [
+      "好印象倍率ダメージ %+d%%"
+    ]
+  },
+  "customEffect:GoodTuneRateAttack": {
+    "TEXT": [
+      "好調倍率ダメージ %+d%%"
+    ]
+  },
+  "customEffect:GreatGoodTuneRateAttack": {
+    "TEXT": [
+      "絶好調倍率ダメージ %+d%%"
+    ]
+  },
+  "customEffect:VigorAdd": {
+    "TEXT": [
+      "活力 %+d"
+    ]
+  },
+  "customEffect:HpReduce": {
+    "TEXT": [
+      "HP %+d"
+    ]
+  },
+  "customEffect:HalfDamageReceiveAdd": {
+    "TEXT": [
+      "消費体力增加 %+d"
+    ]
+  },
+  "customEffect:DoubleDamageAddReduce": {
+    "TEXT": [
+      "消費体力減少 %+d"
+    ]
+  },
+  "customEffect:ExhaustRemove": {
+    "TEXT": [
+      "廃棄削除"
+    ]
+  },
+  "customEffect:InnateAdd": {
+    "TEXT": [
+      "天賦"
+    ]
+  },
+  "customEffect:SelfRetainAdd": {
+    "TEXT": [
+      "保留"
+    ]
+  },
+  "customEffect:TempMoreActionAdd": {
+    "TEXT": [
+      "一時再動 %d"
+    ]
+  },
+  "customEffect:MoreActionAdd": {
+    "TEXT": [
+      "再動"
+    ]
+  },
+  "customEffect:UpgradeAllHand": {
+    "TEXT": [
+      "すべての手札をアップグレードする"
+    ]
+  },
+  "gkmasMod:SpecialTeachScreen": {
+    "TEXT": [
+      "確認",
+      "戻る",
+      "選択を確認",
+      "離れる",
+      "（残り%d回）",
+      "現在あと%d回指導できます",
+      "累計%d回指導できます"
+    ]
+  },
+  "gkmasMod:EatFruit": {
+    "TEXT": [
+      "おいしいおいしいおいしい",
+      "これ、食べても太らないよね？",
+      "もう一個！",
+      "ありがとう、美鈴",
+      "……これ……毒がある……食べちゃダメ"
+    ]
+  },
+  "gkmasMod:IdolRoadTips": {
+    "TEXT": [
+      "美鈴または燐羽に挑戦する",
+      "あなたの旅は次の段階へ進もうとしている NL 次の #b計画 を選んでください",
+      "誰も来ないうちに、少し寝ておこう……",
+      "Modボスが優先的に出現",
+      "より広い舞台へ（難易度高め）",
+      "アイドル同士の戦いは、■するか■されるかだ"
+    ]
+  }
+}

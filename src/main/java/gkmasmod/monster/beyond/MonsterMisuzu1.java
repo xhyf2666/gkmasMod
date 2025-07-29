@@ -97,19 +97,21 @@ public class MonsterMisuzu1 extends CustomMonster {
                 setMove((byte)0, Intent.ATTACK, (this.damage.get(0)).base, this.bloodHitCount+this.attackTime, true);
                 break;
             case 1:
+            case 2:
                 setMove((byte)1, Intent.DEBUFF);
                 break;
         }
-        moveCount=(moveCount+1)%2;
+        moveCount=(moveCount+1)%3;
     }
 
     public void updateMove(){
-        int tmp = (moveCount+1)%2;
+        int tmp = (moveCount+1)%3;
         switch (tmp){
             case 0:
                 setMove((byte)0, Intent.ATTACK, (this.damage.get(0)).base, this.bloodHitCount+this.attackTime, true);
                 break;
             case 1:
+            case 2:
                 setMove((byte)1, Intent.DEBUFF);
                 break;
         }

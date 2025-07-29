@@ -1,0 +1,1708 @@
+{
+  "Genki": {
+    "NAME": "元気",
+    "DESCRIPTIONS": [
+      "現在 #b%d 層。 NL 自発的なダメージを受けるとき、元気を消費して無効化する。 NL トレーニングターン終了時、 #b%d ダメージを無効化する。"
+    ]
+  },
+  "GoodImpression": {
+    "NAME": "好印象",
+    "DESCRIPTIONS": [
+      "現在 #b%d 層。 NL ターン終了時、ランダムな敵に #b%d ダメージを与え、層数を #b1 減らす。"
+    ]
+  },
+  "BadImpression": {
+    "NAME": "好印象",
+    "DESCRIPTIONS": [
+      "（悪印象） NL 現在 #b%d 層。 NL ターン終了時、ランダムな敵のHPを #b%d 回復し、層数を #b1 減らす。"
+    ]
+  },
+  "GoodTune": {
+    "NAME": "好調",
+    "DESCRIPTIONS": [
+      "現在 #b%d 層。 NL 与えるダメージが #b50%% 増加する。 NL ターン終了時に層数を #b1 減らす。"
+    ]
+  },
+  "NegativeGoodTune": {
+    "NAME": "好調",
+    "DESCRIPTIONS": [
+      "現在 #b%d 層。 NL 与えるダメージが #b33%% 減少する。 NL ターン終了時に層数を #b1 減らす。"
+    ]
+  },
+  "GreatGoodTune": {
+    "NAME": "絶好調",
+    "DESCRIPTIONS": [
+      "現在 #b%d 層。 NL 各層の #y好調 につき追加で与ダメージ #b10%% 増加。 NL ターン終了時に層数を #b1 減らす。"
+    ]
+  },
+  "GreatNotGoodTune": {
+    "NAME": "絶不調",
+    "DESCRIPTIONS": [
+      "現在 #b%d 層。 NL 各層の #y不調 につき追加で与ダメージ #b5%% 減少。 NL ターン終了時に層数を #b1 減らす。"
+    ]
+  },
+  "RemainBuff": {
+    "NAME": "バフ残留",
+    "DESCRIPTIONS": [
+      "これは仕様です！バグじゃない！"
+    ]
+  },
+  "NotGoodTune": {
+    "NAME": "不調",
+    "DESCRIPTIONS": [
+      "現在 #b%d 層（最大 #b%d 層）。 NL 与えるダメージが #b33%% 減少する。 NL ターン終了時に層数を #b1 減らす。"
+    ]
+  },
+  "InnocencePower": {
+    "NAME": "天真爛漫",
+    "DESCRIPTIONS": [
+      "ターン終了時、 #y筋力 が2を超える場合、 #y筋力 #b%d を得る。"
+    ]
+  },
+  "ReservedGirlPower": {
+    "NAME": "内向型少女",
+    "DESCRIPTIONS": [
+      "ターン終了時、 #y好印象 #b%d を得る。"
+    ]
+  },
+  "NotAfraidAnymorePower": {
+    "NAME": "もう怖くない",
+    "DESCRIPTIONS": [
+      "ターン終了時、 #y好印象 #b%d を得る。"
+    ]
+  },
+  "AddDamageReceive": {
+    "NAME": "消費HP追加",
+    "DESCRIPTIONS": [
+      "受けるダメージとHP減少が #b%d 増加する。"
+    ]
+  },
+  "ReduceDamageReceive": {
+    "NAME": "消費HP削減",
+    "DESCRIPTIONS": [
+      "受けるダメージとHP減少が #b%d 減少する。"
+    ]
+  },
+  "DoubleDamageReceive": {
+    "NAME": "消費HP増加",
+    "DESCRIPTIONS": [
+      "現在 #b%d 層。 NL 受けるダメージとHP減少が #b50%% 増加する。 NL 敵ターン終了時に層数を #b1 減らす。"
+    ]
+  },
+  "HalfDamageReceive": {
+    "NAME": "消費体力減少",
+    "DESCRIPTIONS": [
+      "現在 #b%d 層。 NL 受けるダメージとHP減少が #b33%% 減少する。 NL 敵ターン終了時に層数を #b1 減らす。"
+    ]
+  },
+  "BurstAttackPower": {
+    "NAME": "爆発・アタック＆パワー",
+    "DESCRIPTIONS": [
+      "このターン、次の #b%d 枚 #yアタック · #yパワー カードが2回発動する。"
+    ]
+  },
+  "NationalIdolPower": {
+    "NAME": "国民的アイドル",
+    "DESCRIPTIONS": [
+      "このターン、次の #b%d 枚のカードが2回発動する。"
+    ]
+  },
+  "SummerEveningSparklersPower": {
+    "NAME": "夏の宵の線香花火",
+    "DESCRIPTIONS": [
+      "カードを使用して #yブロック を得るたび、 #y好印象 #b%d を得る。"
+    ]
+  },
+  "EyePowerPower": {
+    "NAME": "眼力",
+    "DESCRIPTIONS": [
+      "ターン終了時、 #y筋力 の #b%d%% の #yブロック を得る。"
+    ]
+  },
+  "PerformancePlanPower": {
+    "NAME": "演出計画",
+    "DESCRIPTIONS": [
+      "#yアタック · #yパワー カードを使用するたび、 #y固定元気 #b%d を得る。"
+    ]
+  },
+  "FantasyCharmPower": {
+    "NAME": "ファンシーチャーム",
+    "DESCRIPTIONS": [
+      "#yスキル · #yパワー カードを使用するたび、 #y好印象 #b%d を得る。"
+    ]
+  },
+  "WakuWakuPower": {
+    "NAME": "ワクワクが止まらない",
+    "DESCRIPTIONS": [
+      "#yスキル · #yパワー カードを使用するたび、 #y敏捷性 #b%d を得る。"
+    ]
+  },
+  "WishPowerPower": {
+    "NAME": "願いの力",
+    "DESCRIPTIONS": [
+      "#yアタック カードを使用するたび、 #y筋力 #b%d を得る。"
+    ]
+  },
+  "WishPowerGoodTunePower": {
+    "NAME": "願いの好調",
+    "DESCRIPTIONS": [
+      "#yアタック カードを使用するたび、 #y好調 #b%d を得る。"
+    ]
+  },
+  "AchievementPower": {
+    "NAME": "次ターンのダメージ",
+    "DESCRIPTIONS": [
+      "次のターン開始時、 #b%d ダメージを与える。"
+    ]
+  },
+  "CharmPerformancePower": {
+    "NAME": "魅惑のパフォーマンス",
+    "DESCRIPTIONS": [
+      "次のターン開始時、 #b%d ダメージを与える。"
+    ]
+  },
+  "CharmPerformanceSPPower": {
+    "NAME": "魅惑のパフォーマンス・SP",
+    "DESCRIPTIONS": [
+      "#b%d ターン後、 #b%d ダメージを与える（ #y好調 効果を200%%適用）。"
+    ]
+  },
+  "TopEntertainmentPower": {
+    "NAME": "至高のエンタメ",
+    "DESCRIPTIONS": [
+      "#yアタック · #yパワー カードを使用するたび、追加で #b%d ダメージを #b%d 回与える。"
+    ]
+  },
+  "TopEntertainmentPlusPower": {
+    "NAME": "至高のエンタメ+",
+    "DESCRIPTIONS": [
+      "#yアタック · #yパワー カードを使用するたび、追加で #b%d ダメージを #b%d 回与える。"
+    ]
+  },
+  "RainbowDreamerPower": {
+    "NAME": "虹色のドリーマー",
+    "DESCRIPTIONS": [
+      "ターン終了時、 #y好印象 が #b2 を超える場合、 #y好印象 #b%d を得る。"
+    ]
+  },
+  "ForShiningYouPower": {
+    "NAME": "輝くあなたへ",
+    "DESCRIPTIONS": [
+      "カードを使用するたび、ランダムな敵に #y好印象 の #b30 %%のダメージを #b%d 回与える。"
+    ]
+  },
+  "ForShiningYouPlusPower": {
+    "NAME": "輝くあなたへ+",
+    "DESCRIPTIONS": [
+      "カードを使用するたび、ランダムな敵に #y好印象 の #b50 %%のダメージを #b%d 回与える。"
+    ]
+  },
+  "ForShiningYouPlusSpPower": {
+    "NAME": "輝くあなたへSp+",
+    "DESCRIPTIONS": [
+      "カードを使用するたび、ランダムな敵に #y好印象 の #b50 %%のダメージを #b%d 回与え、 #y好印象 #b%d を得る。"
+    ]
+  },
+  "MoonlitRunwayPower": {
+    "NAME": "月夜のランウェイ",
+    "DESCRIPTIONS": [
+      "#y好印象 カードを使用するたび、ランダムな敵に #y好印象 の #b30 %%のダメージを #b%d 回与える。"
+    ]
+  },
+  "MoonlitRunwayPlusPower": {
+    "NAME": "月夜のランウェイ+",
+    "DESCRIPTIONS": [
+      "#y好印象 カードを使用するたび、ランダムな敵に #y好印象 の #b50 %%のダメージを #b%d 回与える。"
+    ]
+  },
+  "TrainRoundLogicPower": {
+    "NAME": "訓練時間・ロジック",
+    "DESCRIPTIONS": [
+      "現在 #b%d 層。 NL 戦闘開始時、ランダムな敵に #y溢出ダメージ伝播 を与える。 NL ターン終了時、 #yブロック の #b%d %% を保持。保持率は毎ターン #b%d %% 減少し、最小で #b%d %% まで低下。 NL カードを使用する·ターン終了時、層数を #b1 減らす。 NL 勝利時または初回のこのバフの消失時、敵の #y失ったHP の割合に応じて #yステータス を得る。 NL ステータスの配分はデッキ内のタグ数に応じて決定される。 NL （マップにより若干の効果差あり）"
+    ]
+  },
+  "TrainRoundAnomalyPower": {
+    "NAME": "訓練時間・アノマリー",
+    "DESCRIPTIONS": [
+      "現在 #b%d 層。 NL ターン開始時、すべての手札に #yダメージ増加 #b%d 、 #yブロック増加 #b%d を付与する。 NL ターン初めて #y全力値 を得たとき、すべてのカードに #yダメージ増加 #b%d 、 #yブロック増加 #b%d を付与する。 NL カードを使用する·ターン終了時、層数を #b1 減らす。 NL 勝利時または初回のこのバフの消失時、敵の #y失ったHP の割合に応じて #yステータス を得る。 NL ステータスの配分はデッキ内のタグ数に応じて決定される。 NL （マップにより若干の効果差あり）"
+    ]
+  },
+  "TrainRoundSensePower": {
+    "NAME": "訓練時間・センス",
+    "DESCRIPTIONS": [
+      "現在 #b%d 層。 NL 敵にダメージを与えるたび、その #b%d %% 分の #y固定元気 を得る。 NL ターン終了時、吸収率が #b%d %% 減少し、最小で #b%d %% まで低下。 NL カードを使用する·ターン終了時、層数を #b1 減らす。 NL 勝利時または初回のこのバフの消失時、敵の #y失ったHP の割合に応じて #yステータス を得る。 NL ステータスの配分はデッキ内のタグ数に応じて決定される。 NL （マップにより若干の効果差あり）"
+    ]
+  },
+  "TrainRoundMisuzuPower": {
+    "NAME": "訓練時間・美鈴",
+    "DESCRIPTIONS": [
+      "現在 #b%d 層。 NL ターン、最初にプレイした #y状態異常 · #y呪い カード3枚は層を消費しない。 NL 特定カードを消費したとき、以下の効果を発動： NL ・ #y「怠惰」 ： #y筋力 #b%d を得る。 NL ・ #y「傲慢」 ： #y敏捷性 #b%d を得る。 NL ・ #y「暴食」 ： #y再生 #b%d を得る。 NL ・ #y「貪欲」 ： #yゴールド #b%d を得る。 NL ・ #y「色欲」 ： #b%d 枚の #ySSRセンスアイドルカード を得る。 NL ・ #y「嫉妬」 ： #y好調 #b%d を得る。 NL カードを使用する·ターン終了時、層数を #b1 減らす。 NL 勝利時または初回のこのバフの消失時、敵の #y失ったHP の割合に応じて #yステータス を得る。 NL ステータスの配分はデッキ内のタグ数に応じて決定される。 NL （マップにより若干の効果差あり）"
+    ]
+  },
+  "TrainRoundProducePower": {
+    "NAME": "訓練時間・全能",
+    "DESCRIPTIONS": [
+      "現在 #b%d 層。 NL ターン開始時、 #yロジック 、 #yセンス 、 #yアノマリー のいずれかのトレーニングタイムに入る（終了時に解除）。 NL カードを使用する·ターン終了時、層数を #b1 減らす。 NL 勝利時または初回のこのバフの消失時、敵の #y失ったHP の割合に応じて #yステータス を得る。 NL ステータスの配分はデッキ内のタグ数に応じて決定される。"
+    ]
+  },
+  "OccupyTheWorldPower": {
+    "NAME": "世界征服",
+    "DESCRIPTIONS": [
+      "#y好印象 の効果が全ての敵に適用される。"
+    ]
+  },
+  "Tenderness": {
+    "NAME": "優しさ",
+    "DESCRIPTIONS": [
+      "受けるダメージが #b25 %% 減少する。"
+    ]
+  },
+  "StrongPower": {
+    "NAME": "強気",
+    "DESCRIPTIONS": [
+      "与える・受けるダメージが #b50 %増加する。 NL カードをプレイするたび、自分に攻撃を与え、HPが #b1 減少する。"
+    ]
+  },
+  "FullPower": {
+    "NAME": "全力",
+    "DESCRIPTIONS": [
+      "与えるダメージが #b100%% 増加する。"
+    ]
+  },
+  "FullPowerValue": {
+    "NAME": "全力値",
+    "DESCRIPTIONS": [
+      "現在の層数は #b%d 。 NL ターン開始時、 #y全力値 が #b10 以上ある場合、 #b10 点の #y全力値 を失い、 #y全力 に入る。 NL #y全力 に入ると、残りの #y全力値 を以下の順で消費し、それぞれ追加効果を得る。  NL #y· 2点消費： #y熱意 #b2 を得る。 NL #y· 3点消費： #y固定元気 #b7 を得る。 NL #y· 2点消費： #y一時敏捷性 #b2 を得る。 NL #y· 3点消費： [E] を得る 。"
+    ]
+  },
+  "FullPowerValueMisuzu": {
+    "NAME": "全力値",
+    "DESCRIPTIONS": [
+      "#b10 点の全力値を得た時、 #y全力 に入る。"
+    ]
+  },
+  "MisuzuNature": {
+    "NAME": "秦谷美鈴の本質",
+    "DESCRIPTIONS": [
+      "このターンに受けたダメージが #b%d を超えると、 #y強気 に入る、超えなければ #y温存 に入る。 NL このターンに受けたダメージが #b%d を超えた場合、追加で #y全力値 #b2 を得る。"
+    ]
+  },
+  "SleepPower": {
+    "NAME": "眠気の力",
+    "DESCRIPTIONS": [
+      "#y眠気 を #y廃棄 するたび、 秦谷美鈴は #y全力値 #b1 を得る。"
+    ]
+  },
+  "SleepPower2": {
+    "NAME": "眠気の力＋",
+    "DESCRIPTIONS": [
+      "#y眠気 を #y廃棄 するたび、 秦谷美鈴は #y筋力 #b2 を得る。"
+    ]
+  },
+  "VoSpPower": {
+    "NAME": "Vo SP",
+    "DESCRIPTIONS": [
+      "死亡時、プレイヤーは HPを #b4 回復し、 #yVo加成 を得る。"
+    ]
+  },
+  "DaSpPower": {
+    "NAME": "Da SP",
+    "DESCRIPTIONS": [
+      "死亡時、プレイヤーは HPを #b4 回復し、 #yDa加成 を得る。"
+    ]
+  },
+  "ViSpPower": {
+    "NAME": "Vi SP",
+    "DESCRIPTIONS": [
+      "死亡時、プレイヤーは HPを #b4 回復し、 #yVi加成 を得る。"
+    ]
+  },
+  "SleepyAttackPower": {
+    "NAME": "昏睡の刃",
+    "DESCRIPTIONS": [
+      "攻撃するたび、 #y眠気 を1枚プレイヤーの山札に加える。"
+    ]
+  },
+  "AutoFullPowerValue": {
+    "NAME": "本気を出さざるを得ない",
+    "DESCRIPTIONS": [
+      "ターン開始時に、全力値 #b%d を得る。"
+    ]
+  },
+  "AllEffort": {
+    "NAME": "これまでの努力",
+    "DESCRIPTIONS": [
+      "これまでの努力と汗が、今ここで花開く。 NL #y三属性 に応じて #y与ダメージ上昇 を得る。"
+    ]
+  },
+  "AutoUpgrade": {
+    "NAME": "自動強化",
+    "DESCRIPTIONS": [
+      "次の #b%d ターン開始時、手札のすべてのカードを強化する。"
+    ]
+  },
+  "SelectFirstStarBlendPower": {
+    "NAME": "厳選初星ブレンド",
+    "DESCRIPTIONS": [
+      "ターン終了時、 #y敏捷性 #b%d を得る。"
+    ]
+  },
+  "SelectFirstStarMacchiatoPower": {
+    "NAME": "厳選初星マキアート",
+    "DESCRIPTIONS": [
+      "ターン終了時、 #y筋力 #b%d を得る。"
+    ]
+  },
+  "SelectFirstStarTeaPower": {
+    "NAME": "厳選初星ティー",
+    "DESCRIPTIONS": [
+      "ターン終了時、 #y好印象 #b%d を得る。"
+    ]
+  },
+  "BoostExtractPower": {
+    "NAME": "ブーストエキス",
+    "DESCRIPTIONS": [
+      "#b%d ターンの間、与えるダメージが #b%d%% 増加する。"
+    ]
+  },
+  "SenburiSodaPower": {
+    "NAME": "センブリソーダ",
+    "DESCRIPTIONS": [
+      "#b%d ターンの間、与えるダメージが #b%d%% 増加する。"
+    ]
+  },
+  "BurstAttackTwoRoundPower": {
+    "NAME": "爆発・アタック＆パワー（2ターン）",
+    "DESCRIPTIONS": [
+      "次の2ターンの間、次の #b%d 枚 #yアタック · #yパワー カードが2回発動する。"
+    ]
+  },
+  "WhatDoesSheDoPower": {
+    "NAME": "次のターンに手に入る",
+    "DESCRIPTIONS": [
+      "次のターン開始時、 #y%s を得る。"
+    ]
+  },
+  "MadeOneForYouPower": {
+    "NAME": "あなたにも作ってあげる",
+    "DESCRIPTIONS": [
+      "エナジー消費が #b2 以上のカードを使うたび、 [E] を得る"
+    ]
+  },
+  "AngelAndDemonPower": {
+    "NAME": "天使と悪魔",
+    "DESCRIPTIONS": [
+      "ターン開始時、手札に #y天使ちゃん と #y悪魔ちゃん を1枚ずつ加える。"
+    ]
+  },
+  "AngelAndDemonPlusPower": {
+    "NAME": "天使と悪魔＋",
+    "DESCRIPTIONS": [
+      "ターン開始時、手札に #y天使ちゃん+ と #y悪魔ちゃん+ を1枚ずつ加える。"
+    ]
+  },
+  "TopWisdomPower": {
+    "NAME": "無上の知恵",
+    "DESCRIPTIONS": [
+      "#yブロック を得るたび、合計 #yブロック の #b15%% のダメージを #b%d 回与える。 NL （このダメージは「ダメージを与えたときにブロックを得る」効果を発動できない）"
+    ]
+  },
+  "TopWisdomPlusPower": {
+    "NAME": "至高の叡智＋",
+    "DESCRIPTIONS": [
+      "#yブロック を得るたび、合計 #yブロック の #b25%% のダメージを #b%d 回与える。 NL （このダメージは「ダメージを与えたときにブロックを得る」効果を発動できない）"
+    ]
+  },
+  "OverDamageTransfer": {
+    "NAME": "溢出ダメージ伝達",
+    "DESCRIPTIONS": [
+      "ダメージを受けて死亡した時、残りのダメージとこのパワーをランダムな敵に伝達する。"
+    ]
+  },
+  "SSDSecretPower": {
+    "NAME": "SSDの秘密",
+    "DESCRIPTIONS": [
+      "ターン終了時、 #y好印象 の効果を追加で #b%d 回発動する。"
+    ]
+  },
+  "MasterRollerPower": {
+    "NAME": "強化ローラー",
+    "DESCRIPTIONS": [
+      "現在 #b%d 層。 NL 与えるダメージが #b50%% 減少する。 NL ターン終了時に層数を #b1 減らす。"
+    ]
+  },
+  "MasterTreadmillPower": {
+    "NAME": "強化ステッパー",
+    "DESCRIPTIONS": [
+      "与えるダメージが #b20%% 減少する。"
+    ]
+  },
+  "GachaAgainPower": {
+    "NAME": "10連ガチャ",
+    "DESCRIPTIONS": [
+      "ターン開始時、 #b%d 枚の #yガシャ爆死 を得る。"
+    ]
+  },
+  "GachaAgainPlusPower": {
+    "NAME": "10連ガチャ+",
+    "DESCRIPTIONS": [
+      "ターン開始時、 #b%d 枚の #yガシャ爆死+ を得る。"
+    ]
+  },
+  "GachaAgainSPPower": {
+    "NAME": "10連ガチャ・SP",
+    "DESCRIPTIONS": [
+      "ターン開始時、 #b%d 本の #y初星特製青汁・SP を得る。"
+    ]
+  },
+  "EnthusiasticPower": {
+    "NAME": "熱意",
+    "DESCRIPTIONS": [
+      "与えるダメージが #b%d 増加する。 NL ターン終了時に消滅する。"
+    ]
+  },
+  "TopSkyPower": {
+    "NAME": "浮遊",
+    "DESCRIPTIONS": [
+      "与えるダメージが #b%d 未満の時、そのダメージを #b%d にする。"
+    ]
+  },
+  "AnotherFullPowerValue": {
+    "NAME": "全力値",
+    "DESCRIPTIONS": [
+      "#b10 の全力値を得ると、 #y全力 に入る。"
+    ]
+  },
+  "VeryEasyPower": {
+    "NAME": "ちょちょいのちょい",
+    "DESCRIPTIONS": [
+      "#b%d ターンの間、ターン終了時にランダムな敵に #b%d ダメージを与える。"
+    ]
+  },
+  "IsENotAPower": {
+    "NAME": "お泊り猛勉強",
+    "DESCRIPTIONS": [
+      "#y好印象 が減少するたびに、 #b%d ブロックを得る。"
+    ]
+  },
+  "Uplifting": {
+    "NAME": "高揚",
+    "DESCRIPTIONS": [
+      "ターン終了時、 #b%d ブロックを得る。 NL HPが減少するたび、層数を #b1 減らす。"
+    ]
+  },
+  "TheTwelfth": {
+    "NAME": "12th",
+    "DESCRIPTIONS": [
+      "#b%d 枚のカードを使用するたび、ターンを終了し、 #b1 層の #y絶不調 を得る。 NL （毎ターン最初の #b2 枚の #y再動 カードはカウントされない）"
+    ]
+  },
+  "DrawCardNextXTurnPower": {
+    "NAME": "次のXターンでドロー",
+    "DESCRIPTIONS": [
+      "次の #b%d ターンの開始時、カードを #b%d 枚引く。"
+    ]
+  },
+  "AutumnOfAppetitePower": {
+    "NAME": "食欲の秋なんです",
+    "DESCRIPTIONS": [
+      "#y訓練時間 を #b%d 層失うたび、カードを #b1 枚引く。"
+    ]
+  },
+  "SkipTurnPower": {
+    "NAME": "人生スキップ",
+    "DESCRIPTIONS": [
+      "#b%d ターンをスキップする。"
+    ]
+  },
+  "SteelSoul": {
+    "NAME": "鋼の魂",
+    "DESCRIPTIONS": [
+      "#yブロック を得たり #y攻撃 を受けたりした時、それらを #yちびガンダム に転送する。"
+    ]
+  },
+  "CallMeAnyTimePower": {
+    "NAME": "私だけの特権",
+    "DESCRIPTIONS": [
+      "ターン開始時、 #b%d 回 #yプロデューサーの助力 を発動する。"
+    ]
+  },
+  "SaySomethingToYouPower": {
+    "NAME": "伝えたい想い",
+    "DESCRIPTIONS": [
+      "ターン開始時、すべての敵に #b%d #y固定元気 を与える。 NL ターン中に初めて敵の ブロック を貫通した際、そのダメージを無効にし、 弱体 #b%d を付与する。"
+    ]
+  },
+  "DanceWithYouPower": {
+    "NAME": "直感",
+    "DESCRIPTIONS": [
+      "現在 #b%d 層。 NL ダメージを受ける時、 #b%d%% の確率で回避する。回避成功時、層数を #b1 減らす。失敗時、 #y脆弱化 #b1 を得る。"
+    ]
+  },
+  "MotherAIPower": {
+    "NAME": "アのマザーAI",
+    "DESCRIPTIONS": [
+      "ターン開始時、全員の手札に #yＳＳＤのひみつ を1枚加える。"
+    ]
+  },
+  "TrueLateBloomerPower": {
+    "NAME": "真の遅咲き",
+    "DESCRIPTIONS": [
+      "ターン開始時、 #y好調 #b%d を得る。 NL #b%d ターン後、追加で #y絶好調 #b%d を得る。",
+      "ターン開始時、 #y好調 #b%d と #y絶好調 #b%d を得る。"
+    ]
+  },
+  "ListenToMyTrueHeartPower": {
+    "NAME": "正真正銘",
+    "DESCRIPTIONS": [
+      "現在 #b%d 層。 NL カードを使用するたび、HPを #b%d 失い、ランダムな敵に #b%d ダメージを与える。その後、層数を #b1 減らす。"
+    ]
+  },
+  "EvenIfDreamNotRealizePower": {
+    "NAME": "夢が叶わなくても",
+    "DESCRIPTIONS": [
+      "HPを失うたび、 #y私をあなたの夢にして を手札に加える。"
+    ]
+  },
+  "KawaiiPower": {
+    "NAME": "カワイイ！",
+    "DESCRIPTIONS": [
+      "現在 #b%d 層。 NL 攻撃を受けたとき、そのダメージの #b%d%% 分の #y好印象 を得て、層数を #b1 減らす。"
+    ]
+  },
+  "GrowthProcessPower": {
+    "NAME": "成長の歩み",
+    "DESCRIPTIONS": [
+      "ターン開始時、 [E] [E] を #b%d 回得る。"
+    ]
+  },
+  "RebirthPower": {
+    "NAME": "復活",
+    "DESCRIPTIONS": [
+      "戦闘中に致死ダメージを受けたとき、全層を失い、死亡を回避してHPを #b%d 回復する。 NL 戦闘勝利時、 #y復活 層数 の #b80% に相当するHPを回復する。"
+    ]
+  },
+  "CoolModePower": {
+    "NAME": "クール",
+    "DESCRIPTIONS": [
+      "与えるダメージが #b20% 増加する。 NL #yキュート と同時に存在できない。"
+    ]
+  },
+  "CuteModePower": {
+    "NAME": "キュート",
+    "DESCRIPTIONS": [
+      "受けるダメージが #b20% 減少する。 NL #yクール と同時に存在できない。"
+    ]
+  },
+  "ParalysisPower": {
+    "NAME": "麻痺",
+    "DESCRIPTIONS": [
+      "ターン終了時およびカードを使用するたびに、 #b%d ダメージを受け、層数を #b1 失う。"
+    ]
+  },
+  "TempSavePower": {
+    "NAME": "暂存",
+    "DESCRIPTIONS": [
+      "#y全力 に入ったとき、 #b%s を手札に加える。 NL （最大で #b%d 枚まで保存可能）"
+    ]
+  },
+  "TrainingResultPower": {
+    "NAME": "次ターン温存",
+    "DESCRIPTIONS": [
+      "次のターン開始時、 #y温存 に入る #b%d 回。"
+    ]
+  },
+  "TrainingResultPlusPower": {
+    "NAME": "次ターン温存・2段階目",
+    "DESCRIPTIONS": [
+      "次のターン開始時、 #y温存・2段階目 に入る #b%d 回。"
+    ]
+  },
+  "StanceLock": {
+    "NAME": "スタンス固定",
+    "DESCRIPTIONS": [
+      "#b%d ターンの間、スタンスの変化および強化ができなくなる。 NL （敵のターン終了時に層数を #b1 失う）"
+    ]
+  },
+  "HeartAndSoulPower": {
+    "NAME": "全身全霊",
+    "DESCRIPTIONS": [
+      "次に #b%d 枚のカードを使用するまで、それらの消費エナジーを得る。"
+    ]
+  },
+  "ToTheTopPower": {
+    "NAME": "頂点へ",
+    "DESCRIPTIONS": [
+      "ターン開始時、 #yスタンス の場合、すべてのカードに #yダメージ増加 #b%d を付与する。"
+    ]
+  },
+  "MayRainPower": {
+    "NAME": "雨宿りのバス停",
+    "DESCRIPTIONS": [
+      "ターン終了時、 #y熱意 を #b50 %% 維持する。"
+    ]
+  },
+  "ThunderWillStopPower": {
+    "NAME": "雷が止む頃",
+    "DESCRIPTIONS": [
+      "ターン終了· #yスタンス を切り替えた時、 #y全力値 #b%d を得る。"
+    ]
+  },
+  "ThunderWillStopSPPower": {
+    "NAME": "雷が止む頃SP",
+    "DESCRIPTIONS": [
+      "#y全力値 を得るたび、すべての手札· 暂存 カードに #y与ダメージ増加 #b%d 、 #yブロック増加 #b%d を付与する。"
+    ]
+  },
+  "StepOnStagePower": {
+    "NAME": "ステージへ",
+    "DESCRIPTIONS": [
+      "#y温存・2段階目 、 #y強気・2段階目 、 #yのんびり に入るたび、カードを #b%d 枚引く。"
+    ]
+  },
+  "LikeStarsPower": {
+    "NAME": "星のように",
+    "DESCRIPTIONS": [
+      "#y暂存 するたび、手札のすべてのカードに #y与ダメージ +#b%d 、 #yブロック +#b%d を与える。"
+    ]
+  },
+  "LikeStarsSPPower": {
+    "NAME": "星のようにSP",
+    "DESCRIPTIONS": [
+      "#y暂存 するたび、手札と #y仮保存 領域のすべてのカードに #y与ダメージ +#b%d 、 #yブロック +#b%d を与える。"
+    ]
+  },
+  "WhereDreamsArePower": {
+    "NAME": "夢の在り処",
+    "DESCRIPTIONS": [
+      "#y全力 に入るたび、 #y留手 を #b1 枚手札に加える。"
+    ]
+  },
+  "AnotherTurnPower": {
+    "NAME": "追加ターン",
+    "DESCRIPTIONS": [
+      "ターン終了時、 #y追加ターン を #b%d 得る。"
+    ]
+  },
+  "SelectFirstStarChaiPower": {
+    "NAME": "初星厳選・ミルクティー",
+    "DESCRIPTIONS": [
+      "ターン開始時、 #y全力値 #b%d を得る。"
+    ]
+  },
+  "ShareSomethingWithYouPower": {
+    "NAME": "おすそわけ！",
+    "DESCRIPTIONS": [
+      "ターン開始時、 #y好調  #b%d を得る。"
+    ]
+  },
+  "HappyChristmasPower": {
+    "NAME": "メリークリスマス♪",
+    "DESCRIPTIONS": [
+      "カードを使用するたび、 #y敏捷性 #b%d を得る。"
+    ]
+  },
+  "EndOfTurnPreservationStancePower": {
+    "NAME": "ターン終了温存",
+    "DESCRIPTIONS": [
+      "ターン終了時、 #y温存 に入る。"
+    ]
+  },
+  "EndOfTurnPreservationStancePlusPower": {
+    "NAME": "ターン終了温存・2段階目",
+    "DESCRIPTIONS": [
+      "ターン終了時、 #y温存・2段階目 に入る。"
+    ]
+  },
+  "UnpredictablePower": {
+    "NAME": "気まぐれ天気",
+    "DESCRIPTIONS": [
+      "#y温存 に入るたび、すべての手札·捨て札に #yブロック増加 #b%d を付与する。 NL #y強気 に入るたび、すべての手札·捨て札に #yダメージ増加 #b%d を付与する。"
+    ]
+  },
+  "LikeUsualPower": {
+    "NAME": "いつも通り",
+    "DESCRIPTIONS": [
+      "#y温存・2段階目 、 #yのんびり から退出するたび、 [E] × #b%d を得る。"
+    ]
+  },
+  "LikeUsualSPPower": {
+    "NAME": "いつも通りSP",
+    "DESCRIPTIONS": [
+      "y温存・2段階目 、 #yのんびり から退出するたび、 再動 #b%d 。"
+    ]
+  },
+   "FriendTemariPower1": {
+    "NAME": "月村手毬の付き添い",
+    "DESCRIPTIONS": [
+      "HPが #b%d 以上の間、 #y秦谷美鈴 が #yアタックカード を使用した後、HPを #b%d 失い、敵に #b%d の連携攻撃を与える。 NL HPが #b%d 未満の間、 #y休憩 し、次のターン開始時にHPを #b%d %%回復する。"
+    ]
+  },
+  "FriendTemariPower2": {
+    "NAME": "月村手毬の本質",
+    "DESCRIPTIONS": [
+      "ターン終了時、 #y秦谷美鈴 の #y未使用エナジー と #y未使用カード を消費する。 #b1 点の #yエナジー につきHP上限を #b%d 増加し、 #b1 枚の #yカード につきHPを #b%d 回復する。 NL この方法でHPが上限を超えた場合、 #y「暴食」 を1枚手札に加える。"
+    ]
+  },
+  "FriendRinhaPower1": {
+    "NAME": "賀陽燐羽の付き添い",
+    "DESCRIPTIONS": [
+      "ターン終了時、すべての敵に #b%d ダメージを与える。"
+    ]
+  },
+  "FriendRinhaPower2": {
+    "NAME": "賀陽燐羽の？？",
+    "DESCRIPTIONS": [
+      "ターン終了時、敵が #y攻撃 の意図を持っている場合、 #y「色欲」 を1枚手札に加える。 NL （戦闘中最大 #b%d 回まで）"
+    ]
+  },
+  "FriendHiroPower1": {
+    "NAME": "篠沢広の発見",
+    "DESCRIPTIONS": [
+      "ターン終了時、ランダムなドリンクを #b%d 本得る。 NL （戦闘中最大 #b%d 回まで）"
+    ]
+  },
+  "FriendHiroPower2": {
+    "NAME": "篠沢広の知恵",
+    "DESCRIPTIONS": [
+      "#y秦谷美鈴 が #yブロック を得たとき、ランダムな敵に #b%d のダメージを与える。"
+    ]
+  },
+  "FriendChinaPower1": {
+    "NAME": "倉本千奈の素直さ",
+    "DESCRIPTIONS": [
+      "#y秦谷美鈴 が スキルカード を使用するたび、 #y敏捷性 #b%d を得る。"
+    ]
+  },
+  "FriendChinaPower2": {
+    "NAME": "倉本千奈の可愛さ",
+    "DESCRIPTIONS": [
+      "ターン終了時、自身の #y敏捷性 に応じて、 #y秦谷美鈴 が #b%d の #yブロック を得る。"
+    ]
+  },
+  "FriendKotonePower1": {
+    "NAME": "藤田ことねの努力",
+    "DESCRIPTIONS": [
+      "ターン開始·終了時に、 #y秦谷美鈴 が #yゴールド #b%d を得る。"
+    ]
+  },
+  "FriendKotonePower2": {
+    "NAME": "藤田ことねの奮闘",
+    "DESCRIPTIONS": [
+      "#y秦谷美鈴 の #yゴールド が変化するたび、ランダムな敵に #b%d のダメージを与える。"
+    ]
+  },
+  "FriendSenaPower1": {
+    "NAME": "十王星南の趣味",
+    "DESCRIPTIONS": [
+      "#y秦谷美鈴 が パワーカード を使用した後、 #y筋力 #b%d を得る。"
+    ]
+  },
+  "FriendSenaPower2": {
+    "NAME": "十王星南の執念",
+    "DESCRIPTIONS": [
+      "ターン終了時、ランダムな敵に #b%d ダメージを #b%d 回与える。"
+    ]
+  },
+  "FriendUmePower1": {
+    "NAME": "花海佑芽トレーニング法",
+    "DESCRIPTIONS": [
+      "#b%d ターンごとに、 #y秦谷美鈴 は #yかすみ #b%d を得る。戦闘に勝利した際、 #y秦谷美鈴 のHP上限が #b%d 増加する。"
+    ]
+  },
+  "FriendUmePower2": {
+    "NAME": "花海佑芽の探索",
+    "DESCRIPTIONS": [
+      "ターン終了時、 #y秦谷美鈴 のHP上限の #b%d %%のダメージをランダムな敵に与える。"
+    ]
+  },
+  "WantToSleep": {
+    "NAME": "睡気",
+    "DESCRIPTIONS": [
+      "現在 #b%d 層。 NL #y眠気 が #b%d #b10 以上のとき、 #b%d の #y眠気 を失い、 #y睡眠 になる。"
+    ]
+  },
+  "WantToSleepEnemy": {
+    "NAME": "睡気",
+    "DESCRIPTIONS": [
+      "現在 #b%d 層。 NL ターン開始時、 #y眠気 が #b%d 以上あり、前のターンに #y睡眠 状態でなかった場合、 #b%d の #y眠気 を失い、 #y睡眠 になる。"
+    ]
+  },
+  "FatPower": {
+    "NAME": "肥満度",
+    "DESCRIPTIONS": [
+      "現在 #b%d 層。1層ごとに与えるダメージが #b10 %%減少する。 NL ターン終了時、 #b%d 層減少する。"
+    ]
+  },
+  "SleepingPower": {
+    "NAME": "睡眠",
+    "DESCRIPTIONS": [
+      "現在 #b%d 層。 NL 行動をスキップする。 NL ターン終了時、 #b%d 層減少する。"
+    ]
+  },
+  "TimeLoopPower": {
+    "NAME": "タイムループ",
+    "DESCRIPTIONS": [
+      "#y再動 を #b%d 回発動済み。 NL 累計 #b%d 回の #y再動 発動で、 #y追加ターン を1つ得る。"
+    ]
+  },
+  "FriendKnifePower": {
+    "NAME": "ナイフの切っ先",
+    "DESCRIPTIONS": [
+      "#yアタックカード を使用するたび、HPを #b%d 失い、敵に #b%d のダメージを与え、 #y弱体 #b%d を与える。"
+    ]
+  },
+  "IdolExamPower": {
+    "NAME": "アイドル試験",
+    "DESCRIPTIONS": [
+      "このターン中に受けるダメージは最大 #b%d 。このターン中に #b%d のダメージを受けると、以降ダメージを受ける際に同じ値のHPを回復する。 NL 現在の累計受けるダメージ： #b%d 。 NL 累計受けるダメージが #b%d を超えると、与えるダメージが #b50 %%減少する。 NL 累計受けるダメージが #b%d を超えると、さらに #b30 %%減少する。"
+    ]
+  },
+  "BalancePower": {
+    "NAME": "バランス感覚",
+    "DESCRIPTIONS": [
+      "ターン終了時、 #y好調 と #y筋力 の層数を平均化し、少ない方を増やし、多い方を減らす。"
+    ]
+  },
+  "SayGoodbyeToDislikeMyselfPower": {
+    "NAME": "嫌いな自分にバイバイ",
+    "DESCRIPTIONS": [
+      "#y訓練時間 終了時、ランダムな敵に #b%d のダメージを与える NL （ #y筋力 効果を #b%d %%適用）。"
+    ]
+  },
+  "MyPrideBigSisterPower": {
+    "NAME": "自慢のお姉ちゃんだぞ",
+    "DESCRIPTIONS": [
+      "ターン終了時、 #y訓練時間 が #b%d 未満の場合、ランダムな敵に #y好印象 の #b%d %%分のダメージを与える。"
+    ]
+  },
+  "ContinuousExpandWorldPower": {
+    "NAME": "広がり続ける世界",
+    "DESCRIPTIONS": [
+      "#y訓練時間 終了時、ランダムな敵に #yブロック の #b%d %%分のダメージを与える。"
+    ]
+  },
+  "EurekaPower": {
+    "NAME": "見つけた！",
+    "DESCRIPTIONS": [
+      "ターン開始時、自身のHPが #b50%% 以下の場合、ランダムな敵に ブロック の #b%d%% 分のダメージを与え、最大HPの #b%d%% のHPを回復する。"
+    ]
+  },
+  "EurekaPlusPower": {
+    "NAME": "ひらめいた！",
+    "DESCRIPTIONS": [
+      "ターン開始時、自身のHPが #b50%% 以下の場合、ランダムな敵に ブロック の #b%d%% 分のダメージを与え、最大HPの #b%d%% のHPを回復する。"
+    ]
+  },
+  "TheScenerySawSomedayPower": {
+    "NAME": "いつか見た景色",
+    "DESCRIPTIONS": [
+      "ターン開始時、ランダムな #b%d 体の敵に #b%d ダメージを与える。"
+    ]
+  },
+  "TheDreamSawSomedayPower": {
+    "NAME": "いつか見た夢",
+    "DESCRIPTIONS": [
+      "次のターン開始時、 #y筋力 #b%d を得る。"
+    ]
+  },
+  "TheWingPower": {
+    "NAME": "翼",
+    "DESCRIPTIONS": [
+      "次のターン開始時、 #y廃棄 から #yまた、飛べる を手札に加える。"
+    ]
+  },
+  "StarNature": {
+    "NAME": "星質",
+    "DESCRIPTIONS": [
+      "受けるダメージが #b%d%% 減少する。"
+    ]
+  },
+  "MoneyPower": {
+    "NAME": "藍井家の財力",
+    "DESCRIPTIONS": [
+      "現在の所持金：#b%d 。"
+    ]
+  },
+  "TauntPower": {
+    "NAME": "雑魚雑魚〜〜",
+    "DESCRIPTIONS": [
+      "受けるダメージが #b%d%% 増加する。 NL 各ターン最初に攻撃を受けたとき、 #y筋力 #b%d を得る。その後、攻撃を受けるたびに #y筋力 #b%d を失う。"
+    ]
+  },
+  "GoodsMonopolyPower": {
+    "NAME": "グッズの独占",
+    "DESCRIPTIONS": [
+      "#yぬい の数が減るたびに、 #b%d ゴールドを消費して #b%d 体の #yぬい を購入する。 NL この行動を、 #yぬい の数が #b%d になるまで繰り返す。"
+    ]
+  },
+  "PinkGirlPower": {
+    "NAME": "ピンク髪の大手",
+    "DESCRIPTIONS": [
+      "#yぬい を購入するたびに、 #y無形 #b%d を得る。 NL #yぬい が場に存在しない場合、 #y無形 をすべて失う。"
+    ]
+  },
+  "FearPinkGirlPower": {
+    "NAME": "威圧",
+    "DESCRIPTIONS": [
+      "与えるダメージが #b%d%% 減少する。 NL #yぬい を購入しなくなる。"
+    ]
+  },
+  "ShionMethod": {
+    "NAME": "白草四音の手段",
+    "DESCRIPTIONS": [
+      "各ターン最初に #y攻撃 を受けたとき、手札に #yウワサ を #b1 枚加える。"
+    ]
+  },
+  "ShionWord": {
+    "NAME": "白草四音の暴言",
+    "DESCRIPTIONS": [
+      "攻撃するたびに、プレイヤーは #y脱力 #b%d と #y弱体 #b%d を得る。"
+    ]
+  },
+  "FantasyKiller": {
+    "NAME": "幻想ブレイカー",
+    "DESCRIPTIONS": [
+      "ターン終了時、プレイヤーの #yデバフ の合計層数の #b%d%% に等しい #y筋力 を得る。"
+    ]
+  },
+  "CrisisTime": {
+    "NAME": "背水の時",
+    "DESCRIPTIONS": [
+      "HPが初めて #b%d%% および #b%d%% を下回ったとき、 #y攻撃回数 +1 。 NL プレイヤーは #y不調 #b%d と #y絶不調 #b%d を得る。"
+    ]
+  },
+  "ShionShadow": {
+    "NAME": "白草四音の影",
+    "DESCRIPTIONS": [
+      "#y姉系 キャラに与えるダメージが #b%d%% 増加する。"
+    ]
+  },
+  "InformationMasterPower": {
+    "NAME": "情報網をナメないで",
+    "DESCRIPTIONS": [
+      "#yアタック カード を使うたび、山札の #yウワサ をすべて消費する。 NL #yスキル カードを使うたび、手札の #yウワサ を山札へ戻す。 NL #yパワー カードを使うたび、すべての #y不調 を除去する。"
+    ]
+  },
+  "GekkaOldWound": {
+    "NAME": "白草月花の古傷",
+    "DESCRIPTIONS": [
+      "1ターン中に受けた攻撃回数が #b%d 回を超えると、そのターン与えるダメージが #b%d%% 減少する。"
+    ]
+  },
+  "TopIdolPower": {
+    "NAME": "トップアイドル",
+    "DESCRIPTIONS": [
+      "与えるダメージが #b%d%% 増加する。"
+    ]
+  },
+  "GekkaInterest": {
+    "NAME": "白草月花の興味",
+    "DESCRIPTIONS": [
+      "この戦闘中、HPを #b%d%% 失うたびに #y戦意 #b%d を得る。 NL [E] を失い、山札に #y戦う意志 を #b1 枚加える。"
+    ]
+  },
+  "GekkaWill": {
+    "NAME": "戦意",
+    "DESCRIPTIONS": [
+      "累積した戦意に応じて追加効果を得る。 NL 1： #b%d ブロックを得る。 NL 2：すべての #yバフ を #b%d 減らす（0 にはならない）。 NL 3： #y柔軟 #b%d を得る。 NL 4： #y再生 #b%d を得る。 NL 5：このターンはこれ以上カードを使用できない。 NL 6： #y絶好調 #b%d を得る。 NL 7： #y白草月花の追撃 を得る。 NL 8：層数が #b%d 以上の #yバフ を #b%d 個選び、その層数を #b%d%% 減らす。 NL 9：このターンはこれ以上カードを使用できない。 NL 10以上： #yバッファー #b%d を得る。"
+    ]
+  },
+  "GekkaWillOther": {
+    "NAME": "戦意",
+    "DESCRIPTIONS": [
+      "累積した戦意に応じて追加効果を得る。 NL 1： #b%d ブロックを得る。 NL 2： #b%d 個の #yデバフ を取り除く。 NL 3：すべての手札に #yブロック増加 #b%d を付与する。 NL 4： #y再生 #b%d を得る。 NL 5： #b1 個の #y追加ターン を得る。 NL 6： #y絶好調 #b%d を得る。 NL 7： #y白草月花の追撃 を得る。 NL 8： #yバッファー #b%d を得る。 NL 9： #b%d ゴールドを得る。 NL 10以上： #y再動 。"
+    ]
+  },
+  "StageDeviceFlow": {
+    "NAME": "舞台装置の回転",
+    "DESCRIPTIONS": [
+      "累計でカードを #b%d 枚使用するたびに、手札をすべて捨て札にし、同じ枚数のカードを引く。"
+    ]
+  },
+  "GekkaChase": {
+    "NAME": "白草月花の追撃",
+    "DESCRIPTIONS": [
+      "累計でカードを #b%d 枚使用するたびに、自身に基本ダメージ #b%d の攻撃を与える。 NL （この効果で初めて死亡するとき、HPを #b1 残して耐える。）"
+    ]
+  },
+  "GekkaChaseOther": {
+    "NAME": "白草月花の追撃",
+    "DESCRIPTIONS": [
+      "累計でカードを #b%d 枚使用するたびに、ランダムな敵に基本ダメージ #b%d の攻撃を与える。"
+    ]
+  },
+   "OneTimeFlash": {
+    "NAME": "一生一度の閃き",
+    "DESCRIPTIONS": [
+      "致命的なダメージを受けた時に消滅し、HPを #b%d 回復する。このターン中、これ以上ダメージを受けない。"
+    ]
+  },
+  "OnigiriGift": {
+    "NAME": "おにぎりの贈り物",
+    "DESCRIPTIONS": [
+      "攻撃を受けた時、攻撃してきた敵に与えたダメージの #b%d %%の #yブロック を与える。"
+    ]
+  },
+  "WorkHardPower": {
+    "NAME": "がんばった、よ",
+    "DESCRIPTIONS": [
+      "ターン開始時、 #y全力 の場合、すべてのカードに #yダメージ増加 #b%d を付与する。"
+    ]
+  },
+  "WorkHardSPPower": {
+    "NAME": "がんばった、よ・SP",
+    "DESCRIPTIONS": [
+      "ターン開始時、 #y全力 の場合、すべてのカードの #yダメージ増加 #b%d 、 #yブロック増加 #b%d を付与する。"
+    ]
+  },
+  "CanYouAcceptPower": {
+    "NAME": "受け取ってくれる？",
+    "DESCRIPTIONS": [
+      "#y強気 カードを使用するたび、すべての #y強気 カードに #yダメージ増加 #b%d を付与する。"
+    ]
+  },
+  "CanYouAcceptSPPower": {
+    "NAME": "受け取ってくれる？・SP",
+    "DESCRIPTIONS": [
+      "#y強気 カードを使用するたび、すべての #y強気 カードに #yダメージ増加 #b%d 、すべて手札に #yブロック増加 #b%d を付与する。"
+    ]
+  },
+  "TodokuPower": {
+    "NAME": "届",
+    "DESCRIPTIONS": [
+      "敵のターン終了時、すべての #yブロック を失う。"
+    ]
+  },
+  "PracticeAgainPower": {
+    "NAME": "練習再開",
+    "DESCRIPTIONS": [
+      "山札をシャッフルするたび、 #y好調 #b%d を得る。"
+    ]
+  },
+  "SleepyEnchantmentPower": {
+    "NAME": "眠気の付与",
+    "DESCRIPTIONS": [
+      "#yアタックカード を使用するたび、 #b%d 層の #y眠気 と #y不調 を与える。"
+    ]
+  },
+  "SleepySongPower": {
+    "NAME": "眠りのメロディ",
+    "DESCRIPTIONS": [
+      "#yスキルカード を使用するたび、 #y山札 に #b%d 枚の #y眠気 を加える。"
+    ]
+  },
+  "SleeplessNightPower": {
+    "NAME": "今夜は眠れない",
+    "DESCRIPTIONS": [
+      "このターン中、 #y睡気 を得ない。"
+    ]
+  },
+  "DarknessForeverPower": {
+    "NAME": "極夜",
+    "DESCRIPTIONS": [
+      "ターン開始時、すべての敵に #b%d 層の #y眠気 と #y不調 を与える。"
+    ]
+  },
+  "SleepyCardPowerPower": {
+    "NAME": "眠気の力",
+    "DESCRIPTIONS": [
+      "#y眠気 を消費するたび、 #y筋力 #b%d を得る。"
+    ]
+  },
+  "SpringSleepyPower": {
+    "NAME": "春の眠気",
+    "DESCRIPTIONS": [
+      "#y眠気 を使うたび、 #y再動 #b%d 。"
+    ]
+  },
+  "SummerSleepyPower": {
+    "NAME": "夏の倦怠",
+    "DESCRIPTIONS": [
+      "#y眠気 を使うたび、カードを #b%d 枚引く。"
+    ]
+  },
+  "AutumnSleepyPower": {
+    "NAME": "秋の疲れ",
+    "DESCRIPTIONS": [
+      "#y眠気 を使うたび、 #yブロック #b%d を得る。"
+    ]
+  },
+  "WinterSleepyPower": {
+    "NAME": "冬眠",
+    "DESCRIPTIONS": [
+      "#y眠気 を使うたび、ランダムな敵に #b5 ダメージを #b%d 回与える。"
+    ]
+  },
+  "CanNotPlayCardPower": {
+    "NAME": "行動不能",
+    "DESCRIPTIONS": [
+      "#b%d ターンの間、カードを使用できない。 NL ターン終了時、残りターン数が #b1 減少する。"
+    ]
+  },
+  "NegativeNotPower": {
+    "NAME": "低下状態無効",
+    "DESCRIPTIONS": [
+      "#b%d 回まで #yデバフ を無効化する。 NL （ #y筋力 、 #y敏捷性 、 #y好印象 、 #y好調 、 #y全力値 の減少は対象外）"
+    ]
+  },
+  "YouFindMePower": {
+    "NAME": "きみが見つけた私",
+    "DESCRIPTIONS": [
+      "#b%d ターンの間、与えるダメージが #b%d %%増加する。"
+    ]
+  },
+  "GiveYouPower": {
+    "NAME": "あなたにあげる",
+    "DESCRIPTIONS": [
+      "#b%d ターンの間、ターン終了時にランダムな敵に自身の #yブロック の #b%d %%分のダメージを与える。"
+    ]
+  },
+  "GiveYouSPPower": {
+    "NAME": "あなたに・SP",
+    "DESCRIPTIONS": [
+      "ターン終了時に、ランダムな敵に自身の #yブロック の #b%d %%分のダメージを与える。"
+    ]
+  },
+  "CareCardPower": {
+    "NAME": "おてつき注意",
+    "DESCRIPTIONS": [
+      "#b%d ターンの間、ターン開始時に、 #y強気 でなければ、 #y強気 に入る。"
+    ]
+  },
+  "CareCardSPPower": {
+    "NAME": "慎重なプレイ・SP",
+    "DESCRIPTIONS": [
+      "#b%d ターンの間、ターン開始時に、 #y強気 でなければ、 #y強気・2段階目 に入る。"
+    ]
+  },
+  "FateCommunityPower": {
+    "NAME": "運命共同体",
+    "DESCRIPTIONS": [
+      "#y筋力 を得るたび、味方全体も同じ値の #y筋力 を得る。"
+    ]
+  },
+  "FateCommunityPower2": {
+    "NAME": "運命共同体",
+    "DESCRIPTIONS": [
+      "#y筋力 ·を得るたび、賀陽燐羽も #b50 %%分の #y筋力 を得る。 NL #yブロック を得るたび、賀陽燐羽も #b50 %%分の #yブロック を得る。"
+    ]
+  },
+  "ThunderControlPower": {
+    "NAME": "雷鳴の支配者",
+    "DESCRIPTIONS": [
+      "攻撃を受けるたび、プレイヤーは #y麻痺 #b%d を得る。"
+    ]
+  },
+  "OurSunPower": {
+    "NAME": "私たちの太陽",
+    "DESCRIPTIONS": [
+      "ターン終了時、 #y筋力 #b%d と #y低下状態無効 #b%d を得る。"
+    ]
+  },
+  "BornImitatorPower": {
+    "NAME": "生まれながらの模倣者",
+    "DESCRIPTIONS": [
+      "山札を #b%d 回シャッフルするたび、 #b%d 枚のアイドルカード（R）を山札に加える。"
+    ]
+  },
+  "RinhaEndPower": {
+    "NAME": "賀陽燐羽の終幕",
+    "DESCRIPTIONS": [
+      "カードを #b%d 枚使用するたび、 #y好調 #b%d を得る。"
+    ]
+  },
+  "RinhaCarePower": {
+    "NAME": "賀陽燐羽の優しさ",
+    "DESCRIPTIONS": [
+      "HPを失うたびに、プレイヤーは #b%d %%分の #yブロック を得る。"
+    ]
+  },
+  "WakeUpMisuzuPower": {
+    "NAME": "美鈴、起きて！",
+    "DESCRIPTIONS": [
+      "#y秦谷美鈴 がそのターン中に初めて #y睡眠 に入ると、代わりに #y覚醒 に入る。"
+    ]
+  },
+  "EvilSourcePower": {
+    "NAME": "すべての悪の源",
+    "DESCRIPTIONS": [
+      "この戦闘中、使用したすべての #y呪い は #y眠気 として扱われる。"
+    ]
+  },
+  "CoolIdolPower": {
+    "NAME": "クール系アイドル",
+    "DESCRIPTIONS": [
+      "ターン開始時、 #y筋力 #b%d を失う。"
+    ]
+  },
+  "SleepyInfectionPower": {
+    "NAME": "眠気感染",
+    "DESCRIPTIONS": [
+      "死亡時、すべての敵に同じ値の #y眠気 を与える。"
+    ]
+  },
+  "KiraKiraPrismPower": {
+    "NAME": "きらめくプリズム",
+    "DESCRIPTIONS": [
+      "#yスキルカード を使用するたびに、 #y強気・2段階目 にいる場合、すべての #y強気アタックカード に #y=るダメージ増加 #b%d を付与する。"
+    ]
+  },
+  "DayDreamPower": {
+    "NAME": "白昼夢",
+    "DESCRIPTIONS": [
+      "#b%d ターンの間、敵のターン終了時、自身の残り #yブロック の #b%d %% を敵全体にダメージとして与える。"
+    ]
+  },
+  "DreamColorLipstickPower": {
+    "NAME": "夢色リップ",
+    "DESCRIPTIONS": [
+      "#b%d ターンの間、ターン開始時に #y好印象 を #b%d %% にする。"
+    ]
+  },
+  "DreamColorLipstickSPPower": {
+    "NAME": "夢色リップ・SP",
+    "DESCRIPTIONS": [
+      "ターン開始時に #y好印象 を #b%d %% にする。"
+    ]
+  },
+  "DamageIncreasePower": {
+    "NAME": "ダメージ増加",
+    "DESCRIPTIONS": [
+      "与えるダメージが #b%d %% 増加する。"
+    ]
+  },
+  "LifeNotStop": {
+    "NAME": "生きるということ",
+    "DESCRIPTIONS": [
+      "カードを使用するたびに、HPを #b%d 回復し、その回復量を #b%d 増加させる。 NL ターン開始時に、回復量は #b%d にリセットされる。"
+    ]
+  },
+  "NoPhoneInClassPower": {
+    "NAME": "授業中スマホ禁止！",
+    "DESCRIPTIONS": [
+      "#yプロデューサーの電話 の効果を発動できない。"
+    ]
+  },
+  "AsariChocolatePower": {
+    "NAME": "ちょうどよかった",
+    "DESCRIPTIONS": [
+      "このターンに最初にカードを使用したとき、 #b%d 枚の #yプロデューサーへのチョコ を山札に加え、 #y不安 #b%d を得る。"
+    ]
+  },
+  "AsariBentoPower": {
+    "NAME": "お弁当交換",
+    "DESCRIPTIONS": [
+      "ターン開始時、 #b%d 枚の #yプロデューサーへのお弁当 を手札に加える。"
+    ]
+  },
+  "AnxietyPower": {
+    "NAME": "不安です",
+    "DESCRIPTIONS": [
+      "現在 #b%d 層。 NL 得られる #yブロック が #b33 %% 減少する。 NL ターン終了時、層数を #b1 減らす。"
+    ]
+  },
+  "NextXTurnAnxietyPower": {
+    "NAME": "Xターン後に不安",
+    "DESCRIPTIONS": [
+      "#b%d ターン後、 #y不安 #b%d を得る。"
+    ]
+  },
+  "AsariCarePower": {
+    "NAME": "あさり先生の見守り",
+    "DESCRIPTIONS": [
+      "カードを使用したとき、プレイヤーの #yデバフ の合計層数が #b%d を超えていた場合、プロデューサーに連絡し、すべての #yデバフ を取り除き、ターンを終了する。"
+    ]
+  },
+  "KotoneCharmPower": {
+    "NAME": "この宇宙を照らして",
+    "DESCRIPTIONS": [
+      "カードを #b%d 枚使用したとき、 #y好印象 #b%d を得る。"
+    ]
+  },
+  "KotoneWorkPower": {
+    "NAME": "アイドルとしてのお仕事",
+    "DESCRIPTIONS": [
+      "ターン終了時、味方全体が #y好印象 #b%d を得る。"
+    ]
+  },
+  "KotoneEncallPower": {
+    "NAME": "藤田ことねの応援",
+    "DESCRIPTIONS": [
+      "死亡時、ターンを終了し、味方全体が同じ層数の #y好印象 を得る。"
+    ]
+  },
+  "TemariInnocentPower": {
+    "NAME": "憂いを帯びた蒼月",
+    "DESCRIPTIONS": [
+      "ターン終了時、味方全体が #y筋力 #b%d を得る。"
+    ]
+  },
+  "TemariEatPower": {
+    "NAME": "ひとくちちょうだい！",
+    "DESCRIPTIONS": [
+      "このターンで最初にHPを回復したとき、手札に #y「暴食」 を #b1 枚加える。"
+    ]
+  },
+  "TemariSongPower": {
+    "NAME": "ほんとうの気持ち",
+    "DESCRIPTIONS": [
+      "HPを失ったとき、 #y筋力 #b%d を得る。"
+    ]
+  },
+  "TemariEncallPower": {
+    "NAME": "月村手毬の応援",
+    "DESCRIPTIONS": [
+      "死亡時、味方全体が同じ層数の #y筋力 を得る、プレイヤーのすべての #yブロック を失い、。"
+    ]
+  },
+  "SakiCarePower": {
+    "NAME": "超プロ栄養士",
+    "DESCRIPTIONS": [
+      "ターン終了時、味方全体のHPを #b%d %% 回復する。"
+    ]
+  },
+  "SakiPracticePower": {
+    "NAME": "この道で戦う",
+    "DESCRIPTIONS": [
+      "山札をシャッフルするたびに、 #y好調 #b%d を得る。"
+    ]
+  },
+  "SakiGoodTunePower": {
+    "NAME": "信じるものだけが",
+    "DESCRIPTIONS": [
+      "ターン終了時、味方全体が #y好調 #b%d を得る。"
+    ]
+  },
+  "SakiRebirthPower": {
+    "NAME": "一瞬一瞬をつかまえて",
+    "DESCRIPTIONS": [
+      "死亡時、味方全体が同じ層数の #y好調 を得る。 NL 次のターン開始時に復活し、 #y絶好調 #b%d を得て、自身の #y筋力 と #y好調 を #b100 %% 増加させる。"
+    ]
+  },
+  "LiljaLightPower": {
+    "NAME": "オーロラのように輝いて",
+    "DESCRIPTIONS": [
+      "ターン終了時、 #yブロック を持っている場合、 #y好印象 の層数を #b%d %% 増加させ、そうでない場合は #y筋力 #b%d を得る。"
+    ]
+  },
+  "LiljaEncallPower": {
+    "NAME": "葛城リーリヤの応援",
+    "DESCRIPTIONS": [
+      "死亡時、味方全体のデバフをすべて取り除く。"
+    ]
+  },
+  "SumikaCryPower": {
+    "NAME": "心の叫び",
+    "DESCRIPTIONS": [
+      "カードを #b%d 枚プレイするたび、味方全体は #b%d ブロックを得る。"
+    ]
+  },
+  "SumikaEncallPower": {
+    "NAME": "紫雲清夏の応援",
+    "DESCRIPTIONS": [
+      "死亡時、味方全体が #y直感 #b%d を得る。"
+    ]
+  },
+  "HiroInterestPower": {
+    "NAME": "再燃した興味",
+    "DESCRIPTIONS": [
+      "カードを #b%d 枚プレイするたび、 #b%d ブロックを得る。"
+    ]
+  },
+  "HiroWorldPower": {
+    "NAME": "色とりどりの世界",
+    "DESCRIPTIONS": [
+      "ターン開始時、 #yブロック の #b%d %%の分ダメージを与える。"
+    ]
+  },
+  "HiroEncallPower": {
+    "NAME": "篠沢広の応援",
+    "DESCRIPTIONS": [
+      "HPが初めて #b%d %%未満になったとき、味方全体が #y消費HP削減 #b%d を得る。"
+    ]
+  },
+  "ChinaGreatPower": {
+    "NAME": "素敵な時間を抱きしめて",
+    "DESCRIPTIONS": [
+      "スキルカードをプレイするたび、味方全体が #y敏捷 #b%d を得る。"
+    ]
+  },
+  "ChinaSongPower": {
+    "NAME": "旅のうた",
+    "DESCRIPTIONS": [
+      "ターン終了時、味方全体が #y高揚 #b%d を与える。"
+    ]
+  },
+  "ChinaEncallPower": {
+    "NAME": "倉本千奈の応援",
+    "DESCRIPTIONS": [
+      "死亡時、味方全体の #yブロック が #b%d %%増加する。"
+    ]
+  },
+  "RinamiRobotPower": {
+    "NAME": "ほのめかし",
+    "DESCRIPTIONS": [
+      "この戦闘中に初めてカードをプレイしたとき、山札にランダムなロボットカードを #b%d 枚加える。"
+    ]
+  },
+  "RinamiSecretPower": {
+    "NAME": "でも言えないでも言えない",
+    "DESCRIPTIONS": [
+      "毎ターン、 #b%d 枚目のカードをプレイしたとき、そのカードのコピーを手札に加え、それに #yコスト増加 #b1 を与える。"
+    ]
+  },
+  "RinamiStoryPower": {
+    "NAME": "私たちの物語",
+    "DESCRIPTIONS": [
+      "#y筋力 を得るたびに、HPを #b%d 回復する。"
+    ]
+  },
+  "RinamiEncallPower": {
+    "NAME": "姫崎莉波の応援",
+    "DESCRIPTIONS": [
+      "死亡時、味方全体のHPを #b%d %%回復する。"
+    ]
+  },
+  "MaoMagicPower": {
+    "NAME": "甘い魔法",
+    "DESCRIPTIONS": [
+      "HPを #b%d %%失うたび、 #y攻撃回数 が1増加する。"
+    ]
+  },
+  "MaoEncallPower": {
+    "NAME": "有村麻央の応援",
+    "DESCRIPTIONS": [
+      "死亡時、手札を #b%d 枚捨てる。"
+    ]
+  },
+  "MisuzuSleepPower": {
+    "NAME": "一緒におやすみ",
+    "DESCRIPTIONS": [
+      "攻撃を受けるたび、プレイヤーは #y眠気 #b%d を得る。"
+    ]
+  },
+  "MisuzuDreamPower": {
+    "NAME": "共通の夢",
+    "DESCRIPTIONS": [
+      "#y眠気 を廃棄するたび、味方全体に #y筋力 #b%d を与える。"
+    ]
+  },
+  "MisuzuEncallPower": {
+    "NAME": "秦谷美鈴の応援",
+    "DESCRIPTIONS": [
+      "死亡時、味方全体の #y筋力 を #b50 %%増加させ、プレイヤーは #y睡眠 になる。"
+    ]
+  },
+  "MisuzuNightPower": {
+    "NAME": "あの夜",
+    "DESCRIPTIONS": [
+      "#yスタンス を #b%d 回変化させるたび、山札に #b1 枚の #y眠気 を加える。"
+    ]
+  },
+  "SenaMoreActionPower": {
+    "NAME": "多動なんです",
+    "DESCRIPTIONS": [
+      "#y再動 を #b2 回発動するたび、味方全体に #y好調 #b%d を与える。"
+    ]
+  },
+  "SenaEncallPower": {
+    "NAME": "十王星南の応援",
+    "DESCRIPTIONS": [
+      "死亡時、味方全体の #y好調 を #b50 %%増加させ、プレイヤーの奇数番目の手札は #yコスト増加 #b1 増、偶数番目の手札は #yコスト減少 #b1 。"
+    ]
+  },
+  "SenaTopPower": {
+    "NAME": "その頂点を目指して",
+    "DESCRIPTIONS": [
+      "スキルカードをプレイするたび、味方全体に #yダメージ増加 #b%d %%と #y受けるダメージ減少 #b%d %%を与える。 NL（ #y受けるダメージ減少 は最大で #b80 %%まで重複）"
+    ]
+  },
+  "SenaTeachPower": {
+    "NAME": "受け継がれる灯火",
+    "DESCRIPTIONS": [
+      "ターン終了時、味方全体の #y筋力 と #y好調 を #b%d %%増加させる。"
+    ]
+  },
+  "UmeGreatGoodTunePower": {
+    "NAME": "最強体操",
+    "DESCRIPTIONS": [
+      "#b2 ターンごとに、味方全体に #y絶好調 #b%d を与える。"
+    ]
+  },
+  "UmeBecomeIdolPower": {
+    "NAME": "アイドルになりたい",
+    "DESCRIPTIONS": [
+      "#b2 ターンごとに、味方全体の #y攻撃回数 を #b1 増加させる。"
+    ]
+  },
+  "UmeEncallPower": {
+    "NAME": "花海佑芽の応援",
+    "DESCRIPTIONS": [
+      "死亡時、全員に #y無形 #b1 を与える。"
+    ]
+  },
+  "UmeStancePower": {
+    "NAME": "ちょっと休憩…元気出た！",
+    "DESCRIPTIONS": [
+      "カードを #b%d 枚プレイするたび、 #y温存 に入る。 NL すでに #y温存 なら、 #y強気 に入る。"
+    ]
+  },
+  "AttackTimePower": {
+    "NAME": "攻撃回数増加",
+    "DESCRIPTIONS": [
+      "攻撃回数が #b%d 増加する。"
+    ]
+  },
+  "NextXTurnMoreActionPower": {
+    "NAME": "Xターン後に再動",
+    "DESCRIPTIONS": [
+      "#b%d ターン後に #y再動 。",
+      "#b%d ターン後に #y再動 #b%d 。"
+    ]
+  },
+  "PromiseInMoonPower": {
+    "NAME": "月下の契約",
+    "DESCRIPTIONS": [
+      "ターン終了時、HPを #b%d 失い、カードを #b%d 枚引く。"
+    ]
+  },
+  "NewFriendsPower": {
+    "NAME": "新たな出会い",
+    "DESCRIPTIONS": [
+      "ターン終了時、得ている #yブロック を保持する。 NL 次のターン開始時、それに #b%d %%の #yブロック を得る。"
+    ]
+  },
+  "SurgingEmotionPower": {
+  "NAME": "あふれる感情",
+  "DESCRIPTIONS": [
+    "#b%d ターンの間、 #y好印象 の増加量が #b%d%% 増加する。"
+    ]
+  },
+  "NextTurnIdolBlockPower": {
+    "NAME": "次のターンのブロック",
+    "DESCRIPTIONS": [
+      "次のターンの開始時、 #b%d ブロックを得る（ #y敏捷性 の影響を受ける）。"
+    ]
+  },
+  "EnthusiasticAddPower": {
+    "NAME": "熱意追加",
+    "DESCRIPTIONS": [
+      "#y熱意 を得るたび、追加で #y熱意 #b%d を得る。"
+    ]
+  },
+  "UntilHopeReachPower": {
+    "NAME": "希望が届くまで",
+    "DESCRIPTIONS": [
+      "カードを #y廃棄 または #yパワー カード を使用するたび、 #y好調 #b%d を得る。"
+    ]
+  },
+  "FormalContractPower": {
+    "NAME": "正式契約",
+    "DESCRIPTIONS": [
+      "ダメージが #b%d%% 増加する。直前に使用した #yアイドル カードの所属：#y%s。 NL 同じ #yアイドル のカードを連続で使用すると、 #yダメージ が #b10%% 増加し、別の #yアイドル のカードを使用すると #yダメージ が #b20%% 減少する。"
+    ]
+  },
+  "CatchTheLightPower": {
+    "NAME": "この光を掴んで",
+    "DESCRIPTIONS": [
+      "#yアイドル カードを使用するたび、 #b%d ブロックを得る。"
+    ]
+  },
+  "NextXTurnSkipTurnPower": {
+    "NAME": "この先ずっと",
+    "DESCRIPTIONS": [
+      "#b%d ターン後、自分のターンをスキップする。"
+    ]
+  },
+  "ThirtySecondsPower": {
+    "NAME": "30秒の全力",
+    "DESCRIPTIONS": [
+      "#b%d 秒の間、カードを使用するたび #y再動 。"
+    ]
+  },
+  "ProducerIdolPower": {
+    "NAME": "プロデューサーの余裕",
+    "DESCRIPTIONS": [
+      "カードを #b%d 枚使用するたび、プロデューサーが一番左のカードを1枚使用し、カードを1枚引く。 NL ターン終了時、一番左のカードを3枚使用する。"
+    ]
+  },
+  "ClumsyAsAlwaysPower": {
+    "NAME": "相変わらず不器用ね",
+    "DESCRIPTIONS": [
+      "2枚のカードに #y成長 効果を与えるたび、次にカードを使用したとき、 #y固定元気 #b%d を得る。 NL （次にカードを使用したとき、 #y固定元気 #b%d を得る）"
+    ]
+  },
+  "SceneryOnHousePower": {
+    "NAME": "屋上からの景色",
+    "DESCRIPTIONS": [
+      "ターン開始時、 #y温存 の場合、 #yのんびり に入る。"
+    ]
+  },
+  "SenseOfDistancePower": {
+    "NAME": "距離感",
+    "DESCRIPTIONS": [
+      "ターン開始時、HPが #b50%% 以上であれば、 #y筋力 #b%d を得る。"
+    ]
+  },
+  "SenseOfDistanceSPPower": {
+    "NAME": "距離感・改",
+    "DESCRIPTIONS": [
+      "HPが変化するたび、 #y筋力 #b%d を得る。"
+    ]
+  },
+  "StarDustPower": {
+    "NAME": "きらめく星屑",
+    "DESCRIPTIONS": [
+      "#b%d ターンの間、 #y好印象 の増加量が #b%d%% 増加する。"
+    ]
+  },
+  "SettingPower": {
+    "NAME": "セッティング",
+    "DESCRIPTIONS": [
+      "次のターンの開始時、すべての手札に #yダメージ増加 #b%d を付与する。"
+    ]
+  },
+  "FirstImpressionPower": {
+    "NAME": "第一印象",
+    "DESCRIPTIONS": [
+      "#y強気 カードを使用するたび、すべてのカードに #yダメージ増加 #b%d を付与する。"
+    ]
+  },
+  "MotivationPower": {
+    "NAME": "モチベーション",
+    "DESCRIPTIONS": [
+      "#y全力 カードを使用するたび、 #y全力値 #b%d を得る。"
+    ]
+  },
+  "StrengthAddPower": {
+    "NAME": "筋力追加",
+    "DESCRIPTIONS": [
+      "#y筋力 を得るたび、追加で #y筋力 #b%d を得る。"
+    ]
+  },
+  "GoodImpressionDamageAddPower": {
+    "NAME": "好印象ダメージが増加",
+    "DESCRIPTIONS": [
+      "#b%d ターンの間、 #y好印象 のダメージが #b%d%% 増加する。"
+    ]
+  },
+  "DreamIdolPower": {
+    "NAME": "憧れのアイドル",
+    "DESCRIPTIONS": [
+      "直接効果で #yブロック か #b%d 増加後、 #yブロック の #b30%% 分のダメージを与える( #b%d 回)。"
+    ]
+  },
+  "BeyondSunSongPower": {
+    "NAME": "太陽を追い越す歌声",
+    "DESCRIPTIONS": [
+      "#b%d ターンの間、与えるダメージが #b50%% 減少する。"
+    ]
+  },
+  "BeyondSunSongPower2": {
+    "NAME": "太陽を追い越す歌声",
+    "DESCRIPTIONS": [
+      "#b%d ターンの間、与えるダメージが #b50%% 増加する。"
+    ]
+  }
+}

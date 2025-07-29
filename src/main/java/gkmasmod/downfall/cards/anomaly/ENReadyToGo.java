@@ -31,11 +31,11 @@ public class ENReadyToGo extends GkmasBossCard {
     private static final String DESCRIPTION = CARD_STRINGS.DESCRIPTION;
     private static String IMG_PATH = ImageHelper.idolImgPath(AbstractCharBoss.theIdolName, CLASSNAME2);
 
-    private static final int COST = 2;
+    private static final int COST = 1;
 
-    private static final int BASE_DAMAGE = 8;
+    private static final int BASE_DAMAGE = 6;
 
-    private static final int UPGRADE_DMG_PLUS = 4;
+    private static final int UPGRADE_DMG_PLUS = 2;
 
     private static final int BASE_MAGIC = 0;
 
@@ -67,9 +67,7 @@ public class ENReadyToGo extends GkmasBossCard {
 //        if(this.magicNumber>0){
 //            addToBot(new GrowAction(DamageGrow.growID, GrowAction.GrowType.allHand, this.magicNumber));
 //        }
-        if(AbstractCharBoss.boss.stance.ID.equals(ENFullPowerStance.STANCE_ID)){
-            addToBot(new ApplyPowerAction(m,m,new EnthusiasticPower(m,this.secondMagicNumber),this.secondMagicNumber));
-        }
+        addToBot(new ApplyPowerAction(m,m,new EnthusiasticPower(m,this.secondMagicNumber),this.secondMagicNumber));
     }
 
     @Override

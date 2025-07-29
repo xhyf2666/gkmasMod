@@ -23,11 +23,12 @@ public class ENOneStep extends GkmasBossCard {
     private static final String DESCRIPTION = CARD_STRINGS.DESCRIPTION;
     private static final String IMG_PATH = String.format("gkmasModResource/img/cards/common/%s.png", CLASSNAME2);
 
-    private static final int COST = 1;
+    private static final int COST = 0;
 
-    private static final int BASE_DAMAGE = 6;
-    private static final int UPGRADE_DMG_PLUS = 3;
+    private static final int BASE_DAMAGE = 4;
+    private static final int UPGRADE_DMG_PLUS = 2;
     private static final int BASE_MAGIC = 1;
+    private static final int UPGRADE_PLUS_MAGIC = 1;
     private static final int BASE_MAGIC2 = 1;
     private static final int BASE_MAGIC3 = 0;
 
@@ -70,6 +71,7 @@ public class ENOneStep extends GkmasBossCard {
         if (!this.upgraded) {
             upgradeName();
             upgradeDamage(UPGRADE_DMG_PLUS);
+            upgradeMagicNumber(UPGRADE_PLUS_MAGIC);
             if (CARD_STRINGS.UPGRADE_DESCRIPTION != null)
                 this.rawDescription = CARD_STRINGS.UPGRADE_DESCRIPTION;
             this.initializeDescription();

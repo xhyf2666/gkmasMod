@@ -13,6 +13,7 @@ import com.megacrit.cardcrawl.vfx.RainingGoldEffect;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndObtainEffect;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.cards.GkmasCardTag;
+import gkmasmod.characters.IdolCharacter;
 import gkmasmod.characters.MisuzuCharacter;
 import gkmasmod.characters.OtherIdolCharacter;
 import gkmasmod.characters.PlayerColorEnum;
@@ -43,26 +44,29 @@ public class SupplyEvent extends AbstractImageEvent {
         type  = IdolData.getIdol(SkinSelectScreen.Inst.idolIndex).getType(SkinSelectScreen.Inst.skinIndex);
         this.cards = new ArrayList<>();
         if(AbstractDungeon.player instanceof MisuzuCharacter){
+            type = CommonEnum.IdolType.SENSE;
+        }
+        else if(AbstractDungeon.player instanceof OtherIdolCharacter){
+            type = IdolData.getOtherIdol(OtherSkinSelectScreen.Inst.idolIndex).getType(OtherSkinSelectScreen.Inst.skinIndex);
+        }
+        if(type==CommonEnum.IdolType.SENSE){
             getRandomCard(PlayerColorEnum.gkmasModColorSense,cards);
         }
-        if(AbstractDungeon.player instanceof OtherIdolCharacter){
-            type  = IdolData.getOtherIdol(OtherSkinSelectScreen.Inst.idolIndex).getType(OtherSkinSelectScreen.Inst.skinIndex);
+        else if(type==CommonEnum.IdolType.LOGIC){
+            getRandomCard(PlayerColorEnum.gkmasModColorLogic,cards);
+        }
+        else if(type==CommonEnum.IdolType.ANOMALY){
+            getRandomCard(PlayerColorEnum.gkmasModColorAnomaly,cards);
+        }
+        else if(type== CommonEnum.IdolType.PRODUCE){
+            getRandomCardSpecial(PlayerColorEnum.gkmasModColorSense,cards);
+            getRandomCardSpecial(PlayerColorEnum.gkmasModColorLogic,cards);
+            getRandomCardSpecial(PlayerColorEnum.gkmasModColorAnomaly,cards);
         }
         else{
-            if(type==CommonEnum.IdolType.SENSE){
-                getRandomCard(PlayerColorEnum.gkmasModColorSense,cards);
-            }
-            else if(type==CommonEnum.IdolType.LOGIC){
-                getRandomCard(PlayerColorEnum.gkmasModColorLogic,cards);
-            }
-            else if(type==CommonEnum.IdolType.ANOMALY){
-                getRandomCard(PlayerColorEnum.gkmasModColorAnomaly,cards);
-            }
-            else{
-                getRandomCard(PlayerColorEnum.gkmasModColorSense,cards);
-                getRandomCard(PlayerColorEnum.gkmasModColorLogic,cards);
-                getRandomCard(PlayerColorEnum.gkmasModColorAnomaly,cards);
-            }
+            getRandomCard(PlayerColorEnum.gkmasModColorSense,cards);
+            getRandomCard(PlayerColorEnum.gkmasModColorLogic,cards);
+            getRandomCard(PlayerColorEnum.gkmasModColorAnomaly,cards);
         }
         Collections.shuffle(this.cards,new Random(Settings.seed+AbstractDungeon.floorNum));
         this.imageEventText.setDialogOption(String.format(OPTIONS[0],gold+AbstractDungeon.actNum*20, cards.get(0).name),cards.get(0));
@@ -111,10 +115,33 @@ public class SupplyEvent extends AbstractImageEvent {
             AbstractCard card = (AbstractCard)c.getValue();
             if (card.color.equals(color)&& card.tags.contains(GkmasCardTag.IDOL_CARD_TAG)){
                 GkmasCard gkmasCard = (GkmasCard)card;
-                if(gkmasCard.bannerColor.equals("color")&&!card.cardID.equals(IdolData.getIdol(SkinSelectScreen.Inst.idolIndex).getCard(SkinSelectScreen.Inst.skinIndex)))
+                if(AbstractDungeon.player instanceof IdolCharacter) {
+                    if (gkmasCard.bannerColor.equals("color") && !card.cardID.equals(IdolData.getIdol(SkinSelectScreen.Inst.idolIndex).getCard(SkinSelectScreen.Inst.skinIndex))) {
+                        tmpPool.add(card);
+                    }
+                }
+                else if(AbstractDungeon.player instanceof OtherIdolCharacter) {
+                    if (gkmasCard.bannerColor.equals("color")) {
+                        tmpPool.add(card);
+                    }
+                }
+                else if (gkmasCard.bannerColor.equals("color")) {
                     tmpPool.add(card);
+                }
             }
+        }
+    }
 
+    public ArrayList<AbstractCard> getRandomCardSpecial(AbstractCard.CardColor color,ArrayList<AbstractCard> tmpPool) {
+        Iterator<Map.Entry<String, AbstractCard>> cardLib = CardLibrary.cards.entrySet().iterator();
+        while (true) {
+            if (!cardLib.hasNext())
+                return tmpPool;
+            Map.Entry c = cardLib.next();
+            AbstractCard card = (AbstractCard)c.getValue();
+            if (card.rarity == AbstractCard.CardRarity.RARE&&color.equals(card.color)){
+                tmpPool.add(card);
+            }
         }
     }
 }

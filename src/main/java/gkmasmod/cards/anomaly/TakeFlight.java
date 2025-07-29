@@ -48,8 +48,6 @@ public class TakeFlight extends GkmasCard {
     private static final int UPGRADE_MAGIC3_PLUS = 5;
     private static final int BASE_GROW = 1;
 
-
-
     private static final CardType TYPE = CardType.ATTACK;
     private static final CardColor COLOR = PlayerColorEnum.gkmasModColorAnomaly;
     private static final CardRarity RARITY = CardRarity.RARE;
@@ -86,7 +84,6 @@ public class TakeFlight extends GkmasCard {
         if(CustomHelper.hasCustom(this, EffectAddCustom.growID)){
             addToBot(new ApplyPowerAction(p,p,new EndOfTurnPreservationStancePower(p,1),1));
         }
-
     }
 
     @Override

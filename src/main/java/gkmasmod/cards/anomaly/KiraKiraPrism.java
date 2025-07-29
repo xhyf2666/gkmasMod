@@ -79,7 +79,7 @@ public class KiraKiraPrism extends GkmasCard {
                 return super.canUse(p,m);
             }
         }
-        this.cantUseMessage = CardCrawlGame.languagePack.getUIString("gkmasMod:NotEnoughPreservationStanceTime").TEXT[0];
+        this.cantUseMessage = CardCrawlGame.languagePack.getUIString("gkmasMod:NotPreservationStance").TEXT[0];
         return false;
     }
 

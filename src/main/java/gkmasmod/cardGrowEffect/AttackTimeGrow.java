@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import gkmasmod.actions.ModifyDamageAction;
+import gkmasmod.cards.anomaly.FashionLeader;
 import gkmasmod.cards.anomaly.FinalSpurt;
 import gkmasmod.cards.anomaly.ShineBright;
 import gkmasmod.cards.anomaly.StepByStep;
@@ -47,7 +48,7 @@ public class AttackTimeGrow extends AbstractGrowEffect {
             }
         }
         else{
-            if(card instanceof FinalSpurt ||card instanceof StepByStep||card instanceof ShineBright){
+            if(card instanceof FinalSpurt ||card instanceof StepByStep||card instanceof ShineBright||card instanceof FashionLeader){
                 if(!AbstractDungeon.player.stance.ID.equals(FullPowerStance.STANCE_ID))
                     return;
             }

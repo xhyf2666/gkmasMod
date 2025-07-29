@@ -19,6 +19,8 @@ import com.megacrit.cardcrawl.events.city.Vampires;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.ScreenShake;
+import com.megacrit.cardcrawl.relics.FossilizedHelix;
+import com.megacrit.cardcrawl.relics.SingingBowl;
 import com.megacrit.cardcrawl.screens.CharSelectInfo;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import gkmasmod.cards.GkmasCard;
@@ -274,12 +276,18 @@ public class OtherIdolCharacter extends CustomPlayer {
             retVal.add(PocketBook.ID);
             if(OtherSkinSelectScreen.Inst.idolName.equals(IdolData.prod)){
                 retVal.add(IdolPhone.ID);
+                retVal.add(ProducerBaseSkill.ID);
+                retVal.add(AsariHelp.ID);
             }
             else{
                 retVal.add(ProducerPhone.ID);
             }
             if(OtherSkinSelectScreen.Inst.updateIndex==1){
                 retVal.add(BalanceLogicAndSense.ID);
+            }
+            if(OtherSkinSelectScreen.Inst.idolName.equals(IdolData.lhro)){
+                retVal.add(FossilizedHelix.ID);
+                retVal.add(SingingBowl.ID);
             }
         }
 
@@ -306,7 +314,7 @@ public class OtherIdolCharacter extends CustomPlayer {
             return CardCrawlGame.languagePack.getCharacterString(String.format("IdolStory:%s", OtherSkinSelectScreen.Inst.idolName)).TEXT[0];
         }
         catch (Exception e){
-            return "不同背景的偶像团体。每位偶像拥有各自的初始卡组、专属遗物和成长倾向。";
+            return CardCrawlGame.languagePack.getCharacterString("IdolStory:default2").TEXT[0];
         }
     }
 
@@ -328,7 +336,7 @@ public class OtherIdolCharacter extends CustomPlayer {
 
     @Override
     public String getTitle(PlayerClass playerClass) {
-        return "学园偶像大师";
+        return CardCrawlGame.languagePack.getCharacterString("gkmasMod:title1").TEXT[0];
     }
 
     @Override
@@ -376,7 +384,7 @@ public class OtherIdolCharacter extends CustomPlayer {
 
     @Override
     public String getLocalizedCharacterName() {
-        return "学园偶像大师";
+        return CardCrawlGame.languagePack.getCharacterString("gkmasMod:title1").TEXT[0];
     }
 
     @Override
@@ -386,7 +394,7 @@ public class OtherIdolCharacter extends CustomPlayer {
 
     @Override
     public String getSpireHeartText() {
-        return"到了……登上舞台的时候";
+        return CardCrawlGame.languagePack.getCharacterString("gkmasMod:meetHeart1").TEXT[0];
     }
 
     @Override

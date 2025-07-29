@@ -1,0 +1,56 @@
+{
+  "ConcentrationStance1": {
+    "NAME": "強氣",
+    "DESCRIPTION": [
+      "造成和受到的傷害增加 #b50 %。 NL 重複進入這一 #y姿態 時，進入 #y強氣2段 。"
+    ]
+  },
+  "ConcentrationStance2": {
+    "NAME": "強氣2段",
+    "DESCRIPTION": [
+      "造成和受到的傷害增加 #b100 %，出牌後失去 #b1 點體力。"
+    ]
+  },
+  "PreservationStance1": {
+    "NAME": "溫存",
+    "DESCRIPTION": [
+      "造成和受到的傷害減少 #b30 %。 NL 離開這一 #y姿態 時，獲得 #b2 層 #y熱意 ， #y再動 。 NL 重複進入這一 #y姿態 時，進入 #y溫存2段 。"
+    ]
+  },
+  "PreservationStance2": {
+    "NAME": "溫存2段",
+    "DESCRIPTION": [
+      "造成和受到的傷害減少 #b50 %。 NL 離開這一 #y姿態 時，獲得 #b3 層 #y熱意 和 #b5 點 #y固定格擋 ， #y再動 ，獲得 [E] 。"
+    ]
+  },
+  "PreservationStance3": {
+    "NAME": "悠閒",
+    "DESCRIPTION": [
+      "視爲 #y溫存3段 。進入這一 #y姿態 時，獲得 #b1 層 #y緩衝 。 NL 造成的傷害減少 #b100 %，受到的傷害減少 #b50 %。 NL 離開這一 #y姿態 時，獲得 #b5 點 #y固定格擋 ， #y再動 ，獲得 [E] 。 NL 進入 #y強氣 時，獲得 #b5 層 #y熱意 ，進入 #y全力 時，使所有牌獲得 #y傷害增加 #b2 和 #y格擋增加 #b2 。"
+    ]
+  },
+  "FullPowerStance": {
+    "NAME": "全力",
+    "DESCRIPTION": [
+      "進入這一 #y姿態 時， #y再動 ，將 #y暫存 的卡牌和1張 #y留手 加入手牌。 NL 造成的傷害增加 #b150 %。 NL 回合結束時自動退出這一 #y姿態 。 NL 無法轉化爲其他 #y姿態 。"
+    ]
+  },
+  "SleepyStance": {
+    "NAME": "睏倦",
+    "DESCRIPTION": [
+      "進入這一 #y姿態 時，將一張 #y眠氣 加入手牌。 NL 每次出牌後，獲得 #b1 層 #y睏意 。"
+    ]
+  },
+  "SleepStance": {
+    "NAME": "睡眠",
+    "DESCRIPTION": [
+      "進入這一 #y姿態 時，使所有敵人獲得 #b2 層 #y睏意 ，將一張 #y「傲慢」 加入手牌。 NL 處於這一 #y姿態 時，無法出牌，受到的傷害減少 #b33 %。 NL 退出這一 #y姿態 時，獲得 #b1 點 #y力量 和 #b1 點 #y敏捷 。 NL 下回合開始時退出這一 #y姿態 ，進入 #y清醒 。"
+    ]
+  },
+  "WakeStance": {
+    "NAME": "清醒",
+    "DESCRIPTION": [
+      "進入這一 #y姿態 時， #y再動 。 NL 處於這一 #y姿態 時，造成的傷害增加 #b50 %，可打出並消耗 #y詛咒 牌。 NL 下回合開始時，退出這一 #y姿態 ，進入 #y睏倦 。"
+    ]
+  }
+}

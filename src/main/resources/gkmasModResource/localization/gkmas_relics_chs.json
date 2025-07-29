@@ -514,7 +514,7 @@
     "NAME": "小偶像的电话",
     "FLAVOR": "没事就不能……吗？",
     "DESCRIPTIONS": [
-      "右键使用，将随机 #b%d 张 #y偶像 牌加入手牌，使其获得 #y消耗 #y移除 和 #ygkmasmod:耗能减少 #b1 。 NL (每场战斗可呼叫 #b1 次)。"
+      "右键使用，从 #b%d 张 #y偶像 牌中选择 #b%d 张加入手牌，使其获得 #ygkmasmod:耗能减少 #b1 和 #y消耗 #y移除 。 NL (每场战斗可呼叫 #b%d 次)。"
     ]
   },
   "StruggleRecord": {
@@ -795,7 +795,7 @@
     "NAME": "实现梦想的觉悟",
     "FLAVOR": "实现梦想的觉悟。",
     "DESCRIPTIONS": [
-      "使用 #y恰当的展示 后，如果 #ygkmasmod:暂存 区卡牌数不低于 #b%d ，则进入 #ygkmasmod:温存2段 ，获得 #b%d 点 #ygkmasmod:全力值 ，使 #ygkmasmod:暂存 区所有卡牌获得 #ygkmasmod:连击 #b%d 和 #ygkmasmod:耗能增加 #b%d 。 NL (每场战斗可触发 #b%d 次)。"
+      "使用 #y恰当的展示 后，如果 #ygkmasmod:暂存 区卡牌数不低于 #b%d ，则进入 #ygkmasmod:温存2段 ，获得 #b%d 点 #ygkmasmod:全力值 ，使 #ygkmasmod:暂存 区所有卡牌获得 #ygkmasmod:连击 #b%d 和 #ygkmasmod:格挡流失 #b%d 。 NL (每场战斗可触发 #b%d 次)。"
     ]
   },
   "TheDreamSawSomeday": {
@@ -1027,6 +1027,76 @@
     "FLAVOR": "描绘的梦想。",
     "DESCRIPTIONS": [
       "处于 #ygkmasmod:全力 时，每次打出 #ygkmasmod:温存 牌后，对随机敌人造成本场战斗中累计获得的 #ygkmasmod:全力值 #b%d %%的伤害。"
+    ]
+  },
+  "LikeUsualRelic": {
+    "NAME": "像往常一样",
+    "FLAVOR": "像往常一样。",
+    "DESCRIPTIONS": [
+      "每当你退出 gkmasmod:温存2段 和 gkmasmod:悠闲 时，获得 [E] 。"
+    ]
+  },
+  "AngelAndDemonRelic": {
+    "NAME": "天使与恶魔",
+    "FLAVOR": "天使与恶魔。",
+    "DESCRIPTIONS": [
+      "每回合开始时，向你的手牌中加入1张 #y小天使 和 #y小恶魔 。"
+    ]
+  },
+  "LegendaryIdolEquipment": {
+    "NAME": "传说偶像的装备",
+    "FLAVOR": "传说偶像的装备。",
+    "DESCRIPTIONS": [
+      "进入 #ygkmasmod:强气 时，如果 #y格挡 不低于 #b%d ，则对随机敌人造成 #y格挡 层数 #b%d %%的伤害，然后失去所有 #y格挡 。 NL (每场战斗可触发 #b%d 次)。"
+    ]
+  },
+  "SaveWorldMicrophone": {
+    "NAME": "拯救世界的麦克风",
+    "FLAVOR": "拯救世界的麦克风。",
+    "DESCRIPTIONS": [
+      "打出 #y力量 牌后，获得 #b%d 层 #ygkmasmod:受伤锐减 。 NL (每场战斗可触发 #b%d 次)。"
+    ]
+  },
+  "AsariHelp": {
+    "NAME": "亚纱里老师的小灶",
+    "FLAVOR": "不可以说出去哦。",
+    "DESCRIPTIONS": [
+      "敌人掉落的金币增加 #b%d %%。 NL #r所有火堆都可进行特殊指导 。"
+    ]
+  },
+  "ProducerBaseSkill": {
+    "NAME": "制作人的基本功",
+    "FLAVOR": "制作人的基本功。",
+    "DESCRIPTIONS": [
+      "精英和BOSS额外掉落一组卡牌奖励。 NL #y感性 、 #y理性 和 #y非凡 卡各1张。"
+    ]
+  },
+  "SilvistaAttack": {
+    "NAME": "希尔维斯塔出击！",
+    "FLAVOR": "希尔维斯塔出击！",
+    "DESCRIPTIONS": [
+      "每 #b%d 回合，回合结束时，如果 #y消耗 堆牌数不高于 #b%d ，则 #b%d 回合内， #ygkmasmod:好印象 伤害增加 #b%d %%。"
+    ]
+  },
+  "StarlightExpectation": {
+    "NAME": "星与月的期待",
+    "FLAVOR": "星与月的期待。",
+    "DESCRIPTIONS": [
+      "金币增加时，获得 #b%d 层 gkmasmod:好印象 。 NL 金币减少时，获得 #b%d 点 敏捷 。 NL (每回合可触发 #b%d 次)。"
+    ]
+  },
+  "FriendSupport": {
+    "NAME": "大家的应援",
+    "FLAVOR": "大家的应援。",
+    "DESCRIPTIONS": [
+      "战斗结束后，获得 #b%d 瓶 #y瓶中精灵 。 NL 获得时，药水栏位+ #b%d ，所有空药水栏位获得 #y瓶中精灵 。"
+    ]
+  },
+  "BeyondSunSong": {
+    "NAME": "超越太阳的歌声",
+    "FLAVOR": "那我便将那太阳，取代。",
+    "DESCRIPTIONS": [
+      "使用 #y晒太阳 时，获得 #b%d 点 #y敏捷 和 #b%d 层 #y受伤锐减 ， #b%d 回合内伤害减少 #b%d %%。 NL #b%d 回合后， #b%d 回合内伤害增加 #b%d %%。 NL (每场战斗可触发 #b%d 次)。"
     ]
   }
 }

@@ -1,0 +1,1102 @@
+{
+  "UltimateSleepMask": {
+    "NAME": "超絶あんみんマスク",
+    "FLAVOR": "ぐっすりおやすみ。",
+    "DESCRIPTIONS": [
+      " #ygkmasmod:訓練時間 終了時、HPを #b%d 失い、全ての敵に自身の #yブロック の #b%d %%分のダメージを与える。 NL （戦闘中 #b%d 回まで）"
+    ]
+  },
+  "BeginnerGuideForEveryone": {
+    "NAME": "だれでもわかる入門書",
+    "FLAVOR": "とってもやさしい入門書。",
+    "DESCRIPTIONS": [
+      "ターン終了時、 #yブロック が #b%d を超える場合、 #y敏捷性  #b%d を得る。 NL （戦闘中 #b%d 回まで）"
+    ]
+  },
+  "SidewalkResearchNotes": {
+    "NAME": "みちくさ研究ノート",
+    "FLAVOR": "ちょっと変わった研究記録。",
+    "DESCRIPTIONS": [
+      " #ygkmasmod:訓練時間 残り #b1 および終了時、HPを #b%d 失い、全ての敵に自身の #yブロック の #b%d %%分のダメージを与える。 NL （戦闘中 #b%d 回まで）"
+    ]
+  },
+  "TowardsAnUnseenWorld": {
+    "NAME": "まだ見ぬ世界へ",
+    "FLAVOR": "うむ。",
+    "DESCRIPTIONS": [
+      "ターン開始時、HPが #b%d %%以下なら、 #y筋力 を #b%d を得る、 #ygkmasmod:消費体力減少 #b%d 、さらに全ての手札を #y強化 する。 NL （戦闘中 #b%d 回まで）"
+    ]
+  },
+  "GreenUniformBracelet": {
+    "NAME": "緑のお揃いブレス",
+    "FLAVOR": "きれいな緑色。",
+    "DESCRIPTIONS": [
+      " #ygkmasmod:好印象 を得たとき、追加で #ygkmasmod:好印象 #b%d を得る。 NL （戦闘中 #b%d 回まで）"
+    ]
+  },
+  "MemoryBot": {
+    "NAME": "思い出ロボ",
+    "FLAVOR": "なぜここに…？",
+    "DESCRIPTIONS": [
+      "ターン終了時、HPが #b%d %%を超える場合、 #ygkmasmod:好印象 #b%d を得る。"
+    ]
+  },
+  "DreamLifeLog": {
+    "NAME": "夢へのライフログ",
+    "FLAVOR": "夢に向かって走った記録。",
+    "DESCRIPTIONS": [
+      "ターン終了時、 #yブロック が #b%d を超える場合、ランダムな敵に #ygkmasmod:好印象 の #b%d %%分のダメージを与え、 #ygkmasmod:好印象 を #b%d %%する。 NL （戦闘中 #b%d 回まで）"
+    ]
+  },
+  "SparklingInTheBottle": {
+    "NAME": "瓶の中のきらめき",
+    "FLAVOR": "この瓶の中には星の光。",
+    "DESCRIPTIONS": [
+      "ターン終了時、 #ygkmasmod:好調 が #b%d を超える場合、追加で #ygkmasmod:好調 #b%d を得る。 NL （戦闘中 #b%d 回まで）"
+    ]
+  },
+  "WishFulfillmentAmulet": {
+    "NAME": "願いを叶えるお守り",
+    "FLAVOR": "叶えたい願いがある。",
+    "DESCRIPTIONS": [
+      " #y敏捷性 を得たとき、追加で #y敏捷性 #b%d を得る。 NL （戦闘中 #b%d 回まで）"
+    ]
+  },
+  "CheerfulHandkerchief": {
+    "NAME": "しょげないハンカチ",
+    "FLAVOR": "持ってるだけで元気に！",
+    "DESCRIPTIONS": [
+      "#yアタックカード を使用した後、HPを #b%d 失い、敵に自身の #yブロック の #b%d %%のダメージを与える。 NL （戦闘中 #b%d 回まで）"
+    ]
+  },
+  "SecretTrainingCardigan": {
+    "NAME": "ひみつ特訓カーデ",
+    "FLAVOR": "ちょっと特別なトレーニング着。",
+    "DESCRIPTIONS": [
+      " #y敏捷性 を得たとき、追加で #y敏捷性 #b%d を得る。 NL （戦闘中 #b%d 回まで）"
+    ]
+  },
+  "HeartFlutteringCup": {
+    "NAME": "ときめきのいっぱい",
+    "FLAVOR": "さあ、いくよ！",
+    "DESCRIPTIONS": [
+      " #ygkmasmod:訓練時間 終了時、HPを #b%d 失い、ランダムな敵に #b%d ダメージを与える。 NL カードを1枚使うごとにダメージが #b%d 増加。 NL （戦闘中 #b%d 回まで）"
+    ]
+  },
+  "TechnoDog": {
+    "NAME": "テクノドッグ",
+    "FLAVOR": "テクノな柴犬？",
+    "DESCRIPTIONS": [
+      "カードを使用した後、 #y敏捷性 が #b%d を超える場合、 #y敏捷性 #b%d を得る。 NL （戦闘中 #b%d 回まで）"
+    ]
+  },
+  "ShibaInuPochette": {
+    "NAME": "柴犬ポシェット",
+    "FLAVOR": "かわいくて実用的。",
+    "DESCRIPTIONS": [
+      "#b%d ターンごとに #b%d #yブロック を得る。"
+    ]
+  },
+  "RollingSourceOfEnergy": {
+    "NAME": "転がり続ける元気の源",
+    "FLAVOR": "佑芽のお気に入り！",
+    "DESCRIPTIONS": [
+      " #yスキルカード を使用した後、 #y敏捷性 が #b%d を超える場合、 #y敏捷性 #b%d を得て #ygkmasmod:再動 。 NL （戦闘中 #b%d 回まで）"
+    ]
+  },
+  "RoaringLion": {
+    "NAME": "ばくおんライオン",
+    "FLAVOR": "ガオーッ！",
+    "DESCRIPTIONS": [
+      "ターン開始時、 #ygkmasmod:好調 の場合、ランダムな敵に #b%d ダメージを与える。"
+    ]
+  },
+  "FirstVoiceProofSaki": {
+    "NAME": "初声の証・咲季",
+    "FLAVOR": "咲季のはじまりの声。",
+    "DESCRIPTIONS": [
+      "HPを失ったとき、 #ygkmasmod:好印象 #b%d を得る。 NL （戦闘中 #b%d 回まで）"
+    ]
+  },
+  "SakiCompleteMealRecipe": {
+    "NAME": "咲季の完全食レシピ",
+    "FLAVOR": "おいしさ研究中！",
+    "DESCRIPTIONS": [
+      "ターン開始時、 #ygkmasmod:好調 の場合、 #b%d #yブロック を得る。"
+    ]
+  },
+  "TogetherInBattleTowel": {
+    "NAME": "共に戦うタオル",
+    "FLAVOR": "一緒に頑張るよ！",
+    "DESCRIPTIONS": [
+      " #yアタックカード を使用後、 #ygkmasmod:好調 #b%d を得て、 #ygkmasmod:再動 。 NL （戦闘中 #b%d 回まで）"
+    ]
+  },
+  "WinningDetermination": {
+    "NAME": "勝ちへのこだわり",
+    "FLAVOR": "絶対に勝つ！",
+    "DESCRIPTIONS": [
+      "HPを失ったとき、 #ygkmasmod:好印象 #b%d を得る。"
+    ]
+  },
+  "UndefeatedPoi": {
+    "NAME": "敗れ知らずのポイ",
+    "FLAVOR": "ぽいっ。",
+    "DESCRIPTIONS": [
+      "ターン開始時、 #ygkmasmod:好印象 が #b%d を超える場合、 HPを #b%d 回復する。 NL （戦闘中 #b%d 回まで）"
+    ]
+  },
+  "RegularMakeupPouch": {
+    "NAME": "いつものメイクポーチ",
+    "FLAVOR": "日常使いのメイクポーチ。",
+    "DESCRIPTIONS": [
+      " #yアタックカード を使用したとき、HPが #b%d %%が以上の場合、 #y筋力 #b%d を得る。 NL （戦闘中 #b%d 回まで）"
+    ]
+  },
+  "TreatForYou": {
+    "NAME": "きみへの差し入れ",
+    "FLAVOR": "あなたへのプレゼント。",
+    "DESCRIPTIONS": [
+      "ターン開始時、 #y筋力 が #b%d を超える場合、 #b%d のHPを回復する。 NL （戦闘中 #b%d 回まで）"
+    ]
+  },
+  "LifeSizeLadyLip": {
+    "NAME": "等身大のレディリップ",
+    "FLAVOR": "等身サイズのリップスティック。",
+    "DESCRIPTIONS": [
+      " #ygkmasmod:訓練時間 が残り #b1 か終了したとき、全ての敵に #b%d ダメージを与える。 NL （戦闘中 #b%d 回まで）"
+    ]
+  },
+  "SummerToShareWithYou": {
+    "NAME": "きみと分け合う夏",
+    "FLAVOR": "君と過ごす夏の思い出。",
+    "DESCRIPTIONS": [
+      "ターン開始時、 #ygkmasmod:消費体力減少 を持っている場合、 #ygkmasmod:絶好調 #b%d を得る。 NL （戦闘中 #b%d 回まで）"
+    ]
+  },
+  "HandmadeMedal": {
+    "NAME": "ちびども手作りメダル",
+    "FLAVOR": "心を込めた手作りの勲章。",
+    "DESCRIPTIONS": [
+      "ターン終了時、 #ygkmasmod:好印象 が #b%d を超える場合、 #ygkmasmod:好印象 #b%d を得る。"
+    ]
+  },
+  "FirstVoiceProofKotone": {
+    "NAME": "初声の証・ことね",
+    "FLAVOR": "琴音の初声の証。",
+    "DESCRIPTIONS": [
+      " #y初めてのご褒美 を使用したとき、 #ygkmasmod:好調 #b%d を得る。"
+    ]
+  },
+  "FavoriteSneakers": {
+    "NAME": "お気にのスニーカー",
+    "FLAVOR": "履き慣れたお気に入りの一足。",
+    "DESCRIPTIONS": [
+      "ターン終了時、 #yブロック が #b%d を超える場合、 #ygkmasmod:好印象 #b%d を得る。"
+    ]
+  },
+  "PigDreamPiggyBank": {
+    "NAME": "ピッグドリーム貯金箱",
+    "FLAVOR": "夢が詰まった貯金箱。",
+    "DESCRIPTIONS": [
+      "カードを使用した後、 #ygkmasmod:好印象 が #b%d を超える場合、 #ygkmasmod:好印象 #b%d と #ygkmasmod:再動 を得る。 NL （戦闘中 #b%d 回まで）"
+    ]
+  },
+  "UltimateSourceOfHappiness": {
+    "NAME": "最高にハッピーの源",
+    "FLAVOR": "究極のしあわせがここにある。",
+    "DESCRIPTIONS": [
+      " #yアドレナリン全開 を使用したとき、 #ygkmasmod:好調 #b%d と #b%d #yブロック を得る。"
+    ]
+  },
+  "CracklingSparkler": {
+    "NAME": "ぱちぱち線香花火",
+    "FLAVOR": "夜空に響くパチパチの音。",
+    "DESCRIPTIONS": [
+      " #b%d ターンごとに、 #ygkmasmod:好印象 が #b%d を超える場合、 HPを #y%d 失い、 #ygkmasmod:好印象 分の #yブロック と #y敏捷性 #b%d を得る。"
+    ]
+  },
+  "GentlemanHandkerchief": {
+    "NAME": "紳士風ハンカチーフ",
+    "FLAVOR": "心遣いの象徴。",
+    "DESCRIPTIONS": [
+      "ターン開始時、 #ygkmasmod:好調 の場合、 #y筋力 #b%d を得る。 NL （戦闘中 #b%d 回まで）"
+    ]
+  },
+  "DearLittlePrince": {
+    "NAME": "Dearリトルプリンス",
+    "FLAVOR": "小さな王子に捧げる。",
+    "DESCRIPTIONS": [
+      " #ygkmasmod:好調 を得たとき、追加で #ygkmasmod:好調 #y%d を得る。 NL （戦闘中 #b%d 回まで）"
+    ]
+  },
+  "InnerLightEarrings": {
+    "NAME": "内なる光の耳飾り",
+    "FLAVOR": "静かに光る決意。",
+    "DESCRIPTIONS": [
+      "ターン終了時 #ygkmasmod:好調 の場合、 #y筋力 #b%d と #b%d #yブロック を得る。 NL （戦闘中 #b%d 回まで）"
+    ]
+  },
+  "LastSummerMemory": {
+    "NAME": "最後の夏の思い出",
+    "FLAVOR": "忘れたくない、あの夏。",
+    "DESCRIPTIONS": [
+      "ターン開始時 #y筋力 が #b%d を超える場合、 #b%d #yブロック を得る。 NL （戦闘中 #b%d 回まで）"
+    ]
+  },
+  "PinkUniformBracelet": {
+    "NAME": "ピンクのお揃いブレス",
+    "FLAVOR": "おそろいって、嬉しいね。",
+    "DESCRIPTIONS": [
+      "ターン開始時、 #y筋力 #b%d を得る。 NL （戦闘中 #b%d 回まで）"
+    ]
+  },
+  "AfterSchoolDoodles": {
+    "NAME": "放課後のらくがき",
+    "FLAVOR": "こっそり描いた、私たちの時間。",
+    "DESCRIPTIONS": [
+      " #y筋力 を得たとき、HPが #b%d %%が以上の場合、追加で #y筋力 #b%d を得る。 NL （戦闘中 #b%d 回まで）"
+    ]
+  },
+  "ArcadeLoot": {
+    "NAME": "ゲーセンの戦利品",
+    "FLAVOR": "今日は大収穫！",
+    "DESCRIPTIONS": [
+      "ターン開始時、 #y筋力 #b%d を得る。 NL （戦闘中 #b%d 回まで）"
+    ]
+  },
+  "FrogFan": {
+    "NAME": "カエル印の扇風機",
+    "FLAVOR": "ぴょこぴょこ動く風。",
+    "DESCRIPTIONS": [
+      " #yアタックカード を使用した後、 #y敏捷性 が #b%d を超える場合、HPを #b%d 失い、 #y敏捷性 の #b%d %% 分のダメージを与える。 NL （戦闘中 #b%d 回まで）"
+    ]
+  },
+  "EssentialStainlessSteelBottle": {
+    "NAME": "必携ステンレスボトル",
+    "FLAVOR": "あったかいお茶、どうぞ。",
+    "DESCRIPTIONS": [
+      "ターン開始時、 #y筋力 が #b%d を超える場合、 #y筋力 #b%d を得る。 NL （戦闘中 #b%d 回まで）"
+    ]
+  },
+  "FirstVoiceProofTemari": {
+    "NAME": "初声の証・手毬",
+    "FLAVOR": "手毬の初声の証。",
+    "DESCRIPTIONS": [
+      "ターン終了時、 #ygkmasmod:好印象 が #b%d を超える場合、ランダムな敵に #ygkmasmod:好印象 分のダメージを与える。 NL （戦闘中 #b%d 回まで）"
+    ]
+  },
+  "MyFirstSheetMusic": {
+    "NAME": "私の「初」の楽譜",
+    "FLAVOR": "音楽の第一歩。",
+    "DESCRIPTIONS": [
+      "ターン終了時、 #yブロック が #b%d 未満の場合、HPを #b%d 失い、 #y筋力 #b%d を得る。 NL （戦闘中 #b%d 回まで）"
+    ]
+  },
+  "ProtectiveEarphones": {
+    "NAME": "自分を守るイヤホン",
+    "FLAVOR": "防音にも集中にも。",
+    "DESCRIPTIONS": [
+      "カードを使用した時、 #y筋力 が #b%d を超えている場合、 #y筋力 #b%d を得て、 #ygkmasmod:再動 する。 NL （戦闘中 #b%d 回まで）"
+    ]
+  },
+  "ThisIsMe": {
+    "NAME": "これが、私",
+    "FLAVOR": "ありのままの私を見て。",
+    "DESCRIPTIONS": [
+      "ターン終了時、 #ygkmasmod:好印象 が #b%d を超える場合、ランダムな敵にその数ぶんのダメージを与え、 #b%d の #yブロック を得る。 NL （戦闘中 #b%d 回まで）"
+    ]
+  },
+  "PocketBook": {
+    "NAME": "プロデューサー手帳",
+    "FLAVOR": "プロデューサーの熱意が詰まっている。",
+    "DESCRIPTIONS": [
+      "この レリック を持っている間、 #yブロック の上限が #b99999 に増加し、各種訓練効果やイベントが発生する。 NL 右クリックで訓練計画とパネルを表示。"
+    ]
+  },
+  "MorningHelp": {
+    "NAME": "朝のサポートあ",
+    "FLAVOR": "いい朝には、いい準備を。",
+    "DESCRIPTIONS": [
+      "カードを #y強化 した時、Voが #b%d を超えている場合、 #b%d ゴールドを得る。"
+    ]
+  },
+  "ClapClapFan": {
+    "NAME": "ぱたぱたうちわ",
+    "FLAVOR": "みんなで応援！",
+    "DESCRIPTIONS": [
+      "カードを #b%d 枚使用するたび、 #b%d の #yブロック と #y敏捷性 #b%d を得る。 NL （戦闘中 #b%d 回まで）"
+    ]
+  },
+  "EnjoyAfterHotSpring": {
+    "NAME": "温泉の後のお楽しみ",
+    "FLAVOR": "ぽかぽか、ふわふわ。",
+    "DESCRIPTIONS": [
+      "カードを #b%d 枚使用するたび、 #y筋力 を #b%d %% して、 #b%d の #ygkmasmod:固定元気 を得る。 NL （戦闘中 #b%d 回まで）"
+    ]
+  },
+  "FirstHeartProofRinami": {
+    "NAME": "初心の証・莉波",
+    "FLAVOR": "莉波の初心がこもった証。",
+    "DESCRIPTIONS": [
+      "カードを #b%d 枚使用するたび、 #y敏捷性 #b%d を得る。 NL （戦闘中 #b%d 回まで）"
+    ]
+  },
+  "FirstHeartProofChina": {
+    "NAME": "初心の証・千奈",
+    "FLAVOR": "千奈の初心がこもった証。",
+    "DESCRIPTIONS": [
+      " #ygkmasmod:訓練時間 終了時、 #b%d のHPを失い、ランダムな敵に #b%d ダメージを与える。 NL カードを1枚使うごとにダメージが #b%d 増加。 NL （戦闘中 #b%d 回まで）"
+    ]
+  },
+  "FirstHeartProofLilja": {
+    "NAME": "初心の証・リーリヤ",
+    "FLAVOR": "リーリヤの初心がこもった証。",
+    "DESCRIPTIONS": [
+      "ターン終了時、 #ygkmasmod:好調 が #b%d を超える場合、 #b%d のHPを失い、 #ygkmasmod:好調 #b%d を得る。 NL （戦闘中 #b%d 回まで）"
+    ]
+  },
+  "BalanceLogicAndSense": {
+    "NAME": "感理の秤",
+    "FLAVOR": "理性と感性の絶妙なバランス。",
+    "DESCRIPTIONS": [
+      "戦闘報酬のカードに #yセンスカード 、 #yロジックカード 、 #yアノマリーカード が同時に表示されるようになる。"
+    ]
+  },
+  "FashionMode": {
+    "NAME": "スタイリッシュモード",
+    "FLAVOR": "おしゃれも実力のうち。",
+    "DESCRIPTIONS": [
+      "ターン開始時、 #y敏捷性 が #b%d を超える場合、 #y敏捷性 #b%d を失い、 #ygkmasmod:好印象 #b%d を得る。 NL （戦闘中 #b%d 回まで）"
+    ]
+  },
+  "FirstStarBracelet": {
+    "NAME": "はつぼしブレスレット",
+    "FLAVOR": "まだ全力は出せないけれど……",
+    "DESCRIPTIONS": [
+      "SP戦闘終了後、 HP #b%d を失い、カード1枚を選択して #y強化 する。 NL （戦闘中 #b%d 回まで）"
+    ]
+  },
+  "MysteriousObject": {
+    "NAME": "得体のしれないモノ",
+    "FLAVOR": "何かはわからないけれど……",
+    "DESCRIPTIONS": [
+      " #y休憩 時に、 Vo #b%d 、 Da #b%d 、 Vi #b%d を得る。"
+    ]
+  },
+  "Tent": {
+    "NAME": "謎のテントあ",
+    "FLAVOR": "困ったときは寝る！",
+    "DESCRIPTIONS": [
+      "右クリックで即座に #y休憩 し、戦闘とイベントをスキップする。 NL（あと #b%d 回使用可能）"
+    ]
+  },
+  "OverpoweredBall": {
+    "NAME": "オーバーパワーボール",
+    "FLAVOR": "とんでもない力が詰まっている。",
+    "DESCRIPTIONS": [
+      " #y買い物 時、 Vo #b%d 、 Da #b%d 、 Vi #b%d を得る。"
+    ]
+  },
+  "PledgePetal": {
+    "NAME": "誓いの花びら",
+    "FLAVOR": "願いをこめて。",
+    "DESCRIPTIONS": [
+      "戦闘外でカードを #y強化 した時、 Vo #b%d 、 Da #b%d 、 Vi #b%d を得る。"
+    ]
+  },
+  "AmakawaRamenTour": {
+    "NAME": "天川ラーメン巡り",
+    "FLAVOR": "うまいラーメン、全国制覇！",
+    "DESCRIPTIONS": [
+      " SP戦闘開始時、 #ygkmasmod:再動 する。"
+    ]
+  },
+  "UnofficialMascot": {
+    "NAME": "マスコット（非公認）",
+    "FLAVOR": "なぜか人気がある。",
+    "DESCRIPTIONS": [
+      "ターン開始時、 #y敏捷性 が #b%d を超える場合、 #y敏捷性 #b%d を得て、 #ygkmasmod:再動 する。"
+    ]
+  },
+  "FirstStarKeychain": {
+    "NAME": "はつぼしキーホルダー",
+    "FLAVOR": "初星の輝きをあなたに。",
+    "DESCRIPTIONS": [
+      "ターン開始時、 #ygkmasmod:好印象 が #b%d を超えている場合、 #ygkmasmod:好印象 #b%d を得て、 #ygkmasmod:再動 する。"
+    ]
+  },
+  "FirstStarNotebook": {
+    "NAME": "はつぼし手帳",
+    "FLAVOR": "思い出がいっぱい詰まっている。",
+    "DESCRIPTIONS": [
+      "ターン開始時、 #y筋力 が #b%d を超える場合、 #y筋力 #b%d を得て、 #ygkmasmod:再動 する。"
+    ]
+  },
+  "FirstStarTshirt": {
+    "NAME": "はつぼしTシャツ",
+    "FLAVOR": "ライブ定番アイテム！",
+    "DESCRIPTIONS": [
+      "ターン開始時、 #ygkmasmod:好調 が #b%d を超える場合、 #ygkmasmod:好調 #b%d を得て、 #ygkmasmod:再動 する。"
+    ]
+  },
+  "ClumsyBat": {
+    "NAME": "ぶきっちょコウモリ",
+    "FLAVOR": "飛び方はちょっと苦手。",
+    "DESCRIPTIONS": [
+      " #b%d ターンごとに、ターン終了時 #ygkmasmod:好印象 が #b%d を超える場合、ランダムな敵に #yブロック の #b%d %%と #y敏捷性 の #b%d %%分のダメージを与え、 #ygkmasmod:好印象  #b%d 減少。"
+    ]
+  },
+  "CursedSpirit": {
+    "NAME": "う～ら～め～し～や～",
+    "FLAVOR": "う～ら～め～し～や～",
+    "DESCRIPTIONS": [
+      " #yアタックカード を使用するたび、 #b%d の #ygkmasmod:固定元気 を得る。"
+    ]
+  },
+  "NaughtyPuppet": {
+    "NAME": "いたずらパペット",
+    "FLAVOR": "いたずら好きな人形。",
+    "DESCRIPTIONS": [
+      " #yアタックカード を使用した時、自身のHPが #b%d %%以下なら、 NL この戦闘で #y累計で失ったHP の #b%d %%分の追加ダメージを与え、HPを #b%d 回復する。 NL その後、 #b%d ターンの間、 #yブロック を得られなくなる。 NL （戦闘中 #b%d 回まで）"
+    ]
+  },
+  "FirstLoveProofHiro": {
+    "NAME": "初恋の証・広",
+    "FLAVOR": "初恋の証・広",
+    "DESCRIPTIONS": [
+      "ターン開始時、自身のHPが #b%d %%以下なら、 #y筋力 #b%d を得て、 #ygkmasmod:消費体力減少 #b%d を得る。さらに、手札のカードすべてを #y強化 する。 NL （戦闘中 #b%d 回まで）"
+    ]
+  },
+  "FirstLoveProofMao": {
+    "NAME": "初恋の証・麻央",
+    "FLAVOR": "初恋の証・麻央",
+    "DESCRIPTIONS": [
+      "ターン開始時、 #y敏捷性 が #b%d を超えている場合、 #y敏捷性 #b%d を失い、 #ygkmasmod:好印象 #b%d を得る。 NL （戦闘中 #b%d 回まで）"
+    ]
+  },
+  "FirstLoveProofSumika": {
+    "NAME": "初恋の証・清夏",
+    "FLAVOR": "初恋の証・清夏",
+    "DESCRIPTIONS": [
+      "カードを使用した後、 #y敏捷性 が #b%d を超えている場合、HPを #b%d 失い、対象に #y敏捷性 の #b%d %%分のダメージを与える。 NL （戦闘中 #b%d 回まで）"
+    ]
+  },
+  "ItsPerfect": {
+    "NAME": "これでばっちり",
+    "FLAVOR": "これで完璧。",
+    "DESCRIPTIONS": [
+      " #yHPを回復する効果 のあるカードを使用した後、すべての #yブロック とHPを #b%d 失う。 NL その後、失った #yブロック の #b%d %%の #ygkmasmod:好印象 を得て、ランダムな敵に #ygkmasmod:好印象 の #b%d %%分のダメージを与える。 NL （戦闘中 #b%d 回まで）"
+    ]
+  },
+  "CrackedCoreNew": {
+    "NAME": "ひび割れたコア？",
+    "FLAVOR": "その力は、君のものじゃない。",
+    "DESCRIPTIONS": [
+      "戦闘開始時、 #yライトニング 、 #yフロスト 、 #yダーク をそれぞれ1個生成する。"
+    ]
+  },
+  "ProducerGlass": {
+    "NAME": "プロデューサーのメガネ",
+    "FLAVOR": "あの人は、なんでも知ってるんだ。",
+    "DESCRIPTIONS": [
+      "ターン開始時、 #y占術 #b%d を得る。"
+    ]
+  },
+  "ProducerPhone": {
+    "NAME": "プロデューサーの電話",
+    "FLAVOR": "ちょっとくらい、ダメかな……？",
+    "DESCRIPTIONS": [
+      "右クリックで使用： #yプロデューサーの助力 を受ける。 NL （戦闘中1回まで使用可能）"
+    ]
+  },
+  "IdolPhone": {
+    "NAME": "小さなアイドルの電話",
+    "FLAVOR": "ちょっとくらい、ダメかな……？",
+    "DESCRIPTIONS": [
+      "右クリックで使用： #b%d 枚の #yアイドルカード から #b%d 枚を選んで手札に加える。選ばれたカードは #ygkmasmod:消費体力減少 #b1 と #y廃棄 、 #y除外 効果を削除する。 NL （戦闘中 #b%d 回まで）"
+    ]
+  },
+  "StruggleRecord": {
+    "NAME": "とうそーのきろく",
+    "FLAVOR": "バトル、最高。",
+    "DESCRIPTIONS": [
+      "SP発動率が #b%d %%上昇する。"
+    ]
+  },
+  "MasterGirding": {
+    "NAME": "強化バンド",
+    "FLAVOR": "強化されたバンド。",
+    "DESCRIPTIONS": [
+      "特殊ショップに入るたび、HPを #b%d 回復する。 NL 特殊ショップの価格が #b%d %%上昇し、敵のHPが #b%d %%増加する。 NL #ygkmasmod:三属性（ステータス） が #b%d 上昇する。"
+    ]
+  },
+  "MasterHighHeels": {
+    "NAME": "強化ヒール",
+    "FLAVOR": "強化されたヒール。",
+    "DESCRIPTIONS": [
+      "戦闘開始時、 #b%d の #yブロック を得る。 NL #y%s カードを入手するたび、 #b%d ゴールドを失い、敵のHPが #b%d %%上昇する。 NL （1ゲーム中 #b%d 回まで） NL #ygkmasmod:三属性（ステータス） が #b%d 上昇する。"
+    ]
+  },
+  "MasterVest": {
+    "NAME": "強化ベスト",
+    "FLAVOR": "カード削除が正義。",
+    "DESCRIPTIONS": [
+      "ランダムな #b%d 枚の #y初期カード を削除する。 NL 敵のHPが #b%d %%増加する。 NL #ygkmasmod:三属性（ステータス） が #b%d 上昇する。"
+    ]
+  },
+  "MasterSupportFrame": {
+    "NAME": "強化バー",
+    "FLAVOR": "強化された支え。",
+    "DESCRIPTIONS": [
+      "戦闘開始時、 #b%d の #yブロック と #b%d %s の #y%s を得る。 NL ボス戦では、特殊ターン数が #b%d 減少する。 NL 敵のHPが #b%d %%増加する。 NL #ygkmasmod:三属性（ステータス） が #b%d 上昇する。",
+      "戦闘開始時、 #b%d の #ygkmasmod:全力値 を得て #ygkmasmod:温存 に入る。 NL ボス戦では、特殊ターン数が #b%d 減少する。 NL 敵のHPが #b%d %%増加する。 NL #ygkmasmod:三属性（ステータス） が #b%d 上昇する。",
+      "戦闘開始時、すべてのカードに #ygkmasmod:ダメージ増加 #b%d を付与し #ygkmasmod:温存 に入る。 NL ボス戦では、特殊ターン数が #b%d 減少する。 NL 敵のHPが #b%d %%増加する。 NL #ygkmasmod:三属性（ステータス） が #b%d 上昇する。"
+    ]
+  },
+  "MasterRoller": {
+    "NAME": "強化ローラー",
+    "FLAVOR": "強化されたローラー。",
+    "DESCRIPTIONS": [
+      "戦闘開始時、 #b%d の #yブロック と #b%d %s の #y%s を得る。 NL SP戦闘では、1ターン目の与ダメージが #b%d %%減少する。 NL #ygkmasmod:三属性（ステータス） が #b%d 上昇する。",
+      "戦闘開始時、 #b%d の #yブロック と #b%d の #ygkmasmod:全力値 を得て #ygkmasmod:温存 に入る。 NL SP戦闘では、 [E] を失う。 NL #ygkmasmod:三属性（ステータス） が #b%d 上昇する。",
+      "戦闘開始時、 #b%d の #yブロック を得て #ygkmasmod:温存・2段階目 に入る。 NL SP戦闘では、1ターン目の与ダメージが #b%d %%減少する。 NL #ygkmasmod:三属性（ステータス） が #b%d 上昇する。"
+    ]
+  },
+  "MasterBall": {
+    "NAME": "強化ボール",
+    "FLAVOR": "強化されたボール。",
+    "DESCRIPTIONS": [
+      "#b%d ゴールドを得る。 NL 敵のHPが #b%d %%増加する。 NL #ygkmasmod:三属性（ステータス） が #b%d 上昇する。"
+    ]
+  },
+  "MasterTreadmill": {
+    "NAME": "強化ステッパー",
+    "FLAVOR": "強化されたステッパー。",
+    "DESCRIPTIONS": [
+      "SP戦闘開始時、 #b%d ブロックと #b%d %s の #y%s を得て、与えるダメージが #b%d %%減少する。 NL 敵のHPが #b%d %%増加する。 NL #ygkmasmod:三属性（ステータス） が #b%d 上昇する。",
+      "SP戦闘開始時、 #ygkmasmod:温存 に入り、 #b%d の #ygkmasmod:全力値 を得て、与えるダメージが #b%d %%減少する。 NL 敵のHPが #b%d %%増加する。 NL #ygkmasmod:三属性（ステータス） が #b%d 上昇する。",
+      "SP戦闘開始時、 #ygkmasmod:温存 に入り、すべてのカードが #ygkmasmod:ダメージ増加 #b%d を得て、与えるダメージが #b%d %%減少する。 NL 敵のHPが #b%d %%増加する。 NL #ygkmasmod:三属性（ステータス） が #b%d 上昇する。"
+    ]
+  },
+  "MasterDumbbell": {
+    "NAME": "強化ダンベル",
+    "FLAVOR": "強化されたダンベル。",
+    "DESCRIPTIONS": [
+      "ターン開始時、カードを #b%d 枚引く。 NL ターン終了時、 #b%d %s の #y%s を失う。 NL 敵のHPが #b%d %%増加する。 NL #ygkmasmod:三属性（ステータス） が #b%d 上昇する。",
+      "ターン開始時、カードを #b%d 枚引き、現在の #ygkmasmod:指スタンス を解除する。 NL 敵のHPが #b%d %%増加する。 NL #ygkmasmod:三属性（ステータス） が #b%d 上昇する。",
+      "ターン開始時、カードを #b%d 枚引き、すべてのカードが #ygkmasmod:ダメージ増加 #b%d を得る。 NL 敵のHPが #b%d %%増加する。 NL #ygkmasmod:三属性（ステータス） が #b%d 上昇する。"
+    ]
+  },
+  "AnimateEquipment": {
+    "NAME": "アニメイト装備",
+    "FLAVOR": "アニメイトコラボ装備。",
+    "DESCRIPTIONS": [
+      " #b%d ターンごとに、 #ygkmasmod:好調 の場合、 #ygkmasmod:好調 の #b%d %%分の #y筋力 を得る。 #b%d 筋力と #b%d ブロックを得る。 NL （戦闘中 #b%d 回まで）"
+    ]
+  },
+  "ReChallenge": {
+    "NAME": "再挑戦チケット",
+    "FLAVOR": "新たな世界線で、無限の可能性を追い求める——",
+    "DESCRIPTIONS": [
+      "精鋭戦とボス戦中に右クリックで使用し、新たな #y乱数 で再挑戦できる。 NL （特殊商店に入るたびに #b1 回分の使用回数を得る）"
+    ]
+  },
+  "FreeTicket": {
+    "NAME": "無料抽選券",
+    "FLAVOR": "今回は何が当たるかな？",
+    "DESCRIPTIONS": [
+      "商店に入ったとき、ランダムな商品が無料になる。"
+    ]
+  },
+  "EveryoneTextbook": {
+    "NAME": "みんなの教科書",
+    "FLAVOR": "好奇心は__をも殺す？",
+    "DESCRIPTIONS": [
+      "#y？ に入るたびに、 #b%d Vo 、 #b%d Da 、 #b%d Vi を得る。"
+    ]
+  },
+  "IdolNoSoul": {
+    "NAME": "アイドル魂",
+    "FLAVOR": "アイドル道、ここに極まれり。",
+    "DESCRIPTIONS": [
+      "戦闘開始時、 #yアイドル魂 を1枚手札に加える。"
+    ]
+  },
+  "FirstStarClock": {
+    "NAME": "はつぼし時計",
+    "FLAVOR": "初星の時計。",
+    "DESCRIPTIONS": [
+      "ターン開始時、 #ygkmasmod:全力値 を #b%d 得て、 #ygkmasmod:再動 する。"
+    ]
+  },
+  "FirstStarModel": {
+    "NAME": "はつぼしフィギュア",
+    "FLAVOR": "初星の模型。",
+    "DESCRIPTIONS": [
+      "ターン開始時、 #ygkmasmod:強気 なら #ygkmasmod:温存・2段階目 に入り、 #ygkmasmod:再動 する。"
+    ]
+  },
+  "TeaCaddy": {
+    "NAME": "ティーキャディー",
+    "FLAVOR": "お茶の缶。",
+    "DESCRIPTIONS": [
+      " #yアタックカード を使用した後、 #ygkmasmod:強気 なら、ランダムな敵に #b%d ダメージを与え、HPを #b%d 回復する。 NL （戦闘中 #b%d 回まで）"
+    ]
+  },
+  "EveryoneDream": {
+    "NAME": "みんなの憧れ",
+    "FLAVOR": "みんなの憧れ。",
+    "DESCRIPTIONS": [
+      "カードを使用したとき、 #ygkmasmod:全力 の場合、ランダムな敵に #b%d ダメージを与え、 #b%d #yブロックを得る。 NL （戦闘中 #b%d 回まで）"
+    ]
+  },
+  "AbsoluteNewSelf": {
+    "NAME": "新しい、私",
+    "FLAVOR": "新しい自分を発見して。",
+    "DESCRIPTIONS": [
+      " #yアタックカード を使用した後、 #ygkmasmod:強気 なら、ランダムな敵に #b%d ダメージを与え、HPを #b%d 回復する。 NL （戦闘中 #b%d 回まで）"
+    ]
+  },
+  "FreeLoveMax": {
+    "NAME": "費用0円愛情MAX",
+    "FLAVOR": "プライスレスの愛、MAXで。",
+    "DESCRIPTIONS": [
+      "ターン開始時、 #y敏捷性 が #b%d を超えている場合、 #b%d #yブロックを得る。 NL （戦闘中 #b%d 回まで）"
+    ]
+  },
+  "ChristmasLion": {
+    "NAME": "めりくりライオン",
+    "FLAVOR": "聖なるライオン。",
+    "DESCRIPTIONS": [
+      " #ygkmasmod:訓練時間 の残りが #b1 層のときと終了時、 #ygkmasmod:好調 の #b%d %%分のダメージをランダムな敵に与える。 NL （戦闘中 #b%d 回まで）"
+    ]
+  },
+  "BeyondTheSea": {
+    "NAME": "海の向こうまで",
+    "FLAVOR": "果てしない海の向こうへ。",
+    "DESCRIPTIONS": [
+      "ターン開始時、 #y敏捷性 が #b%d を超えている場合、 #y敏捷性 を #b%d %%して、カードを #b%d 枚引く。 NL （戦闘中 #b%d 回まで）"
+    ]
+  },
+  "SyngUpRelic": {
+    "NAME": "過去の幻影",
+    "FLAVOR": "もう戻れないあの頃。",
+    "DESCRIPTIONS": [
+      "戦闘開始時、 #y月村手毬 と #y賀陽燐羽 を召喚する。"
+    ]
+  },
+  "SyngUpRelicBroken": {
+    "NAME": "壊れた過去の幻影",
+    "FLAVOR": "もう戻れないあの頃。",
+    "DESCRIPTIONS": [
+      "戦闘開始時、かつての #y月村手毬 を召喚する。"
+    ]
+  },
+  "FriendChinaRelic": {
+    "NAME": "倉本千奈の支援",
+    "FLAVOR": "美鈴さん、私も手伝います！",
+    "DESCRIPTIONS": [
+      "戦闘開始時、 #y倉本千奈 を召喚する。"
+    ]
+  },
+  "FriendHiroRelic": {
+    "NAME": "篠澤広の支援",
+    "FLAVOR": "んー、美鈴のためなら。",
+    "DESCRIPTIONS": [
+      "戦闘開始時、 #y篠澤広 を召喚する。"
+    ]
+  },
+  "FriendUmeRelic": {
+    "NAME": "花海佑芽の支援",
+    "FLAVOR": "サボってる美鈴ちゃん、みーつけた！",
+    "DESCRIPTIONS": [
+      "戦闘開始時、 #y花海佑芽 を召喚する。"
+    ]
+  },
+  "FriendSenaRelic": {
+    "NAME": "十王星南の支援",
+    "FLAVOR": "一緒に、最高のアイドルを目指しましょう。",
+    "DESCRIPTIONS": [
+      "戦闘開始時、 #y十王星南 を召喚する。"
+    ]
+  },
+  "FriendKotoneRelic": {
+    "NAME": "藤田ことねの支援",
+    "FLAVOR": "えぇ……めんどくさい。",
+    "DESCRIPTIONS": [
+      "戦闘開始時、 #y藤田ことね を召喚する。"
+    ]
+  },
+  "PlasticUmbrellaThatDay": {
+    "NAME": "あの日のビニール傘",
+    "FLAVOR": "あの日のビニール傘。",
+    "DESCRIPTIONS": [
+      "ターン開始時、この戦闘中に獲得した #ygkmasmod:全力値 が累計 #b%d を超えている場合、 #ygkmasmod:全力値 #b%d を得て、 #y踏切の先に を #ygkmasmod:暂存 する。 NL （戦闘中 #b%d 回まで）。"
+    ]
+  },
+  "FaceTheAwakening": {
+    "NAME": "向き合う覚悟",
+    "FLAVOR": "向き合う覚悟。",
+    "DESCRIPTIONS": [
+      "#y軽い足取り 使用後、HPを #b%d 失い、 #ygkmasmod:好調 #b%d 、 #ygkmasmod:再動 を得る。 NL （戦闘中 #b%d 回まで）。"
+    ]
+  },
+  "SongToTheSun": {
+    "NAME": "太陽まで届ける歌声",
+    "FLAVOR": "太陽まで届ける歌声。",
+    "DESCRIPTIONS": [
+      "#y勢い任せ を使用した後、HPを #b%d 失い、 #y筋力 #b%d 、 #ygkmasmod:再動 を得る。 NL （戦闘中 #b%d 回まで）。"
+    ]
+  },
+  "OnlyMyFirstStar": {
+    "NAME": "あたしだけの一番星",
+    "FLAVOR": "あたしだけの一番星。",
+    "DESCRIPTIONS": [
+      "#y思い出し笑い 使用後、HPを #b%d 失い、 #ygkmasmod:好印象 #b%d 、 #ygkmasmod:再動 を得る。 NL （戦闘中 #b%d 回まで）。"
+    ]
+  },
+  "MyPart": {
+    "NAME": "ボクの一部",
+    "FLAVOR": "ボクの一部。",
+    "DESCRIPTIONS": [
+      "#yスターライト 使用時、 #ygkmasmod:温存 中なら、HPを #b%d 失い、カードを #b%d 枚引き、 #ygkmasmod:消費体力減少 #b%d を得る。全ての #yスターライト は #ygkmasmod:ダメージ増加 #b%d を得る。 NL （戦闘中 #b%d 回まで）。"
+    ]
+  },
+  "PastLittleStar": {
+    "NAME": "いつかの小さな星",
+    "FLAVOR": "いつかの小さな星。",
+    "DESCRIPTIONS": [
+      "#yファンサ 使用後、HPを #b%d 失い、 #ygkmasmod:絶好調 #b%d 、 #y追加ターン #b%d を得る。 NL （戦闘中 #b%d 回まで）。"
+    ]
+  },
+  "YouFindMe": {
+    "NAME": "きみが見つけた私",
+    "FLAVOR": "きみが見つけた私。",
+    "DESCRIPTIONS": [
+      "#y嬉しい誤算 使用後、HPを #b%d 失い、 #ygkmasmod:全力値 #b%d 、 #b%d ターンの間、与えるダメージが #b%d %% 増加する。 NL （戦闘中 #b%d 回まで）。"
+    ]
+  },
+  "DreamOfTheDescription": {
+    "NAME": "描いた夢へのあゆみ",
+    "FLAVOR": "描いた夢へのあゆみ。",
+    "DESCRIPTIONS": [
+      "#yゆるふわおしゃべり 使用時、 #y追加ターン #b%d を得て、 #yブロック が #b%d %% になる。 NL （戦闘中 #b%d 回まで）。"
+    ]
+  },
+  "SelectedPassion": {
+    "NAME": "選びとった熱",
+    "FLAVOR": "選びとった熱。",
+    "DESCRIPTIONS": [
+      "#yえいえいおー 使用時、HPが #b50 %% 以上なら、最大HPの #b%d %% を失い、 #y敏捷性 #b%d を得て、 #ygkmasmod:再動 を得る。 NL （戦闘中 #b%d 回まで）。"
+    ]
+  },
+  "AchieveDreamAwakening": {
+    "NAME": "叶える覚悟",
+    "FLAVOR": "叶える覚悟。",
+    "DESCRIPTIONS": [
+      "#yジャストアピール 使用時、 #ygkmasmod:暂存 にあるカードが #b%d 枚以上なら、 #ygkmasmod:温存・2段階目 に入り、 #ygkmasmod:全力値 #b%d を得て、 #ygkmasmod:暂存 にあるすべてのカードに #ygkmasmod:攻撃回数増加 #b%d と #ygkmasmod:コスト値増加 #b%d を付与する。 NL（戦闘中 #b%d 回まで）。"
+    ]
+  },
+  "TheDreamSawSomeday": {
+    "NAME": "いつか見た夢",
+    "FLAVOR": "いつか見た夢。",
+    "DESCRIPTIONS": [
+      "#y準備運動 使用後、HPを #b%d 失い、 #y筋力 #b%d を得て、次のターン開始時にさらに #y筋力 #b%d を得る。 NL （戦闘中 #b%d 回まで）。"
+    ]
+  },
+  "TheWing": {
+    "NAME": "翼",
+    "FLAVOR": "翼。",
+    "DESCRIPTIONS": [
+      "#yリスタート 使用時、 #yブロック が #b%d を超えなら、 #ygkmasmod:好印象 を #b%d %% して、次のターン開始時に 廃棄 にある #yまた、飛べる を手札に加える。 NL （戦闘中 #b%d 回まで）。"
+    ]
+  },
+  "TheMarkOfPractice": {
+    "NAME": "れんしゅーのしるし",
+    "FLAVOR": "れんしゅーのしるし。",
+    "DESCRIPTIONS": [
+      " #ygkmasmod:全力 のカード使用後、 #yブロック を #b%d 得る。"
+    ]
+  },
+  "SweetTaste": {
+    "NAME": "あまいくちどけ",
+    "FLAVOR": "あまいくちどけ。",
+    "DESCRIPTIONS": [
+      "ターン終了時、 #ygkmasmod:強気 の場合、 #ygkmasmod:温存 に入り、 #yブロック を #b%d 得る。"
+    ]
+  },
+  "DeepLoveForYou": {
+    "NAME": "相手への深い愛",
+    "FLAVOR": "相手への深い愛。",
+    "DESCRIPTIONS": [
+      " #yあなたにあげる または #yアタックカード を使用した時、 #y敏捷性 が #b%d を超えていれば、 #yブロック を #b%d 得る NL （ #y敏捷性 の効果は #b%d %%）。 NL （戦闘中 #b%d 回まで）。"
+    ]
+  },
+  "FoodIris": {
+    "NAME": "アイリスの花",
+    "FLAVOR": "「マリちゃん、これは食べちゃダメだよ」……次回『アイリス誤食のモフ丸、手毬の死』",
+    "DESCRIPTIONS": [
+      "入手時、 #y毒 #b%d を得る。"
+    ]
+  },
+  "FoodGinger": {
+    "NAME": "生姜",
+    "FLAVOR": "「君と私とじゃ、“食べ物”の定義が違うのよ」",
+    "DESCRIPTIONS": [
+      "拾ったとき、 #ygkmasmod:強気 に入る。"
+    ]
+  },
+  "FoodTonkatsu": {
+    "NAME": "とんかつ",
+    "FLAVOR": "「ダイエット成功のご褒美に、大好きなとんかつを作ってあげる」",
+    "DESCRIPTIONS": [
+      "拾ったとき、 #ygkmasmod:好調 #b%d と  #ygkmasmod:絶好調 #b%d を得る。"
+    ]
+  },
+  "FoodTonkatsuSP": {
+    "NAME": "とんかつ・衣なし",
+    "FLAVOR": "「私、『Re;IRIS』を辞める！」",
+    "DESCRIPTIONS": [
+      "拾ったとき、 #ygkmasmod:全力 に入る。"
+    ]
+  },
+  "FoodCarrot": {
+    "NAME": "にんじん",
+    "FLAVOR": "「プロデューサーの性格、最悪ですね。アイドルの弱みを利用するなんて、人として最低です」",
+    "DESCRIPTIONS": [
+      "拾ったとき、 #ygkmasmod:不調 #b%d を得る。"
+    ]
+  },
+  "FoodOddMushroom": {
+    "NAME": "奇妙なキノコ",
+    "FLAVOR": "「それが許されると、本気で思ってるの？！」",
+    "DESCRIPTIONS": [
+      "拾ったとき、 #y脆弱化 #b%d を得る。"
+    ]
+  },
+  "FoodHuhu": {
+    "NAME": "ペースト飯",
+    "FLAVOR": "「私たちは機械じゃない、人間なんだよ！」",
+    "DESCRIPTIONS": [
+      "拾ったとき、 #ygkmasmod:強気・2段階目 に入る。"
+    ]
+  },
+  "CardOfVictory": {
+    "NAME": "勝利の1枚",
+    "FLAVOR": "勝利を掴むカード。",
+    "DESCRIPTIONS": [
+      "ターン開始時、 自分が #ygkmasmod:強気 のとき、 #b%d ブロックを得る。"
+    ]
+  },
+  "SpringIsComing": {
+    "NAME": "春のおとずれ",
+    "FLAVOR": "春がやってくる。",
+    "DESCRIPTIONS": [
+      " #y強化状態 をカードで消費したとき、 #ygkmasmod:好印象 が #b%d を超える場合、 #ygkmasmod:好印象 #b%d と #y敏捷性 #b%d を得る。 NL （戦闘中 #b%d 回まで）"
+    ]
+  },
+  "RoundSpring": {
+    "NAME": "まあるい春色",
+    "FLAVOR": "まあるい春色。",
+    "DESCRIPTIONS": [
+      " #ygkmasmod:全力 になったとき、この戦闘で #ygkmasmod:強気 になった回数が #b%d 回を超えなら、すべての #ygkmasmod:全力 効果のあるアタックカードに #ygkmasmod:ダメージ増加 #b%d を付与し、ターン終了時に #ygkmasmod:温存・2段階目 になる。 NL （戦闘中 #b%d 回まで）"
+    ]
+  },
+  "MisuzuNatureRelic": {
+    "NAME": "美鈴からの贈り物",
+    "FLAVOR": "寝るだけで強くなれるなら、寝た方がよくない？",
+    "DESCRIPTIONS": [
+      "休憩場所で #y休憩 を選ぶたび、 #y筋力 #b%d を得る（累計 #b3 に達すると代わりに #y敏捷性 を得る）。この効果は最大 #b5 回まで、 NL 次の戦闘開始時、 #ygkmasmod:覚醒 に入る。"
+    ]
+  },
+  "GiftForYou": {
+    "NAME": "あなたへの贈り物",
+    "FLAVOR": "あなたへの贈り物。",
+    "DESCRIPTIONS": [
+      " #y筋力 を得たとき、 #b%d #yブロック を得る。"
+    ]
+  },
+  "ProofOfFriendship": {
+    "NAME": "友情の証",
+    "FLAVOR": "友情の証。",
+    "DESCRIPTIONS": [
+      "各ターン最初に #yブロック を得たとき、HPを #b%d 失い、 #yブロック 値の #b%d %% 分の #ygkmasmod:好印象 を得る。 NL （戦闘中 #b%d 回まで）"
+    ]
+  },
+  "SmallGalaxy": {
+    "NAME": "小さな銀河",
+    "FLAVOR": "小さな銀河。",
+    "DESCRIPTIONS": [
+      " #yスキルカード を使用したとき、 #ygkmasmod:強気・2段階目 の場合、HPを #b%d 失い、すべての #yスキルカード に #ygkmasmod:ブロック値増加 #b%d を付与する。 NL （戦闘中 #b%d 回まで）"
+    ]
+  },
+  "NIABadge": {
+    "NAME": "N.I.Aワッペン",
+    "FLAVOR": "あの子を迎えに行って。",
+    "DESCRIPTIONS": [
+      "最終ボスが #y賀陽燐羽 に置き換わる。"
+    ]
+  },
+  "ContinuousEffort": {
+    "NAME": "積み重ねた努力",
+    "FLAVOR": "積み重ねた努力。",
+    "DESCRIPTIONS": [
+      "ターン開始時、この戦闘で得た #ygkmasmod:全力値 の合計が #b%d を超えている場合、 #b%d #yブロック を得る。"
+    ]
+  },
+  "TheP": {
+    "NAME": "「Pっち」",
+    "FLAVOR": "「Pっち。」",
+    "DESCRIPTIONS": [
+      " #y筋力 が #b%d より大きいとき、カードを #b%d 枚使用するたび、 #y筋力 を #b%d 失い、 #ygkmasmod:好調 #b%d を得る。"
+    ]
+  },
+  "DestinyEncounter": {
+    "NAME": "運命の出会い",
+    "FLAVOR": "君と出会い、契約を交わした。",
+    "DESCRIPTIONS": [
+      "ターン開始時、自分が #ygkmasmod:全力 の場合、 #b%d #yブロック と #ygkmasmod:全力値 #b%d を得る。さらに、すべての手札に #ygkmasmod:ダメージ増加 #b%d を付与し、ターン終了時に #ygkmasmod:温存 に入る。 NL （戦闘中 #b%d 回まで）"
+    ]
+  },
+  "FirstStarChallenge": {
+    "NAME": "一番星の挑戦状",
+    "FLAVOR": "一番星の挑戦状。",
+    "DESCRIPTIONS": [
+      "カードを使用したとき、 #ygkmasmod:好印象 が #b%d を超える場合、 #ygkmasmod:好印象 #b%d と #y敏捷性 #b%d を得る。 NL （戦闘中 #b%d 回まで）"
+    ]
+  },
+  "AfterRainFlower": {
+    "NAME": "雨上がりの花",
+    "FLAVOR": "雨上がりの花。",
+    "DESCRIPTIONS": [
+      "ターン開始時、HPを #b%d 失い、 #b%d の #y敏捷性 を得る。 #b%d ターン後、 #ygkmasmod:不安 #b%d を得る。 NL （戦闘中 #b%d 回まで）"
+    ]
+  },
+  "AfterRainGoddess": {
+    "NAME": "雨上がりの女神",
+    "FLAVOR": "自分のこと、女神だと思ってるの？",
+    "DESCRIPTIONS": [
+      "ターン開始時、 #b%d #yブロック を得て、 #b%d 枚の #y眠気 を山札に加える。 #ygkmasmod:再動 する。 NL （戦闘中 #b%d 回まで）"
+    ]
+  },
+  "AfterRainRainbow": {
+    "NAME": "雨上がりの虹",
+    "FLAVOR": "雨上がりの虹。",
+    "DESCRIPTIONS": [
+      " #yスキルカード を使用したとき、自分が #ygkmasmod:温存・2段階目 または #ygkmasmod:のんびり の場合、 #ygkmasmod:熱意 #ygkmasmod:追加 #b%d を得る。 NL （戦闘中 #b%d 回まで）"
+    ]
+  },
+  "LadyDiary": {
+    "NAME": "お嬢様の恩返し",
+    "FLAVOR": "お嬢様の恩返し。",
+    "DESCRIPTIONS": [
+      "ターン終了時、 #y筋力 と #y敏捷性 の数を入れ替える。"
+    ]
+  },
+  "SisterComplex": {
+    "NAME": "シスコンのたしなみ",
+    "FLAVOR": "シスコンのたしなみ。",
+    "DESCRIPTIONS": [
+      " 敵に #yデバフ を与えるたび、 #ygkmasmod:好調 #b%dを得る。"
+    ]
+  },
+  "TopIdolPride": {
+    "NAME": "トップアイドルの誇り",
+    "FLAVOR": "トップアイドルの誇り。",
+    "DESCRIPTIONS": [
+      " #ygkmasmod:全力値 を #b%d 点獲得するたび、 #ygkmasmod:戦意 #b%d を得る。"
+    ]
+  },
+  "SomethingLongHold": {
+    "NAME": "いつもの持ち物",
+    "FLAVOR": "いつもの持ち物。",
+    "DESCRIPTIONS": [
+      " #ygkmasmod:全力 の場合、 #ygkmasmod:温存 カードを使用するたび、ランダムな敵にこの戦闘中に獲得した #ygkmasmod:全力値 の #b%d %%分のダメージを与える。"
+    ]
+  },
+  "SwayWindHairpin": {
+    "NAME": "風に揺れる髪飾り",
+    "FLAVOR": "風に揺れる髪飾り。",
+    "DESCRIPTIONS": [
+      " #yアタックカード を使用した後、HPを #b%d 失い、 #ygkmasmod:温存 になる。すべての #ygkmasmod:強気 カードは #ygkmasmod:ダメージ増加 #b%d を得る。 NL （戦闘中 #b%d 回まで）"
+    ]
+  },
+  "DescriptionOfDream": {
+    "NAME": "描いた夢",
+    "FLAVOR": "描いた夢。",
+    "DESCRIPTIONS": [
+      " #ygkmasmod:全力 の場合、 #ygkmasmod:温存 カードを使用するたび、ランダムな敵にこの戦闘中に獲得した #ygkmasmod:全力値 の #b%d %%分のダメージを与える。"
+    ]
+  },
+  "LikeUsualRelic": {
+    "NAME": "APドリンク",
+    "FLAVOR": "いつものように。",
+    "DESCRIPTIONS": [
+      " #ygkmasmod:温存・2段階目 や #ygkmasmod:のんびり 状態を終了するたび、 [E] を得る。"
+    ]
+  },
+  "AngelAndDemonRelic": {
+    "NAME": "天使と悪魔",
+    "FLAVOR": "天使と悪魔。",
+    "DESCRIPTIONS": [
+      "ターン開始時、 #y天使ちゃん と #y悪魔ちゃん を1枚ずつ手札に加える。"
+    ]
+  },
+  "LegendaryIdolEquipment": {
+    "NAME": "伝説のidol装備",
+    "FLAVOR": "伝説のアイドルの装備。",
+    "DESCRIPTIONS": [
+      " #ygkmasmod:強気 に入った時、 #yブロック が #b%d を超えなら、ランダムな敵に #yブロック の #b%d %%分のダメージを与え、すべての #yブロック を失う。 NL （戦闘中 #b%d 回まで）"
+    ]
+  },
+  "SaveWorldMicrophone": {
+    "NAME": "世界を救ったマイク",
+    "FLAVOR": "世界を救ったマイク。",
+    "DESCRIPTIONS": [
+      " #y筋力 カードを使用した後、 #ygkmasmod:消費体力減少 #b%d を得る。 NL （戦闘中 #b%d 回まで）"
+    ]
+  },
+  "AsariHelp": {
+    "NAME": "あさり先生の裏メニュー",
+    "FLAVOR": "内緒にしてね。",
+    "DESCRIPTIONS": [
+      "敵が落とすゴールドが #b%d %%増加する。 NL #rすべての休憩場所で特別指導を行える 。"
+    ]
+  },
+  "ProducerBaseSkill": {
+    "NAME": "プロデューサーの基本",
+    "FLAVOR": "プロデューサーの基本。",
+    "DESCRIPTIONS": [
+      "エリートとボスが追加のカード報酬をドロップする。 NL #yセンス 、 #yロジック 、 #yアノマリー のカードを1枚ずつ。"
+    ]
+  },
+  "SilvistaAttack": {
+    "NAME": "シルヴェスタ出撃！",
+    "FLAVOR": "シルヴェスタ出撃！",
+    "DESCRIPTIONS": [
+      " #b%d ターンごとのターン終了時、  #y廃棄 にあるスキルカードが #b%d 枚以下の場合 ， #b%d ターンの間、 #ygkmasmod:好印象 のダメージが #b%d %% 増加する。"
+    ]
+  },
+  "StarlightExpectation": {
+    "NAME": "星と月の期待",
+    "FLAVOR": "星と月の期待。",
+    "DESCRIPTIONS": [
+      "ゴールドが増加した時、#b%d 層の gkmasmod:好印象 を得る。 NL ゴールドが減少した時、#b%d 敏捷性 を得る。 NL （1ターンに最大 #b%d 回まで発動）"
+    ]
+  },
+  "FriendSupport": {
+    "NAME": "みんなの応援",
+    "FLAVOR": "みんなの応援。",
+    "DESCRIPTIONS": [
+      "戦闘終了時、#b%d 本の #y瓶中精霊 を得る。 NL この効果を得た時、ポーションスロットが #b%d 増加し、空いている全てのスロットに #y瓶中精霊 を補充する。"
+    ]
+  },
+  "BeyondSunSong": {
+    "NAME": "太陽を追い越す歌声",
+    "FLAVOR": "太陽を追い越す歌声。",
+    "DESCRIPTIONS": [
+      "#yひなたぼっこ を使用した時、 #y敏捷性 #b%d と #y消費体力減少 #b%d を得て、 #b%d ターンの間、ダメージを #b%d%% 減少させる。 NL #b%d ターン後、 #b%d ターンの間、ダメージが #b%d%% 増加する。 NL （戦闘中 #b%d 回まで）"
+    ]
+  }
+}

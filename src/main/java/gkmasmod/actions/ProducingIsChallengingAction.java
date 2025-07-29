@@ -70,22 +70,22 @@ public class ProducingIsChallengingAction extends AbstractGameAction {
                                 c2mods.add(mod.makeCopy());
                             }
                         }
-                        List<AbstractCardModifier> modifiersC1 = CardModifierManager.modifiers(c1);
-                        if (modifiersC1 != null) {
-                            Iterator<AbstractCardModifier> iteratorC1 = modifiersC1.iterator();
-                            while (iteratorC1.hasNext()) {
-                                AbstractCardModifier mod = iteratorC1.next();
-                                if (mod instanceof AbstractGrowEffect) {
-                                    iteratorC1.remove();  // 使用 Iterator 的 remove 方法安全地移除元素
-                                }
-                            }
-                        }
+//                        List<AbstractCardModifier> modifiersC1 = CardModifierManager.modifiers(c1);
+//                        if (modifiersC1 != null) {
+//                            Iterator<AbstractCardModifier> iteratorC1 = modifiersC1.iterator();
+//                            while (iteratorC1.hasNext()) {
+//                                AbstractCardModifier mod = iteratorC1.next();
+//                                if (mod instanceof AbstractGrowEffect) {
+//                                    iteratorC1.remove();  // 使用 Iterator 的 remove 方法安全地移除元素
+//                                }
+//                            }
+//                        }
 
                         for(AbstractCardModifier mod : c1mods){
                             AbstractGrowEffect effect = (AbstractGrowEffect)mod;
                             GrowHelper.grow(c2,effect.growEffectID,effect.amount);
                         }
-                        CardModifierManager.addModifier(c1,new CanNotPlayGrow());
+//                        CardModifierManager.addModifier(c1,new CanNotPlayGrow());
                         AbstractDungeon.player.hand.addToTop(c1);
                         AbstractDungeon.player.hand.addToTop(c2);
                     }

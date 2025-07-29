@@ -1,9 +1,9 @@
 {
   "modid": "gkmasMod",
-  "name": "学园偶像大师Mod",
+  "name": "GkmasMod-学园偶像大师",
   "author_list": ["虚怀盈风"],
   "description": "学园偶像大师Mod",
-  "version": "1.0.0",
+  "version": "1.0.7",
   "sts_version": "12-22-2020",
   "mts_version": "3.23.2",
   "dependencies": ["basemod","actlikeit","stslib"]

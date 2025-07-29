@@ -108,6 +108,27 @@ public class EffectAddCustom extends AbstractCardCustomEffect {
         else if(card instanceof SceneryOnHouse){
             return CardCrawlGame.languagePack.getCardStrings("gkmasMod:SceneryOnHouse_Effect0").DESCRIPTION;
         }
+        else if(card instanceof InternetInfluencer){
+            return CardCrawlGame.languagePack.getCardStrings("gkmasMod:InternetInfluencer_Effect0").DESCRIPTION;
+        }
+        else if(card instanceof HeatUp){
+            return CardCrawlGame.languagePack.getCardStrings("gkmasMod:HeatUp_Effect1").DESCRIPTION;
+        }
+        else if(card instanceof KeepOneMind){
+            return CardCrawlGame.languagePack.getCardStrings("gkmasMod:KeepOneMind_Effect0").DESCRIPTION;
+        }
+        else if(card instanceof Setting){
+            return CardCrawlGame.languagePack.getCardStrings("gkmasMod:Setting_Effect0").DESCRIPTION;
+        }
+        else if(card instanceof IdolDeclaration){
+            return CardCrawlGame.languagePack.getCardStrings("gkmasMod:IdolDeclaration_Effect0").DESCRIPTION;
+        }
+        else if(card instanceof Motivation){
+            return CardCrawlGame.languagePack.getCardStrings("gkmasMod:Motivation_Effect0").DESCRIPTION;
+        }
+        else if(card instanceof NextTimeMust){
+            return CardCrawlGame.languagePack.getCardStrings("gkmasMod:NextTimeMust_Effect0").DESCRIPTION;
+        }
         return rawDescription;
     }
 

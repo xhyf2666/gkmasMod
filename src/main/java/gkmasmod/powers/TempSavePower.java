@@ -24,6 +24,7 @@ import gkmasmod.downfall.charbosses.bosses.AbstractCharBoss;
 import gkmasmod.cardGrowEffect.BlockGrow;
 import gkmasmod.cardGrowEffect.DamageGrow;
 import gkmasmod.utils.CustomHelper;
+import gkmasmod.utils.GrowHelper;
 import gkmasmod.utils.NameHelper;
 import gkmasmod.utils.PlayerHelper;
 
@@ -91,7 +92,12 @@ public class TempSavePower extends AbstractPower {
             AbstractCard c = power.cards.poll();
             AbstractDungeon.effectList.add(new ShowCardToDiscardEffect(c));
             if(p instanceof AbstractPlayer){
-                AbstractDungeon.player.discardPile.addToTop(c);
+                if(GrowHelper.hasGrow(c, TempOutAutoPlayGrow.growID)){
+                    AbstractDungeon.actionManager.addToBottom(new AutoPlayAction(c,false));
+                }
+                else{
+                    AbstractDungeon.player.discardPile.addToTop(c);
+                }
             }
             if(c instanceof GkmasCard){
                 ((GkmasCard) c).customTrigger();
@@ -99,6 +105,7 @@ public class TempSavePower extends AbstractPower {
             if(c instanceof GkmasBossCard){
                 ((GkmasBossCard) c).customTrigger();
             }
+
         }
         int count = PlayerHelper.getPowerAmount(p,LikeStarsPower.POWER_ID);
         if(count>0){
@@ -144,16 +151,18 @@ public class TempSavePower extends AbstractPower {
                 AbstractDungeon.effectList.add(new ShowCardToDiscardEffect(c));
             }
             if(p instanceof AbstractPlayer){
-                AbstractDungeon.player.discardPile.addToTop(c);
+                if(GrowHelper.hasGrow(c, TempOutAutoPlayGrow.growID)){
+                    AbstractDungeon.actionManager.addToBottom(new AutoPlayAction(c,false));
+                }
+                else{
+                    AbstractDungeon.player.discardPile.addToTop(c);
+                }
             }
             if(c instanceof GkmasCard){
                 ((GkmasCard) c).customTrigger();
             }
             if(c instanceof GkmasBossCard){
                 ((GkmasBossCard) c).customTrigger();
-            }
-            if(CustomHelper.hasCustom(c, TempOutAutoPlayGrow.growID)){
-                AbstractDungeon.actionManager.addToBottom(new AutoPlayAction(c,false));
             }
 
             i++;
@@ -185,7 +194,12 @@ public class TempSavePower extends AbstractPower {
             AbstractCard c = power.cards.poll();
             AbstractDungeon.effectList.add(new ShowCardToDiscardEffect(c));
             if(p instanceof AbstractPlayer){
-                AbstractDungeon.player.discardPile.addToTop(c);
+                if(GrowHelper.hasGrow(c, TempOutAutoPlayGrow.growID)){
+                    AbstractDungeon.actionManager.addToBottom(new AutoPlayAction(c,false));
+                }
+                else{
+                    AbstractDungeon.player.discardPile.addToTop(c);
+                }
             }
             if(c instanceof GkmasCard){
                 ((GkmasCard) c).customTrigger();

@@ -8,13 +8,14 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.RelicLibrary;
 import com.megacrit.cardcrawl.relics.*;
 import com.megacrit.cardcrawl.unlock.relics.defect.CablesUnlock;
+import gkmasmod.characters.IdolCharacter;
 import gkmasmod.characters.OtherIdolCharacter;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.modcore.GkmasMod;
-import gkmasmod.relics.BalanceLogicAndSense;
-import gkmasmod.relics.PocketBook;
-import gkmasmod.relics.ProducerGlass;
+import gkmasmod.relics.*;
 import gkmasmod.screen.OtherSkinSelectScreen;
+import gkmasmod.screen.SkinSelectScreen;
+import gkmasmod.utils.CommonEnum;
 import gkmasmod.utils.IdolData;
 
 import java.util.ArrayList;
@@ -26,12 +27,25 @@ public class RelicLibraryPatch
     public static class PostPatchRelicLibrary_populateRelicPool{
         @SpirePostfixPatch
         public static void Postfix(ArrayList<String> pool, AbstractRelic.RelicTier tier, AbstractPlayer.PlayerClass chosenClass) {
-            if(chosenClass== PlayerColorEnum.gkmasModOther_character){
+            if(chosenClass == PlayerColorEnum.gkmasMod_character){
+                if(tier== AbstractRelic.RelicTier.UNCOMMON) {
+                    if (IdolData.getIdol(SkinSelectScreen.Inst.idolIndex).getType(SkinSelectScreen.Inst.skinIndex) == CommonEnum.IdolType.ANOMALY) {
+                        pool.add(LikeUsualRelic.ID);
+                    }
+                }
+            }
+            else if(chosenClass== PlayerColorEnum.gkmasModOther_character){
                 if (tier == AbstractRelic.RelicTier.COMMON) {
                     pool.add(ProducerGlass.ID);
+                    pool.add(AngelAndDemonRelic.ID);
                 }
                 else if (tier == AbstractRelic.RelicTier.SHOP) {
                     pool.add(BalanceLogicAndSense.ID);
+                }
+                else if(tier== AbstractRelic.RelicTier.UNCOMMON){
+                    if(IdolData.getOtherIdol(OtherSkinSelectScreen.Inst.idolIndex).getType(OtherSkinSelectScreen.Inst.skinIndex)== CommonEnum.IdolType.ANOMALY){
+                        pool.add(LikeUsualRelic.ID);
+                    }
                 }
                 if(OtherSkinSelectScreen.Inst.idolName.equals(IdolData.arnm)){
                     if (tier == AbstractRelic.RelicTier.COMMON) {
@@ -53,9 +67,10 @@ public class RelicLibraryPatch
                     }
                 }
             }
-            if(chosenClass== PlayerColorEnum.gkmasModMisuzu_character){
+            else if(chosenClass== PlayerColorEnum.gkmasModMisuzu_character){
                 if (tier == AbstractRelic.RelicTier.COMMON) {
                     pool.add(ProducerGlass.ID);
+                    pool.add(AngelAndDemonRelic.ID);
                 }
                 else if (tier == AbstractRelic.RelicTier.SHOP) {
                     pool.add(BalanceLogicAndSense.ID);
@@ -69,9 +84,18 @@ public class RelicLibraryPatch
         @SpirePostfixPatch
         public static void Postfix(ArrayList<AbstractRelic> relicPool) {
             AbstractPlayer.PlayerClass chosenClass = AbstractDungeon.player.chosenClass;
-            if(chosenClass== PlayerColorEnum.gkmasModOther_character){
+            if(chosenClass == PlayerColorEnum.gkmasMod_character){
+                if(IdolData.getIdol(SkinSelectScreen.Inst.idolIndex).getType(SkinSelectScreen.Inst.skinIndex)== CommonEnum.IdolType.ANOMALY){
+                    relicPool.add(new LikeUsualRelic());
+                }
+            }
+            else if(chosenClass== PlayerColorEnum.gkmasModOther_character){
                 relicPool.add(new ProducerGlass());
                 relicPool.add(new BalanceLogicAndSense());
+                relicPool.add(new AngelAndDemonRelic());
+                if(IdolData.getOtherIdol(OtherSkinSelectScreen.Inst.idolIndex).getType(OtherSkinSelectScreen.Inst.skinIndex)== CommonEnum.IdolType.ANOMALY){
+                    relicPool.add(new LikeUsualRelic());
+                }
                 if(OtherSkinSelectScreen.Inst.idolName.equals(IdolData.arnm)){
                     relicPool.add(new DataDisk());
                     relicPool.add(new SymbioticVirus());
@@ -82,9 +106,10 @@ public class RelicLibraryPatch
                     relicPool.add(new RunicCapacitor());
                 }
             }
-            if(chosenClass== PlayerColorEnum.gkmasModMisuzu_character){
+            else if(chosenClass== PlayerColorEnum.gkmasModMisuzu_character){
                 relicPool.add(new ProducerGlass());
                 relicPool.add(new BalanceLogicAndSense());
+                relicPool.add(new AngelAndDemonRelic());
             }
         }
     }

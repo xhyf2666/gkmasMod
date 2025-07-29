@@ -40,6 +40,7 @@ import gkmasmod.utils.*;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.Objects;
 
 
 public class IdolCharacter extends CustomPlayer {
@@ -141,34 +142,34 @@ public class IdolCharacter extends CustomPlayer {
         if(SkinSelectScreen.Inst.updateIndex==1){
             retVal.add(BalanceLogicAndSense.ID);
         }
-        if(SkinSelectScreen.Inst.idolName==IdolData.fktn){
+        if(Objects.equals(SkinSelectScreen.Inst.idolName, IdolData.fktn)){
             retVal.add(MawBank.ID);
         }
-        else if(SkinSelectScreen.Inst.idolName==IdolData.hski){
+        else if(Objects.equals(SkinSelectScreen.Inst.idolName, IdolData.hski)){
             retVal.add(Girya.ID);
         }
-        else if(SkinSelectScreen.Inst.idolName==IdolData.kcna){
+        else if(Objects.equals(SkinSelectScreen.Inst.idolName, IdolData.kcna)){
             retVal.add(MembershipCard.ID);
         }
-        else if(SkinSelectScreen.Inst.idolName==IdolData.ttmr){
+        else if(Objects.equals(SkinSelectScreen.Inst.idolName, IdolData.ttmr)){
             retVal.add(Pear.ID);
         }
-        else if(SkinSelectScreen.Inst.idolName==IdolData.shro){
+        else if(Objects.equals(SkinSelectScreen.Inst.idolName, IdolData.shro)){
             retVal.add(MeatOnTheBone.ID);
         }
-        else if(SkinSelectScreen.Inst.idolName==IdolData.hrnm){
+        else if(Objects.equals(SkinSelectScreen.Inst.idolName, IdolData.hrnm)){
             retVal.add(CrackedCoreNew.ID);
         }
-        else if(SkinSelectScreen.Inst.idolName==IdolData.amao){
+        else if(Objects.equals(SkinSelectScreen.Inst.idolName, IdolData.amao)){
             retVal.add(ProducerGlass.ID);
         }
-        else if(SkinSelectScreen.Inst.idolName==IdolData.hume){
+        else if(Objects.equals(SkinSelectScreen.Inst.idolName, IdolData.hume)){
             retVal.add(Omamori.ID);
         }
-        else if(SkinSelectScreen.Inst.idolName==IdolData.jsna){
+        else if(Objects.equals(SkinSelectScreen.Inst.idolName, IdolData.jsna)){
             retVal.add(FrozenEye.ID);
         }
-        else if(SkinSelectScreen.Inst.idolName==IdolData.hmsz){
+        else if(Objects.equals(SkinSelectScreen.Inst.idolName, IdolData.hmsz)){
             retVal.add(DreamCatcher.ID);
         }
         return retVal;
@@ -187,7 +188,7 @@ public class IdolCharacter extends CustomPlayer {
             return CardCrawlGame.languagePack.getCharacterString(String.format("IdolStory:%s",SkinSelectScreen.Inst.idolName)).TEXT[0];
         }
         catch (Exception e){
-            return "来自初星学园的偶像团体。每位偶像拥有各自的初始卡组、专属遗物和成长倾向。";
+            return CardCrawlGame.languagePack.getCharacterString("IdolStory:default").TEXT[0];
         }
     }
 
@@ -216,7 +217,7 @@ public class IdolCharacter extends CustomPlayer {
 
     @Override
     public String getTitle(PlayerClass playerClass) {
-        return "学园偶像大师";
+        return CardCrawlGame.languagePack.getCharacterString("gkmasMod:title1").TEXT[0];
     }
 
     @Override
@@ -265,7 +266,7 @@ public class IdolCharacter extends CustomPlayer {
 
     @Override
     public String getLocalizedCharacterName() {
-        return "学园偶像大师";
+        return CardCrawlGame.languagePack.getCharacterString("gkmasMod:title1").TEXT[0];
     }
 
     @Override
@@ -275,7 +276,7 @@ public class IdolCharacter extends CustomPlayer {
 
     @Override
     public String getSpireHeartText() {
-        return"到了……登上舞台的时候";
+        return CardCrawlGame.languagePack.getCharacterString("gkmasMod:meetHeart1").TEXT[0];
     }
 
     @Override
@@ -431,6 +432,9 @@ public class IdolCharacter extends CustomPlayer {
             replaceCard.upgrade();
         }
 
+    }
 
+    public void refreshSkin(String path){
+        this.animation = new SpriterAnimation(path);
     }
 }

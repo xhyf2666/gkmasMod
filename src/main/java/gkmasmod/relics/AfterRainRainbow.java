@@ -31,6 +31,10 @@ public class AfterRainRainbow extends CustomRelic {
         super(ID, ImageMaster.loadImage(IMG), ImageMaster.loadImage(IMG_OTL), RARITY, LandingSound.CLINK);
     }
 
+    @Override
+    public void onEquip() {
+        this.counter = playTimes;
+    }
 
     @Override
     public void onVictory() {
@@ -51,7 +55,6 @@ public class AfterRainRainbow extends CustomRelic {
         if (card.type == AbstractCard.CardType.SKILL &&this.counter > 0) {
             addToBot(new AfterRainRainbowAction(AbstractDungeon.player,magicNumber,this));
         }
-
     }
 
     public void atBattleStart() {

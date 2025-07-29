@@ -3,10 +3,7 @@ package gkmasmod.cardCustomEffect;
 import basemod.abstracts.AbstractCardModifier;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import gkmasmod.cards.anomaly.AccelerateLand;
-import gkmasmod.cards.anomaly.JustAppeal;
-import gkmasmod.cards.anomaly.Lucky;
-import gkmasmod.cards.anomaly.StepByStep;
+import gkmasmod.cards.anomaly.*;
 import gkmasmod.cards.free.TurnBack;
 
 public class SecondMagicCustom extends AbstractCardCustomEffect {
@@ -23,14 +20,17 @@ public class SecondMagicCustom extends AbstractCardCustomEffect {
         if(card instanceof JustAppeal){
             return CardCrawlGame.languagePack.getCardStrings("gkmasMod:JustAppeal_Effect0").DESCRIPTION;
         }
-        if(card instanceof Lucky){
+        else if(card instanceof Lucky){
             return CardCrawlGame.languagePack.getCardStrings("gkmasMod:Lucky_Effect0").DESCRIPTION;
         }
-        if(card instanceof StepByStep){
+        else if(card instanceof StepByStep){
             return CardCrawlGame.languagePack.getCardStrings("gkmasMod:StepByStep_Effect0").DESCRIPTION;
         }
-        if(card instanceof AccelerateLand){
+        else if(card instanceof AccelerateLand){
             return CardCrawlGame.languagePack.getCardStrings("gkmasMod:AccelerateLand_Effect0").DESCRIPTION;
+        }
+        else if(card instanceof FirstImpression){
+            return CardCrawlGame.languagePack.getCardStrings("gkmasMod:FirstImpression_Effect1").DESCRIPTION;
         }
         return rawDescription;
     }

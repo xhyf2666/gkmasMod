@@ -1,0 +1,968 @@
+{
+  "selectIdol": {
+    "NAMES": ["アイドルを選ぶ"],
+    "TEXT": ["アイドルを選択"]
+  },
+  "IdolName:shro": {
+    "NAMES": [""],
+    "TEXT": ["篠澤広"]
+  },
+  "IdolName:kllj": {
+    "NAMES": [""],
+    "TEXT": ["葛城リーリヤ"]
+  },
+  "IdolName:kcna": {
+    "NAMES": [""],
+    "TEXT": ["倉本千奈"]
+  },
+  "IdolName:hume": {
+    "NAMES": [""],
+    "TEXT": ["花海佑芽"]
+  },
+  "IdolName:hski": {
+    "NAMES": [""],
+    "TEXT": ["花海咲季"]
+  },
+  "IdolName:hrnm": {
+    "NAMES": [""],
+    "TEXT": ["姫崎莉波"]
+  },
+  "IdolName:fktn": {
+    "NAMES": [""],
+    "TEXT": ["藤田ことね"]
+  },
+  "IdolName:amao": {
+    "NAMES": [""],
+    "TEXT": ["有村麻央"]
+  },
+  "IdolName:ssmk": {
+    "NAMES": [""],
+    "TEXT": ["紫雲清夏"]
+  },
+  "IdolName:ttmr": {
+    "NAMES": [""],
+    "TEXT": ["月村手毬"]
+  },
+  "IdolName:hmsz": {
+    "NAMES": [""],
+    "TEXT": ["秦谷美鈴"]
+  },
+  "IdolName:hmszs": {
+    "NAMES": [""],
+    "TEXT": ["泰谷美鈴"]
+  },
+  "IdolName:jsna": {
+    "NAMES": [""],
+    "TEXT": ["十王星南"]
+  },
+  "IdolName:nasr": {
+    "NAMES": [""],
+    "TEXT": ["根緒亜紗里"]
+  },
+  "IdolName:atbm": {
+    "NAMES": [""],
+    "TEXT": ["雨夜燕"]
+  },
+  "IdolName:krnh": {
+    "NAMES": [""],
+    "TEXT": ["賀陽燐羽"]
+  },
+  "IdolName:andk": {
+    "NAMES": [""],
+    "TEXT": ["藍井撫子"]
+  },
+  "IdolName:sson": {
+    "NAMES": [""],
+    "TEXT": ["白草四音"]
+  },
+  "IdolName:sgka": {
+    "NAMES": [""],
+    "TEXT": ["白草月花"]
+  },
+  "IdolName:mshy": {
+    "NAMES": [""],
+    "TEXT": ["真城優"]
+  },
+  "IdolName:prod": {
+    "NAMES": [""],
+    "TEXT": ["プロデューサー"]
+  },
+  "IdolName:arnm": {
+    "NAMES": [""],
+    "TEXT": ["鼓掌姬崎人"]
+  },
+  "IdolName:yktn": {
+    "NAMES": [""],
+    "TEXT": ["藤田言音"]
+  },
+  "IdolName:lhro": {
+    "NAMES": [""],
+    "TEXT": ["HPが1の姫様"]
+  },
+  "IdolClass:shro": {
+    "NAMES": [""],
+    "TEXT": ["1年2班"]
+  },
+  "IdolClass:kllj": {
+    "NAMES": [""],
+    "TEXT": ["1年1班"]
+  },
+  "IdolClass:kcna": {
+    "NAMES": [""],
+    "TEXT": ["1年2班"]
+  },
+  "IdolClass:hume": {
+    "NAMES": [""],
+    "TEXT": ["1年2班"]
+  },
+  "IdolClass:hski": {
+    "NAMES": [""],
+    "TEXT": ["1年1班"]
+  },
+  "IdolClass:hrnm": {
+    "NAMES": [""],
+    "TEXT": ["3年1班"]
+  },
+  "IdolClass:fktn": {
+    "NAMES": [""],
+    "TEXT": ["1年1班"]
+  },
+  "IdolClass:amao": {
+    "NAMES": [""],
+    "TEXT": ["3年1班"]
+  },
+  "IdolClass:ssmk": {
+    "NAMES": [""],
+    "TEXT": ["1年1班"]
+  },
+  "IdolClass:ttmr": {
+    "NAMES": [""],
+    "TEXT": ["1年1班"]
+  },
+  "IdolClass:hmsz": {
+    "NAMES": [""],
+    "TEXT": ["1年2班"]
+  },
+  "IdolClass:jsna": {
+    "NAMES": [""],
+    "TEXT": ["3年1班"]
+  },
+  "IdolBirthday:shro": {
+    "NAMES": [""],
+    "TEXT": ["12月21日"]
+  },
+  "IdolBirthday:kllj": {
+    "NAMES": [""],
+    "TEXT": ["7月24日"]
+  },
+  "IdolBirthday:kcna": {
+    "NAMES": [""],
+    "TEXT": ["8月1日"]
+  },
+  "IdolBirthday:hume": {
+    "NAMES": [""],
+    "TEXT": ["4月1日"]
+  },
+  "IdolBirthday:hski": {
+    "NAMES": [""],
+    "TEXT": ["4月2日"]
+  },
+  "IdolBirthday:hrnm": {
+    "NAMES": [""],
+    "TEXT": ["3月5日"]
+  },
+  "IdolBirthday:fktn": {
+    "NAMES": [""],
+    "TEXT": ["4月29日"]
+  },
+  "IdolBirthday:amao": {
+    "NAMES": [""],
+    "TEXT": ["1月18日"]
+  },
+  "IdolBirthday:ssmk": {
+    "NAMES": [""],
+    "TEXT": ["11月11日"]
+  },
+  "IdolBirthday:ttmr": {
+    "NAMES": [""],
+    "TEXT": ["6月3日"]
+  },
+  "IdolBirthday:jsna": {
+    "NAMES": [""],
+    "TEXT": ["12月7日"]
+  },
+  "IdolBirthday:hmsz": {
+    "NAMES": [""],
+    "TEXT": ["2月6日"]
+  },
+  "IdolAge:shro": {
+    "NAMES": [""],
+    "TEXT": ["15歳"]
+  },
+  "IdolAge:kllj": {
+    "NAMES": [""],
+    "TEXT": ["15歳"]
+  },
+  "IdolAge:kcna": {
+    "NAMES": [""],
+    "TEXT": ["15歳"]
+  },
+  "IdolAge:hume": {
+    "NAMES": [""],
+    "TEXT": ["15歳"]
+  },
+  "IdolAge:hski": {
+    "NAMES": [""],
+    "TEXT": ["16歳"]
+  },
+  "IdolAge:hrnm": {
+    "NAMES": [""],
+    "TEXT": ["17歳"]
+  },
+  "IdolAge:fktn": {
+    "NAMES": [""],
+    "TEXT": ["15歳"]
+  },
+  "IdolAge:amao": {
+    "NAMES": [""],
+    "TEXT": ["17歳"]
+  },
+  "IdolAge:ssmk": {
+    "NAMES": [""],
+    "TEXT": ["15歳"]
+  },
+  "IdolAge:ttmr": {
+    "NAMES": [""],
+    "TEXT": ["15歳"]
+  },
+  "IdolAge:jsna": {
+    "NAMES": [""],
+    "TEXT": ["17歳"]
+  },
+  "IdolAge:hmsz": {
+    "NAMES": [""],
+    "TEXT": ["15歳"]
+  },
+  "IdolHeight:shro":{
+    "NAMES": [""],
+    "TEXT": ["159cm"]
+  },
+  "IdolHeight:kllj":{
+    "NAMES": [""],
+    "TEXT": ["161cm"]
+  },
+  "IdolHeight:kcna":{
+    "NAMES": [""],
+    "TEXT": ["148cm"]
+  },
+  "IdolHeight:hume":{
+    "NAMES": [""],
+    "TEXT": ["158cm"]
+  },
+  "IdolHeight:hski":{
+    "NAMES": [""],
+    "TEXT": ["152cm"]
+  },
+  "IdolHeight:hrnm":{
+    "NAMES": [""],
+    "TEXT": ["166cm"]
+  },
+  "IdolHeight:fktn":{
+    "NAMES": [""],
+    "TEXT": ["156cm"]
+  },
+  "IdolHeight:amao":{
+    "NAMES": [""],
+    "TEXT": ["157cm"]
+  },
+  "IdolHeight:ssmk":{
+    "NAMES": [""],
+    "TEXT": ["168cm"]
+  },
+  "IdolHeight:ttmr":{
+    "NAMES": [""],
+    "TEXT": ["162cm"]
+  },
+  "IdolHeight:jsna":{
+    "NAMES": [""],
+    "TEXT": ["170cm"]
+  },
+  "IdolHeight:hmsz":{
+    "NAMES": [""],
+    "TEXT": ["160cm"]
+  },
+  "IdolWeight:shro":{
+    "NAMES": [""],
+    "TEXT": ["41kg"]
+  },
+  "IdolWeight:kllj":{
+    "NAMES": [""],
+    "TEXT": ["43kg"]
+  },
+  "IdolWeight:kcna":{
+    "NAMES": [""],
+    "TEXT": ["43kg"]
+  },
+  "IdolWeight:hume":{
+    "NAMES": [""],
+    "TEXT": ["50kg"]
+  },
+  "IdolWeight:hski":{
+    "NAMES": [""],
+    "TEXT": ["45kg"]
+  },
+  "IdolWeight:hrnm":{
+    "NAMES": [""],
+    "TEXT": ["56kg"]
+  },
+  "IdolWeight:fktn":{
+    "NAMES": [""],
+    "TEXT": ["40kg"]
+  },
+  "IdolWeight:amao":{
+    "NAMES": [""],
+    "TEXT": ["46kg"]
+  },
+  "IdolWeight:ssmk":{
+    "NAMES": [""],
+    "TEXT": ["54kg"]
+  },
+  "IdolWeight:ttmr":{
+    "NAMES": [""],
+    "TEXT": ["51kg"]
+  },
+  "IdolWeight:jsna":{
+    "NAMES": [""],
+    "TEXT": ["54kg"]
+  },
+  "IdolWeight:hmsz":{
+    "NAMES": [""],
+    "TEXT": ["42kg"]
+  },
+  "IdolThreeSize:shro":{
+    "NAMES": [""],
+    "TEXT": ["B72/W54/H76"]
+  },
+  "IdolThreeSize:kllj":{
+    "NAMES": [""],
+    "TEXT": ["B82/W53/H80"]
+  },
+  "IdolThreeSize:kcna":{
+    "NAMES": [""],
+    "TEXT": ["B73/W56/H73"]
+  },
+  "IdolThreeSize:hume":{
+    "NAMES": [""],
+    "TEXT": ["B91/W60/H85"]
+  },
+  "IdolThreeSize:hski":{
+    "NAMES": [""],
+    "TEXT": ["B84/W55/H80"]
+  },
+  "IdolThreeSize:hrnm":{
+    "NAMES": [""],
+    "TEXT": ["B90/W59/H93"]
+  },
+  "IdolThreeSize:fktn":{
+    "NAMES": [""],
+    "TEXT": ["B75/W55/H75"]
+  },
+  "IdolThreeSize:amao":{
+    "NAMES": [""],
+    "TEXT": ["B85/W53/H85"]
+  },
+  "IdolThreeSize:ssmk":{
+    "NAMES": [""],
+    "TEXT": ["B89/W58/H85"]
+  },
+  "IdolThreeSize:ttmr":{
+    "NAMES": [""],
+    "TEXT": ["B82/W58/H86"]
+  },
+  "IdolThreeSize:jsna":{
+    "NAMES": [""],
+    "TEXT": ["B88/W56/H86"]
+  },
+  "IdolThreeSize:hmsz":{
+    "NAMES": [""],
+    "TEXT": ["B73/W54/H74"]
+  },
+  "IdolInterest:shro":{
+    "NAMES": [""],
+    "TEXT": ["苦手分野に挑戦すること NL 観葉植物を育てること"]
+  },
+  "IdolInterest:kllj":{
+    "NAMES": [""],
+    "TEXT": ["お菓子作り、日本のアニメ"]
+  },
+  "IdolInterest:kcna":{
+    "NAMES": [""],
+    "TEXT": ["お絵描き"]
+  },
+  "IdolInterest:hume":{
+    "NAMES": [""],
+    "TEXT": ["勝負ごと全般"]
+  },
+  "IdolInterest:hski":{
+    "NAMES": [""],
+    "TEXT": ["お姉ちゃんとの勝負"]
+  },
+  "IdolInterest:hrnm":{
+    "NAMES": [""],
+    "TEXT": ["カフェ巡り、コスメ集め"]
+  },
+  "IdolInterest:fktn":{
+    "NAMES": [""],
+    "TEXT": ["お金を稼ぐこと"]
+  },
+  "IdolInterest:amao":{
+    "NAMES": [""],
+    "TEXT": ["他人の面倒を見ること、観劇"]
+  },
+  "IdolInterest:ssmk":{
+    "NAMES": [""],
+    "TEXT": ["カラオケ、SNS"]
+  },
+  "IdolInterest:ttmr":{
+    "NAMES": [""],
+    "TEXT": ["美味しいものを食べること（封印中）"]
+  },
+  "IdolInterest:jsna":{
+    "NAMES": [""],
+    "TEXT": ["レッスン NL 才能のあるアイドルを見つけること"]
+  },
+  "IdolInterest:hmsz":{
+    "NAMES": [""],
+    "TEXT": ["お昼寝、お散歩"]
+  },
+  "IdolSkill:shro":{
+    "NAMES": [""],
+    "TEXT": ["学業全般、物理、数学、パズル"]
+  },
+  "IdolSkill:kllj":{
+    "NAMES": [""],
+    "TEXT": ["お菓子作り、ゲーム"]
+  },
+  "IdolSkill:kcna":{
+    "NAMES": [""],
+    "TEXT": ["元気なあいさつ NL 動物に好かれること"]
+  },
+  "IdolSkill:hume":{
+    "NAMES": [""],
+    "TEXT": ["スポーツ全般、マッサージ"]
+  },
+  "IdolSkill:hski":{
+    "NAMES": [""],
+    "TEXT": ["運動全般、家事全般、マッサージ"]
+  },
+  "IdolSkill:hrnm":{
+    "NAMES": [""],
+    "TEXT": ["料理、裁縫・手芸"]
+  },
+  "IdolSkill:fktn":{
+    "NAMES": [""],
+    "TEXT": ["ダンス、人の顔と名前を覚えること"]
+  },
+  "IdolSkill:amao":{
+    "NAMES": [""],
+    "TEXT": ["格闘技、手先が器用"]
+  },
+  "IdolSkill:ssmk":{
+    "NAMES": [""],
+    "TEXT": ["身体が柔らかい"]
+  },
+  "IdolSkill:ttmr":{
+    "NAMES": [""],
+    "TEXT": ["歌"]
+  },
+  "IdolSkill:jsna":{
+    "NAMES": [""],
+    "TEXT": ["アイドルの才能を見抜くこと"]
+  },
+  "IdolSkill:hmsz":{
+    "NAMES": [""],
+    "TEXT": ["料理、生け花 NL 体内時計が正確"]
+  },
+  "IdolPlan1:shro": {
+    "NAMES": [""],
+    "TEXT": ["必要な基礎"]
+  },
+  "IdolPlan2:shro": {
+    "NAMES": [""],
+    "TEXT": ["踊り続ける体力"]
+  },
+  "IdolPlan3:shro": {
+    "NAMES": [""],
+    "TEXT": ["歌い続ける力"]
+  },
+  "IdolPlan1:kllj": {
+    "NAMES": [""],
+    "TEXT": ["一歩一歩"]
+  },
+  "IdolPlan2:kllj": {
+    "NAMES": [""],
+    "TEXT": ["届けるための力"]
+  },
+  "IdolPlan3:kllj": {
+    "NAMES": [""],
+    "TEXT": ["理想の表情"]
+  },
+  "IdolPlan1:kcna": {
+    "NAMES": [""],
+    "TEXT": ["最初の一歩"]
+  },
+  "IdolPlan2:kcna": {
+    "NAMES": [""],
+    "TEXT": ["元気と可愛さの力"]
+  },
+  "IdolPlan3:kcna": {
+    "NAMES": [""],
+    "TEXT": ["夢への一歩"]
+  },
+  "IdolPlan1:hume": {
+    "NAMES": [""],
+    "TEXT": ["マイナスからのスタート"]
+  },
+  "IdolPlan2:hume": {
+    "NAMES": [""],
+    "TEXT": ["計り知れない才能"]
+  },
+  "IdolPlan3:hume": {
+    "NAMES": [""],
+    "TEXT": ["爆発誕生"]
+  },
+  "IdolPlan1:hski": {
+    "NAMES": [""],
+    "TEXT": ["しっかりとした一歩"]
+  },
+  "IdolPlan2:hski": {
+    "NAMES": [""],
+    "TEXT": ["全力で"]
+  },
+  "IdolPlan3:hski": {
+    "NAMES": [""],
+    "TEXT": ["負けない力"]
+  },
+  "IdolPlan1:hrnm": {
+    "NAMES": [""],
+    "TEXT": ["3年生の力"]
+  },
+  "IdolPlan2:hrnm": {
+    "NAMES": [""],
+    "TEXT": ["もう一度夢を掴むために"]
+  },
+  "IdolPlan3:hrnm": {
+    "NAMES": [""],
+    "TEXT": ["みんなのお姉さん"]
+  },
+  "IdolPlan1:fktn": {
+    "NAMES": [""],
+    "TEXT": ["人生をより良くする"]
+  },
+  "IdolPlan2:fktn": {
+    "NAMES": [""],
+    "TEXT": ["輝かしい才能"]
+  },
+  "IdolPlan3:fktn": {
+    "NAMES": [""],
+    "TEXT": ["信じる力"]
+  },
+  "IdolPlan1:amao": {
+    "NAMES": [""],
+    "TEXT": ["新しい自分"]
+  },
+  "IdolPlan2:amao": {
+    "NAMES": [""],
+    "TEXT": ["成長の証"]
+  },
+  "IdolPlan3:amao": {
+    "NAMES": [""],
+    "TEXT": ["近づく憧れ"]
+  },
+  "IdolPlan1:ssmk": {
+    "NAMES": [""],
+    "TEXT": ["一歩前進"]
+  },
+  "IdolPlan2:ssmk": {
+    "NAMES": [""],
+    "TEXT": ["磨き抜かれた笑顔"]
+  },
+  "IdolPlan3:ssmk": {
+    "NAMES": [""],
+    "TEXT": ["もう一度、踊り始めよう"]
+  },
+  "IdolPlan1:ttmr": {
+    "NAMES": [""],
+    "TEXT": ["強さ"]
+  },
+  "IdolPlan2:ttmr": {
+    "NAMES": [""],
+    "TEXT": ["弱点克服"]
+  },
+  "IdolPlan3:ttmr": {
+    "NAMES": [""],
+    "TEXT": ["限界突破"]
+  },
+  "IdolPlan1:jsna": {
+    "NAMES": [""],
+    "TEXT": ["やり直し"]
+  },
+  "IdolPlan2:jsna": {
+    "NAMES": [""],
+    "TEXT": ["エリート達、全身"]
+  },
+  "IdolPlan3:jsna": {
+    "NAMES": [""],
+    "TEXT": ["素晴らしい"]
+  },
+  "IdolPlan1:hmsz": {
+    "NAMES": [""],
+    "TEXT": ["のんびり"]
+  },
+  "IdolPlan2:hmsz": {
+    "NAMES": [""],
+    "TEXT": ["着実に"]
+  },
+  "IdolPlan3:hmsz": {
+    "NAMES": [""],
+    "TEXT": ["高みを目指して"]
+  },
+  "IdolReward1:shro": {
+    "NAMES": [""],
+    "TEXT": ["最初の障害"]
+  },
+  "IdolReward2:shro": {
+    "NAMES": [""],
+    "TEXT": ["前途は長い"]
+  },
+  "IdolReward3:shro": {
+    "NAMES": [""],
+    "TEXT": ["プロジェクト完了"]
+  },
+  "IdolReward1:kllj": {
+    "NAMES": [""],
+    "TEXT": ["破けた殻"]
+  },
+  "IdolReward2:kllj": {
+    "NAMES": [""],
+    "TEXT": ["想いを背負って"]
+  },
+  "IdolReward3:kllj": {
+    "NAMES": [""],
+    "TEXT": ["秘めたる力"]
+  },
+  "IdolReward1:kcna": {
+    "NAMES": [""],
+    "TEXT": ["バイタリティ認定資格"]
+  },
+  "IdolReward2:kcna": {
+    "NAMES": [""],
+    "TEXT": ["エネルギッシュ"]
+  },
+  "IdolReward3:kcna": {
+    "NAMES": [""],
+    "TEXT": ["覚醒？"]
+  },
+  "IdolReward1:hume": {
+    "NAMES": [""],
+    "TEXT": ["ゼロからのスタート"]
+  },
+  "IdolReward2:hume": {
+    "NAMES": [""],
+    "TEXT": ["急成長中"]
+  },
+  "IdolReward3:hume": {
+    "NAMES": [""],
+    "TEXT": ["どこからともなく現れた"]
+  },
+  "IdolReward1:hski": {
+    "NAMES": [""],
+    "TEXT": ["まずは楽勝！"]
+  },
+  "IdolReward2:hski": {
+    "NAMES": [""],
+    "TEXT": ["誰にも負けないために"]
+  },
+  "IdolReward3:hski": {
+    "NAMES": [""],
+    "TEXT": ["スター誕生！"]
+  },
+  "IdolReward1:hrnm": {
+    "NAMES": [""],
+    "TEXT": ["声の深み"]
+  },
+  "IdolReward2:hrnm": {
+    "NAMES": [""],
+    "TEXT": ["ステレオタイプは捨てて"]
+  },
+  "IdolReward3:hrnm": {
+    "NAMES": [""],
+    "TEXT": ["莉波＝可愛い"]
+  },
+  "IdolReward1:fktn": {
+    "NAMES": [""],
+    "TEXT": ["弱点克服"]
+  },
+  "IdolReward2:fktn": {
+    "NAMES": [""],
+    "TEXT": ["才能ある子"]
+  },
+  "IdolReward3:fktn": {
+    "NAMES": [""],
+    "TEXT": ["スーパーことね"]
+  },
+  "IdolReward1:amao": {
+    "NAMES": [""],
+    "TEXT": ["とても不安ではありますが"]
+  },
+  "IdolReward2:amao": {
+    "NAMES": [""],
+    "TEXT": ["自己紹介"]
+  },
+  "IdolReward3:amao": {
+    "NAMES": [""],
+    "TEXT": ["素敵な王子様"]
+  },
+  "IdolReward1:ssmk": {
+    "NAMES": [""],
+    "TEXT": ["慎重な一歩"]
+  },
+  "IdolReward2:ssmk": {
+    "NAMES": [""],
+    "TEXT": ["素晴らしい容姿"]
+  },
+  "IdolReward3:ssmk": {
+    "NAMES": [""],
+    "TEXT": ["自分自身に打ち勝つ"]
+  },
+  "IdolReward1:ttmr": {
+    "NAMES": [""],
+    "TEXT": ["基礎筋力"]
+  },
+  "IdolReward2:ttmr": {
+    "NAMES": [""],
+    "TEXT": ["持久力向上"]
+  },
+  "IdolReward3:ttmr": {
+    "NAMES": [""],
+    "TEXT": ["限界を超えて"]
+  },
+  "IdolReward1:jsna": {
+    "NAMES": [""],
+    "TEXT": ["リスタート"]
+  },
+  "IdolReward2:jsna": {
+    "NAMES": [""],
+    "TEXT": ["新しい道"]
+  },
+  "IdolReward3:jsna": {
+    "NAMES": [""],
+    "TEXT": ["一番星【プリマステラ】"]
+  },
+  "IdolReward1:hmsz": {
+    "NAMES": [""],
+    "TEXT": ["私のリズム"]
+  },
+  "IdolReward2:hmsz": {
+    "NAMES": [""],
+    "TEXT": ["ちょうどいい"]
+  },
+  "IdolReward3:hmsz": {
+    "NAMES": [""],
+    "TEXT": ["太陽よりも、高いところへ"]
+  },
+  "IdolStory:shro": {
+    "NAMES": [""],
+    "TEXT": ["14歳で海外の大学を卒業した、謎めいた天才少女。 NL 平凡で退屈な日常に飽き飽きし、苦手分野に挑戦するため初星学園に入学。 NL うまくいかないことさえも喜びと感じている。"]
+  },
+  "IdolStory:kllj": {
+    "NAMES": [""],
+    "TEXT": ["スウェーデン出身の混血少女。アイドルの経験はない。 NL 内気で自信がないところもあるが、常に全力で取り組み、アイドルになることを夢見ている。 NL ゲームが得意でアニメオタクでもあるが、時折、とびきり情熱的な一面も見せる。"]
+  },
+  "IdolStory:kcna": {
+    "NAMES": [""],
+    "TEXT": ["入学試験は最下位、生粋のお嬢様ですわ。 NL アイドルとしての能力はまだ低いものの、教養豊かで天真爛漫。 NL 幼い頃から星南と知り合いで、彼女に憧れている。"]
+  },
+  "IdolStory:hume": {
+    "NAMES": [""],
+    "TEXT": ["補欠入学の新入生。元アスリートで、エネルギーに満ち溢れ、体力にも優れている。 NL 姉の咲が大大大大大好きで、心から尊敬し、ライバル視している。 NL 将来性は高いが、どの分野でも姉に勝ったことがない。"]
+  },
+  "IdolStory:hski": {
+    "NAMES": [""],
+    "TEXT": ["入学試験で首席を取った新入生。勝ち気で負けず嫌いな元アスリート。 NL 温厚な性格で面倒見も良く、妹の花海佑芽とは深い絆で結ばれている。 NL 才能はさほどないが、妹の中の理想像を守るため、日々努力を重ねている。"]
+  },
+  "IdolStory:hrnm": {
+    "NAMES": [""],
+    "TEXT": ["大人びた雰囲気を持つ3年生で、生徒会書記を務めている。 NL かつては妹アイドルとしてグループ活動もしていたが、反応はいまいちだった。 NL 今は「みんなのお姉さん」を目指している。"]
+  },
+  "IdolStory:fktn": {
+    "NAMES": [""],
+    "TEXT": ["夢はお金持ちになれるアイドルになること。 NL お金を稼ぐことに夢中で、アルバイトに精を出す。アイドルこそが人生を変える鍵だと考えている。 NL 成績は凡庸で、自分に自信がないが、可愛い容姿には自信を持っている。"]
+  },
+  "IdolStory:amao": {
+    "NAMES": [""],
+    "TEXT": ["初星学園のイケメンアイドルと寮長を目指す3年生。 NL オペラ歌手に憧れ、子役として活躍していた。 NL 小柄ながらも夢を諦めず、アイドルを目指して様々な困難に直面する。"]
+  },
+  "IdolStory:ssmk": {
+    "NAMES": [""],
+    "TEXT": ["真面目に練習せず、授業をサボることもしばしばある、魅力的な女の子。 NL 中学校のバレエ公演中に膝を負傷。後遺症はないものの、精神的なトラウマを抱えている。 NL 才能はあるが、アイドル活動には興味がないようだ。"]
+  },
+  "IdolStory:ttmr": {
+    "NAMES": [""],
+    "TEXT": ["中学校のトップアイドルとして知られ、かつてはSyngUp!の中心メンバーだった。 NL 表面上は冷酷で冷静沈着、人に厳しい態度を取るが、実は内面は活発で甘えん坊。 NL 体重を気にし、食いしん坊でもある。"]
+  },
+  "IdolStory:jsna": {
+    "NAMES": [""],
+    "TEXT": ["初星学園の生徒会長であり、学園長の孫娘でもある彼女は、「学校一のアイドル」として知られている。 NL アイドルによるエリート教育を受けて育ち、アイドルの価値を見抜く力を持っている。 NL しかし、自身の力が長らく行き詰まっていたため、プロデューサーへの転身を考えている。"]
+  },
+  "IdolStory:hmsz": {
+    "NAMES": [""],
+    "TEXT": ["中学生アイドルグループ「SyngUp!」の元メンバー。 NL 怠け者で寝癖があるが、温厚な外見の裏に秘めた底知れぬ強さを持つ。 NL 月村手毬とは複雑な関係にある。"]
+  },
+  "IdolStory:qmsz": {
+    "NAMES": [""],
+    "TEXT": ["悠然自適、マイペースな女の子で、状態は常に #y「倦怠」 、 #y「睡眠」 、 #y「覚醒」 の間を漂っている。 NL 自分にも他人にも優しく友好的で、お菓子作りや人の世話、甘やかすのが好き。 NL かつての #y「親友」 を召喚して戦闘をサポートできる。"]
+  },
+  "IdolStory:nasr": {
+    "NAMES": [""],
+    "TEXT": ["初星学園プロデューサー科の担任教師。 NL 優しく気さくな性格で、プロデューサーたちが迷っている時は優しく導いてくれる。 NL 年齢は不明。"]
+  },
+  "IdolStory:atbm": {
+    "NAMES": [""],
+    "TEXT": ["初星学園のアイドルランキング2位で、生徒会副会長を務める。 NL 実力に見合ったプライドと傲慢さを持ち、自分にも他人にも厳しい。 NL 十王興南をライバル視している。"]
+  },
+  "IdolStory:krnh": {
+    "NAMES": [""],
+    "TEXT": ["中学生アイドルグループ「SyngUp!」のリーダー。理由もわからず極月学園に転校してきた。 NL 人見知りだが、実は面倒見がよく、約束を重んじる。 NL 本人はアイドルをやめたと公言している。"]
+  },
+  "IdolStory:andk": {
+    "NAMES": [""],
+    "TEXT": ["極月学園の1年生、B級アイドル。自身の家柄を利用して多くのファンを獲得しており、 NL 過去には他アイドルのグッズを独占するといった悪質な行為も行っていた。 NL 彼女の家族は倉本家傘下の企業である。"]
+  },
+  "IdolStory:sson": {
+    "NAMES": [""],
+    "TEXT": ["極月学園の1年生で、A級アイドル。 NL 見た目は温厚で礼儀正しいが、実は腹黒く残酷な一面があり、目的のためなら手段を選ばない。 NL 姉の白草月花の影に長年怯えている。"]
+  },
+  "IdolStory:sgka": {
+    "NAMES": [""],
+    "TEXT": ["極月学園の3年生で、学園唯一のS級アイドル。 NL 国内外で名を馳せ、効率重視で他人のことは気にしない。 NL 覚えているのは顔見知りの人だけ。"]
+  },
+  "IdolStory:mshy": {
+    "NAMES": [""],
+    "TEXT": ["初星学園普通科2年生。星南に突然放送部の部長に任命される。 NL 咲の提案で、定期的にアイドルを放送活動に誘っている。 NL 星南は彼女にアイドルの才能があると信じている。"]
+  },
+  "IdolStory:prod": {
+    "NAMES": [""],
+    "TEXT": ["プロデューサー科出身のミステリアスな学生。教師からも生徒からも高い評価を得ている。 NL アイドルとしての職務に献身的で、一見万能に見える彼だが、 NL 万能プロデューサーのイメージを維持するために、実は相当な努力をしている。"]
+  },
+  "IdolStory:arnm": {
+    "NAMES": [""],
+    "TEXT": ["初星学園の3年生で、学生会の書記を務めている。 NL プロデューサーと尖塔を散策中に偶然はぐれてしまい、ひょんなことから青い力の継承者となった。 NL ひょんなことから青い力の継承者となった。"]
+  },
+  "IdolStory:yktn": {
+    "NAMES": [""],
+    "TEXT": [
+      "家庭は裕福ではなく、弟や妹がたくさんいるため、何か力になりたいと考えていた。 NL アイドルの勉強の合間に過度なアルバイトをこなすうち、体調を崩し、悪循環に陥ってしまう。 NL プロデューサーの助けを受けて生活のバランスを見直し、ついにブレイクを果たした。"
+    ]
+  },
+  "IdolStory:lhro": {
+    "NAMES": [""],
+    "TEXT": [
+      "「牢屋に囚われたHP1の姫様」。歩くだけでも気を失ってしまうほどの虚弱体質。 NL アイドルこそ最も自分に向いていない職業だと信じて、あえてその道を選んだ。 NL プロデューサーの特訓と仲間たちの支えを受け、人間の限界を乗り越える。"
+    ]
+  },
+  "IdolStory:default": {
+    "NAMES": [""],
+    "TEXT": ["初星学園からやってきたアイドルユニット。それぞれが固有の初期デッキ、専用レリック、成長タイプを持つ。"]
+  },
+  "IdolStory:default2": {
+    "NAMES": [""],
+    "TEXT": ["異なる背景を持つアイドルたちのユニット。それぞれが固有の初期デッキ、専用レリック、成長タイプを持つ。"]
+  },
+  "gkmasMod:title1": {
+    "NAMES": [""],
+    "TEXT": ["学園アイドルマスター"]
+  },
+  "gkmasMod:title2": {
+    "NAMES": [""],
+    "TEXT": ["泰谷 美鈴"]
+  },
+  "gkmasMod:meetHeart1": {
+    "NAMES": [""],
+    "TEXT": ["……ステージに立つ、その時が来た。"]
+  },
+  "gkmasMod:meetHeart2": {
+    "NAMES": [""],
+    "TEXT": ["……一緒に、あの子を迎えに行こう。"]
+  },
+  "Sensei:Merchant": {
+    "NAMES": [
+      "去る",
+      "~いらっしゃいませ！~"
+    ],
+    "TEXT": [
+      "やぁ！ NL 何か買っていくかい？ NL 買って買って！",
+      "その髪型、なかなかいいね",
+      "ずいぶん暇そうだね？",
+      "君は犬派？それとも猫派？",
+      "君、なかなか~危険~な雰囲気だね NL へへ……",
+      "ゆっくり見ていっていいよ…… NL …… NL ……急いでもいいけどね",
+      "この絨毯、気に入ったかい？ NL 残念だけどこれは売り物じゃないよ",
+      "私みたいな小さな店も、応援してね！",
+      "マスクはクールだね、私も同類さ！",
+      "ふむ…… NL …ん？… NL ああ！",
+      "もう少しここにいて、音楽でも聞いていくといいよ！",
+      "一人で進むのは危険だよ！君のお金、全部私に預けなさい！",
+      "何か買っていきなよ",
+      "~ふぁ~ ~あ~",
+      "私は金貨が好きだよ。",
+      "私の一番好きな色は青だ。 NL 君は？"
+    ],
+    "OPTIONS": [
+      "なぜ私がここにいるのかって？ NL ああ、私も知らないんだ。",
+      "これが最後の買い物チャンスだよ！ NL ~*ウインク*~ ~*ウインク*~",
+      "…… NL …… NL ………",
+      "実はね、私は猫派なんだ。",
+      "急がなくていいよ、 NL 急がなくていい。",
+      "わあ、@すごくワクワクするだろう！？@",
+      "かつて私も君と同じだったよ。",
+      "おや、まだ上へ登るつもりかい？"
+    ]
+  },
+  "Sensei:Shop Screen": {
+    "NAMES": [
+      "~ようこそ~ NL ~ようこそ！~",
+      "ああ、あれは",
+      "あら、あなた #rお金 がないわ！",
+      "え、ええと",
+      "今回だけですよ",
+      "それは買えないわ。",
+      "ここは慈善事業じゃないの。",
+      "~サン~ ~キュー~",
+      "どういたしまして",
+      "もっと先生を頼ってもいいのですよ",
+      "先輩から受け継いだ経験",
+      "上手くいくといいわね。",
+      "立ち去る",
+      "あなたのデッキからカードを1枚取り除きます。"
+    ],
+    "TEXT": [
+      "トレーニング、頑張ってね",
+      "元の商人？彼なら用事があって出かけているわ",
+      "学園生活はどう？",
+      "うん、どうしたの？",
+      "先生は知っているわ",
+      "このくらいは手伝ってあげるわ",
+      "あなたは私の生徒だからね",
+      "先生はいつだってあなたを信じているわよ",
+      "ファイトオン！"
+    ]
+  },
+    "IdolBossStartTalk:shro_hski": {
+        "NAMES": [
+        ],
+        "TEXT": [
+        "あ、２位の人だ"
+        ]
+    }
+}

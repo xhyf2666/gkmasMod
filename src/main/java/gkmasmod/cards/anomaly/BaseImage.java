@@ -11,7 +11,6 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
-import gkmasmod.powers.FullPowerValue;
 import gkmasmod.stances.PreservationStance;
 import gkmasmod.utils.NameHelper;
 

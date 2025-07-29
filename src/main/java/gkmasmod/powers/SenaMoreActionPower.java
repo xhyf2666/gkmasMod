@@ -25,6 +25,8 @@ public class SenaMoreActionPower extends AbstractPower {
     String path128 = String.format("gkmasModResource/img/powers/%s_84.png","GiveYouSPPower");
     String path48 = String.format("gkmasModResource/img/powers/%s_32.png","GiveYouSPPower");
 
+    private int moreActionCount = 0;
+
     public SenaMoreActionPower(AbstractCreature owner,int amount) {
         this.name = NAME;
         this.ID = POWER_ID;
@@ -44,10 +46,14 @@ public class SenaMoreActionPower extends AbstractPower {
 
     @Override
     public void onSpecificTrigger() {
-        this.flash();
-        for(AbstractMonster mo: AbstractDungeon.getMonsters().monsters){
-            if(!mo.isDeadOrEscaped()&& !AbstractMonsterPatch.friendlyField.friendly.get(mo)){
-                addToBot(new ApplyPowerAction(mo,mo,new GoodTune(mo,this.amount),this.amount));
+        moreActionCount++;
+        if(moreActionCount >=2){
+            moreActionCount = 0;
+            this.flash();
+            for(AbstractMonster mo: AbstractDungeon.getMonsters().monsters){
+                if(!mo.isDeadOrEscaped()&& !AbstractMonsterPatch.friendlyField.friendly.get(mo)){
+                    addToBot(new ApplyPowerAction(mo,mo,new GoodTune(mo,this.amount),this.amount));
+                }
             }
         }
     }

@@ -17,6 +17,7 @@ import gkmasmod.monster.friend.FriendTemari;
 import gkmasmod.powers.WakeUpMisuzuPower;
 import gkmasmod.powers.WinterSleepyPower;
 import gkmasmod.stances.WakeStance;
+import gkmasmod.utils.IdolData;
 import gkmasmod.utils.ImageHelper;
 import gkmasmod.utils.NameHelper;
 
@@ -40,6 +41,8 @@ public class WakeUpMisuzu extends GkmasCard {
     public WakeUpMisuzu() {
         super(ID, NAME, ImageHelper.getCardImgPath(CLASSNAME,TYPE), COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.tags.add(GkmasCardTag.ONLY_ONE_TAG);
+        this.backGroundColor = IdolData.ttmr;
+        updateBackgroundImg();
     }
 
 

@@ -18,6 +18,7 @@ import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.patches.AbstractMonsterPatch;
 import gkmasmod.powers.NotGoodTune;
 import gkmasmod.powers.WantToSleepEnemy;
+import gkmasmod.utils.IdolData;
 import gkmasmod.utils.ImageHelper;
 import gkmasmod.utils.NameHelper;
 import gkmasmod.utils.PlayerHelper;
@@ -47,6 +48,8 @@ public class OurSun extends GkmasCard {
         this.damage = this.baseDamage;
         this.baseMagicNumber = BASE_MAGIC;
         this.magicNumber = this.baseMagicNumber;
+        this.backGroundColor = "moon";
+        updateBackgroundImg();
         this.tags.add(GkmasCardTag.FOCUS_TAG);
     }
 

@@ -37,7 +37,7 @@ public class ComprehensiveArt extends GkmasCard {
 
     private static final int COST = 2;
 
-    private static final int BASE_DAMAGE = 8;
+    private static final int BASE_DAMAGE = 12;
 
     private static final int BASE_MAGIC = 2;
     private static final int UPGRADE_MAGIC_PLUS = 1;
@@ -60,7 +60,7 @@ public class ComprehensiveArt extends GkmasCard {
         this.tags.add(GkmasCardTag.CONCENTRATION_TAG);
         this.customLimit = 1;
         this.customEffectList = new ArrayList<>();
-        this.customEffectList.add(CustomHelper.generateCustomEffectList(DamageCustom.growID, new int[]{6}, new int[]{80}, CustomHelper.CustomEffectType.DAMAGE_ADD));
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(EffectChangeCustom.growID, new int[]{0}, new int[]{50}, CustomHelper.CustomEffectType.GROW_EFFECT_CHANGE));
         this.customEffectList.add(CustomHelper.generateCustomEffectList(CostCustom.growID,new int[]{-1},new int[]{80},CustomHelper.CustomEffectType.ENERGY_COST_REDUCE));
         this.customEffectList.add(CustomHelper.generateCustomEffectList(EffectReduceCustom.growID, new int[]{0}, new int[]{70}, CustomHelper.CustomEffectType.EFFECT_REDUCE));
     }
@@ -69,7 +69,7 @@ public class ComprehensiveArt extends GkmasCard {
     public void use(AbstractPlayer p, AbstractMonster m) {
         GkmasMod.needCheckCard = this;
         addToBot(new ChangeStanceAction(ConcentrationStance.STANCE_ID));
-        addToBot(new ModifyDamageAction(m, new DamageInfo(p, this.damage, DamageInfo.DamageType.NORMAL), AbstractGameAction.AttackEffect.SLASH_VERTICAL,this,false));
+        addToBot(new ModifyDamageAction(m, new DamageInfo(p, this.baseDamage, DamageInfo.DamageType.NORMAL), AbstractGameAction.AttackEffect.SLASH_VERTICAL,this,false));
     }
 
     @Override
@@ -87,10 +87,15 @@ public class ComprehensiveArt extends GkmasCard {
     public void switchedStance() {
         if(AbstractDungeon.player.stance.ID.equals(NeutralStance.STANCE_ID))
             return;
-        if(this.growMagicNumber > 0){
-            upgradeGrowMagicNumber(-1);
-            this.initializeDescription();
+        if(CustomHelper.hasCustom(this,EffectChangeCustom.growID)){
             GrowHelper.grow(this,DamageGrow.growID,this.magicNumber);
+        }
+        else{
+            if(this.growMagicNumber > 0){
+                upgradeGrowMagicNumber(-1);
+                this.initializeDescription();
+                GrowHelper.grow(this,DamageGrow.growID,this.magicNumber);
+            }
         }
     }
 

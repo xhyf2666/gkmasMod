@@ -11,6 +11,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.rewards.RewardItem;
 import gkmasmod.cards.free.Sleepy;
 import gkmasmod.powers.SleepPower;
+import gkmasmod.relics.AsariHelp;
 
 public class RewardItemPatch {
     @SpirePatch(clz = RewardItem.class,method = "applyGoldBonus")
@@ -18,6 +19,9 @@ public class RewardItemPatch {
         @SpireInsertPatch(rloc = 15,localvars = {"tmp"})
         public static void Insert(RewardItem __instance, boolean theft,int tmp) {
             if(MapRoomNodePatch.SPField.isSP.get(AbstractDungeon.getCurrMapNode())){
+                __instance.bonusGold += MathUtils.round(tmp * 0.5F);
+            }
+            if(AbstractDungeon.player.hasRelic(AsariHelp.ID)){
                 __instance.bonusGold += MathUtils.round(tmp * 0.5F);
             }
         }

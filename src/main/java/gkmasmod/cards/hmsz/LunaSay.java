@@ -12,6 +12,7 @@ import gkmasmod.actions.LunaSayAction;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.patches.AbstractMonsterPatch;
+import gkmasmod.utils.IdolData;
 import gkmasmod.utils.ImageHelper;
 import gkmasmod.utils.NameHelper;
 
@@ -38,6 +39,8 @@ public class LunaSay extends GkmasCard {
         this.baseMagicNumber = this.magicNumber = BASE_MAGIC;
         this.exhaust = true;
         this.cardHeader = CardCrawlGame.languagePack.getUIString("gkmasMod:LunaSayHeader").TEXT[0];
+        this.backGroundColor = IdolData.ttmr;
+        updateBackgroundImg();
     }
 
 

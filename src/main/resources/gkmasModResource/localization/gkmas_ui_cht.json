@@ -1,0 +1,1069 @@
+{
+  "gkmasModFree": {
+    "TEXT": [
+      "IDOL:通用"
+    ]
+  },
+  "gkmasModLogic": {
+    "TEXT": [
+      "IDOL:理性"
+    ]
+  },
+  "gkmasModSense": {
+    "TEXT": [
+      "IDOL:感性"
+    ]
+  },
+  "gkmasModAnomaly": {
+    "TEXT": [
+      "IDOL:非凡"
+    ]
+  },
+  "gkmasModMisuzu": {
+    "TEXT": [
+      "秦谷美鈴"
+    ]
+  },
+  "gkmasModMoon": {
+    "TEXT": [
+      "極月"
+    ]
+  },
+  "gkmasModOther": {
+    "TEXT": [
+      "IDOLM@STER"
+    ]
+  },
+  "typeHintName:logic": {
+    "TEXT": [
+      "理性"
+    ]
+  },
+  "typeHintName:sense": {
+    "TEXT": [
+      "感性"
+    ]
+  },
+  "typeHintName:anomaly": {
+    "TEXT": [
+      "非凡"
+    ]
+  },
+  "typeHintName:produce": {
+    "TEXT": [
+      "全能"
+    ]
+  },
+  "typeHint:sense": {
+    "TEXT": [
+      "卡池爲感性卡和通用卡，偏向 #y攻殺 。"
+    ]
+  },
+  "typeHint:logic": {
+    "TEXT": [
+      "卡池爲理性卡和通用卡，偏向 #y防殺 。"
+    ]
+  },
+  "typeHint:anomaly": {
+    "TEXT": [
+      "卡池爲非凡卡和通用卡，在 #y溫存 、 #y強氣 和 #y全力 三態間靈活切換。"
+    ]
+  },
+  "typeHint:produce": {
+    "TEXT": [
+      "每回合開始時，選擇進入 #y理性 、 #y感性 或 #y非凡 的訓練時間。"
+    ]
+  },
+  "typeHint:logicSense": {
+    "TEXT": [
+      "卡池爲理性卡、通用卡和少量感性卡， #y攻守兼備 。"
+    ]
+  },
+  "gkmasMod:Name:update": {
+    "TEXT": [
+      "慎選"
+    ]
+  },
+  "gkmasMod:Hint:update": {
+    "TEXT": [
+      "初始擁有遺物 #y感理之衡 。 NL 卡池中將同時出現 #y理性 、 #y感性 和 #y非凡 卡。"
+    ]
+  },
+  "gkmasMod:Name:hide": {
+    "TEXT": [
+      "換皮摺疊"
+    ]
+  },
+  "gkmasMod:Hint:hide": {
+    "TEXT": [
+      "合併所有技能組相同的換皮。"
+    ]
+  },
+  "styleHintName:goodTune": {
+    "TEXT": [
+      "好調"
+    ]
+  },
+  "styleHintName:focus": {
+    "TEXT": [
+      "力量"
+    ]
+  },
+  "styleHintName:goodImpression": {
+    "TEXT": [
+      "好印象"
+    ]
+  },
+  "styleHintName:yaruki": {
+    "TEXT": [
+      "敏捷"
+    ]
+  },
+  "styleHintName:fullPower": {
+    "TEXT": [
+      "全力"
+    ]
+  },
+  "styleHintName:concentration": {
+    "TEXT": [
+      "強氣"
+    ]
+  },
+  "styleHintName:overPreservation": {
+    "TEXT": [
+      "悠閒"
+    ]
+  },
+  "styleHintName:allCard": {
+    "TEXT": [
+      "育成"
+    ]
+  },
+  "styleHintName:notGoodTune": {
+    "TEXT": [
+      "不調"
+    ]
+  },
+  "styleHintName:fightWill": {
+    "TEXT": [
+      "戰意"
+    ]
+  },
+  "styleHintName:lifeNotStop": {
+    "TEXT": [
+      "療愈"
+    ]
+  },
+  "styleHintName:pinkGirl": {
+    "TEXT": [
+      "雌小鬼"
+    ]
+  },
+  "styleHintName:robot": {
+    "TEXT": [
+      "機器人"
+    ]
+  },
+  "styleHint:goodTune": {
+    "TEXT": [
+      "疊加 #y好調 和 #y絕好調 ，獲得高額增傷。"
+    ]
+  },
+  "styleHint:focus": {
+    "TEXT": [
+      "疊加 #y力量 ，提高基礎傷害。"
+    ]
+  },
+  "styleHint:yaruki": {
+    "TEXT": [
+      "疊加 #y敏捷 和 #y格擋 ，基於 #y格擋 造成傷害。"
+    ]
+  },
+  "styleHint:goodImpression": {
+    "TEXT": [
+      "疊加 #y好印象 ，回合結束時自動出傷。"
+    ]
+  },
+  "styleHint:fullPower": {
+    "TEXT": [
+      "疊加 #y全力值 ，利用 #y暫存 在 #y全力 回合爆發。"
+    ]
+  },
+  "styleHint:concentration": {
+    "TEXT": [
+      "在 #y強氣 和 #y溫存 間靈活切換，疊加 #y成長 。"
+    ]
+  },
+  "styleHint:overPreservation": {
+    "TEXT": [
+      "在 #y悠閒 姿態下，進入 #y強氣 獲得 #y熱意 ，或進入 #y全力 疊加 #y成長 。"
+    ]
+  },
+  "styleHint:allCard": {
+    "TEXT": [
+      "卡池爲通用卡和偶像卡，風格多變。"
+    ]
+  },
+  "styleHint:notGoodTune": {
+    "TEXT": [
+      "疊加 #y不調 ，減少敵人傷害。"
+    ]
+  },
+  "styleHint:fightWill": {
+    "TEXT": [
+      "疊加 #y戰意 ，基於層數獲得強化。"
+    ]
+  },
+  "styleHint:lifeNotStop": {
+    "TEXT": [
+      "戰鬥中的治療量受到限制，但溢出的治療量可轉化爲 #y好印象 。"
+    ]
+  },
+  "styleHint:pinkGirl": {
+    "TEXT": [
+      "每回合結束時，交換 #y力量 和 #y敏捷 層數。"
+    ]
+  },
+  "styleHint:robot": {
+    "TEXT": [
+      "卡池爲藍色卡，疊加 #y集中 獲得成長。"
+    ]
+  },
+  "gkmasMod:PocketBookUI": {
+    "TEXT": [
+      "姓名",
+      "班級",
+      "生日",
+      "年齡",
+      "身高",
+      "體重",
+      "三維",
+      "興趣",
+      "對手",
+      "特長",
+      "關閉",
+      "下一頁",
+      "考覈標準",
+      "滿足考覈標準可以使擔當偶像更容易通過最終考覈。",
+      "育成課題",
+      "完成育成課題後，可以獲得對應獎勵。 NL 育成課題需要按順序完成。"
+    ]
+  },
+  "gkmasMod:PlanReward1": {
+    "TEXT": [
+      "獲得 #b50 金幣。 選擇特殊遺物。"
+    ]
+  },
+  "gkmasMod:PlanReward2": {
+    "TEXT": [
+      "選擇特定飲料。 獲得特殊遺物。"
+    ]
+  },
+  "gkmasMod:PlanReward3": {
+    "TEXT": [
+      "升級/刪牌。"
+    ]
+  },
+  "gkmasMod:PlanRequire": {
+    "TEXT": [
+      " #y%s 達到 #b%d "
+    ]
+  },
+  "gkmasMod:NotEnoughGoodImpression": {
+    "TEXT": [
+      "好印象還不夠"
+    ]
+  },
+  "gkmasMod:NotEnoughDexterityPower": {
+    "TEXT": [
+      "敏捷還不夠"
+    ]
+  },
+  "gkmasMod:NotEnoughStrengthPower": {
+    "TEXT": [
+      "力量還不夠"
+    ]
+  },
+  "gkmasMod:NotEnoughGoodTune": {
+    "TEXT": [
+      "好調還不夠"
+    ]
+  },
+  "gkmasMod:NotEnoughMoney": {
+    "TEXT": [
+      "金幣還不夠"
+    ]
+  },
+  "gkmasMod:NotEnoughBlock": {
+    "TEXT": [
+      "格擋還不夠"
+    ]
+  },
+  "gkmasMod:NotStance": {
+    "TEXT": [
+      "未進入姿態"
+    ]
+  },
+  "gkmasMod:NotFullPowerStance": {
+    "TEXT": [
+      "未進入全力"
+    ]
+  },
+  "gkmasMod:NotPreservationStance": {
+    "TEXT": [
+      "未進入溫存"
+    ]
+  },
+  "gkmasMod:NotConcentrationStance": {
+    "TEXT": [
+      "未進入強氣"
+    ]
+  },
+  "gkmasMod:NotEnoughFullPowerValue": {
+    "TEXT": [
+      "全力值還不夠"
+    ]
+  },
+  "gkmasMod:NotEnoughPreservationStanceTime": {
+    "TEXT": [
+      "進入溫存次數還不夠"
+    ]
+  },
+  "gkmasMod:NotEnoughConcentrationStanceTime": {
+    "TEXT": [
+      "進入強氣次數還不夠"
+    ]
+  },
+  "gkmasMod:NotEnoughFullPowerStanceTime": {
+    "TEXT": [
+      "進入全力次數還不夠"
+    ]
+  },
+  "gkmasMod:ProudStudentAction": {
+    "TEXT": [
+      "選擇一張卡保留"
+    ]
+  },
+  "gkmasMod:PotentialAbilityAction": {
+    "TEXT": [
+      "選擇%d張卡暫存"
+    ]
+  },
+  "gkmasMod:DiggingTalentAction": {
+    "TEXT": [
+      "選擇一張卡暫存"
+    ]
+  },
+  "gkmasMod:SelectCardGrowAction": {
+    "TEXT": [
+      "選擇一張卡成長"
+    ]
+  },
+  "gkmasMod:BlossomingSeasonAction": {
+    "TEXT": [
+      "除外"
+    ]
+  },
+  "gkmasMod:AlternativesAction": {
+    "TEXT": [
+      "，第一張牌轉化爲第二張牌"
+    ]
+  },
+  "gkmasMod:AssimilationAction": {
+    "TEXT": [
+      "，選擇一張手牌轉化爲眠氣"
+    ]
+  },
+  "gkmasMod:ProducingIsChallengingAction": {
+    "TEXT": [
+      "轉移成長效果"
+    ]
+  },
+  "gkmasMod:TurnBackAction": {
+    "TEXT": [
+      "選擇一張手牌",
+      "選擇一張卡"
+    ]
+  },
+  "gkmasMod:Retain": {
+    "TEXT": [
+      "保留 。"
+    ]
+  },
+  "gkmasMod:TempSave": {
+    "TEXT": [
+      "暫存 。"
+    ]
+  },
+  "gkmasMod:WakeUpHeader": {
+    "TEXT": [
+      "並非"
+    ]
+  },
+  "gkmasMod:DoNotGoHeader": {
+    "TEXT": [
+      "(ノДＴ)"
+    ]
+  },
+  "gkmasMod:LunaSayHeader": {
+    "TEXT": [
+      "「LUNA」"
+    ]
+  },
+  "gkmasMod:FirstWantToRunHeader": {
+    "TEXT": [
+      "「MOON」"
+    ]
+  },
+  "gkmasMod:SleepyHeader": {
+    "TEXT": [
+      "「怠惰」"
+    ]
+  },
+  "gkmasMod:EatEmptyYourRefrigeratorHeader": {
+    "TEXT": [
+      "「暴食」"
+    ]
+  },
+  "gkmasMod:RumorHeader": {
+    "TEXT": [
+      "「嫉妒」"
+    ]
+  },
+  "gkmasMod:ResultWillNotChangeHeader": {
+    "TEXT": [
+      "「傲慢」"
+    ]
+  },
+  "gkmasMod:KissHeader": {
+    "TEXT": [
+      "「色慾」"
+    ]
+  },
+  "gkmasMod:WorkFighterHeader": {
+    "TEXT": [
+      "「貪婪」"
+    ]
+  },
+  "gkmasMod:GachaAgainHeader": {
+    "TEXT": [
+      "萬代凱子"
+    ]
+  },
+  "gkmasMod:FutureTrajectory": {
+    "TEXT": [
+      "「白線」"
+    ]
+  },
+  "gkmasMod:CallMeAnyTimeHeader": {
+    "TEXT": [
+      "沒事也可以打電話"
+    ]
+  },
+  "gkmasMod:ListenToMyTrueHeartHeader": {
+    "TEXT": [
+      "「あのね」"
+    ]
+  },
+  "gkmasMod:MotherAIHeader": {
+    "TEXT": [
+      "MOTHER"
+    ]
+  },
+  "gkmasMod:AnotherShopOption": {
+    "TEXT": [
+      "相談(自由行動)",
+      "進入特殊商店。",
+      "已經進入過了。"
+    ]
+  },
+  "gkmasMod:SpecialTeachOption": {
+    "TEXT": [
+      "特別指導",
+      "進行卡牌定製。",
+      "已經進入過了。"
+    ]
+  },
+  "gkmasMod:SupplyOption": {
+    "TEXT": [
+      "支給",
+      "獲得金幣和特殊卡牌。",
+      "已經進入過了。"
+    ]
+  },
+  "gkmasMod:SelectBossOption": {
+    "TEXT": [
+      "決定前路(自由行動)",
+      "選擇最終Boss。",
+      "已經進入過了。"
+    ]
+  },
+  "gkmasMod:WhatDoesSheDoAction": {
+    "TEXT": [
+      "選擇%s張卡，下回合獲得。"
+    ]
+  },
+  "gkmasMod:BattlePracticeAction": {
+    "TEXT": [
+      "選擇%s張卡暫存。"
+    ]
+  },
+  "gkmasMod:GetAnswerSelectAction": {
+    "TEXT": [
+      "選擇%s張星光加入手牌。"
+    ]
+  },
+  "gkmasMod:SelectCardFromDiscardAndDrawAction": {
+    "TEXT": [
+      "選擇%s張牌加入手牌。"
+    ]
+  },
+  "gkmasMod:FirstHeartProofChinaTip": {
+    "TEXT": [
+      "當前可造成%d傷害"
+    ]
+  },
+  "gkmasMod:NaughtyPuppetTip": {
+    "TEXT": [
+      "本場戰鬥累積損失%d點體力"
+    ]
+  },
+  "gkmasMod:HintName:achievement1_1": {
+    "TEXT": [
+      "卡牌掌控"
+    ]
+  },
+  "gkmasMod:HintName:achievement1_2": {
+    "TEXT": [
+      "卡牌掌控"
+    ]
+  },
+  "gkmasMod:HintName:achievement2": {
+    "TEXT": [
+      "直面自我"
+    ]
+  },
+  "gkmasMod:Hint:achievement1_1": {
+    "TEXT": [
+      "卡牌解鎖率超過 #b40 %。 NL 隨機 #b1 張 初始卡牌升級。"
+    ]
+  },
+  "gkmasMod:Hint:achievement1_2": {
+    "TEXT": [
+      "卡牌解鎖率超過 #b70 %。 NL 隨機 #b2 張 初始卡牌升級。"
+    ]
+  },
+  "gkmasMod:Hint:achievement2": {
+    "TEXT": [
+      "戰勝過美鈴。 NL #y專屬卡 升級。"
+    ]
+  },
+  "gkmasMod:UnitName:One": {
+    "TEXT": [
+      "點"
+    ]
+  },
+  "gkmasMod:UnitName:Two": {
+    "TEXT": [
+      "層"
+    ]
+  },
+  "gkmasMod:CreditsScreen": {
+    "TEXT": [
+      "再次點擊以跳過",
+      "跳過",
+      "再次觸碰以跳過"
+    ]
+  },
+  "gkmasMod:EctoplasmSpecial": {
+    "TEXT": [
+      " NL (對某人好像不管用)"
+    ]
+  },
+  "downfall:EnergyPanelTip": {
+    "TEXT": [
+      "敵人當前的能量。打出卡牌需要能量。"
+    ],
+    "EXTRA_TEXT": [
+      "能量"
+    ]
+  },
+  "growEffect:DamageGrow": {
+    "TEXT": [
+      "gkmasmod:傷害增加 %d"
+    ]
+  },
+  "growEffect:AttackTimeGrow": {
+    "TEXT": [
+      "gkmasmod:連擊 %d"
+    ]
+  },
+  "growEffect:BlockTimeGrow": {
+    "TEXT": [
+      "gkmasmod:連盾 %d"
+    ]
+  },
+  "growEffect:DrawCardGrow": {
+    "TEXT": [
+      "gkmasmod:抽牌增加 %d"
+    ]
+  },
+  "growEffect:EnergyGrow": {
+    "TEXT": [
+      "gkmasmod:耗能增加 %d"
+    ]
+  },
+  "growEffect:EnergyReduceGrow": {
+    "TEXT": [
+      "gkmasmod:耗能減少 %d"
+    ]
+  },
+  "growEffect:BlockGrow": {
+    "TEXT": [
+      "gkmasmod:格擋增加 %d"
+    ]
+  },
+  "growEffect:BaseDamageGrow": {
+    "TEXT": [
+      "gkmasmod:基礎傷害增加 %d"
+    ]
+  },
+  "growEffect:LoseHPGrow": {
+    "TEXT": [
+      "gkmasmod:體力流失 %d"
+    ]
+  },
+  "growEffect:LoseBlockGrow": {
+    "TEXT": [
+      "gkmasmod:格擋流失 %d"
+    ]
+  },
+  "growEffect:BaseBlockGrow": {
+    "TEXT": [
+      "gkmasmod:基礎格擋增加 %d"
+    ]
+  },
+  "growEffect:CanNotPlayGrow": {
+    "TEXT": [
+      "不能被打出"
+    ]
+  },
+  "growEffect:SleepyGrow": {
+    "TEXT": [
+      "gkmasmod:夢遊"
+    ]
+  },
+  "growEffect:TempOutAutoPlayGrow": {
+    "TEXT": [
+      "gkmasmod:釋出 ：自動打出。"
+    ]
+  },
+  "growEffect:EtherealGrow": {
+    "TEXT": [
+      "虛無"
+    ]
+  },
+  "customEffect:MoreActionCustom": {
+    "TEXT": [
+      "gkmasmod:再動"
+    ]
+  },
+  "customEffect:TempMoreActionCustom": {
+    "TEXT": [
+      "gkmasmod:臨時再動"
+    ]
+  },
+  "customEffect:AttackTimeCustom": {
+    "TEXT": [
+      "造成 !D! 點傷害。",
+      "造成 !D! 點傷害 %d次。"
+    ]
+  },
+  "customEffect:BlockTimeCustom": {
+    "TEXT": [
+      "獲得 !B! 點 格擋 。",
+      "獲得 !B! 點 格擋 %d次。"
+    ]
+  },
+  "customEffect:VigorCustom": {
+    "TEXT": [
+      "獲得%d層 活力 。"
+    ]
+  },
+  "customEffect:DamageCustom": {
+    "TEXT": [
+      "造成 !D! 點傷害。"
+    ]
+  },
+  "customEffect:BlockCustom": {
+    "TEXT": [
+      "獲得 !B! 點 格擋 。"
+    ]
+  },
+  "customEffect:ExhaustRemoveCustom": {
+    "TEXT": [
+      " 消耗 。",
+      " gkmasmod:除外 。"
+    ]
+  },
+  "customEffect:InnateCustom": {
+    "TEXT": [
+      "固有 。"
+    ]
+  },
+  "customEffect:SelfRetainCustom": {
+    "TEXT": [
+      "保留 。"
+    ]
+  },
+  "customEffect:StrengthCustom": {
+    "TEXT": [
+      "獲得%d點 力量 。"
+    ]
+  },
+  "customEffect:DexterityCustom": {
+    "TEXT": [
+      "獲得%d點 敏捷 。"
+    ]
+  },
+  "customEffect:GoodImpressionCustom": {
+    "TEXT": [
+      "獲得%d層 gkmasmod:好印象 。"
+    ]
+  },
+  "customEffect:GoodTuneCustom": {
+    "TEXT": [
+      "獲得%d層 gkmasmod:好調 。"
+    ]
+  },
+  "customEffect:EnthusiasticCustom": {
+    "TEXT": [
+      "獲得%d層 gkmasmod:熱意 。"
+    ]
+  },
+  "customEffect:TopSkyCustom": {
+    "TEXT": [
+      "獲得%d層 gkmasmod:上浮 。"
+    ]
+  },
+  "customEffect:GreatGoodTuneCustom": {
+    "TEXT": [
+      "獲得%d層 gkmasmod:絕好調 。"
+    ]
+  },
+  "customEffect:FullPowerValueCustom": {
+    "TEXT": [
+      "獲得%d點 gkmasmod:全力值 。"
+    ]
+  },
+  "customEffect:SlowCustom": {
+    "TEXT": [
+      "使目標獲得%d層 緩慢 。"
+    ]
+  },
+  "customEffect:NotGoodTuneCustom": {
+    "TEXT": [
+      "使目標獲得%d層 gkmasmod:不調 。"
+    ]
+  },
+  "customEffect:NotGreatGoodTuneCustom": {
+    "TEXT": [
+      "使目標獲得%d層 gkmasmod:絕不調 。"
+    ]
+  },
+  "customEffect:DexterityRateAttackCustom": {
+    "TEXT": [
+      "造成 敏捷 層數 %d %% 的傷害。"
+    ]
+  },
+  "customEffect:GoodImpressionRateAttackCustom": {
+    "TEXT": [
+      "造成 gkmasmod:好印象 層數 %d %% 的傷害。"
+    ]
+  },
+  "customEffect:BlockRateAttackCustom": {
+    "TEXT": [
+      "造成 格擋 層數 %d %% 的傷害。"
+    ]
+  },
+  "customEffect:GoodTuneRateAttackCustom": {
+    "TEXT": [
+      "造成 gkmasmod:好調 層數 %d %% 的傷害。"
+    ]
+  },
+  "customEffect:GreatGoodTuneRateAttackCustom": {
+    "TEXT": [
+      "造成 gkmasmod:絕好調 層數 %d %% 的傷害。"
+    ]
+  },
+  "customEffect:DrawCardCustom": {
+    "TEXT": [
+      "抽 %d 張牌。"
+    ]
+  },
+  "customEffect:UpgradeAllHandCustom": {
+    "TEXT": [
+      "強化所有手牌。"
+    ]
+  },
+  "customEffect:HalfDamageReceiveCustom": {
+    "TEXT": [
+      "獲得 %d 層 gkmasmod:受傷銳減 。"
+    ]
+  },
+  "customEffect:BlockAdd": {
+    "TEXT": [
+      "格擋%+d"
+    ]
+  },
+  "customEffect:DamageAdd": {
+    "TEXT": [
+      "傷害%+d"
+    ]
+  },
+  "customEffect:AttackTimeAdd": {
+    "TEXT": [
+      "傷害次數%+d"
+    ]
+  },
+  "customEffect:BlockTimeAdd": {
+    "TEXT": [
+      "格擋次數%+d"
+    ]
+  },
+  "customEffect:UseTimeAdd": {
+    "TEXT": [
+      "使用次數%+d"
+    ]
+  },
+  "customEffect:DrawCardAdd": {
+    "TEXT": [
+      "抽牌%+d"
+    ]
+  },
+  "customEffect:EnergyCostReduce": {
+    "TEXT": [
+      "耗能%+d"
+    ]
+  },
+  "customEffect:GoodTuneAdd": {
+    "TEXT": [
+      "好調%+d"
+    ]
+  },
+  "customEffect:GreatGoodTuneAdd": {
+    "TEXT": [
+      "絕好調%+d"
+    ]
+  },
+  "customEffect:NotGoodTuneAdd": {
+    "TEXT": [
+      "不調%+d"
+    ]
+  },
+  "customEffect:NotGreatGoodTuneAdd": {
+    "TEXT": [
+      "絕不調%+d"
+    ]
+  },
+  "customEffect:StrengthAdd": {
+    "TEXT": [
+      "力量%+d"
+    ]
+  },
+  "customEffect:SlowAdd": {
+    "TEXT": [
+      "緩慢%+d"
+    ]
+  },
+  "customEffect:DexterityAdd": {
+    "TEXT": [
+      "敏捷%+d"
+    ]
+  },
+  "customEffect:GoodImpressionAdd": {
+    "TEXT": [
+      "好印象%+d"
+    ]
+  },
+  "customEffect:EnthusiasticAdd": {
+    "TEXT": [
+      "熱意%+d"
+    ]
+  },
+  "customEffect:TopSkyAdd": {
+    "TEXT": [
+      "上浮%+d"
+    ]
+  },
+  "customEffect:FullPowerValueAdd": {
+    "TEXT": [
+      "全力值%+d"
+    ]
+  },
+  "customEffect:ConcentrationAdd": {
+    "TEXT": [
+      "強氣%+d"
+    ]
+  },
+  "customEffect:PreservationAdd": {
+    "TEXT": [
+      "溫存%+d"
+    ]
+  },
+  "customEffect:NextTurnPreservation": {
+    "TEXT": [
+      "下回合溫存"
+    ]
+  },
+  "customEffect:EndTurnPreservation": {
+    "TEXT": [
+      "回合結束溫存"
+    ]
+  },
+  "customEffect:TempSaveAdd": {
+    "TEXT": [
+      "暫存%+d"
+    ]
+  },
+  "customEffect:RateAdd": {
+    "TEXT": [
+      "倍率%+d%%"
+    ]
+  },
+  "customEffect:EffectAdd": {
+    "TEXT": [
+      "效果增加"
+    ]
+  },
+  "customEffect:EffectChange": {
+    "TEXT": [
+      "效果變更"
+    ]
+  },
+  "customEffect:EffectReduce": {
+    "TEXT": [
+      "效果削除"
+    ]
+  },
+  "customEffect:GrowEffectAdd": {
+    "TEXT": [
+      "成長效果增加"
+    ]
+  },
+  "customEffect:GrowEffectChange": {
+    "TEXT": [
+      "成長效果變更"
+    ]
+  },
+  "customEffect:GrowEffectReduce": {
+    "TEXT": [
+      "成長效果削除"
+    ]
+  },
+  "customEffect:DexterityRateAttack": {
+    "TEXT": [
+      "敏捷倍率傷害%+d%%"
+    ]
+  },
+  "customEffect:BlockRateAttack": {
+    "TEXT": [
+      "格擋倍率傷害%+d%%"
+    ]
+  },
+  "customEffect:GoodImpressionRateAttack": {
+    "TEXT": [
+      "好印象倍率傷害%+d%%"
+    ]
+  },
+  "customEffect:GoodTuneRateAttack": {
+    "TEXT": [
+      "好調倍率傷害%+d%%"
+    ]
+  },
+  "customEffect:GreatGoodTuneRateAttack": {
+    "TEXT": [
+      "絕好調倍率傷害%+d%%"
+    ]
+  },
+  "customEffect:VigorAdd": {
+    "TEXT": [
+      "活力%+d"
+    ]
+  },
+  "customEffect:HpReduce": {
+    "TEXT": [
+      "體力%+d"
+    ]
+  },
+  "customEffect:HalfDamageReceiveAdd": {
+    "TEXT": [
+      "受傷銳減%+d"
+    ]
+  },
+  "customEffect:DoubleDamageAddReduce": {
+    "TEXT": [
+      "受傷劇增%+d"
+    ]
+  },
+  "customEffect:ExhaustRemove": {
+    "TEXT": [
+      "消耗移除"
+    ]
+  },
+  "customEffect:InnateAdd": {
+    "TEXT": [
+      "固有"
+    ]
+  },
+  "customEffect:SelfRetainAdd": {
+    "TEXT": [
+      "保留"
+    ]
+  },
+  "customEffect:TempMoreActionAdd": {
+    "TEXT": [
+      "臨時再動 %d "
+    ]
+  },
+  "customEffect:MoreActionAdd": {
+    "TEXT": [
+      "再動 "
+    ]
+  },
+  "customEffect:UpgradeAllHand": {
+    "TEXT": [
+      "強化所有手牌"
+    ]
+  },
+  "gkmasMod:SpecialTeachScreen": {
+    "TEXT": [
+      "確認",
+      "返回",
+      "確認你的選擇",
+      "離開",
+      "(剩餘%d次)",
+      "當前還可指導%d次",
+      "累計可指導%d次"
+    ]
+  },
+  "gkmasMod:EatFruit": {
+    "TEXT": [
+      "好喫好喫好喫",
+      "喫這個，應該不會長胖吧？",
+      "再來一個",
+      "謝謝你，美鈴",
+      "……這個……有毒……不能喫"
+    ]
+  },
+  "gkmasMod:IdolRoadTips": {
+    "TEXT": [
+      "挑戰美鈴或燐羽（這裏有兩個未實裝的小孩）",
+      "你的旅途即將進入下一階段 NL 選擇你接下來的 #b計劃 ",
+      "趁着沒人來，先睡一會吧……",
+      "優先出現Mod Boss",
+      "前往更廣闊的舞臺(難度較高)",
+      "偶像之間的戰鬥，不是■就是被■"
+    ]
+  }
+}

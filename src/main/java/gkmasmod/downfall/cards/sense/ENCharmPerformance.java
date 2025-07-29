@@ -10,10 +10,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.downfall.cards.GkmasBossCard;
-import gkmasmod.powers.CharmPerformancePower;
-import gkmasmod.powers.GoodTune;
-import gkmasmod.powers.GreatGoodTune;
-import gkmasmod.powers.GreatNotGoodTune;
+import gkmasmod.powers.*;
 import gkmasmod.utils.ImageHelper;
 import gkmasmod.utils.NameHelper;
 import gkmasmod.utils.PlayerHelper;
@@ -64,6 +61,7 @@ public class ENCharmPerformance extends GkmasBossCard {
         addToBot(new ApplyPowerAction(m,m,new GreatGoodTune(m,this.magicNumber),this.magicNumber));
         addToBot(new ApplyPowerAction(m,m,new CharmPerformancePower(m,this.baseDamage,p),this.baseDamage));
         addToBot(new ApplyPowerAction(p,p,new GreatNotGoodTune(p,this.secondMagicNumber),this.secondMagicNumber));
+        addToBot(new ApplyPowerAction(p,p,new CharmPerformanceSPPower(m,this.baseDamage,p),this.baseDamage));
     }
 
     @Override

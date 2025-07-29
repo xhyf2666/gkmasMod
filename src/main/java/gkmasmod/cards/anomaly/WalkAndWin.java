@@ -27,10 +27,10 @@ public class WalkAndWin extends GkmasCard {
     private static final String DESCRIPTION = CARD_STRINGS.DESCRIPTION;
     private static final String IMG_PATH = String.format("gkmasModResource/img/cards/common/%s.png", CLASSNAME);
 
-    private static final int COST = 1;
-    private static final int UPGRADE_COST = 0;
+    private static final int COST = 0;
 
     private static final int BASE_MAGIC = 1;
+    private static final int UPGRADE_PLUS_MAGIC = 1;
 
     private static final CardType TYPE = CardType.SKILL;
     private static final CardColor COLOR = PlayerColorEnum.gkmasModColorAnomaly;
@@ -63,7 +63,7 @@ public class WalkAndWin extends GkmasCard {
     public void upgrade() {
         if (!this.upgraded) {
             upgradeName();
-            upgradeBaseCost(UPGRADE_COST);
+            upgradeMagicNumber(UPGRADE_PLUS_MAGIC);
             if (CARD_STRINGS.UPGRADE_DESCRIPTION != null)
                 this.rawDescription = CARD_STRINGS.UPGRADE_DESCRIPTION;
             this.initializeDescription();

@@ -11,14 +11,12 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.DexterityPower;
 import gkmasmod.actions.GainTrainRoundPowerAction;
-import gkmasmod.cardCustomEffect.BlockCustom;
-import gkmasmod.cardCustomEffect.DamageCustom;
-import gkmasmod.cardCustomEffect.ExhaustRemoveCustom;
-import gkmasmod.cardCustomEffect.MoreActionCustom;
+import gkmasmod.cardCustomEffect.*;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.powers.GoodImpression;
+import gkmasmod.powers.StarDustPower;
 import gkmasmod.screen.SkinSelectScreen;
 import gkmasmod.utils.CustomHelper;
 import gkmasmod.utils.ImageHelper;
@@ -65,8 +63,9 @@ public class StarDust extends GkmasCard {
         CardModifierManager.addModifier(this,new MoreActionCustom(1));
         this.customLimit = 1;
         this.customEffectList = new ArrayList<>();
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(ThirdMagicCustom.growID, new int[]{1}, new int[]{60}, CustomHelper.CustomEffectType.DRAW_CARD_ADD));
         this.customEffectList.add(CustomHelper.generateCustomEffectList(BlockCustom.growID, new int[]{4}, new int[]{60}, CustomHelper.CustomEffectType.BLOCK_ADD));
-        this.customEffectList.add(CustomHelper.generateCustomEffectList(ExhaustRemoveCustom.growID,new int[]{0},new int[]{80},CustomHelper.CustomEffectType.EXHAUST_REMOVE));
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(EffectChangeCustom.growID,new int[]{0},new int[]{80},CustomHelper.CustomEffectType.EFFECT_CHANGE));
     }
 
 
@@ -77,6 +76,9 @@ public class StarDust extends GkmasCard {
         addToBot(new ApplyPowerAction(p, p, new GoodImpression(p, this.secondMagicNumber), this.secondMagicNumber));
         if(this.upgraded){
             addToBot(new DrawCardAction(thirdMagicNumber));
+        }
+        if(!CustomHelper.hasCustom(this,EffectChangeCustom.growID)&&PlayerHelper.getPowerAmount(p,GoodImpression.POWER_ID)>9) {
+            addToBot(new ApplyPowerAction(p,p,new StarDustPower(p,3),3));
         }
 //        addToBot(new GainTrainRoundPowerAction(p,1));
     }

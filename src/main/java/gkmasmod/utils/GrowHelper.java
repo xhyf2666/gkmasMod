@@ -51,12 +51,17 @@ public class GrowHelper {
             CardModifierManager.addModifier(card,new EtherealGrow(amount));
         else if(effect.equals(TempOutAutoPlayGrow.growID))
             CardModifierManager.addModifier(card,new TempOutAutoPlayGrow(amount));
+        else if(effect.equals(LoseHPGrow.growID))
+            CardModifierManager.addModifier(card,new LoseHPGrow(amount));
+        else if(effect.equals(LoseBlockGrow.growID))
+            CardModifierManager.addModifier(card,new LoseBlockGrow(amount));
         if(AbstractDungeon.player.hasPower(ClumsyAsAlwaysPower.POWER_ID)){
             if(card instanceof GkmasBossCard){
                 return;
             }
             AbstractDungeon.player.getPower(ClumsyAsAlwaysPower.POWER_ID).onSpecificTrigger();
         }
+        card.initializeDescription();
     }
 
     public static void growAll(String effect, int amount){

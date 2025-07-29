@@ -14,12 +14,10 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.stances.AbstractStance;
 import gkmasmod.cardCustomEffect.BlockCustom;
 import gkmasmod.cardCustomEffect.DamageCustom;
-import gkmasmod.cardCustomEffect.MagicCustom;
 import gkmasmod.cardCustomEffect.MoreActionCustom;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
-import gkmasmod.powers.FullPowerValue;
 import gkmasmod.utils.CustomHelper;
 import gkmasmod.utils.NameHelper;
 

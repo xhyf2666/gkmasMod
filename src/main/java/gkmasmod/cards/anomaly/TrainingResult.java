@@ -57,6 +57,7 @@ public class TrainingResult extends GkmasCard {
         this.baseMagicNumber = BASE_MAGIC;
         this.magicNumber = this.baseMagicNumber;
         this.tags.add(GkmasCardTag.PRESERVATION_TAG);
+        this.tags.add(GkmasCardTag.FULL_POWER_TAG);
         this.exhaust = true;
         this.customLimit = 2;
         this.customEffectList = new ArrayList<>();

@@ -113,4 +113,17 @@ public class CardHelper {
                 tmpPool.add(card.makeCopy());
         }
     }
+
+    public static AbstractCard getOneCard(AbstractCard.CardColor color, AbstractCard.CardRarity rarity) {
+        Iterator<Map.Entry<String, AbstractCard>> cardLib = CardLibrary.cards.entrySet().iterator();
+        ArrayList<AbstractCard> tmpPool = new ArrayList<>();
+        while (true) {
+            if (!cardLib.hasNext())
+                return tmpPool.isEmpty() ? null : tmpPool.get(AbstractDungeon.cardRandomRng.random(tmpPool.size() - 1));
+            Map.Entry c = cardLib.next();
+            AbstractCard card = (AbstractCard)c.getValue();
+            if (rarity==card.rarity&&card.color.equals(color))
+                tmpPool.add(card.makeCopy());
+        }
+    }
 }

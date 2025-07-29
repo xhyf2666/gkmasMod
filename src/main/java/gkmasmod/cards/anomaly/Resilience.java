@@ -37,6 +37,7 @@ public class Resilience extends GkmasCard {
     private static final int BASE_MAGIC = 1;
     private static final int BASE_MAGIC2 = 2;
     private static final int UPGRADE_MAGIC2_PLUS = 1;
+    private static final int BASE_MAGIC3 = 1;
 
 
     private static final CardType TYPE = CardType.SKILL;
@@ -51,6 +52,8 @@ public class Resilience extends GkmasCard {
         this.baseMagicNumber = BASE_MAGIC;
         this.magicNumber = this.baseMagicNumber;
         this.baseSecondMagicNumber = BASE_MAGIC2;
+        this.baseThirdMagicNumber = BASE_MAGIC3;
+        this.thirdMagicNumber = this.baseThirdMagicNumber;
         this.secondMagicNumber = this.baseSecondMagicNumber;
         CardModifierManager.addModifier(this,new MoreActionCustom(1));
         this.exhaust = true;

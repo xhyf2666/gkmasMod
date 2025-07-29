@@ -68,12 +68,12 @@ public class IdolRoad extends CustomDungeon {
     }
 
     public String getOptionText() {
-        return "前往更广阔的舞台(难度较高)";
+        return CardCrawlGame.languagePack.getUIString("gkmasMod:IdolRoadTips").TEXT[4];
     }
 
     @Override
     protected void makeMap() {
-        AbstractDungeon.levelNum = "偶像之间的战斗，不是■就是被■";
+        AbstractDungeon.levelNum = CardCrawlGame.languagePack.getUIString("gkmasMod:IdolRoadTips").TEXT[5];
         ArrayList<MonsterRoomCreator> tmpBossList = new ArrayList<>();
         tmpBossList.add(new MonsterRoomCreator("gkmasModResource/img/map/amao_BossIcon.png", IdolBoss_amao.ID));
         tmpBossList.add(new MonsterRoomCreator("gkmasModResource/img/map/fktn_BossIcon.png", IdolBoss_fktn.ID));

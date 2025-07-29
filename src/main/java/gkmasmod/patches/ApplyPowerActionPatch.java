@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.ArtifactPower;
 import gkmasmod.cards.anomaly.AfterSchoolChat;
+import gkmasmod.cards.anomaly.FashionLeader;
 import gkmasmod.characters.IdolCharacter;
 import gkmasmod.characters.MisuzuCharacter;
 import gkmasmod.characters.OtherIdolCharacter;
@@ -91,32 +92,44 @@ public class ApplyPowerActionPatch {
                             if(c instanceof TakeFlight){
                                 ((TakeFlight) c).onFullPowerValueIncrease(___powerToApply);
                             }
-                            if(c instanceof AfterSchoolChat){
+                            else if(c instanceof AfterSchoolChat){
                                 ((AfterSchoolChat) c).onFullPowerValueIncrease(___powerToApply);
+                            }
+                            else if(c instanceof FashionLeader){
+                                ((FashionLeader) c).onFullPowerValueIncrease(___powerToApply);
                             }
                         }
                         for(AbstractCard c:AbstractDungeon.player.drawPile.group){
                             if(c instanceof TakeFlight){
                                 ((TakeFlight) c).onFullPowerValueIncrease(___powerToApply);
                             }
-                            if(c instanceof AfterSchoolChat){
+                            else if(c instanceof AfterSchoolChat){
                                 ((AfterSchoolChat) c).onFullPowerValueIncrease(___powerToApply);
+                            }
+                            else if(c instanceof FashionLeader){
+                                ((FashionLeader) c).onFullPowerValueIncrease(___powerToApply);
                             }
                         }
                         for(AbstractCard c:AbstractDungeon.player.discardPile.group){
                             if(c instanceof TakeFlight){
                                 ((TakeFlight) c).onFullPowerValueIncrease(___powerToApply);
                             }
-                            if(c instanceof AfterSchoolChat){
+                            else if(c instanceof AfterSchoolChat){
                                 ((AfterSchoolChat) c).onFullPowerValueIncrease(___powerToApply);
+                            }
+                            else if(c instanceof FashionLeader){
+                                ((FashionLeader) c).onFullPowerValueIncrease(___powerToApply);
                             }
                         }
                         for(AbstractCard c:AbstractDungeon.player.exhaustPile.group) {
-                            if (c instanceof TakeFlight) {
+                            if(c instanceof TakeFlight){
                                 ((TakeFlight) c).onFullPowerValueIncrease(___powerToApply);
                             }
-                            if(c instanceof AfterSchoolChat){
+                            else if(c instanceof AfterSchoolChat){
                                 ((AfterSchoolChat) c).onFullPowerValueIncrease(___powerToApply);
+                            }
+                            else if(c instanceof FashionLeader){
+                                ((FashionLeader) c).onFullPowerValueIncrease(___powerToApply);
                             }
                         }
                         if(AbstractDungeon.player.hasPower(TempSavePower.POWER_ID)){
@@ -125,8 +138,11 @@ public class ApplyPowerActionPatch {
                                 if(c instanceof TakeFlight){
                                     ((TakeFlight) c).onFullPowerValueIncrease(___powerToApply);
                                 }
-                                if(c instanceof AfterSchoolChat){
+                                else if(c instanceof AfterSchoolChat){
                                     ((AfterSchoolChat) c).onFullPowerValueIncrease(___powerToApply);
+                                }
+                                else if(c instanceof FashionLeader){
+                                    ((FashionLeader) c).onFullPowerValueIncrease(___powerToApply);
                                 }
                             }
                         }

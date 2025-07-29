@@ -12,6 +12,7 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.VulnerablePower;
 import gkmasmod.cards.GkmasCard;
+import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.powers.NotGoodTune;
 import gkmasmod.powers.WantToSleepEnemy;
@@ -42,6 +43,7 @@ public class WantToRun extends GkmasCard {
         super(ID, NAME, ImageHelper.getCardImgPath(CLASSNAME,TYPE), COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET,"color");
         this.baseDamage = BASE_DAMAGE;
         this.baseBlock = BASE_BLOCK;
+        this.tags.add(GkmasCardTag.SLEEP_TAG);
     }
 
 

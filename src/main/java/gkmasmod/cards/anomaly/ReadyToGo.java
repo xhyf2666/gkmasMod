@@ -35,11 +35,11 @@ public class ReadyToGo extends GkmasCard {
     private static final String DESCRIPTION = CARD_STRINGS.DESCRIPTION;
     private static String IMG_PATH = ImageHelper.idolImgPath(SkinSelectScreen.Inst.idolName, CLASSNAME);
 
-    private static final int COST = 2;
+    private static final int COST = 1;
 
-    private static final int BASE_DAMAGE = 8;
+    private static final int BASE_DAMAGE = 6;
 
-    private static final int UPGRADE_DMG_PLUS = 4;
+    private static final int UPGRADE_DMG_PLUS = 2;
 
     private static final int BASE_MAGIC = 0;
 
@@ -73,9 +73,7 @@ public class ReadyToGo extends GkmasCard {
         if(this.magicNumber>0){
             addToBot(new GrowAction(DamageGrow.growID, GrowAction.GrowType.allHand, this.magicNumber));
         }
-        if(p.stance.ID.equals(FullPowerStance.STANCE_ID)){
-            addToBot(new ApplyPowerAction(p,p,new EnthusiasticPower(p,this.secondMagicNumber),this.secondMagicNumber));
-        }
+        addToBot(new ApplyPowerAction(p,p,new EnthusiasticPower(p,this.secondMagicNumber),this.secondMagicNumber));
     }
 
     @Override

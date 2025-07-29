@@ -11,6 +11,7 @@ import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import gkmasmod.actions.GrowAction;
+import gkmasmod.cardGrowEffect.LoseBlockGrow;
 import gkmasmod.cards.anomaly.JustAppeal;
 import gkmasmod.cardGrowEffect.AttackTimeGrow;
 import gkmasmod.cardGrowEffect.EnergyGrow;
@@ -34,7 +35,7 @@ public class AchieveDreamAwakening extends CustomRelic {
     private static final int magicNumber = 1;
     private static final int magicNumber2 = 4;
     private static final int magicNumber3 = 1;
-    private static final int magicNumber4 = 1;
+    private static final int magicNumber4 = 2;
 
     private static final  int playTimes = 1;
 
@@ -66,8 +67,8 @@ public class AchieveDreamAwakening extends CustomRelic {
                     this.flash();
                     addToBot(new ChangeStanceAction(PreservationStance.STANCE_ID2));
                     addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new FullPowerValue(AbstractDungeon.player, magicNumber2), magicNumber2));
-                    addToBot(new GrowAction(AttackTimeGrow.growID, GrowAction.GrowType.allTempSave,1));
-                    addToBot(new GrowAction(EnergyGrow.growID, GrowAction.GrowType.allTempSave,1));
+                    addToBot(new GrowAction(AttackTimeGrow.growID, GrowAction.GrowType.allTempSave,magicNumber3));
+                    addToBot(new GrowAction(LoseBlockGrow.growID, GrowAction.GrowType.allTempSave,magicNumber4));
                     this.counter--;
                     if (this.counter == 0) {
                         this.grayscale = true;

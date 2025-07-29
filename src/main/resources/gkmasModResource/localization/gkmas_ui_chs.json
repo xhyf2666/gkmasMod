@@ -1,23 +1,23 @@
 {
-  "gkmasMod:free": {
+  "gkmasModFree": {
     "TEXT": ["IDOL:通用"]
   },
-  "gkmasMod:logic": {
+  "gkmasModLogic": {
     "TEXT": ["IDOL:理性"]
   },
-  "gkmasMod:sense": {
+  "gkmasModSense": {
     "TEXT": ["IDOL:感性"]
   },
-  "gkmasMod:anomaly": {
+  "gkmasModAnomaly": {
     "TEXT": ["IDOL:非凡"]
   },
-  "gkmasMod:misuzu": {
+  "gkmasModMisuzu": {
     "TEXT": ["秦谷美铃"]
   },
-  "gkmasMod:moon": {
+  "gkmasModMoon": {
     "TEXT": ["极月"]
   },
-  "gkmasMod:other": {
+  "gkmasModOther": {
     "TEXT": ["IDOLM@STER"]
   },
   "typeHintName:logic": {
@@ -400,6 +400,16 @@
   "growEffect:BaseDamageGrow": {
     "TEXT": [
       "gkmasmod:基础伤害增加 %d"
+    ]
+  },
+  "growEffect:LoseHPGrow": {
+    "TEXT": [
+      "gkmasmod:体力流失 %d"
+    ]
+  },
+  "growEffect:LoseBlockGrow": {
+    "TEXT": [
+      "gkmasmod:格挡流失 %d"
     ]
   },
   "growEffect:BaseBlockGrow": {
@@ -818,6 +828,16 @@
       "再来一个",
       "谢谢你，美铃",
       "……这个……有毒……不能吃"
+    ]
+  },
+  "gkmasMod:IdolRoadTips": {
+    "TEXT": [
+      "挑战美铃或燐羽（这里有两个未实装的小孩）",
+      "你的旅途即将进入下一阶段 NL 选择你接下来的 #b计划 ",
+      "趁着没人来，先睡一会吧……",
+      "优先出现Mod Boss",
+      "前往更广阔的舞台(难度较高)",
+      "偶像之间的战斗，不是■就是被■"
     ]
   }
 }

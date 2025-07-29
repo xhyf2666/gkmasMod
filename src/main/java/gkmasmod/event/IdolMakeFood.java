@@ -67,7 +67,6 @@ public class IdolMakeFood extends AbstractImageEvent {
         type  = IdolData.getIdol(SkinSelectScreen.Inst.idolIndex).getType(SkinSelectScreen.Inst.skinIndex);
         if(AbstractDungeon.player instanceof MisuzuCharacter){
             type = CommonEnum.IdolType.SENSE;
-            colorIndex=0;
         }
         if(AbstractDungeon.player instanceof OtherIdolCharacter){
             type  = IdolData.getOtherIdol(OtherSkinSelectScreen.Inst.idolIndex).getType(OtherSkinSelectScreen.Inst.skinIndex);

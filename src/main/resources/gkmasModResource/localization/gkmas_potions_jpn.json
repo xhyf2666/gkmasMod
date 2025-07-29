@@ -1,0 +1,118 @@
+{
+  "gkmasMod:FirstStarWater": {
+    "NAME": "初星水",
+    "DESCRIPTIONS": ["#b%d ダメージを与える（ #y好調 · #y筋力 の影響を受ける）"]
+  },
+  "gkmasMod:OolongTea": {
+    "NAME": "烏龍茶",
+    "DESCRIPTIONS": ["#b%d ブロックを得る（敏捷性の影響を受ける）"]
+  },
+  "gkmasMod:VitaminDrink": {
+    "NAME": "ビタミンドリンク",
+    "DESCRIPTIONS": ["#y好調 #b%d を得る"]
+  },
+  "gkmasMod:IcedCoffee": {
+    "NAME": "アイスコーヒー",
+    "DESCRIPTIONS": ["#y筋力 #b%d を得る。"]
+  },
+  "gkmasMod:RooibosTea": {
+    "NAME": "ルイボスティー",
+    "DESCRIPTIONS": ["#y好印象 #b%d を得る。"]
+  },
+  "gkmasMod:HotCoffee": {
+    "NAME": "ホットコーヒー",
+    "DESCRIPTIONS": ["#y敏捷性 #b%d を得る。"]
+  },
+  "gkmasMod:MixedSmoothie": {
+    "NAME": "ミックススムージー",
+    "DESCRIPTIONS": ["#yHP を #b%d 回復する。 NL 手札をすべて捨て、同じ枚数引く」"]
+  },
+  "gkmasMod:RecoveryDrink": {
+    "NAME": "リカバリドリンク",
+    "DESCRIPTIONS": ["#yHP を #b%d 回復する。"]
+  },
+  "gkmasMod:FreshVinegar": {
+    "NAME": "フレッシュビネガー",
+    "DESCRIPTIONS": ["#yHP を #b%d 回復する。 NL 手札のカードをすべて強化する"]
+  },
+  "gkmasMod:BoostExtract": {
+    "NAME": "ブーストエキス",
+    "DESCRIPTIONS": ["#yHP を #b%d 失う。 #y消費体力減少 #b%d を得る。 NL #b%d ターンの間、与えるダメージが #b%d%% 増加（重複可）"]
+  },
+  "gkmasMod:StaminaExplosionDrink": {
+    "NAME": "スタミナ爆発ドリンク",
+    "DESCRIPTIONS": ["#y絶好調 #b%d を得る。 NL #b%d ブロックを得る。"]
+  },
+  "gkmasMod:StylishHerbalTea": {
+    "NAME": "おしゃれハーブティー",
+    "DESCRIPTIONS": ["#b%d ブロックを得る。 NL gkmasmod:好印象 の #b%d %% 分のダメージを与える。"]
+  },
+  "gkmasMod:FirstStarWheyProtein": {
+    "NAME": "初星ホエイプロテイン",
+    "DESCRIPTIONS": ["#y再動 #b%d。"]
+  },
+  "gkmasMod:FirstStarSpecialAojiru": {
+    "NAME": "初星特製青汁",
+    "DESCRIPTIONS": ["この戦闘中、強化された #b%d 枚の #ySSRカード を得る"]
+  },
+  "gkmasMod:FirstStarSpecialSPAojiru": {
+    "NAME": "初星特製青汁・SP",
+    "DESCRIPTIONS": ["この戦闘中、強化された #ySSRアイドルカード #b%d 枚を得て即時使用する（同プランのみ）"]
+  },
+  "gkmasMod:SelectFirstStarMacchiato": {
+    "NAME": "厳選初星マキアート",
+    "DESCRIPTIONS": ["ターン終了時に、 #y筋力 #b%d を得る。"]
+  },
+  "gkmasMod:SelectFirstStarTea": {
+    "NAME": "厳選初星ティー",
+    "DESCRIPTIONS": ["ターン終了時に、 #y好印象 #b%d を得る。"]
+  },
+  "gkmasMod:SelectFirstStarBlend": {
+    "NAME": "厳選初星ブレンド",
+    "DESCRIPTIONS": ["ターン終了時に、 #y敏捷性 #b%d を得る。"]
+  },
+  "gkmasMod:FirstStarBoostEnergy": {
+    "NAME": "初星ブーストエナジー",
+    "DESCRIPTIONS": ["#y絶好調 #b%d を得る。 NL 手札のカードをすべて強化する"]
+  },
+  "gkmasMod:SpecialFirstStarExtract": {
+    "NAME": "特製ハツボシエキス",
+    "DESCRIPTIONS": ["#yHP を #b%d 失う。 NL #y消費体力減少 #b%d を得る。 NL このターン中、次の #b%d 枚 *アタック · *パワー カードが2回発動する。"]
+  },
+  "gkmasMod:GingerAle": {
+    "NAME": "ジンジャーエール",
+    "DESCRIPTIONS": ["#y強気 に入る。 NL #y全力値 #b%d を得る。", "#y強気・2段階目 に入る。 NL #y全力値 #b%d を得る。"]
+  },
+  "gkmasMod:Hojicha": {
+    "NAME": "ほうじ茶",
+    "DESCRIPTIONS": ["#y温存 に入る。 NL #y全力値 #b%d を得る。", "#y温存・2段階目 に入る。 NL #y全力値 #b%d を得る。"]
+  },
+  "gkmasMod:HotGreenTea": {
+    "NAME": "ほっと緑茶",
+    "DESCRIPTIONS": ["#y温存・2段階目 に入る。 NL #y山札 · #y捨て札 から #b%d 枚を #y暂存 する。"]
+  },
+  "gkmasMod:SelectFirstStarChai": {
+    "NAME": "厳選初星チャイ",
+    "DESCRIPTIONS": ["ターン開始時に、 #y全力値 #b%d を得る。"]
+  },
+  "gkmasMod:SelectFirstStarMilkTea": {
+    "NAME": "初星スーパーソーダ",
+    "DESCRIPTIONS": ["#y強気・2段階目 に入る。 NL #y消費体力減少 #b%d を得る。"]
+  },
+  "gkmasMod:FirstStarSoup": {
+    "NAME": "初星湯",
+    "DESCRIPTIONS": ["#yHP を #b%d 失う。 NL #y消費体力減少 #b%d を得る。 NL #y追加ターン #b%d を得る。"]
+  },
+  "gkmasMod:PowerfulHerbalDrink": {
+    "NAME": "パワフル漢方ドリンク",
+    "DESCRIPTIONS": ["#y消費体力減少 #b%d を得る。 NL #y捨て札 · #y山札 にある #yアイドルカード を手札に加える。"]
+  },
+  "gkmasMod:FirstStarBlackVinegar": {
+    "NAME": "初星黒酢",
+    "DESCRIPTIONS": ["#yHP を #b%d 失う。 NL #y消費体力減少 #b%d を得る。 NL 手札·捨て札から #b%d 枚を選び手札に加える。 NL 次に使う #b%d 枚のカードで 消費したエナジーを回復する。"]
+  },
+  "gkmasMod:SenburiSoda": {
+    "NAME": "センブリソーダ",
+    "DESCRIPTIONS": ["#yHP を #b%d 失う。 NL #b%d 枚引く。 NL 次の #b%d ターン、与えるダメージが #b%d%% 増加。ターン開始時に #b%d 枚引く。"]
+  }
+}

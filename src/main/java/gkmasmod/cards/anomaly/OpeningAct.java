@@ -36,7 +36,7 @@ public class OpeningAct extends GkmasCard {
     private static final String DESCRIPTION = CARD_STRINGS.DESCRIPTION;
     private static String IMG_PATH = ImageHelper.idolImgPath(SkinSelectScreen.Inst.idolName, CLASSNAME);
 
-    private static final int COST = 2;
+    private static final int COST = 1;
 
     private static final int BASE_DAMAGE = 6;
     private static final int UPGRADE_DMG_PLUS = 2;

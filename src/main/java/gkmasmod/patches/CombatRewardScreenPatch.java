@@ -13,6 +13,7 @@ import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.helpers.ModHelper;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.ArtifactPower;
+import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.rewards.RewardItem;
 import com.megacrit.cardcrawl.screens.CharSelectInfo;
 import com.megacrit.cardcrawl.screens.CombatRewardScreen;
@@ -24,16 +25,20 @@ import gkmasmod.cards.special.Rumor;
 import gkmasmod.cards.special.WorkFighter;
 import gkmasmod.characters.IdolCharacter;
 import gkmasmod.characters.MisuzuCharacter;
+import gkmasmod.characters.OtherIdolCharacter;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.downfall.bosses.AbstractIdolBoss;
 import gkmasmod.powers.NegativeNotPower;
 import gkmasmod.relics.FirstStarBracelet;
 import gkmasmod.relics.PocketBook;
+import gkmasmod.relics.ProducerBaseSkill;
 import gkmasmod.screen.SkinSelectScreen;
 import gkmasmod.screen.ThreeSizeChangeScreen;
+import gkmasmod.utils.CardHelper;
 import gkmasmod.utils.IdolData;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class CombatRewardScreenPatch {
 
@@ -52,6 +57,9 @@ public class CombatRewardScreenPatch {
                     cardReward.cards.add(new Rumor());
                     cardReward.cards.add(new WorkFighter());
                     __instance.rewards.add(cardReward);
+                }
+                else if(AbstractDungeon.player instanceof OtherIdolCharacter){
+
                 }
                 else{
                     RewardItem cardReward = new RewardItem();
@@ -92,6 +100,9 @@ public class CombatRewardScreenPatch {
                     }
                     __instance.rewards.add(cardReward);
                 }
+                else if(AbstractDungeon.player instanceof OtherIdolCharacter){
+
+                }
                 else{
                     RewardItem cardReward = new RewardItem();
                     cardReward.cards.clear();
@@ -114,6 +125,113 @@ public class CombatRewardScreenPatch {
                     __instance.rewards.add(cardReward);
                 }
             }
+        }
+    }
+
+
+    @SpirePatch(clz = CombatRewardScreen.class,method = "setupItemReward")
+    public static class InsertPatchCombatRewardScreen_setupItemReward {
+        @SpireInsertPatch(rloc = 93-72)
+        public static void Insert(CombatRewardScreen __instance) {
+            if(AbstractDungeon.player.hasRelic(ProducerBaseSkill.ID)){
+                if(!(AbstractDungeon.getCurrRoom() instanceof com.megacrit.cardcrawl.rooms.MonsterRoomElite) &&
+                        !(AbstractDungeon.getCurrRoom() instanceof com.megacrit.cardcrawl.rooms.MonsterRoomBoss)){
+                    return;
+                }
+                RewardItem cardReward = new RewardItem();
+                cardReward.cards.clear();
+                ArrayList<AbstractCard> cards = getProducerRewardCards();
+                for(AbstractCard card : cards) {
+                    cardReward.cards.add(card);
+                }
+                __instance.rewards.add(cardReward);
+            }
+        }
+    }
+
+    public static ArrayList<AbstractCard> getProducerRewardCards() {
+        ArrayList<AbstractCard> retVal = new ArrayList();
+        int numCards = 3;
+
+        AbstractCard card;
+        for(int i = 0; i < numCards; ++i) {
+            AbstractCard.CardRarity rarity = AbstractDungeon.rollRarity();
+            card = null;
+            switch(rarity) {
+                case COMMON:
+                    AbstractDungeon.cardBlizzRandomizer -= AbstractDungeon.cardBlizzGrowth;
+                    if (AbstractDungeon.cardBlizzRandomizer <= AbstractDungeon.cardBlizzMaxOffset) {
+                        AbstractDungeon.cardBlizzRandomizer = AbstractDungeon.cardBlizzMaxOffset;
+                    }
+                case UNCOMMON:
+                    break;
+                case RARE:
+                    AbstractDungeon.cardBlizzRandomizer = AbstractDungeon.cardBlizzStartOffset;
+                    break;
+            }
+
+            boolean containsDupe = true;
+
+            while(true) {
+                while(containsDupe) {
+                    containsDupe = false;
+                    switch (i){
+                        case 0:
+                            card = CardHelper.getOneCard(PlayerColorEnum.gkmasModColorLogic,rarity);
+                            break;
+                        case 1:
+                            card = CardHelper.getOneCard(PlayerColorEnum.gkmasModColorSense,rarity);
+                            break;
+                        case 2:
+                            card = CardHelper.getOneCard(PlayerColorEnum.gkmasModColorAnomaly,rarity);
+                            break;
+                        default:
+                            card = CardHelper.getOneCard(PlayerColorEnum.gkmasModColorMisuzu,rarity);
+                            break;
+                    }
+
+                    Iterator var6 = retVal.iterator();
+
+                    while(var6.hasNext()) {
+                        AbstractCard c = (AbstractCard)var6.next();
+                        if (c.cardID.equals(card.cardID)) {
+                            containsDupe = true;
+                            break;
+                        }
+                    }
+                }
+
+                if (card != null) {
+                    retVal.add(card);
+                }
+                break;
+            }
+        }
+
+        ArrayList<AbstractCard> retVal2 = new ArrayList();
+        Iterator var11 = retVal.iterator();
+
+        while(var11.hasNext()) {
+            card = (AbstractCard)var11.next();
+            retVal2.add(card.makeCopy());
+        }
+
+        var11 = retVal2.iterator();
+
+        while(true) {
+            while(var11.hasNext()) {
+                card = (AbstractCard)var11.next();
+                if (card.rarity != AbstractCard.CardRarity.RARE && AbstractDungeon.cardRng.randomBoolean(0.3F) && card.canUpgrade()) {
+                    card.upgrade();
+                } else {
+                    Iterator var12 = AbstractDungeon.player.relics.iterator();
+                    while(var12.hasNext()) {
+                        AbstractRelic r = (AbstractRelic)var12.next();
+                        r.onPreviewObtainCard(card);
+                    }
+                }
+            }
+            return retVal2;
         }
     }
 

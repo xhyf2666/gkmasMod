@@ -11,7 +11,9 @@ import gkmasmod.cards.GkmasCard;
 import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.powers.CoolIdolPower;
+import gkmasmod.powers.StrengthAddPower;
 import gkmasmod.powers.SummerSleepyPower;
+import gkmasmod.utils.IdolData;
 import gkmasmod.utils.ImageHelper;
 import gkmasmod.utils.NameHelper;
 
@@ -24,10 +26,10 @@ public class CoolIdol extends GkmasCard {
     private static final String DESCRIPTION = CARD_STRINGS.DESCRIPTION;
     private static final String IMG_PATH = String.format("gkmasModResource/img/cards/common/%s.png", CLASSNAME);
 
-    private static final int COST = 2;
-    private static final int BASE_MAGIC = 6;
-    private static final int UPGRADE_MAGIC_PLUS = 1;
-    private static final int BASE_MAGIC2 = 2;
+    private static final int COST = 1;
+    private static final int BASE_MAGIC = 1;
+    private static final int BASE_MAGIC2 = 3;
+    private static final int UPGRADE_MAGIC_PLUS2 = -1;
 
     private static final CardType TYPE = CardType.POWER;
     private static final CardColor COLOR = PlayerColorEnum.gkmasModColorMisuzu;
@@ -42,11 +44,15 @@ public class CoolIdol extends GkmasCard {
         this.secondMagicNumber = this.baseSecondMagicNumber;
         this.tags.add(GkmasCardTag.ONLY_ONE_TAG);
         this.tags.add(GkmasCardTag.FOCUS_TAG);
+        this.backGroundColor = IdolData.ttmr;
+        updateBackgroundImg();
     }
 
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        addToBot(new ApplyPowerAction(m,m,new StrengthPower(m,this.magicNumber),this.magicNumber));
+        addToBot(new ApplyPowerAction(p,p,new StrengthAddPower(p,this.magicNumber),this.magicNumber));
+        addToBot(new ApplyPowerAction(p,p,new CoolIdolPower(p,this.secondMagicNumber),this.secondMagicNumber));
+        addToBot(new ApplyPowerAction(m,m,new StrengthAddPower(m,this.magicNumber),this.magicNumber));
         addToBot(new ApplyPowerAction(m,m,new CoolIdolPower(m,this.secondMagicNumber),this.secondMagicNumber));
     }
 
@@ -59,7 +65,7 @@ public class CoolIdol extends GkmasCard {
     public void upgrade() {
         if (!this.upgraded) {
             upgradeName();
-            this.upgradeMagicNumber(UPGRADE_MAGIC_PLUS);
+            upgradeSecondMagicNumber(UPGRADE_MAGIC_PLUS2);
             if (CARD_STRINGS.UPGRADE_DESCRIPTION != null)
                 this.rawDescription = CARD_STRINGS.UPGRADE_DESCRIPTION;
             this.initializeDescription();

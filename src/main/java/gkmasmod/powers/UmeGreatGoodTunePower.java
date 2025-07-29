@@ -22,6 +22,8 @@ public class UmeGreatGoodTunePower extends AbstractPower {
     String path128 = String.format("gkmasModResource/img/powers/%s_84.png","VeryEasyPower");
     String path48 = String.format("gkmasModResource/img/powers/%s_32.png","VeryEasyPower");
 
+    private int turns = 0;
+
     public UmeGreatGoodTunePower(AbstractCreature owner, int Amount) {
         this.name = NAME;
         this.ID = POWER_ID;
@@ -41,9 +43,14 @@ public class UmeGreatGoodTunePower extends AbstractPower {
 
     @Override
     public void atEndOfTurn(boolean isPlayer) {
-        for(AbstractMonster mo: AbstractDungeon.getMonsters().monsters){
-            if(!mo.isDeadOrEscaped()&& !AbstractMonsterPatch.friendlyField.friendly.get(mo)){
-                addToBot(new ApplyPowerAction(mo,mo,new GreatGoodTune(mo,this.amount),this.amount));
+        turns++;
+        if(turns==2){
+            this.flash();
+            turns = 0;
+            for(AbstractMonster mo: AbstractDungeon.getMonsters().monsters){
+                if(!mo.isDeadOrEscaped()&& !AbstractMonsterPatch.friendlyField.friendly.get(mo)){
+                    addToBot(new ApplyPowerAction(mo,mo,new GreatGoodTune(mo,this.amount),this.amount));
+                }
             }
         }
     }

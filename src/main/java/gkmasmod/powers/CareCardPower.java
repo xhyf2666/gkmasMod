@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.actions.watcher.ChangeStanceAction;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
@@ -46,9 +47,11 @@ public class CareCardPower extends AbstractPower {
 
     public void atStartOfTurn() {
         if(this.owner.isPlayer){
-            addToBot(new ChangeStanceAction(ConcentrationStance.STANCE_ID));
+            if(!AbstractDungeon.player.stance.ID.equals(ConcentrationStance.STANCE_ID))
+                addToBot(new ChangeStanceAction(ConcentrationStance.STANCE_ID));
         }
         else if(this.owner instanceof AbstractCharBoss){
+            if(!AbstractCharBoss.boss.stance.ID.equals(ENConcentrationStance.STANCE_ID))
             addToBot(new EnemyChangeStanceAction(ENConcentrationStance.STANCE_ID));
         }
         addToBot(new ReducePowerAction(this.owner, this.owner, this.ID, 1));

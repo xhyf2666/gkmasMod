@@ -25,7 +25,7 @@ public class ENSpecialTreasure extends GkmasBossCard {
 
     private static final int COST = 0;
     private static final int MAGIC = 10;
-    private static final int UPGRADE_PLUS_MAGIC = 5;
+    private static final int UPGRADE_PLUS_MAGIC = 10;
 
 
     private static final CardType TYPE = CardType.ATTACK;
@@ -35,12 +35,10 @@ public class ENSpecialTreasure extends GkmasBossCard {
 
     public ENSpecialTreasure() {
         super(ID, NAME, IMG_PATH, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET,"color");
-        this.exhaust = true;
         this.baseMagicNumber = MAGIC;
         this.magicNumber = this.baseMagicNumber;
         this.thirdMagicNumber = this.baseThirdMagicNumber;
         this.intent = AbstractMonster.Intent.ATTACK;
-        this.tags.add(GkmasCardTag.OUTSIDE_TAG);
         this.backGroundColor = IdolData.kcna;
         updateBackgroundImg();
     }

@@ -1,11 +1,11 @@
 {
   "gkmasMod:FirstStarWater": {
     "NAME": "初星水",
-    "DESCRIPTIONS": ["造成 #b%d 点伤害(吃加成)。"]
+    "DESCRIPTIONS": ["造成 #b%d 点伤害(受加成)。"]
   },
   "gkmasMod:OolongTea": {
     "NAME": "乌龙茶",
-    "DESCRIPTIONS": ["获得 #b%d 点 #y格挡 (吃加成)。"]
+    "DESCRIPTIONS": ["获得 #b%d 点 #y格挡 (受加成)。"]
   },
   "gkmasMod:VitaminDrink": {
     "NAME": "维生素饮料",
@@ -37,7 +37,7 @@
   },
   "gkmasMod:BoostExtract": {
     "NAME": "Boost精华",
-    "DESCRIPTIONS": ["失去 #b%d 点 #y体力 ，获得 #b%d 层 受伤锐减 。 NL #b%d 回合内伤害增加 #b%d %%，可叠加。"]
+    "DESCRIPTIONS": ["失去 #b%d 点 #y体力 ，获得 #b%d 层 #y受伤锐减 。 NL #b%d 回合内伤害增加 #b%d %%，可叠加。"]
   },
   "gkmasMod:StaminaExplosionDrink": {
     "NAME": "耐力爆发",
@@ -57,7 +57,7 @@
   },
   "gkmasMod:FirstStarSpecialSPAojiru": {
     "NAME": "初星特制青汁·SP",
-    "DESCRIPTIONS": ["在本场战斗中，获得 #b%d 张强化的 #y彩色专属初始卡 ，并将其打出。 NL (同职业)"]
+    "DESCRIPTIONS": ["在本场战斗中，获得 #b%d 张强化的 #y彩色偶像卡 ，并将其打出。 NL (同职业)"]
   },
   "gkmasMod:SelectFirstStarMacchiato": {
     "NAME": "初星严选·玛奇朵",
@@ -77,15 +77,15 @@
   },
   "gkmasMod:SpecialFirstStarExtract": {
     "NAME": "特制初星精华",
-    "DESCRIPTIONS": ["失去 #b%d 点 #y体力 。 NL 获得 #b%d 层 受伤剧增 。 NL 本回合使用的下 #b%d 张攻击牌或能力牌额外触发一次。"]
+    "DESCRIPTIONS": ["失去 #b%d 点 #y体力 。 NL 获得 #b%d 层 #y受伤剧增 。 NL 本回合使用的下 #b%d 张攻击牌或能力牌额外触发一次。"]
   },
   "gkmasMod:GingerAle": {
     "NAME": "姜汁汽水",
-    "DESCRIPTIONS": ["进入 #y强气 。 NL 获得 #b%d 点 全力值 。", "进入 #y强气2段 。 NL 获得 #b%d 点 全力值 。"]
+    "DESCRIPTIONS": ["进入 #y强气 。 NL 获得 #b%d 点 #y全力值 。", "进入 #y强气2段 。 NL 获得 #b%d 点 #y全力值 。"]
   },
   "gkmasMod:Hojicha": {
     "NAME": "焙茶",
-    "DESCRIPTIONS": ["进入 #y温存 。 NL 获得 #b%d 点 全力值 。", "进入 #y温存2段 。 NL 获得 #b%d 点 全力值 。"]
+    "DESCRIPTIONS": ["进入 #y温存 。 NL 获得 #b%d 点 #y全力值 。", "进入 #y温存2段 。 NL 获得 #b%d 点 #y全力值 。"]
   },
   "gkmasMod:HotGreenTea": {
     "NAME": "热绿茶",
@@ -93,23 +93,23 @@
   },
   "gkmasMod:SelectFirstStarChai": {
     "NAME": "初星严选·奶茶",
-    "DESCRIPTIONS": ["回合开始时，获得 #b%d 点 全力值 。"]
+    "DESCRIPTIONS": ["回合开始时，获得 #b%d 点 #y全力值 。"]
   },
   "gkmasMod:SelectFirstStarMilkTea": {
     "NAME": "初星超级汽水",
-    "DESCRIPTIONS": ["进入 #y强气2段 。 NL 获得 #b%d 层 受伤锐减 。"]
+    "DESCRIPTIONS": ["进入 #y强气2段 。 NL 获得 #b%d 层 #y受伤锐减 。"]
   },
   "gkmasMod:FirstStarSoup": {
     "NAME": "初星汤",
-    "DESCRIPTIONS": ["失去 #b%d 点 #y体力 。 NL 获得 #b%d 层 受伤剧增 。 NL 获得 #b%d 个 #y额外回合 。"]
+    "DESCRIPTIONS": ["失去 #b%d 点 #y体力 。 NL 获得 #b%d 层 #y受伤剧增 。 NL 获得 #b%d 个 #y额外回合 。"]
   },
   "gkmasMod:PowerfulHerbalDrink": {
     "NAME": "强效汉方饮料",
-    "DESCRIPTIONS": ["获得 #b%d 层 受伤锐减 。 NL 将 #y弃牌堆 或 #y抽牌堆 中的 #y偶像专属卡 加入手牌。"]
+    "DESCRIPTIONS": ["获得 #b%d 层 #y受伤锐减 。 NL 将 #y弃牌堆 或 #y抽牌堆 中的 #y偶像专属卡 加入手牌。"]
   },
   "gkmasMod:FirstStarBlackVinegar": {
     "NAME": "初星黑醋",
-    "DESCRIPTIONS": ["失去 #b%d 点 #y体力 ，获得 #b%d 层 受伤剧增 。 NL 从手牌和弃牌堆中选择 #b%d 张牌 加入手牌。 NL 接下来打出 #b%d 张牌时，获得消耗的能量。"]
+    "DESCRIPTIONS": ["失去 #b%d 点 #y体力 ，获得 #b%d 层 #y受伤剧增 。 NL 从手牌和弃牌堆中选择 #b%d 张牌 加入手牌。 NL 接下来打出 #b%d 张牌时，获得消耗的能量。"]
   },
   "gkmasMod:SenburiSoda": {
     "NAME": "千振苏打",

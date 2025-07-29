@@ -15,24 +15,24 @@ public class PlayerColorEnum {
     @SpireEnum
     public static AbstractPlayer.PlayerClass gkmasModOther_character;
 
-    @SpireEnum(name = "gkmasMod:logic")
+    @SpireEnum(name = "gkmasModLogic")
     public static AbstractCard.CardColor gkmasModColorLogic;
 
-    @SpireEnum(name = "gkmasMod:free")
+    @SpireEnum(name = "gkmasModFree")
     public static AbstractCard.CardColor gkmasModColor;
 
-    @SpireEnum(name = "gkmasMod:sense")
+    @SpireEnum(name = "gkmasModSense")
     public static AbstractCard.CardColor gkmasModColorSense;
 
-    @SpireEnum(name = "gkmasMod:anomaly")
+    @SpireEnum(name = "gkmasModAnomaly")
     public static AbstractCard.CardColor gkmasModColorAnomaly;
 
-    @SpireEnum(name = "gkmasMod:misuzu")
+    @SpireEnum(name = "gkmasModMisuzu")
     public static AbstractCard.CardColor gkmasModColorMisuzu;
 
-    @SpireEnum(name = "gkmasMod:moon")
+    @SpireEnum(name = "gkmasModMoon")
     public static AbstractCard.CardColor gkmasModColorMoon;
 
-    @SpireEnum(name = "gkmasMod:other")
+    @SpireEnum(name = "gkmasModOther")
     public static AbstractCard.CardColor gkmasModColorOther;
 }

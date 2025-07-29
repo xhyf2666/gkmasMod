@@ -206,8 +206,8 @@ public class MisuzuCharacter extends CustomPlayer {
 
     public CharSelectInfo getLoadout() {
         return new CharSelectInfo(
-                "泰谷美铃",
-                "悠闲自在、我行我素的女孩子，状态经常在 #y困倦 、 #y睡眠 和 #y清醒 之间波动。 NL 对自己和他人都温柔友善，喜欢制作点心、照顾和宠爱别人。 NL 能够召唤昔日的 #y好友 辅助战斗。",
+                CardCrawlGame.languagePack.getCharacterString("gkmasMod:title2").TEXT[0],
+                CardCrawlGame.languagePack.getCharacterString("IdolStory:qmsz").TEXT[0],
                 getHP(),
                 getHP(),
                 getMaxOrbs(),
@@ -222,7 +222,7 @@ public class MisuzuCharacter extends CustomPlayer {
 
     @Override
     public String getTitle(PlayerClass playerClass) {
-        return "泰谷美铃";
+        return CardCrawlGame.languagePack.getCharacterString("gkmasMod:title2").TEXT[0];
     }
 
     @Override
@@ -271,7 +271,7 @@ public class MisuzuCharacter extends CustomPlayer {
 
     @Override
     public String getLocalizedCharacterName() {
-        return "泰谷美铃";
+        return CardCrawlGame.languagePack.getCharacterString("gkmasMod:title2").TEXT[0];
     }
 
     @Override
@@ -281,7 +281,7 @@ public class MisuzuCharacter extends CustomPlayer {
 
     @Override
     public String getSpireHeartText() {
-        return"到了……登上舞台的时候";
+        return CardCrawlGame.languagePack.getCharacterString("gkmasMod:meetHeart2").TEXT[0];
     }
 
     @Override

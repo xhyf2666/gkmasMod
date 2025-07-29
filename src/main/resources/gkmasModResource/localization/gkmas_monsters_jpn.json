@@ -1,0 +1,222 @@
+{
+  "gkmasMod:Misuzu": {
+    "NAME": "美鈴",
+    "DIALOG": ["アイドル同士の戦いは……やっぱり、あの場所がふさわしい。", "大切な友達が…… NL 鳥かごを壊して飛び立ったの。", "誰の支えだったのかしら……"],
+    "MOVES": ["眠くなってきた"]
+  },
+  "gkmasMod:Hajime": {
+    "NAME": "あさり先生",
+    "DIALOG": [],
+    "MOVES": ["眠くなってきた"]
+  },
+  "gkmasMod:MonsterNadeshiko": {
+    "NAME": "藍井なでしこ",
+    "DIALOG": ["ぐぬぬぬぬ", "ぐぬぬぬぬ", "倉本会長の……孫娘？", "ふふーん？ NL えっ？", "ぐあああ！！ NL 来たのか、十王星南！", "初星学園の NL グッズ、全部買い占めたわ！"],
+    "MOVES": ["雑魚雑魚"]
+  },
+  "gkmasMod:MonsterShion": {
+    "NAME": "白草四音",
+    "DIALOG": ["そんなはずない", "この私が……", "%s… NL 名前、覚えたわ。", "年下の姉って何よ、 NL そんなの矛盾よ！", "はぁ……不愉快だわ", "無意味だと分かってるのに、 NL 醜く足掻いて……"],
+    "MOVES": ["愚か者"]
+  },
+  "gkmasMod:MonsterGekka": {
+    "NAME": "白草月花",
+    "DIALOG": ["そんな……", "%s、覚えておくわ。 NL また勝負しましょう。", "あなたの命は風前の灯火……"],
+    "MOVES": ["愚か者"]
+  },
+  "gkmasMod:MonsterRinha": {
+    "NAME": "賀陽燐羽",
+    "DIALOG": ["ふふっ、成長したわね", "もう……このアイドルゲームには飽きたの。", "まさか、あなた……！？", "思い出したの。SyngUpを結成した理由……", "これが、私の……ラストステージ"],
+    "MOVES": ["愚か者"]
+  },
+  "gkmasMod:MonsterAsari": {
+    "NAME": "あさり先生",
+    "DIALOG": ["ちょうどいいところに。これ、%sに届けてくれる？", "もう……教えることは、ないわ。", "%s、あなたの子、少し様子がおかしいわね。", "制作科1年1組の%sさん、至急職員室へ。"],
+    "MOVES": ["愚か者"]
+  },
+  "gkmasMod:MonsterKotone1": {
+    "NAME": "藤田ことね",
+    "DIALOG": ["あとは、お願い。", "……私たちの負けね。", "%s、あなたの子、少し様子がおかしいわね。", "制作科1年1組の%sさん、至急職員室へ。"],
+    "MOVES": ["愚か者"]
+  },
+  "gkmasMod:MonsterSaki1": {
+    "NAME": "花海咲季",
+    "DIALOG": ["あなたにだけは、負けたくなかった……", "……あなたの勝ちよ。", "たとえ夢が砕けても、前を向きたいの。"],
+    "MOVES": ["愚か者"]
+  },
+  "gkmasMod:MonsterTemari1": {
+    "NAME": "月村手毬",
+    "DIALOG": ["まだ……負けたくない！", "……くやしい……", "%s、あなたの子、少し様子がおかしいわね。", "制作科1年1組の%sさん、至急職員室へ。"],
+    "MOVES": ["愚か者"]
+  },
+  "gkmasMod:MonsterSena1": {
+    "NAME": "十王星南",
+    "DIALOG": ["……頂点には届かなかった", "また、勝負しましょう。", "%s、あなたの子、少し様子がおかしいわね。", "制作科1年1組の%sさん、至急職員室へ。"],
+    "MOVES": ["愚か者"]
+  },
+  "gkmasMod:MonsterSena2": {
+    "NAME": "十王星南・エリート",
+    "DIALOG": ["VO%d、DA%d、VI%d……すごいステータスですね。", "また、勝負しましょう。", "会長、もう『ChooChooChoo』はやめてください……"],
+    "MOVES": ["愚か者"]
+  },
+  "gkmasMod:MonsterUme1": {
+    "NAME": "花海佑芽",
+    "DIALOG": ["ぐぬぬ……また負けた……", "次は……絶対に勝つ！", "%s、あなたの子、少し様子がおかしいわね。", "制作科1年1組の%sさん、至急職員室へ。"],
+    "MOVES": ["愚か者"]
+  },
+  "gkmasMod:MonsterMisuzu1": {
+    "NAME": "秦谷美鈴",
+    "DIALOG": ["あの約束……まだ果たせてないのに……", "サボってる余裕なんて、ない。", "%s、あなたの子、少し様子がおかしいわね。", "制作科1年1組の%sさん、至急職員室へ。"],
+    "MOVES": ["愚か者"]
+  },
+  "gkmasMod:MonsterLilja1": {
+    "NAME": "葛城リーリヤ",
+    "DIALOG": ["そのセリフ、私じゃないって！清夏ちゃんのせい！", "……強いね、あなた。", "%s、あなたの子、少し様子がおかしいわね。", "制作科1年1組の%sさん、至急職員室へ。"],
+    "MOVES": ["愚か者"]
+  },
+  "gkmasMod:MonsterSumika1": {
+    "NAME": "紫雲清夏",
+    "DIALOG": ["足引っ張ったら……殺すわよ", "……完敗ね。", "%s、あなたの子、少し様子がおかしいわね。", "制作科1年1組の%sさん、至急職員室へ。"],
+    "MOVES": ["愚か者"]
+  },
+  "gkmasMod:MonsterHiro1": {
+    "NAME": "篠澤広",
+    "DIALOG": ["ふふっ", "……思い通りにはいかないもんだね。", "%s、あなたの子、少し様子がおかしいわね。", "制作科1年1組の%sさん、至急職員室へ。"],
+    "MOVES": ["愚か者"]
+  },
+  "gkmasMod:MonsterChina1": {
+    "NAME": "倉本千奈",
+    "DIALOG": ["あら、%sさんがストッキングに転んじゃった。", "また負けちゃったね〜。", "%s、あなたの子、ちょっと様子が変だわ。", "制作科1年1組の%sさん、至急職員室まで来てください。"],
+    "MOVES": ["愚か"]
+  },
+  "gkmasMod:MonsterRinami1": {
+    "NAME": "姫崎莉波",
+    "DIALOG": ["そのセリフ、私じゃないってば！ 清夏ちゃんたらもう〜", "うまくいかないものね。", "%s、あなたの子、ちょっと様子が変だわ。", "制作科1年1組の%sさん、至急職員室まで来てください。"],
+    "MOVES": ["愚か"]
+  },
+  "gkmasMod:MonsterMao1": {
+    "NAME": "有村麻央",
+    "DIALOG": ["あら、%sさんがストッキングに転んじゃった。", "次こそは、本気でいくよ。", "%s、あなたの子、ちょっと様子が変だわ。", "制作科1年1組の%sさん、至急職員室まで来てください。"],
+    "MOVES": ["愚か"]
+  },
+  "gkmasMod:FriendNunu": {
+    "NAME": "ぬい",
+    "DIALOG": [],
+    "MOVES": ["自爆"]
+  },
+  "gkmasMod:LittleGundam": {
+    "NAME": "ちびガンダム",
+    "DIALOG": [],
+    "MOVES": ["びゅん"]
+  },
+  "gkmasMod:FriendOnigiri": {
+    "NAME": "おにぎり",
+    "DIALOG": [],
+    "MOVES": ["びゅん"]
+  },
+  "gkmasMod:FriendTemari": {
+    "NAME": "月村手毬",
+    "DIALOG": [],
+    "MOVES": ["びゅん"]
+  },
+  "gkmasMod:FriendRinha": {
+    "NAME": "賀陽燐羽",
+    "DIALOG": [],
+    "MOVES": ["びゅん"]
+  },
+  "gkmasMod:FriendChina": {
+    "NAME": "倉本千奈",
+    "DIALOG": [],
+    "MOVES": ["びゅん"]
+  },
+  "gkmasMod:FriendKotone": {
+    "NAME": "藤田ことね",
+    "DIALOG": [],
+    "MOVES": ["びゅん"]
+  },
+  "gkmasMod:FriendHiro": {
+    "NAME": "篠澤広",
+    "DIALOG": [],
+    "MOVES": ["びゅん"]
+  },
+  "gkmasMod:FriendSena": {
+    "NAME": "十王星南",
+    "DIALOG": ["奇遇ね、ことね。"],
+    "MOVES": ["びゅん"]
+  },
+  "gkmasMod:FriendUme": {
+    "NAME": "花海佑芽",
+    "DIALOG": [],
+    "MOVES": ["びゅん"]
+  },
+  "gkmasMod:FriendBlackHole": {
+    "NAME": "ブラックホール",
+    "DIALOG": [],
+    "MOVES": ["びゅん"]
+  },
+  "gkmasMod:FriendKnife": {
+    "NAME": "美鈴のナイフ",
+    "DIALOG": [],
+    "MOVES": ["びゅん"]
+  },
+  "IdolBoss_fktn": {
+    "NAME": "藤田ことね",
+    "DIALOG": [],
+    "MOVES": ["びゅん"]
+  },
+  "IdolBoss_amao": {
+    "NAME": "有村麻央",
+    "DIALOG": [],
+    "MOVES": ["びゅん"]
+  },
+  "IdolBoss_ssmk": {
+    "NAME": "紫雲清夏",
+    "DIALOG": [],
+    "MOVES": ["びゅん"]
+  },
+  "IdolBoss_ttmr": {
+    "NAME": "月村手毬",
+    "DIALOG": [],
+    "MOVES": ["びゅん"]
+  },
+  "IdolBoss_hume": {
+    "NAME": "花海佑芽",
+    "DIALOG": [],
+    "MOVES": ["びゅん"]
+  },
+  "IdolBoss_hski": {
+    "NAME": "花海咲季",
+    "DIALOG": [],
+    "MOVES": ["びゅん"]
+  },
+  "IdolBoss_hrnm": {
+    "NAME": "姫崎莉波",
+    "DIALOG": [],
+    "MOVES": ["びゅん"]
+  },
+  "IdolBoss_kcna": {
+    "NAME": "倉本千奈",
+    "DIALOG": [],
+    "MOVES": ["びゅん"]
+  },
+  "IdolBoss_kllj": {
+    "NAME": "葛城リーリヤ",
+    "DIALOG": [],
+    "MOVES": ["びゅん"]
+  },
+  "IdolBoss_shro": {
+    "NAME": "篠澤広",
+    "DIALOG": [],
+    "MOVES": ["びゅん"]
+  },
+  "IdolBoss_jsna": {
+    "NAME": "十王星南",
+    "DIALOG": [],
+    "MOVES": ["びゅん"]
+  },
+  "IdolBoss_prod": {
+    "NAME": "プロデューサー",
+    "DIALOG": [],
+    "MOVES": ["びゅん"]
+  }
+}

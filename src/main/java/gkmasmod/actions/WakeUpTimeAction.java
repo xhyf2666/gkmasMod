@@ -30,13 +30,13 @@ public class WakeUpTimeAction extends AbstractGameAction {
 
         if(this.p instanceof AbstractPlayer){
             if (AbstractDungeon.player.hasRelic("Chemical X")) {
-                amount1 += 1;
+                amount1 += 2;
                 AbstractDungeon.player.getRelic("Chemical X").flash();
             }
         }
         else if(this.p instanceof AbstractCharBoss){
             if (AbstractCharBoss.boss.hasRelic("Chemical X")) {
-                amount1 += 1;
+                amount1 += 2;
                 AbstractCharBoss.boss.getRelic("Chemical X").flash();
             }
         }

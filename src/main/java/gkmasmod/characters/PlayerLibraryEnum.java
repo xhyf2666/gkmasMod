@@ -5,24 +5,24 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
 
 public class PlayerLibraryEnum {
-    @SpireEnum(name = "gkmasMod:logic")
+    @SpireEnum(name = "gkmasModLogic")
     public static CardLibrary.LibraryType gkmasModColorLogic;
 
-    @SpireEnum(name = "gkmasMod:free")
+    @SpireEnum(name = "gkmasModFree")
     public static CardLibrary.LibraryType gkmasModColor;
 
-    @SpireEnum(name = "gkmasMod:sense")
+    @SpireEnum(name = "gkmasModSense")
     public static CardLibrary.LibraryType gkmasModColorSense;
 
-    @SpireEnum(name = "gkmasMod:anomaly")
+    @SpireEnum(name = "gkmasModAnomaly")
     public static CardLibrary.LibraryType gkmasModColorAnomaly;
 
-    @SpireEnum(name = "gkmasMod:misuzu")
+    @SpireEnum(name = "gkmasModMisuzu")
     public static CardLibrary.LibraryType gkmasModColorMisuzu;
 
-    @SpireEnum(name = "gkmasMod:moon")
+    @SpireEnum(name = "gkmasModMoon")
     public static CardLibrary.LibraryType gkmasModColorMoon;
 
-    @SpireEnum(name = "gkmasMod:other")
+    @SpireEnum(name = "gkmasModOther")
     public static CardLibrary.LibraryType gkmasModColorOther;
 }

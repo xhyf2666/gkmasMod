@@ -63,6 +63,10 @@ public class MisuzuNatureRelic extends CustomRelic {
             this.counter+=10;
             this.flash();
         }
+        else if(this.counter==5){
+            this.counter+=10;
+            this.flash();
+        }
     }
 
     @Override

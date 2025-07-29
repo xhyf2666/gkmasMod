@@ -13,10 +13,7 @@ import gkmasmod.cardCustomEffect.NotGreatGoodTuneCustom;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
-import gkmasmod.powers.CharmPerformancePower;
-import gkmasmod.powers.GoodTune;
-import gkmasmod.powers.GreatGoodTune;
-import gkmasmod.powers.GreatNotGoodTune;
+import gkmasmod.powers.*;
 import gkmasmod.screen.SkinSelectScreen;
 import gkmasmod.utils.CustomHelper;
 import gkmasmod.utils.ImageHelper;
@@ -72,6 +69,7 @@ public class CharmPerformance extends GkmasCard {
         addToBot(new ApplyPowerAction(p,p,new GreatGoodTune(p,this.magicNumber),this.magicNumber));
         addToBot(new ApplyPowerAction(p,p,new CharmPerformancePower(p,this.baseDamage,m),this.baseDamage));
         addToBot(new ApplyPowerAction(m,m,new GreatNotGoodTune(m,this.secondMagicNumber),this.secondMagicNumber));
+        addToBot(new ApplyPowerAction(p,p,new CharmPerformanceSPPower(p,this.baseDamage,m),this.baseDamage));
     }
 
     @Override

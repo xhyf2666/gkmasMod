@@ -92,7 +92,6 @@ public class FirstFun extends GkmasCard {
         if (strength != null) {
             strength.amount = amount;
         }
-
     }
 
     public void calculateCardDamage(AbstractMonster mo) {
@@ -102,12 +101,10 @@ public class FirstFun extends GkmasCard {
             amount = strength.amount;
             strength.amount = (int) (strength.amount * (1.0 * this.magicNumber / 100));
         }
-
         super.calculateCardDamage(mo);
         if (strength != null) {
             strength.amount = amount;
         }
-
     }
 
     @Override

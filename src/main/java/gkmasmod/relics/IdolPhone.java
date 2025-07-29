@@ -8,7 +8,9 @@ import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.helpers.controller.CInputActionSet;
 import com.megacrit.cardcrawl.helpers.input.InputHelper;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
+import com.megacrit.cardcrawl.relics.GoldenIdol;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
+import gkmasmod.actions.IdolPhoneAction;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.cardGrowEffect.EnergyGrow;
 import gkmasmod.cardGrowEffect.ExhaustRemoveGrow;
@@ -32,6 +34,8 @@ public class IdolPhone extends CustomRelic {
     private static final RelicTier RARITY = RelicTier.STARTER;
 
     private static int playTimes = 1;
+
+    private static int magic = 5;
 
     private static final String AUDIO = "gkmasModResource/audio/voice/phone/phone_%s_%03d.ogg";
 
@@ -64,13 +68,8 @@ public class IdolPhone extends CustomRelic {
             if (this.hb.hovered) {
                 this.counter++;
                 if(!this.thisBattle){
-                    ArrayList<AbstractCard> cards = CardHelper.getAllIdolCards();
-                    AbstractCard card = cards.get(AbstractDungeon.cardRandomRng.random(cards.size() - 1));
-                    GrowHelper.grow(card, ExhaustRemoveGrow.growID,1);
-                    GrowHelper.grow(card, EnergyGrow.growID,-1);
-                    addToBot(new MakeTempCardInHandAction(card, 1, true));
+                    addToBot(new IdolPhoneAction(magic));
                     this.thisBattle = true;
-                    playVoice(((GkmasCard)card).backGroundColor);
                 }
                 else{
                     playVoice();
@@ -83,7 +82,7 @@ public class IdolPhone extends CustomRelic {
             this.RclickStart = true;
     }
 
-    private void playVoice(String idolName) {
+    public static void playVoice(String idolName) {
         java.util.Random random = new java.util.Random();
         int index = random.nextInt(12)+1;
         SoundHelper.playSound(String.format(AUDIO,idolName,index));
@@ -97,7 +96,7 @@ public class IdolPhone extends CustomRelic {
 
     @Override
     public String getUpdatedDescription() {
-        return String.format(this.DESCRIPTIONS[0],playTimes);
+        return String.format(this.DESCRIPTIONS[0],magic,1,playTimes);
     }
 
     @Override
@@ -106,18 +105,13 @@ public class IdolPhone extends CustomRelic {
     }
 
 
-    public void onEquip() {}
-
-    @Override
-    public void atBattleStart() {
+    public void onEquip() {
         this.thisBattle = false;
     }
 
     @Override
-    public void atPreBattle() {
-    }
-
-    public  void  onPlayerEndTurn(){
+    public void atBattleStart() {
+        this.thisBattle = false;
     }
 
     public void onVictory() {

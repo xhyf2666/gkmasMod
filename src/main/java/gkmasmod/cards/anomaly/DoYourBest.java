@@ -30,7 +30,7 @@ public class DoYourBest extends GkmasCard {
 
     private static final int COST = -1;
 
-    private static final int BASE_DAMAGE = 1;
+    private static final int BASE_DAMAGE = 3;
     private static final int UPGRADE_DMG_PLUS = 1;
 
 

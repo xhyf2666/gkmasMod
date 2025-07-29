@@ -61,6 +61,9 @@ public class TheCityPatch
             if(!(AbstractDungeon.player instanceof IdolCharacter||AbstractDungeon.player instanceof MisuzuCharacter||AbstractDungeon.player instanceof OtherIdolCharacter)){
                 return SpireReturn.Continue();
             }
+            if(AbstractDungeon.player instanceof OtherIdolCharacter && OtherSkinSelectScreen.Inst.idolName.equals(IdolData.arnm)){
+                return SpireReturn.Continue();
+            }
             TheCity.bossList.clear();
             if (Settings.isDailyRun) {
                 TheCity.bossList.add("Automaton");
@@ -105,6 +108,9 @@ public class TheCityPatch
         @SpireInsertPatch(rloc = 4,localvars = {"monsters"})
         public static SpireReturn<Void> insert(TheCity __instance, int count, ArrayList<MonsterInfo> monsters) {
             if(!(AbstractDungeon.player instanceof IdolCharacter||AbstractDungeon.player instanceof MisuzuCharacter||AbstractDungeon.player instanceof OtherIdolCharacter)){
+                return SpireReturn.Continue();
+            }
+            if(AbstractDungeon.player instanceof OtherIdolCharacter && OtherSkinSelectScreen.Inst.idolName.equals(IdolData.arnm)){
                 return SpireReturn.Continue();
             }
             if(AbstractDungeon.player instanceof IdolCharacter){

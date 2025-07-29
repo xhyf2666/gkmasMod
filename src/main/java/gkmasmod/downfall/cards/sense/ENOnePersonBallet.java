@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import gkmasmod.actions.GainTrainRoundPowerAction;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
@@ -31,8 +32,9 @@ public class ENOnePersonBallet extends GkmasBossCard {
 
     private static final int COST = 1;
 
-    private static final int BASE_DAMAGE = 6;
+    private static final int BASE_DAMAGE = 5;
     private static final int BASE_MAGIC = 1;
+    private static final int UPGRADE_PLUS_MAGIC = 1;
 
     private static final CardType TYPE = CardType.ATTACK;
     private static final CardColor COLOR = PlayerColorEnum.gkmasModColorSense;
@@ -45,8 +47,6 @@ public class ENOnePersonBallet extends GkmasBossCard {
         this.baseDamage = BASE_DAMAGE;
         this.baseMagicNumber = BASE_MAGIC;
         this.magicNumber = this.baseMagicNumber;
-        this.exhaust = true;
-        this.tags.add(GkmasCardTag.OUTSIDE_TAG);
         this.intent = AbstractMonster.Intent.ATTACK_BUFF;
         this.backGroundColor = IdolData.ssmk;
         updateBackgroundImg();
@@ -56,6 +56,7 @@ public class ENOnePersonBallet extends GkmasBossCard {
     public void use(AbstractPlayer p, AbstractMonster m) {
         addToBot(new DamageAction(p, new DamageInfo(m, damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
         addToBot(new ApplyPowerAction(m,m,new GreatGoodTune(m,1),1));
+        addToBot(new GainTrainRoundPowerAction(m,1));
     }
 
     @Override
@@ -67,7 +68,7 @@ public class ENOnePersonBallet extends GkmasBossCard {
     public void upgrade() {
         if (!this.upgraded) {
             upgradeName();
-            this.exhaust = false;
+            upgradeMagicNumber(UPGRADE_PLUS_MAGIC);
             if (CARD_STRINGS.UPGRADE_DESCRIPTION != null)
                 this.rawDescription = CARD_STRINGS.UPGRADE_DESCRIPTION;
             this.initializeDescription();

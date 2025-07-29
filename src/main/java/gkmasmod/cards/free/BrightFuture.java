@@ -32,10 +32,10 @@ public class BrightFuture extends GkmasCard {
     private static String IMG_PATH = ImageHelper.idolImgPath(SkinSelectScreen.Inst.idolName, CLASSNAME);
 
     private static final int COST = 2;
-    private static final int ATTACK_DMG = 9;
+    private static final int ATTACK_DMG = 10;
     private static final int UPGRADE_PLUS_DMG = 3;
-    private static final int BLOCK_AMT = 6;
-    private static final int UPGRADE_PLUS_BLOCK = 2;
+    private static final int BLOCK_AMT = 10;
+    private static final int UPGRADE_PLUS_BLOCK = 3;
 
     private static final CardType TYPE = CardType.ATTACK;
     private static final CardColor COLOR = PlayerColorEnum.gkmasModColor;

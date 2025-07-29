@@ -1,0 +1,178 @@
+{
+  "gkmasMod:FirstStarWater": {
+    "NAME": "初星水",
+    "DESCRIPTIONS": [
+      "造成 #b%d 點傷害(受加成)。"
+    ]
+  },
+  "gkmasMod:OolongTea": {
+    "NAME": "烏龍茶",
+    "DESCRIPTIONS": [
+      "獲得 #b%d 點 #y格擋 (受加成)。"
+    ]
+  },
+  "gkmasMod:VitaminDrink": {
+    "NAME": "維生素飲料",
+    "DESCRIPTIONS": [
+      "獲得 #b%d 層 #y好調 。"
+    ]
+  },
+  "gkmasMod:IcedCoffee": {
+    "NAME": "冰咖啡",
+    "DESCRIPTIONS": [
+      "獲得 #b%d 點 #y力量 。"
+    ]
+  },
+  "gkmasMod:RooibosTea": {
+    "NAME": "紅茶",
+    "DESCRIPTIONS": [
+      "獲得 #b%d 層 #y好印象 。"
+    ]
+  },
+  "gkmasMod:HotCoffee": {
+    "NAME": "熱咖啡",
+    "DESCRIPTIONS": [
+      "獲得 #b%d 點 #y敏捷 。"
+    ]
+  },
+  "gkmasMod:MixedSmoothie": {
+    "NAME": "混合果汁",
+    "DESCRIPTIONS": [
+      "回覆 #b%d 點 #y體力 。 NL 丟棄所有手牌然後抽等量牌。"
+    ]
+  },
+  "gkmasMod:RecoveryDrink": {
+    "NAME": "恢復飲料",
+    "DESCRIPTIONS": [
+      "回覆 #b%d 點 #y體力 。"
+    ]
+  },
+  "gkmasMod:FreshVinegar": {
+    "NAME": "新鮮醋汁",
+    "DESCRIPTIONS": [
+      "回覆 #b%d 點 #y體力 。 NL 強化所有手牌 。"
+    ]
+  },
+  "gkmasMod:BoostExtract": {
+    "NAME": "Boost精華",
+    "DESCRIPTIONS": [
+      "失去 #b%d 點 #y體力 ，獲得 #b%d 層 #y受傷銳減 。 NL #b%d 回合內傷害增加 #b%d %%，可疊加。"
+    ]
+  },
+  "gkmasMod:StaminaExplosionDrink": {
+    "NAME": "耐力爆發",
+    "DESCRIPTIONS": [
+      "獲得 #b%d 層 #y絕好調 。 NL 獲得 #b%d 點 #y格擋 。"
+    ]
+  },
+  "gkmasMod:StylishHerbalTea": {
+    "NAME": "時尚香草茶",
+    "DESCRIPTIONS": [
+      "獲得 #b%d 點 #y格擋 。 NL 造成 #y好印象 層數 #b%d %%的傷害。"
+    ]
+  },
+  "gkmasMod:FirstStarWheyProtein": {
+    "NAME": "初星乳清蛋白",
+    "DESCRIPTIONS": [
+      " #y再動 #b%d。"
+    ]
+  },
+  "gkmasMod:FirstStarSpecialAojiru": {
+    "NAME": "初星特製青汁",
+    "DESCRIPTIONS": [
+      "在本場戰鬥中，獲得 #b%d 張強化的彩色牌。"
+    ]
+  },
+  "gkmasMod:FirstStarSpecialSPAojiru": {
+    "NAME": "初星特製青汁·SP",
+    "DESCRIPTIONS": [
+      "在本場戰鬥中，獲得 #b%d 張強化的 #y彩色偶像卡 ，並將其打出。 NL (同職業)"
+    ]
+  },
+  "gkmasMod:SelectFirstStarMacchiato": {
+    "NAME": "初星嚴選·瑪奇朵",
+    "DESCRIPTIONS": [
+      "回合結束時，獲得 #b%d 點 #y力量 。"
+    ]
+  },
+  "gkmasMod:SelectFirstStarTea": {
+    "NAME": "初星嚴選·茶",
+    "DESCRIPTIONS": [
+      "回合結束時，獲得 #b%d 層 #y好印象 。"
+    ]
+  },
+  "gkmasMod:SelectFirstStarBlend": {
+    "NAME": "初星嚴選·混合咖啡",
+    "DESCRIPTIONS": [
+      "回合結束時，獲得 #b%d 點 #y敏捷 。"
+    ]
+  },
+  "gkmasMod:FirstStarBoostEnergy": {
+    "NAME": "初星Boost能量",
+    "DESCRIPTIONS": [
+      "獲得 #b%d 層 #y絕好調 。 NL 強化所有手牌。"
+    ]
+  },
+  "gkmasMod:SpecialFirstStarExtract": {
+    "NAME": "特製初星精華",
+    "DESCRIPTIONS": [
+      "失去 #b%d 點 #y體力 。 NL 獲得 #b%d 層 #y受傷劇增 。 NL 本回合使用的下 #b%d 張攻擊牌或能力牌額外觸發一次。"
+    ]
+  },
+  "gkmasMod:GingerAle": {
+    "NAME": "薑汁汽水",
+    "DESCRIPTIONS": [
+      "進入 #y強氣 。 NL 獲得 #b%d 點 #y全力值 。",
+      "進入 #y強氣2段 。 NL 獲得 #b%d 點 #y全力值 。"
+    ]
+  },
+  "gkmasMod:Hojicha": {
+    "NAME": "焙茶",
+    "DESCRIPTIONS": [
+      "進入 #y溫存 。 NL 獲得 #b%d 點 #y全力值 。",
+      "進入 #y溫存2段 。 NL 獲得 #b%d 點 #y全力值 。"
+    ]
+  },
+  "gkmasMod:HotGreenTea": {
+    "NAME": "熱綠茶",
+    "DESCRIPTIONS": [
+      "進入 #y溫存2段 。 NL 從 #y抽牌堆 和 #y棄牌堆 中選擇 #b%d 張牌 #y暫存 。"
+    ]
+  },
+  "gkmasMod:SelectFirstStarChai": {
+    "NAME": "初星嚴選·奶茶",
+    "DESCRIPTIONS": [
+      "回合開始時，獲得 #b%d 點 #y全力值 。"
+    ]
+  },
+  "gkmasMod:SelectFirstStarMilkTea": {
+    "NAME": "初星超級汽水",
+    "DESCRIPTIONS": [
+      "進入 #y強氣2段 。 NL 獲得 #b%d 層 #y受傷銳減 。"
+    ]
+  },
+  "gkmasMod:FirstStarSoup": {
+    "NAME": "初星湯",
+    "DESCRIPTIONS": [
+      "失去 #b%d 點 #y體力 。 NL 獲得 #b%d 層 #y受傷劇增 。 NL 獲得 #b%d 個 #y額外回合 。"
+    ]
+  },
+  "gkmasMod:PowerfulHerbalDrink": {
+    "NAME": "強效漢方飲料",
+    "DESCRIPTIONS": [
+      "獲得 #b%d 層 #y受傷銳減 。 NL 將 #y棄牌堆 或 #y抽牌堆 中的 #y偶像專屬卡 加入手牌。"
+    ]
+  },
+  "gkmasMod:FirstStarBlackVinegar": {
+    "NAME": "初星黑醋",
+    "DESCRIPTIONS": [
+      "失去 #b%d 點 #y體力 ，獲得 #b%d 層 #y受傷劇增 。 NL 從手牌和棄牌堆中選擇 #b%d 張牌 加入手牌。 NL 接下來打出 #b%d 張牌時，獲得消耗的能量。"
+    ]
+  },
+  "gkmasMod:SenburiSoda": {
+    "NAME": "千振蘇打",
+    "DESCRIPTIONS": [
+      "失去 #b%d 點 #y體力 ，抽 #b%d 張牌。 NL 下 #b%d 個回合：傷害增加 #b%d %%，回合開始時，抽 #b%d 張牌。"
+    ]
+  }
+}

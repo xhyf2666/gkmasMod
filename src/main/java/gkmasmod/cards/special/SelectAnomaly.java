@@ -59,6 +59,7 @@ public class SelectAnomaly extends GkmasCard {
         int count = PlayerHelper.getPowerAmount(AbstractDungeon.player, TrainRoundProducePower.POWER_ID);
         addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player,
                 new TrainRoundAnomalyPower(AbstractDungeon.player, count), count));
+        addToBot(new TrainRoundAnomalyFirstAction());
     }
 
     @Override

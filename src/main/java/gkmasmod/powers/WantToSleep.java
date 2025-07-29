@@ -47,6 +47,7 @@ public class WantToSleep extends AbstractPower {
                 this.addToBot(new RemoveSpecificPowerAction(this.owner, this.owner, this.ID));
             }
         }
+        this.priority = 4;
 
         this.updateDescription();
     }

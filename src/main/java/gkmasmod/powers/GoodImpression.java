@@ -88,7 +88,7 @@ public class GoodImpression extends AbstractPower {
     public void atEndOfTurnPreEndTurnCards(boolean isPlayer) {
         flash();
         if(isPlayer){
-            addToTop(new GoodImpressionAutoDamageAction(this.owner));
+            addToBot(new GoodImpressionAutoDamageAction(this.owner));
         }
         else{
             goodImpressionDamage();
@@ -111,6 +111,30 @@ public class GoodImpression extends AbstractPower {
             countGreatNotGoodTune = this.owner.getPower(GreatNotGoodTune.POWER_ID).amount;
         if(countNotGoodTune>0){
             rate *= (0.667f-countNotGoodTune*0.05f*(countGreatNotGoodTune>0?1:0));
+        }
+        if(this.owner.hasPower(DamageIncreasePower.POWER_ID)){
+            rate *= (1 + this.owner.getPower(DamageIncreasePower.POWER_ID).amount * 1.0F / 100);
+        }
+        if(this.owner.hasPower(BeyondSunSongPower.POWER_ID)){
+            rate *= 0.5f;
+        }
+        if(this.owner.hasPower(MasterRollerPower.POWER_ID)){
+            rate *= 0.5f;
+        }
+        if(this.owner.hasPower(MasterTreadmillPower.POWER_ID)){
+            rate *= 0.8f;
+        }
+        if(this.owner.hasPower(BeyondSunSongPower.POWER_ID)){
+            rate *= 1.5f;
+        }
+        int goodImpressionDamageAdd = 0;
+        for(AbstractPower power : this.owner.powers) {
+            if (power instanceof GoodImpressionDamageAddPower) {
+                goodImpressionDamageAdd += ((GoodImpressionDamageAddPower) power).getMagic();
+            }
+        }
+        if(goodImpressionDamageAdd>0){
+            rate *= (1 + goodImpressionDamageAdd * 1.0F / 100);
         }
         if (rate<0)
             rate = 0;

@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import gkmasmod.actions.GrowAction;
+import gkmasmod.cardGrowEffect.LoseBlockGrow;
 import gkmasmod.downfall.cards.anomaly.ENJustAppeal;
 import gkmasmod.downfall.charbosses.actions.unique.EnemyChangeStanceAction;
 import gkmasmod.downfall.charbosses.bosses.AbstractCharBoss;
@@ -39,7 +40,7 @@ public class CBR_AchieveDreamAwakening extends AbstractCharbossRelic {
     private static final int magicNumber = 1;
     private static final int magicNumber2 = 4;
     private static final int magicNumber3 = 1;
-    private static final int magicNumber4 = 1;
+    private static final int magicNumber4 = 2;
 
     private static final  int playTimes = 1;
 
@@ -71,8 +72,8 @@ public class CBR_AchieveDreamAwakening extends AbstractCharbossRelic {
                     this.flash();
                     addToBot(new EnemyChangeStanceAction(ENPreservationStance.STANCE_ID2));
                     addToBot(new ApplyPowerAction(AbstractCharBoss.boss, AbstractCharBoss.boss, new FullPowerValue(AbstractCharBoss.boss, magicNumber2), magicNumber2));
-                    addToBot(new GrowAction(AttackTimeGrow.growID, GrowAction.GrowType.allTempSave,1,true));
-                    addToBot(new GrowAction(EnergyGrow.growID, GrowAction.GrowType.allTempSave,1,true));
+                    addToBot(new GrowAction(AttackTimeGrow.growID, GrowAction.GrowType.allTempSave,magicNumber3,true));
+                    addToBot(new GrowAction(LoseBlockGrow.growID, GrowAction.GrowType.allTempSave,magicNumber4,true));
                     this.counter--;
                     if (this.counter == 0) {
                         this.grayscale = true;

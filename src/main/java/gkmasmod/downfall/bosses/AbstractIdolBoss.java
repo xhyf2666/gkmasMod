@@ -145,7 +145,7 @@ abstract public class AbstractIdolBoss extends AbstractCharBoss {
 
     public void endTurnStartTurn() {
         if(rebirth){
-            if(hasChange==false)
+            if(!hasChange)
                 return;
             rebirth=false;
             addToBot(new WaitAction(0.2f));
@@ -236,24 +236,17 @@ abstract public class AbstractIdolBoss extends AbstractCharBoss {
                     addToBot(new ApplyPowerAction(this,this,new GoodTune(this,10),10));
                     addToBot(new ApplyPowerAction(this,this,new GreatGoodTune(this,3),3));
                 }
-                
+
                 setMove((byte) 0, Intent.NONE);
                 CardCrawlGame.music.dispose();
                 CardCrawlGame.music.unsilenceBGM();
                 AbstractDungeon.scene.fadeOutAmbiance();
-                String song = String.format("gkmasModResource/audio/song/%s_%s.ogg", this.idolName, IdolData.getIdol(this.idolName).getBossSong(stage));
+                String song = String.format("gkmasModResource/audio/song/%s_%s.ogg", SkinSelectScreen.Inst.idolName, IdolData.getIdol(SkinSelectScreen.Inst.idolName).getBossSong(stage));
                 if(!Gdx.files.internal(song).exists()){
-                    song = String.format("gkmasModResource/audio/song/%s_%s.ogg", this.idolName, "002");
+                    song = String.format("gkmasModResource/audio/song/%s_%s.ogg", SkinSelectScreen.Inst.idolName, "002");
                 }
                 CardCrawlGame.music.playTempBgmInstantly(song,true);
                 break;
-        }
-    }
-
-    @Override
-    public void onPlayAttackCardSound() {
-
-        switch (MathUtils.random(2)) {
         }
     }
 
@@ -286,7 +279,7 @@ abstract public class AbstractIdolBoss extends AbstractCharBoss {
         }
 
         if (stage<maxStage-1&&this.currentHealth <= 0 && !this.halfDead) {
-            if ((AbstractDungeon.getCurrRoom()).cannotLose == true)
+            if ((AbstractDungeon.getCurrRoom()).cannotLose)
                 this.halfDead = true;
             for (AbstractCharbossRelic r : this.relics) {
                 r.onUnequip();
