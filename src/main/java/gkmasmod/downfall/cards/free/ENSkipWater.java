@@ -7,8 +7,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import gkmasmod.actions.GainTrainRoundPowerAction;
-import gkmasmod.cards.GkmasCard;
+import gkmasmod.actions.common.GainTrainRoundPowerAction;
 import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.downfall.cards.GkmasBossCard;
@@ -30,7 +29,7 @@ public class ENSkipWater extends GkmasBossCard {
     private static final int BLOCK_AMT = 5;
     private static final int UPGRADE_PLUS_BLOCK = 3;
 
-    private static final int BASE_HP = 2;
+    private static final int BASE_HP = 1;
 
     private static final CardType TYPE = CardType.SKILL;
     private static final CardColor COLOR = PlayerColorEnum.gkmasModColor;
@@ -43,6 +42,7 @@ public class ENSkipWater extends GkmasBossCard {
         this.HPMagicNumber = this.baseHPMagicNumber;
         this.baseBlock = BLOCK_AMT;
         this.tags.add(GkmasCardTag.MORE_ACTION_TAG);
+        this.tags.add(GkmasCardTag.COST_HP_TAG);
         this.energyGeneratedIfPlayed = 1;
     }
 

@@ -1098,5 +1098,145 @@
     "DESCRIPTIONS": [
       "#yひなたぼっこ を使用した時、 #y敏捷性 #b%d と #y消費体力減少 #b%d を得て、 #b%d ターンの間、ダメージを #b%d%% 減少させる。 NL #b%d ターン後、 #b%d ターンの間、ダメージが #b%d%% 増加する。 NL （戦闘中 #b%d 回まで）"
     ]
+  },
+  "TemariToy": {
+    "NAME": "親善の挨拶",
+    "FLAVOR": "うるさいな",
+    "DESCRIPTIONS": [
+      "右クリックで月村手毬に挨拶する。"
+    ]
+  },
+  "PromiseOfThatDay": {
+    "NAME": "あの日の約束",
+    "FLAVOR": "あの日の約束。",
+    "DESCRIPTIONS": [
+      "#b%d 枚の #yアタック カード を使用するたびに、 #b%d ターンの間、 #y筋力 の #y上昇量 が #b%d%% 増加する。 NL （戦闘中 #b%d 回まで）"
+    ]
+  },
+  "OriginalTicket": {
+    "NAME": "原点へのチケット",
+    "FLAVOR": "原点へのチケット。",
+    "DESCRIPTIONS": [
+      "#yスキル カード によってHPを失った時、 #ygkmasmod:熱意 の #y上昇量 が #b%d%% 増加する。 NL （戦闘中 #b%d 回まで）"
+    ]
+  },
+  "SakiPrideStar": {
+    "NAME": "咲き誇る星",
+    "FLAVOR": "咲き誇る星。",
+    "DESCRIPTIONS": [
+      "#yスキル カード を使用した後、 #yブロック が #b%d 以上の場合、 #yブロック の #b%d%% の #ygkmasmod:好印象 を得て、さらに #ygkmasmod:好印象 #b%d を獲得する。 NL （戦闘中 #b%d 回まで）"
+    ]
+  },
+  "NightStar": {
+    "NAME": "夜闇の星",
+    "FLAVOR": "夜闇の星。",
+    "DESCRIPTIONS": [
+      "戦闘開始時、 #b%d ターンの間、 #ygkmasmod:好調 の #y上昇量 が #b%d%% 増加する。"
+    ]
+  },
+  "DreamStar": {
+    "NAME": "夢見る星",
+    "FLAVOR": "夢見る星。",
+    "DESCRIPTIONS": [
+      "#ygkmasmod:全力 の時、 #b%d 枚のカードを使用するたびに、 #b%d ターンの間、 #ygkmasmod:全力値 の #y上昇量 が #b%d%% 増加し、次のターン開始時に #ygkmasmod:温存2段 になる。"
+    ]
+  },
+  "ShukiShuki": {
+    "NAME": "しゅきしゅきはーと",
+    "FLAVOR": "しゅきしゅきはーと。",
+    "DESCRIPTIONS": [
+      "#yスキル カード を使用した後、 #y筋力 が #b%d 以上の場合、 #yブロック #b%d を獲得し、カードを1枚引き、 #ygkmasmod:再動 。次に使用する #yスキル · #yパワー カード が2回発動する。 NL （戦闘中 #b%d 回まで）"
+    ]
+  },
+  "ShareHappyBadge": {
+    "NAME" : "シェアハピ缶バッジ",
+    "FLAVOR" : "シェアハピ缶バッジ。",
+    "DESCRIPTIONS" : [
+      "ターン終了時に、 HP #b%d を回復し、 #ygkmasmod:好印象 #b%d を獲得する。 NL （戦闘中 #b%d 回まで）"
+    ]
+  },
+  "MiracleHeader": {
+    "NAME": "ミラクルヘッド",
+    "FLAVOR": "ミラクルヘッド。",
+    "DESCRIPTIONS": [
+      "戦闘開始時、 #b%d ターンの間、 #y敏捷性 の #y上昇量 が #b%d%% 増加し、次のターン開始時に、 #yブロック #b%d を獲得する。"
+    ]
+  },
+  "TakoyakiTechDog": {
+    "NAME": "たこやきテクノドッグ",
+    "FLAVOR": "たこやきテクノドッグ。",
+    "DESCRIPTIONS": [
+      "#ygkmasmod:全力 を解除した時、 #y廃棄 に #yでこれーとまじっく ある 場合、 それを #y暂存 し、 #yダメージ増加 #b%d 、 #y全力値増加 #b%d 、 #y体力喪失 #b%d を付与する。 NL（戦闘中 #b%d 回まで）"
+    ]
+  },
+  "WantToBecomeIdol": {
+    "NAME": "アイドルになりたい",
+    "FLAVOR": "アイドルになりたい。",
+    "DESCRIPTIONS": [
+      "直接効果で #ygkmasmod:好印象 が #b%d 以上増加後、 #yブロック が #b%d 以上であれば、ランダムな敵に #ygkmasmod:好印象 の #b%d%% に相当するダメージを与え、 HP #b%d を回復する。 NL（戦闘中 #b%d 回まで）"
+    ]
+  },
+  "FightForMe": {
+    "NAME": "フレフレあたし！",
+    "FLAVOR": "フレフレあたし！",
+    "DESCRIPTIONS": [
+      "#yアタック カード を使用した後、 #ygkmasmod:絶好調 の場合、 カードを #b%d 枚引き、 gkmasmod:再動 。 NL（戦闘中 #b%d 回まで）"
+    ]
+  },
+  "MixedPassion": {
+    "NAME": "ごちゃまぜパッション",
+    "FLAVOR": "ごちゃまぜパッション。",
+    "DESCRIPTIONS": [
+      "ターン開始時、 #ygkmasmod:強気 の場合、 #ygkmasmod:温存 になり、 #yブロック #b%d を獲得する。"
+    ]
+  },
+  "FirstFormationUme": {
+    "NAME": "初阵之证·佑芽",
+    "FLAVOR": "初阵之证·佑芽。",
+    "DESCRIPTIONS": [
+      "#ygkmasmod:訓練時間 の残りが #b1 層のときと終了時、 #ygkmasmod:好調 の #b%d %%分のダメージをランダムな敵に与える。 NL （戦闘中 #b%d 回まで）"
+    ]
+  },
+  "FirstFormationMisuzu": {
+    "NAME": "初阵之证·美铃",
+    "FLAVOR": "初阵之证·美铃。",
+    "DESCRIPTIONS": [
+      "戦闘開始時、 #y敏捷性 #b%d を獲得し、 #b%d ターンの間 #yブロック を獲得できなくなる。"
+    ]
+  },
+  "FirstFormationSena": {
+    "NAME": "初阵之证·星南",
+    "FLAVOR": "初阵之证·星南。",
+    "DESCRIPTIONS": [
+      "#yアタックカード を使用した時、 #y敏捷性 が #b%d を超えていれば、 #yブロック を #b%d 得る NL （ #y敏捷性 の効果は #b%d %%）。 NL （戦闘中 #b%d 回まで）。"
+    ]
+  },
+  "MusicPlayer": {
+    "NAME": "ミュージックプレイヤー（テスト中）",
+    "FLAVOR": "これこそ本当の音楽だ",
+    "DESCRIPTIONS": [
+      "右クリックで使用し、プレイリストを開く。"
+    ]
+  },
+  "JumpHigher": {
+    "NAME": "高くジャンプ！",
+    "FLAVOR": "高くジャンプ！",
+    "DESCRIPTIONS": [
+      "1ターンの間に、 #b%d 枚のカードを使用すると、 #yブロック #b%d を得る。 NL 1ターンの間、 #ygkmasmod:好印象 の増加量が #b%d%% 上昇する。 NL （戦闘中 #b%d 回まで）。"
+    ]
+  },
+  "DeliverFeeling": {
+    "NAME": "届けたい想い",
+    "FLAVOR": "届けたい想い。",
+    "DESCRIPTIONS": [
+      "ターン開始時、現在のターン数がフィボナッチ数列に該当する場合、 HPを #b%d 失い、山札と捨て札からランダムに #b1 枚のSSRカードを手札に加え、 #ygkmasmod:好調 の #b%d%% に相当する #y筋力 を獲得する。"
+    ]
+  },
+  "DropWater": {
+    "NAME": "滴るほどに格好いい王子様",
+    "FLAVOR": "滴るほどに格好いい王子様。",
+    "DESCRIPTIONS": [
+      "#yアタック カード を使用した後、 筋力 の #b%d%% 分の gkmasmod:好調 を得る、 #y筋力 #b%d を得る。 NL（戦闘中 #b%d 回まで）。"
+    ]
   }
 }

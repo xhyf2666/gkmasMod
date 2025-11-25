@@ -1,25 +1,18 @@
 package gkmasmod.cards.sense;
 
-import basemod.helpers.CardModifierManager;
-import com.evacipated.cardcrawl.mod.stslib.patches.FlavorText;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.helpers.CardHelper;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
-import gkmasmod.actions.GoodTuneDamageAction;
 import gkmasmod.cardCustomEffect.*;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.patches.AbstractPowerPatch;
-import gkmasmod.powers.FullPowerValue;
-import gkmasmod.powers.GoodTune;
 import gkmasmod.powers.TheScenerySawSomedayPower;
 import gkmasmod.utils.*;
 
@@ -85,9 +78,9 @@ public class TheScenerySawSomeday extends GkmasCard {
     public boolean canUse(AbstractPlayer p, AbstractMonster m) {
         int count = PlayerHelper.getPowerAmount(p, StrengthPower.POWER_ID);
         if (count > this.magicNumber)
-            return true;
+            return super.canUse(p, m);
         this.cantUseMessage = CardCrawlGame.languagePack.getUIString("gkmasMod:NotEnoughStrengthPower").TEXT[0];
-        return false;
+        return CardHelper.containsMasterKey();
     }
 
     @Override

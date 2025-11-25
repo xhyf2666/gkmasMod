@@ -6,7 +6,7 @@ import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.RelicAboveCreatureAction;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
-import gkmasmod.actions.GainTrainRoundPowerAction;
+import gkmasmod.actions.common.GainTrainRoundPowerAction;
 import gkmasmod.powers.HalfDamageReceive;
 import gkmasmod.relics.ProducerPhone;
 

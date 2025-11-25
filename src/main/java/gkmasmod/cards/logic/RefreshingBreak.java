@@ -12,14 +12,12 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.DexterityPower;
-import gkmasmod.actions.BlockDamageAction;
+import gkmasmod.actions.common.BlockDamageAction;
 import gkmasmod.cardCustomEffect.*;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
-import gkmasmod.powers.GoodImpression;
 import gkmasmod.powers.ReduceDamageReceive;
-import gkmasmod.powers.SummerEveningSparklersPower;
 import gkmasmod.utils.CustomHelper;
 import gkmasmod.utils.IdolData;
 import gkmasmod.utils.NameHelper;
@@ -67,6 +65,7 @@ public class RefreshingBreak extends GkmasCard {
         this.thirdMagicNumber = this.baseThirdMagicNumber;
         this.tags.add(GkmasCardTag.YARUKI_TAG);
         this.tags.add(GkmasCardTag.IDOL_CARD_TAG);
+        this.tags.add(GkmasCardTag.COST_HP_TAG);
         this.exhaust = true;
         FlavorText.AbstractCardFlavorFields.boxColor.set(this, CardHelper.getColor(73, 224, 254));
         flavor = FlavorText.CardStringsFlavorField.flavor.get(CARD_STRINGS);
@@ -82,7 +81,9 @@ public class RefreshingBreak extends GkmasCard {
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        addToBot(new LoseHPAction(p, p, this.HPMagicNumber));
+        if(this.HPMagicNumber > 0){
+            addToBot(new LoseHPAction(p,p,this.HPMagicNumber));
+        }
         addToBot(new ApplyPowerAction(p, p, new ReduceDamageReceive(p, this.thirdMagicNumber), this.thirdMagicNumber));
         addToBot(new BlockDamageAction(1.0f*this.secondMagicNumber/100,block,p,m,this));
         SoundHelper.playSound("gkmasModResource/audio/voice/skillcard/cidol_hrnm_3_005_produce_skillcard_01.ogg");

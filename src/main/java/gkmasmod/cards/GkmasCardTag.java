@@ -72,5 +72,15 @@ public class GkmasCardTag {
      */
     @SpireEnum public static AbstractCard.CardTags ONLY_ONE_TAG;
 
+    /**
+     * 服装TAG
+     */
+    @SpireEnum public static AbstractCard.CardTags COSTUME_TAG;
+
     @SpireEnum public static AbstractCard.CardTarget SELF_OR_FRIEND;
+
+    /**
+     * 放血TAG
+     */
+    @SpireEnum public static AbstractCard.CardTags COST_HP_TAG;
 }

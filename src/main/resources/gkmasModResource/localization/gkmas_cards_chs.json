@@ -150,9 +150,17 @@
     "NAME": "绝对不会输",
     "DESCRIPTION": "造成 !D! 点伤害 。 NL 消耗 。"
   },
+  "gkmasMod:NeverLose_effect0": {
+    "NAME": "绝对不会输",
+    "DESCRIPTION": "造成 !D! 点伤害 。 NL 获得1个 *额外回合 。 NL 消耗 。"
+  },
   "gkmasMod:EachPath": {
     "NAME": "各自的道路",
     "DESCRIPTION": "造成 !D! 点伤害。 NL 获得 !M! 点 力量 。 NL 消耗 。"
+  },
+  "gkmasMod:EachPath_Effect0": {
+    "NAME": "各自的道路",
+    "DESCRIPTION": "造成 !D! 点伤害。 NL 获得 !M! 点 力量 。 NL 每回合结束时，失去 !M2! 点体力，对所有敌人造成 !M3! 点伤害。 NL 消耗 。"
   },
   "gkmasMod:DressedUpInStyle": {
     "NAME": "盛装的华丽姿态",
@@ -226,13 +234,17 @@
     "DESCRIPTION": "拥有 gkmasmod:好调 时才可使用。 NL 造成 !D! 点伤害。 NL 造成 gkmasmod:好调 层数 !M! %的伤害。 NL 消耗 。",
     "FLAVOR": "当前可造成%d点伤害"
   },
-  "gkmasMod:WelcomeToTeaParty":{
+  "gkmasMod:WelcomeToTeaParty": {
     "NAME": "欢迎来到茶会♪",
     "DESCRIPTION": "获得 !B! 点 格挡 和 !M! 层 gkmasmod:绝好调 。 NL 抽1张牌。 NL gkmasmod:再动 。 消耗 。"
   },
   "gkmasMod:NoDistractions": {
     "NAME": "禁止发呆♪",
     "DESCRIPTION": "获得 !B! 点 格挡 和 !M! 层 gkmasmod:好印象 。 NL 消耗 。"
+  },
+  "gkmasMod:NoDistractions_Effect0": {
+    "NAME": "禁止发呆♪",
+    "DESCRIPTION": "获得 !B! 点 格挡 和 !M! 层 gkmasmod:好印象 。 NL !M2! 回合内， gkmasmod:好印象 伤害增加 50%。 NL 消耗 。"
   },
   "gkmasMod:SeriousHobby": {
     "NAME": "认真的兴趣",
@@ -395,19 +407,19 @@
   },
   "gkmasMod:ClassicPose": {
     "NAME": "经典姿势",
-    "DESCRIPTION": "造成 !D! 点 伤害 。 NL 使目标获得 !M! 层 gkmasmod:不调 。 NL 目标拥有 gkmasmod:绝不调 : gkmasmod:再动 。"
+    "DESCRIPTION": "造成 !D! 点 伤害。 NL 使目标获得 !M! 层 gkmasmod:不调 。 NL 目标拥有 gkmasmod:绝不调 : gkmasmod:再动 。"
   },
   "gkmasMod:Improvise": {
     "NAME": "即兴演奏",
-    "DESCRIPTION": "造成 !D! 点 伤害 。 NL 获得 !M! 层 gkmasmod:好调 。 NL 使目标获得 !M2! 层 gkmasmod:不调 。"
+    "DESCRIPTION": "造成 !D! 点 伤害。 NL 获得 !M! 层 gkmasmod:好调 。 NL 使目标获得 !M2! 层 gkmasmod:不调 。"
   },
   "gkmasMod:PassionateReturn": {
     "NAME": "情热回转",
-    "DESCRIPTION": "造成 !D! 点 伤害 。 NL 抽 !M! 张牌。 NL 击杀: gkmasmod:再动 !M2! 。"
+    "DESCRIPTION": "造成 !D! 点 伤害。 NL 抽 !M! 张牌。 NL 击杀: gkmasmod:再动 !M2! 。"
   },
   "gkmasMod:Leap": {
     "NAME": "飞跃",
-    "DESCRIPTION": "造成 !D! 点 伤害 。 NL 力量 大于 !M! :造成 !D2! 点 伤害 。"
+    "DESCRIPTION": "造成 !D! 点 伤害。 NL 力量 大于 !M! :造成 !D2! 点 伤害 。"
   },
   "gkmasMod:Bless": {
     "NAME": "祝福",
@@ -453,7 +465,7 @@
   "gkmasMod:IdolDeclaration": {
     "NAME": "偶像宣言",
     "DESCRIPTION": "失去 !HP! 点 体力 。 NL 抽 !M! 张牌。 NL gkmasmod:再动 。 消耗 。",
-    "UPGRADE_DESCRIPTION":  "获得 !M2! 层 gkmasmod:受伤锐减 。 NL 抽 !M! 张牌。 NL gkmasmod:再动 。 消耗 。"
+    "UPGRADE_DESCRIPTION": "获得 !M2! 层 gkmasmod:受伤锐减 。 NL 抽 !M! 张牌。 NL gkmasmod:再动 。 消耗 。"
   },
   "gkmasMod:IdolDeclaration_Effect0": {
     "NAME": "偶像宣言",
@@ -470,7 +482,7 @@
   "gkmasMod:EyePower": {
     "NAME": "眼力",
     "DESCRIPTION": "每回合结束时，获得 力量 层数 !M2! %的 格挡 。",
-    "UPGRADE_DESCRIPTION":  "获得 !M! 点 力量 。 NL 每回合结束时，获得 力量 层数 !M2! %的 格挡 。"
+    "UPGRADE_DESCRIPTION": "获得 !M! 点 力量 。 NL 每回合结束时，获得 力量 层数 !M2! %的 格挡 。"
   },
   "gkmasMod:GreatCheer": {
     "NAME": "大声援",
@@ -482,20 +494,20 @@
   },
   "gkmasMod:WishPower": {
     "NAME": "愿望的力量",
-    "DESCRIPTION": "每次打出攻击牌时，获得 !M2! 点 力量 。",
-    "UPGRADE_DESCRIPTION":  "获得 !M! 点 力量 。 NL 每次打出攻击牌时，获得 !M2! 点 力量 。"
+    "DESCRIPTION": "每打出2张攻击牌，获得 !M2! 点 力量 。",
+    "UPGRADE_DESCRIPTION": "获得 !M! 点 力量 。 NL 每打出2张攻击牌，获得 !M2! 点 力量 。"
   },
   "gkmasMod:WishPower_Effect0": {
     "NAME": "愿望的力量",
-    "DESCRIPTION":  "获得 !M! 点 力量 。 NL 选择：每次打出攻击牌时，获得 !M2! 点 力量 或 gkmasmod:好调 。"
+    "DESCRIPTION": "获得 !M! 点 力量 。 NL 选择：每打出2张攻击牌，获得 !M2! 点 力量 或 gkmasmod:好调 。"
   },
   "gkmasMod:WishPowerStrength": {
     "NAME": "愿望的力量",
-    "DESCRIPTION":  "每次打出攻击牌时，获得 !M2! 点 力量 。"
+    "DESCRIPTION": "每打出2张攻击牌，获得 !M2! 点 力量 。"
   },
   "gkmasMod:WishPowerGoodTune": {
     "NAME": "愿望的好调",
-    "DESCRIPTION":  "每次打出攻击牌时，获得 !M2! 点 gkmasmod:好调 。"
+    "DESCRIPTION": "每打出2张攻击牌，获得 !M2! 点 gkmasmod:好调 。"
   },
   "gkmasMod:SteadyWill": {
     "NAME": "平静意志",
@@ -536,12 +548,12 @@
   "gkmasMod:FantasyCharm": {
     "NAME": "幻想魅力",
     "DESCRIPTION": "每次打出技能牌和能力牌时，获得 !M2! 层 gkmasmod:好印象 。",
-    "UPGRADE_DESCRIPTION":  "获得 !M! 层 gkmasmod:好印象 。 NL 每次打出技能牌和能力牌时，获得 !M2! 层 gkmasmod:好印象 。"
+    "UPGRADE_DESCRIPTION": "获得 !M! 层 gkmasmod:好印象 。 NL 每次打出技能牌和能力牌时，获得 !M2! 层 gkmasmod:好印象 。"
   },
   "gkmasMod:WakuWaku": {
     "NAME": "WaKuWaKu停不下来",
-    "DESCRIPTION": "每次打出技能牌和能力牌时，获得 !M2! 点 敏捷 。",
-    "UPGRADE_DESCRIPTION":  "获得 !M! 点 敏捷 。 NL 每次打出技能牌和能力牌时，获得 !M2! 点 敏捷 。"
+    "DESCRIPTION": "每打出2张技能牌和能力牌，获得 !M2! 点 敏捷 。",
+    "UPGRADE_DESCRIPTION": "获得 !M! 点 敏捷 。 NL 每打出2张技能牌和能力牌，获得 !M2! 点 敏捷 。"
   },
   "gkmasMod:BeforeThePerformance": {
     "NAME": "本番前夜",
@@ -573,17 +585,17 @@
   },
   "gkmasMod:Spotlight": {
     "NAME": "聚光灯",
-    "DESCRIPTION": "失去 !HP! 点体力。 NL 获得 !B! 点 格挡 。 NL 获得 !M! 层 gkmasmod:好调 。"
+    "DESCRIPTION": "失去 !HP! 点体力。 NL 获得 !B! 点 格挡 。 NL 获得 !M! 层 gkmasmod:好调 。 NL 下回合抽 !M2! 张牌。"
   },
   "gkmasMod:GirlHeart": {
     "NAME": "少女心",
     "DESCRIPTION": "失去 !M! 点 敏捷 。 NL 获得 !M2! 层 gkmasmod:好印象 。 NL gkmasmod:再动 。",
-    "UPGRADE_DESCRIPTION":  "失去 !M! 点 敏捷 。 NL gkmasmod:好印象 大于 !M3! :获得2层 gkmasmod:好印象 。 NL 获得 !M2! 层 gkmasmod:好印象 。 NL gkmasmod:再动 。"
+    "UPGRADE_DESCRIPTION": "失去 !M! 点 敏捷 。 NL gkmasmod:好印象 大于 !M3! :获得2层 gkmasmod:好印象 。 NL 获得 !M2! 层 gkmasmod:好印象 。 NL gkmasmod:再动 。"
   },
   "gkmasMod:CallResponse": {
     "NAME": "Call&Response",
     "DESCRIPTION": "造成 !D! 点伤害。 NL 力量 大于 !M! :造成 !D2! 点伤害。 NL 使目标获得 !M3! 层 gkmasmod:不调 。 NL 消耗 。",
-    "UPGRADE_DESCRIPTION":  "造成 !D! 点伤害。 NL 力量 大于 !M! :造成 !D2! 点伤害 NL ( 力量 对额外伤害发挥 !M2! %的效果)。 NL 使目标获得 !M3! 层 gkmasmod:不调 。 NL 消耗 。"
+    "UPGRADE_DESCRIPTION": "造成 !D! 点伤害。 NL 力量 大于 !M! :造成 !D2! 点伤害 NL ( 力量 对额外伤害发挥 !M2! %的效果)。 NL 使目标获得 !M3! 层 gkmasmod:不调 。 NL 消耗 。"
   },
   "gkmasMod:PopPhrase": {
     "NAME": "流行语",
@@ -592,7 +604,7 @@
   "gkmasMod:TopEntertainment": {
     "NAME": "至高娱乐",
     "DESCRIPTION": "失去 !M! 点 力量 。 NL 每次打出攻击牌和能力牌时，额外造成 !M2! 点伤害。",
-    "UPGRADE_DESCRIPTION":  "失去 !M! 点 力量 。 NL 下回合抽 !M3! 张牌。 NL 每次打出攻击牌和能力牌时，额外造成 !M2! 点伤害。"
+    "UPGRADE_DESCRIPTION": "失去 !M! 点 力量 。 NL 下回合抽 !M3! 张牌。 NL 每次打出攻击牌和能力牌时，额外造成 !M2! 点伤害。"
   },
   "gkmasMod:Awakening": {
     "NAME": "觉醒",
@@ -601,7 +613,7 @@
   "gkmasMod:NationalIdol": {
     "NAME": "国民偶像",
     "DESCRIPTION": "失去 !M! 层 gkmasmod:好调 。 NL 下 !M2! 张打出的卡牌额外打出1次。 NL gkmasmod:再动 。 消耗 。",
-    "UPGRADE_DESCRIPTION":  "失去 !M! 层 gkmasmod:好调 。 NL 下 !M2! 张打出的卡牌额外打出1次。 NL 获得 !B! 点 格挡 。 NL gkmasmod:再动 。 消耗 。"
+    "UPGRADE_DESCRIPTION": "失去 !M! 层 gkmasmod:好调 。 NL 下 !M2! 张打出的卡牌额外打出1次。 NL 获得 !B! 点 格挡 。 NL gkmasmod:再动 。 消耗 。"
   },
   "gkmasMod:CharmGaze": {
     "NAME": "魅惑视线",
@@ -717,7 +729,7 @@
   "gkmasMod:Gacha": {
     "NAME": "钱包空空的",
     "DESCRIPTION": "获得 !M! 张随机偶像卡(同职业)。 NL gkmasmod:再动 。 虚无 。 消耗 。",
-    "UPGRADE_DESCRIPTION":  "获得 !M! 张强化的偶像卡(同职业)。 NL gkmasmod:再动 。 虚无 。 消耗 。"
+    "UPGRADE_DESCRIPTION": "获得 !M! 张强化的偶像卡(同职业)。 NL gkmasmod:再动 。 虚无 。 消耗 。"
   },
   "gkmasMod:JustOneMore": {
     "NAME": "捶胸顿足",
@@ -767,13 +779,12 @@
   },
   "gkmasMod:KawaiiKawaiiKawaii": {
     "NAME": "可爱可爱可爱",
-    "DESCRIPTION": "抽 !M! 张牌。 NL 强化所有手牌。 NL gkmasmod:再动 。 消耗 。",
-    "UPGRADE_DESCRIPTION": "抽 !M! 张牌。 NL 强化所有手牌。 NL gkmasmod:再动 。 gkmasmod:须臾 !M2! 。"
+    "DESCRIPTION": "抽 !M! 张牌。 NL 强化所有手牌。 NL gkmasmod:再动 。 虚无 。"
   },
   "gkmasMod:DeliciousFace": {
     "NAME": "我开动了~",
-    "DESCRIPTION": "抽 !M! 张牌。 NL 保留 。",
-    "UPGRADE_DESCRIPTION": "抽 !M! 张牌。 NL 下回合抽 !M2! 张牌。 NL 保留 。"
+    "DESCRIPTION": "获得 !B! 点 格挡 。 NL 抽 !M! 张牌。 NL 保留 。",
+    "UPGRADE_DESCRIPTION": "获得 !B! 点 格挡 。 NL 抽 !M! 张牌。 NL 下回合抽 !M2! 张牌。 NL 保留 。"
   },
   "gkmasMod:TurnBack": {
     "NAME": "现在 背过身去",
@@ -931,13 +942,11 @@
     "DESCRIPTION": "获得 !M! 点 敏捷 。 NL 造成 gkmasmod:好印象 层数 !M2! %的伤害。 NL 消耗 。",
     "FLAVOR": "当前可造成%d点伤害"
   },
-  "gkmasMod:EatEmptyYourRefrigerator":
-  {
+  "gkmasMod:EatEmptyYourRefrigerator": {
     "NAME": "吃空你家冰箱",
     "DESCRIPTION": " 不能被打出 。 NL 每次打出能量消耗大于1的牌后，失去 [E] 。 NL 虚无 。"
   },
-  "gkmasMod:SeeYouTomorrow":
-  {
+  "gkmasMod:SeeYouTomorrow": {
     "NAME": "明天见",
     "DESCRIPTION": "拥有 gkmasmod:好印象 时才可使用。 NL 回复 最大体力 !M! %的体力。 NL 获得 !M2! 层 gkmasmod:好印象 。 NL 获得 !B! 点 格挡 。 NL gkmasmod:再动 。 消耗 。"
   },
@@ -1041,7 +1050,7 @@
   },
   "gkmasMod:SlowGrowth": {
     "NAME": "一步一步 缓缓成长",
-    "DESCRIPTION": "失去 !HP! 点体力。 NL 造成 格挡 层数 !M! %的伤害，然后获得等量 格挡 。 NL gkmasmod:成长 !GROW! ：打出时，更新卡面。",
+    "DESCRIPTION": "失去 !HP! 点体力。 NL 造成 格挡 层数 !M! %的伤害，然后获得等量 格挡 。",
     "FLAVOR": "当前可造成%d点伤害"
   },
   "gkmasMod:SpecialTreasure": {
@@ -1344,7 +1353,7 @@
     "NAME": "学园第一偶像",
     "DESCRIPTION": "进入 gkmasmod:强气 。 NL 造成 !D! 点伤害 !M! 次。 NL 消耗 。"
   },
-  "gkmasMod:KingAppear":{
+  "gkmasMod:KingAppear": {
     "NAME": "王者登场",
     "DESCRIPTION": "获得 !M! 点 gkmasmod:全力值 。 NL 获得 !M2! 层 gkmasmod:受伤锐减 。 NL 消耗 。"
   },
@@ -1476,7 +1485,7 @@
   },
   "gkmasMod:HappyChristmas": {
     "NAME": "圣诞快乐♪",
-    "DESCRIPTION": "获得 !M! 层 gkmasmod:好印象 。 NL 每次出牌时，获得 !M2! 点 敏捷 。"
+    "DESCRIPTION": "获得 !M! 层 gkmasmod:好印象 。 NL 每打出3张牌，获得 !M2! 点 敏捷 。"
   },
   "gkmasMod:Unpredictable": {
     "NAME": "阴晴不定",
@@ -1902,7 +1911,7 @@
   },
   "gkmasMod:RedLeaf": {
     "NAME": "红叶",
-    "DESCRIPTION": "抽 !M! 张牌。 NL 获得 !M2! 层 gkmasmod:负面无效 。"
+    "DESCRIPTION": "抽 !M! 张牌。 NL 获得 !M2! 层 gkmasmod:负面无效 。 NL 消耗 。"
   },
   "gkmasMod:NotLimit": {
     "NAME": "并非极限",
@@ -2084,7 +2093,7 @@
   },
   "gkmasMod:HeavyLove": {
     "NAME": "沉重的爱",
-    "DESCRIPTION": "抽 !M! 张牌，使抽到的牌获得 消耗 移除。 NL (对 *我是大明星 、 *从此以后 不生效) NL 消耗 。",
+    "DESCRIPTION": "抽 !M! 张牌，使抽到的牌获得 消耗 移除。 NL (对 *我是大明星 、 *从此以后 不生效) NL gkmasmod:除外 。",
     "FLAVOR": "好重……当然，我说的不是体重。"
   },
   "gkmasMod:FormalContract": {
@@ -2106,7 +2115,7 @@
   },
   "gkmasMod:IRemember": {
     "NAME": "我想起来了",
-    "DESCRIPTION": "选择1位 *偶像 ，将其所有卡牌加入抽牌堆，这些卡牌在本场战斗中的耗能为0。 NL 消耗 。",
+    "DESCRIPTION": "选择1位 *偶像 ，将其所有卡牌加入抽牌堆，这些卡牌在本场战斗中的能量和体力消耗为0。 NL 消耗 。",
     "FLAVOR": "我想起来了，我是……啊！。"
   },
   "gkmasMod:IDontRemember": {
@@ -2202,11 +2211,11 @@
     "NAME": "距离感？",
     "DESCRIPTION": "获得 !M! 点 集中 ， NL 回复 !M2! 点 体力 。 NL 消耗 。"
   },
-  "gkmasMod:BaseProvocation":{
+  "gkmasMod:BaseProvocation": {
     "NAME": "基本挑衅",
     "DESCRIPTION": "造成 !D! 点伤害。 NL 使目标获得 !M! 层 gkmasmod:不调 。 NL gkmasmod:再动 。"
   },
-  "gkmasMod:BaseTeach":{
+  "gkmasMod:BaseTeach": {
     "NAME": "基本教导",
     "DESCRIPTION": "造成 !B! 点 伤害 。 NL 使目标获得 !M! 层 gkmasmod:坏印象 。"
   },
@@ -2293,7 +2302,7 @@
   },
   "gkmasMod:HeatUp": {
     "NAME": "气氛担当",
-    "DESCRIPTION": "所有攻击牌获得 gkmasmod:伤害增加 !M! 和 gkmasmod:格挡流失 !M2! 。 NL 下回合抽 !M3! 张牌。 消耗 。",
+    "DESCRIPTION": "所有攻击牌获得 gkmasmod:伤害增加 !M! 和 gkmasmod:格挡流失 !M2! 。 NL 下回合抽 !M3! 张牌。 NL 消耗 。",
     "UPGRADE_DESCRIPTION": "所有攻击牌获得 gkmasmod:伤害增加 !M! 和 gkmasmod:格挡流失 !M2! 。 NL 下回合抽 !M3! 张牌。"
   },
   "gkmasMod:HeatUp_Effect0": {
@@ -2346,11 +2355,12 @@
   },
   "gkmasMod:DreamIdol": {
     "NAME": "憧憬的偶像",
-    "DESCRIPTION": "失去 !HP! 点体力。 NL 获得 !M! 点 敏捷 。 NL 下回合获得 !B! 点 格挡 。 NL 本场战斗内，单次获得 格挡 不低于 !M2! 时，对随机敌人造成总 格挡 层数 !M3! %的伤害。"
+    "DESCRIPTION": "失去 !HP! 点体力。 NL 获得 !M! 点 敏捷 。 NL 下回合获得 !B! 点 格挡 。 NL 本场战斗内，单次获得 格挡 不低于 !M2! 后，对随机敌人造成总 格挡 层数 !M3! %的伤害。"
   },
   "gkmasMod:Sunfaded": {
-    "NAME": "褪色",
-    "DESCRIPTION": "将1张 *我来决断 加入手牌。 NL 被 消耗 时，将6套 *服装 加入抽牌堆。 NL 消耗 。"
+    "NAME": "SUNFADED",
+    "DESCRIPTION": "将1张 *我来决断 加入手牌。 NL 被 消耗 时， gkmasmod:再动 ，将6套 *服装 加入抽牌堆。 NL 消耗 。",
+    "UPGRADE_DESCRIPTION": "将1张 *我来决断+ 加入手牌。 NL 被 消耗 时， gkmasmod:再动 ，将6套 *服装 加入抽牌堆。 NL 消耗 。"
   },
   "gkmasMod:Sunfaded1": {
     "NAME": "我来言说",
@@ -2406,6 +2416,177 @@
   },
   "gkmasMod:SunfadedJudge": {
     "NAME": "我来决断",
-    "DESCRIPTION": "选择抽牌堆中的1种 *服装 ，将其加入手牌， 消耗 其他所有的 *服装 。 NL gkmasmod:再动 。 消耗 。"
+    "DESCRIPTION": "选择抽牌堆中的 !M! 张牌，将其加入手牌。 消耗 抽牌堆中所有 *服装 。 NL gkmasmod:再动 。 消耗 。"
+  },
+  "gkmasMod:GiveUp": {
+    "NAME": "GIVE UP",
+    "DESCRIPTION": "失去 !HP! 点体力。 NL 将 !M! 张 *灵体 加入抽牌堆。 NL 消耗 。"
+  },
+  "gkmasMod:SendEmoji": {
+    "NAME": "うるさい!!!!!!",
+    "DESCRIPTION": "*不能被打出 。 NL 无法逃脱。 NL 每当你获得 *负面效果 时，若该牌在手牌，则回复 !M! 点体力。 NL 保留 。"
+  },
+  "gkmasMod:MaoStartPose": {
+    "NAME": "「起手式」",
+    "DESCRIPTION": "下1张打出的牌不消耗能量。"
+  },
+  "gkmasMod:MaoUppercut": {
+    "NAME": "「上勾拳」",
+    "DESCRIPTION": "造成 !D! 点伤害。 NL 使目标获得 !M! 层 虚弱 和 易伤 。 NL 上一张打出的是 *能力 牌时，将1张 *「飞身踢」 或 *「足跟勾」 加入手牌。 NL 消耗 。"
+  },
+  "gkmasMod:MaoDropkick": {
+    "NAME": "「飞身踢」",
+    "DESCRIPTION": "造成 !D! 点伤害。 NL 目标拥有 易伤 时， gkmasmod:再动 ，抽1张牌。 NL gkmasmod:成长 ：打出时，上一张打出的是 *攻击 牌时，获得 gkmasmod:伤害增加 !M! 。"
+  },
+  "gkmasMod:MaoHeelHook": {
+    "NAME": "「足跟勾」",
+    "DESCRIPTION": "造成 !D! 点伤害，获得 !B! 点 格挡 。 NL 目标拥有 虚弱 时， gkmasmod:再动 ，抽1张牌。 NL gkmasmod:成长 ：打出时，上一张打出的是 *技能 牌时，获得 gkmasmod:格挡增加 !M! 。"
+  },
+  "gkmasMod:DriveAttack": {
+    "NAME": "(ﾟ∀ﾟ)！",
+    "DESCRIPTION": "对所有敌人造成 !D! 点伤害。 NL 斩杀 时，获得 !M! 点 金币。 NL 固有 。 消耗 。"
+  },
+  "gkmasMod:NeverEndIdol": {
+    "NAME": "NEVER END I∞L",
+    "DESCRIPTION": "本回合 gkmasmod:训练时间 不会减少。 NL gkmasmod:唯一 。 消耗 。",
+    "UPGRADE_DESCRIPTION": "本回合 gkmasmod:训练时间 不会减少。 NL gkmasmod:唯一 。"
+  },
+  "gkmasMod:NoMoreHesitation": {
+    "NAME": "不再犹豫",
+    "DESCRIPTION": "失去 !HP! 点体力。 NL 单次获得 力量 不低于 !M! 后，对随机敌人造成 !M2! 点伤害。 NL ( 力量 !M3! %适用)"
+  },
+  "gkmasMod:TowardsTheSun": {
+    "NAME": "朝着阳光的方向",
+    "DESCRIPTION": "失去 !HP! 点体力。 NL 处于 gkmasmod:强气 时，才可使用。 NL 获得 !B! 点 格挡 ，进入 gkmasmod:温存 。 NL 获得 gkmasmod:热意 gkmasmod:追加 !M! 。 NL 该卡获得 gkmasmod:体力流失 !M2! 。"
+  },
+  "gkmasMod:TowardsTheSun_Effect0": {
+    "NAME": "朝着阳光的方向",
+    "DESCRIPTION": "失去 !HP! 点体力。 NL 获得 !B! 点 格挡 ，进入 gkmasmod:温存 。 NL 获得 gkmasmod:热意 gkmasmod:追加 !M! 。 NL 该卡获得 gkmasmod:体力流失 !M2! 。"
+  },
+  "gkmasMod:SeizeTheFuture": {
+    "NAME": "紧握未来",
+    "DESCRIPTION": "获得 !B! 点 格挡 。 NL 获得 !M! 层 gkmasmod:好印象 。 NL gkmasmod:成长 ：出牌后，获得 gkmasmod:格挡增加 !M2! 。 NL 消耗 。"
+  },
+  "gkmasMod:SeizeTheFuture_Effect0": {
+    "NAME": "紧握未来",
+    "DESCRIPTION": "获得 !B! 点 格挡 。 NL 获得 !M! 层 gkmasmod:好印象 。 NL gkmasmod:成长 ：出牌后，获得 gkmasmod:格挡增加 !M2! 。 NL gkmasmod:须臾 !M3! 。"
+  },
+  "gkmasMod:UntilMorningFills": {
+    "NAME": "直到朝阳降临",
+    "DESCRIPTION": "失去 !M! 层 gkmasmod:好调 ，获得 !M2! 点 力量 。 NL 下回合，获得 !M3! 层 gkmasmod:好调 ， gkmasmod:再动 。 NL 消耗 。"
+  },
+  "gkmasMod:TheMomentWaitFor": {
+    "NAME": "翘首以盼的瞬间",
+    "DESCRIPTION": "进入 gkmasmod:温存 。 NL 每次通过卡牌获得 gkmasmod:全力值 时，获得 !M! 点 gkmasmod:全力值 。",
+    "UPGRADE_DESCRIPTION": "进入 gkmasmod:温存2段 。 NL 每次通过卡牌获得 gkmasmod:全力值 时，获得 !M! 点 gkmasmod:全力值 。"
+  },
+  "gkmasMod:SelfEsteemBoost": {
+    "NAME": "自我肯定感爆上↑↑",
+    "DESCRIPTION": "失去 !HP! 点体力。 NL 每打出2张 *技能牌 ，获得 !M2! 点 力量 。",
+    "UPGRADE_DESCRIPTION": "失去 !HP! 点体力。 NL 获得 !M! 点 力量 。 NL 每打出2张 *技能牌 ，获得 !M2! 点 力量 。"
+  },
+  "gkmasMod:BestLook": {
+    "NAME": "超绝好看造型♪",
+    "DESCRIPTION": "获得 !B! 点 格挡 。 NL 获得 !M! 点 敏捷 。 NL 获得 !M2! 层 gkmasmod:好印象 。 NL 消耗 。"
+  },
+  "gkmasMod:DramaticHoliday": {
+    "NAME": "戏剧性的假日",
+    "DESCRIPTION": "本场战斗中，每使用2张 *攻击牌 ，如果 敏捷 不低于 !M2! ，则获得 !M3! 点 格挡 。",
+    "UPGRADE_DESCRIPTION": "获得 !M! 点 敏捷 。 NL 本场战斗中，每使用2张 *攻击牌 ，如果 敏捷 不低于 !M2! ，则获得 !M3! 点 格挡 。"
+  },
+  "gkmasMod:DecorateMagic": {
+    "NAME": "装饰魔法",
+    "DESCRIPTION": "失去 !HP! 点体力 。 NL 获得 !B! 点 格挡 。 NL 获得 !M! 点 gkmasmod:全力值 。 NL 造成累计获得 gkmasmod:全力值 !M2! %的伤害。 NL 消耗 。"
+  },
+  "gkmasMod:LightNostalgia": {
+    "NAME": "轻微的怀念",
+    "DESCRIPTION": "失去 !HP! 点体力 。 NL gkmasmod:好印象 不低于 !M! 时，才可使用。 NL 获得 !B! 点 格挡 和 !M2! 点 敏捷 。 NL 抽牌堆和弃牌堆中每有1张牌，获得 !M3! 层 gkmasmod:好印象 。 NL 消耗 。"
+  },
+  "gkmasMod:Reversal": {
+    "NAME": "逆转",
+    "DESCRIPTION": "失去 !M! 点 gkmasmod:全力值 。 NL 进入 gkmasmod:温存 。 NL 获得 !M2! 层 gkmasmod:热意 gkmasmod:追加 。 NL 消耗 。",
+    "UPGRADE_DESCRIPTION": "失去 !M! 点 gkmasmod:全力值 。 NL 进入 gkmasmod:温存 。 NL 获得 !M2! 层 gkmasmod:热意 gkmasmod:追加 。"
+  },
+  "gkmasMod:Reversal_Effect0": {
+    "NAME": "逆转",
+    "DESCRIPTION": "失去 !M! 点 gkmasmod:全力值 。 NL 进入 gkmasmod:温存2段 。 NL 获得 !M2! 层 gkmasmod:热意 gkmasmod:追加 。"
+  },
+  "gkmasMod:BambooCrush": {
+    "NAME": "破竹之势",
+    "DESCRIPTION": "gkmasmod:好调 不低于 !M! 时，才可使用。 NL 获得 !M2! 点 力量 。 NL 每回合开始时，对所有敌人造成 !M3! 点伤害并施加1层 gkmasmod:不调 。"
+  },
+  "gkmasMod:PaceDistribute": {
+    "NAME": "节奏分配",
+    "DESCRIPTION": "造成 !D! 点伤害。 NL 每有1层 gkmasmod:绝好调 ，抽 !M! 张牌，丢弃 !M2! 张牌。 (最多触发 !M3! 次) NL 消耗 。"
+  },
+  "gkmasMod:TheGenius": {
+    "NAME": "天赋之才",
+    "DESCRIPTION": "失去 !HP! 点体力。 NL 获得 !M! 点 力量 和 !M2! 层 gkmasmod:好调 。 NL 将抽牌堆和弃牌堆中随机 !M3! 张彩色牌加入抽牌堆顶部。 NL 下回合开始时， gkmasmod:再动 。 NL 消耗 。"
+  },
+  "gkmasMod:TheGenius_Effect0": {
+    "NAME": "天赋之才",
+    "DESCRIPTION": "失去 !HP! 点体力。 NL 获得 !M! 点 力量 和 !M2! 层 gkmasmod:好调 。 NL 从抽牌堆和弃牌堆中选择 !M3! 张牌加入抽牌堆顶部。 NL 下回合开始时， gkmasmod:再动 。 NL 消耗 。"
+  },
+  "gkmasMod:SenseOfAccomplishment": {
+    "NAME": "达成感",
+    "DESCRIPTION": "进入 gkmasmod:温存 。 NL 本场战斗内，每回合首次退出 gkmasmod:全力 时，进入 gkmasmod:温存 。 NL gkmasmod:唯一 。",
+    "UPGRADE_DESCRIPTION" : "进入 gkmasmod:温存 。 NL 本场战斗内，每回合首次退出 gkmasmod:全力 时，进入 gkmasmod:温存 。 NL gkmasmod:再动 。 NL gkmasmod:唯一 。"
+  },
+  "gkmasMod:SenseOfAccomplishment_Effect0": {
+    "NAME": "达成感",
+    "DESCRIPTION": "进入 gkmasmod:温存 。 NL 本场战斗内，每次退出 gkmasmod:全力 时，进入 gkmasmod:温存 。 NL gkmasmod:再动 。 NL gkmasmod:唯一 。"
+  },
+  "gkmasMod:SenseOfAccomplishment_Effect1": {
+    "NAME": "达成感",
+    "DESCRIPTION": "进入 gkmasmod:温存2段 。 NL 本场战斗内，每回合首次退出 gkmasmod:全力 时，进入 gkmasmod:温存 。 NL gkmasmod:再动 。 NL gkmasmod:唯一 。"
+  },
+  "gkmasMod:GoForIt": {
+    "NAME": "放手去做吧♪",
+    "DESCRIPTION": "获得 !M! 层 gkmasmod:好调 和 !M2! 层 gkmasmod:绝好调 。 NL gkmasmod:绝好调 不低于 !HP! 时，造成 gkmasmod:好调 层数 !M3! %的伤害。"
+  },
+  "gkmasMod:StayGritty": {
+    "NAME": "保持这份泥泞！",
+    "DESCRIPTION": "进入 gkmasmod:强气 。 NL 造成 !D! 点伤害，获得 !B! 点 格挡 。 NL gkmasmod:成长 !GROW! ：进入 gkmasmod:强气 时，获得 gkmasmod:伤害增加 !M! 。 NL 消耗 。",
+    "UPGRADE_DESCRIPTION": "进入 gkmasmod:强气 。 NL 造成 !D! 点伤害，获得 !B! 点 格挡 。 NL 回合结束时，进入 gkmasmod:温存 。 NL gkmasmod:成长 !GROW! ：进入 gkmasmod:强气 时，获得 gkmasmod:伤害增加 !M! 。 NL 消耗 。"
+  },
+  "gkmasMod:FirstGodArrival": {
+    "NAME": "初次神降临",
+    "DESCRIPTION": "获得 !M! 点 力量 。 NL 获得 !M2! 层 gkmasmod:好调 。 NL 消耗 。"
+  },
+  "gkmasMod:FirstBreath": {
+    "NAME": "初次气息",
+    "DESCRIPTION": "获得 !B! 点 格挡 。 NL 获得 !M! 点 敏捷 。 NL 消耗 。"
+  },
+  "gkmasMod:FirstAmbition": {
+    "NAME": "最初的野望",
+    "DESCRIPTION": " !M! 回合内，回合结束时对随机敌人造成 格挡 层数 !M2! % 的伤害。"
+  },
+  "gkmasMod:IUpYouDown": {
+    "NAME": "我在上面你在下面",
+    "DESCRIPTION": "丢弃此卡左侧所有牌，抽 !M! 张牌。"
+  },
+  "gkmasMod:WhatRelation": {
+    "NAME": "到底是什么关系",
+    "DESCRIPTION": "失去体力或受到攻击次数每累计 !M! 次，抽 !M2! 张牌。"
+  },
+  "gkmasMod:MasterKey": {
+    "NAME": "万能钥匙",
+    "DESCRIPTION": "不能被打出 。 NL 位于手牌时，无视手牌的打出限制。 NL 虚无 。"
+  },
+  "gkmasMod:DownFightUp": {
+    "NAME": "以下克上",
+    "DESCRIPTION": "？？？"
+  },
+  "gkmasMod:UpToSky": {
+    "NAME": "直冲云霄",
+    "DESCRIPTION": "获得 !M! 层 gkmasmod:好印象 和 !M2! 层 gkmasmod:受伤剧增 。 NL gkmasmod:好印象 伤害增加 !M3! %。 NL gkmasmod:再动 。"
+  },
+  "gkmasMod:WorldFirstCourage": {
+    "NAME": "世界第一勇气",
+    "DESCRIPTION": "造成 gkmasmod:好调 层数 !M! %的伤害。 NL 失去所有 gkmasmod:好调 。 NL 消耗 。"
+  },
+  "gkmasMod:InYouFindWorld": {
+    "NAME": "在你所发现的世界里",
+    "DESCRIPTION": "获得 gkmasmod:好调 层数 !M! %的 力量 。 NL 消耗 。"
   }
 }

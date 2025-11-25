@@ -6,7 +6,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
-import gkmasmod.actions.GrowAction;
+import gkmasmod.actions.common.GrowAction;
 import gkmasmod.cardGrowEffect.BlockGrow;
 import gkmasmod.cardGrowEffect.DamageGrow;
 import gkmasmod.utils.NameHelper;

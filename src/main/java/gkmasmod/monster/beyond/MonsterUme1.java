@@ -9,7 +9,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.vfx.SpeechBubble;
-import gkmasmod.actions.GrowAction;
+import gkmasmod.actions.common.GrowAction;
 import gkmasmod.cardGrowEffect.BlockGrow;
 import gkmasmod.cardGrowEffect.DamageGrow;
 import gkmasmod.powers.*;

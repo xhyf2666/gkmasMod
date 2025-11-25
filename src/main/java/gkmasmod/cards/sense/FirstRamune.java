@@ -13,7 +13,7 @@ import com.megacrit.cardcrawl.helpers.CardHelper;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.combat.VerticalImpactEffect;
-import gkmasmod.actions.GoodTuneDamageAction;
+import gkmasmod.actions.common.GoodTuneDamageAction;
 import gkmasmod.cardCustomEffect.ExhaustRemoveCustom;
 import gkmasmod.cardCustomEffect.GoodTuneCustom;
 import gkmasmod.cardCustomEffect.MagicCustom;
@@ -89,10 +89,10 @@ public class FirstRamune extends GkmasCard {
     @Override
     public boolean canUse(AbstractPlayer p, AbstractMonster m) {
         if (AbstractDungeon.player.hasPower(GoodTune.POWER_ID)) {
-            return true;
+            return super.canUse(p, m);
         }
         this.cantUseMessage = CardCrawlGame.languagePack.getUIString("gkmasMod:NotEnoughGoodTune").TEXT[0];
-        return false;
+        return gkmasmod.utils.CardHelper.containsMasterKey();
     }
 
 

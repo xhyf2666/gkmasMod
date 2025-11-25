@@ -160,8 +160,10 @@ public class MisuzuBoss extends CustomMonster {
             IdolCharacter idol = (IdolCharacter) AbstractDungeon.player;
             if(idol.idolData.idolName.equals(IdolData.fktn)){
                 AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(AbstractDungeon.player, this, new GoodImpression(AbstractDungeon.player, -5), -5));
+                AbstractDungeon.effectList.add(new SpeechBubble(this.hb.cX + this.dialogX - 50, this.hb.cY + this.dialogY + 50, 2.0F, DIALOG[3], false));
             }
         }
+
     }
 
     public void takeTurn() {
@@ -329,7 +331,16 @@ public class MisuzuBoss extends CustomMonster {
             super.die();
             onBossVictoryLogic();
             onFinalBossVictoryLogic();
-            AbstractDungeon.effectList.add(new SpeechBubble(this.hb.cX + this.dialogX - 50, this.hb.cY + this.dialogY + 50, 5.0F, DIALOG[1], false));
+            if(AbstractDungeon.player instanceof IdolCharacter){
+                IdolCharacter idol = (IdolCharacter) AbstractDungeon.player;
+                if(idol.idolData.idolName.equals(IdolData.fktn)){
+                    AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(AbstractDungeon.player, this, new GoodImpression(AbstractDungeon.player, -5), -5));
+                    AbstractDungeon.effectList.add(new SpeechBubble(this.hb.cX + this.dialogX - 50, this.hb.cY + this.dialogY + 50, 5.0F, DIALOG[4], false));
+                }
+            }
+            else{
+                AbstractDungeon.effectList.add(new SpeechBubble(this.hb.cX + this.dialogX - 50, this.hb.cY + this.dialogY + 50, 5.0F, DIALOG[1], false));
+            }
             CardCrawlGame.stopClock = true;
             GkmasMod.beat_hmsz++;
             try {

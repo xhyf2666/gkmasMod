@@ -7,11 +7,8 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
-import com.megacrit.cardcrawl.rooms.AbstractRoom;
-import gkmasmod.actions.GainBlockWithPowerAction;
-import gkmasmod.actions.TheWingAction;
+import gkmasmod.actions.common.GainBlockWithPowerAction;
 import gkmasmod.cards.GkmasCardTag;
-import gkmasmod.cards.logic.Restart;
 
 public class TheMarkOfPractice extends CustomRelic {
 

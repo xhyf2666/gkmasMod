@@ -1,17 +1,12 @@
 package gkmasmod.relics;
 import basemod.abstracts.CustomRelic;
 import com.badlogic.gdx.Gdx;
-import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
-import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.actions.common.RelicAboveCreatureAction;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
-import gkmasmod.actions.GainBlockWithPowerAction;
-import gkmasmod.actions.PlasticUmbrellaThatDayAction;
+import gkmasmod.actions.common.GainBlockWithPowerAction;
 import gkmasmod.patches.GameActionManagerPatch;
-import gkmasmod.powers.FullPowerValue;
-import gkmasmod.stances.ConcentrationStance;
 
 public class ContinuousEffort extends CustomRelic {
 

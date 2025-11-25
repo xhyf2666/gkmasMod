@@ -2,7 +2,6 @@ package gkmasmod.cards.anomaly;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
-import com.megacrit.cardcrawl.actions.common.LoseHPAction;
 import com.megacrit.cardcrawl.actions.watcher.ChangeStanceAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
@@ -11,8 +10,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.DrawCardNextTurnPower;
-import com.megacrit.cardcrawl.stances.NeutralStance;
-import gkmasmod.actions.ModifyDamageAction;
+import gkmasmod.actions.common.ModifyDamageAction;
 import gkmasmod.cardCustomEffect.*;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.cards.GkmasCardTag;
@@ -21,10 +19,7 @@ import gkmasmod.powers.FullPowerValue;
 import gkmasmod.powers.HalfDamageReceive;
 import gkmasmod.screen.SkinSelectScreen;
 import gkmasmod.stances.ConcentrationStance;
-import gkmasmod.utils.CustomHelper;
-import gkmasmod.utils.ImageHelper;
-import gkmasmod.utils.NameHelper;
-import gkmasmod.utils.PlayerHelper;
+import gkmasmod.utils.*;
 
 import java.util.ArrayList;
 
@@ -90,9 +85,9 @@ public class StartSmile extends GkmasCard {
     @Override
     public boolean canUse(AbstractPlayer p, AbstractMonster m) {
         if(PlayerHelper.getPowerAmount(p, FullPowerValue.POWER_ID) >= this.magicNumber)
-            return true;
+            return super.canUse(p, m);
         this.cantUseMessage = CardCrawlGame.languagePack.getUIString("gkmasMod:NotEnoughFullPowerValue").TEXT[0];
-        return false;
+        return CardHelper.containsMasterKey();
     }
 
     @Override

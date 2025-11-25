@@ -1,4 +1,6 @@
 package gkmasmod.downfall.relics;
+import gkmasmod.actions.common.ModifyDamageAction;
+import gkmasmod.downfall.charbosses.bosses.AbstractCharBoss;
 import gkmasmod.downfall.charbosses.relics.AbstractCharbossRelic;
 import com.badlogic.gdx.Gdx;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
@@ -8,7 +10,6 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
-import gkmasmod.actions.ModifyDamageRandomEnemyAction;
 import gkmasmod.powers.GoodTune;
 import gkmasmod.relics.ChristmasLion;
 import gkmasmod.utils.PlayerHelper;
@@ -63,11 +64,12 @@ public class CBR_ChristmasLion extends AbstractCharbossRelic {
     public void onTrainRoundRemove() {
 
         if (this.counter < playTimes) {
-            addToBot(new RelicAboveCreatureAction(AbstractDungeon.player, this));
+            addToBot(new RelicAboveCreatureAction(AbstractCharBoss.boss, this));
             this.flash();
-            int damage = (int) (1.0F* PlayerHelper.getPowerAmount(AbstractDungeon.player, GoodTune.POWER_ID) *magicNumber);
-            if(damage>0)
-                addToBot(new ModifyDamageRandomEnemyAction(new DamageInfo(AbstractDungeon.player, damage, DamageInfo.DamageType.NORMAL), AbstractGameAction.AttackEffect.SLASH_VERTICAL));
+            int damage = (int) (1.0F* PlayerHelper.getPowerAmount(AbstractCharBoss.boss, GoodTune.POWER_ID) *magicNumber);
+            if(damage>0){
+                addToBot(new ModifyDamageAction(AbstractDungeon.player, new DamageInfo(AbstractCharBoss.boss, damage, DamageInfo.DamageType.NORMAL), AbstractGameAction.AttackEffect.SLASH_VERTICAL));
+            }
             this.counter++;
             if (this.counter == playTimes)
                 this.grayscale = true;

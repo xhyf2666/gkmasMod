@@ -1,7 +1,6 @@
 package gkmasmod.cards.logic;
 
 import com.evacipated.cardcrawl.mod.stslib.patches.FlavorText;
-import com.megacrit.cardcrawl.actions.common.DrawCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -9,8 +8,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.CardHelper;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import gkmasmod.actions.GoodImpressionDamageAction;
-import gkmasmod.cardCustomEffect.DrawCardCustom;
+import gkmasmod.actions.common.GoodImpressionDamageAction;
 import gkmasmod.cardCustomEffect.MagicCustom;
 import gkmasmod.cardCustomEffect.SecondMagicCustom;
 import gkmasmod.cards.GkmasCard;

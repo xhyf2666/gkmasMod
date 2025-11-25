@@ -102,6 +102,12 @@ public class EffectChangeCustom extends AbstractCardCustomEffect {
             if(!fromCopy)
                 CustomHelper.custom(card,MagicCustom.growID,-1);
         }
+        else if(card instanceof SeizeTheFuture){
+            card.exhaust = false;
+        }
+        else if(card instanceof StarDust){
+            card.exhaust = false;
+        }
     }
 
     @Override
@@ -205,6 +211,15 @@ public class EffectChangeCustom extends AbstractCardCustomEffect {
         else if(card instanceof HeatUp){
             return CardCrawlGame.languagePack.getCardStrings("gkmasMod:HeatUp_Effect0").DESCRIPTION;
         }
+        else if(card instanceof SeizeTheFuture){
+            return CardCrawlGame.languagePack.getCardStrings("gkmasMod:SeizeTheFuture_Effect0").DESCRIPTION;
+        }
+        else if(card instanceof SenseOfAccomplishment){
+            return CardCrawlGame.languagePack.getCardStrings("gkmasMod:SenseOfAccomplishment_Effect0").DESCRIPTION;
+        }
+        else if(card instanceof TheGenius){
+            return CardCrawlGame.languagePack.getCardStrings("gkmasMod:TheGenius_Effect0").DESCRIPTION;
+        }
         return rawDescription;
     }
 
@@ -264,6 +279,12 @@ public class EffectChangeCustom extends AbstractCardCustomEffect {
         }
         else if(card instanceof ComprehensiveArt){
             CustomHelper.removeCustom(card,MagicCustom.growID);
+        }
+        else if(card instanceof SeizeTheFuture){
+            card.exhaust = true;
+        }
+        else if(card instanceof StarDust){
+            card.exhaust = true;
         }
     }
 

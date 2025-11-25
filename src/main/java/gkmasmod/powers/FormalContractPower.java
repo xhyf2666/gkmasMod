@@ -1,7 +1,6 @@
 package gkmasmod.powers;
 
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
@@ -10,14 +9,11 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
-import gkmasmod.actions.ForShiningYouDamageAction;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.cards.GkmasCardTag;
-import gkmasmod.cards.logic.ForShiningYou;
 import gkmasmod.downfall.charbosses.bosses.AbstractCharBoss;
 import gkmasmod.downfall.charbosses.cards.AbstractBossCard;
 import gkmasmod.utils.NameHelper;
-import gkmasmod.utils.PlayerHelper;
 
 public class FormalContractPower extends AbstractPower {
     private static final String CLASSNAME = FormalContractPower.class.getSimpleName();
@@ -74,7 +70,7 @@ public class FormalContractPower extends AbstractPower {
                     this.amount += 1;
                 }
                 else{
-                    this.amount -= 2;
+                    this.amount -= 1;
                     idolColor = gkmasCard.backGroundColor;
                     if(this.amount < 0){
                         this.amount = 0;

@@ -61,6 +61,7 @@ public class BossConfig_jsna2 extends AbstractBossDeckArchetype {
             switch (turn) {
                 case 0:
                     addToList(cardsList, new ENProduceCompetitorGoodTune(),true);
+                    addToList(cardsList, new ENLittleAmbition(),true);
                     addToList(cardsList, new ENDetermination(),extraUpgrades);
                     addToList(cardsList, new ENKingAppear(),true);
                     addToList(cardsList, new ENEyesOfTheScenery(),true);

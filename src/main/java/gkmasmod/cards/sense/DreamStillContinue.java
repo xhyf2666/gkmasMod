@@ -2,18 +2,15 @@ package gkmasmod.cards.sense;
 
 import basemod.helpers.CardModifierManager;
 import com.evacipated.cardcrawl.mod.stslib.patches.FlavorText;
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
-import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.CardHelper;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import gkmasmod.actions.GoodTuneDamageAction;
+import gkmasmod.actions.common.GoodTuneDamageAction;
 import gkmasmod.cardCustomEffect.*;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.cards.GkmasCardTag;
@@ -77,9 +74,9 @@ public class DreamStillContinue extends GkmasCard {
     public boolean canUse(AbstractPlayer p, AbstractMonster m) {
         int count = PlayerHelper.getPowerAmount(p, GoodTune.POWER_ID);
         if (count > 0)
-            return true;
+            return super.canUse(p, m);
         this.cantUseMessage = CardCrawlGame.languagePack.getUIString("gkmasMod:NotEnoughGoodTune").TEXT[0];
-        return false;
+        return gkmasmod.utils.CardHelper.containsMasterKey();
     }
 
     public void applyPowers() {

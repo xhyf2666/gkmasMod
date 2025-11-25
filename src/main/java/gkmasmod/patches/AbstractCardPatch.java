@@ -12,6 +12,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.AbstractCard.CardColor;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.cards.colorless.Chrysalis;
+import com.megacrit.cardcrawl.cards.curses.Normality;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
@@ -25,13 +26,16 @@ import gkmasmod.cardCustomEffect.SecondMagicCustom;
 import gkmasmod.cardCustomEffect.ThirdMagicCustom;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.cards.GkmasCardTag;
+import gkmasmod.cards.idol.MasterKey;
 import gkmasmod.downfall.cards.GkmasBossCard;
 import gkmasmod.modcore.GkmasMod;
 import gkmasmod.powers.CanNotPlayCardPower;
+import gkmasmod.powers.FreePlayPower;
 import gkmasmod.relics.PledgePetal;
 import gkmasmod.relics.PocketBook;
 import gkmasmod.stances.SleepStance;
 import gkmasmod.stances.WakeStance;
+import gkmasmod.utils.CardHelper;
 import gkmasmod.utils.IdolData;
 import gkmasmod.utils.ImageHelper;
 
@@ -92,6 +96,10 @@ public class AbstractCardPatch
         public static SpireReturn<Boolean> Prefix(AbstractCard __instance, AbstractPlayer p, AbstractMonster m) {
             if (__instance.type == AbstractCard.CardType.CURSE&&AbstractDungeon.player.stance.ID.equals(WakeStance.STANCE_ID)){
                 if (__instance.cardPlayable(m) && __instance.hasEnoughEnergy())
+                    return SpireReturn.Return(true);
+            }
+            if(CardHelper.containsMasterKey()){
+                if (__instance.cost!=-2 && __instance.cardPlayable(m) && __instance.hasEnoughEnergy())
                     return SpireReturn.Return(true);
             }
             return SpireReturn.Continue();
@@ -169,6 +177,21 @@ public class AbstractCardPatch
             else if(tag == 2) {
                 sb.draw(ImageHelper.ViTagImg, __instance.current_x - offsetX, __instance.current_y - offsetY, 32.0F, 32.0F, 64.0F, 64.0F, Settings.scale, Settings.scale, 0.0F, 0, 0, 64, 64, false, false);
             }
+        }
+    }
+
+    /**
+     * 复制卡牌时，保留三维TAG
+     */
+    @SpirePatch(clz = AbstractCard.class,method = "freeToPlay")
+    public static class InsertPatchAbstractCard_freeToPlay {
+        @SpireInsertPatch(rloc = 3)
+        public static SpireReturn<?> Insert(AbstractCard __instance) {
+            if (AbstractDungeon.player != null && AbstractDungeon.currMapNode != null &&
+                    (AbstractDungeon.getCurrRoom()).phase == AbstractRoom.RoomPhase.COMBAT &&
+                    AbstractDungeon.player.hasPower(FreePlayPower.POWER_ID))
+                return SpireReturn.Return(true);
+            return SpireReturn.Continue();
         }
     }
 

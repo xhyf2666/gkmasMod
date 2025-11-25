@@ -15,7 +15,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
-import gkmasmod.actions.ModifyDamageAction;
+import gkmasmod.actions.common.ModifyDamageAction;
 import gkmasmod.utils.NameHelper;
 
 public class ListenToMyTrueHeartPower extends AbstractPower {

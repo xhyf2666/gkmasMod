@@ -1,18 +1,14 @@
 package gkmasmod.cards.hmsz;
 
-import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.DrawCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import gkmasmod.actions.DreamPlaceAction;
+import gkmasmod.actions.cardAction.DreamPlaceAction;
 import gkmasmod.cards.GkmasCard;
-import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
-import gkmasmod.powers.WantToSleep;
-import gkmasmod.stances.SleepStance;
 import gkmasmod.utils.ImageHelper;
 import gkmasmod.utils.NameHelper;
 

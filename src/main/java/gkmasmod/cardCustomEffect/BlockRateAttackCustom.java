@@ -6,8 +6,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import gkmasmod.actions.BlockDamageAction;
-import gkmasmod.actions.DexterityPowerDamageAction;
+import gkmasmod.actions.common.BlockDamageAction;
 
 public class BlockRateAttackCustom extends AbstractCardCustomEffect {
 

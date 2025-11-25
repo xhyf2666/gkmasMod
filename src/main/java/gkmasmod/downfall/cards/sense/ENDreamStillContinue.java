@@ -1,32 +1,22 @@
 package gkmasmod.downfall.cards.sense;
 
-import basemod.helpers.CardModifierManager;
 import com.evacipated.cardcrawl.mod.stslib.patches.FlavorText;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.CardHelper;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import gkmasmod.actions.GoodTuneDamageAction;
-import gkmasmod.cardCustomEffect.DrawCardCustom;
-import gkmasmod.cardCustomEffect.MagicCustom;
-import gkmasmod.cardCustomEffect.MoreActionCustom;
-import gkmasmod.cardCustomEffect.SecondMagicCustom;
-import gkmasmod.cards.GkmasCard;
+import gkmasmod.actions.common.GoodTuneDamageAction;
 import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.downfall.bosses.IdolBoss_jsna;
 import gkmasmod.downfall.cards.GkmasBossCard;
-import gkmasmod.downfall.cards.anomaly.ENFinalSpurt;
 import gkmasmod.downfall.charbosses.actions.common.EnemyGainEnergyAction;
 import gkmasmod.downfall.charbosses.bosses.AbstractCharBoss;
 import gkmasmod.powers.GoodTune;
 import gkmasmod.utils.*;
-
-import java.util.ArrayList;
 
 public class ENDreamStillContinue extends GkmasBossCard {
     private static final String CLASSNAME = ENDreamStillContinue.class.getSimpleName();

@@ -134,7 +134,8 @@
   },
   "gkmasMod:PureWhiteFairy": {
     "NAME": "純白の妖精",
-    "DESCRIPTION": "gkmasmod:好印象 !M! を得る。 NL gkmasmod:好印象 の !M2! %分のダメージを与える。 NL 廃棄 。"
+    "DESCRIPTION": "gkmasmod:好印象 !M! を得る。 NL gkmasmod:好印象 の !M2! %分のダメージを与える。 NL 廃棄 。",
+    "FLAVOR": "現在の予想ダメージ：%d"
   },
   "gkmasMod:Wholeheartedly": {
     "NAME": "いっしょけんめい",
@@ -142,15 +143,24 @@
   },
   "gkmasMod:DefeatBigSister": {
     "NAME": "打倒お姉ちゃん",
-    "DESCRIPTION": "HPを !HP! 失う。 NL !B! ブロック を得て、 ブロックの !M! %分のダメージを与える。 NL 廃棄 。"
+    "DESCRIPTION": "HPを !HP! 失う。 NL !B! ブロック を得て、 ブロックの !M! %分のダメージを与える。 NL 廃棄 。",
+    "FLAVOR": "現在の予想ダメージ：%d"
   },
   "gkmasMod:NeverLose": {
     "NAME": "絶対に負けない",
     "DESCRIPTION": "!D! ダメージを与える。 NL 廃棄 。"
   },
+  "gkmasMod:NeverLose_effect0": {
+    "NAME": "絶対に負けない",
+    "DESCRIPTION": "!D! ダメージを与える。 NL *追加ターン を1獲得。 NL 廃棄 。"
+  },
   "gkmasMod:EachPath": {
     "NAME": "それぞれの道",
     "DESCRIPTION": "!D! ダメージを与える。 NL 筋力 !M! を得る。 NL 廃棄 。"
+  },
+  "gkmasMod:EachPath_Effect0": {
+    "NAME": "それぞれの道",
+    "DESCRIPTION": "!D! ダメージを与える、 筋力 !M! を得る。 NL 每ターン終了時に、 HPを !HP! 失う、 すべての敵に !M3! ダメージ。 NL 廃棄 。"
   },
   "gkmasMod:DressedUpInStyle": {
     "NAME": "盛装の華形",
@@ -198,7 +208,8 @@
   },
   "gkmasMod:RefreshingBreak": {
     "NAME": "さっぱりひといき",
-    "DESCRIPTION": "HPを !HP! 失う。 NL !B! ブロック を得る NL ( 敏捷性 効果を !M! %適用)。 NL ブロック の !M2! %分のダメージを与える。 NL gkmasmod:消費体力減少 !M3! を得る。 NL 廃棄 。"
+    "DESCRIPTION": "HPを !HP! 失う。 NL !B! ブロック を得る NL ( 敏捷性 効果を !M! %適用)。 NL ブロック の !M2! %分のダメージを与える。 NL gkmasmod:消費体力減少 !M3! を得る。 NL 廃棄 。",
+    "FLAVOR": "現在の予想ダメージ：%d"
   },
   "gkmasMod:AQuickSip": {
     "NAME": "こくりとひとくち",
@@ -230,6 +241,10 @@
   "gkmasMod:NoDistractions": {
     "NAME": "よそ見はダメ♪",
     "DESCRIPTION": "!B! ブロック と gkmasmod:好印象 !M! を得る。 NL 廃棄 。"
+  },
+  "gkmasMod:NoDistractions_Effect0": {
+    "NAME": "禁止发呆♪",
+    "DESCRIPTION": "!B! ブロック と gkmasmod:好印象 !M! を得る。 NL gkmasmod:好印象 のダメージが 50% 増加する。 NL 廃棄 。"
   },
   "gkmasMod:SeriousHobby": {
     "NAME": "真剣な趣味",
@@ -479,20 +494,20 @@
   },
   "gkmasMod:WishPower": {
     "NAME": "願いの力",
-    "DESCRIPTION": "*アタック カードを使用するたび、 筋力 !M2! を得る。",
-    "UPGRADE_DESCRIPTION": " 筋力 !M! を得る。 NL *アタック カードを使用するたび、 筋力 !M2! を得る。"
+    "DESCRIPTION": "*アタック カードを2枚使用時、 筋力 !M2! を得る。",
+    "UPGRADE_DESCRIPTION": " 筋力 !M! を得る。 NL *アタック カードを2枚使用時、 筋力 !M2! を得る。"
   },
   "gkmasMod:WishPower_Effect0": {
     "NAME": "願いの力",
-    "DESCRIPTION": " 筋力 !M! を得る。 NL 選択： *アタック カード使用時、 筋力 !M2!  or gkmasmod:好調 を得る。"
+    "DESCRIPTION": " 筋力 !M! を得る。 NL 選択： *アタック カードを2枚使用時、 筋力 !M2!  or gkmasmod:好調 を得る。"
   },
   "gkmasMod:WishPowerStrength": {
     "NAME": "願いの力",
-    "DESCRIPTION": " *アタック カードを使用するたび、 筋力 !M2! を得る。"
+    "DESCRIPTION": " *アタック カードを2枚使用時、 筋力 !M2! を得る。"
   },
   "gkmasMod:WishPowerGoodTune": {
     "NAME": "願いの好調",
-    "DESCRIPTION": " *アタック カードを使用するたび、 gkmasmod:好調 !M2! を得る。"
+    "DESCRIPTION": " *アタック カードを2枚使用時、 gkmasmod:好調 !M2! を得る。"
   },
   "gkmasMod:SteadyWill": {
     "NAME": "静かな意志",
@@ -537,8 +552,8 @@
   },
   "gkmasMod:WakuWaku": {
     "NAME": "ワクワクが止まらない",
-    "DESCRIPTION": "*スキル ・ *パワー カードを使うたび、 敏捷性 !M2! を得る。",
-    "UPGRADE_DESCRIPTION": " 敏捷性 !M! を得る。 NL *スキル ・ *パワー カードを使うたび、 敏捷性 !M2! を得る。"
+    "DESCRIPTION": "*スキル ・ *パワー カードを2枚使用時、 敏捷性 !M2! を得る。",
+    "UPGRADE_DESCRIPTION": " 敏捷性 !M! を得る。 NL *スキル ・ *パワー カードを2枚使用時、 敏捷性 !M2! を得る。"
   },
   "gkmasMod:BeforeThePerformance": {
     "NAME": "本番前夜",
@@ -570,7 +585,7 @@
   },
   "gkmasMod:Spotlight": {
     "NAME": "スポットライト",
-    "DESCRIPTION": " HPを !HP! 失う。 NL !B! ブロック を得る。 NL gkmasmod:好調 !M! を得る。"
+    "DESCRIPTION": " HPを !HP! 失う。 NL !B! ブロック を得る。 NL gkmasmod:好調 !M! を得る。 NL 次のターンにカードを !M2! 枚引く。"
   },
   "gkmasMod:GirlHeart": {
     "NAME": "オトメゴコロ",
@@ -752,7 +767,7 @@
   },
   "gkmasMod:Sleepy": {
     "NAME": "眠気",
-    "DESCRIPTION": "ターン終了時、 gkmasmod:不調 !M! 、 脆弱化 を得る。 NL エセリアル 。 廃棄 。"
+    "DESCRIPTION": "ターン終了時、 gkmasmod:不調 !M! 、 脱力 を得る。 NL エセリアル 。 廃棄 。"
   },
   "gkmasMod:WakeUp": {
     "NAME": "Wake up!!",
@@ -764,13 +779,12 @@
   },
   "gkmasMod:KawaiiKawaiiKawaii": {
     "NAME": "可愛いと可愛いで可愛い！",
-    "DESCRIPTION": "カードを !M! 枚引く。 NL 手札すべてを強化する。 NL gkmasmod:再動 。 廃棄 。",
-    "UPGRADE_DESCRIPTION": "カードを !M! 枚引く。 NL 手札すべてを強化する。 NL gkmasmod:再動 。 gkmasmod:使用回数 !M2! 。"
+    "DESCRIPTION": "カードを !M! 枚引く。 NL 手札すべてを強化する。 NL gkmasmod:再動 。 エセリアル 。"
   },
   "gkmasMod:DeliciousFace": {
     "NAME": "心のアルバム",
-    "DESCRIPTION": "カードを !M! 枚引く。 NL 保留。",
-    "UPGRADE_DESCRIPTION": "カードを !M! 枚引く。 NL 次のターン、カードを !M2! 枚引く。 NL 保留。"
+    "DESCRIPTION": "!B! ブロック を得る。 NL カードを !M! 枚引く。 NL 保留。",
+    "UPGRADE_DESCRIPTION": "!B! ブロック を得る。 NL カードを !M! 枚引く。 NL 次のターン、カードを !M2! 枚引く。 NL 保留。"
   },
   "gkmasMod:TurnBack": {
     "NAME": "今はあえて、背を向けて",
@@ -1036,7 +1050,7 @@
   },
   "gkmasMod:SlowGrowth": {
     "NAME": "ゆっくり、一歩ずつ",
-    "DESCRIPTION": "HPを !HP! 失う。 NL 現在の ブロック の !M! %分のダメージを与え、その値と同量の ブロック を得る。 NL gkmasmod:成長 !GROW! 、使用時にカードが更新される。",
+    "DESCRIPTION": "HPを !HP! 失う。 NL 現在の ブロック の !M! %分のダメージを与え、その値と同量の ブロック を得る。",
     "FLAVOR": "現在のダメージ: %d"
   },
   "gkmasMod:SpecialTreasure": {
@@ -1085,7 +1099,7 @@
   },
   "gkmasMod:BlueSenpaiHelp": {
     "NAME": "青先輩の助け",
-    "DESCRIPTION": "*ディフェクト の専用カードから !M! 枚選び、その中から1枚を手札に加える。 NL gkmasmod:除外 。"
+    "DESCRIPTION": "*青先輩 の専用カードから !M! 枚選び、その中から1枚を手札に加える。 NL gkmasmod:除外 。"
   },
   "gkmasMod:CreateYourStyle": {
     "NAME": "自分のスタイル",
@@ -1099,7 +1113,7 @@
   },
   "gkmasMod:Intensely": {
     "NAME": "はげしく",
-    "DESCRIPTION": " gkmasmod:強気 に入る。 NL !D! ダメージを与える。 NL gkmasmod:使用回数 !M! 。"
+    "DESCRIPTION": "gkmasmod:強気 に入る。 NL !D! ダメージを与える。 NL gkmasmod:使用回数 !M! 。"
   },
   "gkmasMod:FinalSpurt": {
     "NAME": "スパート",
@@ -1471,7 +1485,7 @@
   },
   "gkmasMod:HappyChristmas": {
     "NAME": "メリクリで～す♪",
-    "DESCRIPTION": " gkmasmod:好印象 !M! を得る。 NL カードを出すたびに、 敏捷性 !M2! を得る。"
+    "DESCRIPTION": " gkmasmod:好印象 !M! を得る。 NL カードを3枚出すたびに、 敏捷性 !M2! を得る。"
   },
   "gkmasMod:Unpredictable": {
     "NAME": "気まぐれな天気",
@@ -1897,7 +1911,7 @@
   },
   "gkmasMod:RedLeaf": {
     "NAME": "紅葉ランニング",
-    "DESCRIPTION": " !M! 枚カードを引く。 NL gkmasmod:低下状態無効 !M2! を得る。"
+    "DESCRIPTION": " !M! 枚カードを引く。 NL gkmasmod:低下状態無効 !M2! を得る。 廃棄 。"
   },
   "gkmasMod:NotLimit": {
     "NAME": "限界じゃない",
@@ -1905,7 +1919,7 @@
   },
   "gkmasMod:GiveYou": {
     "NAME": "あなたにあげる",
-    "DESCRIPTION": " !M! ターンの間、ターン終了時にランダムな敵に、自身の ブロック の !M2! %分のダメージを与える。"
+    "DESCRIPTION": "!M! ターンの間、ターン終了時にランダムな敵に、自身の ブロック の !M2! %分のダメージを与える。"
   },
   "gkmasMod:GiveYou_Effect0": {
     "NAME": "あなたにあげる",
@@ -1958,7 +1972,8 @@
   },
   "gkmasMod:LittleSun": {
     "NAME": "ちいさなおひさま",
-    "DESCRIPTION": " 敏捷性 を !M! 失う。 NL gkmasmod:好印象 !M2! を得る。 NL gkmasmod:好印象 が10を超える場合、その数の !M3! %分のダメージを与える。 NL 次のターンにカードを1枚引く。"
+    "DESCRIPTION": " 敏捷性 を !M! 失う。 NL gkmasmod:好印象 !M2! を得る。 NL gkmasmod:好印象 が10を超える場合、その数の !M3! %分のダメージを与える。 NL 次のターンにカードを1枚引く。",
+    "FLAVOR": "現在の想定ダメージ：%d"
   },
   "gkmasMod:LittleSun_Effect0": {
     "NAME": "ちいさなおひさま",
@@ -2078,7 +2093,7 @@
   },
   "gkmasMod:HeavyLove": {
     "NAME": "重たい愛",
-    "DESCRIPTION": " !M! 枚引き、そのカードの 廃棄 ・ gkmasmod:除外 効果を削除する。 NL ( *私がスター と *この先ずっと は除く) NL 廃棄 。",
+    "DESCRIPTION": " !M! 枚引き、そのカードの 廃棄 ・ gkmasmod:除外 効果を削除する。 NL ( *私がスター と *この先ずっと は除く) NL gkmasmod:除外 。",
     "FLAVOR": "重い……もちろん、体重のことじゃないよ。"
   },
   "gkmasMod:FormalContract": {
@@ -2100,7 +2115,8 @@
   },
   "gkmasMod:IRemember": {
     "NAME": "思い出した",
-    "DESCRIPTION": "1人の *アイドル を選び、そのすべてのカードを山札に加える。これらはこの戦闘中コスト0になる。 NL 廃棄 。"
+    "DESCRIPTION": "1人の *アイドル を選び、そのすべてのカードを山札に加える。これらはこの戦闘中コスト0になる。 NL 廃棄 。",
+    "FLAVOR": "思い出した、俺は……あっ！"
   },
   "gkmasMod:IDontRemember": {
     "NAME": "思い出せない",
@@ -2112,7 +2128,8 @@
   },
   "gkmasMod:ProducerAlsoIdol": {
     "NAME": "再び輝きを",
-    "DESCRIPTION": "直前に使用した *アイドルカード の効果を再度発動する。 NL 廃棄 。"
+    "DESCRIPTION": "直前に使用した *アイドルカード の効果を再度発動する。 NL 廃棄 。",
+    "UPGRADE_DESCRIPTION": "直前に使用した *アイドルカード の効果を再度発動する。"
   },
   "gkmasMod:AsYourFan": {
     "NAME": "あなたのファンとして",
@@ -2285,7 +2302,8 @@
   },
   "gkmasMod:HeatUp": {
     "NAME": "盛り上げ上手",
-    "DESCRIPTION": "すべての *アタック カードに gkmasmod:ダメージ増加 !M! 、 gkmasmod:ブロック喪失 !M2! を付与する。 NL 次のターンにカードを !M3! 枚引く。 廃棄 。"
+    "DESCRIPTION": "すべての *アタック カードに gkmasmod:ダメージ増加 !M! 、 gkmasmod:ブロック喪失 !M2! を付与する。 NL 次のターンにカードを !M3! 枚引く。 NL 廃棄 。",
+    "UPGRADE_DESCRIPTION": "すべての *アタック カードに gkmasmod:ダメージ増加 !M! 、 gkmasmod:ブロック喪失 !M2! を付与する。 NL 次のターンにカードを !M3! 枚引く。"
   },
   "gkmasMod:HeatUp_Effect0": {
     "NAME": "盛り上げ上手",
@@ -2317,7 +2335,7 @@
   },
   "gkmasMod:NoMatterWhatWorld": {
     "NAME": "どんな世界でも",
-    "DESCRIPTION": " !D! ダメージを与える NL ( 筋力 効果を !M! %適用)。 NL gkmasmod:再動 。 廃棄 。"
+    "DESCRIPTION": " !D! ダメージを与える。 NL ( 筋力 効果を !M! %適用)。 NL gkmasmod:再動 。 廃棄 。"
   },
   "gkmasMod:FightReason": {
     "NAME": "戦う理由",
@@ -2337,6 +2355,238 @@
   },
   "gkmasMod:DreamIdol": {
     "NAME": "憧れのアイドル",
-    "DESCRIPTION": "HP を !HP! 失う。 NL 敏捷性 !M! を得る。 NL 次のターン、 !B! ブロック を得る。 NL この戦闘中、直接効果で  ブロック か !M2! 増加後、 ブロック の !M3! %分のダメージを与える。"
+    "DESCRIPTION": "HP を !HP! 失う。 NL 敏捷性 !M! を得る。 NL 次のターン、 !B! ブロック を得る。 NL この戦闘中、直接効果で ブロック か !M2! 増加後、 ブロック の !M3! %分のダメージを与える。"
+  },
+  "gkmasMod:Sunfaded": {
+    "NAME": "SUNFADED",
+    "DESCRIPTION": "*僕は判断する を1枚手札に加える。 NL 廃棄 時、 gkmasmod:再動 、6セットの *衣装 を山札に加える。 NL 廃棄 。",
+    "UPGRADE_DESCRIPTION": "*僕は判断する+ を1枚手札に加える。 NL 廃棄 時、 gkmasmod:再動 、6セットの *衣装 を山札に加える。 NL 廃棄 。"
+  },
+  "gkmasMod:Sunfaded1": {
+    "NAME": "僕は言う",
+    "DESCRIPTION": ""
+  },
+  "gkmasMod:Sunfaded2": {
+    "NAME": "僕は禁じる",
+    "DESCRIPTION": ""
+  },
+  "gkmasMod:Sunfaded3": {
+    "NAME": "僕は踊る",
+    "DESCRIPTION": ""
+  },
+  "gkmasMod:Sunfaded4": {
+    "NAME": "僕は慄く",
+    "DESCRIPTION": ""
+  },
+  "gkmasMod:Sunfaded5": {
+    "NAME": "僕は覚える",
+    "DESCRIPTION": ""
+  },
+  "gkmasMod:Sunfaded6": {
+    "NAME": "僕は褪せる",
+    "DESCRIPTION": ""
+  },
+  "gkmasMod:Sunfaded1_sp": {
+    "NAME": "僕は言う",
+    "DESCRIPTION": "!B! ブロック を得る。 NL 戦闘終了後、 !M! 点の最大HPを得る。 NL gkmasmod:再動 。"
+  },
+  "gkmasMod:Sunfaded2_sp": {
+    "NAME": "僕は禁じる",
+    "DESCRIPTION": "各ターン終了時、失った体力の !M! % の gkmasmod:固定元気 を得る。"
+  },
+  "gkmasMod:Sunfaded3_sp": {
+    "NAME": "僕は踊る",
+    "DESCRIPTION": "最大HPを !M! 失う。 NL カードを !M2! 枚使用するたびに、 !M3! のブロックを得る。 NL gkmasmod:再動 。"
+  },
+  "gkmasMod:Sunfaded4_sp": {
+    "NAME": "僕は慄く",
+    "DESCRIPTION": "最大HPを !M! 失う。 NL カードを !M2! 枚使用するたびに、全ての敵に !M3! ダメージを与える。 NL gkmasmod:再動 。"
+  },
+  "gkmasMod:Sunfaded5_sp": {
+    "NAME": "僕は覚える",
+    "DESCRIPTION": "この戦闘中、カードを使用するたびに、HPが50%以下なら !M! % のHPを回復する、 gkmasmod:再動 。 NL ( !M2! 回発動可能。各ターン終了時、発動回数が !M3! 増加する)"
+  },
+  "gkmasMod:Sunfaded6_sp": {
+    "NAME": "僕は褪せる",
+    "DESCRIPTION": "HPを失うたびに、全てのカードに gkmasmod:ダメージ増加 !M! を付与する。"
+  },
+  "gkmasMod:Sunfaded7_sp": {
+    "NAME": "僕は生れる",
+    "DESCRIPTION": "神聖 に入る。。 NL 無形 !M! を得る。 NL gkmasmod:再動 。 gkmasmod:除外 。"
+  },
+  "gkmasMod:SunfadedJudge": {
+    "NAME": "僕は判断する",
+    "DESCRIPTION": "山札から !M! 枚のカードを選び、手札に加える。 NL 山札の全ての *衣装 を 廃棄 する。 NL gkmasmod:再動 。 廃棄 。"
+  },
+  "gkmasMod:GiveUp": {
+    "NAME": "GIVE UP",
+    "DESCRIPTION": "HPを !HP! 失う。 NL !M! 枚の *ゴーストアーマー を山札に加える。 NL 廃棄 。"
+  },
+  "gkmasMod:SendEmoji": {
+    "NAME": "うるさい!!!!!!",
+    "DESCRIPTION": "*使用不可。 NL 逃走不可。 NL *デバフ を得るたびに、そのカードが手札にある場合、 HPを !M! 回復する。 NL 保留 。"
+  },
+  "gkmasMod:MaoStartPose": {
+    "NAME": "「起手式」",
+    "DESCRIPTION": "次のカードは消費しない。"
+  },
+  "gkmasMod:MaoUppercut": {
+    "NAME": "「アッパーカット」",
+    "DESCRIPTION": "!D! ダメージを与える。 NL 脱力 と 弱体 !M! を与える。 NL 直前に使用したカードが *パワー の場合、 *「ドロップキック」 or *「ヒールフック」 を1枚手札に加える。 NL 廃棄 。"
+  },
+  "gkmasMod:MaoDropkick": {
+    "NAME": "「ドロップキック」",
+    "DESCRIPTION": "!D! ダメージを与える。 NL 敵が 弱体 の場合、 gkmasmod:再動 、カードを1枚引く。 NL gkmasmod:成長 ：使用時、直前に使用したカードが *アタック の場合、 gkmasmod:ダメージ増加 !M! を付与する。"
+  },
+  "gkmasMod:MaoHeelHook": {
+    "NAME": "「ヒールフック」",
+    "DESCRIPTION": "!D! ダメージを与える、 !B! ブロック を得る。 NL 敵が 脱力 の場合、 gkmasmod:再動 、カードを1枚引く。 NL gkmasmod:成長 ：使用時、直前に使用したカードが *スキル の場合、 gkmasmod:ブロック増加 !M! を付与する。"
+  },
+  "gkmasMod:DriveAttack": {
+    "NAME": "(ﾟ∀ﾟ)！",
+    "DESCRIPTION": "全ての敵に !D! ダメージを与える。 NL とどめを刺した場合、 !M! ゴールドを得る。 NL 天賦 。 廃棄 。"
+  },
+  "gkmasMod:NeverEndIdol": {
+    "NAME": "NEVER END I∞L",
+    "DESCRIPTION": "このターン、 gkmasmod:訓練時間 は減少しない。 NL gkmasmod:重複不可 。 廃棄 。",
+    "UPGRADE_DESCRIPTION": "このターン、 gkmasmod:訓練時間 は減少しない。 NL gkmasmod:重複不可 。"
+  },
+  "gkmasMod:NoMoreHesitation": {
+    "NAME": "もうためらわない",
+    "DESCRIPTION": "HPを !HP! 失う。 NL 直接効果で 筋力 が !M! 以上増加後、 ランダムな敵に !D! ダメージを与える NL ( 筋力 効果を !M2! %適用)。"
+  },
+  "gkmasMod:TowardsTheSun": {
+    "NAME": "日が差す方へ",
+    "DESCRIPTION": "gkmasmod:強気 の場合、使用可。 NL HPを !HP! 失う 、 !B! ブロック を得る、 gkmasmod:温存 に入る、 gkmasmod:熱意 gkmasmod:追加 !M! を得る、 gkmasmod:体力喪失 !M2! を付与する。"
+  },
+  "gkmasMod:TowardsTheSun_Effect0": {
+    "NAME": "日が差す方へ",
+    "DESCRIPTION": "HPを !HP! 失う 、 !B! ブロック を得る、 gkmasmod:温存 に入る、 gkmasmod:熱意 gkmasmod:追加 !M! を得る、 gkmasmod:体力喪失 !M2! を付与する。"
+  },
+  "gkmasMod:SeizeTheFuture": {
+    "NAME": "つかみ取った未来",
+    "DESCRIPTION": "!B! ブロック を得る、 gkmasmod:好印象 !M! を得る。 NL gkmasmod:成長 ：カードを使用時、このカードに gkmasmod:ブロック増加 !M2! を付与する。 NL 廃棄 。"
+  },
+  "gkmasMod:SeizeTheFuture_Effect0": {
+    "NAME": "つかみ取った未来",
+    "DESCRIPTION": "!B! ブロック を得る、 gkmasmod:好印象 !M! を得る。 NL gkmasmod:成長 ：カードを使用時、このカードに gkmasmod:ブロック増加 !M2! を付与する。 NL gkmasmod:使用回数 !M3! 。"
+  },
+  "gkmasMod:UntilMorningFills": {
+    "NAME": "朝が満たすまで",
+    "DESCRIPTION": "gkmasmod:好調 !M! を失う、 筋力 !M2! を得る。 NL 次のターン、 gkmasmod:好調 !M3! を得る、 gkmasmod:再動 。 NL 廃棄 。"
+  },
+  "gkmasMod:TheMomentWaitFor": {
+    "NAME": "待ち望んだ瞬間",
+    "DESCRIPTION": "gkmasmod:温存 に入る。 NL 直接効果で gkmasmod:全力値 か増加後、 gkmasmod:全力値 !M! を得る。",
+    "UPGRADE_DESCRIPTION": "gkmasmod:温存・2段階目 に入る。 NL 直接効果で gkmasmod:全力値 か増加後、 gkmasmod:全力値 !M! を得る。"
+  },
+  "gkmasMod:SelfEsteemBoost": {
+    "NAME": "自己肯定感爆上げ↑↑",
+    "DESCRIPTION": "HPを !HP! 失う。 NL *スキル カードを2枚使用時、 筋力 !M2! を得る。",
+    "UPGRADE_DESCRIPTION": "HPを !HP! 失う、 筋力 !M! を得る。 NL *スキル カードを2枚使用時、 筋力 !M2! を得る。"
+  },
+  "gkmasMod:BestLook": {
+    "NAME": "爆盛れ最強ルック♪",
+    "DESCRIPTION": "!B! ブロック を得る、 gkmasmod:好印象 !M! を得る。 NL 廃棄 。"
+  },
+  "gkmasMod:DramaticHoliday": {
+    "NAME": "ドラマチックホリデー",
+    "DESCRIPTION": " *アタック カードを2枚使用時、 敏捷性 が !M2! 以上の場合、 !M3! ブロック を得る。",
+    "UPGRADE_DESCRIPTION": "敏捷性 !M! を得る。 NL *アタック カードを2枚使用時、 敏捷性 が !M2! 以上の場合、 !M3! ブロック を得る。"
+  },
+  "gkmasMod:DecorateMagic": {
+    "NAME": "でこれーとまじっく",
+    "DESCRIPTION": "HPを !HP! 失う、 !B! ブロック を得る、 gkmasmod:全力値 !M! を得る。 NL 合計 gkmasmod:全力値 の !M2! %分のダメージを与える。 NL 廃棄 。"
+  },
+  "gkmasMod:LightNostalgia": {
+    "NAME": "微熱ノスタルジー",
+    "DESCRIPTION": "gkmasmod:好印象 が !M2! 以上の場合、使用可。 NL HPを !HP! 失う、 !B! ブロック を得る、 敏捷性 !M2! を得る。 NL 山札か捨札にあるスキルカード1枚ごとに、 gkmasmod:好印象 !M3! を得る。 NL 廃棄 。"
+  },
+  "gkmasMod:Reversal": {
+    "NAME": "巻き返し",
+    "DESCRIPTION": "gkmasmod:全力値 !M! を失う。 NL gkmasmod:温存 に入る、 gkmasmod:熱意 gkmasmod:追加 !M2! を得る。 NL 廃棄 。",
+    "UPGRADE_DESCRIPTION": "gkmasmod:全力値 !M! を失う。 NL gkmasmod:温存 に入る、 gkmasmod:熱意 gkmasmod:追加 !M2! を得る。"
+  },
+  "gkmasMod:Reversal_Effect0": {
+    "NAME": "巻き返し",
+    "DESCRIPTION": "gkmasmod:全力値 !M! を失う。 NL gkmasmod:温存・2段階目 に入る、 gkmasmod:熱意 gkmasmod:追加 !M2! を得る。"
+  },
+  "gkmasMod:BambooCrush": {
+    "NAME": "破竹の勢い",
+    "DESCRIPTION": "gkmasmod:好調 が !M! 以上の場合、使用可。 NL 筋力 !M2! を得る。 NL 毎ターン開始時、 すべての敵に !M3! ダメージ· gkmasmod:不調 を !M! ずつ与える。"
+  },
+  "gkmasMod:PaceDistribute": {
+    "NAME": "ペース配分",
+    "DESCRIPTION": "!D! ダメージを与える。 NL gkmasmod:絶好調 が1つあるごとに、カードを !M! 枚引き、!M2! 枚捨てる（最大で !M3! 回まで発動） NL 廃棄 。"
+  },
+  "gkmasMod:TheGenius": {
+    "NAME": "天賦の才",
+    "DESCRIPTION": "HPを !HP! 失う、 筋力 !M! を得る、 gkmasmod:好調 !M2! を得る。 NL 山札と捨て札からランダムに !M3! 枚のSSRカードを山札の一番上に加える。 NL 次のターン、 gkmasmod:再動 。 NL 廃棄 。"
+  },
+  "gkmasMod:TheGenius_Effect0": {
+    "NAME": "天賦の才",
+    "DESCRIPTION": "HPを !HP! 失う、 筋力 !M! を得る、 gkmasmod:好調 !M2! を得る。 NL 山札と捨て札から !M3! 枚のSSRカードを選び山札の一番上に加える。 NL 次のターン、 gkmasmod:再動 。 NL 廃棄 。"
+  },
+  "gkmasMod:SenseOfAccomplishment": {
+    "NAME": "達成感",
+    "DESCRIPTION": "gkmasmod:温存 に入る。 NL 每ターンで最初に gkmasmod:全力 を解除した時、 gkmasmod:温存 に入る。 NL gkmasmod:重複不可 。",
+    "UPGRADE_DESCRIPTION": "gkmasmod:温存 に入る、 gkmasmod:再動 。 NL 每ターンで最初に gkmasmod:全力 を解除した時、 gkmasmod:温存 に入る。 NL gkmasmod:重複不可 。"
+  },
+  "gkmasMod:SenseOfAccomplishment_Effect0": {
+    "NAME": "達成感",
+    "DESCRIPTION": "gkmasmod:温存 に入る、 gkmasmod:再動 。 NL 每ターンで gkmasmod:全力 を解除した時、 gkmasmod:温存 に入る。 NL gkmasmod:重複不可 。"
+  },
+  "gkmasMod:SenseOfAccomplishment_Effect1": {
+    "NAME": "達成感",
+    "DESCRIPTION": "gkmasmod:温存・2段階目 に入る、 gkmasmod:再動 。 NL 每ターンで最初に gkmasmod:全力 を解除した時、 gkmasmod:温存 に入る。 NL gkmasmod:重複不可 。"
+  },
+  "gkmasMod:GoForIt": {
+    "NAME": "かましちゃえ♪",
+    "DESCRIPTION": "gkmasmod:好調 !M! を得る、 gkmasmod:絶好調 !M2! を得る。 NL gkmasmod:絶好調 が !HP! 以上の場合、 gkmasmod:好調 の !M! %分のダメージを与える。"
+  },
+  "gkmasMod:StayGritty": {
+    "NAME": "泥臭くあれ！",
+    "DESCRIPTION": "gkmasmod:強気 に入る、 !D! ダメージを与える、 !B! ブロック を得る。 NL gkmasmod:成長 !GROW! ： gkmasmod:強気 強気 に入るたびに、 gkmasmod:ダメージ増加 !M2! 。 NL 廃棄 。",
+    "UPGRADE_DESCRIPTION": "gkmasmod:強気 に入る、 !D! ダメージを与える、 !B! ブロック を得る。 NL ターン終了時に、 gkmasmod:温存 に入る。 NL gkmasmod:成長 !GROW! ： gkmasmod:強気 強気 に入るたびに、 gkmasmod:ダメージ増加 !M2! 。 NL 廃棄 。"
+  },
+  "gkmasMod:FirstGodArrival": {
+    "NAME": "初めての神降臨",
+    "DESCRIPTION": "gkmasmod:筋力 !M! を得る、 gkmasmod:好調 !M2! を得る。 NL 廃棄 。"
+  },
+  "gkmasMod:FirstBreath": {
+    "NAME": "初めての息",
+    "DESCRIPTION": "!B! ブロック を得る、 敏捷性 !M! を得る。 NL 廃棄 。"
+  },
+  "gkmasMod:FirstAmbition": {
+    "NAME": "初めての野望",
+    "DESCRIPTION": " !M! ターンの間、ターン終了時にランダムな敵に、自身の ブロック の !M2! %分のダメージを与える。"
+  },
+  "gkmasMod:IUpYouDown": {
+    "NAME": "私が上で、あなたが下",
+    "DESCRIPTION": "このカードの左側にあるすべてのカードを捨て、 !M! 枚のカードを引く。"
+  },
+  "gkmasMod:WhatRelation": {
+    "NAME": "到底是什么关系",
+    "DESCRIPTION": "失去体力或受到攻击次数每累计 !M! 次，抽 !M2! 张牌。"
+  },
+  "gkmasMod:MasterKey": {
+    "NAME": "万能の鍵",
+    "DESCRIPTION": "使用できない。 NL 手札にある場合、手札の使用制限を無視する。 NL エセリアル。"
+  },
+  "gkmasMod:DownFightUp": {
+    "NAME": "以下克上",
+    "DESCRIPTION": "？？？"
+  },
+  "gkmasMod:UpToSky": {
+    "NAME": "空まで一直線",
+    "DESCRIPTION": "gkmasmod:好印象 !M! を得る、 gkmasmod:消費体力増加 !M2! を得る。 NL gkmasmod:好印象 のダメージが !M3! %増加する。 NL gkmasmod:再動 。"
+  },
+  "gkmasMod:WorldFirstCourage": {
+    "NAME": "世界一の勇気",
+    "DESCRIPTION": "gkmasmod:好調 の !M! %分のダメージを与える。 NL すべての gkmasmod:好調 を失う。 NL 廃棄 。"
+  },
+  "gkmasMod:InYouFindWorld": {
+    "NAME": "見つけた世界で",
+    "DESCRIPTION": "gkmasmod:好調 の !M! %分の 筋力 を得る。 NL 廃棄 。"
   }
 }

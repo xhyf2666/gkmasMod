@@ -21,10 +21,8 @@ import com.megacrit.cardcrawl.helpers.input.InputHelper;
 import com.megacrit.cardcrawl.localization.PotionStrings;
 import com.megacrit.cardcrawl.potions.AbstractPotion;
 import com.megacrit.cardcrawl.powers.AbstractPower;
-import gkmasmod.actions.BattlePracticeAction;
 import gkmasmod.powers.HalfDamageReceive;
 import gkmasmod.stances.ConcentrationStance;
-import gkmasmod.stances.PreservationStance;
 import gkmasmod.utils.NameHelper;
 
 import java.util.Iterator;

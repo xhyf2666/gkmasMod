@@ -8,14 +8,12 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import gkmasmod.actions.BattlePracticeAction;
-import gkmasmod.actions.GainTrainRoundPowerAction;
+import gkmasmod.actions.cardAction.BattlePracticeAction;
 import gkmasmod.cardCustomEffect.*;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.powers.FullPowerValue;
-import gkmasmod.powers.StanceLock;
 import gkmasmod.screen.SkinSelectScreen;
 import gkmasmod.utils.CustomHelper;
 import gkmasmod.utils.ImageHelper;
@@ -61,6 +59,7 @@ public class Determination extends GkmasCard {
         this.exhaust = true;
         this.tags.add(GkmasCardTag.FULL_POWER_TAG);
         this.tags.add(GkmasCardTag.OUTSIDE_TAG);
+        this.tags.add(GkmasCardTag.COST_HP_TAG);
         this.customLimit = 1;
         this.customEffectList = new ArrayList<>();
         this.customEffectList.add(CustomHelper.generateCustomEffectList(HPMagicCustom.growID, new int[]{-2}, new int[]{60}, CustomHelper.CustomEffectType.HP_REDUCE));
@@ -71,7 +70,9 @@ public class Determination extends GkmasCard {
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
         addToBot(new ApplyPowerAction(p,p,new FullPowerValue(p,this.magicNumber),this.magicNumber));
-        addToBot(new LoseHPAction(p,p,this.HPMagicNumber));
+        if(this.HPMagicNumber > 0){
+            addToBot(new LoseHPAction(p,p,this.HPMagicNumber));
+        }
         addToBot(new GainBlockAction(p,p,this.block));
         addToBot(new BattlePracticeAction(this.secondMagicNumber));
     }

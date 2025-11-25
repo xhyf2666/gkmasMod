@@ -2,20 +2,16 @@ package gkmasmod.downfall.cards.sense;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
-import com.megacrit.cardcrawl.actions.common.DrawCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import gkmasmod.actions.EnemyDrawAction;
-import gkmasmod.cards.GkmasCard;
+import gkmasmod.actions.special.EnemyDrawAction;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.downfall.bosses.IdolBoss_jsna;
 import gkmasmod.downfall.cards.GkmasBossCard;
-import gkmasmod.downfall.cards.free.ENSleepLate;
-import gkmasmod.downfall.charbosses.bosses.AbstractCharBoss;
 import gkmasmod.utils.NameHelper;
 
 public class ENServiceSpirit extends GkmasBossCard {

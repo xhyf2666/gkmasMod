@@ -8,13 +8,12 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import gkmasmod.cardCustomEffect.CostCustom;
-import gkmasmod.cardCustomEffect.ExhaustRemoveCustom;
 import gkmasmod.cardCustomEffect.InnateCustom;
 import gkmasmod.cardCustomEffect.MagicCustom;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
-import gkmasmod.powers.EnthusiasticAddPower;
+import gkmasmod.powers.increaseModifyPower.EnthusiasticAddPower;
 import gkmasmod.stances.PreservationStance;
 import gkmasmod.utils.*;
 

@@ -8,7 +8,6 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import gkmasmod.actions.GainTrainRoundPowerAction;
 import gkmasmod.cardCustomEffect.*;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.cards.GkmasCardTag;
@@ -32,7 +31,7 @@ public class SkipWater extends GkmasCard {
     private static final int BLOCK_AMT = 5;
     private static final int UPGRADE_PLUS_BLOCK = 3;
 
-    private static final int BASE_HP = 2;
+    private static final int BASE_HP = 1;
 
     private static final CardType TYPE = CardType.SKILL;
     private static final CardColor COLOR = PlayerColorEnum.gkmasModColor;
@@ -45,6 +44,7 @@ public class SkipWater extends GkmasCard {
         this.HPMagicNumber = this.baseHPMagicNumber;
         this.baseBlock = BLOCK_AMT;
         this.tags.add(GkmasCardTag.MORE_ACTION_TAG);
+        this.tags.add(GkmasCardTag.COST_HP_TAG);
         CardModifierManager.addModifier(this,new MoreActionCustom(1));
         this.customLimit = 2;
         this.customEffectList = new ArrayList<>();
@@ -55,7 +55,9 @@ public class SkipWater extends GkmasCard {
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        addToBot(new LoseHPAction(p, p, this.HPMagicNumber));
+        if(this.HPMagicNumber > 0){
+            addToBot(new LoseHPAction(p,p,this.HPMagicNumber));
+        }
         addToBot(new GainBlockAction(p, p, this.block));
 //        addToBot(new GainTrainRoundPowerAction(p,  1));
     }

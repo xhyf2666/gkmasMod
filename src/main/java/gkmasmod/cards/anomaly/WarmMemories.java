@@ -1,6 +1,5 @@
 package gkmasmod.cards.anomaly;
 
-import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.DrawCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -8,18 +7,14 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.stances.NeutralStance;
-import gkmasmod.actions.PotentialAbilityAction;
-import gkmasmod.cardCustomEffect.BlockCustom;
+import gkmasmod.actions.cardAction.PotentialAbilityAction;
 import gkmasmod.cardCustomEffect.FullPowerValueCustom;
 import gkmasmod.cardCustomEffect.SecondMagicCustom;
-import gkmasmod.cardCustomEffect.SelfRetainCustom;
 import gkmasmod.cards.GkmasCard;
-import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
-import gkmasmod.powers.FullPowerValue;
+import gkmasmod.utils.CardHelper;
 import gkmasmod.utils.CustomHelper;
 import gkmasmod.utils.NameHelper;
-import gkmasmod.utils.PlayerHelper;
 
 import java.util.ArrayList;
 
@@ -65,9 +60,9 @@ public class WarmMemories extends GkmasCard {
     @Override
     public boolean canUse(AbstractPlayer p, AbstractMonster m) {
         if (!(p.stance instanceof NeutralStance))
-            return true;
+            return super.canUse(p, m);
         this.cantUseMessage = CardCrawlGame.languagePack.getUIString("gkmasMod:NotStance").TEXT[0];
-        return false;
+        return CardHelper.containsMasterKey();
     }
 
     @Override

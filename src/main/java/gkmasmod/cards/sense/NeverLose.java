@@ -1,6 +1,7 @@
 package gkmasmod.cards.sense;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
@@ -9,12 +10,11 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import gkmasmod.cardCustomEffect.DamageCustom;
-import gkmasmod.cardCustomEffect.ExhaustRemoveCustom;
-import gkmasmod.cardCustomEffect.GoodTuneCustom;
+import gkmasmod.cardCustomEffect.*;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
+import gkmasmod.powers.AnotherTurnPower;
 import gkmasmod.utils.CustomHelper;
 import gkmasmod.utils.IdolData;
 import gkmasmod.utils.NameHelper;
@@ -49,8 +49,8 @@ public class NeverLose extends GkmasCard {
         updateBackgroundImg();
         this.customLimit = 1;
         this.customEffectList = new ArrayList<>();
-        this.customEffectList.add(CustomHelper.generateCustomEffectList(DamageCustom.growID, new int[]{5}, new int[]{70}, CustomHelper.CustomEffectType.DAMAGE_ADD));
-        this.customEffectList.add(CustomHelper.generateCustomEffectList(GoodTuneCustom.growID, new int[]{2}, new int[]{80}, CustomHelper.CustomEffectType.GOOD_TUNE_ADD));
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(EffectAddCustom.growID, new int[]{0}, new int[]{222}, CustomHelper.CustomEffectType.EFFECT_ADD));
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(MoreActionCustom.growID, new int[]{1}, new int[]{80}, CustomHelper.CustomEffectType.MORE_ACTION_ADD));
         this.customEffectList.add(CustomHelper.generateCustomEffectList(ExhaustRemoveCustom.growID,new int[]{0},new int[]{80},CustomHelper.CustomEffectType.EXHAUST_REMOVE));
     }
 
@@ -59,7 +59,9 @@ public class NeverLose extends GkmasCard {
     public void use(AbstractPlayer p, AbstractMonster m) {
         addToBot(new DamageAction(m, new DamageInfo(p, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
         SoundHelper.playSound("gkmasModResource/audio/voice/skillcard/cidol_hski_3_000_produce_skillcard_01.ogg");
-
+        if(CustomHelper.hasCustom(this,EffectAddCustom.growID)){
+            addToBot(new ApplyPowerAction(p,p,new AnotherTurnPower(p,1),1));
+        }
     }
 
     @Override

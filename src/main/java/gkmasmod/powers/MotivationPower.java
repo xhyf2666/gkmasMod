@@ -52,7 +52,7 @@ public class MotivationPower extends AbstractPower {
         if(this.owner instanceof AbstractCharBoss&&(!(card instanceof AbstractBossCard)))
             return;
         if(card.hasTag(GkmasCardTag.FULL_POWER_TAG)){
-            addToBot(new ApplyPowerAction(this.owner,this.owner,new FullPowerValue(this.owner,amount),amount));
+            addToBot(new ApplyPowerAction(this.owner,this.owner,new FullPowerValue(this.owner,amount, true),amount));
         }
     }
 }

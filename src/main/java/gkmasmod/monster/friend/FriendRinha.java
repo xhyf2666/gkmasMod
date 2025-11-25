@@ -2,24 +2,14 @@ package gkmasmod.monster.friend;
 
 import basemod.abstracts.CustomMonster;
 import com.badlogic.gdx.graphics.Texture;
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
-import com.megacrit.cardcrawl.actions.common.DamageAction;
-import com.megacrit.cardcrawl.actions.common.DamageRandomEnemyAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
-import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
-import com.megacrit.cardcrawl.powers.BarricadePower;
-import gkmasmod.actions.RinhaAttackAction;
-import gkmasmod.downfall.bosses.AbstractIdolBoss;
-import gkmasmod.downfall.charbosses.bosses.AbstractCharBoss;
 import gkmasmod.patches.AbstractMonsterPatch;
 import gkmasmod.powers.FriendRinhaPower1;
 import gkmasmod.powers.FriendRinhaPower2;
-import gkmasmod.powers.FriendTemariPower1;
 
 public class FriendRinha extends CustomMonster {
 
@@ -38,7 +28,7 @@ public class FriendRinha extends CustomMonster {
     }
 
     public FriendRinha(float x, float y) {
-        this(x, y,1);
+        this(x, y,3);
     }
 
     public FriendRinha(float x, float y, int stage) {

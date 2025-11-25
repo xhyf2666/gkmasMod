@@ -10,7 +10,7 @@ import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.powers.DexterityPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
-import gkmasmod.actions.GainBlockWithPowerAction;
+import gkmasmod.actions.common.GainBlockWithPowerAction;
 import gkmasmod.relics.ClapClapFan;
 
 public class CBR_ClapClapFan extends AbstractCharbossRelic {

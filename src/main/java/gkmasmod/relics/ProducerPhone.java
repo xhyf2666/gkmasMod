@@ -1,29 +1,23 @@
 package gkmasmod.relics;
-import basemod.BaseMod;
 import basemod.abstracts.CustomRelic;
 import com.badlogic.gdx.Gdx;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
-import com.megacrit.cardcrawl.actions.common.GainEnergyAction;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.helpers.controller.CInputActionSet;
 import com.megacrit.cardcrawl.helpers.input.InputHelper;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.watcher.ForesightPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.vfx.SpeechBubble;
-import gkmasmod.actions.GainTrainRoundPowerAction;
+import gkmasmod.actions.common.GainTrainRoundPowerAction;
 import gkmasmod.characters.IdolCharacter;
 import gkmasmod.characters.MisuzuCharacter;
-import gkmasmod.powers.CallMeAnyTimePower;
 import gkmasmod.powers.HalfDamageReceive;
 import gkmasmod.powers.NoPhoneInClassPower;
-import gkmasmod.screen.PocketBookViewScreen;
 import gkmasmod.screen.SkinSelectScreen;
 import gkmasmod.utils.IdolData;
-import gkmasmod.utils.RankHelper;
 import gkmasmod.utils.SoundHelper;
 
 public class ProducerPhone extends CustomRelic {

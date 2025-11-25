@@ -6,8 +6,9 @@ import gkmasmod.cards.anomaly.*;
 import gkmasmod.cards.free.*;
 import gkmasmod.cards.hmsz.AnotherDream;
 import gkmasmod.cards.hmsz.SummerSleepy;
+import gkmasmod.cards.idol.*;
 import gkmasmod.cards.logic.*;
-import gkmasmod.cards.othe.BaseProvocation;
+import gkmasmod.cards.othe.*;
 import gkmasmod.cards.sense.*;
 import gkmasmod.cards.special.FightWill;
 import gkmasmod.relics.*;
@@ -86,7 +87,7 @@ public class IdolData {
     public static final String nasr = "nasr";
 
     /**
-     * 雨夜燕 Amayo Tubame
+     * 雨夜燕 Amayo Tsubame
      */
     public static final String atbm = "atbm";
 
@@ -171,6 +172,7 @@ public class IdolData {
     // 20 初始SR
     // 30 初始SSR
     // 31 solo2
+    // 32 solo3
     // 33 泳装换皮
     // 34 冠菊换皮
     // 35 温泉换皮
@@ -185,282 +187,284 @@ public class IdolData {
     // 45 樱花季换皮
     // 46 团体曲换皮
     // 47 Howling over the World 换皮
+    // 48 奇迹换皮
+    // 49 全力以赴换皮
 
     static {
         idols.put(shro, new Idol(shro,
-                new String[]{"skin10","skin11","skin20","skin30","skin31","skin33","skin34","skin36","skin37","skin38","skin40","skin41","skin43","skin44","skin45","skin47"},
-                new String[]{"skin10","skin11","skin12","skin14","skin13","skin15","skin16","skin17","skin19","skin18","skin23","skin21","skin24","skin25","skin26","skin28"},
-                new String[]{HighlyEducatedIdol.ID,FirstFun.ID, LovesTheStruggle.ID, SeriousHobby.ID, SwayingOnTheBus.ID, SeriousHobby.ID, SeriousHobby.ID,MakeExactSignboard.ID,SeriousHobby.ID, SeriousHobby.ID,Eureka.ID,SeriousHobby.ID,WorkHard.ID,SeriousHobby.ID,SeriousHobby.ID,SeriousHobby.ID},
-                new String[]{UltimateSleepMask.ID,FirstLoveProofHiro.ID, BeginnerGuideForEveryone.ID, SidewalkResearchNotes.ID, TowardsAnUnseenWorld.ID,SidewalkResearchNotes.ID,SidewalkResearchNotes.ID,NaughtyPuppet.ID,SidewalkResearchNotes.ID,SidewalkResearchNotes.ID,SelectedPassion.ID,SidewalkResearchNotes.ID,TheMarkOfPractice.ID,SidewalkResearchNotes.ID,SidewalkResearchNotes.ID,SidewalkResearchNotes.ID},
-                new IdolType[]{IdolType.LOGIC,IdolType.SENSE,IdolType.LOGIC,IdolType.LOGIC,IdolType.SENSE,IdolType.LOGIC,IdolType.LOGIC,IdolType.SENSE,IdolType.LOGIC,IdolType.LOGIC,IdolType.LOGIC,IdolType.LOGIC,IdolType.ANOMALY,IdolType.LOGIC,IdolType.LOGIC,IdolType.LOGIC},
-                new IdolStyle[]{IdolStyle.YARUKI,IdolStyle.FOCUS,IdolStyle.YARUKI,IdolStyle.YARUKI,IdolStyle.FOCUS,IdolStyle.YARUKI,IdolStyle.YARUKI,IdolStyle.GOOD_TUNE,IdolStyle.YARUKI,IdolStyle.YARUKI,IdolStyle.YARUKI,IdolStyle.YARUKI,IdolStyle.FULL_POWER,IdolStyle.YARUKI,IdolStyle.YARUKI,IdolStyle.YARUKI},
+                new String[]{"skin10","skin11","skin20","skin30","skin31","skin32","skin33","skin34","skin36","skin37","skin38","skin40","skin41","skin43","skin44","skin45","skin47","skin48","skin49"},
+                new String[]{"skin10","skin11","skin12","skin63","skin65","skin61","skin15","skin16","skin17","skin19","skin18","skin64","skin21","skin24","skin25","skin20","skin28","skin62","skin31"},
+                new String[]{HighlyEducatedIdol.ID,FirstFun.ID, LovesTheStruggle.ID, SeriousHobby.ID, SwayingOnTheBus.ID,TowardsTheSun.ID, SeriousHobby.ID, SeriousHobby.ID,MakeExactSignboard.ID,SeriousHobby.ID, SeriousHobby.ID,Eureka.ID,SeriousHobby.ID,WorkHard.ID,SeriousHobby.ID,SeriousHobby.ID,SeriousHobby.ID,DecorateMagic.ID,SeriousHobby.ID},
+                new String[]{UltimateSleepMask.ID,FirstLoveProofHiro.ID, BeginnerGuideForEveryone.ID, SidewalkResearchNotes.ID, TowardsAnUnseenWorld.ID,OriginalTicket.ID,SidewalkResearchNotes.ID,SidewalkResearchNotes.ID,NaughtyPuppet.ID,SidewalkResearchNotes.ID,SidewalkResearchNotes.ID,SelectedPassion.ID,SidewalkResearchNotes.ID,TheMarkOfPractice.ID,SidewalkResearchNotes.ID,SidewalkResearchNotes.ID,SidewalkResearchNotes.ID,TakoyakiTechDog.ID,SidewalkResearchNotes.ID},
+                new IdolType[]{IdolType.LOGIC,IdolType.SENSE,IdolType.LOGIC,IdolType.LOGIC,IdolType.SENSE,IdolType.ANOMALY,IdolType.LOGIC,IdolType.LOGIC,IdolType.SENSE,IdolType.LOGIC,IdolType.LOGIC,IdolType.LOGIC,IdolType.LOGIC,IdolType.ANOMALY,IdolType.LOGIC,IdolType.LOGIC,IdolType.LOGIC,IdolType.ANOMALY,IdolType.LOGIC},
+                new IdolStyle[]{IdolStyle.YARUKI,IdolStyle.FOCUS,IdolStyle.YARUKI,IdolStyle.YARUKI,IdolStyle.FOCUS,IdolStyle.CONCENTRATION,IdolStyle.YARUKI,IdolStyle.YARUKI,IdolStyle.GOOD_TUNE,IdolStyle.YARUKI,IdolStyle.YARUKI,IdolStyle.YARUKI,IdolStyle.YARUKI,IdolStyle.FULL_POWER,IdolStyle.YARUKI,IdolStyle.YARUKI,IdolStyle.YARUKI,IdolStyle.FULL_POWER,IdolStyle.YARUKI},
                 new ArrayList<>(Arrays.asList(new String[]{},new String[]{"1"},new String[]{"1","2"}, new String[]{"1","2","3"}, new String[]{"4"}, new String[]{"4"}, new String[]{"4","5"}, new String[]{}, new String[]{"6"}, new String[]{})),
                 new String[]{"1","1","1","1","2","2","2","3","3","3"},
-                new String[]{"1","1","1","2","3","4","5","6","8","7","10","2","11","12","13","14"},
-                new String[]{"all_001","all_001","all_001","shro_001","shro_002","all_003","all_004","all_005","all_006","all_007","all_002","shro_001","all_008","all_009","all_010","all_011"},
-                new String[]{"no","no","no","3_000","3_001","3_003","3_004","3_006","3_007","3_008","3_010","3_000","no","3_012","3_013","3_014"},
+                new String[]{"1","1","1","2","3","23","4","5","6","8","7","10","2","11","12","13","14","15","16"},
+                new String[]{"all_001","all_001","all_001","shro_001","shro_002","shro_023","all_003","all_004","all_005","all_006","all_007","all_002","shro_001","all_008","all_009","all_010","all_011","all_012","all_013"},
+                new String[]{"no","no","no","3_000","3_001","3_002","3_003","3_004","3_006","3_007","3_008","3_010","3_000","no","3_012","3_013","3_014","3_015","3_016"},
                 66,99,new int[]{115,115,80},new float[]{0.27f,0.23f,0.10f},
                 new int[]{1200,1000,800},
                 new int[]{0,1,0},new int[]{300,450,1000},
                 new int[]{9,11,13},
-                new String[]{"1_000","1_001","2_000","3_000","3_001","3_003","3_004","3_006","3_007","3_008","3_010","3_000","3_011","3_012","3_013","3_014"},
+                new String[]{"1_000","1_001","2_000","3_000","3_001","3_002","3_003","3_004","3_006","3_007","3_008","3_010","3_000","3_011","3_012","3_013","3_014","3_015","3_016"},
                 new String[]{"002","003","009"},
-                new String[]{EvenIfDreamNotRealize.ID, NecessaryContrast.ID},
+                new String[]{EvenIfDreamNotRealize.ID, NecessaryContrast.ID, Sunfaded.ID},
                 new String[]{"skin14","skin12","skin18"},
-                new String[]{"","","","","","","","","","",Yeah.ID,"","","","",""},
+                new String[]{"","","","","","","","","","","",Yeah.ID,"","","","","","",""},
                 new String[]{"fire","fire2","fire3"}
         ));
         idols.put(kllj, new Idol(kllj,
-                new String[]{"skin10","skin11","skin20","skin30","skin31","skin33","skin34","skin36","skin37","skin38","skin40","skin41","skin42","skin43","skin44","skin45","skin47"},
-                new String[]{"skin10","skin11","skin12","skin14","skin13","skin15","skin16","skin17","skin19","skin18","skin23","skin21","skin22","skin24","skin25","skin26","skin28"},
-                new String[]{ReservedGirl.ID, FirstGround.ID,PureWhiteFairy.ID, NotAfraidAnymore.ID,KiraKiraPrism.ID, NotAfraidAnymore.ID, FirstRamune.ID,NotAfraidAnymore.ID,NotAfraidAnymore.ID,WithLove.ID,TheScenerySawSomeday.ID,NotAfraidAnymore.ID,NotAfraidAnymore.ID,NotAfraidAnymore.ID,NotAfraidAnymore.ID,AfterSchoolChat.ID,FightReason.ID},
-                new String[]{GreenUniformBracelet.ID, FirstHeartProofLilja.ID,MemoryBot.ID, DreamLifeLog.ID,SmallGalaxy.ID, DreamLifeLog.ID, SparklingInTheBottle.ID, DreamLifeLog.ID,DreamLifeLog.ID,BeyondTheSea.ID,TheDreamSawSomeday.ID,DreamLifeLog.ID,DreamLifeLog.ID,DreamLifeLog.ID,DreamLifeLog.ID,ContinuousEffort.ID,SilvistaAttack.ID},
-                new IdolType[]{IdolType.LOGIC,IdolType.SENSE,IdolType.LOGIC,IdolType.LOGIC,IdolType.ANOMALY,IdolType.LOGIC,IdolType.SENSE,IdolType.LOGIC,IdolType.LOGIC,IdolType.LOGIC,IdolType.SENSE,IdolType.LOGIC,IdolType.LOGIC,IdolType.LOGIC,IdolType.LOGIC,IdolType.ANOMALY,IdolType.LOGIC},
-                new IdolStyle[]{IdolStyle.GOOD_IMPRESSION,IdolStyle.GOOD_TUNE,IdolStyle.GOOD_IMPRESSION,IdolStyle.GOOD_IMPRESSION,IdolStyle.CONCENTRATION,IdolStyle.GOOD_IMPRESSION,IdolStyle.GOOD_TUNE,IdolStyle.GOOD_IMPRESSION,IdolStyle.GOOD_IMPRESSION,IdolStyle.YARUKI,IdolStyle.FOCUS,IdolStyle.GOOD_IMPRESSION,IdolStyle.GOOD_IMPRESSION,IdolStyle.GOOD_IMPRESSION,IdolStyle.GOOD_IMPRESSION,IdolStyle.FULL_POWER,IdolStyle.GOOD_IMPRESSION},
+                new String[]{"skin10","skin11","skin20","skin30","skin31","skin33","skin34","skin36","skin37","skin38","skin40","skin41","skin42","skin43","skin44","skin45","skin47","skin48","skin49"},
+                new String[]{"skin10","skin11","skin12","skin63","skin65","skin15","skin16","skin17","skin19","skin18","skin64","skin21","skin22","skin24","skin25","skin26","skin28","skin20","skin31"},
+                new String[]{ReservedGirl.ID, FirstGround.ID,PureWhiteFairy.ID, NotAfraidAnymore.ID,KiraKiraPrism.ID, NotAfraidAnymore.ID, FirstRamune.ID,NotAfraidAnymore.ID,NotAfraidAnymore.ID,WithLove.ID,TheScenerySawSomeday.ID,NotAfraidAnymore.ID,NotAfraidAnymore.ID,NotAfraidAnymore.ID,NotAfraidAnymore.ID,AfterSchoolChat.ID,FightReason.ID,NotAfraidAnymore.ID,NotAfraidAnymore.ID},
+                new String[]{GreenUniformBracelet.ID, FirstHeartProofLilja.ID,MemoryBot.ID, DreamLifeLog.ID,SmallGalaxy.ID, DreamLifeLog.ID, SparklingInTheBottle.ID, DreamLifeLog.ID,DreamLifeLog.ID,BeyondTheSea.ID,TheDreamSawSomeday.ID,DreamLifeLog.ID,DreamLifeLog.ID,DreamLifeLog.ID,DreamLifeLog.ID,ContinuousEffort.ID,SilvistaAttack.ID,DreamLifeLog.ID,DreamLifeLog.ID},
+                new IdolType[]{IdolType.LOGIC,IdolType.SENSE,IdolType.LOGIC,IdolType.LOGIC,IdolType.ANOMALY,IdolType.LOGIC,IdolType.SENSE,IdolType.LOGIC,IdolType.LOGIC,IdolType.LOGIC,IdolType.SENSE,IdolType.LOGIC,IdolType.LOGIC,IdolType.LOGIC,IdolType.LOGIC,IdolType.ANOMALY,IdolType.LOGIC,IdolType.LOGIC,IdolType.LOGIC},
+                new IdolStyle[]{IdolStyle.GOOD_IMPRESSION,IdolStyle.GOOD_TUNE,IdolStyle.GOOD_IMPRESSION,IdolStyle.GOOD_IMPRESSION,IdolStyle.CONCENTRATION,IdolStyle.GOOD_IMPRESSION,IdolStyle.GOOD_TUNE,IdolStyle.GOOD_IMPRESSION,IdolStyle.GOOD_IMPRESSION,IdolStyle.YARUKI,IdolStyle.FOCUS,IdolStyle.GOOD_IMPRESSION,IdolStyle.GOOD_IMPRESSION,IdolStyle.GOOD_IMPRESSION,IdolStyle.GOOD_IMPRESSION,IdolStyle.FULL_POWER,IdolStyle.GOOD_IMPRESSION,IdolStyle.GOOD_IMPRESSION,IdolStyle.GOOD_IMPRESSION},
                 new ArrayList<>(Arrays.asList(new String[]{},new String[]{"1"},new String[]{"1","2"}, new String[]{}, new String[]{"3"}, new String[]{"3","4"}, new String[]{"3","4","5"}, new String[]{}, new String[]{"6"}, new String[]{})),
                 new String[]{"2","2","2","3","3","3","3","4","4","4"},
-                new String[]{"1","1","1","2","3","4","5","6","8","7","10","2","2","11","12","13","14"},
-                new String[]{"all_001","all_001","all_001","kllj_001","kllj_002","all_003","all_004","all_005","all_006","all_007","all_002","kllj_001","kllj_001","all_008","all_009","all_010","all_011"},
-                new String[]{"no","no","no","3_000","3_001","3_003","3_004","3_006","3_007","3_008","3_010","3_000","3_000","3_011","3_012","3_013","3_014"},
+                new String[]{"1","1","1","2","3","4","5","6","8","7","10","2","2","11","12","13","14","15","16"},
+                new String[]{"all_001","all_001","all_001","kllj_001","kllj_002","all_003","all_004","all_005","all_006","all_007","all_002","kllj_001","kllj_001","all_008","all_009","all_010","all_011","all_012","all_013"},
+                new String[]{"no","no","no","3_000","3_001","3_003","3_004","3_006","3_007","3_008","3_010","3_000","3_000","3_011","3_012","3_013","3_014","3_015","3_016"},
                 74,99,new int[]{75,75,105},new float[]{0.18f,0.25f,0.21f},
                 new int[]{800,1000,1200},
                 new int[]{1,0,2},new int[]{200,450,1000},
                 new int[]{9,12,11},
-                new String[]{"1_000","1_001","2_000","3_000","3_001","3_003","3_004","3_006","3_007","3_008","3_010","3_000","3_000","3_011","3_012","3_013","3_014"},
+                new String[]{"1_000","1_001","2_000","3_000","3_001","3_003","3_004","3_006","3_007","3_008","3_010","3_000","3_000","3_011","3_012","3_013","3_014","3_015","3_016"},
                 new String[]{"002","003","009"},
                 new String[]{YoungDream.ID, GrowthProcess.ID},
                 new String[]{"skin14","skin12","skin18"},
-                new String[]{"","","","","","","","","","","gkmasMod:WarmUp","","","","","",""},
+                new String[]{"","","","","","","","","","","gkmasMod:WarmUp","","","","","","","",""},
                 new String[]{"fire","fire2","fire3"}
         ));
         idols.put(kcna, new Idol(kcna,
-                new String[]{"skin10","skin11","skin20","skin30","skin31","skin33","skin34","skin35","skin36","skin37","skin38","skin40","skin41","skin42","skin43","skin44","skin45","skin47"},
-                new String[]{"skin10","skin11","skin12","skin14","skin13","skin15","skin20","skin17","skin18","skin16","skin19","skin23","skin21","skin22","skin24","skin25","skin26","skin27"},
-                new String[]{FullOfEnergy.ID,FirstColor.ID, Wholeheartedly.ID, DebutStageForTheLady.ID, WelcomeToTeaParty.ID, DebutStageForTheLady.ID, DebutStageForTheLady.ID,AQuickSip.ID,GonnaTrickYou.ID,DebutStageForTheLady.ID,DebutStageForTheLady.ID,ContinuousExpandWorld.ID,DebutStageForTheLady.ID,DebutStageForTheLady.ID,DebutStageForTheLady.ID,LittleSun.ID,DebutStageForTheLady.ID,NextTimeMust.ID},
-                new String[]{WishFulfillmentAmulet.ID, FirstHeartProofChina.ID,CheerfulHandkerchief.ID,SecretTrainingCardigan.ID,HeartFlutteringCup.ID,SecretTrainingCardigan.ID,SecretTrainingCardigan.ID,EnjoyAfterHotSpring.ID,CursedSpirit.ID,SecretTrainingCardigan.ID,SecretTrainingCardigan.ID,DreamOfTheDescription.ID,SecretTrainingCardigan.ID,SecretTrainingCardigan.ID,SecretTrainingCardigan.ID,SpringIsComing.ID,SecretTrainingCardigan.ID,LegendaryIdolEquipment.ID},
-                new IdolType[]{IdolType.LOGIC,IdolType.SENSE,IdolType.LOGIC,IdolType.LOGIC,IdolType.SENSE,IdolType.LOGIC,IdolType.LOGIC,IdolType.SENSE,IdolType.SENSE,IdolType.LOGIC,IdolType.LOGIC,IdolType.LOGIC,IdolType.LOGIC,IdolType.LOGIC,IdolType.LOGIC,IdolType.LOGIC,IdolType.LOGIC,IdolType.ANOMALY},
-                new IdolStyle[]{IdolStyle.YARUKI,IdolStyle.GOOD_TUNE,IdolStyle.YARUKI,IdolStyle.YARUKI,IdolStyle.GOOD_TUNE,IdolStyle.YARUKI,IdolStyle.YARUKI,IdolStyle.FOCUS,IdolStyle.FOCUS,IdolStyle.YARUKI,IdolStyle.YARUKI,IdolStyle.YARUKI,IdolStyle.YARUKI,IdolStyle.YARUKI,IdolStyle.YARUKI,IdolStyle.GOOD_IMPRESSION,IdolStyle.YARUKI,IdolStyle.CONCENTRATION},
+                new String[]{"skin10","skin11","skin20","skin30","skin31","skin32","skin33","skin34","skin35","skin36","skin37","skin38","skin40","skin41","skin42","skin43","skin44","skin45","skin47","skin48","skin49"},
+                new String[]{"skin10","skin11","skin12","skin63","skin65","skin61","skin15","skin20","skin17","skin18","skin16","skin19","skin64","skin21","skin22","skin24","skin25","skin26","skin27","skin20","skin31"},
+                new String[]{FullOfEnergy.ID,FirstColor.ID, Wholeheartedly.ID, DebutStageForTheLady.ID, WelcomeToTeaParty.ID,WorldFirstCourage.ID, DebutStageForTheLady.ID, DebutStageForTheLady.ID,AQuickSip.ID,GonnaTrickYou.ID,DebutStageForTheLady.ID,DebutStageForTheLady.ID,ContinuousExpandWorld.ID,DebutStageForTheLady.ID,DebutStageForTheLady.ID,DebutStageForTheLady.ID,LittleSun.ID,DebutStageForTheLady.ID,NextTimeMust.ID,DebutStageForTheLady.ID,DebutStageForTheLady.ID},
+                new String[]{WishFulfillmentAmulet.ID, FirstHeartProofChina.ID,CheerfulHandkerchief.ID,SecretTrainingCardigan.ID,HeartFlutteringCup.ID,DeliverFeeling.ID,SecretTrainingCardigan.ID,SecretTrainingCardigan.ID,EnjoyAfterHotSpring.ID,CursedSpirit.ID,SecretTrainingCardigan.ID,SecretTrainingCardigan.ID,DreamOfTheDescription.ID,SecretTrainingCardigan.ID,SecretTrainingCardigan.ID,SecretTrainingCardigan.ID,SpringIsComing.ID,SecretTrainingCardigan.ID,LegendaryIdolEquipment.ID,SecretTrainingCardigan.ID,SecretTrainingCardigan.ID},
+                new IdolType[]{IdolType.LOGIC,IdolType.SENSE,IdolType.LOGIC,IdolType.LOGIC,IdolType.SENSE,IdolType.SENSE,IdolType.LOGIC,IdolType.LOGIC,IdolType.SENSE,IdolType.SENSE,IdolType.LOGIC,IdolType.LOGIC,IdolType.LOGIC,IdolType.LOGIC,IdolType.LOGIC,IdolType.LOGIC,IdolType.LOGIC,IdolType.LOGIC,IdolType.ANOMALY,IdolType.LOGIC,IdolType.LOGIC},
+                new IdolStyle[]{IdolStyle.YARUKI,IdolStyle.GOOD_TUNE,IdolStyle.YARUKI,IdolStyle.YARUKI,IdolStyle.GOOD_TUNE,IdolStyle.GOOD_TUNE,IdolStyle.YARUKI,IdolStyle.YARUKI,IdolStyle.FOCUS,IdolStyle.FOCUS,IdolStyle.YARUKI,IdolStyle.YARUKI,IdolStyle.YARUKI,IdolStyle.YARUKI,IdolStyle.YARUKI,IdolStyle.YARUKI,IdolStyle.GOOD_IMPRESSION,IdolStyle.YARUKI,IdolStyle.CONCENTRATION,IdolStyle.YARUKI,IdolStyle.YARUKI},
                 new ArrayList<>(Arrays.asList(new String[]{},new String[]{"1"},new String[]{"1","2"}, new String[]{"1","2"}, new String[]{"1","2","3"}, new String[]{}, new String[]{"4"}, new String[]{"4","5"}, new String[]{}, new String[]{})),
                 new String[]{"2","2","2","2","2","3","3","3","4","4"},
-                new String[]{"1","1","1","2","3","4","5","1","6","8","7","10","2","2","11","12","13","14"},
-                new String[]{"all_001","all_001","all_001","kcna_001","kcna_002","all_003","all_004","all_001","all_005","all_006","all_007","all_002","kcna_001","kcna_001","all_008","all_009","all_010","all_011"},
-                new String[]{"no","no","no","3_000","3_001","3_003","3_004","3_005","no","3_007","3_008","3_010","3_000","3_000","3_011","3_012","3_013","3_014"},
+                new String[]{"1","1","1","2","3","23","4","5","1","6","8","7","10","2","2","11","12","13","14","15","16"},
+                new String[]{"all_001","all_001","all_001","kcna_001","kcna_002","kcna_003","all_003","all_004","all_001","all_005","all_006","all_007","all_002","kcna_001","kcna_001","all_008","all_009","all_010","all_011","all_012","all_013"},
+                new String[]{"no","no","no","3_000","3_001","3_002","3_003","3_004","3_005","no","3_007","3_008","3_010","3_000","3_000","3_011","3_012","3_013","3_014","3_015","3_016"},
                 68,200,new int[]{75,110,115},new float[]{0.10f,0.28f,0.22f},
                 new int[]{700,1350,950},
                 new int[]{0,2,1},new int[]{200,450,1000},
                 new int[]{10,11,12},
-                new String[]{"1_000","1_001","2_000","3_000","3_001","3_003","3_004","3_005","3_006","3_007","3_008","3_010","3_000","3_000","3_011","3_012","3_013","3_014"},
+                new String[]{"1_000","1_001","2_000","3_000","3_001","3_002","3_003","3_004","3_005","3_006","3_007","3_008","3_010","3_000","3_000","3_011","3_012","3_013","3_014","3_015","3_016"},
                 new String[]{"002","003","009"},
                 new String[]{SlowGrowth.ID, SpecialTreasure.ID},
                 new String[]{"skin14","skin12","skin18"},
-                new String[]{"","","","","","","","","","","",TeaChat.ID,"","","","","",""},
+                new String[]{"","","","","","","","","","","","",TeaChat.ID,"","","","","","","",""},
                 new String[]{"fire","fire2","fire3"}
         ));
         idols.put(hume, new Idol(hume,
-                new String[]{"skin10","skin20","skin30","skin33","skin34","skin36","skin37","skin38","skin40","skin41","skin43","skin44","skin47"},
-                new String[]{"skin10","skin11","skin12","skin13","skin10","skin18","skin19","skin17","skin23","skin21","skin24","skin25","skin28"},
-                new String[]{UntappedPotential.ID, DefeatBigSister.ID, BigOnigiri.ID, BigOnigiri.ID, BigOnigiri.ID,BigOnigiri.ID,BigOnigiri.ID,ShareSomethingWithYou.ID, NewStage.ID, BigOnigiri.ID, SecretMeeting.ID, LikeYouVeryMuch.ID,BigOnigiri.ID},
-                new String[]{TechnoDog.ID, ShibaInuPochette.ID, RollingSourceOfEnergy.ID, RollingSourceOfEnergy.ID, RollingSourceOfEnergy.ID,RollingSourceOfEnergy.ID,RollingSourceOfEnergy.ID,ChristmasLion.ID,AchieveDreamAwakening.ID,RollingSourceOfEnergy.ID,GiftForYou.ID,ProofOfFriendship.ID,RollingSourceOfEnergy.ID},
-                new IdolType[]{IdolType.LOGIC,IdolType.LOGIC,IdolType.LOGIC,IdolType.LOGIC,IdolType.LOGIC,IdolType.LOGIC,IdolType.LOGIC,IdolType.SENSE,IdolType.ANOMALY,IdolType.LOGIC,IdolType.SENSE,IdolType.LOGIC,IdolType.LOGIC},
-                new IdolStyle[]{IdolStyle.YARUKI,IdolStyle.YARUKI,IdolStyle.YARUKI,IdolStyle.YARUKI,IdolStyle.YARUKI,IdolStyle.YARUKI,IdolStyle.YARUKI,IdolStyle.GOOD_TUNE,IdolStyle.FULL_POWER,IdolStyle.YARUKI,IdolStyle.FOCUS,IdolStyle.GOOD_IMPRESSION,IdolStyle.YARUKI},
+                new String[]{"skin10","skin11","skin20","skin30","skin33","skin34","skin36","skin37","skin38","skin40","skin41","skin43","skin44","skin46","skin47","skin48","skin49"},
+                new String[]{"skin10","skin26","skin11","skin63","skin13","skin10","skin18","skin19","skin17","skin64","skin21","skin24","skin25","skin62","skin28","skin20","skin31"},
+                new String[]{UntappedPotential.ID,FirstGodArrival.ID, DefeatBigSister.ID, BigOnigiri.ID, BigOnigiri.ID, BigOnigiri.ID,BigOnigiri.ID,BigOnigiri.ID,ShareSomethingWithYou.ID, NewStage.ID, BigOnigiri.ID, SecretMeeting.ID, LikeYouVeryMuch.ID,SeizeTheFuture.ID,BigOnigiri.ID,BigOnigiri.ID,BigOnigiri.ID},
+                new String[]{TechnoDog.ID,FirstFormationUme.ID, ShibaInuPochette.ID, RollingSourceOfEnergy.ID, RollingSourceOfEnergy.ID, RollingSourceOfEnergy.ID,RollingSourceOfEnergy.ID,RollingSourceOfEnergy.ID,ChristmasLion.ID,AchieveDreamAwakening.ID,RollingSourceOfEnergy.ID,GiftForYou.ID,ProofOfFriendship.ID,SakiPrideStar.ID,RollingSourceOfEnergy.ID, RollingSourceOfEnergy.ID,RollingSourceOfEnergy.ID},
+                new IdolType[]{IdolType.LOGIC,IdolType.SENSE,IdolType.LOGIC,IdolType.LOGIC,IdolType.LOGIC,IdolType.LOGIC,IdolType.LOGIC,IdolType.LOGIC,IdolType.SENSE,IdolType.ANOMALY,IdolType.LOGIC,IdolType.SENSE,IdolType.LOGIC,IdolType.LOGIC,IdolType.LOGIC,IdolType.LOGIC,IdolType.LOGIC},
+                new IdolStyle[]{IdolStyle.YARUKI,IdolStyle.GOOD_TUNE,IdolStyle.YARUKI,IdolStyle.YARUKI,IdolStyle.YARUKI,IdolStyle.YARUKI,IdolStyle.YARUKI,IdolStyle.YARUKI,IdolStyle.GOOD_TUNE,IdolStyle.FULL_POWER,IdolStyle.YARUKI,IdolStyle.FOCUS,IdolStyle.GOOD_IMPRESSION,IdolStyle.GOOD_IMPRESSION,IdolStyle.YARUKI,IdolStyle.YARUKI,IdolStyle.YARUKI},
                 new ArrayList<>(Arrays.asList(new String[]{},new String[]{"1"},new String[]{"1","2"}, new String[]{"1","2","3"}, new String[]{"1","2","3"}, new String[]{"1","2","3","4"}, new String[]{}, new String[]{"5"}, new String[]{"5","6"}, new String[]{})),
                 new String[]{"2","2","2","2","2","2","3","3","3","3"},
-                new String[]{"1","1","2","4","5","6","8","7","10","2","11","12","14"},
-                new String[]{"all_001","all_001","hume_001","all_003","all_004","all_005","all_006","all_007","all_002","hume_001","all_008","all_009","all_011"},
-                new String[]{"no","no","3_000","3_003","3_004","3_006","3_007","3_008","3_010","3_000","3_011","3_012","3_014"},
+                new String[]{"1","1","2","4","5","6","8","7","10","2","11","12","2","14","15","16"},
+                new String[]{"all_001","all_001","all_001","hume_001","all_003","all_004","all_005","all_006","all_007","all_002","hume_001","all_008","all_009","unit_002","all_011","all_012","all_013"},
+                new String[]{"no","no","no","3_000","3_003","3_004","3_006","3_007","3_008","3_010","3_000","3_011","3_012","unit_002","3_014","3_015","3_016"},
                 72,99,new int[]{75,85,85},new float[]{0.23f,0.28f,0.15f},
                 new int[]{1000,1200,800},
                 new int[]{1,0,1},new int[]{300,450,1000},
                 new int[]{12,14,14},
-                new String[]{"1_000","2_000","3_000","3_003","3_004","3_006","3_007","3_008","3_010","3_000","3_011","3_012","3_014"},
+                new String[]{"1_000","1_001","2_000","3_000","3_003","3_004","3_006","3_007","3_008","3_010","3_000","3_011","3_012","unit_002","3_014","3_015","3_016"},
                 new String[]{"002","005","009"},
-                new String[]{SisterHelp.ID,OverwhelmingNumbers.ID,GodArrival.ID},
+                new String[]{SisterHelp.ID, OverwhelmingNumbers.ID, GodArrival.ID},
                 new String[]{"skin17","skin12","skin18"},
-                new String[]{"","","","","","","","",JustAppeal.ID,"","","",""},
+                new String[]{"","","","","","","","","",JustAppeal.ID,"","","","","","",""},
                 new String[]{"fire","fire2","fire3"}
         ));
         idols.put(hski, new Idol(hski,
-                new String[]{"skin10","skin11","skin20","skin30","skin31","skin33","skin34","skin36","skin37","skin38","skin40","skin41","skin42","skin43","skin44","skin45","skin46","skin47"},
-                new String[]{"skin10","skin11","skin12","skin14","skin13","skin15","skin20","skin17","skin18","skin19","skin23","skin21","skin22","skin24","skin25","skin26","skin27","skin28"},
-                new String[]{RisingStar.ID, FirstFuture.ID, NeverYieldFirst.ID, NeverLose.ID, Pow.ID, NeverLose.ID, GoldfishScoopingChallenge.ID,NeverLose.ID,VeryEasy.ID,NeverLose.ID,UntilNowAndFromNow.ID,NeverLose.ID,NeverLose.ID,NeverLose.ID,NeverLose.ID,ThatDayHere.ID,MyColor.ID,NeverLose.ID},
-                new String[]{RoaringLion.ID,FirstVoiceProofSaki.ID,SakiCompleteMealRecipe.ID,TogetherInBattleTowel.ID,WinningDetermination.ID,TogetherInBattleTowel.ID,UndefeatedPoi.ID,TogetherInBattleTowel.ID,AnimateEquipment.ID,TogetherInBattleTowel.ID,FaceTheAwakening.ID,TogetherInBattleTowel.ID,TogetherInBattleTowel.ID,TogetherInBattleTowel.ID,TogetherInBattleTowel.ID,DestinyEncounter.ID,AfterRainFlower.ID,TogetherInBattleTowel.ID},
-                new IdolType[]{IdolType.SENSE,IdolType.LOGIC,IdolType.SENSE,IdolType.SENSE,IdolType.LOGIC,IdolType.SENSE,IdolType.LOGIC,IdolType.SENSE,IdolType.SENSE,IdolType.SENSE,IdolType.SENSE,IdolType.SENSE,IdolType.SENSE,IdolType.SENSE,IdolType.SENSE,IdolType.ANOMALY,IdolType.LOGIC,IdolType.SENSE},
-                new IdolStyle[]{IdolStyle.GOOD_TUNE,IdolStyle.GOOD_IMPRESSION,IdolStyle.GOOD_TUNE,IdolStyle.GOOD_TUNE,IdolStyle.GOOD_IMPRESSION,IdolStyle.GOOD_TUNE,IdolStyle.GOOD_IMPRESSION,IdolStyle.GOOD_TUNE,IdolStyle.FOCUS,IdolStyle.GOOD_TUNE,IdolStyle.GOOD_TUNE,IdolStyle.GOOD_TUNE,IdolStyle.GOOD_TUNE,IdolStyle.GOOD_TUNE,IdolStyle.GOOD_TUNE,IdolStyle.FULL_POWER,IdolStyle.YARUKI,IdolStyle.GOOD_TUNE},
+                new String[]{"skin10","skin11","skin20","skin30","skin31","skin33","skin34","skin36","skin37","skin38","skin40","skin41","skin42","skin43","skin44","skin45","skin46","skin47","skin48","skin49"},
+                new String[]{"skin10","skin11","skin12","skin63","skin65","skin15","skin20","skin17","skin18","skin19","skin64","skin21","skin22","skin24","skin25","skin26","skin27","skin28","skin31","skin62"},
+                new String[]{RisingStar.ID, FirstFuture.ID, NeverYieldFirst.ID, NeverLose.ID, Pow.ID, NeverLose.ID, GoldfishScoopingChallenge.ID,NeverLose.ID,VeryEasy.ID,NeverLose.ID,UntilNowAndFromNow.ID,NeverLose.ID,NeverLose.ID,NeverLose.ID,NeverLose.ID,ThatDayHere.ID,MyColor.ID,NeverLose.ID,NeverLose.ID,StayGritty.ID},
+                new String[]{RoaringLion.ID,FirstVoiceProofSaki.ID,SakiCompleteMealRecipe.ID,TogetherInBattleTowel.ID,WinningDetermination.ID,TogetherInBattleTowel.ID,UndefeatedPoi.ID,TogetherInBattleTowel.ID,AnimateEquipment.ID,TogetherInBattleTowel.ID,FaceTheAwakening.ID,TogetherInBattleTowel.ID,TogetherInBattleTowel.ID,TogetherInBattleTowel.ID,TogetherInBattleTowel.ID,DestinyEncounter.ID,AfterRainFlower.ID,TogetherInBattleTowel.ID,TogetherInBattleTowel.ID,MixedPassion.ID},
+                new IdolType[]{IdolType.SENSE,IdolType.LOGIC,IdolType.SENSE,IdolType.SENSE,IdolType.LOGIC,IdolType.SENSE,IdolType.LOGIC,IdolType.SENSE,IdolType.SENSE,IdolType.SENSE,IdolType.SENSE,IdolType.SENSE,IdolType.SENSE,IdolType.SENSE,IdolType.SENSE,IdolType.ANOMALY,IdolType.LOGIC,IdolType.SENSE,IdolType.SENSE,IdolType.ANOMALY},
+                new IdolStyle[]{IdolStyle.GOOD_TUNE,IdolStyle.GOOD_IMPRESSION,IdolStyle.GOOD_TUNE,IdolStyle.GOOD_TUNE,IdolStyle.GOOD_IMPRESSION,IdolStyle.GOOD_TUNE,IdolStyle.GOOD_IMPRESSION,IdolStyle.GOOD_TUNE,IdolStyle.FOCUS,IdolStyle.GOOD_TUNE,IdolStyle.GOOD_TUNE,IdolStyle.GOOD_TUNE,IdolStyle.GOOD_TUNE,IdolStyle.GOOD_TUNE,IdolStyle.GOOD_TUNE,IdolStyle.FULL_POWER,IdolStyle.YARUKI,IdolStyle.GOOD_TUNE,IdolStyle.GOOD_TUNE,IdolStyle.CONCENTRATION},
                 new ArrayList<>(Arrays.asList(new String[]{},new String[]{"1"},new String[]{"1","2"}, new String[]{"1","2","3"}, new String[]{"1","2","3"}, new String[]{}, new String[]{"4"}, new String[]{}, new String[]{"5"}, new String[]{})),
                 new String[]{"1","1","1","1","1","2","2","3","3","3"},
-                new String[]{"1","1","1","2","3","4","5","6","8","7","10","2","2","11","12","13","2","14"},
-                new String[]{"all_001","all_001","all_001","hski_001","hski_002","all_003","all_004","all_005","all_006","all_007","all_002","hski_001","hski_001","all_008","all_009","all_010","unit_001","all_011"},
-                new String[]{"no","no","no","3_000","3_001","3_003","no","3_006","3_007","3_008","3_010","3_000","3_000","3_011","3_012","3_013","unit_001","3_014"},
+                new String[]{"1","1","1","2","3","4","5","6","8","7","10","2","2","11","12","13","2","14","15","16"},
+                new String[]{"all_001","all_001","all_001","hski_001","hski_002","all_003","all_004","all_005","all_006","all_007","all_002","hski_001","hski_001","all_008","all_009","all_010","unit_001","all_011","all_012","all_013"},
+                new String[]{"no","no","no","3_000","3_001","3_003","no","3_006","3_007","3_008","3_010","3_000","3_000","3_011","3_012","3_013","unit_001","3_014","3_015","3_016"},
                 76,99,new int[]{100,100,105},new float[]{0.18f,0.18f,0.20f},
                 new int[]{800,1000,1200},
                 new int[]{1,0,2},new int[]{200,450,900},
                 new int[]{10,13,12},
-                new String[]{"1_000","1_001","2_000","3_000","3_001","3_003","3_004","3_006","3_007","3_008","3_010","3_000","3_000","3_011","3_012","3_013","unit_001","3_014"},
+                new String[]{"1_000","1_001","2_000","3_000","3_001","3_003","3_004","3_006","3_007","3_008","3_010","3_000","3_000","3_011","3_012","3_013","unit_001","3_014","3_015","3_016"},
                 new String[]{"002","003","009"},
                 new String[]{TrueLateBloomer.ID,MotherAI.ID},
                 new String[]{"skin14","skin12","skin18"},
-                new String[]{"","","","","","","","","","",LightGait.ID,"","","","","","",""},
+                new String[]{"","","","","","","","","","",LightGait.ID,"","","","","","","","",""},
                 new String[]{"fire","fire2","fire3"}
         ));
         idols.put(hrnm, new Idol(hrnm,
-                new String[]{"skin10","skin11","skin20","skin30","skin31","skin33","skin34","skin35","skin36","skin37","skin38","skin40","skin41","skin43","skin44","skin45","skin47"},
-                new String[]{"skin10","skin11","skin12","skin14","skin13","skin15","skin16","skin18","skin19","skin27","skin17","skin23","skin21","skin24","skin25","skin26","skin28"},
-                new String[]{Accommodating.ID,FirstFriend.ID,SupportiveFeelings.ID, SenseOfDistance.ID,SeeYouTomorrow.ID, CumulusCloudsAndYou.ID, SenseOfDistance.ID,RefreshingBreak.ID,SenseOfDistance.ID,SenseOfDistance.ID,SenseOfDistance.ID,LetMeBecomeIdol.ID, SenseOfDistance.ID,CanYouAccept.ID, SenseOfDistance.ID,SenseOfDistance.ID,NoMatterWhatWorld.ID},
-                new String[]{RegularMakeupPouch.ID,FirstHeartProofRinami.ID,TreatForYou.ID, LifeSizeLadyLip.ID,ItsPerfect.ID, SummerToShareWithYou.ID, LifeSizeLadyLip.ID,ClapClapFan.ID,LifeSizeLadyLip.ID,LifeSizeLadyLip.ID,LifeSizeLadyLip.ID,YouFindMe.ID,LifeSizeLadyLip.ID,SweetTaste.ID,LifeSizeLadyLip.ID,LifeSizeLadyLip.ID,SaveWorldMicrophone.ID},
-                new IdolType[]{IdolType.SENSE,IdolType.LOGIC,IdolType.SENSE,IdolType.SENSE,IdolType.LOGIC,IdolType.SENSE,IdolType.SENSE,IdolType.LOGIC,IdolType.SENSE,IdolType.SENSE,IdolType.SENSE,IdolType.ANOMALY,IdolType.SENSE,IdolType.ANOMALY,IdolType.SENSE,IdolType.SENSE,IdolType.SENSE},
-                new IdolStyle[]{IdolStyle.FOCUS,IdolStyle.YARUKI,IdolStyle.FOCUS,IdolStyle.FOCUS,IdolStyle.GOOD_IMPRESSION,IdolStyle.GOOD_TUNE,IdolStyle.FOCUS,IdolStyle.YARUKI,IdolStyle.FOCUS,IdolStyle.FOCUS,IdolStyle.FOCUS,IdolStyle.FULL_POWER,IdolStyle.FOCUS,IdolStyle.CONCENTRATION,IdolStyle.FOCUS,IdolStyle.FOCUS,IdolStyle.FOCUS},
+                new String[]{"skin10","skin11","skin20","skin30","skin31","skin32","skin33","skin34","skin35","skin36","skin37","skin38","skin40","skin41","skin43","skin44","skin45","skin47","skin48","skin49"},
+                new String[]{"skin10","skin11","skin12","skin63","skin65","skin61","skin15","skin16","skin18","skin19","skin27","skin17","skin64","skin21","skin24","skin25","skin26","skin28","skin20","skin31"},
+                new String[]{Accommodating.ID,FirstFriend.ID,SupportiveFeelings.ID, SenseOfDistance.ID,SeeYouTomorrow.ID,LightNostalgia.ID, CumulusCloudsAndYou.ID, SenseOfDistance.ID,RefreshingBreak.ID,SenseOfDistance.ID,SenseOfDistance.ID,SenseOfDistance.ID,LetMeBecomeIdol.ID, SenseOfDistance.ID,CanYouAccept.ID, SenseOfDistance.ID,SenseOfDistance.ID,NoMatterWhatWorld.ID, SenseOfDistance.ID,SenseOfDistance.ID},
+                new String[]{RegularMakeupPouch.ID,FirstHeartProofRinami.ID,TreatForYou.ID, LifeSizeLadyLip.ID,ItsPerfect.ID,WantToBecomeIdol.ID, SummerToShareWithYou.ID, LifeSizeLadyLip.ID,ClapClapFan.ID,LifeSizeLadyLip.ID,LifeSizeLadyLip.ID,LifeSizeLadyLip.ID,YouFindMe.ID,LifeSizeLadyLip.ID,SweetTaste.ID,LifeSizeLadyLip.ID,LifeSizeLadyLip.ID,SaveWorldMicrophone.ID,LifeSizeLadyLip.ID,LifeSizeLadyLip.ID},
+                new IdolType[]{IdolType.SENSE,IdolType.LOGIC,IdolType.SENSE,IdolType.SENSE,IdolType.LOGIC,IdolType.LOGIC,IdolType.SENSE,IdolType.SENSE,IdolType.LOGIC,IdolType.SENSE,IdolType.SENSE,IdolType.SENSE,IdolType.ANOMALY,IdolType.SENSE,IdolType.ANOMALY,IdolType.SENSE,IdolType.SENSE,IdolType.SENSE,IdolType.SENSE,IdolType.SENSE},
+                new IdolStyle[]{IdolStyle.FOCUS,IdolStyle.YARUKI,IdolStyle.FOCUS,IdolStyle.FOCUS,IdolStyle.GOOD_IMPRESSION,IdolStyle.GOOD_IMPRESSION,IdolStyle.GOOD_TUNE,IdolStyle.FOCUS,IdolStyle.YARUKI,IdolStyle.FOCUS,IdolStyle.FOCUS,IdolStyle.FOCUS,IdolStyle.FULL_POWER,IdolStyle.FOCUS,IdolStyle.CONCENTRATION,IdolStyle.FOCUS,IdolStyle.FOCUS,IdolStyle.FOCUS,IdolStyle.FOCUS,IdolStyle.FOCUS},
                 new ArrayList<>(Arrays.asList(new String[]{},new String[]{"1"},new String[]{"1","2"}, new String[]{"1","2"}, new String[]{"1","2","3"}, new String[]{}, new String[]{"4"}, new String[]{"4","5"}, new String[]{"4","5","6"}, new String[]{})),
                 new String[]{"1","1","1","1","1","2","2","2","2","2"},
-                new String[]{"1","1","1","2","3","4","5","1","6","8","7","10","2","11","12","13","14"},
-                new String[]{"all_001","all_001","all_001","hrnm_001","hrnm_002","all_003","all_004","all_001","all_005","all_006","all_007","all_002","hrnm_001","all_008","all_009","all_010","all_011"},
-                new String[]{"no","no","no","3_000","3_001","3_003","3_004","3_005","3_006","3_007","3_008","3_010","3_000","3_011","3_012","3_013","3_014"},
+                new String[]{"1","1","1","2","3","23","4","5","1","6","8","7","10","2","11","12","13","14","15","16"},
+                new String[]{"all_001","all_001","all_001","hrnm_001","hrnm_002","hrnm_003","all_003","all_004","all_001","all_005","all_006","all_007","all_002","hrnm_001","all_008","all_009","all_010","all_011","all_012","all_013"},
+                new String[]{"no","no","no","3_000","3_001","3_002","3_003","3_004","3_005","3_006","3_007","3_008","3_010","3_000","3_011","3_012","3_013","3_014","3_015","3_016"},
                 72,99,new int[]{85,95,85},new float[]{0.11f,0.245f,0.285f},
                 new int[]{800,1000,1200},
                 new int[]{0,1,2},new int[]{200,450,1000},
                 new int[]{12,12,12},
-                new String[]{"1_000","1_001","2_000","3_000","3_001","3_003","3_004","3_005","3_006","3_007","3_008","3_010","3_000","3_011","3_012","3_013","3_014"},
+                new String[]{"1_000","1_001","2_000","3_000","3_001","3_002","3_003","3_004","3_005","3_006","3_007","3_008","3_010","3_000","3_011","3_012","3_013","3_014","3_015","3_016"},
                 new String[]{"002","003","009"},
                 new String[]{SaySomethingToYou.ID, BlueSenpaiHelp.ID},
                 new String[]{"skin14","skin14","skin18"},
-                new String[]{"","","","","","","","","","","",SurpriseMiss.ID,"","","","",""},
+                new String[]{"","","","","","","","","","","","",SurpriseMiss.ID,"","","","","","",""},
                 new String[]{"fire","fire2","fire3"}
         ));
         idols.put(fktn, new Idol(fktn,
-                new String[]{"skin10","skin11","skin20","skin30","skin31","skin33","skin34","skin36","skin37","skin38","skin40","skin41","skin42","skin43","skin44","skin45","skin46","skin47"},
-                new String[]{"skin10","skin11","skin12","skin14","skin13","skin15","skin19","skin18","skin16","skin17","skin23","skin21","skin22","skin24","skin25","skin26","skin27","skin28"},
-                new String[]{Arbeiter.ID, FirstReward.ID, ColorfulCute.ID, NoDistractions.ID, FullAdrenaline.ID, NoDistractions.ID, SummerEveningSparklers.ID,NoDistractions.ID,NoDistractions.ID,HappyChristmas.ID,MyPrideBigSister.ID, NoDistractions.ID, NoDistractions.ID, NoDistractions.ID, NoDistractions.ID,NoDistractions.ID,NewLight.ID,NoDistractions.ID},
-                new String[]{HandmadeMedal.ID,FirstVoiceProofKotone.ID,FavoriteSneakers.ID,PigDreamPiggyBank.ID,UltimateSourceOfHappiness.ID,PigDreamPiggyBank.ID,CracklingSparkler.ID,PigDreamPiggyBank.ID,PigDreamPiggyBank.ID,FreeLoveMax.ID,OnlyMyFirstStar.ID,PigDreamPiggyBank.ID,PigDreamPiggyBank.ID,PigDreamPiggyBank.ID,PigDreamPiggyBank.ID,PigDreamPiggyBank.ID,AfterRainRainbow.ID,PigDreamPiggyBank.ID},
-                new IdolType[]{IdolType.LOGIC,IdolType.SENSE,IdolType.LOGIC,IdolType.LOGIC,IdolType.SENSE,IdolType.LOGIC,IdolType.LOGIC,IdolType.LOGIC,IdolType.LOGIC,IdolType.LOGIC,IdolType.LOGIC,IdolType.LOGIC,IdolType.LOGIC,IdolType.LOGIC,IdolType.LOGIC,IdolType.LOGIC,IdolType.ANOMALY,IdolType.LOGIC},
-                new IdolStyle[]{IdolStyle.GOOD_IMPRESSION,IdolStyle.GOOD_TUNE,IdolStyle.GOOD_IMPRESSION,IdolStyle.GOOD_IMPRESSION,IdolStyle.GOOD_TUNE,IdolStyle.GOOD_IMPRESSION,IdolStyle.GOOD_IMPRESSION,IdolStyle.YARUKI,IdolStyle.GOOD_IMPRESSION,IdolStyle.YARUKI,IdolStyle.GOOD_IMPRESSION,IdolStyle.GOOD_IMPRESSION,IdolStyle.GOOD_IMPRESSION,IdolStyle.GOOD_IMPRESSION,IdolStyle.GOOD_IMPRESSION,IdolStyle.GOOD_IMPRESSION,IdolStyle.CONCENTRATION,IdolStyle.GOOD_IMPRESSION},
+                new String[]{"skin10","skin11","skin20","skin30","skin31","skin32","skin33","skin34","skin36","skin37","skin38","skin40","skin41","skin42","skin43","skin44","skin45","skin46","skin47","skin48","skin49"},
+                new String[]{"skin10","skin11","skin12","skin63","skin65","skin61","skin15","skin19","skin18","skin16","skin17","skin64","skin21","skin22","skin24","skin25","skin26","skin27","skin28","skin20","skin62"},
+                new String[]{Arbeiter.ID, FirstReward.ID, ColorfulCute.ID, NoDistractions.ID, FullAdrenaline.ID,SelfEsteemBoost.ID, NoDistractions.ID, SummerEveningSparklers.ID,NoDistractions.ID,NoDistractions.ID,HappyChristmas.ID,MyPrideBigSister.ID, NoDistractions.ID, NoDistractions.ID, NoDistractions.ID, NoDistractions.ID,NoDistractions.ID,NewLight.ID,NoDistractions.ID, NoDistractions.ID,GoForIt.ID},
+                new String[]{HandmadeMedal.ID,FirstVoiceProofKotone.ID,FavoriteSneakers.ID,PigDreamPiggyBank.ID,UltimateSourceOfHappiness.ID,ShukiShuki.ID,PigDreamPiggyBank.ID,CracklingSparkler.ID,PigDreamPiggyBank.ID,PigDreamPiggyBank.ID,FreeLoveMax.ID,OnlyMyFirstStar.ID,PigDreamPiggyBank.ID,PigDreamPiggyBank.ID,PigDreamPiggyBank.ID,PigDreamPiggyBank.ID,PigDreamPiggyBank.ID,AfterRainRainbow.ID,PigDreamPiggyBank.ID,PigDreamPiggyBank.ID,FightForMe.ID},
+                new IdolType[]{IdolType.LOGIC,IdolType.SENSE,IdolType.LOGIC,IdolType.LOGIC,IdolType.SENSE,IdolType.SENSE,IdolType.LOGIC,IdolType.LOGIC,IdolType.LOGIC,IdolType.LOGIC,IdolType.LOGIC,IdolType.LOGIC,IdolType.LOGIC,IdolType.LOGIC,IdolType.LOGIC,IdolType.LOGIC,IdolType.LOGIC,IdolType.ANOMALY,IdolType.LOGIC,IdolType.LOGIC,IdolType.SENSE},
+                new IdolStyle[]{IdolStyle.GOOD_IMPRESSION,IdolStyle.GOOD_TUNE,IdolStyle.GOOD_IMPRESSION,IdolStyle.GOOD_IMPRESSION,IdolStyle.GOOD_TUNE,IdolStyle.FOCUS,IdolStyle.GOOD_IMPRESSION,IdolStyle.GOOD_IMPRESSION,IdolStyle.YARUKI,IdolStyle.GOOD_IMPRESSION,IdolStyle.YARUKI,IdolStyle.GOOD_IMPRESSION,IdolStyle.GOOD_IMPRESSION,IdolStyle.GOOD_IMPRESSION,IdolStyle.GOOD_IMPRESSION,IdolStyle.GOOD_IMPRESSION,IdolStyle.GOOD_IMPRESSION,IdolStyle.CONCENTRATION,IdolStyle.GOOD_IMPRESSION,IdolStyle.GOOD_IMPRESSION,IdolStyle.GOOD_TUNE},
                 new ArrayList<>(Arrays.asList(new String[]{},new String[]{"1"},new String[]{"1","2"}, new String[]{"1","2","3"}, new String[]{}, new String[]{"4"}, new String[]{"4","5"}, new String[]{"4","5","6"}, new String[]{}, new String[]{})),
                 new String[]{"1","1","1","1","2","2","2","2","3","3"},
-                new String[]{"1","1","1","2","3","4","5","6","8","7","10","2","2","11","12","13","2","14"},
-                new String[]{"all_001","all_001","all_001","fktn_001","fktn_002","all_003","all_004","all_005","all_006","all_007","all_002","fktn_001","fktn_001","all_008","all_009","all_010","unit_001","all_011"},
-                new String[]{"no","no","no","3_000","3_001","3_003","3_004","3_006","3_007","3_008","3_010","3_000","3_000","3_011","3_012","3_013","unit_001","3_014"},
+                new String[]{"1","1","1","2","3","23","4","5","6","8","7","10","2","2","11","12","13","2","14","15","16"},
+                new String[]{"all_001","all_001","all_001","fktn_001","fktn_002","fktn_003","all_003","all_004","all_005","all_006","all_007","all_002","fktn_001","fktn_001","all_008","all_009","all_010","unit_001","all_011","all_012","all_013"},
+                new String[]{"no","no","no","3_000","3_001","3_002","3_003","3_004","3_006","3_007","3_008","3_010","3_000","3_000","3_011","3_012","3_013","unit_001","3_014","3_015","3_016"},
                 74,30,new int[]{90,80,110},new float[]{0.11f,0.27f,0.22f},
                 new int[]{500,1300,1200},
                 new int[]{1,2,1},new int[]{300,450,1000},
                 new int[]{11,13,13},
-                new String[]{"1_000","1_001","2_000","3_000","3_001","3_003","3_004","3_006","3_007","3_008","3_010","3_000","3_000","3_011","3_012","3_013","unit_001","3_014"},
+                new String[]{"1_000","1_001","2_000","3_000","3_001","3_002","3_003","3_004","3_006","3_007","3_008","3_010","3_000","3_000","3_011","3_012","3_013","unit_001","3_014","3_015","3_016"},
                 new String[]{"002","003","009"},
                 new String[]{WorldFirstCute.ID, TenThousandVolts.ID},
                 new String[]{"skin14","skin12","skin18"},
-                new String[]{"","","","","","","","","","",Smile.ID,"","","","","","",""},
+                new String[]{"","","","","","","","","","","",Smile.ID,"","","","","","","","",""},
                 new String[]{"fire","fire2","fire3"}
         ));
         idols.put(amao, new Idol(amao,
-                new String[]{"skin10","skin11","skin20","skin30","skin31","skin33","skin34","skin36","skin37","skin38","skin40","skin41","skin42","skin43","skin44","skin45","skin47"},
-                new String[]{"skin10","skin11","skin12","skin14","skin13","skin15","skin16","skin18","skin19","skin17","skin23","skin21","skin22","skin24","skin25","skin26","skin28"},
-                new String[]{LittlePrince.ID,FirstCrystal.ID, Authenticity.ID, DressedUpInStyle.ID,MoonlitRunway.ID, ChillyBreak.ID, DressedUpInStyle.ID,DressedUpInStyle.ID,DressedUpInStyle.ID,DressedUpInStyle.ID,GetAnswer.ID, DressedUpInStyle.ID, DressedUpInStyle.ID, DressedUpInStyle.ID,EnjoyThreeColor.ID,DressedUpInStyle.ID,DressedUpInStyle.ID},
-                new String[]{GentlemanHandkerchief.ID, FirstLoveProofMao.ID,DearLittlePrince.ID, InnerLightEarrings.ID,FashionMode.ID, LastSummerMemory.ID, InnerLightEarrings.ID,InnerLightEarrings.ID,InnerLightEarrings.ID,InnerLightEarrings.ID,MyPart.ID, InnerLightEarrings.ID, InnerLightEarrings.ID, InnerLightEarrings.ID,RoundSpring.ID,InnerLightEarrings.ID,InnerLightEarrings.ID},
-                new IdolType[]{IdolType.SENSE,IdolType.LOGIC,IdolType.SENSE,IdolType.SENSE,IdolType.LOGIC,IdolType.SENSE,IdolType.SENSE,IdolType.SENSE,IdolType.SENSE,IdolType.SENSE,IdolType.ANOMALY,IdolType.SENSE,IdolType.SENSE,IdolType.SENSE,IdolType.ANOMALY,IdolType.SENSE,IdolType.SENSE},
-                new IdolStyle[]{IdolStyle.GOOD_TUNE,IdolStyle.GOOD_IMPRESSION,IdolStyle.GOOD_TUNE,IdolStyle.GOOD_TUNE,IdolStyle.GOOD_IMPRESSION,IdolStyle.FOCUS,IdolStyle.GOOD_TUNE,IdolStyle.GOOD_TUNE,IdolStyle.GOOD_TUNE,IdolStyle.GOOD_TUNE,IdolStyle.CONCENTRATION,IdolStyle.GOOD_TUNE,IdolStyle.GOOD_TUNE,IdolStyle.GOOD_TUNE,IdolStyle.FULL_POWER,IdolStyle.GOOD_TUNE,IdolStyle.GOOD_TUNE},
+                new String[]{"skin10","skin11","skin20","skin30","skin31","skin32","skin33","skin34","skin36","skin37","skin38","skin40","skin41","skin42","skin43","skin44","skin45","skin47","skin48","skin49"},
+                new String[]{"skin10","skin11","skin12","skin63","skin65","skin61","skin15","skin16","skin18","skin19","skin17","skin64","skin21","skin22","skin24","skin25","skin26","skin28","skin62","skin31"},
+                new String[]{LittlePrince.ID,FirstCrystal.ID, Authenticity.ID, DressedUpInStyle.ID,MoonlitRunway.ID,InYouFindWorld.ID, ChillyBreak.ID, DressedUpInStyle.ID,DressedUpInStyle.ID,DressedUpInStyle.ID,DressedUpInStyle.ID,GetAnswer.ID, DressedUpInStyle.ID, DressedUpInStyle.ID, DressedUpInStyle.ID,EnjoyThreeColor.ID,DressedUpInStyle.ID,DressedUpInStyle.ID,DramaticHoliday.ID,DressedUpInStyle.ID},
+                new String[]{GentlemanHandkerchief.ID, FirstLoveProofMao.ID,DearLittlePrince.ID, InnerLightEarrings.ID,FashionMode.ID,DropWater.ID, LastSummerMemory.ID, InnerLightEarrings.ID,InnerLightEarrings.ID,InnerLightEarrings.ID,InnerLightEarrings.ID,MyPart.ID, InnerLightEarrings.ID, InnerLightEarrings.ID, InnerLightEarrings.ID,RoundSpring.ID,InnerLightEarrings.ID,InnerLightEarrings.ID,MiracleHeader.ID,InnerLightEarrings.ID},
+                new IdolType[]{IdolType.SENSE,IdolType.LOGIC,IdolType.SENSE,IdolType.SENSE,IdolType.LOGIC,IdolType.SENSE,IdolType.SENSE,IdolType.SENSE,IdolType.SENSE,IdolType.SENSE,IdolType.SENSE,IdolType.ANOMALY,IdolType.SENSE,IdolType.SENSE,IdolType.SENSE,IdolType.ANOMALY,IdolType.SENSE,IdolType.SENSE,IdolType.LOGIC,IdolType.SENSE},
+                new IdolStyle[]{IdolStyle.GOOD_TUNE,IdolStyle.GOOD_IMPRESSION,IdolStyle.GOOD_TUNE,IdolStyle.GOOD_TUNE,IdolStyle.GOOD_IMPRESSION,IdolStyle.FOCUS,IdolStyle.FOCUS,IdolStyle.GOOD_TUNE,IdolStyle.GOOD_TUNE,IdolStyle.GOOD_TUNE,IdolStyle.GOOD_TUNE,IdolStyle.CONCENTRATION,IdolStyle.GOOD_TUNE,IdolStyle.GOOD_TUNE,IdolStyle.GOOD_TUNE,IdolStyle.FULL_POWER,IdolStyle.GOOD_TUNE,IdolStyle.GOOD_TUNE,IdolStyle.YARUKI,IdolStyle.GOOD_TUNE},
                 new ArrayList<>(Arrays.asList(new String[]{},new String[]{"1"},new String[]{"1","2"}, new String[]{"1","2","3"}, new String[]{}, new String[]{"4"}, new String[]{"4","5"}, new String[]{"4","5","6"}, new String[]{}, new String[]{})),
                 new String[]{"1","1","1","1","2","2","2","2","3","3"},
-                new String[]{"1","1","1","2","3","4","5","6","8","7","10","2","2","11","12","13","14"},
-                new String[]{"all_001","all_001","all_001","amao_001","amao_002","all_003","all_004","all_005","all_006","all_007","all_002","amao_001","amao_001","all_008","all_009","all_010","all_011"},
-                new String[]{"no","no","no","3_000","3_001","no","3_004","3_006","3_007","3_008","3_010","3_000","3_000","3_011","3_012","3_013","3_014"},
+                new String[]{"1","1","1","2","3","23","4","5","6","8","7","10","2","2","11","12","13","14","15","16"},
+                new String[]{"all_001","all_001","all_001","amao_001","amao_002","amao_003","all_003","all_004","all_005","all_006","all_007","all_002","amao_001","amao_001","all_008","all_009","all_010","all_011","all_012","all_013"},
+                new String[]{"no","no","no","3_000","3_001","3_002","no","3_004","3_006","3_007","3_008","3_010","3_000","3_000","3_011","3_012","3_013","3_014","3_015","3_016"},
                 74,99,new int[]{115,90,90},new float[]{0.25f,0.06f,0.28f},
                 new int[]{1300,500,1200},
                 new int[]{2,0,2},new int[]{300,450,1000},
                 new int[]{13,11,11},
-                new String[]{"1_000","1_001","2_000","3_000","3_001","3_003","3_004","3_006","3_007","3_008","3_010","3_000","3_000","3_011","3_012","3_013","3_014"},
+                new String[]{"1_000","1_001","2_000","3_000","3_001","3_002","3_003","3_004","3_006","3_007","3_008","3_010","3_000","3_000","3_011","3_012","3_013","3_014","3_015","3_016"},
                 new String[]{"002","007","003"},
-                new String[]{LoveMyself.ID, CreateYourStyle.ID},
+                new String[]{LoveMyself.ID, CreateYourStyle.ID, MaoHeelHook.ID, MaoUppercut.ID, MaoDropkick.ID},
                 new String[]{"skin14","skin12","skin18"},
-                new String[]{"","","","","","","","","","",Starlight.ID,"","","","",""},
+                new String[]{"","","","","","","","","","","",Starlight.ID,"","","","","","","",""},
                 new String[]{"fire","fire2","fire3"}
         ));
         idols.put(ssmk, new Idol(ssmk,
-                new String[]{"skin10","skin11","skin20","skin30","skin31","skin33","skin34","skin36","skin37","skin38","skin40","skin41","skin43","skin44","skin45","skin47"},
-                new String[]{"skin10","skin11","skin12","skin14","skin13","skin15","skin16","skin17","skin19","skin18","skin23","skin21","skin24","skin25","skin26","skin28"},
-                new String[]{Friendly.ID,FirstMiss.ID, BraveStep.ID, OneMoreStep.ID, BeyondTheCrossing.ID, AfternoonBreeze.ID, OneMoreStep.ID, OneMoreStep.ID, OneMoreStep.ID,OneMoreStep.ID,FlyAgain.ID, OneMoreStep.ID,OneMoreStep.ID,OneMoreStep.ID,EncounterWithHero.ID,OneMoreStep.ID},
-                new String[]{PinkUniformBracelet.ID,FirstLoveProofSumika.ID, AfterSchoolDoodles.ID, ArcadeLoot.ID,PlasticUmbrellaThatDay.ID, FrogFan.ID, ArcadeLoot.ID, ArcadeLoot.ID, ArcadeLoot.ID,ArcadeLoot.ID,TheWing.ID, ArcadeLoot.ID,ArcadeLoot.ID,ArcadeLoot.ID,TheP.ID,ArcadeLoot.ID},
-                new IdolType[]{IdolType.SENSE,IdolType.LOGIC,IdolType.SENSE,IdolType.SENSE,IdolType.ANOMALY,IdolType.LOGIC,IdolType.SENSE,IdolType.SENSE,IdolType.SENSE,IdolType.SENSE,IdolType.LOGIC,IdolType.SENSE,IdolType.SENSE,IdolType.SENSE,IdolType.SENSE,IdolType.SENSE},
-                new IdolStyle[]{IdolStyle.FOCUS,IdolStyle.YARUKI,IdolStyle.FOCUS,IdolStyle.FOCUS,IdolStyle.FULL_POWER,IdolStyle.YARUKI,IdolStyle.FOCUS,IdolStyle.FOCUS,IdolStyle.FOCUS,IdolStyle.FOCUS,IdolStyle.GOOD_IMPRESSION,IdolStyle.FOCUS,IdolStyle.FOCUS,IdolStyle.FOCUS,IdolStyle.GOOD_TUNE,IdolStyle.FOCUS},
+                new String[]{"skin10","skin11","skin20","skin30","skin31","skin32","skin33","skin34","skin36","skin37","skin38","skin40","skin41","skin43","skin44","skin45","skin47","skin48","skin49"},
+                new String[]{"skin10","skin11","skin12","skin63","skin65","skin61","skin15","skin16","skin17","skin19","skin18","skin64","skin21","skin24","skin25","skin26","skin28","skin62","skin31"},
+                new String[]{Friendly.ID,FirstMiss.ID, BraveStep.ID, OneMoreStep.ID, BeyondTheCrossing.ID,NoMoreHesitation.ID, AfternoonBreeze.ID, OneMoreStep.ID, OneMoreStep.ID, OneMoreStep.ID,OneMoreStep.ID,FlyAgain.ID, OneMoreStep.ID,OneMoreStep.ID,OneMoreStep.ID,EncounterWithHero.ID,OneMoreStep.ID,BestLook.ID,OneMoreStep.ID},
+                new String[]{PinkUniformBracelet.ID,FirstLoveProofSumika.ID, AfterSchoolDoodles.ID, ArcadeLoot.ID,PlasticUmbrellaThatDay.ID,PromiseOfThatDay.ID, FrogFan.ID, ArcadeLoot.ID, ArcadeLoot.ID, ArcadeLoot.ID,ArcadeLoot.ID,TheWing.ID, ArcadeLoot.ID,ArcadeLoot.ID,ArcadeLoot.ID,TheP.ID,ArcadeLoot.ID,ShareHappyBadge.ID,ArcadeLoot.ID},
+                new IdolType[]{IdolType.SENSE,IdolType.LOGIC,IdolType.SENSE,IdolType.SENSE,IdolType.ANOMALY,IdolType.SENSE,IdolType.LOGIC,IdolType.SENSE,IdolType.SENSE,IdolType.SENSE,IdolType.SENSE,IdolType.LOGIC,IdolType.SENSE,IdolType.SENSE,IdolType.SENSE,IdolType.SENSE,IdolType.SENSE,IdolType.LOGIC,IdolType.SENSE},
+                new IdolStyle[]{IdolStyle.FOCUS,IdolStyle.YARUKI,IdolStyle.FOCUS,IdolStyle.FOCUS,IdolStyle.FULL_POWER,IdolStyle.FOCUS,IdolStyle.YARUKI,IdolStyle.FOCUS,IdolStyle.FOCUS,IdolStyle.FOCUS,IdolStyle.FOCUS,IdolStyle.GOOD_IMPRESSION,IdolStyle.FOCUS,IdolStyle.FOCUS,IdolStyle.FOCUS,IdolStyle.GOOD_TUNE,IdolStyle.FOCUS,IdolStyle.GOOD_IMPRESSION,IdolStyle.FOCUS},
                 new ArrayList<>(Arrays.asList(new String[]{},new String[]{"1"},new String[]{"1","2"}, new String[]{"1","2","3"}, new String[]{}, new String[]{"4"}, new String[]{"4","5"}, new String[]{}, new String[]{"6"}, new String[]{})),
                 new String[]{"1","1","1","1","2","2","2","3","3","3"},
-                new String[]{"1","1","1","2","3","4","5","6","8","7","10","2","11","12","13","14"},
-                new String[]{"all_001","all_001","all_001","ssmk_001","ssmk_002","all_003","all_004","all_005","all_006","all_007","all_002","ssmk_001","all_008","all_009","all_010","all_011"},
-                new String[]{"no","no","no","3_000","3_001","3_003","3_004","3_006","3_007","3_008","3_010","3_000","3_011","3_012","3_013","3_014"},
+                new String[]{"1","1","1","2","3","23","4","5","6","8","7","10","2","11","12","13","14","15","16"},
+                new String[]{"all_001","all_001","all_001","ssmk_001","ssmk_002","ssmk_003","all_003","all_004","all_005","all_006","all_007","all_002","ssmk_001","all_008","all_009","all_010","all_011","all_012","all_013"},
+                new String[]{"no","no","no","3_000","3_001","3_002","3_003","3_004","3_006","3_007","3_008","3_010","3_000","3_011","3_012","3_013","3_014","3_015","3_016"},
                 72,99,new int[]{90,85,90},new float[]{0.09f,0.28f,0.26f},
                 new int[]{600,1500,800},
                 new int[]{1,2,1},new int[]{300,450,1000},
                 new int[]{12,12,12},
-                new String[]{"1_000","1_001","2_000","3_000","3_001","3_003","3_004","3_006","3_007","3_008","3_010","3_000","3_011","3_012","3_013","3_014"},
+                new String[]{"1_000","1_001","2_000","3_000","3_001","3_002","3_003","3_004","3_006","3_007","3_008","3_010","3_000","3_011","3_012","3_013","3_014","3_015","3_016"},
                 new String[]{"002","003","009"},
                 new String[]{DanceWithYou.ID, OnePersonBallet.ID},
                 new String[]{"skin14","skin12","skin18"},
-                new String[]{"","","","","","","","","","",Restart.ID,"","","","",""},
+                new String[]{"","","","","","","","","","","",Restart.ID,"","","","","","",""},
                 new String[]{"fire","fire2","fire3"}
         ));
         idols.put(ttmr, new Idol(ttmr,
-                new String[]{"skin10","skin11","skin20","skin30","skin31","skin33","skin34","skin36","skin37","skin38","skin40","skin41","skin42","skin43","skin44","skin45","skin46","skin47"},
-                new String[]{"skin10","skin11","skin12","skin14","skin13","skin15","skin20","skin17","skin19","skin18","skin23","skin21","skin22","skin24","skin25","skin26","skin27","skin28"},
-                new String[]{Stubborn.ID, FirstPlace.ID, LoneWolf.ID, EachPath.ID, TangledFeelings.ID, EachPath.ID, EachPath.ID,StruggleHandmade.ID,EachPath.ID,EachPath.ID,SayGoodbyeToDislikeMyself.ID,EachPath.ID,EachPath.ID,EachPath.ID,CareCard.ID,EachPath.ID,UntilHopeReach.ID,EachPath.ID},
-                new String[]{EssentialStainlessSteelBottle.ID,FirstVoiceProofTemari.ID,MyFirstSheetMusic.ID,ProtectiveEarphones.ID,ThisIsMe.ID,ProtectiveEarphones.ID,ProtectiveEarphones.ID,ClumsyBat.ID,ProtectiveEarphones.ID,ProtectiveEarphones.ID,SongToTheSun.ID,ProtectiveEarphones.ID,ProtectiveEarphones.ID,ProtectiveEarphones.ID,CardOfVictory.ID,ProtectiveEarphones.ID,AfterRainGoddess.ID,ProtectiveEarphones.ID},
-                new IdolType[]{IdolType.SENSE,IdolType.LOGIC,IdolType.SENSE,IdolType.SENSE,IdolType.LOGIC,IdolType.SENSE,IdolType.SENSE,IdolType.LOGIC,IdolType.SENSE,IdolType.SENSE,IdolType.SENSE,IdolType.SENSE,IdolType.SENSE,IdolType.SENSE,IdolType.ANOMALY,IdolType.SENSE,IdolType.SENSE,IdolType.SENSE},
-                new IdolStyle[]{IdolStyle.FOCUS,IdolStyle.GOOD_IMPRESSION,IdolStyle.FOCUS,IdolStyle.FOCUS,IdolStyle.GOOD_IMPRESSION,IdolStyle.FOCUS,IdolStyle.FOCUS,IdolStyle.YARUKI,IdolStyle.FOCUS,IdolStyle.FOCUS,IdolStyle.FOCUS,IdolStyle.FOCUS,IdolStyle.FOCUS,IdolStyle.FOCUS,IdolStyle.CONCENTRATION,IdolStyle.FOCUS,IdolStyle.GOOD_TUNE,IdolStyle.FOCUS},
+                new String[]{"skin10","skin11","skin20","skin30","skin31","skin33","skin34","skin36","skin37","skin38","skin40","skin41","skin42","skin43","skin44","skin45","skin46","skin47","skin48","skin49"},
+                new String[]{"skin10","skin11","skin12","skin63","skin65","skin15","skin20","skin17","skin19","skin18","skin64","skin21","skin22","skin24","skin25","skin26","skin27","skin28","skin31","skin62"},
+                new String[]{Stubborn.ID, FirstPlace.ID, LoneWolf.ID, EachPath.ID, TangledFeelings.ID, EachPath.ID, EachPath.ID,StruggleHandmade.ID,EachPath.ID,EachPath.ID,SayGoodbyeToDislikeMyself.ID,EachPath.ID,EachPath.ID,EachPath.ID,CareCard.ID,EachPath.ID,UntilHopeReach.ID,EachPath.ID,EachPath.ID,UpToSky.ID},
+                new String[]{EssentialStainlessSteelBottle.ID,FirstVoiceProofTemari.ID,MyFirstSheetMusic.ID,ProtectiveEarphones.ID,ThisIsMe.ID,ProtectiveEarphones.ID,ProtectiveEarphones.ID,ClumsyBat.ID,ProtectiveEarphones.ID,ProtectiveEarphones.ID,SongToTheSun.ID,ProtectiveEarphones.ID,ProtectiveEarphones.ID,ProtectiveEarphones.ID,CardOfVictory.ID,ProtectiveEarphones.ID,AfterRainGoddess.ID,ProtectiveEarphones.ID,ProtectiveEarphones.ID,JumpHigher.ID},
+                new IdolType[]{IdolType.SENSE,IdolType.LOGIC,IdolType.SENSE,IdolType.SENSE,IdolType.LOGIC,IdolType.SENSE,IdolType.SENSE,IdolType.LOGIC,IdolType.SENSE,IdolType.SENSE,IdolType.SENSE,IdolType.SENSE,IdolType.SENSE,IdolType.SENSE,IdolType.ANOMALY,IdolType.SENSE,IdolType.SENSE,IdolType.SENSE,IdolType.SENSE,IdolType.LOGIC},
+                new IdolStyle[]{IdolStyle.FOCUS,IdolStyle.GOOD_IMPRESSION,IdolStyle.FOCUS,IdolStyle.FOCUS,IdolStyle.GOOD_IMPRESSION,IdolStyle.FOCUS,IdolStyle.FOCUS,IdolStyle.YARUKI,IdolStyle.FOCUS,IdolStyle.FOCUS,IdolStyle.FOCUS,IdolStyle.FOCUS,IdolStyle.FOCUS,IdolStyle.FOCUS,IdolStyle.CONCENTRATION,IdolStyle.FOCUS,IdolStyle.GOOD_TUNE,IdolStyle.FOCUS,IdolStyle.FOCUS,IdolStyle.GOOD_IMPRESSION},
                 new ArrayList<>(Arrays.asList(new String[]{},new String[]{"1"},new String[]{"1","2"}, new String[]{}, new String[]{"3"}, new String[]{"3","4"}, new String[]{"3","4","5"}, new String[]{}, new String[]{"6"}, new String[]{})),
                 new String[]{"1","1","1","2","2","2","2","3","3","3"},
-                new String[]{"1","1","1","2","3","4","5","6","8","7","10","2","2","11","12","13","2","14"},
-                new String[]{"all_001","all_001","all_001","ttmr_001","ttmr_002","all_003","all_004","all_005","all_006","all_007","all_002","ttmr_001","ttmr_001","all_008","all_009","all_010","unit_001","all_011"},
-                new String[]{"no","no","no","3_000","3_001","3_003","3_004","3_006","3_007","3_008","3_010","3_000","3_000","3_011","3_012","3_013","unit_001","3_014"},
+                new String[]{"1","1","1","2","3","4","5","6","8","7","10","2","2","11","12","13","2","14","15","16"},
+                new String[]{"all_001","all_001","all_001","ttmr_001","ttmr_002","all_003","all_004","all_005","all_006","all_007","all_002","ttmr_001","ttmr_001","all_008","all_009","all_010","unit_001","all_011","all_012","all_013"},
+                new String[]{"no","no","no","3_000","3_001","3_003","3_004","3_006","3_007","3_008","3_010","3_000","3_000","3_011","3_012","3_013","unit_001","3_014","3_015","3_016"},
                 76,99,new int[]{110,90,80},new float[]{0.27f,0.26f,0.06f},
                 new int[]{1350,950,700},
                 new int[]{0,1,0},new int[]{200,450,1000},
                 new int[]{13,13,14},
-                new String[]{"1_000","1_001","2_000","3_000","3_001","3_003","3_004","3_006","3_007","3_008","3_010","3_000","3_000","3_011","3_012","3_013","unit_001","3_014"},
+                new String[]{"1_000","1_001","2_000","3_000","3_001","3_003","3_004","3_006","3_007","3_008","3_010","3_000","3_000","3_011","3_012","3_013","unit_001","3_014","3_015","3_016"},
                 new String[]{"002","003","009"},
-                new String[]{ListenToMyTrueHeart.ID, CallMeAnyTime.ID,ReallyNotBad.ID},
+                new String[]{ListenToMyTrueHeart.ID, CallMeAnyTime.ID, ReallyNotBad.ID},
                 new String[]{"skin14","skin12","skin18"},
-                new String[]{"","","","","","","","","","",GoWithTheFlow.ID,"","","","","","",""},
+                new String[]{"","","","","","","","","","",GoWithTheFlow.ID,"","","","","","","","",""},
                 new String[]{"fire","fire2","fire3"}
         ));
         idols.put(jsna, new Idol(jsna,
-                new String[]{"skin10","skin20","skin30","skin31","skin37","skin40","skin41","skin43","skin44","skin45","skin47"},
-                new String[]{"skin10","skin18","skin13","skin12","skin17","skin23","skin21","skin24","skin25","skin26","skin28"},
-                new String[]{TopIdolInSchool.ID, KingAppear.ID, TopStar.ID,SurgingEmotion.ID,TopStar.ID,DreamStillContinue.ID,TopStar.ID,GiveYou.ID,TopStar.ID,TopStar.ID,TopStar.ID},//
-                new String[]{TeaCaddy.ID,EveryoneDream.ID,AbsoluteNewSelf.ID,FirstStarChallenge.ID,AbsoluteNewSelf.ID,PastLittleStar.ID,AbsoluteNewSelf.ID,DeepLoveForYou.ID,AbsoluteNewSelf.ID,AbsoluteNewSelf.ID,AbsoluteNewSelf.ID},//
-                new IdolType[]{IdolType.ANOMALY,IdolType.ANOMALY,IdolType.ANOMALY,IdolType.LOGIC,IdolType.ANOMALY,IdolType.SENSE,IdolType.ANOMALY,IdolType.LOGIC,IdolType.ANOMALY,IdolType.ANOMALY,IdolType.ANOMALY},//
-                new IdolStyle[]{IdolStyle.CONCENTRATION,IdolStyle.FULL_POWER,IdolStyle.CONCENTRATION,IdolStyle.GOOD_IMPRESSION,IdolStyle.CONCENTRATION,IdolStyle.GOOD_TUNE,IdolStyle.CONCENTRATION,IdolStyle.YARUKI,IdolStyle.CONCENTRATION,IdolStyle.CONCENTRATION,IdolStyle.CONCENTRATION},//
+                new String[]{"skin10","skin11","skin20","skin30","skin31","skin37","skin40","skin41","skin43","skin44","skin45","skin46","skin47","skin48","skin49"},
+                new String[]{"skin10","skin23","skin18","skin63","skin65","skin17","skin64","skin21","skin24","skin25","skin26","skin62","skin28","skin20","skin31"},
+                new String[]{TopIdolInSchool.ID,FirstAmbition.ID, KingAppear.ID, TopStar.ID,SurgingEmotion.ID,TopStar.ID,DreamStillContinue.ID,TopStar.ID,GiveYou.ID,TopStar.ID,TopStar.ID,TheMomentWaitFor.ID,TopStar.ID,TopStar.ID,TopStar.ID},//
+                new String[]{TeaCaddy.ID,FirstFormationSena.ID,EveryoneDream.ID,AbsoluteNewSelf.ID,FirstStarChallenge.ID,AbsoluteNewSelf.ID,PastLittleStar.ID,AbsoluteNewSelf.ID,DeepLoveForYou.ID,AbsoluteNewSelf.ID,AbsoluteNewSelf.ID,DreamStar.ID,AbsoluteNewSelf.ID,AbsoluteNewSelf.ID,AbsoluteNewSelf.ID},//
+                new IdolType[]{IdolType.ANOMALY,IdolType.LOGIC,IdolType.ANOMALY,IdolType.ANOMALY,IdolType.LOGIC,IdolType.ANOMALY,IdolType.SENSE,IdolType.ANOMALY,IdolType.LOGIC,IdolType.ANOMALY,IdolType.ANOMALY,IdolType.ANOMALY,IdolType.ANOMALY,IdolType.ANOMALY,IdolType.ANOMALY},//
+                new IdolStyle[]{IdolStyle.CONCENTRATION,IdolStyle.YARUKI,IdolStyle.FULL_POWER,IdolStyle.CONCENTRATION,IdolStyle.GOOD_IMPRESSION,IdolStyle.CONCENTRATION,IdolStyle.GOOD_TUNE,IdolStyle.CONCENTRATION,IdolStyle.YARUKI,IdolStyle.CONCENTRATION,IdolStyle.CONCENTRATION,IdolStyle.FULL_POWER,IdolStyle.CONCENTRATION,IdolStyle.CONCENTRATION,IdolStyle.CONCENTRATION},//
                 new ArrayList<>(Arrays.asList(new String[]{},new String[]{},new String[]{}, new String[]{"1"}, new String[]{"1"}, new String[]{}, new String[]{}, new String[]{"2"}, new String[]{}, new String[]{})),
-                new String[]{"1","2","3","3","3","4","5","5","6","6"},//
-                new String[]{"1","1","2","3","8","10","2","11","12","13","14"},//song
-                new String[]{"all_001","all_001","jsna_001","jsna_002","all_006","all_002","jsna_001","all_008","all_009","all_010","all_011"},//bgm
-                new String[]{"no","no","3_000","3_001","3_007","3_010","3_000","3_011","3_012","3_013","3_014"},//video
+                new String[]{"1","2","3","3","3","4","5","5","6","6"},
+                new String[]{"1","1","1","2","3","8","10","2","11","12","13","2","14","15","16"},//song
+                new String[]{"all_001","all_001","all_001","jsna_001","jsna_002","all_006","all_002","jsna_001","all_008","all_009","all_010","unit_002","all_011","all_012","all_013"},//bgm
+                new String[]{"no","no","no","3_000","3_001","3_007","3_010","3_000","3_011","3_012","3_013","unit_002","3_014","3_015","3_016"},//video
                 74,99,new int[]{175,125,140},new float[]{0.16f,0.06f,0.22f},
                 new int[]{1000,800,1200},
                 new int[]{1,0,2},new int[]{200,450,900},//PlanType PlanRequire
                 new int[]{14,14,14},//SpVoicesNum
-                new String[]{"1_000","2_000","3_000","3_001","3_007","3_010","3_000","3_011","3_012","3_013","3_014"},//lives
+                new String[]{"1_000","1_001","2_000","3_000","3_001","3_007","3_010","3_000","3_011","3_012","3_013","unit_002","3_014","3_015","3_016"},//lives
                 new String[]{"002","003","009"},//bossSongs,
-                new String[]{ListenToMyTrueHeart.ID, CallMeAnyTime.ID},
+                new String[]{ProduceCompetitor.ID, ProduceCompetitor.ID},
                 new String[]{"skin17","skin12","skin18"},
-                new String[]{"","","","","",ServiceSpirit.ID,"","","","",""},
+                new String[]{"","","","","","",ServiceSpirit.ID,"","","","","","","",""},
                 new String[]{"fire","fire2","fire3"}
         ));
         idols.put(hmsz, new Idol(hmsz,
-                new String[]{"skin10","skin20","skin30","skin40","skin47"},
-                new String[]{"skin10","skin17","skin27","skin25","skin28"},
-                new String[]{FreeWoman.ID, RestAndWalk.ID,SceneryOnHouse.ID,DreamIdol.ID,SceneryOnHouse.ID},
-                new String[]{DescriptionOfDream.ID,SwayWindHairpin.ID,SomethingLongHold.ID,BeyondSunSong.ID,SomethingLongHold.ID},
-                new IdolType[]{IdolType.ANOMALY,IdolType.ANOMALY,IdolType.ANOMALY,IdolType.LOGIC,IdolType.ANOMALY},
-                new IdolStyle[]{IdolStyle.FULL_POWER,IdolStyle.CONCENTRATION,IdolStyle.FULL_POWER,IdolStyle.YARUKI,IdolStyle.FULL_POWER},//
+                new String[]{"skin10","skin11","skin20","skin30","skin40","skin46","skin47","skin48","skin49"},
+                new String[]{"skin10","skin26","skin17","skin63","skin65","skin62","skin28","skin20","skin31"},
+                new String[]{FreeWoman.ID,FirstBreath.ID, RestAndWalk.ID,SceneryOnHouse.ID,DreamIdol.ID,UntilMorningFills.ID,SceneryOnHouse.ID,SceneryOnHouse.ID,SceneryOnHouse.ID},
+                new String[]{DescriptionOfDream.ID,FirstFormationMisuzu.ID,SwayWindHairpin.ID,SomethingLongHold.ID,BeyondSunSong.ID,NightStar.ID,SomethingLongHold.ID,SomethingLongHold.ID,SomethingLongHold.ID},
+                new IdolType[]{IdolType.ANOMALY,IdolType.LOGIC,IdolType.ANOMALY,IdolType.ANOMALY,IdolType.LOGIC,IdolType.SENSE,IdolType.ANOMALY,IdolType.ANOMALY,IdolType.ANOMALY},
+                new IdolStyle[]{IdolStyle.FULL_POWER,IdolStyle.YARUKI,IdolStyle.CONCENTRATION,IdolStyle.FULL_POWER,IdolStyle.YARUKI,IdolStyle.GOOD_TUNE,IdolStyle.FULL_POWER,IdolStyle.FULL_POWER,IdolStyle.FULL_POWER},//
                 new ArrayList<>(Arrays.asList(new String[]{},new String[]{},new String[]{"1"}, new String[]{"1","2"}, new String[]{"1","2","3"}, new String[]{"1","2","3"}, new String[]{"1","2","3","4"}, new String[]{"1","2","3","4","5"}, new String[]{"6"}, new String[]{})),//制作人评价的顺序
                 new String[]{"1","2","2","2","2","2","2","2","3","3"},
-                new String[]{"1","1","2","10","14"},//song
-                new String[]{"all_001","all_001","hmsz_001","all_002","all_011"},//bgm
-                new String[]{"no","no","3_000","3_010","3_014"},//video
+                new String[]{"1","1","1","2","10","14","2","15","16"},//song
+                new String[]{"all_001","all_001","all_001","hmsz_001","all_002","unit_002","all_011","all_012","all_013"},//bgm
+                new String[]{"no","no","no","3_000","3_010","unit_002","3_014","3_015","3_016"},//video
                 72,99,new int[]{85,115,125},new float[]{0.30f,0.10f,0.18f},
                 new int[]{1350,700,950},
                 new int[]{0,2,0},new int[]{300,450,1000},
                 new int[]{14,14,14},//SpVoicesNum
-                new String[]{"1_000","2_000","3_000","3_010","3_014"},//lives
+                new String[]{"1_000","1_001","2_000","3_000","3_010","unit_002","3_014","3_015","3_016"},//lives
                 new String[]{"002","001","009"},//bossSongs,
                 new String[]{AnotherDream.ID, SummerSleepy.ID},
                 new String[]{"skin17","skin10","skin27"},
-                new String[]{"","","","gkmasMod:Sunbathing",""},
+                new String[]{"","","","","gkmasMod:Sunbathing","","","",""},
                 new String[]{"fire","fire2","fire3"}
         ));
 

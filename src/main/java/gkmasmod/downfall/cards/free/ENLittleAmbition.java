@@ -1,6 +1,5 @@
 package gkmasmod.downfall.cards.free;
 
-import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
@@ -8,14 +7,11 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import gkmasmod.actions.SpecialDamageAction;
-import gkmasmod.actions.SpecialGainBlockWithPowerAction;
-import gkmasmod.cardCustomEffect.MoreActionCustom;
-import gkmasmod.cards.GkmasCard;
+import gkmasmod.actions.common.SpecialDamageAction;
+import gkmasmod.actions.common.SpecialGainBlockWithPowerAction;
 import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.downfall.cards.GkmasBossCard;
-import gkmasmod.utils.IdolData;
 import gkmasmod.utils.NameHelper;
 
 public class ENLittleAmbition extends GkmasBossCard {

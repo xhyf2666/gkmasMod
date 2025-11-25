@@ -34,9 +34,9 @@ public class Excite extends GkmasCard {
     private static final String DESCRIPTION = CARD_STRINGS.DESCRIPTION;
     private static final String IMG_PATH = String.format("gkmasModResource/img/cards/common/%s.png", CLASSNAME);
 
-    private static final int COST = 1;
-    private static final int ATTACK_DMG = 5;
-    private static final int UPGRADE_PLUS_DMG = 1;
+    private static final int COST = 0;
+    private static final int ATTACK_DMG = 4;
+    private static final int UPGRADE_PLUS_DMG = 2;
 
     private static final int BASE_MAGIC = 2;
     private static final int UPGRADE_PLUS_MAGIC = 1;

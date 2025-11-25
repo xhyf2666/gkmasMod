@@ -8,7 +8,7 @@ import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
-import gkmasmod.actions.UpgradeAllHandCardAction;
+import gkmasmod.actions.common.UpgradeAllHandCardAction;
 import gkmasmod.powers.ReduceDamageReceive;
 
 public class FirstLoveProofHiro extends CustomRelic {

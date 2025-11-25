@@ -8,7 +8,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.DexterityPower;
-import gkmasmod.actions.GainTrainRoundPowerAction;
+import gkmasmod.actions.common.GainTrainRoundPowerAction;
 import gkmasmod.cardCustomEffect.*;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.cards.GkmasCardTag;
@@ -56,6 +56,7 @@ public class StruggleHandmade extends GkmasCard {
         this.tags.add(GkmasCardTag.GOOD_IMPRESSION_TAG);
         this.tags.add(GkmasCardTag.YARUKI_TAG);
         this.tags.add(GkmasCardTag.IDOL_CARD_TAG);
+        this.tags.add(GkmasCardTag.COST_HP_TAG);
         this.backGroundColor = IdolData.ttmr;
         updateBackgroundImg();
         this.customLimit = 1;
@@ -68,7 +69,9 @@ public class StruggleHandmade extends GkmasCard {
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        addToBot(new LoseHPAction(p, p, this.HPMagicNumber));
+        if(this.HPMagicNumber > 0){
+            addToBot(new LoseHPAction(p,p,this.HPMagicNumber));
+        }
         addToBot(new ApplyPowerAction(p, p, new GoodImpression(p, this.magicNumber), this.magicNumber));
         addToBot(new ApplyPowerAction(p, p, new DexterityPower(p, this.secondMagicNumber), this.secondMagicNumber));
         int count = PlayerHelper.getPowerAmount(p, GoodImpression.POWER_ID);

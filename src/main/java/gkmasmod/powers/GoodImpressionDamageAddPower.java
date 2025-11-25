@@ -20,31 +20,43 @@ public class GoodImpressionDamageAddPower extends AbstractPower {
 
     private int magic = 70;
 
-    private static int BoostExtractIDOffset;
+    private boolean isTimeLimited = true;
 
     String path128 = String.format("gkmasModResource/img/powers/%s_84.png",CLASSNAME);
     String path48 = String.format("gkmasModResource/img/powers/%s_32.png",CLASSNAME);
 
-    public GoodImpressionDamageAddPower(AbstractCreature owner, int Amount) {
+    public GoodImpressionDamageAddPower(AbstractCreature owner, int Amount, String ID) {
+        this(owner, Amount, ID,true);
+    }
+
+    public GoodImpressionDamageAddPower(AbstractCreature owner, int Amount, String ID, boolean isTimeLimited) {
         this.name = NAME;
-        this.ID = POWER_ID + BoostExtractIDOffset;
-        BoostExtractIDOffset++;
+        this.ID = ID;
+        this.isTimeLimited = isTimeLimited;
         this.owner = owner;
         this.type = PowerType.BUFF;
         this.amount = Amount;
-
+        if(!isTimeLimited){
+            this.magic = 10* this.amount;
+        }
         this.region128 = new TextureAtlas.AtlasRegion(ImageMaster.loadImage(path128), 0, 0, 84, 84);
         this.region48 = new TextureAtlas.AtlasRegion(ImageMaster.loadImage(path48), 0, 0, 32, 32);
-
         this.updateDescription();
     }
 
     public void updateDescription() {
-        this.description = String.format(DESCRIPTIONS[0],this.amount,magic);
+        if(isTimeLimited)
+            this.description = String.format(DESCRIPTIONS[0],this.amount,magic);
+        else{
+            this.description = String.format(DESCRIPTIONS[1],magic);
+        }
     }
 
     public void stackPower(int stackAmount) {
         super.stackPower(stackAmount);
+        if(!isTimeLimited){
+            this.magic = 10*this.amount;
+        }
         if (this.amount == 0)
             addToTop(new RemoveSpecificPowerAction(this.owner, this.owner, this.ID));
     }
@@ -59,14 +71,15 @@ public class GoodImpressionDamageAddPower extends AbstractPower {
         return this;
     }
 
-
     @Override
     public void atStartOfTurn() {
-        flash();
-        if(this.amount > 0){
-            addToBot(new ReducePowerAction(this.owner, this.owner, ID, 1));
+        if(isTimeLimited){
+            flash();
+            if(this.amount > 0){
+                addToBot(new ReducePowerAction(this.owner, this.owner, ID, 1));
+            }
+            else
+                addToBot(new RemoveSpecificPowerAction(this.owner, this.owner, ID));
         }
-        else
-            addToBot(new RemoveSpecificPowerAction(this.owner, this.owner, ID));
     }
 }

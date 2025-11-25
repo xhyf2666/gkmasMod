@@ -15,7 +15,7 @@ import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.powers.NoBlockPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
-import gkmasmod.actions.ModifyDamageAction;
+import gkmasmod.actions.common.ModifyDamageAction;
 import gkmasmod.powers.IdolExamPower;
 import gkmasmod.relics.NaughtyPuppet;
 import gkmasmod.utils.PlayerHelper;

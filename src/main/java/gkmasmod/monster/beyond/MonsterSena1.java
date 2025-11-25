@@ -80,7 +80,7 @@ public class MonsterSena1 extends CustomMonster {
         }));
         CardCrawlGame.music.unsilenceBGM();
         AbstractDungeon.scene.fadeOutAmbiance();
-        String song = "gkmasModResource/audio/bgm/bgm_adv_inst_begrazia_001.ogg";
+        String song = "gkmasModResource/audio/song/unit_002.ogg";
         if (Gdx.files.internal(song).exists())
             CardCrawlGame.music.playTempBgmInstantly(song, true);
         if (AbstractDungeon.ascensionLevel >= 5) {

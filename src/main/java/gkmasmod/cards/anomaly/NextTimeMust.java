@@ -3,6 +3,7 @@ package gkmasmod.cards.anomaly;
 import basemod.abstracts.AbstractCardModifier;
 import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
+import com.megacrit.cardcrawl.actions.common.LoseHPAction;
 import com.megacrit.cardcrawl.actions.watcher.ChangeStanceAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -37,7 +38,7 @@ public class NextTimeMust extends GkmasCard {
 
     private static final int COST = 0;
 
-    private static final int BASE_HP = 6;
+    private static final int BASE_HP = 5;
     private static final int UPGRADE_PLUS_HP = -2;
 
     private static final int BASE_MAGIC = 4;
@@ -52,6 +53,7 @@ public class NextTimeMust extends GkmasCard {
         super(ID, NAME, IMG_PATH, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET,"color");
         this.tags.add(GkmasCardTag.PRESERVATION_TAG);
         this.tags.add(GkmasCardTag.IDOL_CARD_TAG);
+        this.tags.add(GkmasCardTag.COST_HP_TAG);
         this.baseHPMagicNumber = BASE_HP;
         this.HPMagicNumber = this.baseHPMagicNumber;
         this.baseMagicNumber = BASE_MAGIC;
@@ -69,6 +71,9 @@ public class NextTimeMust extends GkmasCard {
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
+        if(this.HPMagicNumber > 0){
+            addToBot(new LoseHPAction(p,p,this.HPMagicNumber));
+        }
         if(CustomHelper.hasCustom(this,EffectAddCustom.growID)){
             addToBot(new ChangeStanceAction(PreservationStance.STANCE_ID2));
         }

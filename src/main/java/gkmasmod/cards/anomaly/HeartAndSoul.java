@@ -1,25 +1,19 @@
 package gkmasmod.cards.anomaly;
 
 import basemod.helpers.CardModifierManager;
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.DrawCardAction;
 import com.megacrit.cardcrawl.actions.watcher.ChangeStanceAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.CorruptionPower;
-import gkmasmod.actions.GainTrainRoundPowerAction;
 import gkmasmod.cardCustomEffect.*;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.powers.HeartAndSoulPower;
-import gkmasmod.powers.TrainingResultPlusPower;
-import gkmasmod.powers.TrainingResultPower;
 import gkmasmod.screen.SkinSelectScreen;
 import gkmasmod.stances.ConcentrationStance;
 import gkmasmod.utils.CustomHelper;

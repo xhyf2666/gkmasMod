@@ -108,7 +108,8 @@ public class TrainRoundProducePower extends AbstractPower {
         addToTop(new RemoveSpecificPowerAction(this.owner,this.owner,TrainRoundSensePower.POWER_ID));
         addToTop(new RemoveSpecificPowerAction(this.owner,this.owner,TrainRoundAnomalyPower.POWER_ID));
         if(this.amount > 0){
-            addToBot(new ReducePowerAction(this.owner, this.owner, POWER_ID, 1));
+            if(!this.owner.hasPower(NeverEndIdolPower.POWER_ID))
+                addToBot(new ReducePowerAction(this.owner, this.owner, POWER_ID, 1));
             if(this.amount<4){
                 for(AbstractPower power:AbstractDungeon.player.powers){
                     if(power instanceof MyPrideBigSisterPower){
@@ -128,7 +129,8 @@ public class TrainRoundProducePower extends AbstractPower {
         flash();
         if(this.amount == 1){
         }
-        addToBot(new ReducePowerAction(this.owner, this.owner, POWER_ID, 1));
+        if(!this.owner.hasPower(NeverEndIdolPower.POWER_ID))
+            addToBot(new ReducePowerAction(this.owner, this.owner, POWER_ID, 1));
     }
 
     public void onVictory() {

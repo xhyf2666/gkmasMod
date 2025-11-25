@@ -8,12 +8,10 @@ import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
-import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
-import gkmasmod.actions.GainTrainRoundPowerAction;
+import gkmasmod.actions.common.GainTrainRoundPowerAction;
 import gkmasmod.cards.logic.Smile;
-import gkmasmod.cards.sense.GoWithTheFlow;
 import gkmasmod.powers.GoodImpression;
 
 public class OnlyMyFirstStar extends CustomRelic {

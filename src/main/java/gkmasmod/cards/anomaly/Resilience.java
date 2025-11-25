@@ -8,7 +8,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import gkmasmod.actions.ResilienceGrowAction;
+import gkmasmod.actions.cardAction.ResilienceGrowAction;
 import gkmasmod.cardCustomEffect.*;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.cards.GkmasCardTag;
@@ -16,10 +16,7 @@ import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.cardGrowEffect.BlockGrow;
 import gkmasmod.screen.SkinSelectScreen;
 import gkmasmod.stances.PreservationStance;
-import gkmasmod.utils.CustomHelper;
-import gkmasmod.utils.GrowHelper;
-import gkmasmod.utils.ImageHelper;
-import gkmasmod.utils.NameHelper;
+import gkmasmod.utils.*;
 
 import java.util.ArrayList;
 
@@ -84,7 +81,7 @@ public class Resilience extends GkmasCard {
         }
         else{
             this.cantUseMessage = CardCrawlGame.languagePack.getUIString("gkmasMod:NotEnoughPreservationStanceTime").TEXT[0];
-            return false;
+            return CardHelper.containsMasterKey();
         }
     }
 

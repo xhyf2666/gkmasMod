@@ -5,7 +5,7 @@ import com.badlogic.gdx.Gdx;
 import com.megacrit.cardcrawl.actions.common.RelicAboveCreatureAction;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
-import gkmasmod.actions.GainBlockWithPowerAction;
+import gkmasmod.actions.common.GainBlockWithPowerAction;
 import gkmasmod.relics.ShibaInuPochette;
 
 public class CBR_ShibaInuPochette extends AbstractCharbossRelic {

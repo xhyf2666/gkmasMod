@@ -6,6 +6,8 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.map.DungeonMap;
 import gkmasmod.characters.IdolCharacter;
+import gkmasmod.characters.MisuzuCharacter;
+import gkmasmod.characters.OtherIdolCharacter;
 import gkmasmod.downfall.bosses.*;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -18,6 +20,7 @@ import com.megacrit.cardcrawl.saveAndContinue.SaveFile;
 import com.megacrit.cardcrawl.scenes.AbstractScene;
 import com.megacrit.cardcrawl.scenes.TheEndingScene;
 import gkmasmod.event.FirstStarHotSpring;
+import gkmasmod.relics.PocketBook;
 import gkmasmod.room.EventMonsterRoom;
 import gkmasmod.room.FixedMonsterRoom;
 import gkmasmod.room.GkmasBossRoom;
@@ -48,6 +51,14 @@ public class IdolRoad extends CustomDungeon {
     public IdolRoad(CustomDungeon cd, AbstractPlayer p, SaveFile saveFile) {
         super(cd, p, saveFile);
         this.setMainMusic("gkmasModResource/audio/bgm/bgm_idolRoad.ogg");
+    }
+
+    @Override
+    public boolean accessible() {
+        if(AbstractDungeon.player !=null && AbstractDungeon.player.hasRelic(PocketBook.ID)){
+            return true;
+        }
+        return false;
     }
 
     @Override

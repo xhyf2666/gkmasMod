@@ -958,11 +958,11 @@
       "ファイトオン！"
     ]
   },
-    "IdolBossStartTalk:shro_hski": {
-        "NAMES": [
-        ],
-        "TEXT": [
-        "あ、２位の人だ"
-        ]
-    }
+  "IdolBossTalk:hski_shro": {
+    "NAMES": [
+    ],
+    "TEXT": [
+      "あ、２位の人だ"
+    ]
+  }
 }

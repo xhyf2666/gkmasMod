@@ -20,8 +20,6 @@ import com.megacrit.cardcrawl.helpers.input.InputHelper;
 import com.megacrit.cardcrawl.localization.PotionStrings;
 import com.megacrit.cardcrawl.potions.AbstractPotion;
 import com.megacrit.cardcrawl.powers.AbstractPower;
-import gkmasmod.actions.GainTrainRoundPowerAction;
-import gkmasmod.cards.logic.GoodMorning;
 import gkmasmod.powers.SelectFirstStarMacchiatoPower;
 import gkmasmod.utils.NameHelper;
 

@@ -260,7 +260,7 @@
   "StrongPower": {
     "NAME": "強気",
     "DESCRIPTIONS": [
-      "与える・受けるダメージが #b50 %増加する。 NL カードをプレイするたび、自分に攻撃を与え、HPが #b1 減少する。"
+      "与える・受けるダメージが #b50 %%増加する。 NL カードをプレイするたび、自分に攻撃を与え、HPが #b1 減少する。"
     ]
   },
   "FullPower": {
@@ -579,19 +579,19 @@
   "RebirthPower": {
     "NAME": "復活",
     "DESCRIPTIONS": [
-      "戦闘中に致死ダメージを受けたとき、全層を失い、死亡を回避してHPを #b%d 回復する。 NL 戦闘勝利時、 #y復活 層数 の #b80% に相当するHPを回復する。"
+      "戦闘中に致死ダメージを受けたとき、全層を失い、死亡を回避してHPを #b%d 回復する。 NL 戦闘勝利時、 #y復活 層数 の #b80%% に相当するHPを回復する。"
     ]
   },
   "CoolModePower": {
     "NAME": "クール",
     "DESCRIPTIONS": [
-      "与えるダメージが #b20% 増加する。 NL #yキュート と同時に存在できない。"
+      "与えるダメージが #b20%% 増加する。 NL #yキュート と同時に存在できない。"
     ]
   },
   "CuteModePower": {
     "NAME": "キュート",
     "DESCRIPTIONS": [
-      "受けるダメージが #b20% 減少する。 NL #yクール と同時に存在できない。"
+      "受けるダメージが #b20%% 減少する。 NL #yクール と同時に存在できない。"
     ]
   },
   "ParalysisPower": {
@@ -757,15 +757,21 @@
     ]
   },
   "FriendHiroPower1": {
-    "NAME": "篠沢広の発見",
+    "NAME": "篠澤広の発見",
     "DESCRIPTIONS": [
       "ターン終了時、ランダムなドリンクを #b%d 本得る。 NL （戦闘中最大 #b%d 回まで）"
     ]
   },
   "FriendHiroPower2": {
-    "NAME": "篠沢広の知恵",
+    "NAME": "篠澤広の知恵",
     "DESCRIPTIONS": [
       "#y秦谷美鈴 が #yブロック を得たとき、ランダムな敵に #b%d のダメージを与える。"
+    ]
+  },
+  "FriendHiroPower3": {
+    "NAME": "篠澤広の覚悟",
+    "DESCRIPTIONS": [
+      "#y秦谷美鈴 がカードを使用した後、 #y篠澤広 の体力が #b%d より高い場合、体力を #b1 失い、カードを #b1 枚引く。 NL ターン終了時に、体力を #b%d 回復する。"
     ]
   },
   "FriendChinaPower1": {
@@ -921,11 +927,11 @@
   "MoneyPower": {
     "NAME": "藍井家の財力",
     "DESCRIPTIONS": [
-      "現在の所持金：#b%d 。"
+      "現在の所持金： #b%d 。"
     ]
   },
   "TauntPower": {
-    "NAME": "雑魚雑魚〜〜",
+    "NAME": "ざこざこ〜〜",
     "DESCRIPTIONS": [
       "受けるダメージが #b%d%% 増加する。 NL 各ターン最初に攻撃を受けたとき、 #y筋力 #b%d を得る。その後、攻撃を受けるたびに #y筋力 #b%d を失う。"
     ]
@@ -1417,7 +1423,7 @@
     ]
   },
   "HiroEncallPower": {
-    "NAME": "篠沢広の応援",
+    "NAME": "篠澤広の応援",
     "DESCRIPTIONS": [
       "HPが初めて #b%d %%未満になったとき、味方全体が #y消費HP削減 #b%d を得る。"
     ]
@@ -1509,13 +1515,13 @@
   "SenaEncallPower": {
     "NAME": "十王星南の応援",
     "DESCRIPTIONS": [
-      "死亡時、味方全体の #y好調 を #b50 %%増加させ、プレイヤーの奇数番目の手札は #yコスト増加 #b1 増、偶数番目の手札は #yコスト減少 #b1 。"
+      "死亡時、味方全体の #y好調 を #b50 %%増加させ、プレイヤーの奇数番目の手札は #yコスト増加 #b1 、偶数番目の手札は #yコスト減少 #b1 。"
     ]
   },
   "SenaTopPower": {
     "NAME": "その頂点を目指して",
     "DESCRIPTIONS": [
-      "スキルカードをプレイするたび、味方全体に #yダメージ増加 #b%d %%と #y受けるダメージ減少 #b%d %%を与える。 NL（ #y受けるダメージ減少 は最大で #b80 %%まで重複）"
+      "スキルカードをプレイするたび、味方全体に #yダメージ増加 #b%d %%と #y受けるダメージ減少 #b%d %%を与える。 NL （ #y受けるダメージ減少 は最大で #b80 %%まで重複）"
     ]
   },
   "SenaTeachPower": {
@@ -1573,22 +1579,10 @@
       "ターン終了時、得ている #yブロック を保持する。 NL 次のターン開始時、それに #b%d %%の #yブロック を得る。"
     ]
   },
-  "SurgingEmotionPower": {
-  "NAME": "あふれる感情",
-  "DESCRIPTIONS": [
-    "#b%d ターンの間、 #y好印象 の増加量が #b%d%% 増加する。"
-    ]
-  },
   "NextTurnIdolBlockPower": {
     "NAME": "次のターンのブロック",
     "DESCRIPTIONS": [
       "次のターンの開始時、 #b%d ブロックを得る（ #y敏捷性 の影響を受ける）。"
-    ]
-  },
-  "EnthusiasticAddPower": {
-    "NAME": "熱意追加",
-    "DESCRIPTIONS": [
-      "#y熱意 を得るたび、追加で #y熱意 #b%d を得る。"
     ]
   },
   "UntilHopeReachPower": {
@@ -1651,12 +1645,6 @@
       "HPが変化するたび、 #y筋力 #b%d を得る。"
     ]
   },
-  "StarDustPower": {
-    "NAME": "きらめく星屑",
-    "DESCRIPTIONS": [
-      "#b%d ターンの間、 #y好印象 の増加量が #b%d%% 増加する。"
-    ]
-  },
   "SettingPower": {
     "NAME": "セッティング",
     "DESCRIPTIONS": [
@@ -1675,16 +1663,11 @@
       "#y全力 カードを使用するたび、 #y全力値 #b%d を得る。"
     ]
   },
-  "StrengthAddPower": {
-    "NAME": "筋力追加",
-    "DESCRIPTIONS": [
-      "#y筋力 を得るたび、追加で #y筋力 #b%d を得る。"
-    ]
-  },
   "GoodImpressionDamageAddPower": {
     "NAME": "好印象ダメージが増加",
     "DESCRIPTIONS": [
-      "#b%d ターンの間、 #y好印象 のダメージが #b%d%% 増加する。"
+      "#b%d ターンの間、 #y好印象 のダメージが #b%d%% 増加する。",
+      "#y好印象 のダメージが #b%d%% 増加する。"
     ]
   },
   "DreamIdolPower": {
@@ -1703,6 +1686,204 @@
     "NAME": "太陽を追い越す歌声",
     "DESCRIPTIONS": [
       "#b%d ターンの間、与えるダメージが #b50%% 増加する。"
+    ]
+  },
+  "SunfadedPower1": {
+    "NAME": "僕は言う",
+    "DESCRIPTIONS": [
+      "戦闘終了後、 #b%d 点の最大HPを得る。"
+    ]
+  },
+  "SunfadedPower2": {
+    "NAME": "僕は禁じる",
+    "DESCRIPTIONS": [
+      "各ターン終了時、失った体力の #b%d %% の #y固定元気 を得る。"
+    ]
+  },
+  "SunfadedPower3": {
+    "NAME": "僕は踊る",
+    "DESCRIPTIONS": [
+      "カードを #b%d 枚使用するたびに、 #b%d のブロックを得る。"
+    ]
+  },
+  "SunfadedPower4": {
+    "NAME": "僕は慄く",
+    "DESCRIPTIONS": [
+      "カードを #b%d 枚使用するたびに、全ての敵に #b%d ダメージを与える。"
+    ]
+  },
+  "SunfadedPower5": {
+    "NAME": "僕は覚える",
+    "DESCRIPTIONS": [
+      "この戦闘中、カードを使用するたびに、HPが50%%以下なら #b%d %% のHPを回復する、 #y再動 。 NL ( #b%d 回発動可能。各ターン終了時、発動回数が #b%d 増加する)"
+    ]
+  },
+  "SunfadedPower6": {
+    "NAME": "僕は褪せる",
+    "DESCRIPTIONS": [
+      "HPを失うたびに、全てのカードに #yダメージ増加 #b%d を付与する。"
+    ]
+  },
+  "FreePlayPower": {
+    "NAME": "FREE",
+    "DESCRIPTIONS": [
+      "次の #b%d カードは消費しない。"
+    ]
+  },
+  "NeverEndIdolPower": {
+    "NAME": "Never End I∞l",
+    "DESCRIPTIONS": [
+      "#b%d ターンの間、 #y訓練時間 が減少しない。"
+    ]
+  },
+  "GoodImpressionAddPower": {
+    "NAME": "好印象追加",
+    "DESCRIPTIONS": [
+      "#y好印象 を得た時、追加で #y好印象 #b%d を得る。"
+    ]
+  },
+  "GoodImpressionAddRatePower": {
+    "NAME": "好印象增加量アップ",
+    "DESCRIPTIONS": [
+      "#b%d ターンの間、 #y好印象 の増加量が #b%d%% 上昇する。",
+      "#y好印象 の増加量が #b%d%% 上昇する。"
+    ]
+  },
+  "DexterityAddPower": {
+    "NAME": "敏捷性追加",
+    "DESCRIPTIONS": [
+      "#y敏捷性 を得た時、追加で #y敏捷性 #b%d を得る。"
+    ]
+  },
+  "DexterityAddRatePower": {
+    "NAME": "敏捷性增加量アップ",
+    "DESCRIPTIONS": [
+      "#b%d ターンの間、 #y敏捷性 の増加量が #b%d%% 上昇する。",
+      "#y敏捷性 の増加量が #b%d%% 上昇する。"
+    ]
+  },
+  "StrengthAddPower": {
+    "NAME": "筋力追加",
+    "DESCRIPTIONS": [
+      "#y筋力 を得るたび、追加で #y筋力 #b%d を得る。"
+    ]
+  },
+  "StrengthAddRatePower": {
+    "NAME": "筋力增加量アップ",
+    "DESCRIPTIONS": [
+      "#b%d ターンの間、 #y筋力 の増加量が #b%d%% 上昇する。",
+      "#y筋力 の増加量が #b%d%% 上昇する。"
+    ]
+  },
+  "FullPowerAddPower": {
+    "NAME": "全力値追加",
+    "DESCRIPTIONS": [
+      "#y全力値 を得るたび、追加で #y全力値 #b%d を得る。"
+    ]
+  },
+  "FullPowerAddRatePower": {
+    "NAME": "全力値增加量アップ",
+    "DESCRIPTIONS": [
+      "#b%d ターンの間、 #y全力値 の増加量が #b%d%% 上昇する。",
+      "#y全力値 の増加量が #b%d%% 上昇する。"
+    ]
+  },
+  "GoodTuneAddPower": {
+    "NAME": "好調追加",
+    "DESCRIPTIONS": [
+      "#y好調 を得るたび、追加で #y好調 #b%d を得る。"
+    ]
+  },
+  "GoodTuneAddRatePower": {
+    "NAME": "好調增加量アップ",
+    "DESCRIPTIONS": [
+      "#b%d ターンの間、 #y好調 の増加量が #b%d%% 上昇する。",
+      "#y好調 の増加量が #b%d%% 上昇する。"
+    ]
+  },
+  "EnthusiasticAddPower": {
+    "NAME": "熱意追加",
+    "DESCRIPTIONS": [
+      "#y熱意 を得るたび、追加で #y熱意 #b%d を得る。"
+    ]
+  },
+  "EnthusiasticAddRatePower": {
+    "NAME": "熱意增加量アップ",
+    "DESCRIPTIONS": [
+      "#b%d ターンの間、 #y熱意 の増加量が #b%d%% 上昇する。",
+      "#y熱意 の増加量が #b%d%% 上昇する。"
+    ]
+  },
+  "DamageGrowAddPower": {
+    "NAME": "伤害成长追加",
+    "DESCRIPTIONS": [
+      "向卡牌施加 #y伤害增加 时，增加量增加 #b%d 点。"
+    ]
+  },
+  "DamageGrowAddRatePower": {
+    "NAME": "伤害增加量增加",
+    "DESCRIPTIONS": [
+      "向卡牌施加 #y伤害增加 时，增加量增加 #b%d %%。"
+    ]
+  },
+  "NextTurnGoodTunePower": {
+    "NAME": "次のターンの好調",
+    "DESCRIPTIONS": [
+      "次のターンの開始時、 #y好調 #b%d を得る。"
+    ]
+  },
+  "NoMoreHesitationPower": {
+    "NAME": "もうためらわない",
+    "DESCRIPTIONS": [
+      "直接効果で #y筋力 が #b%d 以上増加後、 ランダムな敵に #b%d ダメージを与える( #b%d 回)。( #y筋力 効果を #b200%% 適用)"
+    ]
+  },
+  "TheMomentWaitForPower": {
+    "NAME": "待ち望んだ瞬間",
+    "DESCRIPTIONS": [
+      "直接効果で #y全力値 か増加後、 #y全力値 #b%d を得る。"
+    ]
+  },
+  "SelfEsteemBoostPower": {
+    "NAME": "自己肯定感爆上げ↑↑",
+    "DESCRIPTIONS": [
+      "#yスキル カードを #b%d 枚使用時、 #y筋力 #b%d を得る。"
+    ]
+  },
+  "DramaticHolidayPower": {
+    "NAME": "ドラマチックホリデー",
+    "DESCRIPTIONS": [
+      "#yアタック カードを #b%d 枚使用時、 #y敏捷性 が #b%d 以上の場合、 #b%d #yブロック を得る。"
+    ]
+  },
+  "BambooCrushPower": {
+    "NAME": "破竹の勢い",
+    "DESCRIPTIONS": [
+      "毎ターン開始時、 すべての敵に #b%d ダメージ· #y不調 を #b%d ずつ与える。"
+    ]
+  },
+  "SenseOfAccomplishmentPower": {
+    "NAME": "達成感",
+    "DESCRIPTIONS": [
+      "每ターンで最初に #y全力 を解除した時、 #y温存 に入る。"
+    ]
+  },
+  "SenseOfAccomplishmentSPPower": {
+    "NAME": "達成感·SP",
+    "DESCRIPTIONS": [
+      "#y全力 を解除した時、 #y温存 に入る。"
+    ]
+  },
+  "BurstSkillPower": {
+    "NAME": "爆発・スキル＆パワー",
+    "DESCRIPTIONS": [
+      "このターン、次の #b%d 枚 #yスキル · #yパワー カードが2回発動する。"
+    ]
+  },
+  "EachPathPower": {
+    "NAME": "それぞれの道",
+    "DESCRIPTIONS": [
+      "每ターン終了時に、 HPを #b%d 失う、 すべての敵に #b%d ダメージ。"
     ]
   }
 }

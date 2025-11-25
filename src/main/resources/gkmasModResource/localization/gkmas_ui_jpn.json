@@ -239,6 +239,12 @@
   "gkmasMod:FirstWantToRunHeader": {
     "TEXT": ["「MOON」"]
   },
+  "gkmasMod:GiveUpHeader": {
+    "TEXT": ["NEVER"]
+  },
+  "gkmasMod:SendEmojiHeader": {
+    "TEXT": ["LUNA SAY"]
+  },
   "gkmasMod:SleepyHeader": {
     "TEXT": ["「怠惰」"]
   },
@@ -302,6 +308,9 @@
   },
   "gkmasMod:WhatDoesSheDoAction": {
     "TEXT": ["カード%s枚を選び、次のターンに得る。"]
+  },
+  "gkmasMod:TheGeniusSPAction": {
+    "TEXT": ["%s 枚のカードを選び、山札の一番上に加える。"]
   },
   "gkmasMod:BattlePracticeAction": {
     "TEXT": ["カード%s枚を暂存する。"]

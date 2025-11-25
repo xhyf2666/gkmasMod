@@ -8,9 +8,8 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
-import gkmasmod.actions.GainBlockWithPowerAction;
-import gkmasmod.actions.ModifyDamageRandomEnemyAction;
-import gkmasmod.cards.free.BaseAppeal;
+import gkmasmod.actions.common.GainBlockWithPowerAction;
+import gkmasmod.actions.common.ModifyDamageRandomEnemyAction;
 import gkmasmod.powers.GoodImpression;
 
 public class ThisIsMe extends CustomRelic {

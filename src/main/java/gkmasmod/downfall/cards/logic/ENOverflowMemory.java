@@ -27,9 +27,10 @@ public class ENOverflowMemory extends GkmasBossCard {
     private static String IMG_PATH = ImageHelper.idolImgPath(AbstractCharBoss.theIdolName, CLASSNAME2);
 
     private static final int COST = 1;
-    private static final int BASE_MAGIC = 2;
-    private static final int BLOCK_AMT = 6;
-    private static final int UPGRADE_PLUS_BLOCK = 3;
+    private static final int BASE_MAGIC = 1;
+    private static final int UPGRADE_PLUS_MAGIC = 1;
+    private static final int BLOCK_AMT = 5;
+    private static final int UPGRADE_PLUS_BLOCK = 2;
 
 
     private static final CardType TYPE = CardType.SKILL;
@@ -68,6 +69,7 @@ public class ENOverflowMemory extends GkmasBossCard {
         if (!this.upgraded) {
             upgradeName();
             upgradeBlock(UPGRADE_PLUS_BLOCK);
+            upgradeMagicNumber(UPGRADE_PLUS_MAGIC);
             if (CARD_STRINGS.UPGRADE_DESCRIPTION != null)
                 this.rawDescription = CARD_STRINGS.UPGRADE_DESCRIPTION;
             this.initializeDescription();

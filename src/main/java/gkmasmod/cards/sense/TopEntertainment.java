@@ -18,10 +18,7 @@ import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.powers.*;
 import gkmasmod.screen.SkinSelectScreen;
-import gkmasmod.utils.CustomHelper;
-import gkmasmod.utils.ImageHelper;
-import gkmasmod.utils.NameHelper;
-import gkmasmod.utils.PlayerHelper;
+import gkmasmod.utils.*;
 
 import java.util.ArrayList;
 
@@ -84,9 +81,9 @@ public class TopEntertainment extends GkmasCard {
     public boolean canUse(AbstractPlayer p, AbstractMonster m) {
         int count = PlayerHelper.getPowerAmount(p,StrengthPower.POWER_ID);
         if (count >= magicNumber)
-            return true;
+            return super.canUse(p, m);
         this.cantUseMessage = CardCrawlGame.languagePack.getUIString("gkmasMod:NotEnoughStrengthPower").TEXT[0];
-        return false;
+        return CardHelper.containsMasterKey();
     }
 
     @Override

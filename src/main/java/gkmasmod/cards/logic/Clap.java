@@ -9,7 +9,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.CardHelper;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import gkmasmod.actions.GoodImpressionDamageAction;
+import gkmasmod.actions.common.GoodImpressionDamageAction;
 import gkmasmod.cardCustomEffect.CostCustom;
 import gkmasmod.cardCustomEffect.GoodImpressionCustom;
 import gkmasmod.cardCustomEffect.MagicCustom;
@@ -32,8 +32,8 @@ public class Clap extends GkmasCard {
     private static final String DESCRIPTION = CARD_STRINGS.DESCRIPTION;
     private static final String IMG_PATH = String.format("gkmasModResource/img/cards/common/%s.png", CLASSNAME);
 
-    private static final int COST = 1;
-    private static final int BASE_MAGIC = 150;
+    private static final int COST = 0;
+    private static final int BASE_MAGIC = 50;
     private static final int UPGRADE_PLUS_MAGIC = 50;
 
     private static final int BASE_MAGIC2 = 1;
@@ -57,7 +57,6 @@ public class Clap extends GkmasCard {
         this.customLimit = 3;
         this.customEffectList = new ArrayList<>();
         this.customEffectList.add(CustomHelper.generateCustomEffectList(MagicCustom.growID,new int[]{20,20,40},new int[]{40,40,70},CustomHelper.CustomEffectType.RATE_ADD));
-        this.customEffectList.add(CustomHelper.generateCustomEffectList(CostCustom.growID,new int[]{-1},new int[]{70},CustomHelper.CustomEffectType.ENERGY_COST_REDUCE));
         this.customEffectList.add(CustomHelper.generateCustomEffectList(GoodImpressionCustom.growID,new int[]{1,1,2},new int[]{50,50,80},CustomHelper.CustomEffectType.GOOD_IMPRESSION_ADD));
     }
 

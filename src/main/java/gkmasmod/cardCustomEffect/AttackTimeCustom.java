@@ -8,11 +8,7 @@ import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import gkmasmod.actions.GainTrainRoundPowerAction;
-import gkmasmod.actions.ModifyDamageAction;
-import gkmasmod.cards.GkmasCardTag;
-import gkmasmod.cards.anomaly.FinalSpurt;
-import gkmasmod.cards.anomaly.ShineBright;
+import gkmasmod.actions.common.ModifyDamageAction;
 import gkmasmod.cards.anomaly.StepByStep;
 import gkmasmod.stances.FullPowerStance;
 

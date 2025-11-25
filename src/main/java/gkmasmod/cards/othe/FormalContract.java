@@ -27,7 +27,7 @@ public class FormalContract extends GkmasCard {
     private static final int UPGRADE_COST = 1;
 
     private static final int BASE_MAGIC = 10;
-    private static final int BASE_MAGIC2 = 20;
+    private static final int BASE_MAGIC2 = 10;
 
     private static final CardType TYPE = CardType.POWER;
     private static final CardColor COLOR = PlayerColorEnum.gkmasModColorOther;

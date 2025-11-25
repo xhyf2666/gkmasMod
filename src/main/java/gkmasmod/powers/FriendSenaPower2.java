@@ -8,7 +8,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
-import gkmasmod.actions.ModifyDamageRandomEnemyAction;
+import gkmasmod.actions.common.ModifyDamageRandomEnemyAction;
 import gkmasmod.utils.NameHelper;
 
 public class FriendSenaPower2 extends AbstractPower {

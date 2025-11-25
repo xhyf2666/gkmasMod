@@ -7,7 +7,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import gkmasmod.actions.GoodImpressionDamageAction;
+import gkmasmod.actions.common.GoodImpressionDamageAction;
 import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.downfall.cards.GkmasBossCard;
@@ -27,7 +27,7 @@ public class ENMiracleMagic extends GkmasBossCard {
 
     private static final int COST = 1;
 
-    private static final int BASE_HP = 5;
+    private static final int BASE_HP = 2;
 
     private static final int BASE_MAGIC = 250;
     private static final int UPGRADE_PLUS_MAGIC = 90;
@@ -48,6 +48,7 @@ public class ENMiracleMagic extends GkmasBossCard {
         this.magicNumber = this.baseMagicNumber;
         this.intent = AbstractMonster.Intent.ATTACK;
         this.tags.add(GkmasCardTag.GOOD_IMPRESSION_TAG);
+        this.tags.add(GkmasCardTag.COST_HP_TAG);
     }
 
 

@@ -1,30 +1,19 @@
 package gkmasmod.patches;
 
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePostfixPatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePrefixPatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpireReturn;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
-import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.screens.CombatRewardScreen;
-import gkmasmod.actions.RemoveFromDiscardPileAction;
 import gkmasmod.cards.GkmasCardTag;
-import gkmasmod.cards.anomaly.FinalSpurt;
-import gkmasmod.cards.anomaly.StepByStep;
 import gkmasmod.cards.free.Sleepy;
 import gkmasmod.powers.MisuzuDreamPower;
 import gkmasmod.powers.SleepPower;
 import gkmasmod.powers.SleepPower2;
 import gkmasmod.powers.SleepyCardPowerPower;
-import gkmasmod.stances.PreservationStance;
-import gkmasmod.vfx.effect.ThreeSizeChangeEffect;
-
-import java.util.ArrayList;
 
 public class CardGroupPatch {
     /**

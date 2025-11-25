@@ -9,7 +9,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.DexterityPower;
-import gkmasmod.actions.GainTrainRoundPowerAction;
+import gkmasmod.actions.common.GainTrainRoundPowerAction;
 import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.downfall.cards.GkmasBossCard;
@@ -33,7 +33,7 @@ public class ENUnstoppableThoughts extends GkmasBossCard {
     private static final int UPGRADE_PLUS_MAGIC = 1;
     private static final int BASE_MAGIC2 = 3;
     private static final int UPGRADE_PLUS_MAGIC2 = 2;
-    private static final int BASE_HP = 4;
+    private static final int BASE_HP = 3;
 
 
     private static final CardType TYPE = CardType.SKILL;
@@ -57,6 +57,7 @@ public class ENUnstoppableThoughts extends GkmasBossCard {
         this.tags.add(GkmasCardTag.YARUKI_TAG);
         this.tags.add(GkmasCardTag.GOOD_IMPRESSION_TAG);
         this.tags.add(GkmasCardTag.MORE_ACTION_TAG);
+        this.tags.add(GkmasCardTag.COST_HP_TAG);
         this.energyGeneratedIfPlayed = 1;
     }
 

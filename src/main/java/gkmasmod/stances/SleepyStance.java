@@ -1,27 +1,18 @@
 package gkmasmod.stances;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.MakeTempCardInHandAction;
-import com.megacrit.cardcrawl.actions.watcher.ChangeStanceAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.StanceStrings;
-import com.megacrit.cardcrawl.vfx.BorderFlashEffect;
-import com.megacrit.cardcrawl.vfx.stance.DivinityParticleEffect;
-import com.megacrit.cardcrawl.vfx.stance.StanceAuraEffect;
-import com.megacrit.cardcrawl.vfx.stance.StanceChangeParticleGenerator;
-import gkmasmod.actions.GainTrainRoundPowerAction;
 import gkmasmod.cards.free.Sleepy;
 import gkmasmod.characters.MisuzuCharacter;
-import gkmasmod.powers.TempSavePower;
+import gkmasmod.powers.SleeplessNightPower;
 import gkmasmod.powers.WantToSleep;
-import gkmasmod.powers.WhereDreamsArePower;
 import gkmasmod.vfx.effect.StanceAuraEffect2;
 
 public class SleepyStance extends GkmasModStance {

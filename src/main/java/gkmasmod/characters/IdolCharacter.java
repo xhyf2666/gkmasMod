@@ -156,6 +156,7 @@ public class IdolCharacter extends CustomPlayer {
         }
         else if(Objects.equals(SkinSelectScreen.Inst.idolName, IdolData.shro)){
             retVal.add(MeatOnTheBone.ID);
+            retVal.add(TemariToy.ID);
         }
         else if(Objects.equals(SkinSelectScreen.Inst.idolName, IdolData.hrnm)){
             retVal.add(CrackedCoreNew.ID);
@@ -172,6 +173,7 @@ public class IdolCharacter extends CustomPlayer {
         else if(Objects.equals(SkinSelectScreen.Inst.idolName, IdolData.hmsz)){
             retVal.add(DreamCatcher.ID);
         }
+//        retVal.add(MusicPlayer.ID);
         return retVal;
     }
 

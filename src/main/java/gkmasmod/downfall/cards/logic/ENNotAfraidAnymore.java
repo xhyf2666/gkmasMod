@@ -30,8 +30,8 @@ public class ENNotAfraidAnymore extends GkmasBossCard {
     private static final int COST = 1;
 
     private static final int BASE_MAGIC = 3;
-    private static final int UPGRADE_PLUS_MAGIC = 1;
-    private static final int BASE_MAGIC2 = 1;
+    private static final int UPGRADE_PLUS_MAGIC = 3;
+    private static final int BASE_MAGIC2 = 2;
 
     private static final CardType TYPE = CardType.POWER;
     private static final CardColor COLOR = PlayerColorEnum.gkmasModColorLogic;

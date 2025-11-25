@@ -1,23 +1,17 @@
 package gkmasmod.cards.hmsz;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.actions.common.DrawCardAction;
 import com.megacrit.cardcrawl.actions.common.LoseHPAction;
 import com.megacrit.cardcrawl.actions.watcher.ChangeStanceAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import gkmasmod.actions.GainTrainRoundPowerAction;
 import gkmasmod.cardCustomEffect.MoreActionCustom;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
-import gkmasmod.patches.AbstractCardPatch;
-import gkmasmod.stances.SleepStance;
 import gkmasmod.stances.WakeStance;
 import gkmasmod.utils.CustomHelper;
 import gkmasmod.utils.ImageHelper;
@@ -49,12 +43,15 @@ public class ShockWakeUp extends GkmasCard {
         this.baseMagicNumber = BASE_MAGIC;
         this.magicNumber = this.baseMagicNumber;
         this.tags.add(GkmasCardTag.SLEEP_TAG);
+        this.tags.add(GkmasCardTag.COST_HP_TAG);
         this.exhaust = true;
     }
 
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        addToBot(new LoseHPAction(p, p, this.HPMagicNumber));
+        if(this.HPMagicNumber > 0){
+            addToBot(new LoseHPAction(p,p,this.HPMagicNumber));
+        }
         addToBot(new ChangeStanceAction(WakeStance.STANCE_ID));
         addToBot(new DrawCardAction(p, this.magicNumber));
     }

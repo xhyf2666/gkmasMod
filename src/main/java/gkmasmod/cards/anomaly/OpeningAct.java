@@ -10,7 +10,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import gkmasmod.actions.ModifyDamageAction;
+import gkmasmod.actions.common.ModifyDamageAction;
 import gkmasmod.cardCustomEffect.*;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.cards.GkmasCardTag;
@@ -88,7 +88,6 @@ public class OpeningAct extends GkmasCard {
                 GrowHelper.grow(this, DamageGrow.growID,this.secondMagicNumber);
             }
         }
-
     }
 
     @Override

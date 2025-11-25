@@ -1,5 +1,6 @@
 package gkmasmod.downfall.cards.logic;
 
+import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.downfall.charbosses.bosses.AbstractCharBoss;
 import com.evacipated.cardcrawl.mod.stslib.patches.FlavorText;
 import com.megacrit.cardcrawl.actions.common.LoseHPAction;
@@ -9,7 +10,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.helpers.CardHelper;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import gkmasmod.actions.BlockDamageAction;
+import gkmasmod.actions.common.BlockDamageAction;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.downfall.cards.GkmasBossCard;
 import gkmasmod.utils.ImageHelper;
@@ -34,7 +35,7 @@ public class ENThankYou extends GkmasBossCard {
     private static final int BASE_BLOCK = 9;
     private static final int UPGRADE_PLUS_BLOCK = 2;
 
-    private static final int BASE_HP = 4;
+    private static final int BASE_HP = 2;
 
     private static final CardType TYPE = CardType.ATTACK;
     private static final CardColor COLOR = PlayerColorEnum.gkmasModColorLogic;
@@ -53,6 +54,7 @@ public class ENThankYou extends GkmasBossCard {
         this.HPMagicNumber = this.baseHPMagicNumber;
         this.baseBlock = BASE_BLOCK;
         this.block = this.baseBlock;
+        this.tags.add(GkmasCardTag.COST_HP_TAG);
         this.intent = AbstractMonster.Intent.ATTACK_DEFEND;
         FlavorText.AbstractCardFlavorFields.boxColor.set(this, CardHelper.getColor(73, 224, 254));
         flavor = FlavorText.CardStringsFlavorField.flavor.get(CARD_STRINGS);

@@ -10,7 +10,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
-import gkmasmod.actions.GrowAction;
+import gkmasmod.actions.common.GrowAction;
 import gkmasmod.downfall.charbosses.cards.AbstractBossCard;
 import gkmasmod.cardGrowEffect.BlockGrow;
 import gkmasmod.cardGrowEffect.DamageGrow;
@@ -116,7 +116,8 @@ public class TrainRoundAnomalyPower extends AbstractPower {
     public void atEndOfTurn(boolean isPlayer) {
         flash();
         if(this.amount > 0){
-            addToBot(new ReducePowerAction(this.owner, this.owner, POWER_ID, 1));
+            if(!this.owner.hasPower(NeverEndIdolPower.POWER_ID))
+                addToBot(new ReducePowerAction(this.owner, this.owner, POWER_ID, 1));
             if(this.amount<4){
                 for(AbstractPower power:AbstractDungeon.player.powers){
                     if(power instanceof MyPrideBigSisterPower){
@@ -136,7 +137,8 @@ public class TrainRoundAnomalyPower extends AbstractPower {
         flash();
         if(this.amount == 1){
         }
-        addToBot(new ReducePowerAction(this.owner, this.owner, POWER_ID, 1));
+        if(!this.owner.hasPower(NeverEndIdolPower.POWER_ID))
+            addToBot(new ReducePowerAction(this.owner, this.owner, POWER_ID, 1));
     }
 
     public void onVictory() {

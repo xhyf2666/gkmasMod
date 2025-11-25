@@ -48,12 +48,15 @@ public class BloodySacrifice extends GkmasCard {
         this.baseHPMagicNumber = BASE_HP;
         this.HPMagicNumber = this.baseHPMagicNumber;
         this.tags.add(GkmasCardTag.MORE_ACTION_TAG);
+        this.tags.add(GkmasCardTag.COST_HP_TAG);
         CardModifierManager.addModifier(this,new MoreActionCustom(this.secondMagicNumber));
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        addToBot(new LoseHPAction(p, p, this.HPMagicNumber));
+        if(this.HPMagicNumber > 0){
+            addToBot(new LoseHPAction(p,p,this.HPMagicNumber));
+        }
         addToBot(new ApplyPowerAction(p, p, new DrawReductionPower(p, this.magicNumber), this.magicNumber));
     }
 

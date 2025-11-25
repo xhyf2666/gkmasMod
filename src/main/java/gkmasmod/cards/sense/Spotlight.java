@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.DrawCardNextTurnPower;
 import gkmasmod.cardCustomEffect.*;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.cards.GkmasCardTag;
@@ -35,6 +36,7 @@ public class Spotlight extends GkmasCard {
     private static final int UPGRADE_PLUS_MAGIC = 1;
     private static final int BLOCK_AMT = 8;
     private static final int UPGRADE_PLUS_BLOCK = 2;
+    private static final int BASE_MAGIC2 = 1;
 
     private static final int BASE_HP = 2;
 
@@ -52,9 +54,12 @@ public class Spotlight extends GkmasCard {
         this.magicNumber = this.baseMagicNumber;
         this.baseHPMagicNumber = BASE_HP;
         this.HPMagicNumber = this.baseHPMagicNumber;
+        this.baseSecondMagicNumber = BASE_MAGIC2;
+        this.secondMagicNumber = this.baseSecondMagicNumber;
         this.baseBlock = BLOCK_AMT;
         this.block = this.baseBlock;
         this.tags.add(GkmasCardTag.GOOD_TUNE_TAG);
+        this.tags.add(GkmasCardTag.COST_HP_TAG);
         this.customLimit = 2;
         this.customEffectList = new ArrayList<>();
         this.customEffectList.add(CustomHelper.generateCustomEffectList(BlockCustom.growID,new int[]{2,2},new int[]{40,40},CustomHelper.CustomEffectType.BLOCK_ADD));
@@ -65,9 +70,12 @@ public class Spotlight extends GkmasCard {
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        addToBot(new LoseHPAction(p, p, HPMagicNumber));
+        if(this.HPMagicNumber > 0){
+            addToBot(new LoseHPAction(p,p,this.HPMagicNumber));
+        }
         addToBot(new GainBlockAction(p, p, this.block));
         addToBot(new ApplyPowerAction(p,p,new GoodTune(p, this.magicNumber),this.magicNumber));
+        addToBot(new ApplyPowerAction(p,p,new DrawCardNextTurnPower(p,this.secondMagicNumber),this.secondMagicNumber));
     }
 
 

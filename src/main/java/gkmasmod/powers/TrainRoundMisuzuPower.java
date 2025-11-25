@@ -16,7 +16,7 @@ import com.megacrit.cardcrawl.powers.DexterityPower;
 import com.megacrit.cardcrawl.powers.RegenPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.vfx.GainPennyEffect;
-import gkmasmod.actions.GashaAction;
+import gkmasmod.actions.common.GashaAction;
 import gkmasmod.cards.free.EatEmptyYourRefrigerator;
 import gkmasmod.cards.free.Sleepy;
 import gkmasmod.cards.special.Kiss;
@@ -115,7 +115,8 @@ public class TrainRoundMisuzuPower extends AbstractPower {
     public void atEndOfTurn(boolean isPlayer) {
         flash();
         if(this.amount > 0){
-            addToBot(new ReducePowerAction(this.owner, this.owner, POWER_ID, 1));
+            if(!this.owner.hasPower(NeverEndIdolPower.POWER_ID))
+                addToBot(new ReducePowerAction(this.owner, this.owner, POWER_ID, 1));
             if(this.amount<4){
                 for(AbstractPower power:AbstractDungeon.player.powers){
                     if(power instanceof MyPrideBigSisterPower){
@@ -140,7 +141,8 @@ public class TrainRoundMisuzuPower extends AbstractPower {
         }
         flash();
 
-        addToBot(new ReducePowerAction(this.owner, this.owner, POWER_ID, 1));
+        if(!this.owner.hasPower(NeverEndIdolPower.POWER_ID))
+            addToBot(new ReducePowerAction(this.owner, this.owner, POWER_ID, 1));
     }
 
     public void onVictory() {

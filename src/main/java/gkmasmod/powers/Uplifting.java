@@ -9,7 +9,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
-import gkmasmod.actions.GainBlockWithPowerAction;
+import gkmasmod.actions.common.GainBlockWithPowerAction;
 import gkmasmod.utils.NameHelper;
 
 public class Uplifting extends AbstractPower {

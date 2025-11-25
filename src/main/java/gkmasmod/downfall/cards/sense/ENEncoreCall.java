@@ -1,7 +1,5 @@
 package gkmasmod.downfall.cards.sense;
 
-import gkmasmod.actions.CBR_MyPartAction;
-import gkmasmod.downfall.bosses.IdolBoss_amao;
 import gkmasmod.downfall.bosses.IdolBoss_jsna;
 import gkmasmod.downfall.charbosses.bosses.AbstractCharBoss;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
@@ -14,7 +12,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.StrengthPower;
-import gkmasmod.actions.GainTrainRoundPowerAction;
+import gkmasmod.actions.common.GainTrainRoundPowerAction;
 import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.downfall.cards.GkmasBossCard;

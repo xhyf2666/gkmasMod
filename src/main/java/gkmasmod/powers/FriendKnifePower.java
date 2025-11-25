@@ -12,7 +12,6 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.VulnerablePower;
-import gkmasmod.actions.ModifyDamageAction;
 import gkmasmod.downfall.charbosses.cards.AbstractBossCard;
 import gkmasmod.utils.NameHelper;
 

@@ -2,29 +2,19 @@ package gkmasmod.downfall.cards.logic;
 
 import com.evacipated.cardcrawl.mod.stslib.patches.FlavorText;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
-import com.megacrit.cardcrawl.actions.common.DrawCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.CardHelper;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.DexterityPower;
-import com.megacrit.cardcrawl.powers.DrawCardNextTurnPower;
-import gkmasmod.actions.GoodImpressionDamageAction;
-import gkmasmod.cardCustomEffect.EffectChangeCustom;
-import gkmasmod.cardCustomEffect.SecondMagicCustom;
-import gkmasmod.cardCustomEffect.ThirdMagicCustom;
-import gkmasmod.cards.GkmasCard;
+import gkmasmod.actions.common.GoodImpressionDamageAction;
 import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.downfall.cards.GkmasBossCard;
-import gkmasmod.downfall.cards.anomaly.ENCanYouAccept;
 import gkmasmod.powers.GoodImpression;
 import gkmasmod.utils.*;
-
-import java.util.ArrayList;
 
 public class ENLittleSun extends GkmasBossCard {
     private static final String CLASSNAME = ENLittleSun.class.getSimpleName();
@@ -92,7 +82,7 @@ public class ENLittleSun extends GkmasBossCard {
     public boolean canUse(AbstractPlayer p, AbstractMonster m) {
         int count = PlayerHelper.getPowerAmount(m, DexterityPower.POWER_ID);
         if (count >= this.magicNumber)
-            return true;
+            return super.canUse(p, m);
         this.cantUseMessage = CardCrawlGame.languagePack.getUIString("gkmasMod:NotEnoughDexterityPower").TEXT[0];
         return false;
     }

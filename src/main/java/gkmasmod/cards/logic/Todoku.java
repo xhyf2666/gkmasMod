@@ -10,11 +10,11 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.CardHelper;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import gkmasmod.actions.BlockDamageAction;
+import gkmasmod.actions.common.BlockDamageAction;
 import gkmasmod.cardCustomEffect.*;
 import gkmasmod.cards.GkmasCard;
+import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
-import gkmasmod.powers.AnotherTurnPower;
 import gkmasmod.powers.TodokuPower;
 import gkmasmod.screen.SkinSelectScreen;
 import gkmasmod.utils.CustomHelper;
@@ -32,7 +32,7 @@ public class Todoku extends GkmasCard {
     private static final String DESCRIPTION = CARD_STRINGS.DESCRIPTION;
     private static String IMG_PATH = ImageHelper.idolImgPath(SkinSelectScreen.Inst.idolName, CLASSNAME);
 
-    private static final int COST = 1;
+    private static final int COST = 0;
 
     private static final int BASE_MAGIC = 200;
     private static final int UPGRADE_PLUS_MAGIC = 60;
@@ -59,6 +59,7 @@ public class Todoku extends GkmasCard {
         this.exhaust = true;
         FlavorText.AbstractCardFlavorFields.boxColor.set(this, CardHelper.getColor(73, 224, 254));
         flavor = FlavorText.CardStringsFlavorField.flavor.get(CARD_STRINGS);
+        this.tags.add(GkmasCardTag.COST_HP_TAG);
         //TODO 届卡名的动态显示
         this.customLimit = 1;
         this.customEffectList = new ArrayList<>();
@@ -67,7 +68,9 @@ public class Todoku extends GkmasCard {
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        addToBot(new LoseHPAction(p, p, this.HPMagicNumber));
+        if(this.HPMagicNumber > 0){
+            addToBot(new LoseHPAction(p,p,this.HPMagicNumber));
+        }
         if(CustomHelper.hasCustom(this, EffectChangeCustom.growID)){
             addToBot(new BlockDamageAction(1.0F * this.magicNumber / 100, 0, p, m,this));
             addToBot(new ApplyPowerAction(p,p,new TodokuPower(p)));

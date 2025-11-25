@@ -2,14 +2,11 @@ package gkmasmod.relics;
 import basemod.abstracts.CustomRelic;
 import com.badlogic.gdx.Gdx;
 import com.megacrit.cardcrawl.actions.common.RelicAboveCreatureAction;
-import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.actions.watcher.ChangeStanceAction;
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
-import gkmasmod.actions.GainBlockWithPowerAction;
-import gkmasmod.cards.GkmasCardTag;
+import gkmasmod.actions.common.GainBlockWithPowerAction;
 import gkmasmod.stances.ConcentrationStance;
 import gkmasmod.stances.PreservationStance;
 

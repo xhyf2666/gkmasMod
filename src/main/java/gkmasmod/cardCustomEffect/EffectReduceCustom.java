@@ -3,10 +3,7 @@ package gkmasmod.cardCustomEffect;
 import basemod.abstracts.AbstractCardModifier;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import gkmasmod.cards.anomaly.ComprehensiveArt;
-import gkmasmod.cards.anomaly.DoYourBest;
-import gkmasmod.cards.anomaly.HeatUp;
-import gkmasmod.cards.anomaly.KiraKiraPrism;
+import gkmasmod.cards.anomaly.*;
 import gkmasmod.cards.free.IdolDeclaration;
 import gkmasmod.cards.free.Repartitioning;
 import gkmasmod.cards.free.TurnBack;
@@ -51,6 +48,9 @@ public class EffectReduceCustom extends AbstractCardCustomEffect {
         }
         else if(card instanceof HeatUp){
             return CardCrawlGame.languagePack.getCardStrings("gkmasMod:HeatUp_Effect2").DESCRIPTION;
+        }
+        else if(card instanceof TowardsTheSun){
+            return CardCrawlGame.languagePack.getCardStrings("gkmasMod:TowardsTheSun_Effect0").DESCRIPTION;
         }
         return rawDescription;
     }

@@ -11,10 +11,9 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
-import gkmasmod.cards.logic.LetMeBeYourDream;
+import gkmasmod.cards.idol.LetMeBeYourDream;
 import gkmasmod.downfall.cards.logic.ENLetMeBeYourDream;
 import gkmasmod.utils.NameHelper;
-import org.lwjgl.Sys;
 
 public class EvenIfDreamNotRealizePower extends AbstractPower {
     private static final String CLASSNAME = EvenIfDreamNotRealizePower.class.getSimpleName();

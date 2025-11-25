@@ -1,9 +1,8 @@
 package gkmasmod.downfall.cards.sense;
 
 import com.megacrit.cardcrawl.powers.AbstractPower;
-import gkmasmod.actions.AnotherLimitBreakAction;
+import gkmasmod.actions.cardAction.AnotherLimitBreakAction;
 import gkmasmod.cardCustomEffect.EffectReduceCustom;
-import gkmasmod.downfall.charbosses.actions.unique.EnemyLimitBreakAction;
 import gkmasmod.downfall.charbosses.bosses.AbstractCharBoss;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;

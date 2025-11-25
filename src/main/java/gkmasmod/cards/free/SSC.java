@@ -50,12 +50,15 @@ public class SSC extends GkmasCard {
         this.cardHeader = "S. S. C.";
         this.exhaust = true;
         this.tags.add(GkmasCardTag.MORE_ACTION_TAG);
+        this.tags.add(GkmasCardTag.COST_HP_TAG);
         CardModifierManager.addModifier(this,new MoreActionCustom(2));
     }
 
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        addToBot(new LoseHPAction(p, p, this.HPMagicNumber));
+        if(this.HPMagicNumber > 0){
+            addToBot(new LoseHPAction(p,p,this.HPMagicNumber));
+        }
         addToBot(new HealAction(p, p, this.HPMagicNumber));
         addToBot(new ApplyPowerAction(p,p,new HalfDamageReceive(p,this.magicNumber),this.magicNumber));
         addToBot(new ApplyPowerAction(p,p,new DoubleDamageReceive(p,this.magicNumber),this.magicNumber));

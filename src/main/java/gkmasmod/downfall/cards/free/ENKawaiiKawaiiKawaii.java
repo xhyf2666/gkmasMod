@@ -6,7 +6,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import gkmasmod.actions.GainTrainRoundPowerAction;
+import gkmasmod.actions.common.GainTrainRoundPowerAction;
 import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.downfall.cards.GkmasBossCard;
@@ -24,7 +24,8 @@ public class ENKawaiiKawaiiKawaii extends GkmasBossCard {
     private static final String IMG_PATH = String.format("gkmasModResource/img/cards/common/%s.png", CLASSNAME2);
 
     private static final int COST = 1;
-    private static final int BASE_MAGIC = 2;
+    private static final int BASE_MAGIC = 1;
+    private static final int UPGRADE_MAGIC_PLUS = 1;
     private static final int BASE_MAGIC2 = 2;
 
     private static final CardType TYPE = CardType.SKILL;
@@ -38,7 +39,7 @@ public class ENKawaiiKawaiiKawaii extends GkmasBossCard {
         this.magicNumber = this.baseMagicNumber;
         this.baseSecondMagicNumber = BASE_MAGIC2;
         this.secondMagicNumber = this.baseSecondMagicNumber;
-        this.exhaust = true;
+        this.isEthereal = true;
         this.tags.add(GkmasCardTag.MORE_ACTION_TAG);
         this.energyGeneratedIfPlayed = 1;
     }
@@ -49,15 +50,6 @@ public class ENKawaiiKawaiiKawaii extends GkmasBossCard {
 //        addToBot(new DrawCardAction(this.magicNumber));
         addToBot(new EnemyUpgradeAllHandCardAction());
         addToBot(new GainTrainRoundPowerAction(m, 1));
-        if(this.upgraded){
-            if(this.secondMagicNumber > 1){
-                upgradeSecondMagicNumber(-1);
-                this.initializeDescription();
-            }
-            else{
-                this.exhaust = true;
-            }
-        }
     }
 
     @Override
@@ -69,7 +61,7 @@ public class ENKawaiiKawaiiKawaii extends GkmasBossCard {
     public void upgrade() {
         if (!this.upgraded) {
             upgradeName();
-            this.exhaust = false;
+            upgradeMagicNumber(UPGRADE_MAGIC_PLUS);
             if (CARD_STRINGS.UPGRADE_DESCRIPTION != null)
                 this.rawDescription = CARD_STRINGS.UPGRADE_DESCRIPTION;
             this.initializeDescription();

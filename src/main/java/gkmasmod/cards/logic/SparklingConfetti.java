@@ -11,16 +11,13 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.DexterityPower;
 import com.megacrit.cardcrawl.powers.DrawCardNextTurnPower;
-import gkmasmod.actions.BlockDamageAction;
-import gkmasmod.actions.DexterityPowerDamageAction;
-import gkmasmod.cardCustomEffect.ExhaustRemoveCustom;
+import gkmasmod.actions.common.BlockDamageAction;
 import gkmasmod.cardCustomEffect.GoodImpressionCustom;
 import gkmasmod.cardCustomEffect.MagicCustom;
 import gkmasmod.cardCustomEffect.SecondMagicCustom;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
-import gkmasmod.powers.GoodImpression;
 import gkmasmod.screen.SkinSelectScreen;
 import gkmasmod.utils.CustomHelper;
 import gkmasmod.utils.ImageHelper;
@@ -76,9 +73,9 @@ public class SparklingConfetti extends GkmasCard {
     public boolean canUse(AbstractPlayer p, AbstractMonster m) {
         int count = PlayerHelper.getPowerAmount(p, DexterityPower.POWER_ID);
         if (count >= this.magicNumber)
-            return true;
+            return super.canUse(p, m);
         this.cantUseMessage = CardCrawlGame.languagePack.getUIString("gkmasMod:NotEnoughDexterityPower").TEXT[0];
-        return false;
+        return gkmasmod.utils.CardHelper.containsMasterKey();
     }
 
     @Override

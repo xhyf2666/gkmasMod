@@ -292,7 +292,7 @@ public class SkinSelectScreen implements ISubscriber, CustomSavable<int[]> {
         this.rightHb.move(centerX + 180.0F * Settings.scale, centerY + 50.0F * Settings.scale);
         this.leftHb2.move(centerX - 180.0F * Settings.scale, centerY - 240.0F * Settings.scale);
         this.rightHb2.move(centerX + 180.0F * Settings.scale, centerY - 240.0F * Settings.scale);
-        this.upHb.move(centerX, centerY + 180.0F * Settings.scale + 50.0F * Settings.scale);
+        this.upHb.move(centerX, centerY + 380.0F * Settings.scale + 50.0F * Settings.scale);
         this.downHb.move(centerX, centerY - 180.0F * Settings.scale + 50.0F * Settings.scale);
         this.updateHb.move(centerX - 120.0F *Settings.scale, centerY + 150.0F * Settings.scale + 50.0F * Settings.scale);
         this.hideHb.move(centerX - 120.0F *Settings.scale, centerY - 150.0F * Settings.scale + 50.0F * Settings.scale);
@@ -502,7 +502,7 @@ public class SkinSelectScreen implements ISubscriber, CustomSavable<int[]> {
             sb.draw(achievementImg1,this.achievementHb1.cX-24.0F, this.achievementHb1.cY-24.0F);
         if(GkmasMod.beat_hmsz>0)
             sb.draw(achievementImg3,this.achievementHb2.cX-24.0F, this.achievementHb2.cY-24.0F);
-        FontHelper.renderFontCentered(sb, FontHelper.cardTitleFont, selectIdolHint, centerX, centerY + 300.0F * Settings.scale, Color.WHITE, 1.25F);
+        FontHelper.renderFontCentered(sb, FontHelper.cardTitleFont, selectIdolHint, centerX, centerY + 400.0F * Settings.scale, Color.WHITE, 1.25F);
         Color color = Settings.GOLD_COLOR.cpy();
         color.a /= 2.0F;
         float dist = 100.0F * Settings.scale;

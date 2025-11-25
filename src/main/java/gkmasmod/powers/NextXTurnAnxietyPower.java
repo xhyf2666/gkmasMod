@@ -9,7 +9,6 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
-import gkmasmod.actions.GainTrainRoundPowerAction;
 import gkmasmod.utils.NameHelper;
 
 public class NextXTurnAnxietyPower extends AbstractPower {

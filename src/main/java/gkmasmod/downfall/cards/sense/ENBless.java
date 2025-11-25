@@ -9,7 +9,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import gkmasmod.actions.BlessAction;
+import gkmasmod.actions.cardAction.BlessAction;
 import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.downfall.cards.GkmasBossCard;
@@ -54,6 +54,7 @@ public class ENBless extends GkmasBossCard {
         this.HPMagicNumber = this.baseHPMagicNumber;
         this.intent = AbstractMonster.Intent.MAGIC;
         this.tags.add(GkmasCardTag.GOOD_TUNE_TAG);
+        this.tags.add(GkmasCardTag.COST_HP_TAG);
     }
 
 

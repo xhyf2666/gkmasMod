@@ -9,9 +9,10 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.CardHelper;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import gkmasmod.actions.BlockDamageAction;
+import gkmasmod.actions.common.BlockDamageAction;
 import gkmasmod.cardCustomEffect.*;
 import gkmasmod.cards.GkmasCard;
+import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.utils.CustomHelper;
 import gkmasmod.utils.NameHelper;
@@ -32,7 +33,7 @@ public class CheerfulGreeting extends GkmasCard {
     private static final int BASE_MAGIC = 70;
     private static final int UPGRADE_PLUS_MAGIC = 10;
 
-    private static final int BASE_HP = 4;
+    private static final int BASE_HP = 3;
     private static final int UPGRADE_PLUS_HP = -1;
 
     private static final CardType TYPE = CardType.ATTACK;
@@ -47,6 +48,7 @@ public class CheerfulGreeting extends GkmasCard {
         this.magicNumber = this.baseMagicNumber;
         this.baseHPMagicNumber = BASE_HP;
         this.HPMagicNumber = this.baseHPMagicNumber;
+        this.tags.add(GkmasCardTag.COST_HP_TAG);
         FlavorText.AbstractCardFlavorFields.boxColor.set(this, CardHelper.getColor(73, 224, 254));
         flavor = FlavorText.CardStringsFlavorField.flavor.get(CARD_STRINGS);
         this.customLimit = 3;
@@ -58,7 +60,9 @@ public class CheerfulGreeting extends GkmasCard {
 
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        addToBot(new LoseHPAction(p, p, this.HPMagicNumber));
+        if(this.HPMagicNumber > 0){
+            addToBot(new LoseHPAction(p,p,this.HPMagicNumber));
+        }
         addToBot(new BlockDamageAction(1.0F * this.magicNumber / 100, 0, p, m,this,true,0));
     }
 

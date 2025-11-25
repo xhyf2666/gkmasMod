@@ -1,11 +1,8 @@
 package gkmasmod.cards.logic;
 
 import com.evacipated.cardcrawl.mod.stslib.patches.FlavorText;
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
-import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -13,10 +10,9 @@ import com.megacrit.cardcrawl.helpers.CardHelper;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.DexterityPower;
-import gkmasmod.actions.BlockDamageAction;
-import gkmasmod.actions.DexterityPowerDamageAction;
+import gkmasmod.actions.common.BlockDamageAction;
+import gkmasmod.actions.common.DexterityPowerDamageAction;
 import gkmasmod.cardCustomEffect.BlockCustom;
-import gkmasmod.cardCustomEffect.ExhaustRemoveCustom;
 import gkmasmod.cardCustomEffect.MagicCustom;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.cards.GkmasCardTag;
@@ -81,9 +77,9 @@ public class PromiseThatTime extends GkmasCard {
     public boolean canUse(AbstractPlayer p, AbstractMonster m) {
         int count = PlayerHelper.getPowerAmount(p, GoodImpression.POWER_ID);
         if (count >= this.magicNumber)
-            return true;
+            return super.canUse(p, m);
         this.cantUseMessage = CardCrawlGame.languagePack.getUIString("gkmasMod:NotEnoughGoodImpression").TEXT[0];
-        return false;
+        return gkmasmod.utils.CardHelper.containsMasterKey();
     }
 
     @Override

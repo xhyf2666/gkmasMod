@@ -6,20 +6,13 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import gkmasmod.cardCustomEffect.DrawCardCustom;
-import gkmasmod.cardCustomEffect.InnateCustom;
-import gkmasmod.cardCustomEffect.MagicCustom;
-import gkmasmod.cards.GkmasCard;
 import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.downfall.cards.GkmasBossCard;
-import gkmasmod.powers.SurgingEmotionPower;
-import gkmasmod.utils.CustomHelper;
+import gkmasmod.powers.increaseModifyPower.GoodImpressionAddRatePower;
 import gkmasmod.utils.IdolData;
 import gkmasmod.utils.NameHelper;
 import gkmasmod.utils.SoundHelper;
-
-import java.util.ArrayList;
 
 public class ENSurgingEmotion extends GkmasBossCard {
     private static final String CLASSNAME = ENSurgingEmotion.class.getSimpleName();
@@ -60,7 +53,8 @@ public class ENSurgingEmotion extends GkmasBossCard {
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        addToBot(new ApplyPowerAction(m, m, new SurgingEmotionPower(m, this.magicNumber), this.magicNumber));
+        addToBot(new ApplyPowerAction(m, m,
+                new GoodImpressionAddRatePower(m, this.magicNumber, this.secondMagicNumber, ID), this.magicNumber));
         SoundHelper.playSound("gkmasModResource/audio/voice/skillcard/cidol_jsna_3_001_produce_skillcard_01.ogg");
     }
 

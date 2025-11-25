@@ -1,18 +1,15 @@
 package gkmasmod.downfall.relics;
-import basemod.abstracts.CustomRelic;
 import com.badlogic.gdx.Gdx;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
-import gkmasmod.actions.AbsoluteNewSelfAction;
+import gkmasmod.actions.relicAction.AbsoluteNewSelfAction;
 import gkmasmod.downfall.charbosses.bosses.AbstractCharBoss;
 import gkmasmod.downfall.charbosses.relics.AbstractCharbossRelic;
 import gkmasmod.relics.AbsoluteNewSelf;
-import gkmasmod.relics.AfterSchoolDoodles;
 
 public class CBR_AbsoluteNewSelf extends AbstractCharbossRelic {
 

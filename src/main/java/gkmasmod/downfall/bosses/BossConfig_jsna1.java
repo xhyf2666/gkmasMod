@@ -57,6 +57,7 @@ public class BossConfig_jsna1 extends AbstractBossDeckArchetype {
                     break;
                 case 1:
                     addToList(cardsList, new ENProduceCompetitorGoodTune(),true);
+                    addToList(cardsList, new ENLittleAmbition(),true);
                     addToList(cardsList, new ENKawaiiKawaiiKawaii());
                     addToList(cardsList, new ENComprehensiveArt(1));
                     addToList(cardsList, new ENEndurance());

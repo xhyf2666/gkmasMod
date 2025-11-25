@@ -2,7 +2,6 @@ package gkmasmod.downfall.cards.anomaly;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
-import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -10,10 +9,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import gkmasmod.actions.ModifyDamageAction;
-import gkmasmod.cardCustomEffect.DamageCustom;
-import gkmasmod.cardCustomEffect.SecondMagicCustom;
-import gkmasmod.cards.GkmasCard;
+import gkmasmod.actions.common.ModifyDamageAction;
 import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.downfall.cards.GkmasBossCard;
@@ -22,13 +18,8 @@ import gkmasmod.downfall.charbosses.stances.ENFullPowerStance;
 import gkmasmod.powers.EndOfTurnPreservationStancePlusPower;
 import gkmasmod.powers.EndOfTurnPreservationStancePower;
 import gkmasmod.powers.FullPowerValue;
-import gkmasmod.screen.SkinSelectScreen;
-import gkmasmod.stances.FullPowerStance;
-import gkmasmod.utils.CustomHelper;
 import gkmasmod.utils.ImageHelper;
 import gkmasmod.utils.NameHelper;
-
-import java.util.ArrayList;
 
 public class ENShineBright extends GkmasBossCard {
     private static final String CLASSNAME = ENShineBright.class.getSimpleName();

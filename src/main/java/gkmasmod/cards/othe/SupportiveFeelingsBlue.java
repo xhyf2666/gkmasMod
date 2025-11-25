@@ -23,10 +23,10 @@ public class SupportiveFeelingsBlue extends GkmasCard {
     private static final String DESCRIPTION = CARD_STRINGS.DESCRIPTION;
     private static final String IMG_PATH = String.format("gkmasModResource/img/cards/common/%s.png", "SupportiveFeelings");
 
-    private static final int COST = 2;
+    private static final int COST = 1;
     private static final int BLOCK_AMT = 6;
     private static final int UPGRADE_PLUS_BLOCK = 4;
-    private static final int BASE_MAGIC = 2;
+    private static final int BASE_MAGIC = 1;
 
     private static final CardType TYPE = CardType.SKILL;
     private static final CardColor COLOR = PlayerColorEnum.gkmasModColorOther;

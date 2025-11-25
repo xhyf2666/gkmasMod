@@ -1,12 +1,15 @@
 package gkmasmod.powers;
 
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.powers.StrengthPower;
 import gkmasmod.utils.NameHelper;
+import gkmasmod.utils.PlayerHelper;
 
 public class SunfadedPower2 extends AbstractPower {
     private static final String CLASSNAME = SunfadedPower2.class.getSimpleName();
@@ -35,5 +38,14 @@ public class SunfadedPower2 extends AbstractPower {
 
     public void updateDescription() {
         this.description = String.format(DESCRIPTIONS[0],this.amount*30);
+    }
+
+    public void atEndOfTurnPreEndTurnCards(boolean isPlayer) {
+        flash();
+        int count = this.owner.maxHealth - this.owner.currentHealth;
+        count = (int) (amount*0.3F*count);
+        if(count>0){
+            addToBot(new GainBlockAction(owner,owner,count));
+        }
     }
 }

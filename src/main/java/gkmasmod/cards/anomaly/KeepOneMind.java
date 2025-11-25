@@ -7,10 +7,8 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import gkmasmod.actions.BattlePracticeAction;
 import gkmasmod.cardCustomEffect.*;
 import gkmasmod.cardGrowEffect.DamageGrow;
-import gkmasmod.cardGrowEffect.LoseBlockGrow;
 import gkmasmod.cardGrowEffect.LoseHPGrow;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.cards.GkmasCardTag;
@@ -19,10 +17,7 @@ import gkmasmod.powers.TempSavePower;
 import gkmasmod.screen.SkinSelectScreen;
 import gkmasmod.stances.ConcentrationStance;
 import gkmasmod.stances.PreservationStance;
-import gkmasmod.utils.CustomHelper;
-import gkmasmod.utils.GrowHelper;
-import gkmasmod.utils.ImageHelper;
-import gkmasmod.utils.NameHelper;
+import gkmasmod.utils.*;
 
 import java.util.ArrayList;
 
@@ -107,7 +102,7 @@ public class KeepOneMind extends GkmasCard {
             return super.canUse(p,m);
         }
         this.cantUseMessage = CardCrawlGame.languagePack.getUIString("gkmasMod:NotConcentrationStance").TEXT[0];
-        return false;
+        return CardHelper.containsMasterKey();
     }
 
     @Override

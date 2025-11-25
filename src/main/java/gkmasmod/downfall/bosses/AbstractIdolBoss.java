@@ -241,9 +241,9 @@ abstract public class AbstractIdolBoss extends AbstractCharBoss {
                 CardCrawlGame.music.dispose();
                 CardCrawlGame.music.unsilenceBGM();
                 AbstractDungeon.scene.fadeOutAmbiance();
-                String song = String.format("gkmasModResource/audio/song/%s_%s.ogg", SkinSelectScreen.Inst.idolName, IdolData.getIdol(SkinSelectScreen.Inst.idolName).getBossSong(stage));
+                String song = String.format("gkmasModResource/audio/song/%s_%s.ogg", this.idolName, IdolData.getIdol(this.idolName).getBossSong(stage));
                 if(!Gdx.files.internal(song).exists()){
-                    song = String.format("gkmasModResource/audio/song/%s_%s.ogg", SkinSelectScreen.Inst.idolName, "002");
+                    song = String.format("gkmasModResource/audio/song/%s_%s.ogg", this.idolName, "002");
                 }
                 CardCrawlGame.music.playTempBgmInstantly(song,true);
                 break;

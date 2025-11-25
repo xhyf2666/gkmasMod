@@ -5,16 +5,11 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import gkmasmod.actions.AlternativesAction;
-import gkmasmod.actions.BlossomingSeasonAction;
-import gkmasmod.actions.GainTrainRoundPowerAction;
+import gkmasmod.actions.cardAction.AlternativesAction;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
-import gkmasmod.utils.CustomHelper;
 import gkmasmod.utils.NameHelper;
-
-import java.util.ArrayList;
 
 public class Alternatives extends GkmasCard {
     private static final String CLASSNAME = Alternatives.class.getSimpleName();

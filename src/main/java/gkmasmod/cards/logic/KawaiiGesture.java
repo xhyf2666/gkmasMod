@@ -8,11 +8,13 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.CardHelper;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import gkmasmod.actions.GoodImpressionDamageAction;
+import gkmasmod.actions.common.GoodImpressionDamageAction;
+import gkmasmod.cardGrowEffect.ExhaustRemoveGrow;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.powers.GoodImpression;
+import gkmasmod.utils.GrowHelper;
 import gkmasmod.utils.NameHelper;
 import gkmasmod.utils.PlayerHelper;
 
@@ -63,7 +65,7 @@ public class KawaiiGesture extends GkmasCard {
             upgradeThirdMagicNumber(-1);
             this.initializeDescription();
         }
-        else{
+        else if(!GrowHelper.hasGrow(this, ExhaustRemoveGrow.growID)){
             this.exhaust = true;
         }
     }

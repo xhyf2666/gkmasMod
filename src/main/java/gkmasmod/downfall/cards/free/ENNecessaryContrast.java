@@ -42,6 +42,7 @@ public class ENNecessaryContrast extends GkmasBossCard {
         this.magicNumber = this.baseMagicNumber;
         this.exhaust = true;
         this.tags.add(GkmasCardTag.OUTSIDE_TAG);
+        this.tags.add(GkmasCardTag.COST_HP_TAG);
         this.intent = AbstractMonster.Intent.MAGIC;
         this.backGroundColor = IdolData.shro;
         updateBackgroundImg();

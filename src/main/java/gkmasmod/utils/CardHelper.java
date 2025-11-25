@@ -1,11 +1,13 @@
 package gkmasmod.utils;
 
+import com.evacipated.cardcrawl.modthespire.lib.SpireReturn;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.cards.GkmasCardTag;
+import gkmasmod.cards.idol.MasterKey;
 import gkmasmod.characters.IdolCharacter;
 import gkmasmod.characters.MisuzuCharacter;
 import gkmasmod.characters.OtherIdolCharacter;
@@ -124,6 +126,20 @@ public class CardHelper {
             AbstractCard card = (AbstractCard)c.getValue();
             if (rarity==card.rarity&&card.color.equals(color))
                 tmpPool.add(card.makeCopy());
+        }
+    }
+
+    public static boolean containsMasterKey(){
+        try{
+            for (AbstractCard c : AbstractDungeon.player.hand.group) {
+                if (c instanceof MasterKey){
+                    return true;
+                }
+            }
+            return false;
+        }
+        catch (Exception e){
+            return false;
         }
     }
 }

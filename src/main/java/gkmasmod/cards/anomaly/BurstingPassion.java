@@ -21,10 +21,7 @@ import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.powers.GoodImpression;
 import gkmasmod.screen.SkinSelectScreen;
 import gkmasmod.stances.ConcentrationStance;
-import gkmasmod.utils.CustomHelper;
-import gkmasmod.utils.ImageHelper;
-import gkmasmod.utils.NameHelper;
-import gkmasmod.utils.PlayerHelper;
+import gkmasmod.utils.*;
 
 import java.util.ArrayList;
 
@@ -75,9 +72,9 @@ public class BurstingPassion extends GkmasCard {
     @Override
     public boolean canUse(AbstractPlayer p, AbstractMonster m) {
         if (!(p.stance instanceof NeutralStance))
-            return true;
+            return super.canUse(p, m);
         this.cantUseMessage = CardCrawlGame.languagePack.getUIString("gkmasMod:NotStance").TEXT[0];
-        return false;
+        return CardHelper.containsMasterKey();
     }
 
     @Override

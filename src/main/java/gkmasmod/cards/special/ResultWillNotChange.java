@@ -11,7 +11,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import gkmasmod.actions.GainBlockWithPowerAction;
+import gkmasmod.actions.common.GainBlockWithPowerAction;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.cardGrowEffect.BlockGrow;
 import gkmasmod.utils.NameHelper;

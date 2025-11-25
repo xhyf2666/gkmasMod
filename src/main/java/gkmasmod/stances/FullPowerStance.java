@@ -3,10 +3,8 @@ package gkmasmod.stances;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.MathUtils;
-import com.megacrit.cardcrawl.actions.common.LoseHPAction;
 import com.megacrit.cardcrawl.actions.common.MakeTempCardInHandAction;
 import com.megacrit.cardcrawl.actions.watcher.ChangeStanceAction;
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
@@ -16,11 +14,9 @@ import com.megacrit.cardcrawl.vfx.BorderFlashEffect;
 import com.megacrit.cardcrawl.vfx.stance.DivinityParticleEffect;
 import com.megacrit.cardcrawl.vfx.stance.StanceAuraEffect;
 import com.megacrit.cardcrawl.vfx.stance.StanceChangeParticleGenerator;
-import com.megacrit.cardcrawl.vfx.stance.WrathParticleEffect;
-import gkmasmod.actions.GainTrainRoundPowerAction;
+import gkmasmod.actions.common.GainTrainRoundPowerAction;
 import gkmasmod.cards.anomaly.HoldBack;
-import gkmasmod.powers.TempSavePower;
-import gkmasmod.powers.WhereDreamsArePower;
+import gkmasmod.relics.TakoyakiTechDog;
 
 public class FullPowerStance extends GkmasModStance {
     private static final String CLASSNAME = "FullPowerStance";
@@ -91,6 +87,9 @@ public class FullPowerStance extends GkmasModStance {
 
     public void onExitStance() {
         stopIdleSfx();
+        if(AbstractDungeon.player.hasRelic(TakoyakiTechDog.ID)){
+            AbstractDungeon.player.getRelic(TakoyakiTechDog.ID).onTrigger();
+        }
     }
 
     @Override

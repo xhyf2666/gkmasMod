@@ -9,7 +9,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
-import gkmasmod.actions.EnjoyAfterHotSpringAction;
+import gkmasmod.actions.relicAction.EnjoyAfterHotSpringAction;
 import gkmasmod.relics.EnjoyAfterHotSpring;
 
 public class CBR_EnjoyAfterHotSpring extends AbstractCharbossRelic {

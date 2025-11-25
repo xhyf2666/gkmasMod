@@ -7,14 +7,15 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import gkmasmod.actions.GainTrainRoundPowerAction;
 import gkmasmod.cardCustomEffect.*;
+import gkmasmod.cardGrowEffect.ExhaustRemoveGrow;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.powers.*;
 import gkmasmod.screen.SkinSelectScreen;
 import gkmasmod.utils.CustomHelper;
+import gkmasmod.utils.GrowHelper;
 import gkmasmod.utils.ImageHelper;
 import gkmasmod.utils.NameHelper;
 
@@ -55,6 +56,7 @@ public class IdolDeclaration extends GkmasCard {
         this.HPMagicNumber = this.baseHPMagicNumber;
         this.exhaust = true;
         this.tags.add(GkmasCardTag.MORE_ACTION_TAG);
+        this.tags.add(GkmasCardTag.COST_HP_TAG);
         CardModifierManager.addModifier(this,new MoreActionCustom(1));
         this.customLimit = 1;
         this.customEffectList = new ArrayList<>();
@@ -67,20 +69,24 @@ public class IdolDeclaration extends GkmasCard {
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
         if(CustomHelper.hasCustom(this, EffectChangeCustom.growID)){
-            addToBot(new LoseHPAction(p, p, this.HPMagicNumber));
+            if(this.HPMagicNumber > 0){
+                addToBot(new LoseHPAction(p,p,this.HPMagicNumber));
+            }
         }
         else{
             if(this.upgraded){
                 addToBot(new ApplyPowerAction(p, p, new HalfDamageReceive(p, this.secondMagicNumber), this.secondMagicNumber));
             }
             else{
-                addToBot(new LoseHPAction(p, p, this.HPMagicNumber));
+                if(this.HPMagicNumber > 0){
+                    addToBot(new LoseHPAction(p,p,this.HPMagicNumber));
+                }
             }
             if(this.thirdMagicNumber > 1){
                 upgradeThirdMagicNumber(-1);
                 this.initializeDescription();
             }
-            else{
+            else if(!GrowHelper.hasGrow(this,ExhaustRemoveGrow.growID)){
                 this.exhaust = true;
             }
         }
@@ -97,6 +103,12 @@ public class IdolDeclaration extends GkmasCard {
     public void upgrade() {
         if (!this.upgraded) {
             upgradeName();
+            try{
+                this.tags.remove(GkmasCardTag.COST_HP_TAG);
+            }
+            catch (Exception e){
+
+            }
             if (CARD_STRINGS.UPGRADE_DESCRIPTION != null)
                 this.rawDescription = CARD_STRINGS.UPGRADE_DESCRIPTION;
             this.initializeDescription();

@@ -22,7 +22,7 @@ public class Sunfaded5_sp extends GkmasCard {
     private static final String DESCRIPTION = CARD_STRINGS.DESCRIPTION;
     private static final String IMG_PATH = String.format("gkmasModResource/img/cards/common/%s.png", CLASSNAME);
 
-    private static final int COST = 1;
+    private static final int COST = 0;
 
     private static final int BASE_MAGIC = 5;
     private static final int BASE_MAGIC2 = 2;
@@ -42,6 +42,7 @@ public class Sunfaded5_sp extends GkmasCard {
         this.baseThirdMagicNumber = BASE_MAGIC3;
         this.thirdMagicNumber = this.baseThirdMagicNumber;
         this.backGroundColor = IdolData.shro;
+        this.tags.add(GkmasCardTag.COSTUME_TAG);
         updateBackgroundImg();
     }
 

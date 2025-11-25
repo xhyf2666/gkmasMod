@@ -1,29 +1,19 @@
 package gkmasmod.cards.anomaly;
 
-import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.watcher.ChooseOneAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import gkmasmod.actions.FullPowerValueAction;
-import gkmasmod.actions.GainTrainRoundPowerAction;
+import gkmasmod.actions.common.FullPowerValueAction;
 import gkmasmod.cardCustomEffect.*;
 import gkmasmod.cards.GkmasCard;
-import gkmasmod.cards.free.DefensiveSkills;
-import gkmasmod.cards.free.FightSkills;
-import gkmasmod.cards.free.LoveMyselfCool;
-import gkmasmod.cards.free.LoveMyselfCute;
 import gkmasmod.characters.PlayerColorEnum;
-import gkmasmod.powers.LikeStarsPower;
-import gkmasmod.powers.LikeStarsSPPower;
 import gkmasmod.utils.CustomHelper;
-import gkmasmod.utils.IdolData;
 import gkmasmod.utils.NameHelper;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class StarPicking extends GkmasCard {
     private static final String CLASSNAME = StarPicking.class.getSimpleName();

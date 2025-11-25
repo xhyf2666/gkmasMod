@@ -21,10 +21,7 @@ import gkmasmod.powers.CanYouAcceptSPPower;
 import gkmasmod.powers.KiraKiraPrismPower;
 import gkmasmod.stances.ConcentrationStance;
 import gkmasmod.stances.PreservationStance;
-import gkmasmod.utils.CustomHelper;
-import gkmasmod.utils.IdolData;
-import gkmasmod.utils.NameHelper;
-import gkmasmod.utils.SoundHelper;
+import gkmasmod.utils.*;
 
 import java.util.ArrayList;
 
@@ -80,7 +77,7 @@ public class KiraKiraPrism extends GkmasCard {
             }
         }
         this.cantUseMessage = CardCrawlGame.languagePack.getUIString("gkmasMod:NotPreservationStance").TEXT[0];
-        return false;
+        return CardHelper.containsMasterKey();
     }
 
     @Override

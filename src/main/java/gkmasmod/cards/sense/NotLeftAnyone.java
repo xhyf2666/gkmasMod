@@ -1,23 +1,17 @@
 package gkmasmod.cards.sense;
 
-import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
-import com.megacrit.cardcrawl.actions.common.DrawCardAction;
 import com.megacrit.cardcrawl.actions.common.LoseHPAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import gkmasmod.actions.GainTrainRoundPowerAction;
-import gkmasmod.actions.NotLeftAnyoneAction;
+import gkmasmod.actions.cardAction.NotLeftAnyoneAction;
 import gkmasmod.cardCustomEffect.DamageCustom;
 import gkmasmod.cardCustomEffect.HPMagicCustom;
-import gkmasmod.cardCustomEffect.MagicCustom;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
-import gkmasmod.powers.GreatGoodTune;
-import gkmasmod.powers.OverDamageTransfer;
 import gkmasmod.utils.CustomHelper;
 import gkmasmod.utils.NameHelper;
 
@@ -52,6 +46,7 @@ public class NotLeftAnyone extends GkmasCard {
         this.baseDamage = BASE_DMG;
         this.baseHPMagicNumber = HP_LOST;
         this.HPMagicNumber = this.baseHPMagicNumber;
+        this.tags.add(GkmasCardTag.COST_HP_TAG);
         this.customLimit = 2;
         this.customEffectList = new ArrayList<>();
         this.customEffectList.add(CustomHelper.generateCustomEffectList(DamageCustom.growID,new int[]{2,2},new int[]{50,50},CustomHelper.CustomEffectType.DAMAGE_ADD));
@@ -61,7 +56,9 @@ public class NotLeftAnyone extends GkmasCard {
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        addToBot(new LoseHPAction(p, p, this.HPMagicNumber));
+        if(this.HPMagicNumber > 0){
+            addToBot(new LoseHPAction(p,p,this.HPMagicNumber));
+        }
         addToBot(new NotLeftAnyoneAction(p,this.magicNumber, this));
     }
 

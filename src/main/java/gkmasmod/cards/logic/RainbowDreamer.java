@@ -31,7 +31,6 @@ public class RainbowDreamer extends GkmasCard {
     private static String IMG_PATH = ImageHelper.idolImgPath(SkinSelectScreen.Inst.idolName, CLASSNAME);
 
     private static final int COST = 1;
-    private static final int UPGRADE_COST = 1;
     private static final int BASE_MAGIC = 1;
     private static final int UPGRADE_PLUS_MAGIC = 3;
     private static final int BASE_MAGIC2 = 2;
@@ -75,7 +74,6 @@ public class RainbowDreamer extends GkmasCard {
     public void upgrade() {
         if (!this.upgraded) {
             upgradeName();
-            upgradeBaseCost(UPGRADE_COST);
             upgradeMagicNumber(UPGRADE_PLUS_MAGIC);
             if (CARD_STRINGS.UPGRADE_DESCRIPTION != null)
                 this.rawDescription = CARD_STRINGS.UPGRADE_DESCRIPTION;

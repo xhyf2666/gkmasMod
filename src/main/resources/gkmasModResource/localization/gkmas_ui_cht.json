@@ -415,6 +415,16 @@
       "「MOON」"
     ]
   },
+  "gkmasMod:GiveUpHeader": {
+    "TEXT": [
+      "NEVER"
+    ]
+  },
+  "gkmasMod:SendEmojiHeader": {
+    "TEXT": [
+      "LUNA SAY"
+    ]
+  },
   "gkmasMod:SleepyHeader": {
     "TEXT": [
       "「怠惰」"
@@ -501,6 +511,11 @@
   "gkmasMod:WhatDoesSheDoAction": {
     "TEXT": [
       "選擇%s張卡，下回合獲得。"
+    ]
+  },
+  "gkmasMod:TheGeniusSPAction": {
+    "TEXT": [
+      "選擇%s張卡，加入抽牌堆頂部。"
     ]
   },
   "gkmasMod:BattlePracticeAction": {
@@ -1058,11 +1073,11 @@
   },
   "gkmasMod:IdolRoadTips": {
     "TEXT": [
-      "挑戰美鈴或燐羽（這裏有兩個未實裝的小孩）",
+      "挑戰美鈴或燐羽",
       "你的旅途即將進入下一階段 NL 選擇你接下來的 #b計劃 ",
       "趁着沒人來，先睡一會吧……",
       "優先出現Mod Boss",
-      "前往更廣闊的舞臺(難度較高)",
+      "#r前往更廣闊的舞臺(難度較高)",
       "偶像之間的戰鬥，不是■就是被■"
     ]
   }

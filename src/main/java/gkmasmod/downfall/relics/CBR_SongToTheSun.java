@@ -1,22 +1,18 @@
 package gkmasmod.downfall.relics;
-import basemod.abstracts.CustomRelic;
 import com.badlogic.gdx.Gdx;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.LoseHPAction;
 import com.megacrit.cardcrawl.actions.common.RelicAboveCreatureAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
-import gkmasmod.actions.GainTrainRoundPowerAction;
-import gkmasmod.cards.sense.GoWithTheFlow;
+import gkmasmod.actions.common.GainTrainRoundPowerAction;
 import gkmasmod.downfall.cards.sense.ENGoWithTheFlow;
 import gkmasmod.downfall.charbosses.bosses.AbstractCharBoss;
 import gkmasmod.downfall.charbosses.relics.AbstractCharbossRelic;
-import gkmasmod.relics.BeginnerGuideForEveryone;
 import gkmasmod.relics.SongToTheSun;
 
 public class CBR_SongToTheSun extends AbstractCharbossRelic {

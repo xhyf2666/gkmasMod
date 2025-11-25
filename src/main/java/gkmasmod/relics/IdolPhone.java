@@ -1,25 +1,15 @@
 package gkmasmod.relics;
 import basemod.abstracts.CustomRelic;
 import com.badlogic.gdx.Gdx;
-import com.megacrit.cardcrawl.actions.common.MakeTempCardInHandAction;
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.helpers.controller.CInputActionSet;
 import com.megacrit.cardcrawl.helpers.input.InputHelper;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
-import com.megacrit.cardcrawl.relics.GoldenIdol;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
-import gkmasmod.actions.IdolPhoneAction;
-import gkmasmod.cards.GkmasCard;
-import gkmasmod.cardGrowEffect.EnergyGrow;
-import gkmasmod.cardGrowEffect.ExhaustRemoveGrow;
-import gkmasmod.utils.CardHelper;
-import gkmasmod.utils.GrowHelper;
+import gkmasmod.actions.relicAction.IdolPhoneAction;
 import gkmasmod.utils.IdolData;
 import gkmasmod.utils.SoundHelper;
-
-import java.util.ArrayList;
 
 public class IdolPhone extends CustomRelic {
 

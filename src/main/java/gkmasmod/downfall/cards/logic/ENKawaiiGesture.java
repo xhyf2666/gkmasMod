@@ -4,18 +4,14 @@ import com.evacipated.cardcrawl.mod.stslib.patches.FlavorText;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.CardHelper;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import gkmasmod.actions.GoodImpressionDamageAction;
-import gkmasmod.cards.GkmasCard;
+import gkmasmod.actions.common.GoodImpressionDamageAction;
 import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.downfall.cards.GkmasBossCard;
-import gkmasmod.powers.GoodImpression;
 import gkmasmod.utils.NameHelper;
-import gkmasmod.utils.PlayerHelper;
 
 public class ENKawaiiGesture extends GkmasBossCard {
     private static final String CLASSNAME = ENKawaiiGesture.class.getSimpleName();

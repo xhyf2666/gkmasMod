@@ -9,8 +9,6 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
-import gkmasmod.actions.FullPowerValueAction;
-import gkmasmod.downfall.charbosses.bosses.AbstractCharBoss;
 import gkmasmod.monster.beyond.MonsterMao1;
 import gkmasmod.monster.beyond.MonsterMisuzu1;
 import gkmasmod.monster.beyond.MonsterSena1;

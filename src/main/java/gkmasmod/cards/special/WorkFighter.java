@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import gkmasmod.cards.GkmasCard;
+import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.utils.NameHelper;
 
 public class WorkFighter extends GkmasCard {
@@ -38,6 +39,7 @@ public class WorkFighter extends GkmasCard {
         this.secondMagicNumber = this.baseSecondMagicNumber;
         this.baseHPMagicNumber = BASE_HP;
         this.HPMagicNumber = this.baseHPMagicNumber;
+        this.tags.add(GkmasCardTag.COST_HP_TAG);
         this.cardHeader = CardCrawlGame.languagePack.getUIString("gkmasMod:WorkFighterHeader").TEXT[0];
     }
 

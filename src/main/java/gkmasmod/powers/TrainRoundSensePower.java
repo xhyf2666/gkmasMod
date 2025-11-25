@@ -121,7 +121,8 @@ public class TrainRoundSensePower extends AbstractPower {
     public void atEndOfTurn(boolean isPlayer) {
         flash();
         if(this.amount > 0){
-            addToBot(new ReducePowerAction(this.owner, this.owner, POWER_ID, 1));
+            if(!this.owner.hasPower(NeverEndIdolPower.POWER_ID))
+                addToBot(new ReducePowerAction(this.owner, this.owner, POWER_ID, 1));
             if(this.amount<4){
                 for(AbstractPower power:AbstractDungeon.player.powers){
                     if(power instanceof MyPrideBigSisterPower){
@@ -140,7 +141,8 @@ public class TrainRoundSensePower extends AbstractPower {
             return;
         flash();
 
-        addToBot(new ReducePowerAction(this.owner, this.owner, POWER_ID, 1));
+        if(!this.owner.hasPower(NeverEndIdolPower.POWER_ID))
+            addToBot(new ReducePowerAction(this.owner, this.owner, POWER_ID, 1));
     }
 
     public void onVictory() {

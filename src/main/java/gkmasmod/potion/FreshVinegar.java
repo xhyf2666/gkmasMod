@@ -21,9 +21,7 @@ import com.megacrit.cardcrawl.localization.PotionStrings;
 import com.megacrit.cardcrawl.potions.AbstractPotion;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
-import gkmasmod.actions.AojiruAction;
-import gkmasmod.actions.UpgradeAllHandCardAction;
-import gkmasmod.cards.logic.GoodMorning;
+import gkmasmod.actions.common.UpgradeAllHandCardAction;
 import gkmasmod.utils.NameHelper;
 
 import java.util.Iterator;

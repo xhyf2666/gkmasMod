@@ -1,6 +1,5 @@
 package gkmasmod.cards.anomaly;
 
-import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.watcher.ChangeStanceAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -10,11 +9,10 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.DrawCardNextTurnPower;
-import gkmasmod.actions.BattlePracticeAction;
+import gkmasmod.actions.cardAction.BattlePracticeAction;
 import gkmasmod.cardCustomEffect.*;
 import gkmasmod.cardGrowEffect.LoseBlockGrow;
 import gkmasmod.cards.GkmasCard;
-import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.powers.TempSavePower;
 import gkmasmod.screen.SkinSelectScreen;

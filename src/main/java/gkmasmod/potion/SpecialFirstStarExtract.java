@@ -21,13 +21,8 @@ import com.megacrit.cardcrawl.helpers.input.InputHelper;
 import com.megacrit.cardcrawl.localization.PotionStrings;
 import com.megacrit.cardcrawl.potions.AbstractPotion;
 import com.megacrit.cardcrawl.powers.AbstractPower;
-import com.megacrit.cardcrawl.powers.AttackBurnPower;
-import gkmasmod.actions.AojiruAction;
-import gkmasmod.cards.logic.GoodMorning;
-import gkmasmod.powers.BoostExtractPower;
 import gkmasmod.powers.BurstAttackPower;
 import gkmasmod.powers.DoubleDamageReceive;
-import gkmasmod.powers.HalfDamageReceive;
 import gkmasmod.utils.NameHelper;
 
 import java.util.Iterator;

@@ -1,18 +1,16 @@
 package gkmasmod.cards.logic;
 
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
-import com.megacrit.cardcrawl.actions.common.LoseHPAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.DexterityPower;
 import gkmasmod.cardCustomEffect.*;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
-import gkmasmod.powers.SurgingEmotionPower;
+import gkmasmod.powers.increaseModifyPower.GoodImpressionAddRatePower;
 import gkmasmod.utils.*;
 
 import java.util.ArrayList;
@@ -58,7 +56,8 @@ public class SurgingEmotion extends GkmasCard {
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        addToBot(new ApplyPowerAction(p, p, new SurgingEmotionPower(p, this.magicNumber), this.magicNumber));
+        addToBot(new ApplyPowerAction(p, p,
+                new GoodImpressionAddRatePower(p, this.magicNumber, this.secondMagicNumber, ID), this.magicNumber));
         SoundHelper.playSound("gkmasModResource/audio/voice/skillcard/cidol_jsna_3_001_produce_skillcard_01.ogg");
     }
 

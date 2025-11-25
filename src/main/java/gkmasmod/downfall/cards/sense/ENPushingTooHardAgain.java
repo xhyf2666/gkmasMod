@@ -6,11 +6,9 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import gkmasmod.actions.PushingTooHardAgainAction;
-import gkmasmod.cards.GkmasCard;
+import gkmasmod.actions.cardAction.PushingTooHardAgainAction;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.downfall.cards.GkmasBossCard;
-import gkmasmod.downfall.cards.free.ENSleepLate;
 import gkmasmod.utils.NameHelper;
 
 public class ENPushingTooHardAgain extends GkmasBossCard {

@@ -6,11 +6,10 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import gkmasmod.actions.NotLeftAnyoneAction;
-import gkmasmod.cards.GkmasCard;
+import gkmasmod.actions.cardAction.NotLeftAnyoneAction;
+import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.downfall.cards.GkmasBossCard;
-import gkmasmod.downfall.cards.free.ENSleepLate;
 import gkmasmod.utils.NameHelper;
 
 public class ENNotLeftAnyone extends GkmasBossCard {
@@ -45,6 +44,7 @@ public class ENNotLeftAnyone extends GkmasBossCard {
         this.baseHPMagicNumber = HP_LOST;
         this.HPMagicNumber = this.baseHPMagicNumber;
         this.intent = AbstractMonster.Intent.ATTACK;
+        this.tags.add(GkmasCardTag.COST_HP_TAG);
     }
 
 

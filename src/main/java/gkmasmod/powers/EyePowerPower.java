@@ -1,16 +1,13 @@
 package gkmasmod.powers;
 
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
-import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
+import gkmasmod.actions.common.GainBlockWithPowerAction;
 import gkmasmod.utils.NameHelper;
 import gkmasmod.utils.PlayerHelper;
 
@@ -50,7 +47,7 @@ public class EyePowerPower extends AbstractPower {
         int count = PlayerHelper.getPowerAmount(this.owner,StrengthPower.POWER_ID);
         count = (int) (amount*0.5F*count);
         if(count>0){
-            addToBot(new GainBlockAction(owner,owner,count));
+            addToBot(new GainBlockWithPowerAction(owner,owner,count));
         }
     }
 

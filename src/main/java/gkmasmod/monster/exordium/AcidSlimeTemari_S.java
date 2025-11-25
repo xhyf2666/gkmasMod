@@ -67,31 +67,33 @@ public class AcidSlimeTemari_S extends AbstractMonster {
         this.img = new Texture("gkmasModResource/img/monsters/other/AcidSlimeTemari_S.png");
     }
 
+    @Override
     public void takeTurn() {
         switch (this.nextMove) {
             case 1:
-                AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new AnimateSlowAttackAction(this));
-                AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new DamageAction(AbstractDungeon.player, this.damage
+                AbstractDungeon.actionManager.addToBottom(new AnimateSlowAttackAction(this));
+                AbstractDungeon.actionManager.addToBottom(new DamageAction(AbstractDungeon.player, this.damage
                         .get(0), AbstractGameAction.AttackEffect.BLUNT_HEAVY));
                 setMove((byte)2, AbstractMonster.Intent.DEBUFF);
                 break;
             case 2:
-                AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new AnimateSlowAttackAction(this));
-                AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new ApplyPowerAction(AbstractDungeon.player, this, new WeakPower(AbstractDungeon.player, 1, true), 1));
-                setMove((byte)1, AbstractMonster.Intent.ATTACK, ((DamageInfo)this.damage.get(0)).base);
+                AbstractDungeon.actionManager.addToBottom(new AnimateSlowAttackAction(this));
+                AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(AbstractDungeon.player, this, new WeakPower(AbstractDungeon.player, 1, true), 1));
+                setMove((byte)1, AbstractMonster.Intent.ATTACK, (this.damage.get(0)).base);
                 break;
         }
     }
 
+    @Override
     protected void getMove(int num) {
         if (AbstractDungeon.ascensionLevel >= 17) {
             if (lastTwoMoves((byte)1)) {
-                setMove((byte)1, AbstractMonster.Intent.ATTACK, ((DamageInfo)this.damage.get(0)).base);
+                setMove((byte)1, AbstractMonster.Intent.ATTACK, (this.damage.get(0)).base);
             } else {
                 setMove((byte)2, AbstractMonster.Intent.DEBUFF);
             }
         } else if (AbstractDungeon.aiRng.randomBoolean()) {
-            setMove((byte)1, AbstractMonster.Intent.ATTACK, ((DamageInfo)this.damage.get(0)).base);
+            setMove((byte)1, AbstractMonster.Intent.ATTACK, (this.damage.get(0)).base);
         } else {
             setMove((byte)2, AbstractMonster.Intent.DEBUFF);
         }

@@ -1,7 +1,7 @@
 package gkmasmod.downfall.cards.sense;
 
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
-import gkmasmod.actions.GainTrainRoundPowerAction;
+import gkmasmod.actions.common.GainTrainRoundPowerAction;
 import gkmasmod.downfall.charbosses.bosses.AbstractCharBoss;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;

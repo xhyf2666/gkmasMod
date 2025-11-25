@@ -5,15 +5,13 @@ import com.megacrit.cardcrawl.actions.common.LoseHPAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.CardHelper;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import gkmasmod.actions.SpecialBlockDamageAction;
-import gkmasmod.cards.GkmasCard;
+import gkmasmod.actions.common.SpecialBlockDamageAction;
+import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.downfall.cards.GkmasBossCard;
-import gkmasmod.patches.AbstractCreaturePatch;
 import gkmasmod.utils.NameHelper;
 
 public class ENClearUp extends GkmasBossCard {
@@ -27,9 +25,9 @@ public class ENClearUp extends GkmasBossCard {
     private static final String DESCRIPTION = CARD_STRINGS.DESCRIPTION;
     private static final String IMG_PATH = String.format("gkmasModResource/img/cards/common/%s.png", CLASSNAME2);
 
-    private static final int COST = 1;
+    private static final int COST = 0;
 
-    private static final int HP_LOST = 4;
+    private static final int HP_LOST = 2;
     private static final int BASE_MAGIC = 40;
     private static final int UPGRADE_MAGIC_PLUS = 10;
 
@@ -49,6 +47,7 @@ public class ENClearUp extends GkmasBossCard {
         this.intent = AbstractMonster.Intent.ATTACK;
         FlavorText.AbstractCardFlavorFields.boxColor.set(this, CardHelper.getColor(73, 224, 254));
         flavor = FlavorText.CardStringsFlavorField.flavor.get(CARD_STRINGS);
+        this.tags.add(GkmasCardTag.COST_HP_TAG);
     }
 
 

@@ -1098,5 +1098,145 @@
     "DESCRIPTIONS": [
       "使用 #y晒太阳 时，获得 #b%d 点 #y敏捷 和 #b%d 层 #y受伤锐减 ， #b%d 回合内伤害减少 #b%d %%。 NL #b%d 回合后， #b%d 回合内伤害增加 #b%d %%。 NL (每场战斗可触发 #b%d 次)。"
     ]
+  },
+  "TemariToy": {
+    "NAME": "友好问候",
+    "FLAVOR": "发送表情包是交流的第一步。",
+    "DESCRIPTIONS": [
+      "右键问候月村手毬。"
+    ]
+  },
+  "PromiseOfThatDay": {
+    "NAME": "那一天的约定",
+    "FLAVOR": "那一天的约定。",
+    "DESCRIPTIONS": [
+      "每打出 #b%d 张 #y攻击牌 ， #b%d 回合内， #y力量 #y增加量 增加 #b%d%% 。 NL (每场战斗可触发 #b%d 次)。"
+    ]
+  },
+  "OriginalTicket": {
+    "NAME": "原点的门票",
+    "FLAVOR": "筱泽广……成为偶像的契机。",
+    "DESCRIPTIONS": [
+      "通过 #y技能牌 失去体力时，获得 #ygkmasmod:热意 #y增加量 增加 #b%d%% 。 NL (每场战斗可触发 #b%d 次)。"
+    ]
+  },
+  "SakiPrideStar": {
+    "NAME": "盛放之星",
+    "FLAVOR": "盛放之星。",
+    "DESCRIPTIONS": [
+      "打出 #y技能牌 后，如果 #y格挡 不低于 #b%d ，则获得 #y格挡 层数 #b%d%% 的 #ygkmasmod:好印象 ，获得 #b%d 层 #ygkmasmod:好印象 。 NL (每场战斗可触发 #b%d 次)。"
+    ]
+  },
+  "NightStar": {
+    "NAME": "夜间之星",
+    "FLAVOR": "夜间之星。",
+    "DESCRIPTIONS": [
+      "进入战斗时， #b%d 回合内， #ygkmasmod:好调 #y增加量 增加 #b%d%% 。"
+    ]
+  },
+  "DreamStar": {
+    "NAME": "梦见之星",
+    "FLAVOR": "梦见之星。",
+    "DESCRIPTIONS": [
+      "处于 #ygkmasmod:全力 时，每打出 #b%d 张牌， #b%d 回合内， #ygkmasmod:全力值 #y增加量 增加 #b%d%% ，下回合开始时，进入 #ygkmasmod:温存2段 。"
+    ]
+  },
+  "ShukiShuki": {
+    "NAME": "ShukiShuki❤",
+    "FLAVOR": "ShukiShuki❤。",
+    "DESCRIPTIONS": [
+      "打出 #y技能牌 后，如果 #y力量 不低于 #b%d ，则获得 #b%d 点 #y格挡 ，抽1张牌， #ygkmasmod:再动 ，下1张打出的 #y技能牌 或 #y能力牌 额外打出1次。 NL (每场战斗可触发 #b%d 次)。"
+    ]
+  },
+  "ShareHappyBadge": {
+    "NAME" : "分享快乐的吧唧",
+    "FLAVOR" : "分享快乐的吧唧。",
+    "DESCRIPTIONS" : [
+      "回合结束时，回复 #b%d 点体力 ，获得 #b%d 层 #ygkmasmod:好印象 。 NL (每场战斗可触发 #b%d 次)。"
+    ]
+  },
+  "MiracleHeader": {
+    "NAME": "奇迹头饰",
+    "FLAVOR": "奇迹头饰。",
+    "DESCRIPTIONS": [
+      "进入战斗时， #b%d 回合内， #y敏捷 #y增加量 增加 #b%d%% ，下回合开始时，获得 #b%d 点 #y格挡 。"
+    ]
+  },
+  "TakoyakiTechDog": {
+    "NAME": "章鱼烧科技狗",
+    "FLAVOR": "章鱼烧科技狗。",
+    "DESCRIPTIONS": [
+      "退出 #ygkmasmod:全力 时，如果 #y消耗 堆中存在 #y装饰魔法 ，则将其 #y暂存 ，并施加 #y伤害增加 #b%d 、 #y全力值增加 #b%d 和 #y体力流失 #b%d 。 NL (每场战斗可触发 #b%d 次)。"
+    ]
+  },
+  "WantToBecomeIdol": {
+    "NAME": "我想要成为偶像",
+    "FLAVOR": "我想要成为偶像。",
+    "DESCRIPTIONS": [
+      "单次获得 #ygkmasmod:好印象 不低于 #b%d 后，如果 #y格挡 不低于 #b%d ，则对随机敌人造成 #ygkmasmod:好印象 层数 #b%d%% 的伤害，回复 #b%d 点体力。 NL (每场战斗可触发 #b%d 次)。"
+    ]
+  },
+  "FightForMe": {
+    "NAME": "加油啊，我自己！",
+    "FLAVOR": "加油啊，我自己！",
+    "DESCRIPTIONS": [
+      "打出 #y攻击牌 后，如果拥有 #ygkmasmod:绝好调 ，则抽 #b%d 张牌， #ygkmasmod:再动 。 NL (每场战斗可触发 #b%d 次)。"
+    ]
+  },
+  "MixedPassion": {
+    "NAME": "混合的热情",
+    "FLAVOR": "混合的热情。",
+    "DESCRIPTIONS": [
+      "回合开始时，如果处于 #ygkmasmod:强气 ，则进入 #ygkmasmod:温存 ，获得 #b%d 点 #y格挡 。"
+    ]
+  },
+  "FirstFormationUme": {
+    "NAME": "初阵之证·佑芽",
+    "FLAVOR": "初阵之证·佑芽。",
+    "DESCRIPTIONS": [
+      "#ygkmasmod:训练时间 剩余 #b1 层时和结束时，对随机敌人造成 #ygkmasmod:好调 层数 #b%d %%的伤害。 NL (每场战斗可触发 #b%d 次)。"
+    ]
+  },
+  "FirstFormationMisuzu": {
+    "NAME": "初阵之证·美铃",
+    "FLAVOR": "初阵之证·美铃。",
+    "DESCRIPTIONS": [
+      "进入战斗时，获得 #b%d 点 #y敏捷 ， #b%d 回合内无法获得 #y格挡 。"
+    ]
+  },
+  "FirstFormationSena": {
+    "NAME": "初阵之证·星南",
+    "FLAVOR": "初阵之证·星南。",
+    "DESCRIPTIONS": [
+      "使用 #y攻击牌 时，如果 #y敏捷 大于 #b%d ，则获得 #b%d 点 #y格挡 NL ( #y敏捷 发挥 #b%d %% 的效果)。 NL (每场战斗可触发 #b%d 次)。"
+    ]
+  },
+  "MusicPlayer": {
+    "NAME": "音乐播放器(测试中)",
+    "FLAVOR": "这才是真正的音乐",
+    "DESCRIPTIONS": [
+      "右键使用，打开歌单。"
+    ]
+  },
+  "JumpHigher": {
+    "NAME": "跳得更高",
+    "FLAVOR": "跳得更高。",
+    "DESCRIPTIONS": [
+      "1回合内，打出 #b%d 张牌后，获得 #b%d 点 #y格挡 ，1回合内 #ygkmasmod:好印象 增加量增加 #b%d%% 。 NL (每场战斗可触发 #b%d 次)。"
+    ]
+  },
+  "DeliverFeeling": {
+    "NAME": "想要传达的心意",
+    "FLAVOR": "想要传达的心意。",
+    "DESCRIPTIONS": [
+      "回合开始时，若当前回合数符合斐波那契数列，则失去 #b%d 点体力，将抽牌堆和弃牌堆中随机 #b1 张彩色卡加入手牌，获得 #ygkmasmod:好调 层数 #b%d%% 的 #y力量 。"
+    ]
+  },
+  "DropWater": {
+    "NAME": "帅到滴水的王子大人",
+    "FLAVOR": "帅到滴水的王子大人。",
+    "DESCRIPTIONS": [
+      "打出 #y攻击牌 后，获得 #y力量 层数 #b%d%% 的 #ygkmasmod:好调 ，并获得 #b%d 点 #y力量 。 NL (每场战斗可触发 #b%d 次)。"
+    ]
   }
 }

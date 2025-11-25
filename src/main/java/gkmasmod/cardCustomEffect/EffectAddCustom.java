@@ -9,6 +9,8 @@ import gkmasmod.cards.free.Repartitioning;
 import gkmasmod.cards.free.TurnBack;
 import gkmasmod.cards.logic.*;
 import gkmasmod.cards.sense.DressedUpInStyle;
+import gkmasmod.cards.sense.EachPath;
+import gkmasmod.cards.sense.NeverLose;
 import gkmasmod.cards.sense.SenseOfDistance;
 import gkmasmod.utils.CustomHelper;
 
@@ -128,6 +130,21 @@ public class EffectAddCustom extends AbstractCardCustomEffect {
         }
         else if(card instanceof NextTimeMust){
             return CardCrawlGame.languagePack.getCardStrings("gkmasMod:NextTimeMust_Effect0").DESCRIPTION;
+        }
+        else if(card instanceof Reversal){
+            return CardCrawlGame.languagePack.getCardStrings("gkmasMod:Reversal_Effect0").DESCRIPTION;
+        }
+        else if(card instanceof SenseOfAccomplishment){
+            return CardCrawlGame.languagePack.getCardStrings("gkmasMod:SenseOfAccomplishment_Effect1").DESCRIPTION;
+        }
+        else if(card instanceof NeverLose){
+            return CardCrawlGame.languagePack.getCardStrings("gkmasMod:NeverLose_Effect0").DESCRIPTION;
+        }
+        else if(card instanceof NoDistractions){
+            return CardCrawlGame.languagePack.getCardStrings("gkmasMod:NoDistractions_Effect0").DESCRIPTION;
+        }
+        else if(card instanceof EachPath){
+            return CardCrawlGame.languagePack.getCardStrings("gkmasMod:EachPath_Effect0").DESCRIPTION;
         }
         return rawDescription;
     }

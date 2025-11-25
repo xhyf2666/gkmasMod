@@ -9,8 +9,6 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
-import com.megacrit.cardcrawl.powers.ConstrictedPower;
-import gkmasmod.actions.FullPowerValueAction;
 import gkmasmod.downfall.bosses.AbstractIdolBoss;
 import gkmasmod.relics.PlasticUmbrellaThatDay;
 import gkmasmod.utils.NameHelper;

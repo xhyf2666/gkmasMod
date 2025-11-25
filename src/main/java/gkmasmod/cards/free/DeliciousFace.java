@@ -2,6 +2,7 @@ package gkmasmod.cards.free;
 
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.DrawCardAction;
+import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -28,6 +29,7 @@ public class DeliciousFace extends GkmasCard {
     private static final String IMG_PATH = String.format("gkmasModResource/img/cards/common/%s.png", CLASSNAME);
 
     private static final int COST = 1;
+    private static final int BASE_BLOCK = 4;
     private static final int BASE_MAGIC = 2;
     private static final int BASE_MAGIC2 = 1;
 
@@ -40,6 +42,7 @@ public class DeliciousFace extends GkmasCard {
         super(ID, NAME, IMG_PATH, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
         this.baseMagicNumber = this.magicNumber = BASE_MAGIC;
         this.baseSecondMagicNumber = this.secondMagicNumber = BASE_MAGIC2;
+        this.baseBlock = this.block = BASE_BLOCK;
         this.selfRetain = true;
         this.customLimit = 2;
         this.customEffectList = new ArrayList<>();
@@ -50,6 +53,7 @@ public class DeliciousFace extends GkmasCard {
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
+        addToBot(new GainBlockAction(p, p, this.block));
         addToBot(new DrawCardAction(p, this.magicNumber));
         if(this.upgraded){
             addToBot(new ApplyPowerAction(p, p, new DrawCardNextTurnPower(p, this.secondMagicNumber), this.secondMagicNumber));

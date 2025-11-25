@@ -2,7 +2,6 @@ package gkmasmod.monster.friend;
 
 import basemod.abstracts.CustomMonster;
 import com.badlogic.gdx.graphics.Texture;
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.*;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
@@ -10,13 +9,10 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
-import com.megacrit.cardcrawl.powers.BarricadePower;
-import gkmasmod.actions.GainBlockWithPowerAction;
-import gkmasmod.downfall.bosses.AbstractIdolBoss;
+import gkmasmod.actions.common.GainBlockWithPowerAction;
 import gkmasmod.downfall.charbosses.bosses.AbstractCharBoss;
 import gkmasmod.patches.AbstractMonsterPatch;
 import gkmasmod.powers.OnigiriGift;
-import gkmasmod.powers.SteelSoul;
 
 public class FriendOnigiri extends CustomMonster {
 

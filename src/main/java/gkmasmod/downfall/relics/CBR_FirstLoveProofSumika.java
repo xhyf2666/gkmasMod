@@ -9,7 +9,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
-import gkmasmod.actions.FirstLoveProofSumikaAction;
+import gkmasmod.actions.relicAction.FirstLoveProofSumikaAction;
 import gkmasmod.relics.FirstLoveProofSumika;
 
 public class CBR_FirstLoveProofSumika extends AbstractCharbossRelic {

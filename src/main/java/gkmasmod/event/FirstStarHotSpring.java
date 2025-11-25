@@ -10,26 +10,21 @@ import com.megacrit.cardcrawl.events.AbstractImageEvent;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.localization.EventStrings;
 import com.megacrit.cardcrawl.potions.FairyPotion;
-import com.megacrit.cardcrawl.potions.GhostInAJar;
 import com.megacrit.cardcrawl.potions.PotionSlot;
 import com.megacrit.cardcrawl.potions.SwiftPotion;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
-import com.megacrit.cardcrawl.relics.Circlet;
-import com.megacrit.cardcrawl.relics.PotionBelt;
 import com.megacrit.cardcrawl.vfx.RainingGoldEffect;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndObtainEffect;
 import gkmasmod.cards.anomaly.BecomeIdol;
 import gkmasmod.cards.anomaly.StepOnStage;
-import gkmasmod.cards.free.ProduceCompetitor;
+import gkmasmod.cards.free.Alternatives;
+import gkmasmod.cards.idol.ProduceCompetitor;
+import gkmasmod.cards.logic.IamBigStar;
 import gkmasmod.characters.MisuzuCharacter;
-import gkmasmod.modcore.GkmasMod;
 import gkmasmod.potion.FirstStarSoup;
 import gkmasmod.potion.FirstStarWater;
-import gkmasmod.relics.*;
 import gkmasmod.screen.SkinSelectScreen;
-import gkmasmod.utils.CommonEnum;
 import gkmasmod.utils.IdolData;
-import gkmasmod.utils.SoundHelper;
 
 import java.util.ArrayList;
 
@@ -316,44 +311,23 @@ public class FirstStarHotSpring extends AbstractImageEvent {
     }
 
     public void generateSpecialCards(){
+        String[] specialCardIDs = {Alternatives.ID, IamBigStar.ID};
         if(AbstractDungeon.player instanceof MisuzuCharacter){
-            String s1 = IdolData.hmszData.getBossReward(0);
-            String s2 = IdolData.hmszData.getBossReward(1);
-            AbstractCard card1 = CardLibrary.getCard(s1);
-            AbstractCard card2 = CardLibrary.getCard(s2);
-            card1.upgrade();
-            card2.upgrade();
-            specialCards.add(card1);
-            specialCards.add(card2);
+            specialCardIDs = IdolData.hmszData.getBossRewards();
         }
         else{
             if(SkinSelectScreen.Inst.idolName.equals(IdolData.jsna)){
-                AbstractCard card1 = new BecomeIdol();
-                AbstractCard card2 = new StepOnStage();
-                AbstractCard card3 = new ProduceCompetitor();
-                card1.upgrade();
-                card2.upgrade();
-                card3.upgrade();
-                specialCards.add(card1);
-                specialCards.add(card2);
-                specialCards.add(card3);
+                specialCardIDs = new String[]{BecomeIdol.ID, StepOnStage.ID, ProduceCompetitor.ID};
             }
             else{
-                String s1 = IdolData.getIdol(SkinSelectScreen.Inst.idolName).getBossReward(0);
-                String s2 = IdolData.getIdol(SkinSelectScreen.Inst.idolName).getBossReward(1);
-                AbstractCard card1 = CardLibrary.getCard(s1);
-                AbstractCard card2 = CardLibrary.getCard(s2);
-                card1.upgrade();
-                card2.upgrade();
-                specialCards.add(card1);
-                specialCards.add(card2);
-                if(SkinSelectScreen.Inst.idolName.equals(IdolData.hume)||SkinSelectScreen.Inst.idolName.equals(IdolData.ttmr)){
-                    String s3 = IdolData.getIdol(SkinSelectScreen.Inst.idolName).getBossReward(2);
-                    AbstractCard card3 = CardLibrary.getCard(s3);
-                    card3.upgrade();
-                    specialCards.add(card3);
-                }
+                specialCardIDs = IdolData.getIdol(SkinSelectScreen.Inst.idolName).getBossRewards();
             }
+        }
+
+        for(String id : specialCardIDs){
+            AbstractCard card = CardLibrary.getCard(id);
+            card.upgrade();
+            specialCards.add(card);
         }
     }
 

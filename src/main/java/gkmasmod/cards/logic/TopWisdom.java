@@ -14,6 +14,7 @@ import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.powers.*;
 import gkmasmod.screen.SkinSelectScreen;
+import gkmasmod.utils.CardHelper;
 import gkmasmod.utils.CustomHelper;
 import gkmasmod.utils.NameHelper;
 import gkmasmod.utils.PlayerHelper;
@@ -70,9 +71,9 @@ public class TopWisdom extends GkmasCard {
     public boolean canUse(AbstractPlayer p, AbstractMonster m) {
         int count = PlayerHelper.getPowerAmount(p, GoodImpression.POWER_ID);
         if (count >= this.magicNumber)
-            return true;
+            return super.canUse(p, m);
         this.cantUseMessage = CardCrawlGame.languagePack.getUIString("gkmasMod:NotEnoughGoodImpression").TEXT[0];
-        return false;
+        return CardHelper.containsMasterKey();
     }
 
 

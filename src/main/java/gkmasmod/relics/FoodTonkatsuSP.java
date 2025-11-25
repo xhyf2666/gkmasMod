@@ -1,13 +1,11 @@
 package gkmasmod.relics;
 import basemod.abstracts.CustomRelic;
 import com.badlogic.gdx.Gdx;
-import com.megacrit.cardcrawl.actions.watcher.ChangeStanceAction;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
-import gkmasmod.actions.FullPowerValueAction;
-import gkmasmod.stances.ConcentrationStance;
+import gkmasmod.actions.common.FullPowerValueAction;
 
 public class FoodTonkatsuSP extends CustomRelic {
 

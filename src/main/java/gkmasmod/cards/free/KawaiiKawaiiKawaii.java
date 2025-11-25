@@ -1,19 +1,13 @@
 package gkmasmod.cards.free;
 
 import basemod.helpers.CardModifierManager;
-import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.DrawCardAction;
-import com.megacrit.cardcrawl.actions.common.GainEnergyAction;
-import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.BarricadePower;
-import com.megacrit.cardcrawl.powers.DexterityPower;
-import gkmasmod.actions.GainTrainRoundPowerAction;
-import gkmasmod.actions.UpgradeAllHandCardAction;
+import gkmasmod.actions.common.UpgradeAllHandCardAction;
 import gkmasmod.cardCustomEffect.MoreActionCustom;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.cards.GkmasCardTag;
@@ -31,6 +25,7 @@ public class KawaiiKawaiiKawaii extends GkmasCard {
 
     private static final int COST = 1;
     private static final int BASE_MAGIC = 1;
+    private static final int UPGRADE_MAGIC_PLUS = 1;
     private static final int BASE_MAGIC2 = 2;
 
     private static final CardType TYPE = CardType.SKILL;
@@ -44,7 +39,7 @@ public class KawaiiKawaiiKawaii extends GkmasCard {
         this.magicNumber = this.baseMagicNumber;
         this.baseSecondMagicNumber = BASE_MAGIC2;
         this.secondMagicNumber = this.baseSecondMagicNumber;
-        this.exhaust = true;
+        this.isEthereal = true;
         this.tags.add(GkmasCardTag.MORE_ACTION_TAG);
         CardModifierManager.addModifier(this,new MoreActionCustom(1));
     }
@@ -55,15 +50,6 @@ public class KawaiiKawaiiKawaii extends GkmasCard {
         addToBot(new DrawCardAction(this.magicNumber));
         addToBot(new UpgradeAllHandCardAction());
 //        addToBot(new GainTrainRoundPowerAction(p, 1));
-        if(this.upgraded){
-            if(this.secondMagicNumber > 1){
-                upgradeSecondMagicNumber(-1);
-                this.initializeDescription();
-            }
-            else{
-                this.exhaust = true;
-            }
-        }
     }
 
     @Override
@@ -75,7 +61,7 @@ public class KawaiiKawaiiKawaii extends GkmasCard {
     public void upgrade() {
         if (!this.upgraded) {
             upgradeName();
-            this.exhaust = false;
+            upgradeMagicNumber(UPGRADE_MAGIC_PLUS);
             if (CARD_STRINGS.UPGRADE_DESCRIPTION != null)
                 this.rawDescription = CARD_STRINGS.UPGRADE_DESCRIPTION;
             this.initializeDescription();

@@ -11,7 +11,7 @@ import com.megacrit.cardcrawl.helpers.CardHelper;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.DexterityPower;
-import gkmasmod.actions.BlockDamageAction;
+import gkmasmod.actions.common.BlockDamageAction;
 import gkmasmod.cardCustomEffect.ExhaustRemoveCustom;
 import gkmasmod.cardCustomEffect.MagicCustom;
 import gkmasmod.cardCustomEffect.SecondMagicCustom;
@@ -59,6 +59,7 @@ public class TeaChat extends GkmasCard {
         FlavorText.AbstractCardFlavorFields.boxColor.set(this, CardHelper.getColor(73, 224, 254));
         flavor = FlavorText.CardStringsFlavorField.flavor.get(CARD_STRINGS);
         this.tags.add(GkmasCardTag.YARUKI_TAG);
+        this.tags.add(GkmasCardTag.COST_HP_TAG);
         this.customLimit = 3;
         this.customEffectList = new ArrayList<>();
         this.customEffectList.add(CustomHelper.generateCustomEffectList(MagicCustom.growID,new int[]{1,1},new int[]{60,60},CustomHelper.CustomEffectType.DEXTERITY_ADD));
@@ -68,7 +69,9 @@ public class TeaChat extends GkmasCard {
 
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        addToBot(new LoseHPAction(p, p, this.HPMagicNumber));
+        if(this.HPMagicNumber > 0){
+            addToBot(new LoseHPAction(p,p,this.HPMagicNumber));
+        }
         addToBot(new BlockDamageAction(1.0F * this.secondMagicNumber / 100, 0, p, m,this));
         addToBot(new ApplyPowerAction(p, p, new DexterityPower(p, this.magicNumber), this.magicNumber));
     }

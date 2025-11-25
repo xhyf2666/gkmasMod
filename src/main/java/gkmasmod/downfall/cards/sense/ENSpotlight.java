@@ -33,6 +33,8 @@ public class ENSpotlight extends GkmasBossCard {
     private static final int UPGRADE_PLUS_MAGIC = 1;
     private static final int BLOCK_AMT = 8;
     private static final int UPGRADE_PLUS_BLOCK = 2;
+    private static final int BASE_MAGIC2 = 1;
+
 
     private static final int BASE_HP = 2;
 
@@ -51,10 +53,13 @@ public class ENSpotlight extends GkmasBossCard {
         this.magicNumber = this.baseMagicNumber;
         this.baseHPMagicNumber = BASE_HP;
         this.HPMagicNumber = this.baseHPMagicNumber;
+        this.baseSecondMagicNumber = BASE_MAGIC2;
+        this.secondMagicNumber = this.baseSecondMagicNumber;
         this.baseBlock = BLOCK_AMT;
         this.block = this.baseBlock;
         this.intent = AbstractMonster.Intent.DEFEND_BUFF;
         this.tags.add(GkmasCardTag.GOOD_TUNE_TAG);
+        this.tags.add(GkmasCardTag.COST_HP_TAG);
     }
 
 

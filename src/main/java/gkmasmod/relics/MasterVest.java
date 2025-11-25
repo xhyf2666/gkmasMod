@@ -36,8 +36,6 @@ public class MasterVest extends MasterRelic {
 
     private static final int magic3 = 2;
 
-    private static final int playTimes = 2;
-
     public MasterVest() {
         super(ID, IMG, magic1, magic2);
     }
@@ -70,7 +68,7 @@ public class MasterVest extends MasterRelic {
                 }
             }
 
-            if(cards.size() <=playTimes){
+            if(cards.size() <=magic3){
                 for (AbstractCard card:cards){
                     AbstractDungeon.topLevelEffects.add(new PurgeCardEffect(card, Settings.WIDTH / 2.0F, Settings.HEIGHT / 2.0F));
                     AbstractDungeon.player.masterDeck.removeCard(card);
@@ -78,9 +76,9 @@ public class MasterVest extends MasterRelic {
                 this.grayscale = true;
                 return;
             }
-            //随机从cards中选取playTimes张卡牌
+            //随机从cards中选取magic3张卡牌
             Random rng = new Random(Settings.seed);
-            for(int i = 0;i<playTimes;i++){
+            for(int i = 0;i<magic3;i++){
                 int index = rng.random(cards.size()-1);
                 AbstractDungeon.topLevelEffects.add(new PurgeCardEffect(cards.get(index), Settings.WIDTH / 2.0F, Settings.HEIGHT / 2.0F));
                 AbstractDungeon.player.masterDeck.removeCard(cards.get(index));

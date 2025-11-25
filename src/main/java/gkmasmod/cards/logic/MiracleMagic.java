@@ -9,10 +9,9 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.CardHelper;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import gkmasmod.actions.GoodImpressionDamageAction;
+import gkmasmod.actions.common.GoodImpressionDamageAction;
 import gkmasmod.cardCustomEffect.ExhaustRemoveCustom;
 import gkmasmod.cardCustomEffect.MagicCustom;
-import gkmasmod.cardCustomEffect.SecondMagicCustom;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
@@ -36,7 +35,7 @@ public class MiracleMagic extends GkmasCard {
 
     private static final int COST = 1;
 
-    private static final int BASE_HP = 5;
+    private static final int BASE_HP = 2;
 
     private static final int BASE_MAGIC = 250;
     private static final int UPGRADE_PLUS_MAGIC = 90;
@@ -59,6 +58,7 @@ public class MiracleMagic extends GkmasCard {
         FlavorText.AbstractCardFlavorFields.boxColor.set(this, CardHelper.getColor(73, 224, 254));
         flavor = FlavorText.CardStringsFlavorField.flavor.get(CARD_STRINGS);
         this.tags.add(GkmasCardTag.GOOD_IMPRESSION_TAG);
+        this.tags.add(GkmasCardTag.COST_HP_TAG);
         this.customLimit = 1;
         this.customEffectList = new ArrayList<>();
         this.customEffectList.add(CustomHelper.generateCustomEffectList(MagicCustom.growID,new int[]{60},new int[]{100},CustomHelper.CustomEffectType.RATE_ADD));
@@ -68,7 +68,9 @@ public class MiracleMagic extends GkmasCard {
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        addToBot(new LoseHPAction(p, p, HPMagicNumber));
+        if(this.HPMagicNumber > 0){
+            addToBot(new LoseHPAction(p,p,this.HPMagicNumber));
+        }
         addToBot(new GoodImpressionDamageAction(1.0F * magicNumber / 100, 0, p, m,this));
     }
 

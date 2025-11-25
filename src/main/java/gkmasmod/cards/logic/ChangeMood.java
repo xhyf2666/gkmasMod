@@ -9,9 +9,12 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.CardHelper;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import gkmasmod.actions.BlockDamageAction;
+import gkmasmod.actions.common.BlockDamageAction;
+import gkmasmod.cardGrowEffect.ExhaustRemoveGrow;
 import gkmasmod.cards.GkmasCard;
+import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
+import gkmasmod.utils.GrowHelper;
 import gkmasmod.utils.NameHelper;
 
 public class ChangeMood extends GkmasCard {
@@ -47,6 +50,7 @@ public class ChangeMood extends GkmasCard {
         this.secondMagicNumber = this.baseSecondMagicNumber;
         this.baseHPMagicNumber = BASE_HP;
         this.HPMagicNumber = this.baseHPMagicNumber;
+        this.tags.add(GkmasCardTag.COST_HP_TAG);
         FlavorText.AbstractCardFlavorFields.boxColor.set(this, CardHelper.getColor(73, 224, 254));
         flavor = FlavorText.CardStringsFlavorField.flavor.get(CARD_STRINGS);
     }
@@ -60,13 +64,15 @@ public class ChangeMood extends GkmasCard {
 
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        addToBot(new LoseHPAction(p, p, this.HPMagicNumber));
+        if(this.HPMagicNumber > 0){
+            addToBot(new LoseHPAction(p,p,this.HPMagicNumber));
+        }
         addToBot(new BlockDamageAction(1.0F * magicNumber / 100, 0, p, m,this));
         if(this.secondMagicNumber > 1){
             upgradeSecondMagicNumber(-1);
             this.initializeDescription();
         }
-        else{
+        else if(!GrowHelper.hasGrow(this, ExhaustRemoveGrow.growID)){
             this.exhaust = true;
         }
     }

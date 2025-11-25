@@ -9,7 +9,7 @@ import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.stances.NeutralStance;
-import gkmasmod.actions.GrowAction;
+import gkmasmod.actions.common.GrowAction;
 import gkmasmod.cardGrowEffect.DamageGrow;
 import gkmasmod.utils.NameHelper;
 

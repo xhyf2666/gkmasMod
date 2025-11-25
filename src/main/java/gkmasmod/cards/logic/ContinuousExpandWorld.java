@@ -58,6 +58,7 @@ public class ContinuousExpandWorld extends GkmasCard {
         this.secondMagicNumber = this.baseSecondMagicNumber;
         this.tags.add(GkmasCardTag.IDOL_CARD_TAG);
         this.tags.add(GkmasCardTag.YARUKI_TAG);
+        this.tags.add(GkmasCardTag.COST_HP_TAG);
         this.backGroundColor = IdolData.kcna;
         updateBackgroundImg();
         this.customLimit = 1;
@@ -69,7 +70,9 @@ public class ContinuousExpandWorld extends GkmasCard {
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        addToBot(new LoseHPAction(p,p,this.HPMagicNumber));
+        if(this.HPMagicNumber > 0){
+            addToBot(new LoseHPAction(p,p,this.HPMagicNumber));
+        }
         addToBot(new ApplyPowerAction(p,p,new DexterityPower(p,this.magicNumber),this.magicNumber));
         addToBot(new ApplyPowerAction(p,p,new NextTurnIdolBlockPower(p,this.baseBlock),this.baseBlock));
         addToBot(new ApplyPowerAction(p,p,new ContinuousExpandWorldPower(p)));

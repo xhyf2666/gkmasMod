@@ -1,11 +1,15 @@
 package gkmasmod.powers;
 
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.megacrit.cardcrawl.actions.common.HealAction;
+import com.megacrit.cardcrawl.actions.utility.UseCardAction;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
+import gkmasmod.actions.common.GainTrainRoundPowerAction;
 import gkmasmod.utils.NameHelper;
 
 public class SunfadedPower5 extends AbstractPower {
@@ -38,5 +42,19 @@ public class SunfadedPower5 extends AbstractPower {
 
     public void updateDescription() {
         this.description = String.format(DESCRIPTIONS[0],magic,magic2,this.amount);
+    }
+
+    public void onAfterUseCard(AbstractCard card, UseCardAction action) {
+        boolean flag = 1.0F*this.owner.currentHealth/this.owner.maxHealth <= 0.5F;
+        int healNum = Math.max(1,(int) (1.0F*magic*this.owner.maxHealth)/100);
+        if(flag&&this.amount>0){
+            addToBot(new HealAction(this.owner, this.owner, healNum));
+            addToBot(new GainTrainRoundPowerAction(this.owner,1));
+            this.amount--;
+        }
+    }
+
+    public void atEndOfTurnPreEndTurnCards(boolean isPlayer) {
+        this.amount +=magic2;
     }
 }

@@ -4,7 +4,7 @@
 //import com.megacrit.cardcrawl.core.CardCrawlGame;
 //import com.megacrit.cardcrawl.localization.PowerStrings;
 //import com.megacrit.cardcrawl.powers.AbstractPower;
-//import gkmasmod.actions.RinhaAttackAction;
+//import gkmasmod.actions.special.RinhaAttackAction;
 //import gkmasmod.utils.NameHelper;
 //
 //public class FriendBlackHolePower extends AbstractPower {

@@ -6,7 +6,9 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import gkmasmod.cardCustomEffect.InnateCustom;
 import gkmasmod.cardCustomEffect.MagicCustom;
+import gkmasmod.cardCustomEffect.MoreActionCustom;
 import gkmasmod.cardCustomEffect.SecondMagicCustom;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.cards.GkmasCardTag;
@@ -32,8 +34,8 @@ public class NotAfraidAnymore extends GkmasCard {
     private static final int COST = 1;
 
     private static final int BASE_MAGIC = 3;
-    private static final int UPGRADE_PLUS_MAGIC = 1;
-    private static final int BASE_MAGIC2 = 1;
+    private static final int UPGRADE_PLUS_MAGIC = 3;
+    private static final int BASE_MAGIC2 = 2;
 
     private static final CardType TYPE = CardType.POWER;
     private static final CardColor COLOR = PlayerColorEnum.gkmasModColorLogic;
@@ -52,7 +54,8 @@ public class NotAfraidAnymore extends GkmasCard {
         updateBackgroundImg();
         this.customLimit = 1;
         this.customEffectList = new ArrayList<>();
-        this.customEffectList.add(CustomHelper.generateCustomEffectList(MagicCustom.growID, new int[]{3}, new int[]{70}, CustomHelper.CustomEffectType.GOOD_IMPRESSION_ADD));
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(InnateCustom.growID, new int[]{0}, new int[]{50}, CustomHelper.CustomEffectType.INNATE_ADD));
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(MoreActionCustom.growID, new int[]{1}, new int[]{80}, CustomHelper.CustomEffectType.MORE_ACTION_ADD));
         this.customEffectList.add(CustomHelper.generateCustomEffectList(SecondMagicCustom.growID, new int[]{2}, new int[]{80}, CustomHelper.CustomEffectType.GOOD_IMPRESSION_ADD));
     }
 

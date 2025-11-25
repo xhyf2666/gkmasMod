@@ -11,8 +11,7 @@ import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.BarricadePower;
 import com.megacrit.cardcrawl.vfx.SpeechBubble;
-import gkmasmod.actions.GainBlockWithPowerAction;
-import gkmasmod.cards.free.Sleepy;
+import gkmasmod.actions.common.GainBlockWithPowerAction;
 import gkmasmod.patches.AbstractMonsterPatch;
 import gkmasmod.powers.*;
 

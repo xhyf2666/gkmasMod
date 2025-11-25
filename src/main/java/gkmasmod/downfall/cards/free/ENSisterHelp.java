@@ -34,7 +34,7 @@ public class ENSisterHelp extends GkmasBossCard {
 
     private static final int COST = 0;
 
-    private static final int MAGIC = 2;
+    private static final int MAGIC = 3;
     private static final int UPGRADE_MAGIC_PLUS = 1;
 
 

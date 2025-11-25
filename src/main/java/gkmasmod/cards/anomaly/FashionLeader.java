@@ -2,21 +2,18 @@ package gkmasmod.cards.anomaly;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
-import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
-import gkmasmod.actions.GainTrainRoundPowerAction;
-import gkmasmod.actions.ModifyDamageAction;
+import gkmasmod.actions.common.GainTrainRoundPowerAction;
+import gkmasmod.actions.common.ModifyDamageAction;
 import gkmasmod.cardCustomEffect.*;
 import gkmasmod.cardGrowEffect.DamageGrow;
 import gkmasmod.cards.GkmasCard;
-import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.powers.EndOfTurnPreservationStancePower;
 import gkmasmod.powers.FullPowerValue;
@@ -97,9 +94,9 @@ public class FashionLeader extends GkmasCard {
     @Override
     public boolean canUse(AbstractPlayer p, AbstractMonster m) {
         if(PlayerHelper.getPowerAmount(p, FullPowerValue.POWER_ID) >= this.magicNumber)
-            return true;
+            return super.canUse(p, m);
         this.cantUseMessage = CardCrawlGame.languagePack.getUIString("gkmasMod:NotEnoughFullPowerValue").TEXT[0];
-        return false;
+        return CardHelper.containsMasterKey();
     }
 
 

@@ -25,10 +25,10 @@ public class ENYeah extends GkmasBossCard {
     private static final String IMG_PATH = String.format("gkmasModResource/img/cards/common/%s.png", CLASSNAME2);
 
     private static final int COST = 1;
-    private static final int BASE_MAGIC = 1;
+    private static final int BASE_MAGIC = 2;
 
     private static final int BLOCK_AMT = 6;
-    private static final int UPGRADE_PLUS_BLOCK = 2;
+    private static final int UPGRADE_PLUS_BLOCK = 3;
 
     private static final CardType TYPE = CardType.SKILL;
     private static final CardColor COLOR = PlayerColorEnum.gkmasModColorLogic;

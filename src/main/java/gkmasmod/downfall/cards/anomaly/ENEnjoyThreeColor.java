@@ -1,17 +1,11 @@
 package gkmasmod.downfall.cards.anomaly;
 
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
-import com.megacrit.cardcrawl.actions.watcher.ChangeStanceAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import gkmasmod.actions.EnjoyThreeColorGrowAction;
-import gkmasmod.cardCustomEffect.ExhaustRemoveCustom;
-import gkmasmod.cardCustomEffect.MagicCustom;
-import gkmasmod.cardCustomEffect.SecondMagicCustom;
-import gkmasmod.cards.GkmasCard;
 import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.downfall.cards.GkmasBossCard;
@@ -19,13 +13,9 @@ import gkmasmod.downfall.charbosses.actions.unique.EnemyChangeStanceAction;
 import gkmasmod.downfall.charbosses.stances.ENConcentrationStance;
 import gkmasmod.powers.EndOfTurnPreservationStancePower;
 import gkmasmod.powers.FullPowerValue;
-import gkmasmod.stances.ConcentrationStance;
-import gkmasmod.utils.CustomHelper;
 import gkmasmod.utils.IdolData;
 import gkmasmod.utils.NameHelper;
 import gkmasmod.utils.SoundHelper;
-
-import java.util.ArrayList;
 
 public class ENEnjoyThreeColor extends GkmasBossCard {
     private static final String CLASSNAME = ENEnjoyThreeColor.class.getSimpleName();

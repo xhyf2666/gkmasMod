@@ -147,6 +147,10 @@
     "NAMES": [""],
     "TEXT": ["3年1班"]
   },
+  "IdolClass:atbm": {
+    "NAMES": [""],
+    "TEXT": ["3年1班"]
+  },
   "IdolBirthday:shro": {
     "NAMES": [""],
     "TEXT": ["12月21日"]
@@ -194,6 +198,10 @@
   "IdolBirthday:hmsz": {
     "NAMES": [""],
     "TEXT": ["2月6日"]
+  },
+  "IdolBirthday:atbm": {
+    "NAMES": [""],
+    "TEXT": ["5月20日"]
   },
   "IdolAge:shro": {
     "NAMES": [""],
@@ -243,6 +251,10 @@
     "NAMES": [""],
     "TEXT": ["15岁"]
   },
+  "IdolAge:atbm": {
+    "NAMES": [""],
+    "TEXT": ["17岁"]
+  },
   "IdolHeight:shro":{
     "NAMES": [""],
     "TEXT": ["159cm"]
@@ -290,6 +302,10 @@
   "IdolHeight:hmsz":{
     "NAMES": [""],
     "TEXT": ["160cm"]
+  },
+  "IdolHeight:atbm":{
+    "NAMES": [""],
+    "TEXT": ["??"]
   },
   "IdolWeight:shro":{
     "NAMES": [""],
@@ -339,6 +355,10 @@
     "NAMES": [""],
     "TEXT": ["42kg"]
   },
+  "IdolWeight:atbm":{
+    "NAMES": [""],
+    "TEXT": ["??"]
+  },
   "IdolThreeSize:shro":{
     "NAMES": [""],
     "TEXT": ["B72/W54/H76"]
@@ -386,6 +406,10 @@
   "IdolThreeSize:hmsz":{
     "NAMES": [""],
     "TEXT": ["B73/W54/H74"]
+  },
+  "IdolThreeSize:atbm":{
+    "NAMES": [""],
+    "TEXT": ["??"]
   },
   "IdolInterest:shro":{
     "NAMES": [""],
@@ -435,6 +459,10 @@
     "NAMES": [""],
     "TEXT": ["午睡，散步"]
   },
+  "IdolInterest:atbm":{
+    "NAMES": [""],
+    "TEXT": ["书法，历史(日本史) NL 读书"]
+  },
   "IdolSkill:shro":{
     "NAMES": [""],
     "TEXT": ["所有学业，物理 NL 数学，解谜"]
@@ -482,6 +510,10 @@
   "IdolSkill:hmsz":{
     "NAMES": [""],
     "TEXT": ["料理，插花 NL 生物钟准确"]
+  },
+  "IdolSkill:atbm":{
+    "NAMES": [""],
+    "TEXT": ["秘书技能 NL 数学，书法"]
   },
   "IdolPlan1:shro": {
     "NAMES": [""],
@@ -627,6 +659,18 @@
     "NAMES": [""],
     "TEXT": ["向着高处"]
   },
+  "IdolPlan1:atbm": {
+    "NAMES": [""],
+    "TEXT": ["??"]
+  },
+  "IdolPlan2:atbm": {
+    "NAMES": [""],
+    "TEXT": ["??"]
+  },
+  "IdolPlan3:atbm": {
+    "NAMES": [""],
+    "TEXT": ["??"]
+  },
   "IdolReward1:shro": {
     "NAMES": [""],
     "TEXT": ["最初的障碍"]
@@ -770,6 +814,18 @@
   "IdolReward3:hmsz": {
     "NAMES": [""],
     "TEXT": ["取代太阳"]
+  },
+  "IdolReward1:atbm": {
+    "NAMES": [""],
+    "TEXT": ["??"]
+  },
+  "IdolReward2:atbm": {
+    "NAMES": [""],
+    "TEXT": ["??"]
+  },
+  "IdolReward3:atbm": {
+    "NAMES": [""],
+    "TEXT": ["??"]
   },
   "IdolStory:shro": {
     "NAMES": [""],
@@ -954,7 +1010,7 @@
       "Fight On!"
     ]
   },
-  "IdolBossStartTalk:shro_hski": {
+  "IdolBossTalk:hski_shro": {
     "NAMES": [
     ],
     "TEXT": [

@@ -46,12 +46,12 @@ public class ThunderWillStopPower extends AbstractPower {
 
     public void atEndOfTurnPreEndTurnCards(boolean isPlayer) {
         flash();
-        addToBot(new ApplyPowerAction(owner,owner,new FullPowerValue(owner,amount),amount));
+        addToBot(new ApplyPowerAction(owner,owner,new FullPowerValue(owner,amount, true),amount));
     }
 
     @Override
     public void onChangeStance(AbstractStance oldStance, AbstractStance newStance) {
         flash();
-        addToBot(new ApplyPowerAction(owner,owner,new FullPowerValue(owner,amount),amount));
+        addToBot(new ApplyPowerAction(owner,owner,new FullPowerValue(owner,amount, true),amount));
     }
 }

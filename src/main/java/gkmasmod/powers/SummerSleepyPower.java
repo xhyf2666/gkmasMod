@@ -1,6 +1,5 @@
 package gkmasmod.powers;
 
-import basemod.devcommands.draw.Draw;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.megacrit.cardcrawl.actions.common.DrawCardAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
@@ -10,7 +9,6 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
-import gkmasmod.actions.GainTrainRoundPowerAction;
 import gkmasmod.cards.free.Sleepy;
 import gkmasmod.utils.NameHelper;
 

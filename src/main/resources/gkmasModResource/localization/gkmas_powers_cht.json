@@ -134,19 +134,19 @@
   "WakuWakuPower": {
     "NAME": "WakuWaku",
     "DESCRIPTIONS": [
-      "每次打出技能牌和能力牌時，獲得 #b%d 點 #y敏捷 。"
+      "每打出 #b%d 張技能牌和能力牌，獲得 #b%d 點 #y敏捷 。"
     ]
   },
   "WishPowerPower": {
     "NAME": "願望的力量",
     "DESCRIPTIONS": [
-      "每次打出攻擊牌時，獲得 #b%d 點 #y力量 。"
+      "每打出 #b%d 張攻擊牌，獲得 #b%d 點 #y力量 。"
     ]
   },
   "WishPowerGoodTunePower": {
     "NAME": "願望的好調",
     "DESCRIPTIONS": [
-      "每次打出攻擊牌時，獲得 #b%d 點 #y好調 。"
+      "每打出 #b%d 張攻擊牌，獲得 #b%d 層 #y好調 。"
     ]
   },
   "AchievementPower": {
@@ -657,7 +657,7 @@
   "StepOnStagePower": {
     "NAME": "登上舞臺",
     "DESCRIPTIONS": [
-      "每次進入 #y溫存2段 或 #y強氣2段 時，抽 #b%d 張牌。"
+      "每次進入 #y溫存2段 、 #y強氣2段 或 #y悠閒 時，抽 #b%d 張牌。"
     ]
   },
   "LikeStarsPower": {
@@ -699,7 +699,7 @@
   "HappyChristmasPower": {
     "NAME": "聖誕快樂♪",
     "DESCRIPTIONS": [
-      "每次出牌時，獲得 #b%d 點 #y敏捷 。"
+      "每打出 #b%d 張牌，獲得 #b%d 點 #y敏捷 。"
     ]
   },
   "EndOfTurnPreservationStancePower": {
@@ -723,7 +723,7 @@
   "LikeUsualPower": {
     "NAME": "像往常一樣",
     "DESCRIPTIONS": [
-      "每次退出 #y溫存2段 時，獲得 [E] * #b%d 。"
+      "每次退出 #y溫存2段 或 #y悠閒 時，獲得 [E] * #b%d 。"
     ]
   },
   "LikeUsualSPPower": {
@@ -766,6 +766,12 @@
     "NAME": "篠澤廣的智慧",
     "DESCRIPTIONS": [
       "#y秦谷美鈴 獲得 #y格擋 時，對隨機敵人造成 #b%d 點傷害。"
+    ]
+  },
+  "FriendHiroPower3": {
+    "NAME": "篠澤廣的覺悟",
+    "DESCRIPTIONS": [
+      "#y秦谷美鈴 出牌後，如果 #y篠澤廣 的體力大於 #b1 ，則失去 #b1 點體力，抽 #b1 張牌。 NL 回合結束時，回覆 #b%d 點體力。"
     ]
   },
   "FriendChinaPower1": {
@@ -1573,22 +1579,10 @@
       "每回合結束時，獲得你所有的 #y格擋 。 NL 下回合開始時，使你獲得 #y格擋 層數 #b%d %%的 #y格擋 。"
     ]
   },
-  "SurgingEmotionPower": {
-    "NAME": "噴湧的情感",
-    "DESCRIPTIONS": [
-      "#b%d 回合內， #y好印象 增加量增加 #b%d %%。"
-    ]
-  },
   "NextTurnIdolBlockPower": {
     "NAME": "下回合格擋",
     "DESCRIPTIONS": [
       "下回合開始時，獲得 #b%d 點 #y格擋 (受到 #y敏捷 等效果的影響)"
-    ]
-  },
-  "EnthusiasticAddPower": {
-    "NAME": "熱意追加",
-    "DESCRIPTIONS": [
-      "獲得 #y熱意 時，額外獲得 #b%d 層 #y熱意 。"
     ]
   },
   "UntilHopeReachPower": {
@@ -1651,12 +1645,6 @@
       "體力每次變化時，獲得 #b%d 點 #y力量 。"
     ]
   },
-  "StarDustPower": {
-    "NAME": "星屑絢爛",
-    "DESCRIPTIONS": [
-      "#b%d 回合內， #y好印象 增加量增加 #b%d %%。"
-    ]
-  },
   "SettingPower": {
     "NAME": "打扮",
     "DESCRIPTIONS": [
@@ -1675,22 +1663,17 @@
       "每次打出 #y全力 牌後，獲得 #b%d 點 #y全力值 。"
     ]
   },
-  "StrengthAddPower": {
-    "NAME": "力量追加",
-    "DESCRIPTIONS": [
-      "獲得 #y力量 時，額外獲得 #b%d 點 #y力量 。"
-    ]
-  },
   "GoodImpressionDamageAddPower": {
     "NAME": "好印象傷害增加",
     "DESCRIPTIONS": [
-      "#b%d 回合內， #y好印象 造成的傷害增加 #b%d %%。"
+      "#b%d 回合內， #y好印象 造成的傷害增加 #b%d %%。",
+      "#y好印象 造成的傷害增加 #b%d %%。"
     ]
   },
   "DreamIdolPower": {
     "NAME": "憧憬的偶像",
     "DESCRIPTIONS": [
-      "單次獲得的 #y格擋 數不低於 #b%d 時，對隨機敵人造成自身總 #y格擋 層數 #b30%% 的傷害 #b%d 次。"
+      "單次獲得的 #y格擋 數不低於 #b%d 後，對隨機敵人造成自身總 #y格擋 層數 #b30%% 的傷害 #b%d 次。"
     ]
   },
   "BeyondSunSongPower": {
@@ -1703,6 +1686,204 @@
     "NAME": "超越太陽的歌聲",
     "DESCRIPTIONS": [
       "#b%d 回合內，造成傷害增加 #b50%% 。"
+    ]
+  },
+  "SunfadedPower1": {
+    "NAME": "我來言說",
+    "DESCRIPTIONS": [
+      "戰鬥結束後，獲得 #b%d 點生命上限。"
+    ]
+  },
+  "SunfadedPower2": {
+    "NAME": "我來制御",
+    "DESCRIPTIONS": [
+      "每回合結束時，獲得損失體力 #b%d %% 的 #y固定格擋 。"
+    ]
+  },
+  "SunfadedPower3": {
+    "NAME": "我來起舞",
+    "DESCRIPTIONS": [
+      "每當你打出 #b%d 張牌，獲得 #b%d 點 #y格擋 。"
+    ]
+  },
+  "SunfadedPower4": {
+    "NAME": "我來戰慄",
+    "DESCRIPTIONS": [
+      "每當你打出 #b%d 張牌，對所有敵人造成 #b%d 點傷害。"
+    ]
+  },
+  "SunfadedPower5": {
+    "NAME": "我來銘記",
+    "DESCRIPTIONS": [
+      "每次出牌後，如果你的體力不高於 #b50%% ，則回覆 #b%d%% 的體力， #y再動 。 (還可觸發 #b%d 次，回合結束時可觸發次數增加 #b%d 次)"
+    ]
+  },
+  "SunfadedPower6": {
+    "NAME": "我來遺忘",
+    "DESCRIPTIONS": [
+      "每當你失去體力時，使所有牌獲得 #y傷害增加 #b%d 。"
+    ]
+  },
+  "FreePlayPower": {
+    "NAME": "免費打出",
+    "DESCRIPTIONS": [
+      "下 #b%d 張打出的牌不消耗能量。"
+    ]
+  },
+  "NeverEndIdolPower": {
+    "NAME": "Never End I∞l",
+    "DESCRIPTIONS": [
+      "#b%d 回合內， #y訓練時間 不會減少。"
+    ]
+  },
+  "GoodImpressionAddPower": {
+    "NAME": "好印象追加",
+    "DESCRIPTIONS": [
+      "獲得 #y好印象 時，額外獲得 #b%d 層 #y好印象 。"
+    ]
+  },
+  "GoodImpressionAddRatePower": {
+    "NAME": "好印象增加量增加",
+    "DESCRIPTIONS": [
+      "#b%d 回合內， #y好印象 增加量增加 #b%d %%。",
+      "#y好印象 增加量增加 #b%d %%。"
+    ]
+  },
+  "DexterityAddPower": {
+    "NAME": "敏捷追加",
+    "DESCRIPTIONS": [
+      "獲得 #y敏捷 時，額外獲得 #b%d 點 #y敏捷 。"
+    ]
+  },
+  "DexterityAddRatePower": {
+    "NAME": "敏捷增加量增加",
+    "DESCRIPTIONS": [
+      "#b%d 回合內， #y敏捷 增加量增加 #b%d %%。",
+      "#y敏捷 增加量增加 #b%d %%。"
+    ]
+  },
+  "StrengthAddPower": {
+    "NAME": "力量追加",
+    "DESCRIPTIONS": [
+      "獲得 #y力量 時，額外獲得 #b%d 點 #y力量 。"
+    ]
+  },
+  "StrengthAddRatePower": {
+    "NAME": "力量增加量增加",
+    "DESCRIPTIONS": [
+      "#b%d 回合內， #y力量 增加量增加 #b%d %%。",
+      "#y力量 增加量增加 #b%d %%。"
+    ]
+  },
+  "FullPowerAddPower": {
+    "NAME": "全力值追加",
+    "DESCRIPTIONS": [
+      "獲得 #y全力值 時，額外獲得 #b%d 點 #y全力值 。"
+    ]
+  },
+  "FullPowerAddRatePower": {
+    "NAME": "全力值增加量增加",
+    "DESCRIPTIONS": [
+      "#b%d 回合內， #y全力值 增加量增加 #b%d %%。",
+      "#y全力值 增加量增加 #b%d %%。"
+    ]
+  },
+  "GoodTuneAddPower": {
+    "NAME": "好調追加",
+    "DESCRIPTIONS": [
+      "獲得 #y好調 時，額外獲得 #b%d 層 #y好調 。"
+    ]
+  },
+  "GoodTuneAddRatePower": {
+    "NAME": "好調增加量增加",
+    "DESCRIPTIONS": [
+      "#b%d 回合內， #y好調 增加量增加 #b%d %%。",
+      "#y好調 增加量增加 #b%d %%。"
+    ]
+  },
+  "EnthusiasticAddPower": {
+    "NAME": "熱意追加",
+    "DESCRIPTIONS": [
+      "獲得 #y熱意 時，額外獲得 #b%d 層 #y熱意 。"
+    ]
+  },
+  "EnthusiasticAddRatePower": {
+    "NAME": "熱意增加量增加",
+    "DESCRIPTIONS": [
+      "#b%d 回合內， #y熱意 增加量增加 #b%d %%。",
+      "#y熱意 增加量增加 #b%d %%。"
+    ]
+  },
+  "DamageGrowAddPower": {
+    "NAME": "傷害成長追加",
+    "DESCRIPTIONS": [
+      "向卡牌施加 #y傷害增加 時，增加量增加 #b%d 點。"
+    ]
+  },
+  "DamageGrowAddRatePower": {
+    "NAME": "傷害增加量增加",
+    "DESCRIPTIONS": [
+      "向卡牌施加 #y傷害增加 時，增加量增加 #b%d %%。"
+    ]
+  },
+  "NextTurnGoodTunePower": {
+    "NAME": "下回合好調",
+    "DESCRIPTIONS": [
+      "下回合開始時，獲得 #b%d 層 #y好調 。"
+    ]
+  },
+  "NoMoreHesitationPower": {
+    "NAME": "不再猶豫",
+    "DESCRIPTIONS": [
+      "單次獲得 #y力量 不低於 #b%d 後，對隨機敵人造成 #b%d 點傷害 #b%d 次。( #y力量 #b200%% 適用)"
+    ]
+  },
+  "TheMomentWaitForPower": {
+    "NAME": "翹首以盼的瞬間",
+    "DESCRIPTIONS": [
+      "每次通過卡牌獲得 #y全力值 時，獲得 #b%d 點 #y全力值 。"
+    ]
+  },
+  "SelfEsteemBoostPower": {
+    "NAME": "自我肯定感爆上↑↑",
+    "DESCRIPTIONS": [
+      "每打出 #b%d 張 #y技能牌 ，獲得 #b%d 點 #y力量 。"
+    ]
+  },
+  "DramaticHolidayPower": {
+    "NAME": "戲劇性的假日",
+    "DESCRIPTIONS": [
+      "每打出 #b%d 張 #y攻擊牌 ，如果 #y敏捷 不低於 #b%d ，則獲得 #b%d 點 #y格擋 。"
+    ]
+  },
+  "BambooCrushPower": {
+    "NAME": "破竹之勢",
+    "DESCRIPTIONS": [
+      "每回合開始時，對所有敵人造成 #b%d 點傷害並施加 #b%d 層 #y不調 。"
+    ]
+  },
+  "SenseOfAccomplishmentPower": {
+    "NAME": "達成感",
+    "DESCRIPTIONS": [
+      "每回合首次退出 #y全力 時，進入 #y溫存 。"
+    ]
+  },
+  "SenseOfAccomplishmentSPPower": {
+    "NAME": "達成感·SP",
+    "DESCRIPTIONS": [
+      "每次退出 #y全力 時，進入 #y溫存 。"
+    ]
+  },
+  "BurstSkillPower": {
+    "NAME": "爆發·技能&能力",
+    "DESCRIPTIONS": [
+      "在這個回合，你的下 #b%d 張技能牌或能力牌會打出2次。"
+    ]
+  },
+  "EachPathPower": {
+    "NAME": "各自的道路",
+    "DESCRIPTIONS": [
+      "回合結束時，失去 #b%d 點體力，對所有敵人造成 #b%d 點傷害。"
     ]
   }
 }

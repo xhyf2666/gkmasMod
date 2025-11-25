@@ -5,12 +5,11 @@ import com.megacrit.cardcrawl.actions.common.LoseHPAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.CardHelper;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import gkmasmod.actions.BlockDamageAction;
-import gkmasmod.cards.GkmasCard;
+import gkmasmod.actions.common.BlockDamageAction;
+import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.downfall.cards.GkmasBossCard;
 import gkmasmod.utils.NameHelper;
@@ -31,7 +30,7 @@ public class ENCheerfulGreeting extends GkmasBossCard {
     private static final int BASE_MAGIC = 70;
     private static final int UPGRADE_PLUS_MAGIC = 10;
 
-    private static final int BASE_HP = 4;
+    private static final int BASE_HP = 2;
     private static final int UPGRADE_PLUS_HP = -1;
 
     private static final CardType TYPE = CardType.ATTACK;
@@ -49,6 +48,7 @@ public class ENCheerfulGreeting extends GkmasBossCard {
         this.intent = AbstractMonster.Intent.ATTACK;
         FlavorText.AbstractCardFlavorFields.boxColor.set(this, CardHelper.getColor(73, 224, 254));
         flavor = FlavorText.CardStringsFlavorField.flavor.get(CARD_STRINGS);
+        this.tags.add(GkmasCardTag.COST_HP_TAG);
     }
 
 

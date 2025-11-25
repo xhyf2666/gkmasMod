@@ -9,10 +9,8 @@ import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.powers.DexterityPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
-import gkmasmod.actions.GainBlockWithPowerAction;
-import gkmasmod.actions.TheWingAction;
+import gkmasmod.actions.common.GainBlockWithPowerAction;
 import gkmasmod.cards.logic.GiveYou;
-import gkmasmod.cards.logic.Restart;
 import gkmasmod.utils.PlayerHelper;
 
 public class DeepLoveForYou extends CustomRelic {

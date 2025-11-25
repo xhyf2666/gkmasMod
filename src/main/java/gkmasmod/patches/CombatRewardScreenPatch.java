@@ -1,25 +1,16 @@
 package gkmasmod.patches;
 
-import basemod.ReflectionHacks;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.evacipated.cardcrawl.modthespire.lib.*;
-import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
-import com.megacrit.cardcrawl.helpers.ModHelper;
-import com.megacrit.cardcrawl.powers.AbstractPower;
-import com.megacrit.cardcrawl.powers.ArtifactPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.rewards.RewardItem;
-import com.megacrit.cardcrawl.screens.CharSelectInfo;
 import com.megacrit.cardcrawl.screens.CombatRewardScreen;
-import com.megacrit.cardcrawl.screens.charSelect.CharacterOption;
-import com.megacrit.cardcrawl.screens.charSelect.CharacterSelectScreen;
-import gkmasmod.cards.free.ProduceCompetitor;
+import gkmasmod.cards.idol.MasterKey;
+import gkmasmod.cards.idol.ProduceCompetitor;
 import gkmasmod.cards.special.Kiss;
 import gkmasmod.cards.special.Rumor;
 import gkmasmod.cards.special.WorkFighter;
@@ -27,8 +18,6 @@ import gkmasmod.characters.IdolCharacter;
 import gkmasmod.characters.MisuzuCharacter;
 import gkmasmod.characters.OtherIdolCharacter;
 import gkmasmod.characters.PlayerColorEnum;
-import gkmasmod.downfall.bosses.AbstractIdolBoss;
-import gkmasmod.powers.NegativeNotPower;
 import gkmasmod.relics.FirstStarBracelet;
 import gkmasmod.relics.PocketBook;
 import gkmasmod.relics.ProducerBaseSkill;
@@ -56,6 +45,7 @@ public class CombatRewardScreenPatch {
                     cardReward.cards.add(new Kiss());
                     cardReward.cards.add(new Rumor());
                     cardReward.cards.add(new WorkFighter());
+                    cardReward.cards.add(new MasterKey());
                     __instance.rewards.add(cardReward);
                 }
                 else if(AbstractDungeon.player instanceof OtherIdolCharacter){

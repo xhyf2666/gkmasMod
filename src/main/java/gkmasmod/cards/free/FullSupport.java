@@ -3,24 +3,20 @@ package gkmasmod.cards.free;
 import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.DrawCardAction;
-import com.megacrit.cardcrawl.actions.common.LoseHPAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.DrawCardNextTurnPower;
-import gkmasmod.actions.GainTrainRoundPowerAction;
-import gkmasmod.cardCustomEffect.DrawCardCustom;
-import gkmasmod.cardCustomEffect.MagicCustom;
 import gkmasmod.cardCustomEffect.MoreActionCustom;
 import gkmasmod.cardCustomEffect.ThirdMagicCustom;
+import gkmasmod.cardGrowEffect.ExhaustRemoveGrow;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
-import gkmasmod.powers.HalfDamageReceive;
-import gkmasmod.screen.SkinSelectScreen;
 import gkmasmod.utils.CustomHelper;
+import gkmasmod.utils.GrowHelper;
 import gkmasmod.utils.NameHelper;
 
 import java.util.ArrayList;
@@ -70,7 +66,7 @@ public class FullSupport extends GkmasCard {
             upgradeThirdMagicNumber(-1);
             this.initializeDescription();
         }
-        else{
+        else if(!GrowHelper.hasGrow(this, ExhaustRemoveGrow.growID)){
             this.exhaust = true;
         }
     }

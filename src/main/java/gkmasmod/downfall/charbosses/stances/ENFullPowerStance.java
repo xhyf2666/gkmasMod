@@ -3,24 +3,19 @@ package gkmasmod.downfall.charbosses.stances;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.MathUtils;
-import com.megacrit.cardcrawl.actions.watcher.ChangeStanceAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.StanceStrings;
 import com.megacrit.cardcrawl.vfx.BorderFlashEffect;
-import com.megacrit.cardcrawl.vfx.stance.DivinityParticleEffect;
-import com.megacrit.cardcrawl.vfx.stance.StanceAuraEffect;
 import com.megacrit.cardcrawl.vfx.stance.StanceChangeParticleGenerator;
-import gkmasmod.actions.GainTrainRoundPowerAction;
 import gkmasmod.downfall.charbosses.actions.common.EnemyGainEnergyAction;
 import gkmasmod.downfall.charbosses.actions.unique.EnemyChangeStanceAction;
 import gkmasmod.downfall.charbosses.bosses.AbstractCharBoss;
 import gkmasmod.downfall.charbosses.vfx.EnemyDivinityParticleEffect;
 import gkmasmod.downfall.charbosses.vfx.EnemyStanceAuraEffect;
 import gkmasmod.powers.WhereDreamsArePower;
-import gkmasmod.stances.GkmasModStance;
 
 public class ENFullPowerStance extends AbstractEnemyStance {
     private static final String CLASSNAME = "FullPowerStance";

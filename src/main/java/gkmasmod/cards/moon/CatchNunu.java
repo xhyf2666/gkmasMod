@@ -23,6 +23,7 @@ import gkmasmod.powers.FullPowerValue;
 import gkmasmod.powers.GoodImpression;
 import gkmasmod.powers.GoodTune;
 import gkmasmod.stances.PreservationStance;
+import gkmasmod.utils.CardHelper;
 import gkmasmod.utils.NameHelper;
 import gkmasmod.utils.PlayerHelper;
 
@@ -65,9 +66,9 @@ public class CatchNunu extends GkmasCard {
     public boolean canUse(AbstractPlayer p, AbstractMonster m) {
         int count = p.gold;
         if (count >= this.magicNumber)
-            return true;
+            return super.canUse(p, m);
         this.cantUseMessage = CardCrawlGame.languagePack.getUIString("gkmasMod:NotEnoughMoney").TEXT[0];
-        return false;
+        return CardHelper.containsMasterKey();
     }
 
     @Override

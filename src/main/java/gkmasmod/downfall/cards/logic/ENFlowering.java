@@ -1,6 +1,5 @@
 package gkmasmod.downfall.cards.logic;
 
-import com.megacrit.cardcrawl.actions.common.DrawCardAction;
 import gkmasmod.downfall.charbosses.bosses.AbstractCharBoss;
 import com.evacipated.cardcrawl.mod.stslib.patches.FlavorText;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -9,7 +8,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.helpers.CardHelper;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import gkmasmod.actions.DexterityPowerDamageAction;
+import gkmasmod.actions.common.DexterityPowerDamageAction;
 import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.downfall.cards.GkmasBossCard;

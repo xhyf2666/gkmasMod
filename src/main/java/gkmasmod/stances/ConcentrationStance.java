@@ -3,7 +3,6 @@ package gkmasmod.stances;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.MathUtils;
-import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.LoseHPAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
@@ -15,9 +14,6 @@ import com.megacrit.cardcrawl.vfx.BorderFlashEffect;
 import com.megacrit.cardcrawl.vfx.stance.StanceAuraEffect;
 import com.megacrit.cardcrawl.vfx.stance.StanceChangeParticleGenerator;
 import com.megacrit.cardcrawl.vfx.stance.WrathParticleEffect;
-import gkmasmod.actions.GainBlockWithPowerAction;
-import gkmasmod.actions.GainTrainRoundPowerAction;
-import gkmasmod.powers.EnthusiasticPower;
 
 public class ConcentrationStance extends GkmasModStance {
     private static final String CLASSNAME = "ConcentrationStance1";

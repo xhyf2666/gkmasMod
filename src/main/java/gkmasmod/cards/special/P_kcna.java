@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import gkmasmod.cards.GkmasCard;
+import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.utils.CardHelper;
 import gkmasmod.utils.IdolData;
@@ -55,6 +56,11 @@ public class P_kcna extends GkmasCard {
                 card.cost = 0;
                 card.costForTurn = 0;
                 card.isCostModified = true;
+            }
+            if (card instanceof GkmasCard){
+                GkmasCard gkmasCard = (GkmasCard) card;
+                if(gkmasCard.hasTag(GkmasCardTag.COST_HP_TAG)&&gkmasCard.HPMagicNumber>0)
+                    gkmasCard.HPMagicNumber = 0;
             }
             addToBot(new MakeTempCardInDrawPileAction(card, 1, true, true));
         }

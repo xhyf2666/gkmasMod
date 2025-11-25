@@ -9,13 +9,11 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import gkmasmod.actions.GakuenLinkMasterlAction;
+import gkmasmod.actions.cardAction.GakuenLinkMasterlAction;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
-import gkmasmod.utils.IdolData;
 import gkmasmod.utils.NameHelper;
-import gkmasmod.vfx.effect.GakuenLinkMasterEffect;
 
 public class GakuenLinkMaster extends GkmasCard {
     private static final String CLASSNAME = GakuenLinkMaster.class.getSimpleName();

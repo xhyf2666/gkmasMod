@@ -8,11 +8,13 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import gkmasmod.actions.ModifyDamageAction;
+import gkmasmod.actions.common.ModifyDamageAction;
+import gkmasmod.cardGrowEffect.ExhaustRemoveGrow;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.stances.ConcentrationStance;
+import gkmasmod.utils.GrowHelper;
 import gkmasmod.utils.NameHelper;
 
 public class Intensely extends GkmasCard {
@@ -54,7 +56,7 @@ public class Intensely extends GkmasCard {
             upgradeMagicNumber(-1);
             this.initializeDescription();
         }
-        else{
+        else if(!GrowHelper.hasGrow(this, ExhaustRemoveGrow.growID)){
             this.exhaust = true;
         }
     }

@@ -1,11 +1,15 @@
 package gkmasmod.powers;
 
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
+import gkmasmod.actions.common.GrowAction;
+import gkmasmod.cardGrowEffect.DamageGrow;
+import gkmasmod.downfall.charbosses.bosses.AbstractCharBoss;
 import gkmasmod.utils.NameHelper;
 
 public class SunfadedPower6 extends AbstractPower {
@@ -35,5 +39,17 @@ public class SunfadedPower6 extends AbstractPower {
 
     public void updateDescription() {
         this.description = String.format(DESCRIPTIONS[0],amount);
+    }
+
+    @Override
+    public void wasHPLost(DamageInfo info, int damageAmount) {
+        if (damageAmount > 0) {
+            this.flash();
+            if(this.owner.isPlayer){
+                addToBot(new GrowAction(DamageGrow.growID, GrowAction.GrowType.all,this.amount));
+            }
+            else if(this.owner instanceof AbstractCharBoss){
+            }
+        }
     }
 }

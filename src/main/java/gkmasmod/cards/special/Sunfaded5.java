@@ -5,8 +5,9 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import gkmasmod.actions.SunfadedAction;
+import gkmasmod.actions.cardAction.SunfadedAction;
 import gkmasmod.cards.GkmasCard;
+import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.utils.IdolData;
 import gkmasmod.utils.NameHelper;
@@ -20,7 +21,7 @@ public class Sunfaded5 extends GkmasCard {
     private static final String DESCRIPTION = CARD_STRINGS.DESCRIPTION;
     private static final String IMG_PATH = String.format("gkmasModResource/img/cards/common/%s.png", CLASSNAME);
 
-    private static final int COST = 1;
+    private static final int COST = 0;
 
     private static final int BASE_MAGIC = 5;
     private static final int BASE_MAGIC2 = 2;
@@ -40,6 +41,7 @@ public class Sunfaded5 extends GkmasCard {
         this.baseThirdMagicNumber = BASE_MAGIC3;
         this.thirdMagicNumber = this.baseThirdMagicNumber;
         this.backGroundColor = IdolData.empty;
+        this.tags.add(GkmasCardTag.COSTUME_TAG);
         updateBackgroundImg();
         this.cardsToPreview = new Sunfaded5_sp();
     }

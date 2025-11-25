@@ -12,6 +12,8 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
+import gkmasmod.powers.SenseOfAccomplishmentPower;
+import gkmasmod.powers.SenseOfAccomplishmentSPPower;
 import gkmasmod.powers.StanceLock;
 import gkmasmod.powers.StepOnStagePower;
 import gkmasmod.stances.ConcentrationStance;
@@ -59,6 +61,12 @@ public class EnemyChangeStanceAction extends AbstractGameAction {
                         newStance.onEnterStance();
                         AbstractCharBoss.boss.switchedStance();
                         AbstractCharBoss.boss.onStanceChange(this.id);
+                        if(AbstractCharBoss.boss.hasPower(SenseOfAccomplishmentPower.POWER_ID)){
+                            AbstractCharBoss.boss.getPower(SenseOfAccomplishmentPower.POWER_ID).onSpecificTrigger();
+                        }
+                        if(AbstractCharBoss.boss.hasPower(SenseOfAccomplishmentSPPower.POWER_ID)){
+                            AbstractCharBoss.boss.getPower(SenseOfAccomplishmentSPPower.POWER_ID).onSpecificTrigger();
+                        }
                     }
                     this.isDone = true;
                     return;

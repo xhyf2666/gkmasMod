@@ -697,8 +697,8 @@ public class SpecialTeachScreen extends CustomScreen implements ScrollBarListene
             int mod = i % 5;
             if (mod == 0 && i != 0)
                 lineNum++;
-            ((AbstractCard)cards.get(i)).current_x = drawStartX + mod * padX;
-            ((AbstractCard)cards.get(i)).current_y = drawStartY + this.currentDiffY - lineNum * padY;
+            (cards.get(i)).current_x = drawStartX + mod * padX;
+            (cards.get(i)).current_y = drawStartY + this.currentDiffY - lineNum * padY;
         }
         this.tipMsg = this.lastTip;
     }

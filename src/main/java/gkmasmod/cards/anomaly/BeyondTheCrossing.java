@@ -72,9 +72,9 @@ public class BeyondTheCrossing extends GkmasCard {
     @Override
     public boolean canUse(AbstractPlayer p, AbstractMonster m) {
         if (p.stance instanceof FullPowerStance)
-            return true;
+            return super.canUse(p, m);
         this.cantUseMessage = CardCrawlGame.languagePack.getUIString("gkmasMod:NotFullPowerStance").TEXT[0];
-        return false;
+        return CardHelper.containsMasterKey();
     }
 
     @Override

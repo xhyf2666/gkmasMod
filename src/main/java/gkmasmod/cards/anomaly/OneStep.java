@@ -9,8 +9,8 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import gkmasmod.actions.GrowAction;
-import gkmasmod.actions.PotentialAbilityAction;
+import gkmasmod.actions.common.GrowAction;
+import gkmasmod.actions.cardAction.PotentialAbilityAction;
 import gkmasmod.cardCustomEffect.*;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.characters.PlayerColorEnum;
@@ -33,9 +33,8 @@ public class OneStep extends GkmasCard {
     private static final int COST = 0;
 
     private static final int BASE_DAMAGE = 4;
-    private static final int UPGRADE_DMG_PLUS = 2;
+    private static final int UPGRADE_DMG_PLUS = 3;
     private static final int BASE_MAGIC = 1;
-    private static final int UPGRADE_PLUS_MAGIC = 1;
     private static final int BASE_MAGIC2 = 1;
     private static final int BASE_MAGIC3 = 0;
 
@@ -82,7 +81,6 @@ public class OneStep extends GkmasCard {
         if (!this.upgraded) {
             upgradeName();
             upgradeDamage(UPGRADE_DMG_PLUS);
-            upgradeMagicNumber(UPGRADE_PLUS_MAGIC);
             if (CARD_STRINGS.UPGRADE_DESCRIPTION != null)
                 this.rawDescription = CARD_STRINGS.UPGRADE_DESCRIPTION;
             this.initializeDescription();

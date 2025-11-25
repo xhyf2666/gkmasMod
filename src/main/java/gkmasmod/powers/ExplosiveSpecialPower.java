@@ -13,7 +13,7 @@ import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.vfx.combat.ExplosionSmallEffect;
-import gkmasmod.actions.ModifyDamageRandomEnemyAction;
+import gkmasmod.actions.common.ModifyDamageRandomEnemyAction;
 import gkmasmod.monster.exordium.MonsterNadeshiko;
 
 public class ExplosiveSpecialPower extends AbstractPower {

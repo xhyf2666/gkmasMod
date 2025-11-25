@@ -1,21 +1,15 @@
 package gkmasmod.downfall.relics;
-import basemod.abstracts.CustomRelic;
 import com.badlogic.gdx.Gdx;
 import com.megacrit.cardcrawl.actions.common.RelicAboveCreatureAction;
-import com.megacrit.cardcrawl.actions.watcher.ChangeStanceAction;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
-import gkmasmod.actions.GainBlockWithPowerAction;
+import gkmasmod.actions.common.GainBlockWithPowerAction;
 import gkmasmod.downfall.charbosses.actions.unique.EnemyChangeStanceAction;
 import gkmasmod.downfall.charbosses.bosses.AbstractCharBoss;
 import gkmasmod.downfall.charbosses.relics.AbstractCharbossRelic;
 import gkmasmod.downfall.charbosses.stances.ENConcentrationStance;
 import gkmasmod.downfall.charbosses.stances.ENPreservationStance;
-import gkmasmod.relics.BeginnerGuideForEveryone;
 import gkmasmod.relics.SweetTaste;
-import gkmasmod.stances.ConcentrationStance;
-import gkmasmod.stances.PreservationStance;
 
 public class CBR_SweetTaste extends AbstractCharbossRelic {
 

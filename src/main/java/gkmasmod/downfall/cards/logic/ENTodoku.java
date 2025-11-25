@@ -1,5 +1,6 @@
 package gkmasmod.downfall.cards.logic;
 
+import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.downfall.charbosses.bosses.AbstractCharBoss;
 import com.evacipated.cardcrawl.mod.stslib.patches.FlavorText;
 import com.megacrit.cardcrawl.actions.common.LoseHPAction;
@@ -9,7 +10,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.helpers.CardHelper;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import gkmasmod.actions.BlockDamageAction;
+import gkmasmod.actions.common.BlockDamageAction;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.downfall.cards.GkmasBossCard;
 import gkmasmod.utils.ImageHelper;
@@ -26,7 +27,7 @@ public class ENTodoku extends GkmasBossCard {
     private static final String DESCRIPTION = CARD_STRINGS.DESCRIPTION;
     private static String IMG_PATH = ImageHelper.idolImgPath(AbstractCharBoss.theIdolName, CLASSNAME2);
 
-    private static final int COST = 1;
+    private static final int COST = 0;
 
     private static final int BASE_MAGIC = 200;
     private static final int UPGRADE_PLUS_MAGIC = 60;
@@ -52,6 +53,7 @@ public class ENTodoku extends GkmasBossCard {
         this.HPMagicNumber = this.baseHPMagicNumber;
         this.exhaust = true;
         this.intent = AbstractMonster.Intent.ATTACK;
+        this.tags.add(GkmasCardTag.COST_HP_TAG);
         FlavorText.AbstractCardFlavorFields.boxColor.set(this, CardHelper.getColor(73, 224, 254));
         flavor = FlavorText.CardStringsFlavorField.flavor.get(CARD_STRINGS);
         //TODO 届卡名的动态显示

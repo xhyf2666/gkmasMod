@@ -1,19 +1,15 @@
 package gkmasmod.downfall.relics;
-import basemod.abstracts.CustomRelic;
 import com.badlogic.gdx.Gdx;
 import com.megacrit.cardcrawl.actions.common.RelicAboveCreatureAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
-import gkmasmod.actions.TheWingAction;
-import gkmasmod.cards.logic.Restart;
+import gkmasmod.actions.relicAction.TheWingAction;
 import gkmasmod.downfall.cards.logic.ENRestart;
 import gkmasmod.downfall.charbosses.bosses.AbstractCharBoss;
 import gkmasmod.downfall.charbosses.relics.AbstractCharbossRelic;
-import gkmasmod.relics.BeginnerGuideForEveryone;
 import gkmasmod.relics.TheWing;
 
 public class CBR_TheWing extends AbstractCharbossRelic {

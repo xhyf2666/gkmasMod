@@ -7,7 +7,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
-import gkmasmod.actions.RollingSourceOfEnergyAction;
+import gkmasmod.actions.relicAction.RollingSourceOfEnergyAction;
 import gkmasmod.relics.RollingSourceOfEnergy;
 
 public class CBR_RollingSourceOfEnergy extends AbstractCharbossRelic {

@@ -10,10 +10,13 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import gkmasmod.cardGrowEffect.ExhaustRemoveGrow;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.powers.GoodTune;
+import gkmasmod.utils.CardHelper;
+import gkmasmod.utils.GrowHelper;
 import gkmasmod.utils.NameHelper;
 
 public class Challenge extends GkmasCard {
@@ -52,7 +55,7 @@ public class Challenge extends GkmasCard {
             upgradeMagicNumber(-1);
             this.initializeDescription();
         }
-        else{
+        else if(!GrowHelper.hasGrow(this, ExhaustRemoveGrow.growID)){
             this.exhaust = true;
         }
     }
@@ -65,10 +68,10 @@ public class Challenge extends GkmasCard {
     @Override
     public boolean canUse(AbstractPlayer p, AbstractMonster m) {
         if (AbstractDungeon.player.hasPower(GoodTune.POWER_ID)) {
-            return true;
+            return super.canUse(p, m);
         }
         this.cantUseMessage = CardCrawlGame.languagePack.getUIString("gkmasMod:NotEnoughGoodTune").TEXT[0];
-        return false;
+        return CardHelper.containsMasterKey();
     }
 
     @Override

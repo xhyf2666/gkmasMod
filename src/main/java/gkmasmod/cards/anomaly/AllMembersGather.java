@@ -10,10 +10,12 @@ import gkmasmod.cardCustomEffect.BlockCustom;
 import gkmasmod.cardCustomEffect.EffectChangeCustom;
 import gkmasmod.cardCustomEffect.FullPowerValueCustom;
 import gkmasmod.cardCustomEffect.SelfRetainCustom;
+import gkmasmod.cardGrowEffect.ExhaustRemoveGrow;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.utils.CustomHelper;
+import gkmasmod.utils.GrowHelper;
 import gkmasmod.utils.NameHelper;
 
 import java.util.ArrayList;
@@ -63,7 +65,7 @@ public class AllMembersGather extends GkmasCard {
                 upgradeSecondMagicNumber(-1);
                 this.initializeDescription();
             }
-            else{
+            else if(!GrowHelper.hasGrow(this, ExhaustRemoveGrow.growID)){
                 this.exhaust = true;
             }
         }

@@ -69,9 +69,9 @@ public class UntilNowAndFromNow extends GkmasCard {
     public boolean canUse(AbstractPlayer p, AbstractMonster m) {
         int count = PlayerHelper.getPowerAmount(p, GoodTune.POWER_ID);
         if (count > this.magicNumber)
-            return true;
+            return super.canUse(p, m);
         this.cantUseMessage = CardCrawlGame.languagePack.getUIString("gkmasMod:NotEnoughGoodTune").TEXT[0];
-        return false;
+        return CardHelper.containsMasterKey();
     }
 
     @Override

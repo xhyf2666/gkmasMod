@@ -61,6 +61,7 @@ public class SummerEveningSparklers extends GkmasCard {
         this.tags.add(GkmasCardTag.YARUKI_TAG);
         this.tags.add(GkmasCardTag.GOOD_IMPRESSION_TAG);
         this.tags.add(GkmasCardTag.IDOL_CARD_TAG);
+        this.tags.add(GkmasCardTag.COST_HP_TAG);
         this.backGroundColor = IdolData.fktn;
         updateBackgroundImg();
         this.customLimit = 1;
@@ -73,7 +74,9 @@ public class SummerEveningSparklers extends GkmasCard {
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        addToBot(new LoseHPAction(p, p, this.HPMagicNumber));
+        if(this.HPMagicNumber > 0){
+            addToBot(new LoseHPAction(p,p,this.HPMagicNumber));
+        }
         addToBot(new ApplyPowerAction(p, p, new GoodImpression(p, this.magicNumber), this.magicNumber));
         addToBot(new ApplyPowerAction(p, p, new DexterityPower(p, this.secondMagicNumber), this.secondMagicNumber));
         addToBot(new ApplyPowerAction(p, p, new SummerEveningSparklersPower(p, this.thirdMagicNumber), this.thirdMagicNumber));

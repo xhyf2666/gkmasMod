@@ -2,19 +2,14 @@ package gkmasmod.relics;
 import basemod.abstracts.CustomRelic;
 import com.badlogic.gdx.Gdx;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
-import com.megacrit.cardcrawl.actions.common.DrawCardAction;
 import com.megacrit.cardcrawl.actions.common.RelicAboveCreatureAction;
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
-import com.megacrit.cardcrawl.powers.DexterityPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
-import gkmasmod.actions.PlasticUmbrellaThatDayAction;
-import gkmasmod.cards.anomaly.BeyondTheCrossing;
+import gkmasmod.actions.relicAction.PlasticUmbrellaThatDayAction;
 import gkmasmod.patches.GameActionManagerPatch;
 import gkmasmod.powers.FullPowerValue;
-import gkmasmod.powers.TempSavePower;
 
 public class PlasticUmbrellaThatDay extends CustomRelic {
 

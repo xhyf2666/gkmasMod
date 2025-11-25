@@ -70,12 +70,12 @@ public class LetMeBecomeIdol extends GkmasCard {
     @Override
     public boolean canUse(AbstractPlayer p, AbstractMonster m) {
         if(p.stance.ID.equals(FullPowerStance.STANCE_ID)){
-            return true;
+            return super.canUse(p, m);
         }
         if (this.fullPowerTime > 0)
-            return true;
+            return super.canUse(p, m);
         this.cantUseMessage = CardCrawlGame.languagePack.getUIString("gkmasMod:NotEnoughFullPowerStanceTime").TEXT[0];
-        return false;
+        return CardHelper.containsMasterKey();
     }
 
 

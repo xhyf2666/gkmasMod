@@ -8,12 +8,12 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.DexterityPower;
-import gkmasmod.actions.GainTrainRoundPowerAction;
+import gkmasmod.actions.common.GainTrainRoundPowerAction;
 import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.downfall.cards.GkmasBossCard;
 import gkmasmod.powers.GoodImpression;
-import gkmasmod.powers.StarDustPower;
+import gkmasmod.powers.increaseModifyPower.GoodImpressionAddRatePower;
 import gkmasmod.utils.ImageHelper;
 import gkmasmod.utils.NameHelper;
 import gkmasmod.utils.PlayerHelper;
@@ -68,7 +68,10 @@ public class ENStarDust extends GkmasBossCard {
         if(this.upgraded){
 //            addToBot(new DrawCardAction(thirdMagicNumber));
         }
-        addToBot(new ApplyPowerAction(m,m,new StarDustPower(m,3),3));
+        if(PlayerHelper.getPowerAmount(m, GoodImpression.POWER_ID)>9) {
+            addToBot(new ApplyPowerAction(m, m,
+                    new GoodImpressionAddRatePower(m, 3, 50, ID), 3));
+        }
         addToBot(new GainTrainRoundPowerAction(m,1));
     }
 

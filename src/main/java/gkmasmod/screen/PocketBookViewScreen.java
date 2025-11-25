@@ -101,6 +101,7 @@ public class PocketBookViewScreen extends CustomScreen {
     private Texture idolEmojiImg1;
     private Texture idolEmojiImg2;
     private Texture idolEmojiImg3;
+    private Texture idolEmojiImg4;
     private ArrayList<Texture> idolCommentImg;
     private Texture idolTextImg;
     private Texture idolDisplayImg1;
@@ -127,7 +128,7 @@ public class PocketBookViewScreen extends CustomScreen {
     private Texture friendImg2;
     private Texture friendImg3;
     
-    private float proceedX =1760.0F * Settings.xScale;
+    private float proceedX = 1760.0F * Settings.xScale;
     private float proceedY = 200.0F * Settings.scale;
 
     private Hitbox hb = new Hitbox(proceedX, proceedY, 280.0F * Settings.scale, 156.0F * Settings.scale);
@@ -213,6 +214,7 @@ public class PocketBookViewScreen extends CustomScreen {
             this.idolEmojiImg1 = ImageMaster.loadImage(String.format("gkmasModResource/img/report/emoji/%s_01.png", idolName));
             this.idolEmojiImg2 = ImageMaster.loadImage(String.format("gkmasModResource/img/report/emoji/%s_02.png", idolName));
             this.idolEmojiImg3 = ImageMaster.loadImage(String.format("gkmasModResource/img/report/emoji/%s_03.png", idolName));
+            this.idolEmojiImg4 = ImageMaster.loadImage(String.format("gkmasModResource/img/report/emoji/%s_04.png", idolName));
             this.idolDisplayImg1 = ImageMaster.loadImage(String.format("gkmasModResource/img/report/display/%s_001.png", idolName));
             this.idolDisplayImg2 = ImageMaster.loadImage(String.format("gkmasModResource/img/report/display/%s_002.png", idolName));
             this.idolDisplayImg3 = ImageMaster.loadImage(String.format("gkmasModResource/img/report/display/%s_003.png", idolName));

@@ -2,23 +2,18 @@ package gkmasmod.cards.special;
 
 import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.actions.common.GainBlockAction;
-import com.megacrit.cardcrawl.actions.common.MakeTempCardInDrawPileAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import gkmasmod.actions.SunfadedAction;
+import gkmasmod.actions.cardAction.SunfadedAction;
 import gkmasmod.cardCustomEffect.MoreActionCustom;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
-import gkmasmod.utils.CardHelper;
 import gkmasmod.utils.IdolData;
 import gkmasmod.utils.NameHelper;
-import sun.security.provider.Sun;
-
-import java.util.ArrayList;
 
 public class Sunfaded1 extends GkmasCard {
     private static final String CLASSNAME = Sunfaded1.class.getSimpleName();
@@ -49,6 +44,7 @@ public class Sunfaded1 extends GkmasCard {
         updateBackgroundImg();
         this.cardsToPreview = new Sunfaded1_sp();
         this.tags.add(GkmasCardTag.MORE_ACTION_TAG);
+        this.tags.add(GkmasCardTag.COSTUME_TAG);
         CardModifierManager.addModifier(this,new MoreActionCustom(1));
         updateBackgroundImg();
     }

@@ -9,8 +9,8 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
-import gkmasmod.actions.ModifyDamageAction;
-import gkmasmod.actions.ModifyDamageRandomEnemyAction;
+import gkmasmod.actions.common.ModifyDamageAction;
+import gkmasmod.actions.common.ModifyDamageRandomEnemyAction;
 import gkmasmod.cards.sense.CharmPerformance;
 import gkmasmod.utils.NameHelper;
 

@@ -18,9 +18,7 @@ import gkmasmod.cards.anomaly.ComprehensiveArt;
 import gkmasmod.cards.anomaly.IdealTempo;
 import gkmasmod.cards.anomaly.TakeFlight;
 import gkmasmod.modcore.GkmasMod;
-import gkmasmod.powers.StanceLock;
-import gkmasmod.powers.StepOnStagePower;
-import gkmasmod.powers.TempSavePower;
+import gkmasmod.powers.*;
 import gkmasmod.relics.PledgePetal;
 import gkmasmod.relics.PocketBook;
 import gkmasmod.stances.ConcentrationStance;
@@ -59,6 +57,12 @@ public class ChangeStanceActionPatch
                         AbstractDungeon.actionManager.uniqueStancesThisCombat.put(key, Integer.valueOf(currentCount + 1));
                     } else {
                         AbstractDungeon.actionManager.uniqueStancesThisCombat.put(key, Integer.valueOf(1));
+                    }
+                    if(AbstractDungeon.player.hasPower(SenseOfAccomplishmentPower.POWER_ID)){
+                        AbstractDungeon.player.getPower(SenseOfAccomplishmentPower.POWER_ID).onSpecificTrigger();
+                    }
+                    if(AbstractDungeon.player.hasPower(SenseOfAccomplishmentSPPower.POWER_ID)){
+                        AbstractDungeon.player.getPower(SenseOfAccomplishmentSPPower.POWER_ID).onSpecificTrigger();
                     }
                     AbstractDungeon.player.switchedStance();
                     for (AbstractCard c : AbstractDungeon.player.discardPile.group)

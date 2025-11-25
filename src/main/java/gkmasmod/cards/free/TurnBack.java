@@ -1,18 +1,19 @@
 package gkmasmod.cards.free;
 
-import com.megacrit.cardcrawl.actions.common.LoseHPAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import gkmasmod.actions.TurnBackAction;
-import gkmasmod.actions.TurnBackAction2;
-import gkmasmod.actions.TurnBackAction3;
+import gkmasmod.actions.cardAction.TurnBackAction;
+import gkmasmod.actions.cardAction.TurnBackAction2;
+import gkmasmod.actions.cardAction.TurnBackAction3;
 import gkmasmod.cardCustomEffect.*;
+import gkmasmod.cardGrowEffect.ExhaustRemoveGrow;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.utils.CustomHelper;
+import gkmasmod.utils.GrowHelper;
 import gkmasmod.utils.NameHelper;
 
 import java.util.ArrayList;
@@ -62,7 +63,7 @@ public class TurnBack extends GkmasCard {
                 upgradeThirdMagicNumber(-1);
                 this.initializeDescription();
             }
-            else{
+            else if(!GrowHelper.hasGrow(this, ExhaustRemoveGrow.growID)){
                 this.exhaust = true;
             }
         }

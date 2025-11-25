@@ -5,15 +5,12 @@ import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.DrawCardAction;
-import com.megacrit.cardcrawl.actions.common.GainEnergyAction;
-import com.megacrit.cardcrawl.actions.watcher.SkipEnemiesTurnAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.combat.WhirlwindEffect;
-import gkmasmod.actions.GainTrainRoundPowerAction;
 import gkmasmod.cardCustomEffect.*;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.cards.GkmasCardTag;
@@ -21,10 +18,7 @@ import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.powers.AnotherTurnPower;
 import gkmasmod.powers.GoodImpression;
 import gkmasmod.screen.SkinSelectScreen;
-import gkmasmod.utils.CustomHelper;
-import gkmasmod.utils.ImageHelper;
-import gkmasmod.utils.NameHelper;
-import gkmasmod.utils.PlayerHelper;
+import gkmasmod.utils.*;
 
 import java.util.ArrayList;
 
@@ -88,9 +82,9 @@ public class IamBigStar extends GkmasCard {
     public boolean canUse(AbstractPlayer p, AbstractMonster m) {
         int count = PlayerHelper.getPowerAmount(p, GoodImpression.POWER_ID);
         if (count >= this.magicNumber)
-            return true;
+            return super.canUse(p, m);
         this.cantUseMessage = CardCrawlGame.languagePack.getUIString("gkmasMod:NotEnoughGoodImpression").TEXT[0];
-        return false;
+        return CardHelper.containsMasterKey();
     }
 
     @Override

@@ -1,18 +1,13 @@
 package gkmasmod.downfall.cards.free;
 
-import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
-import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import gkmasmod.actions.GainTrainRoundPowerAction;
-import gkmasmod.cards.GkmasCard;
+import gkmasmod.actions.common.GainTrainRoundPowerAction;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.downfall.cards.GkmasBossCard;
-import gkmasmod.downfall.cards.logic.ENBaseVision;
-import gkmasmod.powers.DrawCardNextXTurnPower;
 import gkmasmod.utils.NameHelper;
 
 public class ENGradualDisappearance extends GkmasBossCard {

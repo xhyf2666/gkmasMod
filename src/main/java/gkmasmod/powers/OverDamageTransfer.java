@@ -2,7 +2,6 @@ package gkmasmod.powers;
 
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
-import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -11,9 +10,8 @@ import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
-import gkmasmod.actions.OverDamageTransferAction;
+import gkmasmod.actions.common.OverDamageTransferAction;
 import gkmasmod.utils.NameHelper;
-import org.lwjgl.Sys;
 
 public class OverDamageTransfer extends AbstractPower {
     private static final String CLASSNAME = OverDamageTransfer.class.getSimpleName();

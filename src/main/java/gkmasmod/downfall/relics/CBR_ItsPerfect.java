@@ -8,7 +8,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
-import gkmasmod.actions.ItsPerfectAction;
+import gkmasmod.actions.relicAction.ItsPerfectAction;
 import gkmasmod.relics.ItsPerfect;
 
 public class CBR_ItsPerfect extends AbstractCharbossRelic {

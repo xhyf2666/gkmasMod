@@ -28,6 +28,10 @@ public class HappyChristmasPower extends AbstractPower {
     String path128 = String.format("gkmasModResource/img/powers/%s_84.png",CLASSNAME);
     String path48 = String.format("gkmasModResource/img/powers/%s_32.png",CLASSNAME);
 
+    private int count = 0;
+
+    private static final int magic = 3;
+
     public HappyChristmasPower(AbstractCreature owner, int amount) {
         this.name = NAME;
         this.ID = POWER_ID;
@@ -42,10 +46,14 @@ public class HappyChristmasPower extends AbstractPower {
     }
 
     public void updateDescription() {
-        this.description = String.format(DESCRIPTIONS[0], this.amount);
+        this.description = String.format(DESCRIPTIONS[0], magic, this.amount);
     }
 
     public void onUseCard(AbstractCard card, UseCardAction action) {
+        this.count++;
+        if(this.count<magic)
+            return;
+        this.count = 0;
         if(!(this.owner instanceof AbstractCharBoss)&&card instanceof AbstractBossCard)
             return;
         if(this.owner instanceof AbstractCharBoss&&(!(card instanceof AbstractBossCard)))

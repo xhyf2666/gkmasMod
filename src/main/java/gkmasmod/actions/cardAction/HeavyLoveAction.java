@@ -1,0 +1,40 @@
+package gkmasmod.actions.cardAction;
+
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.common.DrawCardAction;
+import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.core.AbstractCreature;
+import gkmasmod.cardGrowEffect.ExhaustRemoveGrow;
+import gkmasmod.cards.GkmasCardTag;
+import gkmasmod.cards.logic.IamBigStar;
+import gkmasmod.cards.othe.FromNowOn;
+import gkmasmod.utils.GrowHelper;
+
+import java.util.Iterator;
+
+public class HeavyLoveAction extends AbstractGameAction{
+    private AbstractCreature owner;
+
+    public HeavyLoveAction(AbstractCreature owner) {
+        this.duration = 0.0F;
+        this.owner = owner;
+        this.actionType = ActionType.WAIT;
+    }
+
+    public void update() {
+        Iterator var1 = DrawCardAction.drawnCards.iterator();
+        while(var1.hasNext()) {
+            AbstractCard c = (AbstractCard)var1.next();
+            if(c instanceof IamBigStar)
+                continue;
+            else if(c instanceof FromNowOn)
+                continue;
+            else if(c.hasTag(GkmasCardTag.OUTSIDE_TAG))
+                continue;
+            if(c.exhaust){
+                GrowHelper.grow(c, ExhaustRemoveGrow.growID,1);
+            }
+        }
+        this.isDone = true;
+    }
+}

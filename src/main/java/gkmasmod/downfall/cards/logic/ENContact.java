@@ -32,8 +32,8 @@ public class ENContact extends GkmasBossCard {
     private static final int UPGRADE_PLUS_MAGIC = 2;
     private static final int BASE_MAGIC2 = 3;
     private static final int UPGRADE_PLUS_MAGIC2 = 1;
-    private static final int BLOCK_AMT = 3;
-    private static final int UPGRADE_PLUS_BLOCK = 1;
+    private static final int BLOCK_AMT = 5;
+    private static final int UPGRADE_PLUS_BLOCK = 2;
 
 
     private static final CardType TYPE = CardType.SKILL;

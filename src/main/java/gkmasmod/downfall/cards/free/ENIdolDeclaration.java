@@ -1,6 +1,6 @@
 package gkmasmod.downfall.cards.free;
 
-import gkmasmod.actions.CBR_MyPartAction;
+import gkmasmod.actions.relicAction.CBR_MyPartAction;
 import gkmasmod.downfall.bosses.IdolBoss_amao;
 import gkmasmod.downfall.bosses.IdolBoss_jsna;
 import gkmasmod.downfall.cards.anomaly.ENEyesOfTheScenery;
@@ -13,12 +13,11 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import gkmasmod.actions.GainTrainRoundPowerAction;
+import gkmasmod.actions.common.GainTrainRoundPowerAction;
 import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.downfall.cards.GkmasBossCard;
 import gkmasmod.powers.HalfDamageReceive;
-import gkmasmod.powers.TempSavePower;
 import gkmasmod.utils.ImageHelper;
 import gkmasmod.utils.NameHelper;
 
@@ -57,6 +56,7 @@ public class ENIdolDeclaration extends GkmasBossCard {
         this.HPMagicNumber = this.baseHPMagicNumber;
         this.exhaust = true;
         this.tags.add(GkmasCardTag.MORE_ACTION_TAG);
+        this.tags.add(GkmasCardTag.COST_HP_TAG);
         this.energyGeneratedIfPlayed = 1;
     }
 

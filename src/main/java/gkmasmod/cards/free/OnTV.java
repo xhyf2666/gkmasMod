@@ -34,7 +34,7 @@ public class OnTV extends GkmasCard {
     private static final int BASE_MAGIC = 2;
     private static final int UPGRADE_PLUS_MAGIC = 1;
 
-    private static final int BASE_MAGIC2 = 500;
+    private static final int BASE_MAGIC2 = 700;
 
     private static final int BLOCK_AMT = 5;
     private static final int UPGRADE_PLUS_BLOCK = 2;

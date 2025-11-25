@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.powers.BarricadePower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import gkmasmod.downfall.cards.free.ENBaseAppeal;
+import gkmasmod.downfall.cards.free.ENLittleAmbition;
 import gkmasmod.downfall.cards.free.ENProduceCompetitorGreatGoodTune;
 import gkmasmod.downfall.cards.sense.*;
 import gkmasmod.downfall.charbosses.bosses.AbstractBossDeckArchetype;
@@ -61,6 +62,7 @@ public class BossConfig_jsna3 extends AbstractBossDeckArchetype {
             switch (turn) {
                 case 0:
                     addToList(cardsList, new ENProduceCompetitorGreatGoodTune(),true);
+                    addToList(cardsList, new ENLittleAmbition(),true);
                     addToList(cardsList, new ENNationalIdol(), extraUpgrades);
                     addToList(cardsList, new EnLimitBreak(),true);
                     addToList(cardsList, new ENEncoreCall(), extraUpgrades);

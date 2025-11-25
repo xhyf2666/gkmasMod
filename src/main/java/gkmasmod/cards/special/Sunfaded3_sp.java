@@ -44,6 +44,7 @@ public class Sunfaded3_sp extends GkmasCard {
         this.thirdMagicNumber = this.baseThirdMagicNumber;
         this.backGroundColor = IdolData.shro;
         this.tags.add(GkmasCardTag.MORE_ACTION_TAG);
+        this.tags.add(GkmasCardTag.COSTUME_TAG);
         CardModifierManager.addModifier(this,new MoreActionCustom(1));
         updateBackgroundImg();
     }

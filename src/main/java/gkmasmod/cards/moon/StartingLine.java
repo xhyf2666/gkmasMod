@@ -11,7 +11,6 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.DexterityPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
-import gkmasmod.actions.GainTrainRoundPowerAction;
 import gkmasmod.cardCustomEffect.MoreActionCustom;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.cards.GkmasCardTag;
@@ -21,7 +20,6 @@ import gkmasmod.powers.GoodImpression;
 import gkmasmod.powers.GoodTune;
 import gkmasmod.stances.PreservationStance;
 import gkmasmod.utils.NameHelper;
-import gkmasmod.utils.PlayerHelper;
 
 public class StartingLine extends GkmasCard {
     private static final String CLASSNAME = StartingLine.class.getSimpleName();
@@ -63,6 +61,7 @@ public class StartingLine extends GkmasCard {
         this.tags.add(GkmasCardTag.GOOD_TUNE_TAG);
         this.tags.add(GkmasCardTag.YARUKI_TAG);
         this.tags.add(GkmasCardTag.PRESERVATION_TAG);
+        this.tags.add(GkmasCardTag.COST_HP_TAG);
     }
 
     @Override

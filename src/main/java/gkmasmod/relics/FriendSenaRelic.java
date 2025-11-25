@@ -24,6 +24,10 @@ public class FriendSenaRelic extends CustomRelic {
         super(ID, ImageMaster.loadImage(IMG), ImageMaster.loadImage(IMG_OTL), RARITY, LandingSound.CLINK);
     }
 
+    public FriendSenaRelic(int counter) {
+        super(ID, ImageMaster.loadImage(IMG), ImageMaster.loadImage(IMG_OTL), RARITY, LandingSound.CLINK);
+        this.counter = counter;
+    }
 
     @Override
     public String getUpdatedDescription() {
@@ -32,10 +36,22 @@ public class FriendSenaRelic extends CustomRelic {
 
 
     public void atBattleStart() {
-        if(AbstractDungeon.player.hasRelic(FriendKotoneRelic.ID))
-            addToBot(new SpawnMonsterAction(new FriendSena(AbstractDungeon.player.hb_x+200, AbstractDungeon.player.hb_y+10),false));
-        else
-        addToBot(new SpawnMonsterAction(new FriendSena(AbstractDungeon.player.hb_x+100, AbstractDungeon.player.hb_y+10),false));
+        if(this.counter>0){
+            this.counter--;
+            if(this.counter==0){
+                this.grayscale = true;
+            }
+            if(AbstractDungeon.player.hasRelic(FriendKotoneRelic.ID))
+                addToBot(new SpawnMonsterAction(new FriendSena(AbstractDungeon.player.hb_x+200, AbstractDungeon.player.hb_y+10),false));
+            else
+                addToBot(new SpawnMonsterAction(new FriendSena(AbstractDungeon.player.hb_x+100, AbstractDungeon.player.hb_y+10),false));
+        }
+        else if(this.counter==-1){
+            if(AbstractDungeon.player.hasRelic(FriendKotoneRelic.ID))
+                addToBot(new SpawnMonsterAction(new FriendSena(AbstractDungeon.player.hb_x+200, AbstractDungeon.player.hb_y+10),false));
+            else
+                addToBot(new SpawnMonsterAction(new FriendSena(AbstractDungeon.player.hb_x+100, AbstractDungeon.player.hb_y+10),false));
+        }
     }
 
     public  void  onPlayerEndTurn(){
@@ -47,6 +63,5 @@ public class FriendSenaRelic extends CustomRelic {
                 this.largeImg = ImageMaster.loadImage(IMG_LARGE);
             }
         }
-
     }
 }

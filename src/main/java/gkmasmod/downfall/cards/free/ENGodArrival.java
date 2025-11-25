@@ -1,6 +1,5 @@
 package gkmasmod.downfall.cards.free;
 
-import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.SpawnMonsterAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -8,12 +7,9 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import gkmasmod.cards.GkmasCardTag;
-import gkmasmod.cards.logic.FutureTrajectory;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.downfall.cards.GkmasBossCard;
 import gkmasmod.monster.friend.FriendOnigiri;
-import gkmasmod.monster.friend.LittleGundam;
-import gkmasmod.powers.SteelSoul;
 import gkmasmod.utils.NameHelper;
 
 public class ENGodArrival extends GkmasBossCard {

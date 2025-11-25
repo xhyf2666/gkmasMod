@@ -1,16 +1,10 @@
 package gkmasmod.relics;
 import basemod.abstracts.CustomRelic;
 import com.badlogic.gdx.Gdx;
-import com.megacrit.cardcrawl.actions.common.RelicAboveCreatureAction;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
-import com.megacrit.cardcrawl.powers.DexterityPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
-import com.megacrit.cardcrawl.rooms.AbstractRoom;
-import gkmasmod.actions.GainBlockWithPowerAction;
-import gkmasmod.powers.CareCardPower;
-import gkmasmod.powers.CareCardSPPower;
-import gkmasmod.powers.StanceLock;
+import gkmasmod.actions.common.GainBlockWithPowerAction;
 import gkmasmod.stances.ConcentrationStance;
 
 public class CardOfVictory extends CustomRelic {

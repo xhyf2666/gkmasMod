@@ -58,6 +58,7 @@ public class ENFirstMiss extends GkmasBossCard {
         this.intent = AbstractMonster.Intent.BUFF;
         this.tags.add(GkmasCardTag.YARUKI_TAG);
         this.tags.add(GkmasCardTag.IDOL_CARD_TAG);
+        this.tags.add(GkmasCardTag.COST_HP_TAG);
     }
 
 

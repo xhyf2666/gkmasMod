@@ -1,10 +1,7 @@
 package gkmasmod.relics;
-import basemod.BaseMod;
 import basemod.abstracts.CustomRelic;
 import com.badlogic.gdx.Gdx;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
-import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
-import com.megacrit.cardcrawl.actions.common.RelicAboveCreatureAction;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
@@ -16,12 +13,6 @@ import com.megacrit.cardcrawl.rooms.MonsterRoomBoss;
 import com.megacrit.cardcrawl.vfx.campfire.CampfireSleepEffect;
 import com.megacrit.cardcrawl.vfx.campfire.CampfireSleepScreenCoverEffect;
 import com.megacrit.cardcrawl.vfx.combat.SmokeBombEffect;
-import gkmasmod.actions.GainTrainRoundPowerAction;
-import gkmasmod.powers.GoodTune;
-import gkmasmod.screen.PocketBookViewScreen;
-import gkmasmod.screen.SkinSelectScreen;
-import gkmasmod.utils.PlayerHelper;
-import gkmasmod.utils.RankHelper;
 
 public class Tent extends CustomRelic {
 

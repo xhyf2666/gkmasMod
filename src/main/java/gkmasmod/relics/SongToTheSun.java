@@ -11,10 +11,8 @@ import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
-import gkmasmod.actions.GainTrainRoundPowerAction;
+import gkmasmod.actions.common.GainTrainRoundPowerAction;
 import gkmasmod.cards.sense.GoWithTheFlow;
-import gkmasmod.cards.sense.LightGait;
-import gkmasmod.powers.GoodTune;
 
 public class SongToTheSun extends CustomRelic {
 

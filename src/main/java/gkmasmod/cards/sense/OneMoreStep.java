@@ -9,10 +9,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.StrengthPower;
-import gkmasmod.cardCustomEffect.DamageCustom;
-import gkmasmod.cardCustomEffect.ExhaustRemoveCustom;
-import gkmasmod.cardCustomEffect.GoodTuneCustom;
-import gkmasmod.cardCustomEffect.MagicCustom;
+import gkmasmod.cardCustomEffect.*;
 import gkmasmod.cards.GkmasCard;
 import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
@@ -35,7 +32,6 @@ public class OneMoreStep extends GkmasCard {
     private static final int ATTACK_DMG2 = 3;
     private static final int BASE_MAGIC = 6;
 
-
     private static final CardType TYPE = CardType.ATTACK;
     private static final CardColor COLOR = PlayerColorEnum.gkmasModColorSense;
     private static final CardRarity RARITY = CardRarity.BASIC;
@@ -54,8 +50,8 @@ public class OneMoreStep extends GkmasCard {
         updateBackgroundImg();
         this.customLimit = 1;
         this.customEffectList = new ArrayList<>();
-        this.customEffectList.add(CustomHelper.generateCustomEffectList(DamageCustom.growID, new int[]{2}, new int[]{50}, CustomHelper.CustomEffectType.DAMAGE_ADD));
-        this.customEffectList.add(CustomHelper.generateCustomEffectList(MagicCustom.growID, new int[]{-1}, new int[]{50}, CustomHelper.CustomEffectType.STRENGTH_ADD));
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(MoreActionCustom.growID, new int[]{1}, new int[]{80}, CustomHelper.CustomEffectType.MORE_ACTION_ADD));
+        this.customEffectList.add(CustomHelper.generateCustomEffectList(MagicCustom.growID, new int[]{-3}, new int[]{50}, CustomHelper.CustomEffectType.STRENGTH_ADD));
         this.customEffectList.add(CustomHelper.generateCustomEffectList(ExhaustRemoveCustom.growID,new int[]{0},new int[]{80},CustomHelper.CustomEffectType.EXHAUST_REMOVE));
     }
 

@@ -19,10 +19,7 @@ import gkmasmod.cardGrowEffect.AbstractGrowEffect;
 import gkmasmod.cardGrowEffect.DamageGrow;
 import gkmasmod.screen.SkinSelectScreen;
 import gkmasmod.stances.FullPowerStance;
-import gkmasmod.utils.CustomHelper;
-import gkmasmod.utils.GrowHelper;
-import gkmasmod.utils.ImageHelper;
-import gkmasmod.utils.NameHelper;
+import gkmasmod.utils.*;
 
 import java.util.ArrayList;
 
@@ -69,9 +66,9 @@ public class SweatAndGrowth extends GkmasCard {
     @Override
     public boolean canUse(AbstractPlayer p, AbstractMonster m) {
         if (p.stance instanceof FullPowerStance)
-            return true;
+            return super.canUse(p, m);
         this.cantUseMessage = CardCrawlGame.languagePack.getUIString("gkmasMod:NotFullPowerStance").TEXT[0];
-        return false;
+        return CardHelper.containsMasterKey();
     }
 
     @Override

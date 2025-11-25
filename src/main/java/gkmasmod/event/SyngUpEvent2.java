@@ -23,6 +23,7 @@ public class SyngUpEvent2 extends AbstractImageEvent {
     private static final String NAME = eventStrings.NAME;
     private int screenNum = 0;
     private int gold = 150;
+    private boolean selectKtn=false;
 
     public SyngUpEvent2() {
         super(NAME, DESCRIPTIONS[0], "gkmasModResource/img/event/SyngUpEvent2.png");
@@ -82,6 +83,7 @@ public class SyngUpEvent2 extends AbstractImageEvent {
                         } else {
                             AbstractDungeon.getCurrRoom().spawnRelicAndObtain(this.drawX, this.drawY, new Circlet());
                         }
+                        selectKtn=true;
                         screenNum=2;
                         return;
                     case 4:
@@ -110,7 +112,12 @@ public class SyngUpEvent2 extends AbstractImageEvent {
                 switch (i) {
                     case 0:
                         if (!AbstractDungeon.player.hasRelic(FriendSenaRelic.ID)) {
-                            AbstractDungeon.getCurrRoom().spawnRelicAndObtain(this.drawX, this.drawY, new FriendSenaRelic());
+                            if(selectKtn){
+                                AbstractDungeon.getCurrRoom().spawnRelicAndObtain(this.drawX, this.drawY, new FriendSenaRelic(3));
+                            }
+                            else{
+                                AbstractDungeon.getCurrRoom().spawnRelicAndObtain(this.drawX, this.drawY, new FriendSenaRelic());
+                            }
                         } else {
                             AbstractDungeon.getCurrRoom().spawnRelicAndObtain(this.drawX, this.drawY, new Circlet());
                         }

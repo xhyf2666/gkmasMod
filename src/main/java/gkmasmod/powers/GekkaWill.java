@@ -13,9 +13,8 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.*;
 import com.megacrit.cardcrawl.vfx.BorderFlashEffect;
 import com.megacrit.cardcrawl.vfx.combat.TimeWarpTurnEndEffect;
-import gkmasmod.actions.ReduceBuffAction;
-import gkmasmod.actions.ReduceBuffAction2;
-import gkmasmod.actions.RemoveBuffAction;
+import gkmasmod.actions.common.ReduceBuffAction;
+import gkmasmod.actions.common.ReduceBuffAction2;
 import gkmasmod.utils.NameHelper;
 
 public class GekkaWill extends AbstractPower {

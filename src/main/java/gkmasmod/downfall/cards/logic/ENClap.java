@@ -4,18 +4,14 @@ import com.evacipated.cardcrawl.mod.stslib.patches.FlavorText;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.CardHelper;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import gkmasmod.actions.GoodImpressionDamageAction;
-import gkmasmod.cards.GkmasCard;
+import gkmasmod.actions.common.GoodImpressionDamageAction;
 import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.downfall.cards.GkmasBossCard;
-import gkmasmod.powers.GoodImpression;
 import gkmasmod.utils.NameHelper;
-import gkmasmod.utils.PlayerHelper;
 
 public class ENClap extends GkmasBossCard {
     private static final String CLASSNAME = ENClap.class.getSimpleName();
@@ -28,8 +24,8 @@ public class ENClap extends GkmasBossCard {
     private static final String DESCRIPTION = CARD_STRINGS.DESCRIPTION;
     private static final String IMG_PATH = String.format("gkmasModResource/img/cards/common/%s.png", CLASSNAME2);
 
-    private static final int COST = 1;
-    private static final int BASE_MAGIC = 150;
+    private static final int COST = 0;
+    private static final int BASE_MAGIC = 50;
     private static final int UPGRADE_PLUS_MAGIC = 50;
     private static final int BASE_MAGIC2 = 1;
 

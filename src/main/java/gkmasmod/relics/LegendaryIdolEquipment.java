@@ -2,21 +2,14 @@ package gkmasmod.relics;
 import basemod.abstracts.CustomRelic;
 import com.badlogic.gdx.Gdx;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
-import com.megacrit.cardcrawl.actions.common.RelicAboveCreatureAction;
-import com.megacrit.cardcrawl.actions.utility.LoseBlockAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.stances.AbstractStance;
-import gkmasmod.actions.EnjoyThreeColorGrowAction;
-import gkmasmod.actions.ModifyDamageAction;
-import gkmasmod.actions.ModifyDamageRandomEnemyAction;
-import gkmasmod.powers.EndOfTurnPreservationStancePlusPower;
+import gkmasmod.actions.common.ModifyDamageRandomEnemyAction;
 import gkmasmod.stances.ConcentrationStance;
-import gkmasmod.stances.FullPowerStance;
 
 public class LegendaryIdolEquipment extends CustomRelic {
 

@@ -20,7 +20,7 @@ public class AutumnOfAppetitePower extends AbstractPower {
     private static final String NAME = powerStrings.NAME;
     private static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
 
-    private static final int NUM = 3;
+    private static final int NUM = 4;
 
 
     String path128 = String.format("gkmasModResource/img/powers/%s_84.png",CLASSNAME);

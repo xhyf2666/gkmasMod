@@ -9,12 +9,12 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.CardHelper;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import gkmasmod.actions.BlockDamageAction;
+import gkmasmod.actions.common.BlockDamageAction;
 import gkmasmod.cardCustomEffect.BlockCustom;
-import gkmasmod.cardCustomEffect.DrawCardCustom;
 import gkmasmod.cardCustomEffect.HPMagicCustom;
 import gkmasmod.cardCustomEffect.MagicCustom;
 import gkmasmod.cards.GkmasCard;
+import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.screen.SkinSelectScreen;
 import gkmasmod.utils.CustomHelper;
@@ -40,7 +40,7 @@ public class ThankYou extends GkmasCard {
     private static final int BASE_BLOCK = 9;
     private static final int UPGRADE_PLUS_BLOCK = 2;
 
-    private static final int BASE_HP = 4;
+    private static final int BASE_HP = 2;
 
     private static final CardType TYPE = CardType.ATTACK;
     private static final CardColor COLOR = PlayerColorEnum.gkmasModColorLogic;
@@ -61,6 +61,7 @@ public class ThankYou extends GkmasCard {
         this.block = this.baseBlock;
         FlavorText.AbstractCardFlavorFields.boxColor.set(this, CardHelper.getColor(73, 224, 254));
         flavor = FlavorText.CardStringsFlavorField.flavor.get(CARD_STRINGS);
+        this.tags.add(GkmasCardTag.COST_HP_TAG);
         this.customLimit = 2;
         this.customEffectList = new ArrayList<>();
         this.customEffectList.add(CustomHelper.generateCustomEffectList(MagicCustom.growID,new int[]{20,20},new int[]{60,60},CustomHelper.CustomEffectType.RATE_ADD));
@@ -69,7 +70,9 @@ public class ThankYou extends GkmasCard {
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        addToBot(new LoseHPAction(p, p, this.HPMagicNumber));
+        if(this.HPMagicNumber > 0){
+            addToBot(new LoseHPAction(p,p,this.HPMagicNumber));
+        }
         addToBot(new BlockDamageAction(1.0F * this.magicNumber / 100, this.block, p, m,this));
     }
 

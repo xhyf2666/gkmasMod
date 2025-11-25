@@ -7,7 +7,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
-import gkmasmod.actions.PigDreamPiggyBankAction;
+import gkmasmod.actions.relicAction.PigDreamPiggyBankAction;
 import gkmasmod.relics.PigDreamPiggyBank;
 
 public class CBR_PigDreamPiggyBank extends AbstractCharbossRelic {

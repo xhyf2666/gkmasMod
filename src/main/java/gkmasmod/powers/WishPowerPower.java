@@ -28,6 +28,10 @@ public class WishPowerPower extends AbstractPower {
     String path128 = String.format("gkmasModResource/img/powers/%s_84.png",CLASSNAME);
     String path48 = String.format("gkmasModResource/img/powers/%s_32.png",CLASSNAME);
 
+    private int count = 0;
+
+    private static final int magic = 2;
+
     public WishPowerPower(AbstractCreature owner, int Amount) {
         this.name = NAME;
         this.ID = POWER_ID;
@@ -42,7 +46,7 @@ public class WishPowerPower extends AbstractPower {
     }
 
     public void updateDescription() {
-        this.description = String.format(DESCRIPTIONS[0], this.amount);
+        this.description = String.format(DESCRIPTIONS[0],magic, this.amount);
     }
 
     public void onUseCard(AbstractCard card, UseCardAction action) {
@@ -51,6 +55,10 @@ public class WishPowerPower extends AbstractPower {
         if(this.owner instanceof AbstractCharBoss&&(!(card instanceof AbstractBossCard)))
             return;
         if(card.type == AbstractCard.CardType.ATTACK) {
+            this.count++;
+            if(this.count<magic)
+                return;
+            this.count = 0;
             addToTop(new ApplyPowerAction(this.owner, this.owner, new StrengthPower(this.owner, amount), amount));
         }
     }

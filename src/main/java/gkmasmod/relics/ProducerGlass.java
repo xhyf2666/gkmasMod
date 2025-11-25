@@ -2,13 +2,10 @@ package gkmasmod.relics;
 import basemod.abstracts.CustomRelic;
 import com.badlogic.gdx.Gdx;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
-import com.megacrit.cardcrawl.actions.common.RelicAboveCreatureAction;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.powers.watcher.ForesightPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
-import gkmasmod.actions.GainTrainRoundPowerAction;
-import gkmasmod.patches.MapRoomNodePatch;
 
 public class ProducerGlass extends CustomRelic {
 

@@ -5,11 +5,8 @@ import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.RelicAboveCreatureAction;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
-import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
-import gkmasmod.actions.GainBlockWithPowerAction;
 import gkmasmod.powers.GoodImpressionDamageAddPower;
-import gkmasmod.powers.GoodTune;
 
 public class SilvistaAttack extends CustomRelic {
 
@@ -61,7 +58,7 @@ public class SilvistaAttack extends CustomRelic {
             if(count<=magicNumber){
                 addToBot(new RelicAboveCreatureAction(AbstractDungeon.player, this));
                 this.flash();
-                addToTop(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new GoodImpressionDamageAddPower(AbstractDungeon.player, magicNumber2), magicNumber2));
+                addToTop(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new GoodImpressionDamageAddPower(AbstractDungeon.player, magicNumber2,ID), magicNumber2));
             }
             else{
                 this.counter = TURN -1;

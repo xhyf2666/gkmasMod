@@ -1,17 +1,13 @@
 package gkmasmod.cardCustomEffect;
 
 import basemod.abstracts.AbstractCardModifier;
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import gkmasmod.actions.GainBlockWithPowerAction;
-import gkmasmod.actions.ModifyDamageAction;
+import gkmasmod.actions.common.GainBlockWithPowerAction;
 import gkmasmod.cards.logic.DreamColorLipstick;
-import gkmasmod.cards.logic.HardStretching;
 
 public class BlockTimeCustom extends AbstractCardCustomEffect {
 

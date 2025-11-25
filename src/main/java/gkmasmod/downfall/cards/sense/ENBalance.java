@@ -1,21 +1,15 @@
 package gkmasmod.downfall.cards.sense;
 
-import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.StrengthPower;
-import gkmasmod.actions.BalanceAction;
-import gkmasmod.cards.GkmasCard;
+import gkmasmod.actions.cardAction.BalanceAction;
 import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.downfall.cards.GkmasBossCard;
-import gkmasmod.downfall.cards.free.ENSleepLate;
-import gkmasmod.powers.GoodTune;
 import gkmasmod.utils.NameHelper;
-import gkmasmod.utils.PlayerHelper;
 
 public class ENBalance extends GkmasBossCard {
     private static final String CLASSNAME = ENBalance.class.getSimpleName();

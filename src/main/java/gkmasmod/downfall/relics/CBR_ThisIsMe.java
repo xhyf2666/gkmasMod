@@ -9,8 +9,8 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
-import gkmasmod.actions.GainBlockWithPowerAction;
-import gkmasmod.actions.ModifyDamageAction;
+import gkmasmod.actions.common.GainBlockWithPowerAction;
+import gkmasmod.actions.common.ModifyDamageAction;
 import gkmasmod.powers.GoodImpression;
 import gkmasmod.relics.ThisIsMe;
 

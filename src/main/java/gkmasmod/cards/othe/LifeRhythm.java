@@ -62,6 +62,11 @@ public class LifeRhythm extends GkmasCard {
     }
 
     @Override
+    public boolean canUse(AbstractPlayer p, AbstractMonster m) {
+        return false;
+    }
+
+    @Override
     public AbstractCard makeCopy() {
         return new LifeRhythm();
     }

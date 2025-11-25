@@ -2,7 +2,6 @@ package gkmasmod.cards.logic;
 
 import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
-import com.megacrit.cardcrawl.actions.common.GainEnergyAction;
 import com.megacrit.cardcrawl.actions.common.LoseHPAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -10,7 +9,6 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.DexterityPower;
-import gkmasmod.actions.GainTrainRoundPowerAction;
 import gkmasmod.cardCustomEffect.MagicCustom;
 import gkmasmod.cardCustomEffect.MoreActionCustom;
 import gkmasmod.cardCustomEffect.SecondMagicCustom;
@@ -39,7 +37,7 @@ public class UnstoppableThoughts extends GkmasCard {
     private static final int UPGRADE_PLUS_MAGIC = 1;
     private static final int BASE_MAGIC2 = 3;
     private static final int UPGRADE_PLUS_MAGIC2 = 2;
-    private static final int BASE_HP = 4;
+    private static final int BASE_HP = 3;
 
 
     private static final CardType TYPE = CardType.SKILL;
@@ -61,6 +59,7 @@ public class UnstoppableThoughts extends GkmasCard {
         this.tags.add(GkmasCardTag.YARUKI_TAG);
         this.tags.add(GkmasCardTag.GOOD_IMPRESSION_TAG);
         this.tags.add(GkmasCardTag.MORE_ACTION_TAG);
+        this.tags.add(GkmasCardTag.COST_HP_TAG);
         CardModifierManager.addModifier(this,new MoreActionCustom(1));
         this.customLimit = 2;
         this.customEffectList = new ArrayList<>();
@@ -71,7 +70,9 @@ public class UnstoppableThoughts extends GkmasCard {
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        addToBot(new LoseHPAction(p, p, this.HPMagicNumber));
+        if(this.HPMagicNumber > 0){
+            addToBot(new LoseHPAction(p,p,this.HPMagicNumber));
+        }
         addToBot(new ApplyPowerAction(p, p, new DexterityPower(p, this.magicNumber), this.magicNumber));
         addToBot(new ApplyPowerAction(p, p, new GoodImpression(p, this.secondMagicNumber), this.secondMagicNumber));
 //        addToBot(new GainTrainRoundPowerAction(p,1));

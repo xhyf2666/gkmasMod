@@ -108,7 +108,7 @@ public class FriendNunu extends CustomMonster {
 
     private Texture getImg(){
         Random random = new Random();
-        int index = random.nextInt(12)+1;
+        int index = random.nextInt(28)+1;
         return new Texture(String.format("gkmasModResource/img/monsters/Nadeshiko/FriendNunu%s.png",index));
     }
 

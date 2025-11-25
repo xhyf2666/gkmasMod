@@ -15,10 +15,7 @@ import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.powers.DayDreamPower;
 import gkmasmod.powers.GoodImpression;
-import gkmasmod.utils.CustomHelper;
-import gkmasmod.utils.IdolData;
-import gkmasmod.utils.NameHelper;
-import gkmasmod.utils.SoundHelper;
+import gkmasmod.utils.*;
 
 import java.util.ArrayList;
 
@@ -56,6 +53,7 @@ public class DayDream extends GkmasCard {
         this.baseThirdMagicNumber = BASE_MAGIC3;
         this.thirdMagicNumber = this.baseThirdMagicNumber;
         this.baseBlock = BASE_BLOCK;
+        this.tags.add(GkmasCardTag.COST_HP_TAG);
         this.customLimit = 3;
         this.customEffectList = new ArrayList<>();
         this.customEffectList.add(CustomHelper.generateCustomEffectList(HPMagicCustom.growID, new int[]{-1}, new int[]{50}, CustomHelper.CustomEffectType.HP_REDUCE));
@@ -65,7 +63,9 @@ public class DayDream extends GkmasCard {
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        addToBot(new LoseHPAction(p, p, this.HPMagicNumber));
+        if(this.HPMagicNumber > 0){
+            addToBot(new LoseHPAction(p,p,this.HPMagicNumber));
+        }
         addToBot(new GainBlockAction(p, p, this.block));
         addToBot(new ApplyPowerAction(p, p, new DayDreamPower(p, this.secondMagicNumber,this.thirdMagicNumber), this.secondMagicNumber));
     }
@@ -77,7 +77,7 @@ public class DayDream extends GkmasCard {
         }
         else{
             this.cantUseMessage = CardCrawlGame.languagePack.getUIString("gkmasMod:NotEnoughBlock").TEXT[0];
-            return false;
+            return CardHelper.containsMasterKey();
         }
     }
 

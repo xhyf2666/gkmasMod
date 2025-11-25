@@ -1,19 +1,13 @@
 package gkmasmod.downfall.cards.anomaly;
 
-import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
-import com.megacrit.cardcrawl.actions.common.DrawCardAction;
-import com.megacrit.cardcrawl.actions.watcher.ChangeStanceAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import gkmasmod.actions.CBR_MyPartAction;
-import gkmasmod.cardCustomEffect.CostCustom;
-import gkmasmod.cardCustomEffect.EffectChangeCustom;
+import gkmasmod.actions.relicAction.CBR_MyPartAction;
 import gkmasmod.cardCustomEffect.MoreActionCustom;
-import gkmasmod.cards.GkmasCard;
 import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.downfall.bosses.IdolBoss_amao;
@@ -23,13 +17,9 @@ import gkmasmod.downfall.charbosses.actions.unique.EnemyChangeStanceAction;
 import gkmasmod.downfall.charbosses.bosses.AbstractCharBoss;
 import gkmasmod.downfall.charbosses.stances.ENConcentrationStance;
 import gkmasmod.powers.HeartAndSoulPower;
-import gkmasmod.screen.SkinSelectScreen;
-import gkmasmod.stances.ConcentrationStance;
 import gkmasmod.utils.CustomHelper;
 import gkmasmod.utils.ImageHelper;
 import gkmasmod.utils.NameHelper;
-
-import java.util.ArrayList;
 
 public class ENHeartAndSoul extends GkmasBossCard {
     private static final String CLASSNAME = ENHeartAndSoul.class.getSimpleName();

@@ -8,7 +8,6 @@ import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.powers.DexterityPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
-import gkmasmod.actions.DestinyEncounterAction;
 import gkmasmod.powers.NextXTurnAnxietyPower;
 
 public class AfterRainFlower extends CustomRelic {

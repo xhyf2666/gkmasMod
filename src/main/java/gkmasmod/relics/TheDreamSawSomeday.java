@@ -11,10 +11,7 @@ import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
-import gkmasmod.actions.GainTrainRoundPowerAction;
-import gkmasmod.cards.logic.Smile;
 import gkmasmod.cards.sense.WarmUp;
-import gkmasmod.powers.GoodImpression;
 import gkmasmod.powers.TheDreamSawSomedayPower;
 
 public class TheDreamSawSomeday extends CustomRelic {

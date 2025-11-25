@@ -1,19 +1,15 @@
 package gkmasmod.downfall.cards.logic;
 
-import com.evacipated.cardcrawl.mod.stslib.patches.FlavorText;
 import com.megacrit.cardcrawl.actions.common.LoseHPAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.helpers.CardHelper;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import gkmasmod.actions.BlockDamageWallopAction;
-import gkmasmod.cards.GkmasCard;
+import gkmasmod.actions.common.BlockDamageWallopAction;
+import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.downfall.cards.GkmasBossCard;
-import gkmasmod.downfall.cards.free.ENSleepLate;
 import gkmasmod.utils.IdolData;
 import gkmasmod.utils.NameHelper;
 
@@ -33,7 +29,7 @@ public class ENSlowGrowth extends GkmasBossCard {
     private static final int BASE_MAGIC = 20;
     private static final int UPGRADE_PLUS_MAGIC = 10;
 
-    private static final int BASE_HP = 5;
+    private static final int BASE_HP = 2;
 
     private int playCount;
 
@@ -53,6 +49,7 @@ public class ENSlowGrowth extends GkmasBossCard {
         this.intent = AbstractMonster.Intent.ATTACK_DEFEND;
         this.backGroundColor = IdolData.kcna;
         updateBackgroundImg();
+        this.tags.add(GkmasCardTag.COST_HP_TAG);
     }
 
     public ENSlowGrowth(int playCount){

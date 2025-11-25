@@ -16,6 +16,7 @@ import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.powers.GoodTune;
 import gkmasmod.powers.NotGoodTune;
+import gkmasmod.utils.CardHelper;
 import gkmasmod.utils.CustomHelper;
 import gkmasmod.utils.NameHelper;
 
@@ -67,10 +68,10 @@ public class TalkTime extends GkmasCard {
     @Override
     public boolean canUse(AbstractPlayer p, AbstractMonster m) {
         if (AbstractDungeon.player.hasPower(GoodTune.POWER_ID)) {
-            return true;
+            return super.canUse(p, m);
         }
         this.cantUseMessage = CardCrawlGame.languagePack.getUIString("gkmasMod:NotEnoughGoodTune").TEXT[0];
-        return false;
+        return CardHelper.containsMasterKey();
     }
 
     @Override

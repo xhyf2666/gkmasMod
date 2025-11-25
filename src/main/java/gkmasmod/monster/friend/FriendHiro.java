@@ -29,7 +29,7 @@ public class FriendHiro extends CustomMonster {
         this.drawX = (float) Settings.WIDTH * 0.30F+ x;
         this.drawY = (float)Settings.HEIGHT * 0.35F + y;
         AbstractMonsterPatch.friendlyField.friendly.set(this,true);
-        addToBot(new ApplyPowerAction(this,this,new FriendHiroPower1(this)));
+        addToBot(new ApplyPowerAction(this,this,new FriendHiroPower3(this)));
         addToBot(new ApplyPowerAction(this,this,new FriendHiroPower2(this)));
         this.img = new Texture("gkmasModResource/img/monsters/other/FriendHiro.png");
     }

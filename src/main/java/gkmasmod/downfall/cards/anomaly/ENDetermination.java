@@ -6,34 +6,20 @@ import com.megacrit.cardcrawl.actions.common.LoseHPAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import gkmasmod.actions.BattlePracticeAction;
-import gkmasmod.cardCustomEffect.HPMagicCustom;
-import gkmasmod.cardCustomEffect.MoreActionCustom;
-import gkmasmod.cardCustomEffect.SecondMagicCustom;
-import gkmasmod.cards.GkmasCard;
 import gkmasmod.cards.GkmasCardTag;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.downfall.bosses.IdolBoss_amao;
-import gkmasmod.downfall.bosses.IdolBoss_kllj;
 import gkmasmod.downfall.bosses.IdolBoss_shro;
 import gkmasmod.downfall.cards.GkmasBossCard;
 import gkmasmod.downfall.cards.free.ENLoveMyselfCool;
 import gkmasmod.downfall.cards.logic.ENSeriousHobby;
-import gkmasmod.downfall.cards.sense.ENPopPhrase;
-import gkmasmod.downfall.charbosses.actions.common.EnemyMakeTempCardInHandAction;
 import gkmasmod.downfall.charbosses.bosses.AbstractCharBoss;
-import gkmasmod.downfall.charbosses.cards.curses.EnNormality;
 import gkmasmod.powers.FullPowerValue;
 import gkmasmod.powers.TempSavePower;
-import gkmasmod.screen.SkinSelectScreen;
-import gkmasmod.utils.CustomHelper;
 import gkmasmod.utils.ImageHelper;
 import gkmasmod.utils.NameHelper;
-
-import java.util.ArrayList;
 
 public class ENDetermination extends GkmasBossCard {
     private static final String CLASSNAME = ENDetermination.class.getSimpleName();
@@ -76,6 +62,7 @@ public class ENDetermination extends GkmasBossCard {
         this.exhaust = true;
         this.tags.add(GkmasCardTag.FULL_POWER_TAG);
         this.tags.add(GkmasCardTag.OUTSIDE_TAG);
+        this.tags.add(GkmasCardTag.COST_HP_TAG);
         this.intent = AbstractMonster.Intent.BUFF;
     }
 

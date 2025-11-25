@@ -3,12 +3,10 @@ package gkmasmod.downfall.cards.free;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.watcher.MarkPower;
-import gkmasmod.actions.GainBlockWithPowerAction;
-import gkmasmod.cards.GkmasCard;
+import gkmasmod.actions.common.GainBlockWithPowerAction;
 import gkmasmod.characters.PlayerColorEnum;
 import gkmasmod.downfall.cards.GkmasBossCard;
 import gkmasmod.utils.IdolData;
@@ -28,8 +26,8 @@ public class ENDefensiveSkills extends GkmasBossCard {
 
     private static final int COST = 0;
 
-    private static final int magic = 80;
-    private static final int UPGRADE_MAGIC_PLUS = 20;
+    private static final int magic = 150;
+    private static final int UPGRADE_MAGIC_PLUS = 50;
 
 
     private static final CardType TYPE = CardType.SKILL;

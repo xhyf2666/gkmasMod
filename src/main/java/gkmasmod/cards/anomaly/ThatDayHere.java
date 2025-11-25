@@ -7,7 +7,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import gkmasmod.actions.BattlePracticeAction;
+import gkmasmod.actions.cardAction.BattlePracticeAction;
 import gkmasmod.cardCustomEffect.ExhaustRemoveCustom;
 import gkmasmod.cardCustomEffect.HPMagicCustom;
 import gkmasmod.cardCustomEffect.MagicCustom;
@@ -30,7 +30,7 @@ public class ThatDayHere extends GkmasCard {
 
     private static final int COST = 0;
 
-    private static final int BASE_HP = 5;
+    private static final int BASE_HP = 4;
     private static final int UPGRADE_PLUS_HP = -1;
 
     private static final int BASE_MAGIC = 8;
@@ -46,6 +46,7 @@ public class ThatDayHere extends GkmasCard {
         super(ID, NAME, IMG_PATH, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET,"color");
         this.tags.add(GkmasCardTag.FULL_POWER_TAG);
         this.tags.add(GkmasCardTag.IDOL_CARD_TAG);
+        this.tags.add(GkmasCardTag.COST_HP_TAG);
         this.baseHPMagicNumber = BASE_HP;
         this.HPMagicNumber = this.baseHPMagicNumber;
         this.baseMagicNumber = BASE_MAGIC;
@@ -64,7 +65,9 @@ public class ThatDayHere extends GkmasCard {
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        addToBot(new LoseHPAction(p,p, this.HPMagicNumber));
+        if(this.HPMagicNumber > 0){
+            addToBot(new LoseHPAction(p,p,this.HPMagicNumber));
+        }
         addToBot(new ApplyPowerAction(p,p,new FullPowerValue(p,this.magicNumber),this.magicNumber));
         addToBot(new BattlePracticeAction(this.secondMagicNumber));
         SoundHelper.playSound("gkmasModResource/audio/voice/skillcard/cidol_hski_3_015_produce_skillcard_01.ogg");
